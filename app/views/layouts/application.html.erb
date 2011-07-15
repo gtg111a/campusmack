@@ -2,11 +2,10 @@
 <html>
   <head>
     <title><%= title %></title>
-	<%= stylesheet_link_tag :all	%>
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
 	<%= javascript_include_tag 'jquery/jquery-1.6.1.min' %>
-	<%= javascript_include_tag :all, :cache => true %>
+	<%= javascript_include_tag :defaults %>
   </head>
   <body>
     <div class="container">
