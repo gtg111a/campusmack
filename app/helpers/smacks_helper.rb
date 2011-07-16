@@ -1,0 +1,2 @@
+module SmacksHelper
+end

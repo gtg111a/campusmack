@@ -10,11 +10,16 @@ namespace :db do
     desc "Fill database with sample data" 
     task :mopulate => :environment do
       Rake::Task['db:reset'].invoke 
+      make_colleges
       make_users
-      make_microposts
-      make_relationships
     end
   end
+  
+  def make_colleges
+    College.create!(:name => "University of Georgia")
+    College.create!(:name => "Georgia Tech")
+  end
+  
   
   def make_users
   admin = User.create!(:name => "Example User",

@@ -1,0 +1,2 @@
+class SmacksController < ApplicationController
+end
