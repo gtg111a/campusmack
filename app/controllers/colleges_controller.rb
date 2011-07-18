@@ -12,8 +12,10 @@ class CollegesController < ApplicationController
     @colleges = College.all
   end
   
-  def show_college
-    puts "hi"
+  def show
+    @college = College.find(params[:id])
+    @title = @college.name
+    @posts = @college.posts.paginate(:page => params[:page])
   end
     
   def gtsmack

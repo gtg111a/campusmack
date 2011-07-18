@@ -12,12 +12,29 @@ namespace :db do
       Rake::Task['db:reset'].invoke 
       make_colleges
       make_users
+      make_content
     end
   end
   
   def make_colleges
     College.create!(:name => "University of Georgia")
     College.create!(:name => "Georgia Tech")
+    College.create!(:name => "Clemson")
+    @colleges = College.all
+  end
+  
+  def make_content
+    @colleges.each do |college|
+      5.times do |n|
+
+      college.posts.create!(:type => "Smack", 
+                            :content_type => "News",
+                            :title => "Tech Nerds Everywhere",
+                            :content => "http://www.youtube.com/watch?v=UaWXbqu5Bcs",
+                            :vote => n,
+                            :college_id => college.id)
+      end
+    end
   end
   
   

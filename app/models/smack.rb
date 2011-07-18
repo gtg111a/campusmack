@@ -1,2 +1,3 @@
-class Smack < ActiveRecord::Base
+class Smack < Post
+  belongs_to :college
 end

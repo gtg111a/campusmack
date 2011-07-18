@@ -1,2 +1,3 @@
-class Redemption < ActiveRecord::Base
+class Redemption < Post
+  belongs_to :college
 end

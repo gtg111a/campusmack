@@ -10,6 +10,11 @@ Campusmack::Application.routes.draw do
     resources :sessions, :only => [:new, :create, :destroy]
     resources :microposts, :only => [:create, :destroy]
     resources :relationships, :only => [:create, :destroy]
+    resources :colleges, :only => [:new, :create, :index, :show] do
+      resources :posts
+      resources :smacks
+      resources :redemptions
+    end
 
     match 'gtsmack', :to => 'colleges#gtsmack'
     match 'gtredemption', :to => 'colleges#gtredemption'

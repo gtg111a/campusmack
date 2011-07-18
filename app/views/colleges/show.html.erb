@@ -1,0 +1,10 @@
+<h1><%= @college.name %></h1>
+<p><%= @college.name %>: <%= link_to "Smacks", college_smacks_path(@college) %> | <%= link_to "Redemptions", college_redemptions_path(@college) %> <br>
+<br>
+<a href = "/gtredemption">GT Redemption</a>
+<% unless @college.posts.empty? %>
+  <table class="microposts" summary="User microposts">
+	<%= render @posts %>
+	</table>
+	<%= will_paginate @posts %>
+	<% end %>

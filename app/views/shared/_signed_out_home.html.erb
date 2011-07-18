@@ -7,7 +7,7 @@ This is the Home Page for Campus Smack
 <div class = "colleges">Click On Your Campus Below</div>
 
 <% @colleges.each do |college| %>
-<a href = "/gthome"><%=h college.name %></a><br>
+<%= link_to college.name, college %><br>
 <% end %>
 
 

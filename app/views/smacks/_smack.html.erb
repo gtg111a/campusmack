@@ -1,0 +1,10 @@
+<ul>
+<tr>
+	<td class ="micropost">
+		<span class="content"><%= youtube_embed(smack.content).html_safe %></span>
+		<span class="timestamp">
+			Posted <%= time_ago_in_words(smack.created_at) %> ago.
+			</span>
+		</td>									
+	</tr>
+</ul>

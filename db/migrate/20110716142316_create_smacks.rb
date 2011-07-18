@@ -3,6 +3,11 @@ class CreateSmacks < ActiveRecord::Migration
     create_table :smacks do |t|
 
       t.timestamps
+      t.string   :type
+      t.string   :content_type
+      t.string   :title
+      t.string   :content
+      t.integer  :vote
     end
   end
 
