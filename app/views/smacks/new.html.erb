@@ -1,0 +1,10 @@
+<h1>Submit a <%= @college.name %> Smack</h1>
+<%= form_for ([@college, @smack]) do |f| %> 
+<%= render 'shared/fields', :f => f %>
+<div class="actions">
+	<%= f.submit "Submit" %> 
+</div>
+<% end %>
+
+			
+			

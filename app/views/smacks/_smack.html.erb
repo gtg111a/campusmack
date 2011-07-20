@@ -1,10 +1,16 @@
 <ul>
+	<tr>
+		<td class ="post", id = "title"><%= smack.title %>
+		</td>
+	</tr>
 <tr>
-	<td class ="micropost">
+	<td>
 		<span class="content"><%= youtube_embed(smack.content).html_safe %></span>
-		<span class="timestamp">
+		<span class = "vote">Total Votes: <%= smack.vote %></span>
+		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(smack.created_at) %> ago.
 			</span>
 		</td>									
 	</tr>
+
 </ul>

@@ -1,8 +1,10 @@
 <ul>
+	<td class ="post", id = "title"><%= post.title %>
+	</td>
 <tr>
 	<td class ="micropost">
 		<span class="content"><%= youtube_embed(post.content).html_safe %></span>
-		<span class="timestamp">
+		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(post.created_at) %> ago.
 			</span>
 		</td>									

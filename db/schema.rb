@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718213916) do
+ActiveRecord::Schema.define(:version => 20110720231610) do
 
   create_table "colleges", :force => true do |t|
     t.datetime "created_at"
@@ -26,24 +26,29 @@ ActiveRecord::Schema.define(:version => 20110718213916) do
   end
 
   create_table "posts", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "type"
+    t.string   "post_type"
     t.string   "content_type"
     t.string   "title"
     t.string   "content"
     t.integer  "vote"
     t.integer  "college_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "redemptions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
     t.string   "content_type"
     t.string   "title"
     t.string   "content"
     t.integer  "vote"
+    t.integer  "college_id"
+    t.integer  "user_id"
+    t.string   "post_type"
+    t.string   "apost_type"
   end
 
   create_table "relationships", :force => true do |t|
@@ -60,11 +65,14 @@ ActiveRecord::Schema.define(:version => 20110718213916) do
   create_table "smacks", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
     t.string   "content_type"
     t.string   "title"
     t.string   "content"
     t.integer  "vote"
+    t.integer  "college_id"
+    t.integer  "user_id"
+    t.string   "post_type"
+    t.string   "apost_type"
   end
 
   create_table "users", :force => true do |t|

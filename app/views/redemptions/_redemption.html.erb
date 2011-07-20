@@ -1,8 +1,11 @@
 <ul>
+		<td class ="post", id = "title"><%= redemption.title %>
+		</td>
 <tr>
 	<td class ="micropost">
 		<span class="content"><%= youtube_embed(redemption.content).html_safe %></span>
-		<span class="timestamp">
+		<span class = "vote">Total Votes: <%= redemption.vote %></span>
+		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(redemption.created_at) %> ago.
 			</span>
 		</td>									

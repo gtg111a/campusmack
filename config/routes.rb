@@ -1,6 +1,9 @@
 Campusmack::Application.routes.draw do
     get "sessions/new"
 
+    resources :smacks
+    resources :redemptions
+    resources :posts
     resources :users do
       resources :microposts, :only => [:index]
       member do
@@ -15,10 +18,7 @@ Campusmack::Application.routes.draw do
       resources :smacks
       resources :redemptions
     end
-
-    match 'gtsmack', :to => 'colleges#gtsmack'
-    match 'gtredemption', :to => 'colleges#gtredemption'
-    match 'gthome', :to => 'colleges#gthome'
+    
     match '/signup', :to => 'users#new'
     match '/signin', :to => 'sessions#new'
     match '/signout', :to => 'sessions#destroy'

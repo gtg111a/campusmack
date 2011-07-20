@@ -9,7 +9,7 @@ namespace :db do
   namespace :db do 
     desc "Fill database with sample data" 
     task :mopulate => :environment do
-      Rake::Task['db:reset'].invoke 
+      Rake::Task['db:reset'].invoke
       make_colleges
       make_users
       make_content
@@ -27,10 +27,17 @@ namespace :db do
     @colleges.each do |college|
       5.times do |n|
 
-      college.posts.create!(:type => "Smack", 
-                            :content_type => "News",
+      college.smacks.create!( 
+                            :content_type => "Video",
                             :title => "Tech Nerds Everywhere",
                             :content => "http://www.youtube.com/watch?v=UaWXbqu5Bcs",
+                            :vote => n,
+                            :college_id => college.id)
+                            
+      college.redemptions.create!(
+                            :content_type => "Video",
+                            :title => "Calvin Johnson Highlights",
+                            :content => "http://www.youtube.com/watch?v=YV_j7_CCc8A",
                             :vote => n,
                             :college_id => college.id)
       end

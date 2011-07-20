@@ -1,5 +1,24 @@
-	<td class="main">
-		<h1 class="micropost">All <%= @college.name %> Redemptions</h1>
+
+<table class="masthead">
+<tr>
+	<td>
+		<%= @college.name %> |
+		<%= link_to "Home", college_path(@college) %> |
+		<%= link_to "Smacks", college_smacks_path(@college) %>
+	</td>
+</tr>
+</table>
+		<h1><%= @college.name %> Redemptions</h1><br>
+			<table class="masthead">
+			<tr>
+				<td>
+					Videos | Photos | News
+				</td>
+			</tr>
+			</table>
+		<a><%= link_to "Add a Redemption", new_college_redemption_path(@college) %></a>
 		<%= will_paginate(@redemptions)%>
+		<table class = "post">
 		<%= render @redemptions %>
-		</td>
+		</table>
+

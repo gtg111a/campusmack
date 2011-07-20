@@ -15,19 +15,21 @@ class CollegesController < ApplicationController
   def show
     @college = College.find(params[:id])
     @title = @college.name
-    @posts = @college.posts.paginate(:page => params[:page])
+    @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
-    
-  def gtsmack
-    @title = "GT Smack"
+
+#Don't need this, saving just in case
+=begin 
+private
+  def all_posts(college)
+    college.redemptions.each do |f|
+      college.posts << f
+    end
+    college.smacks.each do |f|
+      college.posts << f
+    end
+    return college
   end
-  
-  def gtredemption
-    @title = "GT Redemption"
-  end
-  
-  def gthome
-    @title = "GT Home"
-  end
-  
+=end
+
 end
