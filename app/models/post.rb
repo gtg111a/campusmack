@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   validates :type,          :presence => true
   validates :content_type,  :presence => true
   validates :title,         :presence => true
-  validates :content,       :presence => true
+  #validates :content,       :presence => true
   
  # default_scope select_without_file_columns_for(:photo)
   
