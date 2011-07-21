@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   has_attached_file :photo, 
                     :styles => {:medium => "200x200"},
                     :storage => :s3,
-                    :s3_credentials => "/Users/michaelbivone/campusmack/config/aws.yml",
+                    :s3_credentials => "#{RAILS_ROOT}/config/aws.yml",
                     :bucket => 'Campusmack',
                     :path => "/:style/:id/:filename"
                  
