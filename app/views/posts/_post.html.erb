@@ -10,6 +10,11 @@
 		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(post.created_at) %> ago.
 			</span>
-		</td>									
+		</td>	
+			<td>
+				<%= link_to "delete", post, :method => :delete,
+												 :confirm => "You sure",
+												 :title => post.content %>
+			</td>								
 	</tr>
 </ul>

@@ -28,6 +28,12 @@ class RedemptionsController < ApplicationController
       @title = @college.name
       @redemptions = @college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')
     end
+    
+    def destroy
+      @redemption.destroy
+      root_path
+    end
+    
 =begin
 private
   

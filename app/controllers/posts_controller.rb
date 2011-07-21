@@ -29,4 +29,9 @@ class PostsController < ApplicationController
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
   
+  def destroy
+    @post.destroy
+    root_path
+  end
+  
 end

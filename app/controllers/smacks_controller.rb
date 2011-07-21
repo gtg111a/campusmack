@@ -29,6 +29,11 @@ class SmacksController < ApplicationController
     @title = @college.name
     @smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')
   end
+  
+  def destroy
+    @smack.destroy
+    root_path
+  end
 
 private
 

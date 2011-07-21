@@ -11,6 +11,12 @@
 		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(redemption.created_at) %> ago.
 			</span>
-		</td>									
+		</td>	
+			</td>
+			<td>		
+					<%= link_to "delete", redemption, :method => :delete,
+													 :confirm => "You sure",
+													 :title => redemption.content %>
+				</td>								
 	</tr>
 </ul>

@@ -5,6 +5,8 @@ gem 'spork', '0.9.0.rc5'
 #gem 'aws-sdk'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'thin'
+gem 'rack'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
