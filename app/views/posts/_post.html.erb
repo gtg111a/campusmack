@@ -3,6 +3,9 @@
 	</td>
 <tr>
 	<td class ="micropost">
+		<% unless post.photo_file_name.nil? %>
+		<span class = "photo"><%= image_tag post.photo.url(:medium) %></span>
+		<% end %>
 		<span class="content"><%= youtube_embed(post.content).html_safe %></span>
 		<span class="timestamp"><br>
 			Posted <%= time_ago_in_words(post.created_at) %> ago.

@@ -3,6 +3,9 @@
 		</td>
 <tr>
 	<td class ="micropost">
+		<% unless redemption.photo_file_name.nil? %>
+		<span class = "photo"><%= image_tag redemption.photo.url(:medium) %></span>
+		<% end %>
 		<span class="content"><%= youtube_embed(redemption.content).html_safe %></span>
 		<span class = "vote">Total Votes: <%= redemption.vote %></span>
 		<span class="timestamp"><br>

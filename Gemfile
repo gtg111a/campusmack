@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.8'
 gem 'spork', '0.9.0.rc5'
+#gem 'aws-sdk'
+gem 'paperclip'
+gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,6 +17,9 @@ group :development do
 gem 'rspec-rails', '2.6.1'
 gem 'annotate-models', '1.0.4'
 gem 'faker', '0.3.1'
+#gem 'aws-sdk'
+gem 'aws-s3', :require => 'aws/s3'
+gem 'paperclip'
 end
 
 group :test do
@@ -21,6 +27,9 @@ gem 'rspec-rails', '2.6.1'
 gem 'webrat', '0.7.1'
 gem 'spork', '0.9.0.rc5'
 gem 'factory_girl'
+#gem 'aws-sdk'
+gem 'aws-s3', :require => 'aws/s3'
+gem 'paperclip'
 end
 
 # Use unicorn as the web server

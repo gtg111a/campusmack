@@ -5,6 +5,9 @@
 	</tr>
 <tr>
 	<td>
+		<% unless smack.photo_file_name.nil? %>
+		<span class = "photo"><%= image_tag smack.photo.url(:medium) %></span>
+		<% end %>
 		<span class="content"><%= youtube_embed(smack.content).html_safe %></span>
 		<span class = "vote">Total Votes: <%= smack.vote %></span>
 		<span class="timestamp"><br>

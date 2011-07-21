@@ -30,7 +30,12 @@ GEM
     activesupport (3.0.8)
     annotate-models (1.0.4)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     builder (2.1.2)
+    cocaine (0.1.0)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -45,6 +50,11 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     nokogiri (1.4.6)
+    paperclip (2.3.15)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -89,15 +99,18 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5.3)
     will_paginate (3.0.pre2)
+    xml-simple (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   annotate-models (= 1.0.4)
+  aws-s3
   factory_girl
   faker (= 0.3.1)
   gravatar_image_tag
+  paperclip
   rails (= 3.0.8)
   rspec-rails (= 2.6.1)
   spork (= 0.9.0.rc5)

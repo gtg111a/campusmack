@@ -1,11 +1,16 @@
 <%= render 'shared/error_messages', :object => f.object %> 
-<div class="field"> <%= f.label :title %><br /> <%= f.text_field :title %>
+<div class="field"> <%= f.label :title %><br /> 
+					<%= f.text_field :title %>
 </div> 
 <div class="field">
 <%= f.label :content_type %><br />
 <%= f.text_field :content_type %> 
 </div>
-<div class="field">
-<%= f.label :content %><br />
+<div class="field">For a video post:<br>
+<%= f.label :youtube_link %><br />
 <%= f.text_field :content %> 
+</div>
+<div class="field">For a photo post:<br>
+<%= f.label :upload_Photo %>
+<%= f.file_field :photo %>
 </div>
