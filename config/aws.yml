@@ -6,7 +6,7 @@ development:
   secret_access_key: 2jj2ojeiHtiA4UU/pZntDT7hxVe51m566TZDABsD
 
 test:
- # <<: *development
+  <<: *development
 
 production:
   <<: *development
