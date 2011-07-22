@@ -1,6 +1,6 @@
 class Redemption < Post
 
-belongs_to :apost, :polymorphic => true
+#belongs_to :apost, :polymorphic => true
 
 =begin  
   attr_accessible :content_type, :title, :content, :comments, :vote

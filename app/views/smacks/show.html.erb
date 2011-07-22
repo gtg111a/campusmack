@@ -1,0 +1,21 @@
+
+<table class="masthead">
+<tr>
+	<td>
+		<%= link_to @college.name, "/colleges/#{@college.id}" %> |
+		<%= link_to "Smacks", college_smacks_path(@college) %> |
+		<%= link_to "Redemptions", college_redemptions_path(@college) %>
+	</td>
+</tr>
+</table>
+<h1><%= @college.name %> Smack</h1>
+<table class="masthead">
+<tr>
+	<td>
+		Videos | Photos | News | Stats
+	</td>
+</tr>
+</table>
+  <table class="microposts" summary="User microposts">
+	<%= render @smack %>
+	</table>

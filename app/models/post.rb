@@ -4,8 +4,8 @@ class Post < ActiveRecord::Base
   
   belongs_to :college
   
-  has_many :smacks, :as => :apost, :dependent => :destroy
-  has_many :redemptions, :as => :apost, :dependent => :destroy
+ # has_many :smacks, :as => :apost, :dependent => :destroy
+#  has_many :redemptions, :as => :apost, :dependent => :destroy
   
   has_attached_file :photo, 
                     :styles => {:medium => "200x200"},

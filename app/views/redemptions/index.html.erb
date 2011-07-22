@@ -1,12 +1,4 @@
-
-<table class="masthead">
-<tr>
-	<td>
-		<%= @college.name %> |
-		<%= link_to "Home", college_path(@college) %> |
-		<%= link_to "Smacks", college_smacks_path(@college) %>
-	</td>
-</tr>
+<%= render 'shared/masthead1' %>
 </table>
 		<h1><%= @college.name %> Redemptions</h1><br>
 			<table class="masthead">

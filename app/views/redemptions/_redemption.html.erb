@@ -1,5 +1,5 @@
 <ul>
-		<td class ="post", id = "title"><%= redemption.title %>
+		<td class ="post", id = "title"><%= link_to redemption.title, "/redemptions/#{redemption.id}" %>
 		</td>
 <tr>
 	<td class ="micropost">
@@ -13,10 +13,12 @@
 			</span>
 		</td>	
 			</td>
-			<td>		
-					<%= link_to "delete", redemption, :method => :delete,
+			<td>	 
+					<% if request.fullpath =~ /redemptions/ %>
+					<%= link_to "delete", redemption,:method => :delete,
 													 :confirm => "You sure",
 													 :title => redemption.content %>
+					<% end %>								
 				</td>								
 	</tr>
 </ul>

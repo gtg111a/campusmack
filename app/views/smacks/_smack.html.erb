@@ -1,6 +1,6 @@
 <ul>
 	<tr>
-		<td class ="post", id = "title"><%= smack.title %>
+		<td class ="post", id = "title"><%= link_to smack.title, "/smacks/#{smack.id}" %>
 		</td>
 	</tr>
 <tr>
@@ -15,9 +15,11 @@
 			</span>
 		</td>		
 		<td>
+							<% if request.fullpath =~ /smacks/ %>
 							<%= link_to "delete", smack, :method => :delete,
 															 :confirm => "You sure",
 															 :title => smack.content %>
+							<% end %>
 			</td>							
 	</tr>
 

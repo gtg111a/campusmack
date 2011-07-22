@@ -30,8 +30,12 @@ class PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    @college = College.find(@post.college_id)
     @post.destroy
-    root_path
+    if @post.delete?
+    redirect_to "/colleges/#{@college.id}/posts", :flash => { :success => "Post Deleted Successfully!" }
   end
+end
   
 end

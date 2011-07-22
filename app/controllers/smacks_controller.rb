@@ -20,34 +20,21 @@ class SmacksController < ApplicationController
   def index
     @college = College.find(params[:college_id])
     @title = "All smacks from #{@college.name}"
-   # @smacker = college_smacks(@college)
     @smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')
   end
   
   def show
-    @smack = College.find(params[:id])
-    @title = @college.name
-    @smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')
+    @smack = Smack.find(params[:id])
+     @college = College.find(@smack.college_id)
+     @title = @college.name
   end
   
   def destroy
+    @smack = Smack.find(params[:id])
+    @college = College.find(@smack.college_id)
     @smack.destroy
-    root_path
+    redirect_to "/colleges/#{@college.id}/smacks", :flash => { :success => "Post Deleted Successfully!" }
   end
 
-private
-
-#Tried this method to display only smacks from the Posts.db, didn't work
-=begin 
- def college_smacks(college)
-   @newcollege = College.new
-   college.posts.each do |f|
-     if f.post_type == "Smack"
-       @newcollege.posts << f
-     end
-   end
-   return @newcollege
- end
-=end
 end
   

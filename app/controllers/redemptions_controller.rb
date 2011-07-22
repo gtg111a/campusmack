@@ -2,7 +2,8 @@ class RedemptionsController < ApplicationController
   
   def new
     @college = College.find(params[:college_id])
-    @redemption = @college.redemptions.build
+    @redemption = Redemption.new
+    #@redemption = @college.redemptions.buildrequire 'redemptions_controller'
     @title = "Submit Redemption"
   end
   
@@ -24,14 +25,16 @@ class RedemptionsController < ApplicationController
     end
 
     def show
-      @redemption = College.find(params[:id])
+      @redemption = Redemption.find(params[:id])
+      @college = College.find(@redemption.college_id)
       @title = @college.name
-      @redemptions = @college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')
     end
     
     def destroy
+      @redemption = Redemption.find(params[:id])
+      @college = College.find(@redemption.college_id)
       @redemption.destroy
-      root_path
+      redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" }
     end
     
 =begin
