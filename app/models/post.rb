@@ -10,12 +10,12 @@ class Post < ActiveRecord::Base
   has_attached_file :photo, 
                     :styles => {:medium => "200x200"},
                     :storage => :s3,
-                    :s3_credentials => "#{RAILS_ROOT}/config/aws.yml",
+                    :s3_credentials => S3_CREDENTIALS,
                     :bucket => 'Campusmack',
                     :path => "/:style/:id/:filename"
                  
   
-  
+  #"#{RAILS_ROOT}/config/aws.yml",
  # validates :post_type,     :presence => true
   validates :type,          :presence => true
   validates :content_type,  :presence => true
