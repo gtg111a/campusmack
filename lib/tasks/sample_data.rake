@@ -1,3 +1,5 @@
+
+
 namespace :db do 
    desc "Reset db" 
    task :crush => :environment do
