@@ -24,6 +24,7 @@
 			<td width = 5%>
 								<% if signed_in? %>
 								<% if post.user_id == current_user.id || current_user.admin? %>
+								<%= button_to "edit", edit_post_path(post), :mehtod => :get %>
 								<%= button_to "delete", post, :method => :delete,
 																 :confirm => "You sure",
 																 :title => post.content %>

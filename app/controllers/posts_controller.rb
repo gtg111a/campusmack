@@ -39,5 +39,21 @@ class PostsController < ApplicationController
     redirect_to "/colleges/#{@college.id}/posts", :flash => { :success => "Post Deleted Successfully!" }
   end
 end
+
+ def edit
+   @user = current_user
+   @post = Post.find(params[:id])
+   @title = "Edit post"
+ end
+ 
+ def update
+   @post = Post.find(params[:id])
+   if @post.update_attributes(params[:smack])
+     redirect_to @post, :flash => { :success => "Post updated." }
+   else
+     @title = "Edit post"
+     render 'edit'
+   end
+ end
   
 end

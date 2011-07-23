@@ -38,6 +38,22 @@ class SmacksController < ApplicationController
     @smack.destroy
     redirect_to "/colleges/#{@college.id}/smacks", :flash => { :success => "Post Deleted Successfully!" }
   end
+  
+  def edit
+    @user = current_user
+    @smack = Smack.find(params[:id])
+    @title = "Edit post"
+  end
+  
+  def update
+    @smack = Smack.find(params[:id])
+    if @smack.update_attributes(params[:smack])
+      redirect_to @smack, :flash => { :success => "Post updated." }
+    else
+      @title = "Edit post"
+      render 'edit'
+    end
+  end
 
 end
   

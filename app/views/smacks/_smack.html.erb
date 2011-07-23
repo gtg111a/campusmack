@@ -31,6 +31,7 @@
 		<td width = 5%>
 							<% if signed_in? %>
 							<% if smack.user_id == current_user.id || current_user.admin? %>
+							<%= button_to "edit", edit_smack_path(smack), :method => :get %>
 							<%= button_to "delete", smack, :method => :delete,
 															 :confirm => "You sure",
 															 :title => smack.content %>

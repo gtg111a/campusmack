@@ -29,6 +29,7 @@
 				<td width = 5%>
 									<% if signed_in? %>
 									<% if redemption.user_id == current_user.id || current_user.admin? %>
+									<%= button_to "edit",  edit_redemption_path(redemption), :method => :get %>
 									<%= button_to "delete", redemption, :method => :delete,
 																	 :confirm => "You sure",
 																	 :title => redemption.content %>

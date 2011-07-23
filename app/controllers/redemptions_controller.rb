@@ -39,6 +39,22 @@ class RedemptionsController < ApplicationController
       redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" }  
     end
     
+    def edit
+      @user = current_user
+      @redemption = Redemption.find(params[:id])
+      @title = "Edit post"
+    end
+    
+    def update
+      @redemption = Redemption.find(params[:id])
+      if @redemption.update_attributes(params[:redemption])
+        redirect_to @redemption, :flash => { :success => "Post updated." }
+      else
+        @title = "Edit post"
+        render 'edit'
+      end
+    end
+    
 =begin
 private
   
