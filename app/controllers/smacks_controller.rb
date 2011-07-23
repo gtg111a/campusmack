@@ -1,14 +1,17 @@
 class SmacksController < ApplicationController
   
   def new
+    @user = current_user
     @college = College.find(params[:college_id])
-    @smack = @college.smacks.build
+    @smack = @user.smacks.build
     @title = "Submit Smack"
   end
   
   def create
+   @user = current_user
    @college = College.find(params[:college_id])
    @smack = @college.smacks.build(params[:smack])
+   @smack.user_id = @user.id
     if @smack.save
       redirect_to college_smacks_path, :flash => { :success => "Post Submitted Successfully!" }
     else

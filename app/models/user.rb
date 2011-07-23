@@ -12,8 +12,16 @@
 
 require 'digest'
 class User < ActiveRecord::Base
+  
+  #acts_as_voter
+  
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation
+  
+
+  has_many :posts, :dependent => :destroy
+  has_many :smacks, :dependent => :destroy
+  has_many :redemptions, :dependent => :destroy
   
   has_many :microposts, :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
@@ -27,8 +35,13 @@ class User < ActiveRecord::Base
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
-  validates :name, :presence => true,
+  validates :first_name, :presence => true,
                     :length => { :maximum => 50 }
+  validates :last_name, :presence => true,
+                    :length => { :maximum => 50 } 
+  validates :username, :presence => true,
+                    :length => { :maximum => 50 },
+                    :uniqueness => { :case_sensitive => false }                 
   validates :email, :presence => true,
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }

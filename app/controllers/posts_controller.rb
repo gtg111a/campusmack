@@ -1,14 +1,16 @@
 class PostsController < ApplicationController
   
   def new
+    @user = current_user
     @college = College.find(params[:college_id])
-    @post = @college.posts.build
+    @post = @user.posts.build
     @title = "Submit Post"
   end
   
   def create
+    @user = current_user
     @college = College.find(params[:college_id])
-    @post = @college.posts.build(params[:post])
+    @post = @user.posts.build(params[:post])
     if @post.save
       redirect_to root_path, :flash => { :success => "Post Submitted Successfully!" }
     else

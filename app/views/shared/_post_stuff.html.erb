@@ -1,0 +1,25 @@
+<tr>
+	<td>
+		<% unless redemption.photo_file_name.nil? %>
+		<span class = "photo"><%= image_tag redemption.photo.url(:medium) %></span>
+		<% end %>
+		<span class="content"><%= youtube_embed(redemption.content).html_safe %></span>
+		<br>	
+			<span class="timestamp"><br>
+				redemptioned <%= time_ago_in_words(redemption.created_at) %> ago.
+				</span>
+	</td>	
+	<td>
+		<span class="content"><%= redemption.comments %></span>
+	</td>
+	<td>		
+		<span class = "vote">Total Votes: <%= redemption.vote %></span>
+	</td>		
+		<td>
+							<% if request.fullpath =~ /redemptions/ %>
+							<%= button_to "delete", redemption, :method => :delete,
+															 :confirm => "You sure",
+															 :title => redemption.content %>
+							<% end %>
+			</td>								
+	</tr>

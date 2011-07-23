@@ -1,3 +1,7 @@
+<div class = "colleges">Click On Your Campus Below</div>
+<% @colleges.each do |college| %>
+<%= link_to college.name, "/users/#{@user.id}/colleges/#{college.id}" %><br>
+<% end %>
 <table class="profile" summary="Profile information">
 	<tr>
 		<td class="main">
@@ -5,13 +9,12 @@
 <%= gravatar_for @user %>
 <%= @user.name %>
 </h1>
-<%= render 'follow_form' if signed_in? %>
 
-<% unless @user.microposts.empty? %>
-  <table class="microposts" summary="User microposts">
-	<%= render @microposts %>
+<% unless @user.posts.empty? %>
+  <table class="posts" summary="User posts">
+	<%= render @posts %>
 	</table>
-	<%= will_paginate @microposts %>
+	<%= will_paginate @posts %>
 	<% end %>
 </td>
 <!--Commenting out Stat sidebar

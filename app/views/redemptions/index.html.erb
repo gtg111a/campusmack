@@ -8,7 +8,7 @@
 				</td>
 			</tr>
 			</table>
-		<a><%= link_to "Add a Redemption", new_college_redemption_path(@college) %></a>
+		<a><%= link_to "Add a Redemption", new_user_college_redemption_path(@college) %></a>
 		<%= will_paginate(@redemptions)%>
 		<table class = "post">
 		<%= render @redemptions %>

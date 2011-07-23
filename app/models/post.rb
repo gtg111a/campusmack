@@ -1,8 +1,14 @@
 class Post < ActiveRecord::Base
   
+  #acts_as_voteable
+  
   attr_accessible :content_type, :title, :content, :comments, :vote, :photo
   
   belongs_to :college
+  belongs_to :user
+  
+  accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :college
   
  # has_many :smacks, :as => :apost, :dependent => :destroy
 #  has_many :redemptions, :as => :apost, :dependent => :destroy
@@ -16,12 +22,10 @@ class Post < ActiveRecord::Base
                  
   
   #"#{RAILS_ROOT}/config/aws.yml",
- # validates :post_type,     :presence => true
   validates :type,          :presence => true
   validates :content_type,  :presence => true
   validates :title,         :presence => true
-  #validates :content,       :presence => true
   
- # default_scope select_without_file_columns_for(:photo)
+  
   
 end

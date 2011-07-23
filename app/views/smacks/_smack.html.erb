@@ -9,16 +9,32 @@
 		<span class = "photo"><%= image_tag smack.photo.url(:medium) %></span>
 		<% end %>
 		<span class="content"><%= youtube_embed(smack.content).html_safe %></span>
+		<br>	
+			<span class="timestamp">
+				Posted <%= time_ago_in_words(smack.created_at) %> ago by 
+				<% if !smack.user_id.nil? %>
+				<%= User.find(smack.user_id).username %>
+				<% else %>
+				 @Campusmack
+				<% end %>.
+				</span>
+	</td>	
+	<td>
+		<span class="comments"><%= smack.comments %>
+		<% if request.fullpath =~ /colleges/ && !smack.comments.nil? %>
+			<%= link_to " [more...]", "/smacks/#{smack.id}" %>
+		<% end %></span>
+	</td>
+	<td width = 10%>		
 		<span class = "vote">Total Votes: <%= smack.vote %></span>
-		<span class="timestamp"><br>
-			Posted <%= time_ago_in_words(smack.created_at) %> ago.
-			</span>
-		</td>		
-		<td>
-							<% if request.fullpath =~ /smacks/ %>
-							<%= link_to "delete", smack, :method => :delete,
+	</td>		
+		<td width = 5%>
+							<% if signed_in? %>
+							<% if smack.user_id == current_user.id || current_user.admin? %>
+							<%= button_to "delete", smack, :method => :delete,
 															 :confirm => "You sure",
 															 :title => smack.content %>
+							<% end %>
 							<% end %>
 			</td>							
 	</tr>

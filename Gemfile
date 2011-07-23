@@ -7,6 +7,7 @@ gem 'paperclip'
 gem 'aws-s3'
 gem 'thin'
 gem 'rack'
+#gem 'vote_fu'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,6 +1,6 @@
 <%= render 'shared/masthead1' %>
 <h1>Submit a <%= @college.name %> Smack</h1>
-<%= form_for [@college, @smack], :html => { :multipart => true }  do |f| %> 
+<%= form_for [@user, @college, @smack], :html => { :multipart => true }  do |f| %> 
 <%= render 'shared/fields', :f => f %>
 <div class="actions">
 	<%= f.submit "Submit" %> 

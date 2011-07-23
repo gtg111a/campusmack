@@ -194,7 +194,7 @@ table.microposts tr td.micropost {
 
 table.microposts tr td.micropost span.timestamp { 
 	display: block; 
-	font-size: 85%; 
+	font-size: 50%; 
 	color: #666;
 	} 
 	
@@ -252,4 +252,21 @@ td.post#title {
 
 span.vote {
 	text-align: right;
+}
+
+table.post tr td {
+	border-collapse: collapse;
+	padding-left: 0px;
+	padding-right: 5px;
+	text-align: left;	
+	}
+	
+span.timestamp { 
+		display: block; 
+		font-size: 85%; 
+		color: #666;
+		}
+		
+span.comments {
+	text-align: left;
 }

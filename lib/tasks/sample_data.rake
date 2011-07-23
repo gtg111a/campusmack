@@ -5,6 +5,13 @@ namespace :db do
    end
  end
 
+  namespace :db do
+    desc "set up admin"
+    task :admin => :environment do
+      make_admin
+      end
+    end
+        
   
   namespace :db do 
     desc "Fill database with sample data" 
@@ -46,10 +53,12 @@ namespace :db do
   
   
   def make_users
-  admin = User.create!(:name => "Example User",
-               :email => "example@railstutorial.org", 
-               :password => "foobar", 
-               :password_confirmation => "foobar",)
+  admin = User.create!(:username => "@campusmack",
+               :first_name => "Campus",
+               :last_name => "Smack",
+               :email => "test@campusmack.com", 
+               :password => "campusmack", 
+               :password_confirmation => "campusmack",)
   admin.toggle!(:admin)
   99.times do |n| 
     name = Faker::Name.name 
@@ -61,6 +70,16 @@ namespace :db do
                  :password_confirmation => password)
                end
              end
+             
+  def make_admin
+    admin = User.create!(:username => "@campusmack",
+                         :first_name => "Campus",
+                         :last_name => "Smack",
+                         :email => "test@campusmack.com", 
+                         :password => "campusmack", 
+                         :password_confirmation => "campusmack",)
+             admin.toggle!(:admin)
+           end
   
   def make_microposts
     User.all(:limit => 6).each do |user|

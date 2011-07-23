@@ -1,11 +1,16 @@
 Campusmack::Application.routes.draw do
     get "sessions/new"
 
-    resources :smacks
-    resources :redemptions
-    resources :posts
+    resources :smacks, :only => [:index, :show, :destroy]
+    resources :redemptions, :only => [:index, :show, :destroy]
+    resources :posts, :only => [:index, :show]
     resources :users do
       resources :microposts, :only => [:index]
+      resources :colleges, :only => [:show] do
+          resources :posts
+          resources :smacks
+          resources :redemptions
+        end
       member do
         get :following, :followers
       end
@@ -13,10 +18,10 @@ Campusmack::Application.routes.draw do
     resources :sessions, :only => [:new, :create, :destroy]
     resources :microposts, :only => [:create, :destroy]
     resources :relationships, :only => [:create, :destroy]
-    resources :colleges, :only => [:new, :create, :index, :show] do
-      resources :posts
-      resources :smacks
-      resources :redemptions
+    resources :colleges, :only => [:new, :create, :show] do
+      resources :posts, :only => [:show, :index, :destroy]
+      resources :smacks, :only => [:show, :index, :destroy]
+      resources :redemptions, :only => [:show, :index, :destroy]
     end
     
     match '/signup', :to => 'users#new'

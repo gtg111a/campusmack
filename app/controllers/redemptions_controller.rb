@@ -1,15 +1,17 @@
 class RedemptionsController < ApplicationController
   
   def new
+    @user = current_user
     @college = College.find(params[:college_id])
-    @redemption = Redemption.new
-    #@redemption = @college.redemptions.buildrequire 'redemptions_controller'
+    @redemption = @user.redemptions.build
     @title = "Submit Redemption"
   end
   
   def create
+   @user = current_user
    @college = College.find(params[:college_id])
    @redemption = @college.redemptions.build(params[:redemption])
+   @redemption.user_id = @user.id
     if @redemption.save
       redirect_to college_redemptions_path, :flash => { :success => "Post Submitted Successfully!" }
     else
@@ -34,7 +36,7 @@ class RedemptionsController < ApplicationController
       @redemption = Redemption.find(params[:id])
       @college = College.find(@redemption.college_id)
       @redemption.destroy
-      redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" }
+      redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" }  
     end
     
 =begin

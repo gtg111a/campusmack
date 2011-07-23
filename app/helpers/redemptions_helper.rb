@@ -9,7 +9,7 @@ module RedemptionsHelper
         youtube_id = $5
       end
 
-      return %Q{<iframe title="YouTube video player" width="450" height="350" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+      return %Q{<iframe title="YouTube video player" width="300" height="200" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
     end
 
   end

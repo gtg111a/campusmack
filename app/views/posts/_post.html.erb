@@ -1,15 +1,34 @@
 <ul>
-	<td class ="post", id = "title"><%= post.title %>
+	<td class ="post", id = "title"><%= link_to post.title, "/posts/#{post.id}" %>
 	</td>
-<tr>
-	<td class ="micropost">
-		<% unless post.photo_file_name.nil? %>
-		<span class = "photo"><%= image_tag post.photo.url(:medium) %></span>
-		<% end %>
-		<span class="content"><%= youtube_embed(post.content).html_safe %></span>
-		<span class="timestamp"><br>
-			Posted <%= time_ago_in_words(post.created_at) %> ago.
-			</span>
-		</td>								
-	</tr>
+	<tr>
+		<td>
+			<% unless post.photo_file_name.nil? %>
+			<span class = "photo"><%= image_tag post.photo.url(:medium), %></span>
+			<% end %>
+			<span class="content"><%= youtube_embed(post.content).html_safe %></span>
+			<br>	
+				<span class="timestamp">
+					posted <%= time_ago_in_words(post.created_at) %> ago.
+					</span>
+		</td>	
+		<td>
+			<span class="comments"><%= post.comments %>
+			<% if request.fullpath =~ /colleges/ && !post.comments.nil? %>
+				<%= link_to " [more...]", "/posts/#{post.id}" %>
+			<% end %></span>
+		</td>
+		<td width = 10%>		
+			<span class = "vote">Total Votes: <%= post.vote %></span>
+		</td>		
+			<td width = 5%>
+								<% if signed_in? %>
+								<% if post.user_id == current_user.id || current_user.admin? %>
+								<%= button_to "delete", post, :method => :delete,
+																 :confirm => "You sure",
+																 :title => post.content %>
+								<% end %>
+								<% end %>
+				</td>								
+		</tr>
 </ul>
