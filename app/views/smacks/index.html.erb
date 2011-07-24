@@ -8,7 +8,9 @@
 				</td>
 			</tr>
 			</table>
+			<% if signed_in? %>
 		<a><%= link_to "Add a Smack", new_user_college_smack_path(@college) %></a>
+			<% end %>
 		<table class = "post">
 		<%= render @smacks %>
 		</table>
