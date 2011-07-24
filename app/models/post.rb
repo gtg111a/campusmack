@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   
-  #acts_as_voteable
+  make_voteable
   
   attr_accessible :content_type, :title, :content, :comments, :vote, :photo
   

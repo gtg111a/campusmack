@@ -50,6 +50,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    make_voteable (0.1.0)
+      activerecord (~> 3.0.0)
     mime-types (1.16)
     nokogiri (1.5.0)
     paperclip (2.3.15)
@@ -116,6 +118,7 @@ DEPENDENCIES
   factory_girl
   faker (= 0.3.1)
   gravatar_image_tag
+  make_voteable
   paperclip
   rack
   rails (= 3.0.8)

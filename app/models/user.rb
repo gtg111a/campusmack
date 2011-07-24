@@ -11,9 +11,10 @@
 #
 
 require 'digest'
+
 class User < ActiveRecord::Base
   
-  #acts_as_voter
+  make_voter
   
   attr_accessor :password
   attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation

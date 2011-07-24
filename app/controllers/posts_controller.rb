@@ -48,7 +48,7 @@ end
  
  def update
    @post = Post.find(params[:id])
-   if @post.update_attributes(params[:smack])
+   if @post.update_attributes(params[:post])
      redirect_to @post, :flash => { :success => "Post updated." }
    else
      @title = "Edit post"

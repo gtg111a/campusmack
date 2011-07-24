@@ -7,7 +7,7 @@ gem 'paperclip'
 gem 'aws-s3'
 gem 'thin'
 gem 'rack'
-#gem 'vote_fu'
+gem 'make_voteable'
 gem 'rake'
 
 # Bundle edge Rails instead:

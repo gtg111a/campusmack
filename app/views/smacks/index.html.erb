@@ -10,8 +10,10 @@
 			</table>
 			<% if signed_in? %>
 		<a><%= link_to "Add a Smack", new_user_college_smack_path(@college) %></a>
+		   <% else %>
+		<a><%= link_to "Add a Smack", signin_path %></a>
 			<% end %>
 		<table class = "post">
-		<%= render @smacks %>
+		<%= render :partial => "/posts/post", :collection => @smacks %>
 		</table>
 		<%= will_paginate(@smacks)%>

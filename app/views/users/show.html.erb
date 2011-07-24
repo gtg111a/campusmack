@@ -12,7 +12,7 @@
 
 <% unless @user.posts.empty? %>
   <table class="posts" summary="User posts">
-	<%= render @posts %>
+	<%= render :partial => "/posts/post", :collection => @posts %>
 	</table>
 	<%= will_paginate @posts %>
 	<% end %>

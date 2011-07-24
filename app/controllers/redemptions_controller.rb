@@ -27,7 +27,7 @@ class RedemptionsController < ApplicationController
     end
 
     def show
-      @redemption = Redemption.find(params[:id])
+      @redemption = Post.find(params[:id])
       @college = College.find(@redemption.college_id)
       @title = @college.name
     end

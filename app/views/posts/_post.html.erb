@@ -1,5 +1,5 @@
 <ul>
-	<td class ="post", id = "title"><%= link_to post.title, "/posts/#{post.id}" %>
+	<td class ="post", id = "title"><%= link_to post.title, "/#{post.type.downcase}s/#{post.id}" %> 
 	</td>
 	<tr>
 		<td>
@@ -14,17 +14,23 @@
 		</td>	
 		<td>
 			<span class="comments"><%= post.comments %>
-			<% if request.fullpath =~ /colleges/ && !post.comments.nil? %>
-				<%= link_to " [more...]", "/posts/#{post.id}" %>
+			<% if !post.comments.nil? %>
+				<%= link_to " [more...]", "/#{post.type.downcase}s/#{post.id}" %>
 			<% end %></span>
 		</td>
-		<td width = 10%>		
+		<td width = 10%>
+			<% if signed_in? %>
+			<span class = "vote"><%= link_to "Vote Up"  %></span><br>		
+			<span class = "vote">Total Votes: <%= post.up_votes %></span><br>
+			<span class = "vote"><%= link_to "Vote Down" %><%=post.id%></span>
+			<% else %>
 			<span class = "vote">Total Votes: <%= post.vote %></span>
+			<% end %>
 		</td>		
 			<td width = 5%>
 								<% if signed_in? %>
 								<% if post.user_id == current_user.id || current_user.admin? %>
-								<%= button_to "edit", edit_post_path(post), :mehtod => :get %>
+								<%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %>
 								<%= button_to "delete", post, :method => :delete,
 																 :confirm => "You sure",
 																 :title => post.content %>

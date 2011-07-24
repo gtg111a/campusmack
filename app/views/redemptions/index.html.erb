@@ -10,9 +10,11 @@
 			</table>
 			<% if signed_in? %>
 		<a><%= link_to "Add a Redemption", new_user_college_redemption_path(@college) %></a>
+		<% else %>
+		<a><%= link_to "Add a Redemption", signin_path %></a>
 			<% end %>
 		<%= will_paginate(@redemptions)%>
 		<table class = "post">
-		<%= render @redemptions %>
+		<%= render :partial => "/posts/post", :collection => @redemptions %>
 		</table>
 

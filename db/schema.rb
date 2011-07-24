@@ -10,19 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110722224741) do
+ActiveRecord::Schema.define(:version => 20110724124217) do
 
   create_table "colleges", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "name"
   end
 
   create_table "microposts", :force => true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "content"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -40,26 +40,28 @@ ActiveRecord::Schema.define(:version => 20110722224741) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "comments"
+    t.integer  "up_votes"
+    t.integer  "down_votes"
   end
 
   create_table "redemptions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "content_type"
-    t.string   "title"
-    t.string   "content"
-    t.integer  "vote"
-    t.integer  "college_id"
-    t.integer  "user_id"
-    t.string   "post_type"
-    t.string   "apost_type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "content_type"
+    t.string    "title"
+    t.string    "content"
+    t.integer   "vote"
+    t.integer   "college_id"
+    t.integer   "user_id"
+    t.string    "post_type"
+    t.string    "apost_type"
   end
 
   create_table "relationships", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "follower_id"
+    t.integer   "followed_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
@@ -67,31 +69,47 @@ ActiveRecord::Schema.define(:version => 20110722224741) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "smacks", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "content_type"
-    t.string   "title"
-    t.string   "content"
-    t.integer  "vote"
-    t.integer  "college_id"
-    t.integer  "user_id"
-    t.string   "post_type"
-    t.string   "apost_type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "content_type"
+    t.string    "title"
+    t.string    "content"
+    t.integer   "vote"
+    t.integer   "college_id"
+    t.integer   "user_id"
+    t.string    "post_type"
+    t.string    "apost_type"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.boolean  "admin",              :default => false
-    t.string   "username"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string    "name"
+    t.string    "email"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "encrypted_password"
+    t.string    "salt"
+    t.boolean   "admin",              :default => false
+    t.string    "username"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.integer   "up_votes"
+    t.integer   "down_votes"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "votings", :force => true do |t|
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.string   "voter_type"
+    t.integer  "voter_id"
+    t.boolean  "up_vote",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votings", ["voteable_type", "voteable_id", "voter_type", "voter_id"], :name => "unique_voters", :unique => true
+  add_index "votings", ["voteable_type", "voteable_id"], :name => "index_votings_on_voteable_type_and_voteable_id"
+  add_index "votings", ["voter_type", "voter_id"], :name => "index_votings_on_voter_type_and_voter_id"
 
 end

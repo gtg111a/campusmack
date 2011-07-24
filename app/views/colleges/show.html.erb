@@ -9,7 +9,8 @@
 </table>
 <% unless @college.posts.empty? %>
   <table class="microposts" summary="User microposts">
-	<%= render @posts %>
+
+	<%= render :partial => "/posts/post", :collection => @posts %>
 	</table>
 	<%= will_paginate @posts %>
 	<% end %>

@@ -27,7 +27,7 @@ class SmacksController < ApplicationController
   end
   
   def show
-    @smack = Smack.find(params[:id])
+     @smack = Post.find(params[:id])
      @college = College.find(@smack.college_id)
      @title = @college.name
   end
