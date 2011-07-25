@@ -26,7 +26,8 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = College.find(params[:id])
+    @college = College.find(params[:college_id])
+    @post = Post.find(params[:id])
     @title = @college.name
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
@@ -49,11 +50,22 @@ end
  def update
    @post = Post.find(params[:id])
    if @post.update_attributes(params[:post])
-     redirect_to @post, :flash => { :success => "Post updated." }
+     redirect_to college_post_path, :flash => { :success => "Post updated." }
    else
      @title = "Edit post"
      render 'edit'
    end
  end
+ 
+ def update(vote)
+   @post = Post.find(params[:id])
+   if vote == "Vote Up"
+     current_user.up_vote(@post)
+   end
+   if vote == "Vote Down"
+     current_user.down_vote(@post)
+   end
+ end
+ 
   
 end

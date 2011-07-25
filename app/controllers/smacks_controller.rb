@@ -48,7 +48,7 @@ class SmacksController < ApplicationController
   def update
     @smack = Smack.find(params[:id])
     if @smack.update_attributes(params[:smack])
-      redirect_to @smack, :flash => { :success => "Post updated." }
+      redirect_to "/colleges/#{@smack.college_id}/posts/#{@smack.id}", :flash => { :success => "Post updated." }
     else
       @title = "Edit post"
       render 'edit'

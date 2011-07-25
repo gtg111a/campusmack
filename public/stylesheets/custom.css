@@ -270,3 +270,10 @@ span.timestamp {
 span.comments {
 	text-align: left;
 }
+
+textarea.comment {
+        width: 500px;
+        height: 100px;
+        border: 3px solid #cccccc;
+        padding: 5px;
+}

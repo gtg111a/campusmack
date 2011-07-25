@@ -9,9 +9,9 @@
 			</tr>
 			</table>
 			<% if signed_in? %>
-		<a><%= link_to "Add a Smack", new_user_college_smack_path(@college) %></a>
+		<a><%= button_to "Add a Smack", new_user_college_smack_path(@college), :method => :get %></a>
 		   <% else %>
-		<a><%= link_to "Add a Smack", signin_path %></a>
+		<a><%= button_to "Add a Smack", signin_path, :method => :get %></a>
 			<% end %>
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @smacks %>

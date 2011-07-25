@@ -9,6 +9,7 @@ gem 'thin'
 gem 'rack'
 gem 'make_voteable'
 gem 'rake'
+gem 'acts_as_commentable'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

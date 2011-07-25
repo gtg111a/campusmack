@@ -1,9 +1,21 @@
 <%= render 'shared/masthead1' %>
-</table>	
-	
-		<h1>All <%= @college.name %> Posts</h1>
-		<%= will_paginate(@posts)%>
-		<table class = "post">
-		<%= render @posts %>
-		</table>
+<h1><%= @college.name %> <%= @post.type %></h1>
+<table class="masthead">
+<tr>
+	<td>
+		Videos | Photos | News | Stats
+	</td>
+</tr>
+</table>
+  <table class="microposts" summary="User microposts">
+	<%= render :partial => "/posts/post", :object => @post %>
+	</table>
+  <%= form_for(@post) do |f| %> 
+  <%= render '/shared/comments', :f => f %>
+<div class="actions">
+  <%= f.submit "Submit Comment" %>
+</div>
+  <% end %>
+
+
 

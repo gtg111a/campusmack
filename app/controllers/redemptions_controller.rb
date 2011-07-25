@@ -48,7 +48,7 @@ class RedemptionsController < ApplicationController
     def update
       @redemption = Redemption.find(params[:id])
       if @redemption.update_attributes(params[:redemption])
-        redirect_to @redemption, :flash => { :success => "Post updated." }
+         redirect_to "/colleges/#{@redemption.college_id}/posts/#{@redemption.id}", :flash => { :success => "Post updated." }
       else
         @title = "Edit post"
         render 'edit'

@@ -9,9 +9,9 @@
 			</tr>
 			</table>
 			<% if signed_in? %>
-		<a><%= link_to "Add a Redemption", new_user_college_redemption_path(@college) %></a>
+		<a><%= button_to "Add a Redemption", new_user_college_redemption_path(@college), :method => :get %></a>
 		<% else %>
-		<a><%= link_to "Add a Redemption", signin_path %></a>
+		<a><%= button_to "Add a Redemption", signin_path, :method => :get %></a>
 			<% end %>
 		<%= will_paginate(@redemptions)%>
 		<table class = "post">

@@ -1,8 +1,12 @@
 class Post < ActiveRecord::Base
   
+  #Through the 'make_voteable' gem
   make_voteable
   
-  attr_accessible :content_type, :title, :content, :comments, :vote, :photo
+  #Through the 'acts_as_commentable' gem
+  acts_as_commentable
+  
+  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo
   
   belongs_to :college
   belongs_to :user
