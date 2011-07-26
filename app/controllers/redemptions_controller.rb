@@ -21,6 +21,7 @@ class RedemptionsController < ApplicationController
   end
      
     def index
+      @user = current_user
       @college = College.find(params[:college_id])
       @title = "All redemptions from #{@college.name}"
       @redemptions = @college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')

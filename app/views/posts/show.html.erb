@@ -10,12 +10,16 @@
   <table class="microposts" summary="User microposts">
 	<%= render :partial => "/posts/post", :object => @post %>
 	</table>
-  <%= form_for(@post) do |f| %> 
+  <%= form_for ([@post, Comment.new]) do |f| %> 
   <%= render '/shared/comments', :f => f %>
 <div class="actions">
   <%= f.submit "Submit Comment" %>
 </div>
   <% end %>
+	<%= will_paginate(@comments)%>
+	<table class = "comments">
+	<%= render @comments %>
+	</table>
 
 
 

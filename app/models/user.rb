@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :smacks, :dependent => :destroy
   has_many :redemptions, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   
   has_many :microposts, :dependent => :destroy
   has_many :relationships, :dependent => :destroy,

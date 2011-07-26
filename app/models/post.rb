@@ -10,12 +10,11 @@ class Post < ActiveRecord::Base
   
   belongs_to :college
   belongs_to :user
+  has_many :comments, :as => :commentable, :dependent => :destroy
   
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :college
   
- # has_many :smacks, :as => :apost, :dependent => :destroy
-#  has_many :redemptions, :as => :apost, :dependent => :destroy
   
   has_attached_file :photo, 
                     :styles => {:medium => "200x200"},
@@ -24,8 +23,6 @@ class Post < ActiveRecord::Base
                     :bucket => 'Campusmack',
                     :path => "/:style/:id/:filename"
                  
-  
-  #"#{RAILS_ROOT}/config/aws.yml",
   validates :type,          :presence => true
   validates :content_type,  :presence => true
   validates :title,         :presence => true

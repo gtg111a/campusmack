@@ -1,0 +1,11 @@
+<h1>Edit comment</h1>
+<%= form_for @comment do |f| %> 
+<%= render '/shared/comments', :f => f %>
+
+<div class="actions">
+  	<%= f.submit "Update Comment" %>	
+</div>
+<div class="actions"><%= button_to "Delete Comment", @comment, :method => :delete,
+														:confirm => "You sure"%>
+</div>
+<% end %>

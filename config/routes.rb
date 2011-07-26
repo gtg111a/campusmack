@@ -1,14 +1,17 @@
 Campusmack::Application.routes.draw do
     get "sessions/new"
-
-    resources :smacks, :except => [:create, :new]
-    resources :redemptions, :except => [:create, :new]
-    resources :posts, :only => [:index, :show]
+        
+    resources :comments
+    resources :smacks, :except => [:create, :new] do
+      resources :comments
+    end
+    resources :redemptions, :except => [:create, :new] do
+      resources :comments, :only => [:create,:destroy, :edit]
+    end
+    resources :posts, :only => [:index, :show] do
+      resources :comments, :only => [:create,:destroy, :edit]
+    end
     resources :users do
-      resources :microposts, :only => [:index]
-      resources :posts, :only => [:edit]
-      resources :smacks, :only => [:edit]
-      resources :redemptions, :only => [:edit]
       resources :colleges, :only => [:show] do
           resources :posts
           resources :smacks

@@ -2,6 +2,7 @@ class Smack < Post
   
   acts_as_commentable
 
+
 #belongs_to :apost, :polymorphic => true
 
 =begin  attr_accessible :content_type, :title, :content, :comments, :vote

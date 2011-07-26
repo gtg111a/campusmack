@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   end
   
   def index
+    @user = current_user
     @college = College.find(params[:college_id])
     @title = "All posts from #{@college.name}"
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
@@ -28,6 +29,8 @@ class PostsController < ApplicationController
   def show
     @college = College.find(params[:college_id])
     @post = Post.find(params[:id])
+    @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
+    #@comments = @post.comments.paginate(:page => params[:page], :order => 'created_at DESC')
     @title = @college.name
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
