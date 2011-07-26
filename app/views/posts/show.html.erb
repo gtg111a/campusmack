@@ -10,11 +10,13 @@
   <table class="microposts" summary="User microposts">
 	<%= render :partial => "/posts/post", :object => @post %>
 	</table>
+	<% if signed_in? %>
   <%= form_for ([@post, Comment.new]) do |f| %> 
   <%= render '/shared/comments', :f => f %>
 <div class="actions">
   <%= f.submit "Submit Comment" %>
 </div>
+  <% end %>
   <% end %>
 	<%= will_paginate(@comments)%>
 	<table class = "comments">
