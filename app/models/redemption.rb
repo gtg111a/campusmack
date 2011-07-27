@@ -1,7 +1,8 @@
 class Redemption < Post
   
   acts_as_commentable
-
+  
+  has_many :comments, :as => :commentable, :dependent => :destroy
 
 #belongs_to :apost, :polymorphic => true
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725134606) do
+ActiveRecord::Schema.define(:version => 20110726201447) do
 
   create_table "colleges", :force => true do |t|
     t.timestamp "created_at"
@@ -53,22 +53,9 @@ ActiveRecord::Schema.define(:version => 20110725134606) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "comments"
+    t.string   "post_summary"
     t.integer  "up_votes"
     t.integer  "down_votes"
-  end
-
-  create_table "redemptions", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "content_type"
-    t.string    "title"
-    t.string    "content"
-    t.integer   "vote"
-    t.integer   "college_id"
-    t.integer   "user_id"
-    t.string    "post_type"
-    t.string    "apost_type"
   end
 
   create_table "relationships", :force => true do |t|
@@ -81,19 +68,6 @@ ActiveRecord::Schema.define(:version => 20110725134606) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
-
-  create_table "smacks", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "content_type"
-    t.string    "title"
-    t.string    "content"
-    t.integer   "vote"
-    t.integer   "college_id"
-    t.integer   "user_id"
-    t.string    "post_type"
-    t.string    "apost_type"
-  end
 
   create_table "users", :force => true do |t|
     t.string    "name"
@@ -112,18 +86,18 @@ ActiveRecord::Schema.define(:version => 20110725134606) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
-  create_table "votings", :force => true do |t|
-    t.string   "voteable_type"
-    t.integer  "voteable_id"
-    t.string   "voter_type"
+  create_table "votes", :force => true do |t|
+    t.boolean  "vote",          :default => false
+    t.integer  "voteable_id",                      :null => false
+    t.string   "voteable_type",                    :null => false
     t.integer  "voter_id"
-    t.boolean  "up_vote",       :null => false
+    t.string   "voter_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "votings", ["voteable_type", "voteable_id", "voter_type", "voter_id"], :name => "unique_voters", :unique => true
-  add_index "votings", ["voteable_type", "voteable_id"], :name => "index_votings_on_voteable_type_and_voteable_id"
-  add_index "votings", ["voter_type", "voter_id"], :name => "index_votings_on_voter_type_and_voter_id"
+  add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end

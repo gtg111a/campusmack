@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  
+  before_filter :find_commentable
 
   
   def find_commentable
@@ -10,11 +10,11 @@ class CommentsController < ApplicationController
   end
   
   def create
-    find_commentable
+    find_commentable 
     @college = College.find(@commentable.college_id)
     current_user.comments.create(params[:comment].merge(
                                                         :commentable_id => @commentable.id, 
-                                                        :commentable_type => @commentable.class.name))
+                                                        :commentable_type => "Post"))
     redirect_to "/colleges/#{@commentable.college_id}/posts/#{@commentable.id}"
   end
   

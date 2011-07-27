@@ -2,14 +2,11 @@ Campusmack::Application.routes.draw do
     get "sessions/new"
         
     resources :comments
-    resources :smacks, :except => [:create, :new] do
-      resources :comments
-    end
-    resources :redemptions, :except => [:create, :new] do
+    resources :smacks, :redemptions, :posts, do
       resources :comments, :only => [:create,:destroy, :edit]
-    end
-    resources :posts, :only => [:index, :show] do
-      resources :comments, :only => [:create,:destroy, :edit]
+      member do
+        post :vote_up, :vote_down
+      end
     end
     resources :users do
       resources :colleges, :only => [:show] do
@@ -25,10 +22,12 @@ Campusmack::Application.routes.draw do
     resources :microposts, :only => [:create, :destroy]
     resources :relationships, :only => [:create, :destroy]
     resources :colleges, :only => [:new, :create, :show] do
-      resources :posts, :only => [:show, :index, :destroy]
-      resources :smacks, :only => [:show, :index, :destroy]
-      resources :redemptions, :only => [:show, :index, :destroy]
+      resources :smacks, :redemptions, :posts, :only => [:show, :index, :destroy] do
+      member do
+        post :vote_up, :vote_down
+      end
     end
+  end
     
     match '/signup', :to => 'users#new'
     match '/signin', :to => 'sessions#new'

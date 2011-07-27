@@ -12,17 +12,17 @@
 					posted <%= time_ago_in_words(post.created_at) %> ago.
 					</span>
 		</td>	
-		<td>
+		<td class = "comments">
 			<span class="comments"><%= post.post_summary %>
 			<% if !post.post_summary.nil? && !request.fullpath.include?("posts") %>
 				<%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
 			<% end %></span>
 		</td>
-		<td width = 10%>
+		<td class = "vote" width = 10%>
 			<% if signed_in? %>
-			<span class = "vote"><%= button_to "Vote Up" %></span><br>		
-			<span class = "vote">Total Votes: <%= post.up_votes %></span><br>
-			<span class = "vote"><%= button_to "Vote Down"%></span>
+			<span class = "vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post %></span><br>		
+			<span class = "vote"><b><%= post.votes_for %><b> </span><br>
+			<span class = "vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post %></span>
 			<% else %>
 			<span class = "vote">Total Votes: <%= post.vote %></span>
 			<% end %>

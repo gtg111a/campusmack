@@ -250,15 +250,17 @@ td.post#title {
 	font-size: 125%;	
 }
 
-span.vote {
-	text-align: right;
-}
 
-table.post tr td {
+
+table.post tr td.comments {
 	border-collapse: collapse;
 	padding-left: 0px;
 	padding-right: 5px;
 	text-align: left;	
+	}
+	
+	td.vote {
+		text-align: center;
 	}
 	
 span.timestamp { 
@@ -271,13 +273,24 @@ span.comments {
 	text-align: left;
 }
 
+span.vote  {
+	font-size: 275%;
+	color: #000066;
+	text-align: center;
+}
+
 textarea.comment {
         width: 500px;
         height: 100px;
         border: 3px solid #cccccc;
         padding: 5px;
 }
-
 table.comments {
-	background-color: #ddd;
+	border-collapse:collapse;
 }
+table.comments tr td {
+	border-bottom:1px solid #CACACA;
+	border-top:1px solid #CACACA;
+}
+
+table.comments tr:nth-child(even) td, table.comments tr.even td {background:#F4F4F4;}

@@ -21,7 +21,7 @@ class SmacksController < ApplicationController
   end
  
   def index
-     @user = current_user
+    @user = current_user
     @college = College.find(params[:college_id])
     @title = "All smacks from #{@college.name}"
     @smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')

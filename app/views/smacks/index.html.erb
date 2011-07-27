@@ -9,7 +9,7 @@
 			</tr>
 			</table>
 			<% if signed_in? %>
-		<a><%= button_to "Add a Smack", new_user_college_smack_path(@college), :method => :get %></a>
+		<a><%= button_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get %></a>
 		   <% else %>
 		<a><%= button_to "Add a Smack", signin_path, :method => :get %></a>
 			<% end %>

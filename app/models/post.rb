@@ -1,7 +1,10 @@
 class Post < ActiveRecord::Base
   
   #Through the 'make_voteable' gem
-  make_voteable
+  #make_voteable
+  
+  #Through the 'thumbs_up' gem
+  acts_as_voteable
   
   #Through the 'acts_as_commentable' gem
   acts_as_commentable

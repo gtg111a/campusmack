@@ -13,4 +13,6 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
   belongs_to :post
+  belongs_to :smack
+  belongs_to :redemption
 end

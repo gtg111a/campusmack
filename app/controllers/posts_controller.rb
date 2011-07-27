@@ -60,15 +60,23 @@ end
    end
  end
  
- def update(vote)
-   @post = Post.find(params[:id])
-   if vote == "Vote Up"
-     current_user.up_vote(@post)
-   end
-   if vote == "Vote Down"
-     current_user.down_vote(@post)
-   end
- end
+ def vote_up
+      begin
+         current_user.vote_for(@post = Post.find(params[:id]))
+         redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny Rike!!!"}
+       rescue ActiveRecord::RecordInvalid
+         redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:error => "You've already voted for this Post"}
+       end
+     end
  
+ def vote_down
+   begin
+       current_user.vote_against(@post = Post.find(params[:id]))
+       redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s"
+     rescue ActiveRecord::RecordInvalid
+        redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:error => "You've already voted for this Post"}
+     end
+   end
+
   
 end

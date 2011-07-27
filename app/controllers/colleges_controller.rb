@@ -17,6 +17,19 @@ class CollegesController < ApplicationController
     @title = @college.name
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
+  
+  def vote_up
+    @post = post
+    @user = current_user
+    @user.up_vote(@post)
+    redirect_to root_path
+    end
+
+  def vote_down(post)
+    @post = post
+    @user = current_user
+    @user.down_vote(@post)
+    end
 
 #Don't need this, saving just in case
 =begin 

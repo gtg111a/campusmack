@@ -11,7 +11,7 @@
 </h1>
 
 <% unless @user.posts.empty? %>
-  <table class="posts" summary="User posts">
+  <table class="post" summary="User posts">
 	<%= render :partial => "/posts/post", :collection => @posts %>
 	</table>
 	<%= will_paginate @posts %>
