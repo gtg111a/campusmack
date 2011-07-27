@@ -24,7 +24,7 @@
 			<span class = "vote"><b><%= post.votes_for %><b> </span><br>
 			<span class = "vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post %></span>
 			<% else %>
-			<span class = "vote">Total Votes: <%= post.vote %></span>
+			<span class = "vote"><b><%= post.votes_for %><b></span>
 			<% end %>
 		</td>		
 			<td width = 5%>
