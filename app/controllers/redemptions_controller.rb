@@ -1,4 +1,5 @@
 class RedemptionsController < ApplicationController
+
   
   def new
     @user = current_user

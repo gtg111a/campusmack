@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   
+   include PostsHelper  
   #Through the 'make_voteable' gem
   #make_voteable
   
