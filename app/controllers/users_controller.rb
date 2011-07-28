@@ -1,7 +1,11 @@
+require 'mailgun'
+
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
+  
+  include MailHelper
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -39,6 +43,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
+      #send_welcome
+      UserMailer.welcome_email(@user).deliver
       redirect_to root_path, :flash => { :success => "Welcome to Campusmack!" }
     else
       @title = "Sign up"
@@ -64,15 +70,6 @@ class UsersController < ApplicationController
     redirect_to users_path, :flash => { :success => "User destroyed." }
   end
   
-  def update(vote)
-    @post = Post.find(params[:id])
-    if vote == "Vote Up"
-      current_user.up_vote(@post)
-    end
-    if vote == "Vote Down"
-      current_user.down_vote(@post)
-    end
-  end
 
   private
 

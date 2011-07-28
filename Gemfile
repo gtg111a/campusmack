@@ -8,7 +8,6 @@ gem 'aws-s3'
 gem 'thin'
 gem 'rack'
 gem 'thumbs_up'
-#gem 'make_voteable'
 gem 'rake'
 gem 'acts_as_commentable'
 
@@ -23,9 +22,6 @@ group :development do
 gem 'rspec-rails', '2.6.1'
 gem 'annotate-models', '1.0.4'
 gem 'faker', '0.3.1'
-#gem 'aws-sdk'
-#gem 'aws-s3'
-#gem 'paperclip'
 end
 
 group :test do
@@ -33,9 +29,6 @@ gem 'rspec-rails', '2.6.1'
 gem 'webrat', '0.7.1'
 gem 'spork', '0.9.0.rc5'
 gem 'factory_girl'
-#gem 'aws-sdk'
-#gem 'aws-s3'
-#gem 'paperclip'
 end
 
 # Use unicorn as the web server

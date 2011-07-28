@@ -14,6 +14,8 @@ require 'digest'
 
 class User < ActiveRecord::Base
   
+  include MailHelper
+  
   #make_voter
   
   #Through the 'thumbs_up' gem

@@ -73,7 +73,7 @@ end
  def vote_down
    begin
        current_user.vote_against(@post = Post.find(params[:id]))
-       redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s"
+       redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny No Rike :("}
      rescue ActiveRecord::RecordInvalid
         redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:error => "You've already voted for this Post"}
      end
