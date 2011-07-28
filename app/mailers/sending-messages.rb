@@ -1,3 +1,5 @@
+=begin
+
 require 'mailgun'
 
 Mailgun::init("key-0ujr7ogy6rvgdg24$4")
@@ -17,6 +19,7 @@ MailgunMessage::send_text("me@campusmack.mailgun.org",
                           {:headers => {MailgunMessage::MAILGUN_TAG => "sample_text_ruby"}})
 
 # Sending a MIME message:
+
 sender   = "support@campusmack.mailgun.org"
 receiver = current_user.email
 raw_mime =
@@ -31,6 +34,8 @@ raw_mime =
 MailgunMessage::send_raw(sender, receiver, raw_mime)
 
 puts "Messages sent"
+
+=end
 
 
 
