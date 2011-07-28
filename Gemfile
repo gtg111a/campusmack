@@ -10,6 +10,8 @@ gem 'rack'
 gem 'thumbs_up'
 gem 'rake'
 gem 'acts_as_commentable'
+gem 'devise'
+gem 'omniauth', '0.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

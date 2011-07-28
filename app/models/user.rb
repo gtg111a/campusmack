@@ -14,16 +14,20 @@ require 'digest'
 
 class User < ActiveRecord::Base
   
-  include MailHelper
-  
-  #make_voter
-  
   #Through the 'thumbs_up' gem
   acts_as_voter
   
   attr_accessor :password
   attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation
-  
+
+#Omniauth stuff, not sure if I need it yet
+=begin  
+  devise :database_authenticatable, :oauthable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable
+=end
+
+  has_many :services, :dependent => :destroy  
 
   has_many :posts, :dependent => :destroy
   has_many :smacks, :dependent => :destroy

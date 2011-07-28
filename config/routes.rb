@@ -1,6 +1,8 @@
 Campusmack::Application.routes.draw do
     get "sessions/new"
         
+    
+    resources :services, :only => [:index, :create]
     resources :comments
     resources :smacks, :redemptions, :posts, do
       resources :comments, :only => [:create,:destroy, :edit]
@@ -35,6 +37,7 @@ Campusmack::Application.routes.draw do
     match '/contact', :to => 'pages#contact'
     match '/about', :to => 'pages#about'
     match '/help', :to => 'pages#help'
+    match '/auth/:provider/callback' => 'services#create'
     #match '/users/:id' :to => 'users#show'
 
 
