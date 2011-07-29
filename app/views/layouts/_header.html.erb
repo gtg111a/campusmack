@@ -1,19 +1,25 @@
 <header>
-<%= link_to "Smack That", root_path %>
-<nav class="round">
-<ul>
-	<li><%= link_to "Home", root_path %></li>
+
 	<% if signed_in? %>
+	<nav class="round">
+	<ul>
+	<li><%= link_to "Home", root_path %></li>
 	<li><%= link_to "My Posts", "/users/#{current_user.id}" %></li>
 	<li><%- link_to "Profile", current_user %></li>
 	<li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-	<% end %>
 	<li><%= link_to "Help", help_path %></li>
-	<% if signed_in? %>
 	<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+	</ul>
+	</nav><br><br>
 	<% else %>
+	<nav class="round">
+	<ul>
+	<li><%= link_to "Home", root_path %></li>
 	<li><%= link_to "Sign in", signin_path %></li>
+	<li><%= link_to "Help", help_path %></li>
+	</ul>
+	</nav><br><br>
 	<% end %>
-</ul>
-</nav>
 </header>
+
+

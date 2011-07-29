@@ -2,7 +2,15 @@ Campusmack::Application.routes.draw do
     get "sessions/new"
         
     
-    resources :services, :only => [:index, :create]
+    resources :services, :only => [:index, :create] do
+      collection do
+          get 'signin'
+          get 'signout'
+          get 'signup_service'
+          post 'newaccount'
+          get 'failure'
+        end
+      end
     resources :comments
     resources :smacks, :redemptions, :posts, do
       resources :comments, :only => [:create,:destroy, :edit]
@@ -31,14 +39,20 @@ Campusmack::Application.routes.draw do
     end
   end
     
-    match '/signup', :to => 'users#new'
-    match '/signin', :to => 'sessions#new'
-    match '/signout', :to => 'sessions#destroy'
+ 
+    #match '/signout', :to => 'sessions#destroy'
     match '/contact', :to => 'pages#contact'
     match '/about', :to => 'pages#about'
     match '/help', :to => 'pages#help'
-    match '/auth/:provider/callback' => 'services#create'
+    match "/signin" => "services#signin"
+    match "/signout" => "services#signout"
+
+    match '/auth/:service/callback' => 'services#create'
+    match '/auth/failure' => 'services#failure'
+    
     #match '/users/:id' :to => 'users#show'
+    match '/signup', :to => 'users#new'
+    #match '/signin', :to => 'sessions#new'
 
 
     root :to => 'pages#home'

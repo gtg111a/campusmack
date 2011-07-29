@@ -1,9 +1,8 @@
 .container {
 width: 1200px;
 }
-body {
-background: #0A2F5C;
-}
+body { font-size: 14px; line-height: 1.5em; font-family: Verdana,Helvetica,Arial,sans-serif; background-color: #0A2F5C; }
+
 header {
 padding-top: 20px;
 }
@@ -25,18 +24,7 @@ h1.user {
 	font-size: 200%;
 	color: #000066;
 }
-/* Links */
-a {
-color: #09c;
-text-decoration: none;
-}
-a:hover {
-color: #069;
-text-decoration: underline;
-}
-a:visited {
-color: #069;
-}
+
 
 /* Navigation */
 nav {
@@ -88,13 +76,7 @@ padding: 20px;
 border-radius: 10px;
 }
 
-footer {
-text-align: center;
-margin-top: 10px;
-width: 710px;
-margin-left: auto;
-margin-right: auto;
-}
+footer { text-align: center; margin-top: 10px; width: 710px; margin-left: auto; margin-right: auto; }
 footer nav {
 float: none;
 }
@@ -147,14 +129,7 @@ div.field, div.actions  {
 	background-color: #f0f0f0;
 }
 
-#error_explanation h2 { text-align: left; 
-						font-weight: bold; 
-						padding: 5px 5px 5px 15px; 
-						font-size: 12px;
-						margin: -7px; 
-						background-color: #c00; 
-						color: #fff;
-}
+#error_explanation h2 { text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
 
 #error_explanation p { color: #333; 
 					   margin-bottom: 0; 
@@ -197,41 +172,21 @@ table.microposts tr td.micropost {
 	padding-top: 0px;
 }
 
-table.microposts tr td.micropost span.timestamp { 
-	display: block; 
-	font-size: 50%; 
-	color: #666;
-	} 
+table.microposts tr td.micropost span.timestamp { display: block; font-size: 50%; color: #666;} 
 	
-div.user_info img {
-padding-right: 0.1em; 
-}
+div.user_info img { padding-right: 0.1em; }
 
-div.user_info a {
-text-decoration: none; 
-}
+div.user_info a { text-decoration: none; }
 
-div.user_info span.user_name {
-position: absolute; 
-}
+div.user_info span.user_name { position: absolute; }
 
-div.user_info span.microposts {
-font-size: 80%; 
-}
+div.user_info span.microposts { font-size: 80%; }
 
-form.new_micropost {
-margin-bottom: 2em;
-}
+form.new_micropost {margin-bottom: 2em; }
 
-form.new_micropost textarea { 
-	height: 4em; 
-	margin-bottom: 0;
-}
+form.new_micropost textarea { height: 4em; margin-bottom: 0;}
 
-div.colleges {
-	font-size: 160%;
-	color: #ff0000;	
-}
+div.colleges {font-size: 160%; color: #ff0000; }
 
 table.masthead {
 	width: 475px; 
@@ -268,34 +223,48 @@ table.post tr td.comments {
 		text-align: center;
 	}
 	
-span.timestamp { 
-		display: block; 
-		font-size: 85%; 
-		color: #666;
-		}
+span.timestamp { display: block; font-size: 85%; color: #666; }
 		
-span.comments {
-	text-align: left;
-}
+span.comments { text-align: left; }
 
-span.vote  {
-	font-size: 275%;
-	color: #000066;
-	text-align: center;
-}
+span.vote  { font-size: 275%; color: #000066; text-align: center; }
 
-textarea.comment {
-        width: 500px;
-        height: 100px;
-        border: 3px solid #cccccc;
-        padding: 5px;
-}
-table.comments {
-	border-collapse:collapse;
-}
-table.comments tr td {
-	border-bottom:1px solid #CACACA;
-	border-top:1px solid #CACACA;
-}
+textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; padding: 5px;}
+table.comments { border-collapse:collapse;}
+table.comments tr td {	border-bottom:1px solid #CACACA; border-top:1px solid #CACACA; }
 
 table.comments tr:nth-child(even) td, table.comments tr.even td {background:#F4F4F4;}
+
+.services { margin: 0; padding: 0; }
+
+/* signin */
+#services_signin div.logos { overflow:auto; margin-bottom: 40px; }
+
+/* signup: create new account */
+#services_new {}
+#services_new input { margin-right: 20px; }
+#services_new div { background-color: #dddddd; padding: 20px; margin-bottom: 40px; }
+
+/* manage your services */
+#services_manage {}
+
+.service_in_use { background-color: #dddddd; height: 64px; width: 300px; margin-bottom: 10px; padding: 5px; }
+.service_img { float: left; }
+.service_userdata { font-size: 12px; line-height: 1.1em; margin-left: 80px; padding-top: 6px;}
+.service_userdata span { color: #c81419; }
+
+#services_available { clear: both; margin-top: 40px; }
+
+/* the list with the available services that consist of icons and text */
+#services_list { margin: 20px 0; padding: 0; list-style: none; }
+#services_list li { display: inline; float: left; margin-right: 25px; margin-bottom: 20px; width: 100px; text-align: center; }
+#services_list img { display: block; margin-left: auto; margin-right: auto; }
+
+a { color: #74809a; text-decoration: none !important;}
+a:visited { color: #74809a; }
+a:hover { color: #c81419; }
+
+/* Old styling 
+a { color: #09c; text-decoration: none; }
+a:hover { color: #069; text-decoration: underline; }
+a:visited { color: #069; } */

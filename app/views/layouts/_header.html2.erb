@@ -2,10 +2,16 @@
 <% logo = image_tag("logo.png", :alt => "Sample App", :class => "round") %>
 <%= link_to logo, root_path %>
 <nav class="round">
-<ul>
-<li><%= link_to "Home", root_path %></li>
-<li><%= link_to "Help", help_path %></li>
-<li><%= link_to "Sign in", '#' %></li>
-</ul>
+<section id="user">
+	<span>Sign in with:</span>
+	<ul>
+	<li><%= link_to "Facebook", "/auth/facebook" %></li>
+	<li><%= link_to "Google", "/auth/google" %></li>
+	<li><%= link_to "Yahoo", "/auth/yahoo" %>
+	<li><%= link_to "MyOpenID", "/auth/myopenid" %>
+	<li><%= link_to "Other", signin_services_path %>
+	</ul>
+	</nav>
+	</section>
 </nav>
 </header>

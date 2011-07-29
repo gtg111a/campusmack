@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   
-  include MailHelper
-  
   def index
     @users = User.paginate(:page => params[:page])
     @title = "All users"
