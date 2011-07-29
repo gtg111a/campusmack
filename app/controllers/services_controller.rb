@@ -42,7 +42,7 @@ include SessionsHelper
        end
      end
    end
-
+=end
    # Sign out current user
    def signout
      if current_user
@@ -55,7 +55,7 @@ include SessionsHelper
      end
      redirect_to root_url
    end
-=end   
+  
    # callback: success
    # This handles signing in and adding an authentication service to existing accounts itself
    # It renders a separate view if there is a new user to create
