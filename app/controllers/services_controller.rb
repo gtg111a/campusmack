@@ -116,7 +116,8 @@ include SessionsHelper
            else
              # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
              session[:authhash] = @authhash
-             render signup_service_services_path
+             render signup_path
+             flash[:error] = "You must sign up for Campusmack first before signing in with an authorized alternate provider"
            end
          end
        else
