@@ -9,7 +9,7 @@ Name: <%= @authhash[:name] %><br />
 Email: <%= @authhash[:email] %> <br />
 </p>
 
-<%= form_tag :controller => "services", :action => "newaccount" do %>
+<%= form_tag :controller => "users", :action => "new" do %>
 <%= submit_tag "Confirm and create new account" %> <%= submit_tag "Cancel" %>
 <% end %>
 </div>

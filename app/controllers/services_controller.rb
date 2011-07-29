@@ -16,6 +16,7 @@ include SessionsHelper
   end
   
   # POST from signup view
+=begin (not sure I need the new account feature)
    def newaccount
      if params[:commit] == "Cancel"
        session[:authhash] = nil
@@ -54,7 +55,7 @@ include SessionsHelper
      end
      redirect_to root_url
    end
-   
+=end   
    # callback: success
    # This handles signing in and adding an authentication service to existing accounts itself
    # It renders a separate view if there is a new user to create
