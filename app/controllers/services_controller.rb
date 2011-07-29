@@ -94,7 +94,7 @@ include SessionsHelper
          auth = Service.find_by_provider_and_uid(@authhash[:provider], @authhash[:uid])
 
          # if the user is currently signed in, he/she might want to add another account to signin
-         if user_signed_in?
+         if signed_in?
            if auth
              flash[:error] = 'Your account at ' + @authhash[:provider].capitalize + ' is already connected with this site.'
              redirect_to services_path
