@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :find_commentable
+  before_filter :find_commentable, :except => [:destroy, :edit]
 
   
   def find_commentable
@@ -12,10 +12,13 @@ class CommentsController < ApplicationController
   def create
     find_commentable 
     @college = College.find(@commentable.college_id)
-    current_user.comments.create(params[:comment].merge(
+    @comment = current_user.comments.create!(params[:comment].merge(
                                                         :commentable_id => @commentable.id, 
                                                         :commentable_type => "Post"))
-    redirect_to "/colleges/#{@commentable.college_id}/posts/#{@commentable.id}"
+   respond_to do |format|
+   format.html { redirect_to "/colleges/#{@commentable.college_id}/posts/#{@commentable.id}" }
+   format.js
+    end
   end
   
     def destroy
@@ -23,7 +26,10 @@ class CommentsController < ApplicationController
       @post = Post.find(@comment.commentable_id)
       @college = College.find(@post.college_id)
       @comment.destroy
-      redirect_to "/colleges/#{@college.id}/posts/#{@post.id}", :flash => { :success => "Comment Deleted Successfully!" }
+      respond_to do |format|
+      format.html { redirect_to "/colleges/#{@college.id}/posts/#{@post.id}", :flash => { :success => "Comment Deleted Successfully!" } }
+      format.js
+     end
     end
 
     def edit

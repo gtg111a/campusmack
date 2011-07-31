@@ -1,0 +1,8 @@
+
+
+$('a[data-method="delete"]').live('ajax:success', function(){
+	$ (this).closest('ul').remove();
+});
+
+
+

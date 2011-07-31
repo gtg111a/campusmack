@@ -1,20 +1,20 @@
 <% user = User.find(comment.user_id)%>
-<ul>
-<tr>
-	<td width = 15% class ="post">
+<tr id = "comments">
+	<td width = 15% id = "comments"class ="post">
 		<span class="content"><%= user.username %></span>
 		<span class="timestamp">
 			Posted <%= time_ago_in_words(comment.created_at) %> ago.
 			</span>
 		</td>
-		<td class ="post">
+		<td id = "comments" class ="post">
 			<span class="content"><%= comment.comment %></span>	
 		</td>
 		<% if signed_in? %>
 		<% if comment.user_id == current_user.id || current_user.admin? %>	
-		<td class = "delete_comment"><%=button_to "edit", 
-		"/comments/#{comment.id}/edit", :method => :get %></td>
+		<td width = 10% id = "comments" class = "delete_comment">
+		<%=button_to "edit", "/comments/#{comment.id}/edit", :method => :get %></td>
+		<td width = 10% id ="comments" class = "delete_comment">
+		<%= link_to image_tag('delete.png'), comment, :method => :delete, :confirm => "Delete Comment?", :remote => true, :class => "del" %></td>
 		<% end %>
 		<% end %>						
 	</tr>
-</ul>

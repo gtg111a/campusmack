@@ -1,0 +1,4 @@
+
+$('table.comments tbody').prepend("<%= escape_javascript("#{render(:partial => @comment)}").html_safe %>");
+$("#new_comment")[0].reset();
+$("div.flash").remove();

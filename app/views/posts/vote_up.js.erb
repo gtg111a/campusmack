@@ -1,0 +1,2 @@
+$("#vote_count_up<%= escape_javascript("#{@post.id}") %>").html('<b><%= "#{@post.votes_for_b}" %><b>')
+$("div.flash").remove();

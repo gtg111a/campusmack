@@ -12,7 +12,7 @@
 		<a><%= button_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get %></a>
 		<% else %>
 		<a><%= button_to "Add a Redemption", signin_path, :method => :get %></a>
-			<% end %>
+			<% end %><br>
 		<%= will_paginate(@redemptions)%>
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @redemptions %>

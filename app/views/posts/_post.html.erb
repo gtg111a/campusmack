@@ -1,8 +1,6 @@
-
-<ul>
-	<td class ="post", id = "title"><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %> 
+	<td class ="post", id = "<%= post.id %>"><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %> 
 	</td>
-	<tr>
+	<tr id = "<%= post.id %>">
 		<td>
 			<% unless post.photo_file_name.nil? %>
 			<span class = "photo"><%= image_tag post.photo.url(:medium), %></span>
@@ -19,11 +17,13 @@
 				<%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
 			<% end %></span>
 		</td>
+		<td id = "<%="vote_count_down"+ post.id.to_s%>" class = "vote" width = 5%><%= post.votes_against_b %></td>
 		<td class = "vote" width = 10%>
 			<% if signed_in? %>
-			<span class = "vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post %></span><br>		
-			<span class = "vote"><b><%= post.votes_for_b %><b> </span><br>
-			<span class = "vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post %></span>
+			<span class = "vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post, :remote => true %></span><br>
+			<!-- votes_for_b is in posts_helper-->		
+			<span class = "vote" id = "<%="vote_count_up"+ post.id.to_s%>"><b><%= post.votes_for_b %><b> </span><br>
+			<span class = "vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post, :remote => true %></span>
 			<% else %>
 			<span class = "vote"><b><%= post.votes_for_b %><b></span>
 			<% end %>
@@ -31,12 +31,9 @@
 			<td width = 5%>
 								<% if signed_in? %>
 								<% if post.user_id == current_user.id || current_user.admin? %>
-								<%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %>
-								<%= button_to "delete", post, :method => :delete,
-																 :confirm => "You sure",
-																 :title => post.content %>
+								<td width = 5%><%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %></td>
+								<td width = 5%><%= link_to image_tag('delete.png'), post, :method => :delete, :confirm => "Delete Post?" %></td>
 								<% end %>
 								<% end %>
 				</td>								
 		</tr>
-</ul>

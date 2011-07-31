@@ -1,4 +1,5 @@
 class SmacksController < ApplicationController
+    include PostsHelper
   
   def new
     @user = current_user
@@ -27,6 +28,14 @@ class SmacksController < ApplicationController
     @smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')
   end
   
+  def index(type)
+    @user = current_user
+    @college = College.find(params[:college_id])
+    @title = "All smacks from #{@college.name}"
+    @smacks = post_type(@college, type).paginate(:page => params[:page], :order => 'created_at DESC')
+  end
+  
+  
   def show
      @smack = Post.find(params[:id])
      @college = College.find(@smack.college_id)
@@ -37,7 +46,10 @@ class SmacksController < ApplicationController
     @smack = Smack.find(params[:id])
     @college = College.find(@smack.college_id)
     @smack.destroy
-    redirect_to "/colleges/#{@college.id}/smacks", :flash => { :success => "Post Deleted Successfully!" }
+      respond_to do |format|
+      format.html { redirect_to "/colleges/#{@college.id}/smacks", :flash => { :success => "Post Deleted Successfully!" } }
+      format.js 
+     end
   end
   
   def edit

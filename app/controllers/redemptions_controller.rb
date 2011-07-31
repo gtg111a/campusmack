@@ -38,8 +38,11 @@ class RedemptionsController < ApplicationController
       @redemption = Redemption.find(params[:id])
       @college = College.find(@redemption.college_id)
       @redemption.destroy
-      redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" }  
-    end
+          respond_to do |format|
+          format.html { redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" } }
+          format.js
+         end
+       end
     
     def edit
       @user = current_user

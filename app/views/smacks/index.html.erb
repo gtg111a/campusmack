@@ -12,7 +12,7 @@
 		<a><%= button_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get %></a>
 		   <% else %>
 		<a><%= button_to "Add a Smack", signin_path, :method => :get %></a>
-			<% end %>
+			<% end %><br>
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @smacks %>
 		</table>

@@ -41,7 +41,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      #send_welcome
       UserMailer.welcome_email(@user).deliver
       redirect_to root_path, :flash => { :success => "Welcome to Campusmack!" }
     else

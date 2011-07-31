@@ -2,9 +2,10 @@
 <div class="field"> <%= f.label :title %><br /> 
 					<%= f.text_field :title %>
 </div> 
+
 <div class="field">
 <%= f.label :content_type %><br />
-<%= f.text_field :content_type %> 
+<%= f.select(:content_type, %w{Video Photo News Stats}, {:include_blank => true})  %><br />
 </div>
 <div class="field">
 <%= f.label :post_summary %><br />

@@ -11,17 +11,19 @@
 	<%= render :partial => "/posts/post", :object => @post %>
 	</table>
 	<% if signed_in? %>
-  <%= form_for ([@post, Comment.new]) do |f| %> 
+  <%= form_for [@post, Comment.new], :remote => true do |f| %> 
   <%= render '/shared/comments', :f => f %>
 <div class="actions">
   <%= f.submit "Submit Comment" %>
 </div>
   <% end %>
   <% end %>
+<h2>Comments:</h2>
 	<%= will_paginate(@comments)%>
 	<table class = "comments">
-	<%= render @comments %>
+		<tbody>
+			<%= render :partial => @post.comments %>
+		</tbody>
 	</table>
-
 
 

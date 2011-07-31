@@ -12,6 +12,7 @@ gem 'rake'
 gem 'acts_as_commentable'
 gem 'devise'
 gem 'omniauth', '0.2.6'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -24,6 +25,7 @@ group :development do
 gem 'rspec-rails', '2.6.1'
 gem 'annotate-models', '1.0.4'
 gem 'faker', '0.3.1'
+
 end
 
 group :test do

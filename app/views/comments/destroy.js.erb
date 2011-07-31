@@ -1,0 +1,9 @@
+
+
+$('a[data-method="delete"]').live('ajax:success', function(){
+	$ (this).closest('tr').remove();
+	$("div.flash").remove();
+});
+
+
+
