@@ -22,9 +22,8 @@ class PostsController < ApplicationController
   
   def index
     @user = current_user
-    @college = College.find(params[:college_id])
-    @title = "All posts from #{@college.name}"
-    @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+    @title = "All posts"
+    @posts = find_posts
   end
   
   def show
@@ -97,6 +96,21 @@ end
       end
      end
    end
-
+   
+   private
+   
+   def find_posts
+       if request.fullpath.to_s =~ /Video/
+         return Post.find(:all, :conditions =>["posts.content_type LIKE ?", "Video"]).paginate(:page => params[:page], :order => 'created_at DESC')
+       elsif request.fullpath.to_s =~ /Photo/
+         return Post.find(:all, :conditions =>["posts.content_type LIKE ?", "Photo"]).paginate(:page => params[:page], :order => 'created_at DESC')
+        elsif request.fullpath.to_s =~ /Smack/
+          return Post.find(:all, :conditions =>["posts.type LIKE ?", "Smack"]).paginate(:page => params[:page], :order => 'created_at DESC') 
+        elsif request.fullpath.to_s =~ /Redemption/
+          return Post.find(:all, :conditions =>["posts.type LIKE ?", "Redemption"]).paginate(:page => params[:page], :order => 'created_at DESC')  
+       else
+         return Post.all.paginate(:page => params[:page], :order => 'created_at DESC')
+       end
+    end
   
 end

@@ -13,6 +13,7 @@ gem 'acts_as_commentable'
 gem 'devise'
 gem 'omniauth', '0.2.6'
 gem 'jquery-rails'
+gem 'meta_search'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
