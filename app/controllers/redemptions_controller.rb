@@ -25,7 +25,7 @@ class RedemptionsController < ApplicationController
       @user = current_user
       @college = College.find(params[:college_id])
       @title = "All redemptions from #{@college.name}"
-      @redemptions = @college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')
+      @redemptions = find_redemptions(@college)
     end
 
     def show
@@ -35,11 +35,13 @@ class RedemptionsController < ApplicationController
     end
     
     def destroy
+      @user = current_user
       @redemption = Redemption.find(params[:id])
       @college = College.find(@redemption.college_id)
       @redemption.destroy
           respond_to do |format|
-          format.html { redirect_to "/colleges/#{@college.id}/redemptions", :flash => { :success => "Post Deleted Successfully!" } }
+          format.html   { 
+                redirect_to "/users/#{@user.id}", :flash => { :success => "Post Deleted Successfully!" } }
           format.js
          end
        end
@@ -60,17 +62,15 @@ class RedemptionsController < ApplicationController
       end
     end
     
-=begin
-private
-  
-  def find_redemptions
-    @college = College.find(params[:college_id])
-    @college.posts.each do |f|
-      if f.post_type = "Redemption"
-        return f
+    private
+
+      def find_redemptions(college)
+        if request.fullpath.to_s =~ /Video/
+          return college.redemptions.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
+        elsif request.fullpath.to_s =~ /Photo/
+          return college.redemptions.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC') 
+        else
+          return college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')
+        end
       end
-    end
-    nil
-  end
-=end
 end

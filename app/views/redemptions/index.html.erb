@@ -4,7 +4,10 @@
 			<table class="masthead">
 			<tr>
 				<td>
-					Videos | Photos | News
+					<%= link_to "Videos", college_redemptions_path(@college, :content_type => "Video")%> 
+					| <%= link_to "Photos", college_redemptions_path(@college, :content_type => "Photo") %> 
+					| <%= link_to "News"%> 
+					| <%= link_to "Stats" %>
 				</td>
 			</tr>
 			</table>

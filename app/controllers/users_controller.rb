@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     @colleges = College.all
     @user = User.find(params[:id])
-    @posts = @user.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+    @posts = find_posts(@user)
     @title = @user.name
   end
 
@@ -69,6 +69,17 @@ class UsersController < ApplicationController
   
 
   private
+  
+
+    def find_posts(user)
+      if request.fullpath.to_s =~ /Video/
+        return user.posts.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
+      elsif request.fullpath.to_s =~ /Photo/
+        return user.posts.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC') 
+      else
+        return user.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+      end
+    end
 
     def correct_user
       @user = User.find(params[:id])

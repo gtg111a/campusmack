@@ -3,25 +3,14 @@
 
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
+$(function(){
+	//$('img#post_pic').click(function(){
+	//	$(this).remove()
+	//	});
+	$('div#photo_post').click(function(){
+		$(this).find("#small_photo").toggle("slow");
+		$(this).find("#large_photo").toggle("slow");
+		});
+		//$(this 'img#small_photo').css('display','none')
+   });
 
-/*
-jQuery.fn.submitWithAjax = function() {
-  this.submit(function() {
-   $.post(this.action, $(this).serialize(), null, "script");
-    return false;
- });
-  return this;
-};
-
-$(document).ready(function() {
-  ("#new_comment").submitWithAjax();
-   return false;
-});
-*/
-
-//$(document).ready(function() {
-//	$("#new_review").submit(function(){
-//		$.post($(this).attr("action"), $(this).serialize(), null, "script");
-//		return false;
-//	})
-//})

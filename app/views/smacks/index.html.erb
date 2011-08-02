@@ -1,10 +1,14 @@
+
 <%= render 'shared/masthead1' %>
 	</table>	
 		<h1><%= @college.name %> Smacks</h1>
 			<table class="masthead">
 			<tr>
 				<td>
-					Videos | Photos | News | Stats
+					<%= link_to "Videos", college_smacks_path(@college, :content_type => "Video")%> 
+					| <%= link_to "Photos", college_smacks_path(@college, :content_type => "Photo") %> 
+					| <%= link_to "News"%> 
+					| <%= link_to "Stats" %>
 				</td>
 			</tr>
 			</table>

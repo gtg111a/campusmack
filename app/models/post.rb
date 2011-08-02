@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
   
   
   has_attached_file :photo, 
-                    :styles => {:medium => "200x200"},
+                    :styles => {:medium => "200x200", :large => "600x600"},
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :bucket => 'Campusmack',

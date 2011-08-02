@@ -8,7 +8,7 @@
 			</td>
 		</tr>
 		</table>
-		<a><%= button_to "Add a Smack", new_college_smack_path(@college), :method => :get %></a>
+		<a><%= button_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get %></a>
 		<%= will_paginate(@posts)%>
 		<table class = "post">
 		<%= render @posts %>

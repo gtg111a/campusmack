@@ -1,14 +1,17 @@
+
+ 
 	<td class ="post", id = "<%= post.id %>"><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %> 
 	</td>
 	<tr id = "<%= post.id %>">
 		<td>
 			<% unless post.photo_file_name.nil? %>
-			<span class = "photo"><%= image_tag post.photo.url(:medium), %></span>
-			<% end %>
+			    <div id="photo_post" class ="photo"><span class = "photo"><%= image_tag(post.photo.url(:large), :id => "large_photo") %></span>
+										 <span class = "photo"><%= image_tag(post.photo.url(:medium), :id => "small_photo") %></span></div>			
+				<% end %>
 			<span class="content"><%= youtube_embed(post.content).html_safe %></span>
 			<br>	
 				<span class="timestamp">
-					posted <%= time_ago_in_words(post.created_at) %> ago.
+					posted <%= time_ago_in_words(post.created_at) %> ago by <%= User.find(post.user_id).username %>.
 					</span>
 		</td>	
 		<td class = "comments">
@@ -17,6 +20,7 @@
 				<%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
 			<% end %></span>
 		</td>
+
 		<td id = "<%="vote_count_down"+ post.id.to_s%>" class = "vote" width = 5%><%= post.votes_against_b %></td>
 		<td class = "vote" width = 10%>
 			<% if signed_in? %>
@@ -27,7 +31,7 @@
 			<% else %>
 			<span class = "vote"><b><%= post.votes_for_b %><b></span>
 			<% end %>
-		</td>		
+		</td>	
 			<td width = 5%>
 								<% if signed_in? %>
 								<% if post.user_id == current_user.id || current_user.admin? %>

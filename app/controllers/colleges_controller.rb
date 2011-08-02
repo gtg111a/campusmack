@@ -13,9 +13,10 @@ class CollegesController < ApplicationController
   end
   
   def show
+    @user = current_user
     @college = College.find(params[:id])
     @title = @college.name
-    @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+    @posts = find_posts(@college)
   end
   
   def vote_up
@@ -31,18 +32,16 @@ class CollegesController < ApplicationController
     @user.down_vote(@post)
     end
 
-#Don't need this, saving just in case
-=begin 
-private
-  def all_posts(college)
-    college.redemptions.each do |f|
-      college.posts << f
-    end
-    college.smacks.each do |f|
-      college.posts << f
-    end
-    return college
-  end
-=end
+    private
+
+      def find_posts(college)
+        if request.fullpath.to_s =~ /Video/
+          return college.posts.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
+        elsif request.fullpath.to_s =~ /Photo/
+          return college.posts.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC') 
+        else
+          return college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+        end
+      end
 
 end

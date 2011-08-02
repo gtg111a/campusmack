@@ -31,17 +31,22 @@ class PostsController < ApplicationController
     @college = College.find(params[:college_id])
     @post = Post.find(params[:id])
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
-    #@comments = @post.comments.paginate(:page => params[:page], :order => 'created_at DESC')
     @title = @college.name
     @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
   end
   
   def destroy
+    @user = current_user
     @post = Post.find(params[:id])
     @college = College.find(@post.college_id)
     @post.destroy
     respond_to do |format|
-    format.html { redirect_to "/colleges/#{@college.id}/posts", :flash => { :success => "Post Deleted Successfully!" } }
+    format.html { 
+      if request.fullpath.to_s =~ /users/
+        redirect_to "/users/#{@user.id}", :flash => { :success => "Post Deleted Successfully!" }
+      else  
+        redirect_to "/colleges/#{@college.id}/posts", :flash => { :success => "Post Deleted Successfully!" }
+      end }
     format.js
   end
 end

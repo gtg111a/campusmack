@@ -1,4 +1,4 @@
-<div class = "colleges">Click On Your Campus Below</div><br>
+<div class = "colleges">Click On A Campus Below</div><br>
 <% @colleges.each do |college| %>
 <%= link_to college.name, "/users/#{@user.id}/colleges/#{college.id}" %><br>
 <% end %>
@@ -6,10 +6,20 @@
 	<tr>
 		<td class="main">
 <h1 class = "user">
-Your Posts	
+<%= @user.username %> Posts	
 <% #gravatar_for @user %>
 <% #@user.name %>
 </h1>
+<table class="masthead">
+<tr>
+		<td>
+			<%= link_to "Videos", user_path(@user, :content_type => "Video")%> 
+			| <%= link_to "Photos", user_path(@user, :content_type => "Photo") %> 
+			| <%= link_to "News"%> 
+			| <%= link_to "Stats" %>
+		</td>
+</tr>
+</table>
 
 <% unless @user.posts.empty? %>
   <table class="post" summary="User posts">
