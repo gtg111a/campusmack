@@ -1,0 +1,22 @@
+<table class="masthead">
+<tr>
+	<td>
+		    <%= link_to "Home", root_path %> 
+		  | <%= link_to "Smacks", posts_path(:type => "Smack") %>
+		  |	<%= link_to "Redemptions", posts_path(:type => "Redemption") %>
+	</td>
+</tr><br>
+</table>
+<h1>Posts</h1>
+	<table class="masthead">
+	<tr>
+		<td>
+			<%= link_to "Videos", posts_path(:content_type => "Video") %> 
+			| <%= link_to "Photos", posts_path(:content_type => "Photo") %> 
+			| <%= link_to "News"%> 
+			| <%= link_to "Stats" %>
+		</td>
+	</tr>
+	</table>
+
+

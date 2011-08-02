@@ -22,11 +22,16 @@ class RedemptionsController < ApplicationController
   end
      
     def index
-      @user = current_user
-      @college = College.find(params[:college_id])
-      @title = "All redemptions from #{@college.name}"
-      @redemptions = find_redemptions(@college)
-    end
+        @user = current_user
+        @college = College.find(params[:college_id])
+        @search = @college.redemptions.search(params[:search])
+        @title = "All redemptions from #{@college.name}"
+        if params[:search]
+          @redemptions = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+        else
+          @redemptions = find_redemptions(@college)
+        end
+      end
 
     def show
       @redemption = Post.find(params[:id])

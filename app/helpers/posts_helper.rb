@@ -7,6 +7,8 @@ module PostsHelper
       def votes_against_b
         Vote.where(:voteable_id => id, :voteable_type => "Post", :vote => false).count
       end
+      
+      
 =begin      
       def post_type(college, type)
         if type == "Video"

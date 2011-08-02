@@ -41,11 +41,12 @@ Campusmack::Application.routes.draw do
     
  
     #match '/signout', :to => 'sessions#destroy'
+    match '/search', :to => 'posts#index'
     match '/contact', :to => 'pages#contact'
     match '/about', :to => 'pages#about'
     match '/help', :to => 'pages#help'
-    match "/signin" => "services#signin"
-    match "/signout" => "services#signout"
+    match "/signin", :to => "services#signin"
+    match "/signout", :to => "services#signout"
 
     match '/auth/:service/callback' => 'services#create'
     match '/auth/failure' => 'services#failure'

@@ -24,12 +24,12 @@ class SmacksController < ApplicationController
   def index
     @user = current_user
     @college = College.find(params[:college_id])
+    @search = @college.smacks.search(params[:search])
     @title = "All smacks from #{@college.name}"
-    #@smacks = @college.smacks.paginate(:page => params[:page], :order => 'created_at DESC')
-    @smacks = find_smacks(@college)
-    respond_to do |format|
-      format.html
-      format.js
+    if params[:search]
+      @smacks = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+    else
+      @smacks = find_smacks(@college)
     end
   end
 

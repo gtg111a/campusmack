@@ -1,22 +1,20 @@
 
 <%= render 'shared/masthead1' %>
-	</table>	
+	
 		<h1><%= @college.name %> Smacks</h1>
-			<table class="masthead">
-			<tr>
-				<td>
-					<%= link_to "Videos", college_smacks_path(@college, :content_type => "Video")%> 
-					| <%= link_to "Photos", college_smacks_path(@college, :content_type => "Photo") %> 
-					| <%= link_to "News"%> 
-					| <%= link_to "Stats" %>
-				</td>
-			</tr>
-			</table>
+		<%= render 'masthead'%>
 			<% if signed_in? %>
-		<a><%= button_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get %></a>
+		   <%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>
 		   <% else %>
-		<a><%= button_to "Add a Smack", signin_path, :method => :get %></a>
-			<% end %><br>
+		   <%= link_to "Add a Smack", signin_path, :method => :get, :class => "button" %>
+			<% end %><br><br>
+			
+			<%= form_for @search, :url => college_smacks_path, :html => {:method => :get} do |f| %>
+			  <%= f.label :search %>
+			  <%= f.text_field :title_or_post_summary_contains %>
+			  <%= f.submit "Go!", :name =>nil %>
+			<% end %>
+			
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @smacks %>
 		</table>

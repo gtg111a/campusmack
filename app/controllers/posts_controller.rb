@@ -21,9 +21,14 @@ class PostsController < ApplicationController
   end
   
   def index
+    @search = Post.search(params[:search])
     @user = current_user
     @title = "All posts"
-    @posts = find_posts
+      if params[:search]
+        @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+      else
+        @posts = find_posts
+      end
   end
   
   def show

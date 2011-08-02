@@ -15,8 +15,13 @@ class CollegesController < ApplicationController
   def show
     @user = current_user
     @college = College.find(params[:id])
+    @search = @college.posts.search(params[:search])
     @title = @college.name
-    @posts = find_posts(@college)
+        if params[:search]
+          @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+        else
+          @posts = find_posts(@college)
+        end
   end
   
   def vote_up

@@ -12,6 +12,8 @@ class Post < ActiveRecord::Base
   
   attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo
   
+  attr_searchable :title, :post_summary
+  
   belongs_to :college
   belongs_to :user
   has_many :comments, :as => :commentable, :dependent => :destroy
@@ -30,7 +32,6 @@ class Post < ActiveRecord::Base
   validates :type,          :presence => true
   validates :content_type,  :presence => true
   validates :title,         :presence => true
-  
   
   
 end

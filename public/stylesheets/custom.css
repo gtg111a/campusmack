@@ -188,22 +188,9 @@ form.new_micropost textarea { height: 4em; margin-bottom: 0;}
 
 div.colleges {font-size: 160%; color: #ff0000; }
 
-table.masthead {
-	width: 475px; 
-	border: 0px; 
-	border-collapse: collapse;
-	border-spacing: 10px;
-	background-color: #ddd;
-	border-radius: 10px;
-}
+table.masthead {width: 475px; border: 0px; border-collapse: collapse; border-spacing: 10px; background-color: #ddd; border-radius: 10px;}
 
-table.masthead td {
-	width: 500px;
-	font-size: 90%;
-	padding-left: 12px;
-	padding-right: 10px;
-	white-space: nowrap;
-}
+table.masthead td {	width: 500px;font-size: 90%;padding-left: 12px;padding-right: 10px;white-space: nowrap;}
 
 td.post#title {
 	padding: 0px;
@@ -268,6 +255,8 @@ option {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif
 select {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 
 #large_photo {display:none;}
+
+ul.button_list{list-style-type: none; display: inline-block; }
 
 /* Old styling 
 a { color: #09c; text-decoration: none; }

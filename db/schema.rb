@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110729133142) do
+ActiveRecord::Schema.define(:version => 20110802143733) do
 
   create_table "colleges", :force => true do |t|
     t.timestamp "created_at"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20110729133142) do
     t.string    "last_name"
     t.integer   "up_votes"
     t.integer   "down_votes"
+    t.string    "college"
+    t.string    "affiliation"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

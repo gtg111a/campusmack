@@ -1,23 +1,22 @@
 <%= render 'shared/masthead1' %>
-</table>
-		<h1><%= @college.name %> Redemptions</h1><br>
-			<table class="masthead">
-			<tr>
-				<td>
-					<%= link_to "Videos", college_redemptions_path(@college, :content_type => "Video")%> 
-					| <%= link_to "Photos", college_redemptions_path(@college, :content_type => "Photo") %> 
-					| <%= link_to "News"%> 
-					| <%= link_to "Stats" %>
-				</td>
-			</tr>
-			</table>
-			<% if signed_in? %>
-		<a><%= button_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get %></a>
+
+	<h1><%= @college.name %> Redemptions</h1><br>
+		
+	<%= render 'masthead' %>
+		
+		<% if signed_in? %>
+		<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %>
 		<% else %>
-		<a><%= button_to "Add a Redemption", signin_path, :method => :get %></a>
-			<% end %><br>
-		<%= will_paginate(@redemptions)%>
+		<%= link_to "Add a Redemption", signin_path, :method => :get, :class => "button" %>
+		<% end %><br><br>
+			
+				<%= form_for @search, :url => college_redemptions_path, :html => {:method => :get} do |f| %>
+				  <%= f.label :search %>
+				  <%= f.text_field :title_or_post_summary_contains %>
+				  <%= f.submit "Go!", :name =>nil %>
+				<% end %>
+		
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @redemptions %>
 		</table>
-
+		<%= will_paginate(@redemptions)%>

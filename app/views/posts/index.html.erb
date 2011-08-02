@@ -1,23 +1,9 @@
-<table class="masthead">
-<tr>
-	<td>
-		    <%= link_to "Home", root_path %> 
-		  | <%= link_to "Smacks", posts_path(:type => "Smack") %>
-		  |	<%= link_to "Redemptions", posts_path(:type => "Redemption") %>
-	</td>
-</tr><br>
-</table>
-<h1>Posts</h1>
-	<table class="masthead">
-	<tr>
-		<td>
-			<%= link_to "Videos", posts_path(:content_type => "Video") %> 
-			| <%= link_to "Photos", posts_path(:content_type => "Photo") %> 
-			| <%= link_to "News"%> 
-			| <%= link_to "Stats" %>
-		</td>
-	</tr>
-	</table>
+<%= render 'masthead' %>
+	<%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
+	  <%= f.label :search %>
+	  <%= f.text_field :title_or_post_summary_contains %>
+	  <%= f.submit "Go!", :name =>nil %>
+	<% end %>
 <table class = "post">
 <%= render :partial => "/posts/post", :collection => @posts %>
 </table>
