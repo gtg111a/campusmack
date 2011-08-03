@@ -1,7 +1,9 @@
 Campusmack::Application.routes.draw do
+
+
     get "sessions/new"
         
-    
+    resources :support, :only => [:new, :create]
     resources :services, :only => [:index, :create] do
       collection do
           get 'signin'

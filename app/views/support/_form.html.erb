@@ -1,0 +1,23 @@
+<% form_for @support, :url => { :action => "create" }, :html => { :method => :post } do |f| %>
+<div class="field">
+    <%= f.label "Name:" %>
+    <%= f.text_field :sender_name %>
+</div>
+<div class="field">
+    <%= f.label "Email:" %>
+    <%= f.text_field :email %>
+</div>
+<div class="field">
+    <%= f.label "Type:" %>
+    <%= f.select :support_type, options_for_select(["Feedback", "Question", "Other"]) %>
+</div>
+<div class="field">
+    <%= f.label "Comments:" %>
+</div>
+<div class="field">
+    <%= f.text_area :content %>
+ </div>
+    <%= f.submit "Submit" %>
+<% end %>
+			
+			
