@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802143733) do
+ActiveRecord::Schema.define(:version => 20110803023455) do
 
   create_table "colleges", :force => true do |t|
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "name"
+    t.string    "conference"
   end
 
   create_table "comments", :force => true do |t|

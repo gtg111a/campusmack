@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   
   attr_accessor :password
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college
 
 #Omniauth stuff, not sure if I need it yet
 =begin  
@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
   validates :password, :presence => true,
                        :confirmation => true,
                        :length => { :within => 6..40 }
+  validates :college, :presence => true
+  validates :affiliation, :presence => true
 
   before_save :encrypt_password
   
