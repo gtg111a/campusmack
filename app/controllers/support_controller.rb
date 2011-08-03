@@ -8,7 +8,7 @@ class SupportController < ApplicationController
     def create
       @support = Support.new(params[:support])
       if @support.save
-        redirect_to root_path, :flash => { :success => "Feedback Submitted Successfully!" }
+        redirect_to root_path, :flash => { :success => "Message Sent!" }
       else
         flash[:alert] = "You must fill all fields."
         render 'new'
