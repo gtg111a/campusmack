@@ -47,4 +47,6 @@ Campusmack::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
    #config.encryptor = :bcrypt
+   
+  config.action_mailer.default_url_options = { :host => 'campusmack.heroku.com' }
 end
