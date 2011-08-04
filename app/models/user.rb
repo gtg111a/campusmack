@@ -13,19 +13,21 @@
 require 'digest'
 
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  
+   #after_create :send_welcome_email 
+   
+   #devise :registerable, :recoverable, :rememberable, :trackable, :validatable
   
   #Through the 'thumbs_up' gem
   acts_as_voter
   
-  attr_accessor :password
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college
+  #attr_accessor :password
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college, :remember_me
 
-#Omniauth stuff, not sure if I need it yet
-=begin  
-  devise :database_authenticatable, :oauthable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable
-=end
 
   has_many :services, :dependent => :destroy  
 
@@ -53,6 +55,7 @@ class User < ActiveRecord::Base
                     :length => { :maximum => 50 },
                     :uniqueness => { :case_sensitive => false }                 
   validates :email, :presence => true,
+                    #:email => true, 
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
   validates :password, :presence => true,
@@ -61,11 +64,11 @@ class User < ActiveRecord::Base
   validates :college, :presence => true
   validates :affiliation, :presence => true
 
-  before_save :encrypt_password
+  #before_save :encrypt_password
   
-  def has_password?(submitted_password)
-    encrypted_password == encrypt(submitted_password)
-  end
+#  def has_password?(submitted_password)
+#    encrypted_password == encrypt(submitted_password)
+#  end
   
   def feed
     Micropost.from_users_followed_by(self)
@@ -82,7 +85,17 @@ class User < ActiveRecord::Base
   def unfollow!(followed)
     relationships.find_by_followed_id(followed).destroy
   end
+  
+  private
 
+    def send_welcome_email
+        UserMailer.welcome_email(self).deliver
+      end
+  end
+   
+
+ 
+=begin
   class << self
     def authenticate(email, submitted_password)
       user = find_by_email(email)
@@ -91,19 +104,20 @@ class User < ActiveRecord::Base
     
     def authenticate_with_salt(id, cookie_salt)
       user = find_by_id(id)
-      (user && user.salt == cookie_salt) ? user : nil
+      (user && user.password_salt == cookie_salt) ? user : nil
     end
   end
-  
+=end
+=begin  
   private
   
     def encrypt_password
-      self.salt = make_salt if new_record?
+      self.password_salt = make_salt if new_record?
       self.encrypted_password = encrypt(password)
     end
   
     def encrypt(string)
-      secure_hash("#{salt}--#{string}")
+      secure_hash("#{password_salt}--#{string}")
     end
     
     def make_salt
@@ -113,5 +127,6 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
-end
+=end    
+
   

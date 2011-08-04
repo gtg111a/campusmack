@@ -1,8 +1,8 @@
 require 'mailgun'
 
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :authenticate_user!, :except => [:show, :new, :create]
+  #before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   
   def index
@@ -51,9 +51,11 @@ class UsersController < ApplicationController
   
   def edit
     @title = "Edit user"
+    @user = current_user
   end
   
   def update
+    @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
@@ -81,6 +83,9 @@ class UsersController < ApplicationController
       end
     end
 
+    
+
+=begin
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
@@ -90,6 +95,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_path) if !current_user.admin? || current_user?(@user)
     end
+=end
 end
 
 

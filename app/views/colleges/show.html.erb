@@ -6,8 +6,8 @@
 		<%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>    
 		<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %><br>
 	   <% else %>
-			<%= link_to "Add a Smack", signin_path, :method => :get, :class => "button" %>
-			<%= link_to "Add a Redemption", signin_path, :method => :get, :class => "button" %>
+			<%= link_to "Add a Smack", new_user_session_path, :method => :get, :class => "button" %>
+			<%= link_to "Add a Redemption", new_user_session_path, :method => :get, :class => "button" %>
 	   <% end %><br><br>
 
 	

@@ -1,7 +1,9 @@
 Campusmack::Application.routes.draw do
 
 
-    get "sessions/new"
+  devise_for :users
+
+    #get "sessions/new"
         
     resources :support, :only => [:new, :create]
     resources :services, :only => [:index, :create] do
@@ -30,7 +32,7 @@ Campusmack::Application.routes.draw do
         get :following, :followers
       end
     end
-    resources :sessions, :only => [:new, :create, :destroy]
+    #resources :sessions, :only => [:new, :create, :destroy]
     resources :microposts, :only => [:create, :destroy]
     resources :relationships, :only => [:create, :destroy]
     resources :colleges, :only => [:new, :create, :show] do
@@ -47,14 +49,14 @@ Campusmack::Application.routes.draw do
     match '/contact', :to => 'pages#contact'
     match '/about', :to => 'pages#about'
     match '/help', :to => 'pages#help'
-    match "/signin", :to => "services#signin"
-    match "/signout", :to => "services#signout"
+    #match "/signin", :to => "services#signin"
+    #match "/signout", :to => "services#signout"
 
     match '/auth/:service/callback' => 'services#create'
     match '/auth/failure' => 'services#failure'
     
     #match '/users/:id' :to => 'users#show'
-    match '/signup', :to => 'users#new'
+    #match '/signup', :to => 'users#new'
     #match '/signin', :to => 'sessions#new'
 
 

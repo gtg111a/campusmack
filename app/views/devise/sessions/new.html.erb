@@ -1,0 +1,32 @@
+<section id="services_signin" class="services">
+<h1>Campusmack Sign in</h1><br>
+
+<p>Sign in with your Campusmack account -- OR -- use an alternate authentication service:</p>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+ <div class="field">
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+ </div>	
+<div class="field">
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+</div>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <% end -%>
+
+  <%= f.submit "Sign in" %>
+<% end %><br>
+
+<p> New user? <%= link_to "Sign up now!", new_user_registration_path %></p><br>
+
+<% #render :partial => "devise/shared/links" %>
+
+<p>Supported Alternate Sign In Services:</p>
+
+<div class = "logos">
+<%= render "services_list" %>
+</div>
+</section><br>

@@ -1,0 +1,10 @@
+<h1>Campusmack Sign up</h1>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %> 
+ <% #devise_error_messages! %>
+<%= render 'fields', :f => f %>
+<div class="actions">
+	<%= f.submit "Sign up" %> 
+</div>
+<% end %>
+
+<%#render :partial => "devise/shared/links" %>

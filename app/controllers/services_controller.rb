@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
 
-include SessionsHelper  
+#include SessionsHelper  
   
   def index
     # get all authentication services assigned to the current user
