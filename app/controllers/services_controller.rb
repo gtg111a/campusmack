@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:create]
 
 #include SessionsHelper  
   
@@ -44,6 +45,8 @@ class ServicesController < ApplicationController
    end
 =end
    # Sign out current user
+   
+=begin   
    def signout
      if current_user
        session[:user_id] = nil
@@ -55,6 +58,8 @@ class ServicesController < ApplicationController
      end
      redirect_to root_url
    end
+=end
+ 
   
    # callback: success
    # This handles signing in and adding an authentication service to existing accounts itself
@@ -116,16 +121,17 @@ class ServicesController < ApplicationController
            else
              # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
              session[:authhash] = @authhash
-             redirect_to services_signup_services_path
+             flash[:error] = 'You must sign up for a Campusmack account before signing in with an alternate provider.'
+             redirect_to new_user_registration_path
            end
          end
        else
          flash[:error] = 'Error while authenticating via ' + service_route + '/' + @authhash[:provider].capitalize + '. The service returned invalid data for the user id.'
-         redirect_to signin_path
+         redirect_to new_user_session_path
        end
      else
        flash[:error] = 'Error while authenticating via ' + service_route.capitalize + '. The service did not return valid data.'
-       redirect_to signin_path
+       redirect_to new_user_session_path
      end
    end
    
