@@ -3,7 +3,7 @@
 	  <td id="main_app">
 		<div id="nav_list">	
 			<ul id="nav">
-				<li><%=link_to "ACC" %>
+				<li><b><%=link_to "ACC" %></b>
 				  <ul>
 					<% @college_acc = College.where("conference = ?", "ACC") %>
 				    <% @college_acc.each do |college| %>
@@ -11,7 +11,7 @@
 				    <% end %>
 				  </ul>
 				</li>
-				<li><%=link_to "SEC" %>
+				<li><b><%=link_to "SEC" %></b>
 				 <ul>
 					<% @college_sec = College.where("conference = ?", "SEC") %>
 				    <% @college_sec.each do |college| %>
@@ -33,6 +33,7 @@
 				<%= render 'layouts/footer' %>
       			<%= debug(params) if Rails.env.development? %>
 				</td>
+				<td id="main_app" width=20%>     </td>
 			</tr>
     	</div>
 	</table>

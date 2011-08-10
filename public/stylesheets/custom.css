@@ -5,7 +5,7 @@
 table.body td#main_app{vertical-align:top; }
 table.body{border-collapse:collapse;}
 
-#nav_list li:hover ul, li.over ul{ display:block; }
+#nav_list li:hover ul, li.over ul{ display:block; background-color:#E6EFC2; color:#529214; }
 
 /* Fix IE. Hide from IE Mac \*/
 * html div#nav_list ul li { float: left; height: 1% }
