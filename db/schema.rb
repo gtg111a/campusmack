@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803213147) do
+ActiveRecord::Schema.define(:version => 20110805193003) do
 
   create_table "colleges", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "name"
-    t.string    "conference"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "conference"
   end
 
   create_table "comments", :force => true do |t|
@@ -34,17 +34,16 @@ ActiveRecord::Schema.define(:version => 20110803213147) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "microposts", :force => true do |t|
-    t.string    "content"
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
     t.string   "content_type"
     t.string   "title"
     t.string   "content"
-    t.integer  "vote"
     t.integer  "college_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -55,15 +54,13 @@ ActiveRecord::Schema.define(:version => 20110803213147) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "post_summary"
-    t.integer  "up_votes"
-    t.integer  "down_votes"
   end
 
   create_table "relationships", :force => true do |t|
-    t.integer   "follower_id"
-    t.integer   "followed_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"

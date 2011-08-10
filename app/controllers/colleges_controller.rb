@@ -13,8 +13,9 @@ class CollegesController < ApplicationController
   end
   
   def show
-    @user = current_user
     @college = College.find(params[:id])
+    @user = current_user
+    @colleges = College.all
     @search = @college.posts.search(params[:search])
     @title = @college.name
         if params[:search]
@@ -23,7 +24,7 @@ class CollegesController < ApplicationController
           @posts = find_posts(@college)
         end
   end
-  
+
   def vote_up
     @post = post
     @user = current_user
@@ -36,6 +37,7 @@ class CollegesController < ApplicationController
     @user = current_user
     @user.down_vote(@post)
     end
+    
 
     private
 

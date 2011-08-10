@@ -1,7 +1,4 @@
-<div class = "colleges">Click On A Campus Below</div><br>
-<% @colleges.each do |college| %>
-<%= link_to college.name, "/users/#{@user.id}/colleges/#{college.id}" %><br>
-<% end %>
+<%= render 'search_fields'%>
 <table class="profile" summary="Profile information">
 	<tr>
 		<td class="main">

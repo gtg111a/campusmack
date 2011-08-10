@@ -1,5 +1,4 @@
 class SmacksController < ApplicationController
-    include PostsHelper
   
   def new
     @user = current_user
@@ -14,7 +13,7 @@ class SmacksController < ApplicationController
    @smack = @college.smacks.build(params[:smack])
    @smack.user_id = @user.id
     if @smack.save
-      redirect_to college_smacks_path, :flash => { :success => "Post Submitted Successfully!" }
+      redirect_to store_location, :flash => { :success => "Post Submitted Successfully!" }
     else
       @title = "Submit Smack"
       render 'new'
@@ -22,8 +21,9 @@ class SmacksController < ApplicationController
   end
  
   def index
-    @user = current_user
     @college = College.find(params[:college_id])
+    @colleges = College.all
+    @user = current_user
     @search = @college.smacks.search(params[:search])
     @title = "All smacks from #{@college.name}"
     if params[:search]
@@ -45,9 +45,9 @@ class SmacksController < ApplicationController
     @smack = Smack.find(params[:id])
     @college = College.find(@smack.college_id)
     @smack.destroy
+    flash[:success] = "Post Deleted Successfully!"
       respond_to do |format|
-      format.html   { 
-            redirect_to "/users/#{@user.id}", :flash => { :success => "Post Deleted Successfully!" } }
+      format.html { redirect_back_or(@user) }
       format.js 
      end
   end
@@ -61,7 +61,7 @@ class SmacksController < ApplicationController
   def update
     @smack = Smack.find(params[:id])
     if @smack.update_attributes(params[:smack])
-      redirect_to "/colleges/#{@smack.college_id}/posts/#{@smack.id}", :flash => { :success => "Post updated." }
+      redirect_to user_path(current_user), :flash => { :success => "Post updated." }
     else
       @title = "Edit post"
       render 'edit'
@@ -69,6 +69,7 @@ class SmacksController < ApplicationController
   end
 
 private
+    
 
   def find_smacks(college)
     if request.fullpath.to_s =~ /Video/

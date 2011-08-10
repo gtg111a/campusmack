@@ -1,5 +1,4 @@
 class RedemptionsController < ApplicationController
-
   
   def new
     @user = current_user
@@ -14,7 +13,7 @@ class RedemptionsController < ApplicationController
    @redemption = @college.redemptions.build(params[:redemption])
    @redemption.user_id = @user.id
     if @redemption.save
-      redirect_to college_redemptions_path, :flash => { :success => "Post Submitted Successfully!" }
+      redirect_to store_location, :flash => { :success => "Post Submitted Successfully!" }
     else
       @title = "Submit Redemption"
       render 'new'
@@ -22,8 +21,9 @@ class RedemptionsController < ApplicationController
   end
      
     def index
-        @user = current_user
         @college = College.find(params[:college_id])
+        @colleges = College.all
+        @user = current_user
         @search = @college.redemptions.search(params[:search])
         @title = "All redemptions from #{@college.name}"
         if params[:search]
@@ -44,14 +44,15 @@ class RedemptionsController < ApplicationController
       @redemption = Redemption.find(params[:id])
       @college = College.find(@redemption.college_id)
       @redemption.destroy
+      flash[:success] = "Post Deleted Successfully!"
           respond_to do |format|
-          format.html   { 
-                redirect_to "/users/#{@user.id}", :flash => { :success => "Post Deleted Successfully!" } }
+          format.html { redirect_back_or(@user)  }
           format.js
          end
        end
     
     def edit
+      @url = request.referrer
       @user = current_user
       @redemption = Redemption.find(params[:id])
       @title = "Edit post"
@@ -60,7 +61,7 @@ class RedemptionsController < ApplicationController
     def update
       @redemption = Redemption.find(params[:id])
       if @redemption.update_attributes(params[:redemption])
-         redirect_to "/colleges/#{@redemption.college_id}/posts/#{@redemption.id}", :flash => { :success => "Post updated." }
+        redirect_to user_path(current_user), :flash => { :success => "Post updated." }
       else
         @title = "Edit post"
         render 'edit'

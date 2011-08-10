@@ -8,13 +8,9 @@
 		<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %>
 		<% else %>
 		<%= link_to "Add a Redemption", signin_path, :method => :get, :class => "button" %>
-		<% end %><br><br>
+		<% end %><br>
 			
-				<%= form_for @search, :url => college_redemptions_path, :html => {:method => :get} do |f| %>
-				  <%= f.label :search %>
-				  <%= f.text_field :title_or_post_summary_contains %>
-				  <%= f.submit "Go!", :name =>nil %>
-				<% end %>
+		<%= render 'shared/search_fields_redemptions'%>
 		
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @redemptions %>

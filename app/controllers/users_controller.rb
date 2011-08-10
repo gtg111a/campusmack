@@ -3,7 +3,7 @@ require 'mailgun'
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :new, :create]
   #before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user, :only => :destroy
+  #before_filter :admin_user, :only => :destroy
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -11,10 +11,18 @@ class UsersController < ApplicationController
   end
   
   def show
+    if params[:college]
+      @college = College.where("name =?", params[:college][:name]).first
+    end
     @colleges = College.all
     @user = User.find(params[:id])
-    @posts = find_posts(@user)
+    @search = @user.posts.search(params[:search])
     @title = @user.name
+    if params[:search]
+      @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+    else
+      @posts = find_posts(@user)
+    end
   end
 
   def following

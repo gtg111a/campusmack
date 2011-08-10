@@ -1,5 +1,5 @@
 class College < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :conference
   
   
   has_many :posts, :dependent => :destroy

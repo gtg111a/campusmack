@@ -8,15 +8,10 @@
 	   <% else %>
 			<%= link_to "Add a Smack", new_user_session_path, :method => :get, :class => "button" %>
 			<%= link_to "Add a Redemption", new_user_session_path, :method => :get, :class => "button" %>
-	   <% end %><br><br>
+	   <% end %><br>
 
-	
-	<%= form_for @search, :url => college_path, :html => {:method => :get} do |f| %>
-	  <%= f.label :search %>
-	  <%= f.text_field :title_or_post_summary_contains %>
-	  <%= f.submit "Go!", :name =>nil %>
-	<% end %>
-	
+<%= render 'shared/search_fields'%>
+
 <% unless @college.posts.empty? %>
   <table class="post" summary="User microposts">
 

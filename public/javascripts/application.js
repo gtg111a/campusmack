@@ -4,13 +4,25 @@
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
 $(function(){
-	//$('img#post_pic').click(function(){
-	//	$(this).remove()
-	//	});
 	$('div#photo_post').click(function(){
 		$(this).find("#small_photo").toggle("slow");
 		$(this).find("#large_photo").toggle("slow");
 		});
-		//$(this 'img#small_photo').css('display','none')
    });
 
+$(function() {
+  if (document.all&&document.getElementById) {
+  navRoot = document.getElementById("nav");
+  for (i=0; i<navRoot.childNodes.length; i++) {
+  node = navRoot.childNodes[i];
+  if (node.nodeName=="LI") {
+  node.onmouseover=function() {
+  this.className+=" over";
+   };
+  node.onmouseout=function() {
+  this.className=this.className.replace(" over", "");
+   };
+   }
+  }
+ }
+});

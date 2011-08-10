@@ -2,9 +2,8 @@ Campusmack::Application.routes.draw do
 
 
   devise_for :users
-
-    #get "sessions/new"
-        
+    resources :votes, :only =>[:destroy]
+    #get "sessions/new"  
     resources :support, :only => [:new, :create]
     resources :services, :only => [:index, :create] do
       collection do
@@ -53,6 +52,7 @@ Campusmack::Application.routes.draw do
     #match "/signout", :to => "services#signout"
 
     match '/auth/:service/callback' => 'services#create'
+    #match 'auth/:provider/callback' => 'services#create'
     match '/auth/failure' => 'services#failure'
     
     #match '/users/:id' :to => 'users#show'

@@ -20,9 +20,9 @@
   <%= f.submit "Sign in" %>
 <% end %><br>
 
-<p> New user? <%= link_to "Sign up now!", new_user_registration_path %></p><br>
+<p> New user? <%= link_to "Sign up now!", new_user_registration_path %></p>
 
-<% #render :partial => "devise/shared/links" %>
+<%= render :partial => "devise/shared/links" %>
 
 <p>Supported Alternate Sign In Services:</p>
 

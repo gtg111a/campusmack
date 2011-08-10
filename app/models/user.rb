@@ -14,18 +14,13 @@ require 'digest'
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  
-   #after_create :send_welcome_email 
-   
-   #devise :registerable, :recoverable, :rememberable, :trackable, :validatable
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
+  devise :database_authenticatable, :registerable,:recoverable, 
+         :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   
   #Through the 'thumbs_up' gem
   acts_as_voter
   
-  #attr_accessor :password
   attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college, :remember_me
 
 
@@ -54,22 +49,10 @@ class User < ActiveRecord::Base
   validates :username, :presence => true,
                     :length => { :maximum => 50 },
                     :uniqueness => { :case_sensitive => false }                 
-  validates :email, :presence => true,
-                    #:email => true, 
-                    :format => { :with => email_regex },
-                    :uniqueness => { :case_sensitive => false }
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => { :within => 6..40 }
   validates :college, :presence => true
   validates :affiliation, :presence => true
 
-  #before_save :encrypt_password
-  
-#  def has_password?(submitted_password)
-#    encrypted_password == encrypt(submitted_password)
-#  end
-  
+
   def feed
     Micropost.from_users_followed_by(self)
   end
@@ -95,38 +78,5 @@ class User < ActiveRecord::Base
    
 
  
-=begin
-  class << self
-    def authenticate(email, submitted_password)
-      user = find_by_email(email)
-      (user && user.has_password?(submitted_password)) ? user : nil
-    end
-    
-    def authenticate_with_salt(id, cookie_salt)
-      user = find_by_id(id)
-      (user && user.password_salt == cookie_salt) ? user : nil
-    end
-  end
-=end
-=begin  
-  private
-  
-    def encrypt_password
-      self.password_salt = make_salt if new_record?
-      self.encrypted_password = encrypt(password)
-    end
-  
-    def encrypt(string)
-      secure_hash("#{password_salt}--#{string}")
-    end
-    
-    def make_salt
-      secure_hash("#{Time.now.utc}--#{password}")
-    end
-    
-    def secure_hash(string)
-      Digest::SHA2.hexdigest(string)
-    end
-=end    
 
   

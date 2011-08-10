@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @college = College.find(params[:college_id])
     @post = @user.posts.build(params[:post])
     if @post.save
-      redirect_to root_path, :flash => { :success => "Post Submitted Successfully!" }
+      redirect_to store_location, :flash => { :success => "Post Submitted Successfully!" }
     else
       @title = "Submit Post"
       render 'new'
@@ -45,13 +45,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @college = College.find(@post.college_id)
     @post.destroy
+    flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
-    format.html { 
-      if request.fullpath.to_s =~ /users/
-        redirect_to "/users/#{@user.id}", :flash => { :success => "Post Deleted Successfully!" }
-      else  
-        redirect_to "/colleges/#{@college.id}/posts", :flash => { :success => "Post Deleted Successfully!" }
-      end }
+    format.html { redirect_back_or(@user) }
     format.js
   end
 end
@@ -65,7 +61,7 @@ end
  def update
    @post = Post.find(params[:id])
    if @post.update_attributes(params[:post])
-     redirect_to college_post_path, :flash => { :success => "Post updated." }
+     redirect_to user_path(current_user), :flash => { :success => "Post updated." }
    else
      @title = "Edit post"
      render 'edit'
@@ -73,7 +69,15 @@ end
  end
  
  def vote_up
+   @user = current_user
    @post = Post.find(params[:id])
+   vote_check_for(@post)
+   respond_to do |format|
+   format.html {redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny Rike!!!"}}
+   format.js
+  end
+=begin  
+   else
       begin
          current_user.vote_for(@post)
          respond_to do |format|
@@ -86,9 +90,19 @@ end
          format.js {render :js => "alert('You've already voted for this Post!');"}
         end
        end
-     end
+=end
+     #end
+   end
  
  def vote_down
+    @user = current_user
+    @post = Post.find(params[:id])
+    vote_check_against(@post)
+    respond_to do |format|
+    format.html {redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny no Rike!!!"}}
+    format.js
+  end
+=begin
    begin
        current_user.vote_against(@post = Post.find(params[:id]))
        respond_to do |format|
@@ -101,9 +115,10 @@ end
        format.js {render :js => "alert('You've already voted for this Post!');"}
       end
      end
+=end
    end
    
-   private
+private
    
    def find_posts
        if request.fullpath.to_s =~ /Video/
@@ -118,5 +133,6 @@ end
          return Post.all.paginate(:page => params[:page], :order => 'created_at DESC')
        end
     end
+    
   
 end

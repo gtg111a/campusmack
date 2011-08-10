@@ -7,13 +7,9 @@
 		   <%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>
 		   <% else %>
 		   <%= link_to "Add a Smack", signin_path, :method => :get, :class => "button" %>
-			<% end %><br><br>
+			<% end %><br>
 			
-			<%= form_for @search, :url => college_smacks_path, :html => {:method => :get} do |f| %>
-			  <%= f.label :search %>
-			  <%= f.text_field :title_or_post_summary_contains %>
-			  <%= f.submit "Go!", :name =>nil %>
-			<% end %>
+			<%= render 'shared/search_fields_smacks'%>
 			
 		<table class = "post">
 		<%= render :partial => "/posts/post", :collection => @smacks %>
