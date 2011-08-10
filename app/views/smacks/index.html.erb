@@ -6,7 +6,7 @@
 			<% if signed_in? %>
 		   <%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>
 		   <% else %>
-		   <%= link_to "Add a Smack", signin_path, :method => :get, :class => "button" %>
+		   <%= link_to "Add a Smack", user_session_path, :method => :get, :class => "button" %>
 			<% end %><br>
 			
 			<%= render 'shared/search_fields_smacks'%>
