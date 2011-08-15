@@ -1,21 +1,32 @@
 <%= render 'shared/error_messages', :object => f.object %> 
-<div class="field"> <%= f.label :title %><br /> 
-					<%= f.text_field :title %>
-</div> 
-
-<div class="field">
-<%= f.label :content_type %><br />
-<%= f.select(:content_type, %w{Video Photo News Stats}, {:include_blank => true})  %><br />
-</div>
-<div class="field">
-<%= f.label :post_summary %><br />
-<%= f.text_area :post_summary %> 
-</div>
-<div class="field">For a video post:<br>
-<%= f.label :youtube_link %><br />
-<%= f.text_field :content %> 
-</div>
-<div class="field">For a photo post:<br>
-<%= f.label :upload_Photo %>
-<%= f.file_field :photo %>
-</div>
+<ul id="post_fields">
+	<li>
+		<div class="field"> 
+			<%= f.label :title %><br /> 
+			<%= f.text_field :title %>
+		</div> 
+	</li>
+	<li>
+		<div class="field" id="post_type">
+			<%= f.label :content_type %><br />
+		 	<%= f.select(:content_type, %w{Video Photo News Stats}, {:include_blank => true})  %><br />
+		</div>
+	</li>
+	<li>
+		<div class="field">
+			<%= f.label :post_summary %><br />
+			<%= f.text_area :post_summary %> 
+		</div>
+	<li id="video_post">
+		<div class="field">For a video post:<br>
+			<%= f.label :youtube_link %><br />
+			<%= f.text_field :content %> 
+		</div>
+	</li>
+	<li id="photo_post">
+		<div class="field">For a photo post:<br>
+			<%= f.label :upload_Photo %>
+			<%= f.file_field :photo %>
+		</div>
+	</li>
+</ul>

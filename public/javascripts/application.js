@@ -26,3 +26,20 @@ $(function() {
   }
  }
 });
+
+$(function() {
+$("ul#post_fields").change(function() {
+	if ($("ul#post_fields option[value='Video']").attr('selected')) {
+		$(this).find("#video_post").show();
+		$(this).find("#photo_post").hide();
+				}
+	else if ($("ul#post_fields option[value='Photo']").attr('selected')) {
+			 $(this).find("#video_post").hide();
+			 $(this).find("#photo_post").show();
+				}
+	else {
+		$(this).find("#video_post").hide();
+		$(this).find("#photo_post").hide();
+		 }
+	        });
+	      });

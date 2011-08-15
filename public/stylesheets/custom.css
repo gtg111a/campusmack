@@ -115,6 +115,11 @@ select {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif
 ul.button_list{list-style-type: none; display: inline-block; }
 div#name {display:inline;}
 
+/* New Posts */
+#video_post {display:none;}
+#photo_post {display:none;}
+#post_fields{list-style:none;}
+
 
 
 
