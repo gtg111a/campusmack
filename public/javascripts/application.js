@@ -3,6 +3,8 @@
 
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
+
+/* This is the code used to enlarge photos when you click on them. */
 $(function(){
 	$('div#photo_post').click(function(){
 		$(this).find("#small_photo").toggle("slow");
@@ -10,6 +12,7 @@ $(function(){
 		});
    });
 
+/* This is the code for the side navigation */
 $(function() {
   if (document.all&&document.getElementById) {
   navRoot = document.getElementById("nav");
@@ -27,19 +30,32 @@ $(function() {
  }
 });
 
+/* This code hides the video/photo field depending on what the user selects */
 $(function() {
 $("ul#post_fields").change(function() {
 	if ($("ul#post_fields option[value='Video']").attr('selected')) {
-		$(this).find("#video_post").show();
-		$(this).find("#photo_post").hide();
+		$(this).find("#video_field").show();
+		$(this).find("#photo_field").hide();
 				}
 	else if ($("ul#post_fields option[value='Photo']").attr('selected')) {
-			 $(this).find("#video_post").hide();
-			 $(this).find("#photo_post").show();
+			 $(this).find("#video_field").hide();
+			 $(this).find("#photo_field").show();
 				}
 	else {
-		$(this).find("#video_post").hide();
-		$(this).find("#photo_post").hide();
+		$(this).find("#video_field").hide();
+		$(this).find("#photo_field").hide();
 		 }
 	        });
 	      });
+/* This code will show the photo field and video field in the Edit view depending on what type of post it is */
+$(function() {
+	if ($("ul#post_fields option[value='Video']").attr('selected')) {
+		$("#video_field").show();
+		}
+	else if ($("ul#post_fields option[value='Photo']").attr('selected')) {
+		$("#photo_field").show();
+			}
+		});
+			
+		
+	

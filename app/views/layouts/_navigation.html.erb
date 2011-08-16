@@ -7,7 +7,7 @@
 				  <ul>
 					<% @college_acc = College.where("conference = ?", "ACC") %>
 				    <% @college_acc.each do |college| %>
-				    <li><%= link_to college.name, college %></li>
+				    <li class="side_nav"><%= link_to college.name, college %></li>
 				    <% end %>
 				  </ul>
 				</li>

@@ -5,12 +5,15 @@
 table.body td#main_app{vertical-align:top; }
 table.body{border-collapse:collapse;}
 
-#nav_list li:hover ul, li.over ul{ display:block; background-color:#E6EFC2; color:#529214; }
+#nav_list li:hover ul, li.over ul{ display:block; background-color:#E6EFC2; color:#529214;}
+#nav_list li a:hover{ background-color:#dff4ff; border:2px solid #ccc;}
 
 /* Fix IE. Hide from IE Mac \*/
 * html div#nav_list ul li { float: left; height: 1% }
 * html div#nav_list li a { height: 1%; }
 /* End */
+
+div#photo_post img:hover{border:2px solid #c81419;}
 
 
 .container {width: 1300px;}
@@ -107,7 +110,7 @@ table.comments tr:nth-child(even) td, table.comments tr.even td {background:#F4F
 #services_list li { display: inline; float: left; margin-right: 25px; margin-bottom: 20px; width: 100px; text-align: center; }
 #services_list img { display: block; margin-left: auto; margin-right: auto; }
 a { color: #74809a; text-decoration: none !important;}
-a:visited { color: #74809a; }
+/*a:visited { color: #74809a; }*/
 a:hover { color: #c81419; }
 option {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 select {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
@@ -116,9 +119,11 @@ ul.button_list{list-style-type: none; display: inline-block; }
 div#name {display:inline;}
 
 /* New Posts */
-li#video_post {display:none;}
-li#photo_post {display:none;}
-#post_fields{list-style:none;}
+li#video_field {display:none;}
+li#photo_field {display:none;}
+#post_fields {list-style:none;}
+
+span, p.required {color: #c81419;font-size: 85%}
 
 
 
