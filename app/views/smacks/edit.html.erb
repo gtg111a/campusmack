@@ -1,5 +1,5 @@
 <h1>Edit post</h1>
-<%= form_for(@smack) do |f| %> 
+<%= form_for(@smack, :validate => true) do |f| %> 
 <%= render 'shared/fields', :f => f %>
 <div class="actions">
   <%= f.submit "Update" %>

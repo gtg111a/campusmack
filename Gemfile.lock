@@ -38,6 +38,7 @@ GEM
       xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    client_side_validations (3.1.0)
     cocaine (0.1.0)
     daemons (1.1.4)
     devise (1.4.2)
@@ -189,6 +190,7 @@ DEPENDENCIES
   acts_as_commentable
   annotate-models (= 1.0.4)
   aws-s3
+  client_side_validations
   devise
   factory_girl
   faker (= 0.3.1)

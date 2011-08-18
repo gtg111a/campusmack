@@ -14,6 +14,7 @@ gem 'devise'
 gem 'omniauth', '0.2.6'
 gem 'jquery-rails'
 gem 'meta_search'
+gem 'client_side_validations'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

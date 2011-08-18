@@ -19,13 +19,13 @@
 </div>
 <div class="field">
 <span class="required">*</span><%= f.label :email, "Email:" %>
-<%= f.text_field :email %>
+<%= f.text_field :email, :validate =>{:presence => true, :confirmation => true } %>
 </div> 
 <div class="field">
 <span class="required">*</span><%= f.label :password, "Password:"  %>
-<%= f.password_field :password %> 
+<%= f.password_field :password, :validate =>{:presence => true, :confirmation => true } %> 
 </div>
 <div class="field"> 
 <span class="required">*</span><%= f.label :password_confirmation, "Password Confirmation:" %>
-<%= f.password_field :password_confirmation %>
+<%= f.password_field :password_confirmation, :validate =>{:presence => true, :confirmation => true} %>
 </div>

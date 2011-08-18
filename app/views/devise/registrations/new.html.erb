@@ -1,7 +1,7 @@
 <h1>Campusmack Sign up</h1>
-<p class="required">* Required fields</p>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %> 
- <% #devise_error_messages! %>
+<span class="required">* Required fields</span>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true )  do |f| %> 
+ <% devise_error_messages! %>
 <%= render 'fields', :f => f %>
 <div class="actions">
 	<%= f.submit "Sign up" %> 
