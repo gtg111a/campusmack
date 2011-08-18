@@ -15,7 +15,7 @@ Campusmack::Application.routes.draw do
         end
       end
     resources :comments
-    resources :smacks, :redemptions, :posts, do
+    resources :smacks, :redemptions, :posts do
       resources :comments, :only => [:create,:destroy, :edit]
       member do
         post :vote_up, :vote_down

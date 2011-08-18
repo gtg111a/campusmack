@@ -93,7 +93,7 @@ namespace :db do
                :last_name => "Smack",
                :email => "test@campusmack.com", 
                :password => "campusmack", 
-               :password_confirmation => "campusmack",)
+               :password_confirmation => "campusmack")
   admin.toggle!(:admin)
   99.times do |n| 
     name = Faker::Name.name 

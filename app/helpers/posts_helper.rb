@@ -34,7 +34,7 @@ module PostsHelper
           Vote.where(
                :voter_id => @user.id,
                :voter_type => @user.class.name,
-               :voteable_id => voteable.id,
+               :voteable_id => voteable.id
                ).map(&:destroy)
       end
       
@@ -43,7 +43,7 @@ module PostsHelper
           0 < Vote.where(
                 :voter_id => @user.id,
                 :voter_type => @user.class.name,
-                :voteable_id => voteable.id,
+                :voteable_id => voteable.id
               ).count
         end
 

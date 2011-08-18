@@ -25,9 +25,9 @@ gem 'will_paginate', '3.0.pre2'
 
 group :development do
 gem 'rspec-rails', '2.6.1'
-gem 'annotate-models', '1.0.4'
+gem 'annotated_models'
 gem 'faker', '0.3.1'
-
+gem 'ruby-debug'
 end
 
 group :test do
