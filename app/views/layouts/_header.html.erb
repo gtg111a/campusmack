@@ -2,6 +2,9 @@
 
 	<% if user_signed_in? %>
 	<nav class="round">
+      <% if session[:provider] %>
+      Signed in with <%= service_link(Authentication.where(:id => session[:provider]).first, 32, false) %>
+      <% end %>
 	<ul>
 	<li><%= link_to "Home", root_path %></li>
 	<li><%= link_to "My Posts", "/users/#{current_user.id}" %></li>

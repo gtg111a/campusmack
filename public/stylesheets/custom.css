@@ -133,3 +133,7 @@ span.required {color: #c81419;font-size: 85%}
 a { color: #09c; text-decoration: none; }
 a:hover { color: #069; text-decoration: underline; }
 a:visited { color: #069; } */
+
+nav img {
+    padding: 0;
+}

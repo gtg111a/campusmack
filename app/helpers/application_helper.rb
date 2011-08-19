@@ -13,11 +13,15 @@ module ApplicationHelper
     end
   end
 
-  def service_link(provider)
+  def service_link(provider, size = 64, link = true)
+    resource_name ||= :user
     fixed_provider_name = provider.to_s.gsub('_apps','')
     provider_name = fixed_provider_name.titleize
-    link_to(omniauth_authorize_path(resource_name, provider)) do
-      image_tag(fixed_provider_name + '_64.png', :alt => provider_name) + provider_name
-    end
+    html = ''
+    html << "<a href=#{omniauth_authorize_path(resource_name, provider)}>" if link
+    html << image_tag(fixed_provider_name + '_' + size.to_s + '.png', :alt => provider_name)
+    html << provider_name + '</a>' if link
+    raw(html)
   end
+
 end
