@@ -17,7 +17,7 @@ module MailHelper
       <h1>Welcome to campusmack.com, #{current_user.first_name}</h1>
       <p>
         You have successfully signed up to campusmack.com,
-        your username is: #{current_user.username}.<br/>
+        your username is: #{current_user.name}.<br/>
       </p>
       <p>
         To login to the site, just follow this link: www.campusmack.com.

@@ -123,4 +123,16 @@ li#video_field {display:none;}
 li#photo_field {display:none;}
 #post_fields {list-style:none;}
 
+
 span.required {color: #c81419;font-size: 85%}
+
+
+
+
+
+
+/* Old styling 
+a { color: #09c; text-decoration: none; }
+a:hover { color: #069; text-decoration: underline; }
+a:visited { color: #069; } */
+

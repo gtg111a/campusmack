@@ -1,8 +1,8 @@
 <% @college = College.all%>
 <%= render 'shared/error_messages', :object => f.object %> 
 <div class="field">
-<%= f.label :username, "Username:" %>
-<%= f.text_field :username %> 
+<%= f.label :name, "Username:" %>
+<%= f.text_field :name %>
 </div>
 <div class="field" id="name">
 <%= f.label :first_name, "First Name:" %>
@@ -22,7 +22,7 @@
 </div> 
 <div class="field">
 <%= f.label :password, "Password:"  %>
-<%= f.password_field :password %> 
+<%= f.password_field :password %>
 </div>
 <div class="field"> <%= f.label :password_confirmation, "Password Confirmation:" %>
 <%= f.password_field :password_confirmation %>

@@ -1,3 +1,5 @@
+require 'openid/store/filesystem'
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -34,12 +36,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
-  
+  config.case_insensitive_keys = [:email]
+
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -90,13 +92,13 @@ Devise.setup do |config|
 
   # If true, uses the password salt as remember token. This should be turned
   # to false if you are not using database authenticatable.
-  
+
   config.use_salt_as_remember_token = true
-  
+
   #config.encryptor = :bcrypt
-  
+
   #config.pepper = "0bcfd5cb8a627c7d837f40dc3a9af44f7d96b5015a7bbd5e61ab81da41caecae84212449c045074c67c8069a55bde0e03d0a4b33e6cb42d93465e8784e8eac08"
-  
+
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.
   # config.cookie_options = {}
@@ -197,6 +199,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
+  config.omniauth :twitter, 'Om10xZqwFnWShJmQQejFg', 'wd0fMtA0HjLjyyC8jgjoqemNHVpZFm9uMBdZT3t8o'
+  config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
+  config.omniauth :facebook, '223312437712461', 'c1d7be7f56c673548b8af514ecc496be'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -207,4 +212,5 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
 end

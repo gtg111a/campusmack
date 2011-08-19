@@ -23,10 +23,5 @@
 <p> New user? <%= link_to "Sign up now!", new_user_registration_path %></p>
 
 <%= render :partial => "devise/shared/links" %>
-
-<p>Supported Alternate Sign In Services:</p>
-
-<div class = "logos">
-<%= render "services_list" %>
-</div>
+<%= render :partial => "devise/shared/services_list" %>
 </section><br>
