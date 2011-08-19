@@ -201,7 +201,7 @@ DEPENDENCIES
   annotated_models
   aws-s3
   client_side_validations
-  compass
+  compass (>= 0.11.5)
   devise
   factory_girl
   faker (= 0.3.1)
