@@ -16,7 +16,7 @@ table.body{border-collapse:collapse;}
 div#photo_post img:hover{border:2px solid #c81419;}
 
 
-.container {width: 1300px;}
+.container {width: 950px;}
 body { font-size: 14px; line-height: 1.5em; font-family: Verdana,Helvetica,Arial,sans-serif; background-color: #0A2F5C; }
 header {padding-top: 20px;}
 header img { padding: 1em;background: #fff;}
@@ -33,7 +33,7 @@ nav ul li a {padding: 0 5px;font-weight: bold;}
 nav ul li a:visited {color: #09c;}
 nav ul li a:hover {text-decoration: underline;}
 
-/* Sign up button 
+/* Sign up button
 a.signup_button {margin-left: auto;margin-right: auto;display: block;text-align: center;width: 190px;color: #fff;background: #006400;font-size: 150%;font-weight: bold;padding: 20px;
 }
 */
@@ -46,14 +46,14 @@ footer { text-align: center; margin-top: 10px; width: 710px; margin-left: auto; 
 footer nav {float: none;}
 
 /* User show page */
-table.profile {	width: 100%;padding: 1em;}
+table.profile { width: 100%;padding: 1em;}
 td.main {width: 70%;padding: 1em;}
 td.sidebar {width: 30%;padding: 1em;vertical-align: top;background: #ffc;}
 .profile img.gravatar {border: 1px solid #999;margin-bottom: -15px;}
-div.field, div.actions  {margin-bottom: 10px;}
+div.field, div.actions {margin-bottom: 10px;}
 .field_with_errors {display:inline;}
 .field_with_errors .message {color: #c81419; font-size: 85%}
-#error_explanation {width:  400px;border:  2px solid red;padding:  7px; padding-bottom:  12px;margin-bottom:  20px;background-color: #f0f0f0; }
+#error_explanation {width: 400px;border: 2px solid red;padding: 7px; padding-bottom: 12px;margin-bottom: 20px;background-color: #f0f0f0; }
 #error_explanation h2 { text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
 #error_explanation p { color: #333; margin-bottom: 0; padding: 5px;}
 #error_explanation ul li { font-size: 12px; list-style: square;}
@@ -67,7 +67,7 @@ height: 70px;
 }*/
 table.microposts tr td.gravatar { border-top: 1px solid #ccc; vertical-align: top; width: 50px;}
 table.microposts tr td.micropost { border-top: 1px solid #ccc; vertical-align: top; padding-top: 0px;}
-table.microposts tr td.micropost span.timestamp { display: block; font-size: 50%; color: #666;} 
+table.microposts tr td.micropost span.timestamp { display: block; font-size: 50%; color: #666;}
 div.user_info img { padding-right: 0.1em; }
 div.user_info a { text-decoration: none; }
 div.user_info span.user_name { position: absolute; }
@@ -76,16 +76,16 @@ form.new_micropost {margin-bottom: 2em; }
 form.new_micropost textarea { height: 4em; margin-bottom: 0;}
 div.colleges {font-size: 160%; color: #ff0000; }
 table.masthead {width: 475px; border: 0px; border-collapse: collapse; border-spacing: 10px; background-color: #ddd; border-radius: 10px;}
-table.masthead td {	width: 500px;font-size: 90%;padding-left: 12px;padding-right: 10px;white-space: nowrap;}
-td.post#title {padding: 0px;font-size: 125%;	}
-table.post tr td.comments {border-collapse: collapse;padding-left: 0px;padding-right: 5px;text-align: left;	}
+table.masthead td { width: 500px;font-size: 90%;padding-left: 12px;padding-right: 10px;white-space: nowrap;}
+td.post#title {padding: 0px;font-size: 125%; }
+table.post tr td.comments {border-collapse: collapse;padding-left: 0px;padding-right: 5px;text-align: left; }
 td.vote {text-align: center;}
-span.timestamp { display: block; font-size: 85%; color: #666; }		
+span.timestamp { display: block; font-size: 85%; color: #666; }
 span.comments { text-align: left; }
-span.vote  { font-size: 275%; color: #000066; text-align: center; }
+span.vote { font-size: 275%; color: #000066; text-align: center; }
 textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; padding: 5px;}
 table.comments { border-collapse:collapse;}
-table.comments tr td {	border-bottom:1px solid #CACACA; border-top:1px solid #CACACA; }
+table.comments tr td { border-bottom:1px solid #CACACA; border-top:1px solid #CACACA; }
 table.comments tr:nth-child(even) td, table.comments tr.even td {background:#F4F4F4;}
 .services { margin: 0; padding: 0; }
 
@@ -124,12 +124,3 @@ li#photo_field {display:none;}
 #post_fields {list-style:none;}
 
 span.required {color: #c81419;font-size: 85%}
-
-
-
-
-
-/* Old styling 
-a { color: #09c; text-decoration: none; }
-a:hover { color: #069; text-decoration: underline; }
-a:visited { color: #069; } */

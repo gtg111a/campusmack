@@ -15,6 +15,7 @@ gem 'omniauth', '0.2.6'
 gem 'jquery-rails'
 gem 'meta_search'
 gem 'client_side_validations'
+gem 'compass', ">= 0.11.5"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,7 +28,7 @@ group :development do
 gem 'rspec-rails', '2.6.1'
 gem 'annotated_models'
 gem 'faker', '0.3.1'
-gem 'ruby-debug'
+#gem 'ruby-debug'
 end
 
 group :test do

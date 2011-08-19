@@ -1,26 +1,20 @@
 <header>
-
+<div id="header">
+  <ul>
 	<% if user_signed_in? %>
-	<nav class="round">
-	<ul>
 	<li><%= link_to "Home", root_path %></li>
 	<li><%= link_to "My Posts", "/users/#{current_user.id}" %></li>
-	<li><%- link_to "Profile", current_user %></li>
 	<li><%= link_to "Edit Profile", edit_user_registration_path(current_user) %></li>
 	<li><%= link_to "Help", help_path %></li>
 	<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-	</ul>
-	</nav><br><br>
+	
 	<% else %>
-	<nav class="round">
-	<ul>
 	<li><%= link_to "Home", root_path %></li>
 	<li><%= link_to "Sign in", new_user_session_path %></li>
 	<li><%= link_to "Help", help_path %></li>
-	</ul>
-	</nav><br><br>
 	<% end %>
-	
+  </ul>	
+</div>
 </header>
 
 
