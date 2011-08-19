@@ -11,11 +11,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       authentication = Authentication.where(:provider => omniauth['provider'],:uid => omniauth['uid']).limit(1).first
       if authentication
+        session[:provider] = authentication.id
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider']
         sign_in_and_redirect(:user, authentication.user)
       else
         user = User.new
-        user.apply_omniauth(omniauth)
+        authentication = user.apply_omniauth(omniauth)
 
         if User.find_by_email(user.email)
           flash[:notice] = "A user with #{user.email} already exists."
@@ -27,6 +28,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.confirm!
 
         if user.save
+          session[:provider] = authentication.id
           flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider']
           sign_in_and_redirect(:user, user)
         else

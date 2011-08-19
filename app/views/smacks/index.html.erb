@@ -1,0 +1,17 @@
+
+<%= render 'shared/masthead1' %>
+	
+		<h1><%= @college.name %> Smacks</h1>
+		<%= render 'masthead'%>
+			<% if signed_in? %>
+		   <%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>
+		   <% else %>
+		   <%= link_to "Add a Smack", user_session_path, :method => :get, :class => "button" %>
+			<% end %><br>
+			
+			<%= render 'shared/search_fields_smacks'%>
+			
+		<table class = "post">
+		<%= render :partial => "/posts/post", :collection => @smacks %>
+		</table>
+		<%= will_paginate(@smacks)%>

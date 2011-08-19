@@ -4,7 +4,7 @@ Campusmack::Application.routes.draw do
   #get "sessions/new"
   resources :support, :only => [:new, :create]
   resources :comments
-  resources :posts do
+  resources :smacks, :redemptions, :posts do
     resources :comments, :only => [:create, :destroy, :edit]
     member do
       post :vote_up, :vote_down
@@ -13,6 +13,8 @@ Campusmack::Application.routes.draw do
   resources :users do
     resources :colleges, :only => [:show] do
       resources :posts
+      resources :smacks
+      resources :redemptions
     end
     member do
       get :following, :followers

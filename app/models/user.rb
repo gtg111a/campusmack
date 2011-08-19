@@ -77,6 +77,13 @@ class User < ActiveRecord::Base
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
 
+  alias_method :old_update_with_password, :update_with_password
+
+  def update_with_password(params={})
+    return self.old_update_with_password(params) if params.keys.include?('current_password')
+    self.update_without_password(params)
+  end
+
   private
 
   def send_welcome_email

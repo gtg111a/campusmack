@@ -11,7 +11,7 @@
 			<span class="content"><%= youtube_embed(post.content).html_safe %></span>
 			<br>	
 				<span class="timestamp">
-					posted <%= time_ago_in_words(post.created_at) %> ago by <%= User.find(post.user_id).name %>.
+					posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:name) %>.
 					</span>
 		</td>	
 		<td class = "comments">

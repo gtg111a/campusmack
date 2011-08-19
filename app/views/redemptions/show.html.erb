@@ -1,0 +1,13 @@
+<%= render 'shared/masthead1' %>
+<h1><%= @college.name %> Redemption</h1>
+<table class="masthead">
+<tr>
+	<td>
+		Videos | Photos | News | Stats
+	</td>
+</tr>
+</table>
+  <table class="microposts" summary="User microposts">
+	<%= render :partial => "/posts/post", :object => @redemption %>
+	</table>
+
