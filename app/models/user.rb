@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   #Through the 'thumbs_up' gem
   acts_as_voter
 
-  attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college, :remember_me
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college, :remember_me
 
 
   has_many :authentications, :dependent => :destroy
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
             :length => {:maximum => 50}
   validates :last_name, :presence => true,
             :length => {:maximum => 50}
-  validates :name, :presence => true,
+  validates :username, :presence => true,
             :length => {:maximum => 50},
             :uniqueness => {:case_sensitive => false}
   validates :college, :presence => true

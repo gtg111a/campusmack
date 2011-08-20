@@ -9,7 +9,8 @@ namespace :db do
 
   namespace :db do
     desc "set up colleges"
-    task :colleges => :environment do
+    task :new => :environment do
+      Rake::Task['db:reset'].invoke 
       make_admin
       make_colleges
       end
@@ -17,8 +18,8 @@ namespace :db do
 
     namespace :db do
       desc "set up more colleges"
-      task :more_colleges => :environment do
-        make_colleges2
+      task :make_colleges => :environment do
+        make_colleges
         end
       end
         
@@ -34,18 +35,14 @@ namespace :db do
   end
   
   def make_colleges
-    College.create!(:name => "University of Georgia")
-    College.create!(:name => "Georgia Tech")
-    College.create!(:name => "Clemson")
-    College.create!(:name => "University of Florida")
-    College.create!(:name => "University of Miami")
-    College.create!(:name => "Duke")
-    College.create!(:name => "Florida State")
-    College.create!(:name => "University of North Carolina")
-    @colleges = College.all
-  end
-  
-  def make_colleges2
+    College.create!(:name => "University of Georgia", :conference => "SEC")
+    College.create!(:name => "Georgia Tech", :conference => "ACC")
+    College.create!(:name => "Clemson", :conference => "ACC")
+    College.create!(:name => "University of Florida", :conference => "SEC")
+    College.create!(:name => "University of Miami", :conference => "ACC")
+    College.create!(:name => "Duke", :conference => "ACC")
+    College.create!(:name => "Florida State", :conference => "ACC")
+    College.create!(:name => "University of North Carolina", :conference => "ACC")
     College.create!(:name => "Boston College", :conference => "ACC" )
     College.create!(:name => "Maryland", :conference => "ACC" )
     College.create!(:name => "North Carolina State", :conference => "ACC" )
@@ -57,11 +54,12 @@ namespace :db do
     College.create!(:name => "Auburn", :conference => "SEC")
     College.create!(:name => "Kentucky", :conference => "SEC")
     College.create!(:name => "LSU", :conference => "SEC")
-      College.create!(:name => "Mississippi State", :conference => "SEC")
-      College.create!(:name => "Ole Miss", :conference => "SEC")
-      College.create!(:name => "South Carolina", :conference => "SEC")
-      College.create!(:name => "Tennessee", :conference => "SEC")
-      College.create!(:name => "Vanderbilt", :conference => "SEC")
+    College.create!(:name => "Mississippi State", :conference => "SEC")
+    College.create!(:name => "Ole Miss", :conference => "SEC")
+    College.create!(:name => "South Carolina", :conference => "SEC")
+    College.create!(:name => "Tennessee", :conference => "SEC")
+    College.create!(:name => "Vanderbilt", :conference => "SEC")
+    @colleges = College.all
   end
   
   
@@ -91,7 +89,7 @@ namespace :db do
   admin = User.create!(:username => "@campusmack",
                :first_name => "Campus",
                :last_name => "Smack",
-               :email => "test@campusmack.com", 
+               :email => "michael.bivone@gmail.com", 
                :password => "campusmack", 
                :password_confirmation => "campusmack")
   admin.toggle!(:admin)
@@ -112,7 +110,7 @@ namespace :db do
                          :last_name => "Smack",
                          :college => "Georgia Tech",
                          :affiliation => "Alumni",
-                         :email => "test@campusmack.com", 
+                         :email => "michael.bivone@gmail.com", 
                          :password => "campusmack", 
                          :password_confirmation => "campusmack"
                          )
