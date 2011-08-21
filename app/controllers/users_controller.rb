@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @colleges = College.all
     @user = User.find(params[:id])
     @search = @user.posts.search(params[:search])
-    @title = @user.name
+    @title = @user.username
     if params[:search]
       @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
     else
