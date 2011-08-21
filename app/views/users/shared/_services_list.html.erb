@@ -1,11 +1,7 @@
 <%- if devise_mapping.omniauthable? %>
     <p>Supported Alternate Sign In Services:</p>
     <div class="logos">
-      <ul id="services_list">
-        <%- resource_class.omniauth_providers.each do |provider| %>
-            <li><%= service_link(provider) %></li>
-        <% end -%>
-      </ul>
+      <%= render 'shared/services_list' %>
     </div>
     <br style='clear:both' />
 <% end %>

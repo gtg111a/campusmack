@@ -33,6 +33,7 @@ Campusmack::Application.routes.draw do
       end
     end
   end
+  resources :authentications, :only => [:index, :destroy]
 
   match '/search', :to => 'posts#index'
   match '/contact', :to => 'pages#contact'

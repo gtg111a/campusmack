@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     self.update_without_password(params)
   end
 
+  def to_s
+    [ self.first_name, self.last_name ].join(' ')
+  end
+
   private
 
   def send_welcome_email

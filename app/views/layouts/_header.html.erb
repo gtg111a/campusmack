@@ -4,9 +4,6 @@
       <ul>
         <li><%= link_to "Home", root_path %></li>
         <% if user_signed_in? %>
-            <% if session[:provider] %>
-                Signed in with <%= service_link(Authentication.where(:id => session[:provider]).first, 32, false) %>
-            <% end %>
             <li><%= link_to "My Posts", "/users/#{current_user.id}" %></li>
             <li><%= link_to "Edit Profile", edit_user_registration_path(current_user) %></li>
         <% end %>
@@ -16,8 +13,15 @@
         <% else %>
             <li><%= link_to "Sign in", new_user_session_path %></li>
         <% end %>
-
-      </ul>
+        </ul>
+        <% if session[:provider] %>
+            <ul>
+              <li>
+              Signed in with <%= service_link(Authentication.where(:id => session[:provider]).first, 32, false) %>
+              <%= link_to '(Manage)', authentications_path %>
+                </li>
+            </ul>
+        <% end %>
     </nav>
   </div>
 </header>

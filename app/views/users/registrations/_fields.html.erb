@@ -13,9 +13,9 @@
 <%= f.text_field :last_name %> 
 </div><br>
 <div class="field">
-<span class="required">*</span><b>Affiliation:<b>
+<span class="required">*</span><b>Affiliation:</b>
 <%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true})  %>
-<b>of<b> <%= f.select(:college, @college.map {|a| [a.name]}, {:include_blank => true})  %>
+<b>of</b> <%= f.select(:college, @college.map {|a| [a.name]}, {:include_blank => true})  %>
 </div>
 <div class="field">
 <span class="required">*</span><%= f.label :email, "Email:" %>
