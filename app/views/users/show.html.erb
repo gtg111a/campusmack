@@ -3,9 +3,9 @@
 	<tr>
 		<td class="main">
 <h1 class = "user">
-<%= @user.name %> Posts
+<%= @user.username %> Posts
 <% #gravatar_for @user %>
-<% #@user.name %>
+<% #@user.username %>
 </h1>
 <table class="masthead">
 <tr>
@@ -28,7 +28,7 @@
 <!--Commenting out Stat sidebar
 
 <td class="sidebar round">
-	<strong>Name</strong> <%= @user.name %> <br />
+	<strong>Name</strong> <%= @user.username %> <br />
 	<strong>URL</strong> <%= link_to user_path(@user), @user %>
 	<strong>Microposts</strong> <%= @user.microposts.count %>
 	<%= render 'shared/stats' %>

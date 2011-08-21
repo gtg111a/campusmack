@@ -1,7 +1,7 @@
 <% user = User.find(comment.user_id)%>
 <tr id = "comments">
 	<td width = 15% id = "comments"class ="post">
-		<span class="content"><%= user.name %></span>
+		<span class="content"><%= user.username %></span>
 		<span class="timestamp">
 			Posted <%= time_ago_in_words(comment.created_at) %> ago by <%= user.username %>.
 			</span>
