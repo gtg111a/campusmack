@@ -69,16 +69,6 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
 
-  def apply_omniauth(omniauth)
-    # Grab emails for user creation
-    if (omniauth['provider'] == 'facebook')
-      self.email = omniauth['extra']['user_hash']['email']
-    elsif (omniauth['provider'] == 'google_apps')
-      self.email = omniauth['user_info']['email']
-    end
-    self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-  end
-
   alias_method :old_update_with_password, :update_with_password
 
   def update_with_password(params={})
