@@ -29,7 +29,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         h[:last_name] = omniauth['user_info']['last_name']
       end
       # Create username from the full name
-      h[:username] ||= [h[:first_name], h[:last_name]].join('_').removeaccents.downcase
+      #h[:username] ||= [h[:first_name], h[:last_name]].join('_').removeaccents.downcase
       h[:provider] = Authentication.create!(:provider => omniauth['provider'], :uid => omniauth['uid']).id
       session.merge!(h)
       if User.find_by_email(h[:email])
