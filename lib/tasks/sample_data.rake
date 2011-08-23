@@ -69,49 +69,26 @@ def make_content
           :content_type => "Video",
           :title => "Tech Nerds Everywhere",
           :content => "http://www.youtube.com/watch?v=UaWXbqu5Bcs",
-          :vote => n,
+   #       :vote => n,
           :college_id => college.id)
 
       college.redemptions.create!(
           :content_type => "Video",
           :title => "Calvin Johnson Highlights",
           :content => "http://www.youtube.com/watch?v=YV_j7_CCc8A",
-          :vote => n,
+    #      :vote => n,
           :college_id => college.id)
     end
   end
 end
 
 def make_users
-  admin = User.create!(:username => "@campusmack",
-                       :first_name => "Campus",
-                       :last_name => "Smack",
-                       :email => "michael.bivone@gmail.com",
-                       :password => "campusmack",
-                       :password_confirmation => "campusmack")
-  admin.toggle!(:admin)
-  99.times do |n|
-    name = Faker::Name.name
-    email = "example-#{n+1}@railstutorial.org"
-    password = "password"
-    User.create!(:name => name,
-                 :email => email,
-                 :password => password,
-                 :password_confirmation => password)
-  end
+  make_admin
+  5.times { |n| Factory(:user) }
 end
 
 def make_admin
-  admin = User.create!(:username => "@campusmack",
-                       :first_name => "Campus",
-                       :last_name => "Smack",
-                       :college => "Georgia Tech",
-                       :affiliation => "Alumni",
-                       :email => "michael.bivone@gmail.com",
-                       :password => "campusmack",
-                       :password_confirmation => "campusmack"
-  )
-  admin.toggle!(:admin)
+  admin = Factory(:user, :username => '@campusmack', :password => 'campusmack', :admin => true)
   admin.confirm!
 end
 

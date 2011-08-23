@@ -57,7 +57,10 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
-    factory_girl (2.0.1)
+    factory_girl (2.0.4)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     faker (0.3.1)
     faraday (0.6.1)
       addressable (~> 2.2.4)
@@ -202,8 +205,8 @@ DEPENDENCIES
   aws-s3
   client_side_validations
   compass (>= 0.11.5)
-  devise
-  factory_girl
+  devise (= 1.4.2)
+  factory_girl_rails
   faker (= 0.3.1)
   gravatar_image_tag
   jquery-rails

@@ -10,7 +10,7 @@ gem 'rack'
 gem 'thumbs_up'
 gem 'rake'
 gem 'acts_as_commentable'
-gem 'devise'
+gem 'devise', '1.4.2'
 gem 'omniauth', '0.2.6'
 gem 'jquery-rails'
 gem 'meta_search'
@@ -35,7 +35,10 @@ group :test do
 gem 'rspec-rails', '2.6.1'
 gem 'webrat', '0.7.1'
 gem 'spork', '0.9.0.rc5'
-gem 'factory_girl'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
 end
 
 # Use unicorn as the web server
