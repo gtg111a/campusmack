@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   #Through the 'acts_as_commentable' gem
   acts_as_commentable
   
-  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo
+  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo, :news
   
   attr_searchable :title, :post_summary
   

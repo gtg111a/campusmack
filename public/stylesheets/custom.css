@@ -121,6 +121,7 @@ div#name {display:inline;}
 /* New Posts */
 li#video_field {display:none;}
 li#photo_field {display:none;}
+li#news_field {display:none;}
 #post_fields {list-style:none;}
 
 <<<<<<< HEAD

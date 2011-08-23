@@ -36,14 +36,22 @@ $("ul#post_fields").change(function() {
 	if ($("ul#post_fields option[value='Video']").attr('selected')) {
 		$(this).find("#video_field").show();
 		$(this).find("#photo_field").hide();
+		$(this).find("#news_field").hide();
 				}
 	else if ($("ul#post_fields option[value='Photo']").attr('selected')) {
 			 $(this).find("#video_field").hide();
+		     $(this).find("#news_field").hide();
 			 $(this).find("#photo_field").show();
+				}
+	else if ($("ul#post_fields option[value='News']").attr('selected')) {
+			 $(this).find("#video_field").hide();
+			 $(this).find("#photo_field").hide();
+			 $(this).find("#news_field").show();
 				}
 	else {
 		$(this).find("#video_field").hide();
 		$(this).find("#photo_field").hide();
+		$(this).find("#news_field").hide();
 		 }
 	        });
 	      });
@@ -54,6 +62,9 @@ $(function() {
 		}
 	else if ($("ul#post_fields option[value='Photo']").attr('selected')) {
 		$("#photo_field").show();
+			}
+	else if ($("ul#post_fields option[value='News']").attr('selected')) {
+		$("#news_field").show();
 			}
 		});
 			
