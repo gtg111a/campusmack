@@ -1,8 +1,9 @@
 <section id="services_manage" class="services">
 
-  <h1>Authentication Services - Settings</h1>
-
-  <h2>You can use these accounts to sign in</h2>
+  <h2>Authentication Services - Settings</h2>
+  <% if @services.any? %>
+      <h3>You can use these accounts to sign in</h3>
+  <% end %>
 
   <% @services.each do |service| %>
       <div class="service_in_use round">
@@ -38,9 +39,13 @@
 
 
   <div id="services_available">
-    <h2>You can connect more accounts to sign in</h2>
+    <h3>You can connect more accounts to sign in</h3>
 
-    <%= render 'shared/services_list' %>
+    <ul id="services_list">
+      <%- @available_services.each do |provider| %>
+          <li><%= service_link(provider) %></li>
+          <% end %>
+    </ul>
   </div>
   <br style="clear:both" />
 </section>

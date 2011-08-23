@@ -18,8 +18,7 @@
             <ul>
               <li>
               Signed in with <%= service_link(Authentication.where(:id => session[:provider]).first, 32, false) %>
-              <%= link_to '(Manage)', authentications_path %>
-                </li>
+              </li>
             </ul>
         <% end %>
     </nav>

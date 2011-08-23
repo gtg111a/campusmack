@@ -5,7 +5,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     omniauth = env["omniauth.auth"]
 
     if current_user
-      current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:notice] = "Authentication successful"
       redirect_to edit_user_registration_path
     else
@@ -28,17 +27,25 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         h[:first_name] = omniauth['user_info']['first_name']
         h[:last_name] = omniauth['user_info']['last_name']
       end
+      user = User.where(:email => h[:email]).first
       # Create username from the full name
       #h[:username] ||= [h[:first_name], h[:last_name]].join('_').removeaccents.downcase
-      h[:provider] = Authentication.create!(:provider => omniauth['provider'], :uid => omniauth['uid']).id
+      auth = Authentication.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      h[:provider] = auth.id
       session.merge!(h)
-      if User.find_by_email(h[:email])
-        flash[:notice] = "A user with #{user.email} already exists."
-      else
-        flash[:notice] = 'Successful Authentication. Please fill out the remaining required fields below to complete the registration.'
+      if user
+        if user.authentications.include?(auth)
+          flash[:notice] = "You already added this service"
+        else
+          user.authentications << auth
+          flash[:notice] = "Added #{omniauth['provider']} to your existing account."
+        end
+        sign_in(user)
+        redirect_to authentications_path
+        return
       end
+      flash[:notice] = 'Successful Authentication. Please fill out the remaining required fields below to complete the registration.'
       redirect_to new_user_registration_url
-      return
     end
   end
 

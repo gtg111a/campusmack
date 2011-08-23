@@ -4,6 +4,11 @@ class AuthenticationsController < ApplicationController
   # GET all authentication services assigned to the current user
   def index
     @services = current_user.authentications.order('provider asc')
+    @available_services = []
+    User.omniauth_providers.each do |s|
+      next if current_user.authentications.where(:provider => s.to_s).any?
+      @available_services << s
+    end
   end
 
   # POST to remove an authentication service
