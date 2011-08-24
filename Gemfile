@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'meta_search'
 gem 'client_side_validations'
 gem 'compass', ">= 0.11.5"
+gem 'cancan'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,5 +1,5 @@
 class AuthenticationsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
 
   # GET all authentication services assigned to the current user
   def index

@@ -1,21 +1,11 @@
-<%= render 'shared/masthead1' %>
 <h1><%= @college.name %></h1>
-<%= render 'masthead' %>
+<%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>
+<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %><br class="clear"/>
 
-		<% if signed_in? %>
-		<%= link_to "Add a Smack", new_user_college_smack_path(@user, @college), :method => :get, :class => "button" %>    
-		<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %><br>
-	   <% else %>
-			<%= link_to "Add a Smack", new_user_session_path, :method => :get, :class => "button" %>
-			<%= link_to "Add a Redemption", new_user_session_path, :method => :get, :class => "button" %>
-	   <% end %><br>
-
-<%= render 'shared/search_fields'%>
-
-<% unless @college.posts.empty? %>
-  <table class="post" summary="User microposts">
-
-	<%= render :partial => "/posts/post", :collection => @posts %>
-	</table>
-	<%= will_paginate @posts %>
-	<% end %>
+<%= render 'shared/search_fields' %>
+<% unless @posts.empty? %>
+    <%= will_paginate @posts %>
+    <ul class="posts">
+      <%= render :partial => "/posts/post", :collection => @posts %>
+    </ul>
+<% end %>

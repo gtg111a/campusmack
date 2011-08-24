@@ -41,6 +41,7 @@ GEM
       xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    cancan (1.6.5)
     chunky_png (1.2.1)
     client_side_validations (3.1.0)
     cocaine (0.1.0)
@@ -203,6 +204,7 @@ DEPENDENCIES
   acts_as_commentable
   annotated_models
   aws-s3
+  cancan
   client_side_validations
   compass (>= 0.11.5)
   devise (= 1.4.2)
