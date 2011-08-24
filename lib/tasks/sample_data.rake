@@ -33,14 +33,14 @@ namespace :db do
 end
 
 def make_colleges
-  College.create!(:name => "University of Georgia", :conference => "SEC")
+  College.create!(:name => "Georgia", :conference => "SEC")
   College.create!(:name => "Georgia Tech", :conference => "ACC")
   College.create!(:name => "Clemson", :conference => "ACC")
-  College.create!(:name => "University of Florida", :conference => "SEC")
-  College.create!(:name => "University of Miami", :conference => "ACC")
+  College.create!(:name => "Florida", :conference => "SEC")
+  College.create!(:name => "Miami", :conference => "ACC")
   College.create!(:name => "Duke", :conference => "ACC")
   College.create!(:name => "Florida State", :conference => "ACC")
-  College.create!(:name => "University of North Carolina", :conference => "ACC")
+  College.create!(:name => "North Carolina", :conference => "ACC")
   College.create!(:name => "Boston College", :conference => "ACC")
   College.create!(:name => "Maryland", :conference => "ACC")
   College.create!(:name => "North Carolina State", :conference => "ACC")
