@@ -1,19 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-  <head>
-	
-    <title><%= title %></title>
-    <%= csrf_meta_tag %>
-    <%= render 'layouts/stylesheets' %>
-	<%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations' %>
-	<%= yield(:head) %>
-  </head>
-  <body class="bp">
-	<div class="container">
-		<%= render 'layouts/header' %>
-		</div>
-		<%= render 'layouts/navigation' %>
- 
-  </body>
+<head>
+  <title><%= title %></title>
+  <%= csrf_meta_tag %>
+  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations' %>
+  <%= stylesheet_link_tag 'new', 'button' %>
+  <%= yield(:head) %>
+</head>
+<body id="homepage">
+<header>
+  <div class="container">
+    <a href="/" class="marketplace"><h2>Campusmack</h2></a>
+    <%= user_nav %>
+    <ul class="info-nav">
+      <li><a href="/help">Help</a></li>
+    </ul>
+  </div>
+</header>
+
+<%= main_nav %>
+
+<div id="content">
+  <%= render 'layouts/left_sidebar' %>
+  <div class="container">
+    <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, :class => "flash #{key}") %>
+    <% end %>
+    <%= yield(:above) %>
+    <div class="block shadowed">
+      <div class="inner-boundary">
+        <div class="inner-border">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= yield(:below) %>
+  </div>
+</div>
+
+<div id="footer" class="large">
+  <div class="container"></div>
+  <br class="clear"/>
+</div>
+
+<div id="copyright">
+  <div class="container">
+    <div class="copyright">
+      <p>
+        <span>Copyright © 2011 </span>|
+        <span><a href="/about">About</a></span>|
+        <span><a href="/terms">Terms</a></span>|
+        <span><a href="/contact-us">Contact Us</a></span>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+</body>
 </html>

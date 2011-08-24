@@ -1,43 +1,40 @@
+<li id="post_<%= post.id %>">
+  <h4><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %></h4>
+  <% unless post.photo_file_name.nil? %>
+      <div id="photo_post" class="photo">
+        <span class="photo"><%= image_tag(post.photo.url(:large), :id => "large_photo") %></span>
+        <span class="photo"><%= image_tag(post.photo.url(:medium), :id => "small_photo") %></span></div>
+  <% end %>
+  <div class="content"><%= youtube_embed(post.content).html_safe %></div>
+  <div class="comments"><%= post.post_summary %>
+    <% if !post.post_summary.nil? && !request.fullpath.include?("posts") %>
+        <%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
+    <% end %>
+  </div>
+  <div class="vote">
+    <% if signed_in? %>
+        <span class="vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post, :remote => true %></span><br/>
+        <!-- votes_for_b is in posts_helper-->
+        <span class="vote" id="<%= "vote_count_up"+ post.id.to_s %>"><%= post.votes_for_b %></span><br/>
+        <span class="vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post, :remote => true %></span>
+    <% else %>
+        <span class="vote"><%= post.votes_for_b %></span>
+    <% end %>
+  </div>
+  <div id="<%= "vote_count_down"+ post.id.to_s %>" class="vote count" width=5%><%= post.votes_against_b %></div>
+  <br class="clear"/>
 
- 
-	<td class ="post", id = "<%= post.id %>"><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %> 
-	</td>
-	<tr id = "<%= post.id %>">
-		<td>
-			<% unless post.photo_file_name.nil? %>
-			    <div id="photo_post" class ="photo"><span class = "photo"><%= image_tag(post.photo.url(:large), :id => "large_photo") %></span>
-										 <span class = "photo"><%= image_tag(post.photo.url(:medium), :id => "small_photo") %></span></div>			
-				<% end %>
-			<span class="content"><%= youtube_embed(post.content).html_safe %></span>
-			<br>	
-				<span class="timestamp">
-					posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
-					</span>
-		</td>	
-		<td class = "comments">
-			<span class="comments"><%= post.post_summary %>
-			<% if !post.post_summary.nil? && !request.fullpath.include?("posts") %>
-				<%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
-			<% end %></span>
-		</td>
+  <div class="timestamp">
+    posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
+  </div>
 
-		<td id = "<%="vote_count_down"+ post.id.to_s%>" class = "vote" width = 5%><%= post.votes_against_b %></td>
-		<td class = "vote" width = 10%>
-			<% if signed_in? %>
-			<span class = "vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post, :remote => true %></span><br>
-			<!-- votes_for_b is in posts_helper-->		
-			<span class = "vote" id = "<%="vote_count_up"+ post.id.to_s%>"><b><%= post.votes_for_b %><b> </span><br>
-			<span class = "vote"><%= link_to image_tag('arrow-down.png'), vote_down_post_path(post), :method => :post, :remote => true %></span>
-			<% else %>
-			<span class = "vote"><b><%= post.votes_for_b %><b></span>
-			<% end %>
-		</td>	
-			<td width = 5%>
-								<% if signed_in? %>
-								<% if post.user_id == current_user.id || current_user.admin? %>
-								<td width = 5%><%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %></td>
-								<td width = 5%><%= link_to image_tag('delete.png'), post, :method => :delete, :confirm => "Delete Post?" %></td>
-								<% end %>
-								<% end %>
-				</td>								
-		</tr>
+  <div>
+    <% if signed_in? %>
+        <% if post.user_id == current_user.id || current_user.admin? %>
+            <td width=5%><%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %></td>
+            <td width=5%><%= link_to image_tag('delete.png'), post, :method => :delete, :confirm => "Delete Post?" %></td>
+        <% end %>
+    <% end %>
+  </div>
+  <br class="clear"/>
+</li>

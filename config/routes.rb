@@ -3,7 +3,13 @@ Campusmack::Application.routes.draw do
       :omniauth_callbacks => "users/omniauth_callbacks",
       :registrations => 'users/registrations',
       :sessions => 'users/sessions'
-  }
+  }, :skip => [:sessions] do
+    get 'sign_up' => 'users/registrations#new', :as => :sign_up
+    get 'sign_in' => 'users/sessions#new', :as => :sign_in
+    post 'sign_in' => 'users/sessions#create', :as => :user_session
+    get 'sign_out' => 'users/sessions#destroy', :as => :sign_out
+  end
+
   resources :votes, :only =>[:destroy]
   #get "sessions/new"
   resources :support, :only => [:new, :create]
@@ -37,10 +43,10 @@ Campusmack::Application.routes.draw do
   resources :authentications, :only => [:index, :destroy]
 
   match '/search', :to => 'posts#index'
-  match '/contact', :to => 'pages#contact'
+  match '/contact-us', :to => 'contact#new'
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
 
-  root :to => 'pages#home'
+  root :to => 'welcome#index'
 end
 

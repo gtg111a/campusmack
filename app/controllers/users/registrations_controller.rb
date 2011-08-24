@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  load_and_authorize_resource :class => 'User', :except => :new
 
   def new
     resource = build_resource({})

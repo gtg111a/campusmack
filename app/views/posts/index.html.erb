@@ -4,8 +4,9 @@
 	  <%= f.text_field :title_or_post_summary_contains %>
 	  <%= f.submit "Go!", :name =>nil %>
 	<% end %>
-<table class = "post">
+<div class = "post">
+  asd
 <%= render :partial => "/posts/post", :collection => @posts %>
-</table>
+</div>
 <%= will_paginate(@posts)%>
 
