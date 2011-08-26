@@ -1,4 +1,6 @@
+<% unless signed_in? %>
 <%= link_to "Sign Up Now!", new_user_registration_path, :method => :get, :class => "button" %><br class="clear"/>
+<% end %>
 <h3>Click on a Campus Below</h3>
 <ul class="colleges">
   <% @colleges.each do |college| %>

@@ -1,6 +1,8 @@
 class VotesController < ApplicationController
+  load_and_authorize_resource
   
   def destroy
-    @vote = Vote.find(params[:id])
     @vote.destroy
+  end
+
 end
