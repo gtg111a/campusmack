@@ -3,12 +3,7 @@ Campusmack::Application.routes.draw do
       :omniauth_callbacks => "users/omniauth_callbacks",
       :registrations => 'users/registrations',
       :sessions => 'users/sessions'
-  }, :skip => [:sessions] do
-    get 'sign_up' => 'users/registrations#new', :as => :sign_up
-    get 'sign_in' => 'users/sessions#new', :as => :sign_in
-    post 'sign_in' => 'users/sessions#create', :as => :user_session
-    get 'sign_out' => 'users/sessions#destroy', :as => :sign_out
-  end
+  }
 
   resources :votes, :only =>[:destroy]
   #get "sessions/new"
@@ -21,14 +16,14 @@ Campusmack::Application.routes.draw do
     end
   end
   resources :users do
-    resources :colleges, :only => [:show] do
-      resources :posts
-      resources :smacks
-      resources :redemptions
-    end
     member do
       get :following, :followers
     end
+  end
+  resources :colleges, :only => [:show] do
+    resources :posts
+    resources :smacks
+    resources :redemptions
   end
   #resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
