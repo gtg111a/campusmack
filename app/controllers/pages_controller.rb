@@ -1,23 +1,26 @@
 class PagesController < ApplicationController
+  skip_authorization_check
+
   def home
-  	@title = "Home"
-  	@colleges = College.all
-  	if signed_in?
-  	@micropost = Micropost.new if signed_in?
-  	@feed_items = current_user.feed.paginate(:page => params[:page])
-	end
-end
+    @title = "Home"
+    @colleges = College.all
+    if signed_in?
+      @micropost = Micropost.new if signed_in?
+      @feed_items = current_user.feed.paginate(:page => params[:page])
+    end
+  end
 
   def contact
-  	@title = "Contact"
+    @title = "Contact"
   end
-  
+
   def about
-  	@title = "About"
+    @title = "About"
   end
-  
+
   def help
-  	@title = "Help"
+    @title = "Help"
   end
+
 end
 
