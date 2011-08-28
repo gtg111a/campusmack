@@ -11,6 +11,14 @@
         <%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
     <% end %>
   </div>
+  <% if signed_in? %>
+      <% if post.user_id == current_user.id || current_user.admin? %>
+          <div class="actions">
+            <%= link_to 'Edit', '/smacks/'+post.id.to_s+'/edit', :class => 'button' %>
+            <%= link_to image_tag('delete.png'), post, :method => :delete, :confirm => "Delete Post?" %>
+          </div>
+      <% end %>
+  <% end %>
   <div class="vote">
     <% if signed_in? %>
         <span class="vote"><%= link_to image_tag('arrow-up.png'), vote_up_post_path(post), :method => :post, :remote => true %></span><br/>
@@ -26,15 +34,6 @@
 
   <div class="timestamp">
     posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
-  </div>
-
-  <div>
-    <% if signed_in? %>
-        <% if post.user_id == current_user.id || current_user.admin? %>
-            <td width=5%><%= button_to "edit", "/#{post.type.downcase}s/#{post.id}/edit", :method => :get %></td>
-            <td width=5%><%= link_to image_tag('delete.png'), post, :method => :delete, :confirm => "Delete Post?" %></td>
-        <% end %>
-    <% end %>
   </div>
   <br class="clear"/>
 </li>
