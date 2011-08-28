@@ -925,16 +925,8 @@ span.vote {
     font-size: 50px;
     text-align: center;
 }
-/*
-.posts li {
-    float: left;
-    list-style: none;
-    width: 119px;
-    margin: 10px 0px;
-    padding: 0px 15px;
-    position: relative;
-    min-height: 160px;
-    border-right: 1px solid #d5d5d5;
-    border-left: 1px solid #fff
+
+.posts div.actions {
+    float: right;
+    padding-top: 80px;
 }
-*/
