@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @college = College.find(params[:college_id])
     @post = @user.posts.build
     @title = "Submit Post"
+    init_college_menu
   end
 
   def create
@@ -77,25 +78,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     vote_check_for(@post)
     respond_to do |format|
-      format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny Rike!!!"} }
+      format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote up successful."} }
       format.js
     end
-=begin  
-   else
-      begin
-         current_user.vote_for(@post)
-         respond_to do |format|
-         format.html {redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny Rike!!!"} }
-         format.js
-       end
-       rescue ActiveRecord::RecordInvalid
-         respond_to do |format|
-         format.html {redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:error => "You've already voted for this Post"} }
-         format.js {render :js => "alert('You've already voted for this Post!');"}
-        end
-       end
-=end
-    #end
   end
 
   def vote_down
@@ -103,23 +88,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     vote_check_against(@post)
     respond_to do |format|
-      format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny no Rike!!!"} }
+      format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote down successful."} }
       format.js
     end
-=begin
-   begin
-       current_user.vote_against(@post = Post.find(params[:id]))
-       respond_to do |format|
-       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Bonny No Rike :("} }
-       format.js 
-     end
-     rescue ActiveRecord::RecordInvalid
-       respond_to do |format|
-       format.html{ redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:error => "You've already voted for this Post"} }
-       format.js {render :js => "alert('You've already voted for this Post!');"}
-      end
-     end
-=end
   end
 
   private

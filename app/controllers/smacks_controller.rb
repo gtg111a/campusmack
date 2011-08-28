@@ -7,6 +7,7 @@ class SmacksController < ApplicationController
     @college = College.find(params[:college_id])
     @smack = @user.smacks.build
     @title = "Submit Smack"
+    init_college_menu
   end
   
   def create

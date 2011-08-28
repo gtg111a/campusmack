@@ -6,6 +6,7 @@ class RedemptionsController < ApplicationController
     @college = College.find(params[:college_id])
     @redemption = @user.redemptions.build
     @title = "Submit Redemption"
+    init_college_menu
   end
 
   def create

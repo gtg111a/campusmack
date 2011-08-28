@@ -18,12 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   def init_college_menu
-    @main_menu << [ 'Videos', college_path(@college, :content_type => "Video") ]
-    @main_menu << [ 'Photos', college_path(@college, :content_type => "Photo") ]
+    @main_menu << [ @college.name, college_path(@college) ]
+    #@main_menu << [ 'Videos', college_path(@college, :content_type => "Video") ]
+    #@main_menu << [ 'Photos', college_path(@college, :content_type => "Photo") ]
     @main_menu << [ 'Smacks', college_smacks_path(@college) ]
     @main_menu << [ 'Redemptions', college_redemptions_path(@college) ]
-    @main_menu << [ 'News', '' ]
-    @main_menu << [ 'Stats', '' ]
+    #@main_menu << [ 'News', '' ]
+    #@main_menu << [ 'Stats', '' ]
   end
 
 end

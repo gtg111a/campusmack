@@ -43,7 +43,7 @@ Campusmack::Application.routes.draw do
   resources :authentications, :only => [:index, :destroy]
 
   match '/search', :to => 'posts#index'
-  match '/contact-us', :to => 'contact#new'
+  match '/contact-us', :to => 'support#new'
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
 
