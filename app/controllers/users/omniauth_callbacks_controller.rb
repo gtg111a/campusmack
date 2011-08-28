@@ -1,4 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_authorization_check
 
   def method_missing(provider)
     return if User.omniauth_providers.index(provider).nil?
