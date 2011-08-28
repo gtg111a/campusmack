@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def show
     if params[:college]
       @college = College.where("name =?", params[:college][:name]).first
+      init_college_menu
     end
     @colleges = College.all
     @user = User.find(params[:id])

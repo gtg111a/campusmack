@@ -1,38 +1,9 @@
-<%= render 'search_fields'%>
-<table class="profile" summary="Profile information">
-	<tr>
-		<td class="main">
-<h1 class = "user">
-<%= @user.username %> Posts
-<% #gravatar_for @user %>
-<% #@user.username %>
-</h1>
-<table class="masthead">
-<tr>
-		<td>
-			<%= link_to "Videos", user_path(@user, :content_type => "Video")%> 
-			| <%= link_to "Photos", user_path(@user, :content_type => "Photo") %> 
-			| <%= link_to "News"%> 
-			| <%= link_to "Stats" %>
-		</td>
-</tr>
-</table>
-
-<% unless @user.posts.empty? %>
-  <table class="post" summary="User posts">
-	<%= render :partial => "/posts/post", :collection => @posts %>
-	</table>
-	<%= will_paginate @posts %>
-	<% end %>
-</td>
-<!--Commenting out Stat sidebar
-
-<td class="sidebar round">
-	<strong>Name</strong> <%= @user.username %> <br />
-	<strong>URL</strong> <%= link_to user_path(@user), @user %>
-	<strong>Microposts</strong> <%= @user.microposts.count %>
-	<%= render 'shared/stats' %>
-	</td> 
-	-->
-  </tr>
-</table> 
+<h1><%= @user.username %> Posts</h1>
+<%= render 'search_fields' %>
+<% unless @posts.empty? %>
+    <%= will_paginate @posts %>
+    <ul class="posts">
+      <%= render :partial => "/posts/post", :collection => @posts %>
+    </ul>
+<% end %>
+<%= render 'shared/stats' %>

@@ -1,6 +1,5 @@
 class SmacksController < ApplicationController
   skip_authorization_check :only => [ :index, :show ]
-  before_filter :authenticate_user!, :only => [ :index, :show ]
   load_and_authorize_resource
 
   def new

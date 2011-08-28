@@ -1,12 +1,11 @@
-<%= render 'masthead' %>
-	<%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
-	  <%= f.label :search %>
-	  <%= f.text_field :title_or_post_summary_contains %>
-	  <%= f.submit "Go!", :name =>nil %>
-	<% end %>
-<div class = "post">
-  asd
-<%= render :partial => "/posts/post", :collection => @posts %>
-</div>
-<%= will_paginate(@posts)%>
-
+<%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
+    <%= f.label :search %>
+    <%= f.text_field :title_or_post_summary_contains %>
+    <%= f.submit "Go!", :name =>nil %>
+<% end %>
+<% unless @posts.empty? %>
+<ul class="posts">
+  <%= render :partial => "/posts/post", :collection => @posts %>
+</ul>
+<%= will_paginate(@posts) %>
+<% end %>

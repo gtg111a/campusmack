@@ -28,10 +28,10 @@ module ApplicationHelper
     if signed_in?
       @user_nav << [ 'My Posts', user_path(current_user) ]
       @user_nav << [ 'Edit Profile', edit_user_registration_path(current_user) ]
-      @user_nav << [ 'Sign out', destroy_user_session_path, [ :method => :delete ] ]
+      @user_nav << [ 'Sign out', sign_out_path ]
     else
-      @user_nav << ['Create Account', new_user_path]
-      @user_nav << ['Sign In', new_user_session_path]
+      @user_nav << ['Create Account', sign_up_path]
+      @user_nav << ['Sign In', sign_in_path]
     end
     html = '<div class="account-wrapper"><ul id="user-account-nav">'
     @user_nav.each do |text, link, other|

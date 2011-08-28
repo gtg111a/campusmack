@@ -3,7 +3,7 @@
 
 <p>Sign in with your Campusmack account -- OR -- use an alternate authentication service:</p>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name) ) do |f| %>
  <div class="field">
   <%= f.label :email %>
   <%= f.email_field :email %>
@@ -20,7 +20,7 @@
   <%= f.submit "Sign in" %>
 <% end %><br>
 
-<p> New user? <%= link_to "Sign up now!", new_user_registration_path %></p>
+<p> New user? <%= link_to "Sign up now!", sign_up_path %></p>
 
 <%= render :partial => "users/shared/links" %>
 <%= render :partial => "users/shared/services_list" %>

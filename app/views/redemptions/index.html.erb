@@ -1,18 +1,11 @@
-<%= render 'shared/masthead1' %>
+<h1><%= @college.name %> Redemptions</h1><br>
+<%= link_to "Add a Redemption", new_college_redemption_path(@college), :class => "button" %>
+<br class="clear"/>
+<%= render 'shared/search_fields_redemptions' %>
 
-	<h1><%= @college.name %> Redemptions</h1><br>
-		
-	<%= render 'masthead' %>
-		
-		<% if signed_in? %>
-		<%= link_to "Add a Redemption", new_user_college_redemption_path(@user, @college), :method => :get, :class => "button" %>
-		<% else %>
-		<%= link_to "Add a Redemption", user_session_path, :method => :get, :class => "button" %>
-		<% end %><br>
-			
-		<%= render 'shared/search_fields_redemptions'%>
-		
-		<table class = "post">
-		<%= render :partial => "/posts/post", :collection => @redemptions %>
-		</table>
-		<%= will_paginate(@redemptions)%>
+<% unless @redemptions.empty? %>
+    <%= will_paginate @redemptions %>
+    <ul class="posts">
+      <%= render :partial => "/posts/post", :collection => @redemptions %>
+    </ul>
+<% end %>
