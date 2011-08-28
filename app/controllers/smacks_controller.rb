@@ -24,6 +24,7 @@ class SmacksController < ApplicationController
  
   def index
     @college = College.find(params[:college_id])
+    init_college_menu
     @colleges = College.all
     @user = current_user
     @search = @college.smacks.search(params[:search])
