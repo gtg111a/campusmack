@@ -633,8 +633,7 @@ b {
     padding: 20px;
     font-size: 11px;
     position: relative;
-    height: 270px;
-    margin-top: 10px;
+     margin-top: 10px;
 }
 
 .posts li p {
@@ -863,7 +862,11 @@ select {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif
 #large_photo {display:none;}
 ul.button_list{list-style-type: none; display: inline-block; }
 div#name {display:inline;}
-
+div#photo_post {
+    position: relative;
+    z-index: 1;
+}
+div#photo_post img:hover{border:2px solid #c81419;}
 .posts div {
     float: left;
 }
@@ -875,7 +878,6 @@ div#name {display:inline;}
     padding: 20px;
     font-size: 11px;
     position: relative;
-    height: 270px;
     margin-top: 10px;
 }
 
