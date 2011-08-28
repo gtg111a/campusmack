@@ -16,10 +16,7 @@ class CollegesController < ApplicationController
   def show
     @college = College.find(params[:id])
     @user = current_user
-    @main_menu << [ 'Videos', college_path(@college, :content_type => "Video") ]
-    @main_menu << [ 'Photos', college_path(@college, :content_type => "Photo") ]
-    @main_menu << [ 'News', '' ]
-    @main_menu << [ 'Stats', '' ]
+    init_college_menu
     @colleges = College.all
     @search = @college.posts.search(params[:search])
     @title = @college.name

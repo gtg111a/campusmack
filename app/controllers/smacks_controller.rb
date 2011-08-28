@@ -1,6 +1,5 @@
 class SmacksController < ApplicationController
   skip_authorization_check :only => [ :index, :show ]
-  before_filter :authenticate_user!, :only => [ :index, :show ]
   load_and_authorize_resource
 
   def new
@@ -25,6 +24,7 @@ class SmacksController < ApplicationController
  
   def index
     @college = College.find(params[:college_id])
+    init_college_menu
     @colleges = College.all
     @user = current_user
     @search = @college.smacks.search(params[:search])

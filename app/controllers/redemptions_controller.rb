@@ -23,6 +23,7 @@ class RedemptionsController < ApplicationController
 
   def index
     @college = College.find(params[:college_id])
+    init_college_menu
     @colleges = College.all
     @user = current_user
     @search = @college.redemptions.search(params[:search])
