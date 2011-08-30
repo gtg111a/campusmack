@@ -101,15 +101,9 @@ nav[role=navigation] {
     background-color: #333333;
     border-top: 1px solid #383838;
     border-bottom: 1px solid #444444;
-    -moz-box-shadow: 0 2px 0 0 #262626, 0 -1px 0 0 #171717;
-    -webkit-box-shadow: 0 2px 0 0 #262626, 0 -1px 0 0 #171717;
-    -o-box-shadow: 0 2px 0 0 #262626, 0 -1px 0 0 #171717;
-    box-shadow: 0 2px 0 0 #262626, 0 -1px 0 0 #171717;
     display: block;
     margin-bottom: 2px;
     min-width: 984px;
-    position: relative;
-    z-index: 3100
 }
 
 nav[role=navigation] > ul {
@@ -134,11 +128,6 @@ nav[role=navigation] ul li, .info-nav li {
 
 nav[role=navigation] ul li .dropdown, .info-nav li .dropdown {
     background-color: #fff;
-    border-bottom: 1px solid rgba(35, 35, 35, 0.2);
-    -moz-box-shadow: 4px 4px 0 0 rgba(35, 35, 35, 0.1);
-    -webkit-box-shadow: 4px 4px 0 0 rgba(35, 35, 35, 0.1);
-    -o-box-shadow: 4px 4px 0 0 rgba(35, 35, 35, 0.1);
-    box-shadow: 4px 4px 0 0 rgba(35, 35, 35, 0.1);
     display: none;
     left: 0;
     padding: 6px 15px;
@@ -833,10 +822,7 @@ li#news_field {display:none;}
 #post_fields {list-style:none;}
 
 /* Custom Fancybox */
-#photo-close { text-align: left; }
-
-#photo-close span { float: right; }
-
+#photo-close { text-align: left; float: right; margin-right: -22px; padding-top: 7px; }
 
 #wrapper {
     position: relative;
