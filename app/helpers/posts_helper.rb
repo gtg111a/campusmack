@@ -65,9 +65,9 @@ module PostsHelper
     imgwidth = { :width => 23 } if size == :small
     html = '<div class="vote">'
     html << %Q{<span>#{link_to image_tag('arrow-up.png', imgwidth), vote_up_post_path(post), :method => :post, :remote => true}</span>} if can? :create, Vote
-    html << %Q{<span id="vote_count_up#{post.id}">#{post.votes_for_b}</span>}
+    html << %Q{Votes: <span id="vote_count_up#{post.id}">#{post.votes_for_b}</span>}
     html << %Q{<span>#{link_to image_tag('arrow-down.png', imgwidth), vote_down_post_path(post), :method => :post, :remote => true}</span>} if can? :create, Vote
-    html << %Q{<span id="vote_count_down#{post.id}">#{post.votes_against_b}</span>}
+    html << %Q{Against: <span id="vote_count_down#{post.id}">#{post.votes_against_b}</span>}
     html << '</div>'
     raw(html)
   end

@@ -886,11 +886,6 @@ div.post .photo,
 div.post .content {
     text-align: center;
 }
-
-div.post span {
-    float: left;
-}
-
 div.post .vote,
 div.post .vote span {
     font-size: 22px;
