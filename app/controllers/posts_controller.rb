@@ -31,7 +31,11 @@ class PostsController < ApplicationController
     if params[:search]
       @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
     else
-      @posts = find_posts
+      @posts = if [ 'video', 'photo', 'smack', 'redemption' ].include?(params[:content_type])
+                 @college.posts.send(params[:content_type].pluralize)
+               else
+                 @college.posts
+               end.paginate(:page => params[:page])
     end
     init_college_menu
   end
@@ -91,16 +95,6 @@ class PostsController < ApplicationController
       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote down successful."} }
       format.js
     end
-  end
-
-  private
-
-  def find_posts
-    if [ 'video', 'photo', 'smack', 'redemption' ].include?(params[:content_type])
-      Post.send(params[:content_type].pluralize)
-    else
-      Post.all
-    end.paginate(:page => params[:page])
   end
 
 
