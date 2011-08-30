@@ -459,13 +459,6 @@ body#homepage #breadcrumbs a {
     display: none
 }
 
-.flash {
-    padding-top: 0px;
-    padding: 20px;
-    padding-left: 70px
-
-}
-
 span.required {
     color: #c81419;
     font-size: 85%;
@@ -711,8 +704,16 @@ div.field, div.actions {
 }
 
 div.flash {
-  margin-bottom: 1em;
-  border: 2px solid #dddddd;
+    margin-bottom: 1em;
+    border: 1px solid #dddddd;
+    padding-top: 0px;
+    padding: 20px;
+    padding-left: 70px
+}
+
+div.flash.success {
+    border-color: #6e8768;
+    background-color: #cbe6c2;
 }
 
 .error, .alert {
