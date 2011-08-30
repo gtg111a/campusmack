@@ -459,8 +459,11 @@ body#homepage #breadcrumbs a {
     display: none
 }
 
-.error p, .notice p, .success p {
-    padding-top: 0px
+.flash {
+    padding-top: 0px;
+    padding: 20px;
+    padding-left: 70px
+
 }
 
 span.required {
@@ -848,3 +851,6 @@ span.vote {
     height: 100%;
     margin: 0 auto -125px;
 }
+
+.field_with_errors {display:inline;}
+.field_with_errors .message {color: #c81419; font-size: 85%}
