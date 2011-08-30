@@ -1,3 +1,5 @@
+<%= render :partial => 'colleges/masthead' %>
+<br class="clear"/>
 <%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
     <%= f.label :search %>
     <%= f.text_field :title_or_post_summary_contains %>

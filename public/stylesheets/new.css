@@ -570,7 +570,7 @@ p {
 
 .posts div.vote {
     float: right;
-    width: 15%;
+    width: 7%;
 }
 
 .count {
@@ -580,7 +580,7 @@ p {
     padding-top: 90px;
 }
 
-span.vote {
+.vote span {
     color: #000066;
     font-size: 50px;
     text-align: center;
@@ -708,7 +708,6 @@ div.flash {
     border: 1px solid #dddddd;
     padding-top: 0px;
     padding: 20px;
-    padding-left: 70px
 }
 
 div.flash.success {
@@ -821,31 +820,12 @@ div#photo_post img:hover{border:2px solid #c81419;}
     padding-top: 40px
 }
 
-.posts div.vote {
-    float: right;
-    width: 15%;
-}
-
-.count {
-    width: 5%;
-    font-size: 20px;
-    vertical-align: middle;
-}
-
-
-
-span.vote {
-    color: #000066;
-    font-size: 50px;
-    text-align: center;
-}
-
 .posts div.actions {
     float: right;
     padding-top: 80px;
 }
 
-<<<<<<< HEAD
+
 /* New Posts */
 li#video_field {display:none;}
 li#photo_field {display:none;}
@@ -857,7 +837,7 @@ li#news_field {display:none;}
 
 #photo-close span { float: right; }
 
-=======
+
 #wrapper {
     position: relative;
     min-height: 100%;
@@ -868,4 +848,49 @@ li#news_field {display:none;}
 
 .field_with_errors {display:inline;}
 .field_with_errors .message {color: #c81419; font-size: 85%}
->>>>>>> b79f58bb0cdc89a0ad3d39eb72adeecf4d520801
+
+#error_explanation {width:  400px;border:  2px solid red;padding:  7px; padding-bottom:  12px;margin-bottom:  20px;background-color: #f0f0f0; }
+#error_explanation h2 { text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
+#error_explanation p { color: #333; margin-bottom: 0; padding: 5px;}
+#error_explanation ul li { font-size: 12px; list-style: square;}
+
+
+ul.masthead  {
+    font-size: 90%;
+    padding-left: 12px;
+    padding-right: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    width: 475px;
+    margin: 0;
+}
+
+ul.masthead li {
+    float: left;
+    padding: 10px;
+}
+ul.masthead li a {
+    color: #74809A;
+    padding: 4px 10px 4px 5px;
+}
+
+ul.masthead li a:hover {
+    color: #C81419;
+}
+
+div.post {
+    float: none;
+}
+
+div.post .photo,
+div.post .content {
+    text-align: center;
+}
+div.post .vote,
+div.post .vote span {
+    font-size: 22px;
+}
+
+div.post .actions {
+    float: right;
+}
