@@ -1,3 +1,3 @@
-$("#vote_count_up<%= escape_javascript("#{@post.id}") %>").html('<b><%= "#{@post.votes_for_b}" %><b>')
-$("#vote_count_down<%= escape_javascript("#{@post.id}") %>").html('<b><%= "#{@post.votes_against_b}" %><b>')
+$("#vote_count_up<%= escape_javascript("#{@post.id}") %>").html('<%= @post.votes_for_b %>')
+$("#vote_count_down<%= escape_javascript("#{@post.id}") %>").html('<%= @post.votes_against_b %>')
 //$("div.flash").remove();

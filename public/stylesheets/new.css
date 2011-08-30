@@ -570,7 +570,7 @@ p {
 
 .posts div.vote {
     float: right;
-    width: 15%;
+    width: 7%;
 }
 
 .count {
@@ -580,7 +580,7 @@ p {
     padding-top: 90px;
 }
 
-span.vote {
+.vote span {
     color: #000066;
     font-size: 50px;
     text-align: center;
@@ -820,25 +820,6 @@ div#photo_post img:hover{border:2px solid #c81419;}
     padding-top: 40px
 }
 
-.posts div.vote {
-    float: right;
-    width: 15%;
-}
-
-.count {
-    width: 5%;
-    font-size: 20px;
-    vertical-align: middle;
-}
-
-
-
-span.vote {
-    color: #000066;
-    font-size: 50px;
-    text-align: center;
-}
-
 .posts div.actions {
     float: right;
     padding-top: 80px;
@@ -895,4 +876,26 @@ ul.masthead li a {
 
 ul.masthead li a:hover {
     color: #C81419;
+}
+
+div.post {
+    float: none;
+}
+
+div.post .photo,
+div.post .content {
+    text-align: center;
+}
+
+div.post span {
+    float: left;
+}
+
+div.post .vote,
+div.post .vote span {
+    font-size: 22px;
+}
+
+div.post .actions {
+    float: right;
 }

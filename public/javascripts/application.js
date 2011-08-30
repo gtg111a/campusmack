@@ -3,15 +3,6 @@
 
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
-
-/* This is the code used to enlarge photos when you click on them. */
-$(function(){
-	$('div#photo_post').click(function(){
-		$(this).find("#small_photo").toggle("slow");
-		$(this).find("#large_photo").toggle("slow");
-		});
-   });
-
 /* This is the code for the side navigation */
 $(function() {
   if (document.all&&document.getElementById) {
