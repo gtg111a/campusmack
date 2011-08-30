@@ -15,7 +15,9 @@ class UserMailer < ActionMailer::Base
      @sender = sender
      mail(:to => "feedback@campusmack.mailgun.org",
           :from => sender.email,
-          :subject => "New #{sender.support_type}")
+          :subject => "New #{sender.support_type}") do |format|
+          format.html
+        end
   end
  
 end

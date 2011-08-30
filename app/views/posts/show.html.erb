@@ -1,8 +1,8 @@
-<h1><%= @college.name %> <%= @post.type %></h1>
+<h1><%= @post.title %></h1>
 
-<table class="post" summary="User microposts">
+<ul class="posts">
   <%= render :partial => "/posts/post", :object => @post %>
-</table>
+</ul>
 <% if signed_in? %>
     <%= form_for [@post, Comment.new], :remote => true do |f| %>
         <%= render '/shared/comments', :f => f %>

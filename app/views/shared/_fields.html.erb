@@ -18,11 +18,6 @@
 			<%= f.text_field :news %> 
 		</div>
 	</li>
-	<li>
-		<div class="field">
-			<%= f.label :post_summary %><br />
-			<%= f.text_area :post_summary %> 
-		</div>
 	<li id="video_field">
 		<div class="field">For a video post:<br>
 			<%= f.label :youtube_link %><br />
@@ -35,4 +30,11 @@
 			<%= f.file_field :photo %>
 		</div>
 	</li>
+	<li>
+		<div class="field">
+			<%= f.label :post_summary %><br />
+			<%= f.text_area :post_summary %> 
+		</div>
+	</li>	
+
 </ul>

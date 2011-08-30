@@ -4,8 +4,8 @@
 <head>
   <title><%= title %></title>
   <%= csrf_meta_tag %>
-  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations' %>
-  <%= stylesheet_link_tag 'new', 'button' %>
+  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js' %>
+  <%= stylesheet_link_tag 'new', 'button', 'jquery.fancybox-1.3.4.css' %>
   <%= yield(:head) %>
 </head>
 <body id="homepage">

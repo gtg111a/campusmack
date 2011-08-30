@@ -2,8 +2,7 @@
   <h4><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %></h4>
   <% unless post.photo_file_name.nil? %>
       <div id="photo_post" class="photo">
-        <span class="photo"><%= image_tag(post.photo.url(:large), :id => "large_photo") %></span>
-        <span class="photo"><%= image_tag(post.photo.url(:medium), :id => "small_photo") %></span>
+		<a class="photo" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
       </div>
   <% end %>
   <div class="content"><%= youtube_embed(post.content).html_safe %></div>

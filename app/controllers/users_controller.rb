@@ -2,6 +2,7 @@ require 'mailgun'
 
 class UsersController < ApplicationController
   load_and_authorize_resource
+  skip_authorization_check :only => [ :create, :new ]
   #before_filter :correct_user, :only => [:edit, :update]
   #before_filter :admin_user, :only => :destroy
   

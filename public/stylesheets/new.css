@@ -932,3 +932,15 @@ span.vote {
     float: right;
     padding-top: 80px;
 }
+
+/* New Posts */
+li#video_field {display:none;}
+li#photo_field {display:none;}
+li#news_field {display:none;}
+#post_fields {list-style:none;}
+
+/* Custom Fancybox */
+#photo-close { text-align: left; }
+
+#photo-close span { float: right; }
+
