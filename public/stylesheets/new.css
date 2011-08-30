@@ -435,8 +435,10 @@ ul.colleges  li {
     background-color: #232323;
     border-bottom: 1px solid #151515;
     margin-top: 2px;
-    min-width: 984px;
-    height: 125px
+    width: 100%;
+    height: 125px;
+    bottom: 0;
+    position: absolute;
 }
 
 #copyright .container {
@@ -564,7 +566,7 @@ div.shadowed div.inner-boundary {
     margin: -2px 0px 0px -2px;
     border: 1px solid #bbb;
     background-color: #f4f4f4;
-    background-image: url('http://2.envato-static.com/images/common/backgrounds/white_line.png?1311218499');
+    background-image: url('/images/white_line.png');
     background-repeat: repeat-x
 }
 
