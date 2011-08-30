@@ -30,6 +30,10 @@ Campusmack::Application.routes.draw do
     resources :smacks
     resources :redemptions
   end
+  resources :colleges do
+    resources :videos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'video' }
+    resources :photos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'photo' }
+  end
   #resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]

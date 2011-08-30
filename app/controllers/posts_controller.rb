@@ -96,17 +96,11 @@ class PostsController < ApplicationController
   private
 
   def find_posts
-    if request.fullpath.to_s =~ /Video/
-      return Post.find(:all, :conditions =>["posts.content_type LIKE ?", "Video"]).paginate(:page => params[:page], :order => 'created_at DESC')
-    elsif request.fullpath.to_s =~ /Photo/
-      return Post.find(:all, :conditions =>["posts.content_type LIKE ?", "Photo"]).paginate(:page => params[:page], :order => 'created_at DESC')
-    elsif request.fullpath.to_s =~ /Smack/
-      return Post.find(:all, :conditions =>["posts.type LIKE ?", "Smack"]).paginate(:page => params[:page], :order => 'created_at DESC')
-    elsif request.fullpath.to_s =~ /Redemption/
-      return Post.find(:all, :conditions =>["posts.type LIKE ?", "Redemption"]).paginate(:page => params[:page], :order => 'created_at DESC')
+    if [ 'video', 'photo', 'smack', 'redemption' ].include?(params[:content_type])
+      Post.send(params[:content_type].pluralize)
     else
-      return Post.all.paginate(:page => params[:page], :order => 'created_at DESC')
-    end
+      Post.all
+    end.paginate(:page => params[:page])
   end
 
 

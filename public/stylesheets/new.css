@@ -708,7 +708,6 @@ div.flash {
     border: 1px solid #dddddd;
     padding-top: 0px;
     padding: 20px;
-    padding-left: 70px
 }
 
 div.flash.success {
@@ -873,3 +872,27 @@ li#news_field {display:none;}
 #error_explanation h2 { text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
 #error_explanation p { color: #333; margin-bottom: 0; padding: 5px;}
 #error_explanation ul li { font-size: 12px; list-style: square;}
+
+
+ul.masthead  {
+    font-size: 90%;
+    padding-left: 12px;
+    padding-right: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    width: 475px;
+    margin: 0;
+}
+
+ul.masthead li {
+    float: left;
+    padding: 10px;
+}
+ul.masthead li a {
+    color: #74809A;
+    padding: 4px 10px 4px 5px;
+}
+
+ul.masthead li a:hover {
+    color: #C81419;
+}
