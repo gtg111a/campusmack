@@ -24,9 +24,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     outline: 0
 }
 
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
 body {
     color: #000;
     background: #fff
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
 }
 
 a {
@@ -380,92 +393,38 @@ ul.colleges  li {
 }
 
 #footer {
-    background-color: #333;
-    border-bottom: 1px solid #444;
-    border-top: 1px solid #383838;
-    -moz-box-shadow: 0px 2px 0px 0px #262626, 0px -1px 0px 0px #171717;
-    -webkit-box-shadow: 0px 2px 0px 0px #262626, 0px -1px 0px 0px #171717;
-    -o-box-shadow: 0px 2px 0px 0px #262626, 0px -1px 0px 0px #171717;
-    box-shadow: 0px 2px 0px 0px #262626, 0px -1px 0px 0px #171717;
-    color: #8f887c;
-    font: 12px/22px tahoma, Geneva, sans-serif;
-    min-width: 984px
+    background-color: #232323;
+    width: 100%;
+    height: 125px;
+    position: relative;
+    clear: both;
 }
 
 #footer .container {
-    margin: 0 auto;
-    width: 984px
-}
-
-#footer a {
-    color: #8f887c
-}
-
-#footer h3 {
-    color: #DED9CD;
-    font-size: 14px;
-    font-family: ProximaNovaSoft, Helvetica, Geneva, sans-serif;
-    margin-bottom: 10px;
-    padding: 0
-}
-
-#footer input {
-    background-color: #2a2a2a;
-    border: 1px solid #484848;
-    color: #7e7e7e;
-    font-family: tahoma, Geneva, sans-serif;
-    font-size: 12px;
-    height: 13px;
-    padding: 8px;
-    margin-bottom: 8px;
-    width: 183px
-}
-
-#footer button {
-    font-size: 10px
-}
-
-#footer .left {
-    float: left;
-    padding: 35px 0;
-    width: 226px
-}
-
-#copyright {
-    background-color: #232323;
-    border-bottom: 1px solid #151515;
-    margin-top: 2px;
-    width: 100%;
-    height: 125px;
-    bottom: 0;
-    position: absolute;
-}
-
-#copyright .container {
     width: 984px;
     margin: 0 auto
 }
 
-#copyright .copyright {
+#footer .copyright {
     padding-top: 35px
 }
 
-#copyright a {
+#footer a {
     color: #cda869;
     text-decoration: none
 }
 
-#copyright a:hover {
+#footer a:hover {
     text-decoration: underline
 }
 
-#copyright p {
+#footer p {
     color: #837e76;
     font-size: 9px;
     padding: 10px 0
 }
 
-#copyright span {
+#footer span {
     padding: 0 7px
 }
 
@@ -485,15 +444,9 @@ body {
     text-align: left
 }
 
-.main {
-    background-image: url('http://1.envato-static.com/images/common/backgrounds/burst.png?1311218499');
-    background-repeat: no-repeat
-}
-
 #content {
     background-color: #d2d1d0;
     border-top: 1px solid #fff;
-    margin: 0 auto; /*min-height: 540px;*/
     padding: 20px 0 30px;
 }
 
@@ -506,56 +459,13 @@ body#homepage #breadcrumbs a {
     display: none
 }
 
-.error {
-    background: #fac7ae url('http://1.envato-static.com/images/common/icons-buttons/alert.gif?1311218500') no-repeat 19px 20px;
-    border: 1px solid #bb726f;
-    padding: 20px;
-    padding-left: 70px
-}
-
-.notice {
-    background: #f5f5b4 url('http://3.envato-static.com/images/common/icons-buttons/info.gif?1311218501') no-repeat 20px 15px;
-    border: 1px solid #b6a375;
-    padding: 20px;
-    padding-left: 60px
-}
-
-.success {
-    background: #b7cf9d url('http://2.envato-static.com/images/common/icons-buttons/success.gif?1311218502') no-repeat 15px 10px;
-    border: 1px solid;
-    border-color: #6e8768;
-    background-color: #cbe6c2;
-    padding: 20px;
-    padding-left: 70px
-}
-
-.error, .notice, .success {
-    color: #404040;
-    margin-bottom: 10px;
-}
-
-.error ul, .error ol, .notice ul, .notice ol, .success ul, .success ol {
-    margin-bottom: 6px;
-    margin-top: 6px;
-    list-style-position: outside;
-    margin-left: 20px
-}
-
-.error ul li, .error ol li, .notice ul li, .notice ol li, .success ul li, .success ol li {
-    padding-left: 8px;
-    margin-bottom: 2px
-}
-
-.error ul, .notice ul, .success ul {
-    list-style-type: square
-}
-
-.error ol, .notice ol, .success ol {
-    list-style-type: decimal
-}
-
 .error p, .notice p, .success p {
     padding-top: 0px
+}
+
+span.required {
+    color: #c81419;
+    font-size: 85%;
 }
 
 div.shadowed {
@@ -623,10 +533,6 @@ h5 {
 
 p {
     padding: 10px 0px
-}
-
-b {
-    font-weight: normal
 }
 
 .posts li {
@@ -863,7 +769,7 @@ option {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif
 select {font-size:85%;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 #large_photo {display:none;}
 ul.button_list{list-style-type: none; display: inline-block; }
-div#name {display:inline;}
+
 div#photo_post {
     position: relative;
     z-index: 1;
@@ -933,4 +839,12 @@ span.vote {
 .posts div.actions {
     float: right;
     padding-top: 80px;
+}
+
+#wrapper {
+    position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -125px;
 }
