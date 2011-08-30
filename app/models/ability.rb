@@ -18,7 +18,6 @@ class Ability
       can [:manage], Authentication, :user_id => user.id
       can :manage, Vote, :user_id => user.id
     end
-    can :create, Support
 
   end
 end

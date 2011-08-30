@@ -1,6 +1,5 @@
 class SupportController < ApplicationController
-  skip_authorization_check :only => [:new, :create]
-  load_and_authorize_resource
+  skip_authorization_check
 
   def new
     # id is required to deal with form
