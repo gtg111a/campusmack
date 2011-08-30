@@ -2,6 +2,7 @@ Campusmack::Application.routes.draw do
   devise_for :users, :controllers => {
       :omniauth_callbacks => "users/omniauth_callbacks",
       :registrations => 'users/registrations',
+      :confirmations => 'users/confirmations',
       :sessions => 'users/sessions'
   }, :skip => [:sessions] do
     get 'sign_up' => 'users/registrations#new', :as => :sign_up
