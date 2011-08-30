@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_authorization_check :only => :new
-  load_and_authorize_resource :class => 'User', :except => :new
+  skip_authorization_check :only => [ :new, :create ]
+  load_and_authorize_resource :class => 'User', :except => [ :new, :create ]
 
   def new
     resource = build_resource({})

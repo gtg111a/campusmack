@@ -9,42 +9,39 @@
   <%= yield(:head) %>
 </head>
 <body id="homepage">
-<header>
-  <div class="container">
-    <a href="/" class="marketplace"><h2>Campusmack</h2></a>
-    <%= user_nav %>
-    <ul class="info-nav">
-      <li><a href="/help">Help</a></li>
-    </ul>
-  </div>
-</header>
+<div id="wrapper">
+  <header>
+    <div class="container">
+      <a href="/" class="marketplace"><h2>Campusmack</h2></a>
+      <%= user_nav %>
+      <ul class="info-nav">
+        <li><a href="/help">Help</a></li>
+      </ul>
+    </div>
+  </header>
 
-<%= main_nav %>
+  <%= main_nav %>
 
-<div id="content">
-  <%= render 'layouts/left_sidebar' %>
-  <div class="container">
-    <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, :class => "flash #{key}") %>
-    <% end %>
-    <%= yield(:above) %>
-    <div class="block shadowed">
-      <div class="inner-boundary">
-        <div class="inner-border">
-          <%= yield %>
+  <div id="content">
+    <%= render 'layouts/left_sidebar' %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, :class => "flash #{key}") %>
+      <% end %>
+      <%= yield(:above) %>
+      <div class="block shadowed">
+        <div class="inner-boundary">
+          <div class="inner-border">
+            <%= yield %>
+          </div>
         </div>
       </div>
+      <%= yield(:below) %>
     </div>
-    <%= yield(:below) %>
   </div>
+  <div style="height: 125px;clear:both;"></div>
 </div>
-
-<div id="footer" class="large">
-  <div class="container"></div>
-  <br class="clear"/>
-</div>
-
-<div id="copyright">
+<div id="footer">
   <div class="container">
     <div class="copyright">
       <p>

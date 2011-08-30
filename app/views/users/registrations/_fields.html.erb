@@ -4,14 +4,12 @@
 <span class="required">*</span><%= f.label :username, "Username:" %>
 <%= f.text_field :username %>
 </div>
-<div class="field" id="name">
+<div class="field">
 <span class="required">*</span><%= f.label :first_name, "First Name:" %>
 <%= f.text_field :first_name %> 
-</div>
-<div class="field" id="name">
 <span class="required">*</span><%= f.label :last_name, "Last Name:" %>
 <%= f.text_field :last_name %> 
-</div><br>
+</div>
 <div class="field">
 <span class="required">*</span><b>Affiliation:</b>
 <%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true})  %>

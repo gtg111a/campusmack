@@ -11,13 +11,12 @@ class UserMailer < ActionMailer::Base
       end
  end
  
- def support_notification(sender)
-     @sender = sender
-     mail(:to => "feedback@campusmack.mailgun.org",
-          :from => sender.email,
-          :subject => "New #{sender.support_type}") do |format|
-          format.html
-        end
+
+  def support_notification(support)
+    @support = support
+    mail(:to => "feedback@campusmack.mailgun.org",
+         :from => support.email,
+         :subject => "New #{support.support_type}")
   end
- 
+
 end
