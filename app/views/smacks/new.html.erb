@@ -1,4 +1,3 @@
-<%= render 'shared/masthead1' %>
 <h1>Submit a <%= @college.name %> Smack</h1>
 <%= form_for [@college, @smack], :html => { :multipart => true }, :validate => true  do |f| %>
 <%= render 'shared/fields', :f => f %>
