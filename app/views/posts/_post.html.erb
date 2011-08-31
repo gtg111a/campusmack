@@ -6,6 +6,7 @@
       </div>
   <% end %>
   <div class="content"><%= youtube_embed(post.content) %></div>
+  <%= link_to "News post", post.news if post.news %>
   <div class="comments"><%= post.post_summary %>
     <% if !post.post_summary.nil? && !request.fullpath.include?("posts") %>
         <%= link_to " [more...]", "/colleges/#{post.college_id}/posts/#{post.id}" %>
@@ -25,5 +26,6 @@
   <div class="timestamp">
     posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
   </div>
+  <%= render :partial => 'shared/addthis' %>
   <br class="clear"/>
 </li>
