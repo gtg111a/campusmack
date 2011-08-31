@@ -1,4 +1,5 @@
-<h1><%= @college.name %> Redemptions</h1><br>
+<h1><%= @college.name %> Redemptions</h1>
+<%= render :partial => 'colleges/masthead' %>
 <%= link_to "Add a Redemption", new_college_redemption_path(@college), :class => "button" %>
 <br class="clear"/>
 <%= render 'shared/search_fields_redemptions' %>

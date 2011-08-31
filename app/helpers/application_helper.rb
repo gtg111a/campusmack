@@ -33,7 +33,9 @@ module ApplicationHelper
       @user_nav << ['Create Account', sign_up_path]
       @user_nav << ['Sign In', sign_in_path]
     end
-    html = '<div class="account-wrapper"><ul id="user-account-nav">'
+    html = '<div class="account-wrapper">'
+    html << '<ul id="user-account-nav">'
+    html << '<li id="alt_serv">Signed in with' + service_link(Authentication.where(:id => session[:provider]).first, 32, false) + '</li>' if signed_in?
     @user_nav.each do |text, link, other|
       html << '<li>' + link_to(text, link, *other) + '</li>'
     end

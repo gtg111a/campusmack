@@ -25,5 +25,6 @@
   <div class="timestamp">
     posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
   </div>
+  <%= render :partial => 'shared/addthis' %>
   <br class="clear"/>
 </li>

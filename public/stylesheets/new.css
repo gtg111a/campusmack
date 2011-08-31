@@ -1,4 +1,4 @@
-header a.marketplace {
+header a.sitename {
     width: 210px
 }
 
@@ -84,12 +84,12 @@ header .container {
     position: relative
 }
 
-header .marketplace {
+header .sitename {
     display: block;
     position: relative
 }
 
-header .marketplace h2 {
+header .sitename h2 {
     display: block;
     position: absolute;
     left: -12px;
@@ -882,3 +882,15 @@ div.post .actions {
 }
 
 textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; padding: 5px;}
+
+div.addthis_toolbox {
+    float: right;
+}
+
+#alt_serv {
+    padding-top: 8px;
+}
+#alt_serv img {
+    float: right;
+    margin-top: -8px
+}
