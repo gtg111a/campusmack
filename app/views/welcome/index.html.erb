@@ -4,6 +4,6 @@
 <h3>Click on a Campus Below</h3>
 <ul class="colleges">
   <% @colleges.each do |college| %>
-      <li><%= link_to college.name, college %></li>
+      <li><%= link_to college.name, college %> (<%= college.number_of_smacks %>)</li>
   <% end %>
 </ul>

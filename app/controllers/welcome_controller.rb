@@ -2,7 +2,12 @@ class WelcomeController < ApplicationController
   skip_authorization_check
 
   def index
-    @colleges = College.all
+    @colleges = College.all(:select => "colleges.*, COUNT(posts.id) number_of_smacks",
+                            :conditions => 'type = "Smack"',
+                            :joins => :posts,
+                            :group => 'colleges.id',
+                            :order => "number_of_smacks DESC",
+                            :limit => 10)
     if signed_in?
       @micropost = Micropost.new if signed_in?
       @feed_items = current_user.feed.paginate(:page => params[:page])
