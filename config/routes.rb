@@ -28,8 +28,8 @@ Campusmack::Application.routes.draw do
   end
   resources :colleges, :only => [:show] do
     resources :posts
-    resources :smacks
-    resources :redemptions
+    resources :smacks 
+    resources :redemptions 
   end
   resources :colleges do
     resources :videos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'video' }

@@ -27,9 +27,9 @@
   <br class="clear"/>
 
   <% if signed_in? %>
-      <%= form_for [@post, Comment.new], :remote => true do |f| %>
-          <%= render '/shared/comments', :f => f %>
-          <div class="actions">
+      		<%= form_for [@post, Comment.new], :remote => true do |f| %>
+          	<%= render '/shared/comments', :f => f %>
+          <div>
             <%= f.submit "Submit Comment" %>
           </div>
       <% end %>
