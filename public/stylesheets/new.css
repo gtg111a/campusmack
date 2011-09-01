@@ -883,10 +883,6 @@ div.post .actions {
 
 textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; padding: 5px;}
 
-div.addthis_toolbox {
-    float: right;
-}
-
 #alt_serv {
     padding-top: 8px;
 	padding-left: 8px;
