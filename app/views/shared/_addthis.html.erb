@@ -1,3 +1,4 @@
+<% if false %>
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
   <a class="addthis_button_preferred_1"></a>
@@ -7,5 +8,24 @@
   <a class="addthis_button_compact"></a>
   <a class="addthis_counter addthis_bubble_style"></a>
 </div>
+<% end %>
 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e5dd21d5eb764a1"></script>
 <!-- AddThis Button END -->
+
+<a id="btn_<%= post.id %>"></a>
+<script type="text/javascript">
+var addthis_ui_config =
+{
+    services_compact: 'facebook, myspace, igoogle, netvibes, windows, dashboard, more'
+}
+var addthis_share_config =
+{
+    url: "http://campusmack.heroku.com<%= url_for(post) %>",
+    title: "<%= post.title %>",
+    description: "<%= post.title %>",
+    width: "560",
+    height: "340",
+    screenshot: "http://i2.ytimg.com/vi/1F7DKyFt5pY/default.jpg"
+}
+addthis.button("#btn_<%= post.id %>", addthis_ui_config, addthis_share_config);
+</script>

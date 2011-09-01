@@ -2,7 +2,7 @@
   <h4><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %></h4>
   <% unless post.photo_file_name.nil? %>
       <div id="photo_post" class="photo">
-		<a class="photo" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
+		<a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
       </div>
   <% end %>
   <div class="content"><%= youtube_embed(post.content) %></div>
@@ -26,6 +26,6 @@
   <div class="timestamp">
     posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
   </div>
-  <%= render :partial => 'shared/addthis' %>
+  <%= render :partial => 'shared/addthis', :locals => { :post => post } %>
   <br class="clear"/>
 </li>
