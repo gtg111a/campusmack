@@ -895,3 +895,16 @@ div.addthis_toolbox {
     float: right;
     margin-top: -8px
 }
+
+.smack h4 a {
+    color: red;
+}
+
+.redemption h4 a {
+    color: green;
+}
+
+.smack h4 a:hover,
+.redemption h4 a:hover {
+    color: #fff;
+}

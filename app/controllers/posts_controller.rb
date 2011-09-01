@@ -25,20 +25,17 @@ class PostsController < ApplicationController
 
   def index
     @college = College.find(params[:college_id])
-    @search = Post.search(params[:search])
     @user = current_user
     @title = "All posts"
-    if params[:search]
-      @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
-    else
-      @posts = if [ 'video', 'photo', 'smack', 'redemption' ].include?(params[:content_type])
-                 @college.posts.send(params[:content_type].pluralize)
-               else
-                 @college.posts
-               end.paginate(:page => params[:page])
+    posts = @college.posts
+    if [ 'video', 'photo', 'news', 'stat' ].include?(params[:content_type])
+      posts = posts.send(params[:content_type].pluralize)
     end
+    @search = posts.search(params[:search])
+    @posts = @search.paginate(:page => params[:page])
     init_college_menu
   end
+
 
   def show
     @college = College.find(params[:college_id])

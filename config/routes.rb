@@ -28,17 +28,23 @@ Campusmack::Application.routes.draw do
   end
   resources :colleges, :only => [:show] do
     resources :posts
-    resources :smacks 
-    resources :redemptions 
   end
   resources :colleges do
     resources :videos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'video' }
     resources :photos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'photo' }
+    resources :news, :only => :index, :controller => 'posts', :defaults => { :content_type => 'news' }
+    resources :stats, :only => :index, :controller => 'posts', :defaults => { :content_type => 'stat' }
   end
   #resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :colleges, :only => [:new, :create, :show] do
+    resources :smacks, :redemptions do
+      collection { get :videos, :defaults => { :content_type => 'video' }, :action => 'index'  }
+      collection { get :photos, :defaults => { :content_type => 'photo' }, :action => 'index' }
+      collection { get :news, :defaults => { :content_type => 'news' }, :action => 'index'  }
+      collection { get :stats, :defaults => { :content_type => 'stat' }, :action => 'index'  }
+    end
     resources :smacks, :redemptions, :posts, :only => [:show, :index, :destroy] do
       member do
         post :vote_up, :vote_down

@@ -27,13 +27,13 @@ class RedemptionsController < ApplicationController
     init_college_menu
     @colleges = College.all
     @user = current_user
-    @search = @college.redemptions.search(params[:search])
     @title = "All redemptions from #{@college.name}"
-    if params[:search]
-      @redemptions = @search.paginate(:page => params[:page], :order => 'created_at DESC')
-    else
-      @redemptions = find_redemptions(@college)
+    redemptions = @college.redemptions
+    if [ 'video', 'photo', 'news', 'stat' ].include?(params[:content_type])
+      redemptions = redemptions.send(params[:content_type].pluralize)
     end
+    @search = redemptions.search(params[:search])
+    @redemptions = @search.paginate(:page => params[:page])
   end
 
   def show
@@ -71,15 +71,4 @@ class RedemptionsController < ApplicationController
     end
   end
 
-  private
-
-  def find_redemptions(college)
-    if request.fullpath.to_s =~ /Video/
-      return college.redemptions.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
-    elsif request.fullpath.to_s =~ /Photo/
-      return college.redemptions.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC')
-    else
-      return college.redemptions.paginate(:page => params[:page], :order => 'created_at DESC')
-    end
-  end
 end

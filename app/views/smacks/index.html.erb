@@ -1,5 +1,10 @@
 <h1><%= @college.name %> Smacks</h1>
-<%= render :partial => 'colleges/masthead' %>
+<ul class="masthead">
+  <li><%= link_to "Videos", videos_college_smacks_path(@college) %></li>
+  <li><%= link_to "Photos", photos_college_smacks_path(@college) %></li>
+  <li><%= link_to "News", news_college_smacks_path(@college) %></li>
+  <li><%= link_to "Stats", stats_college_smacks_path(@college) %></li>
+</ul>
 <%= link_to "Add a Smack", new_college_smack_path(@college), :class => "button" %>
 <br class="clear"/>
 <%= render 'shared/search_fields_smacks' %>

@@ -35,6 +35,8 @@ class Post < ActiveRecord::Base
 
   scope :videos, :conditions => ["posts.content_type LIKE ?", "Video"]
   scope :photos, :conditions => ["posts.content_type LIKE ?", "Photo"]
+  scope :news, :conditions => ["posts.content_type LIKE ?", "News"]
+  scope :stats, :conditions => ["posts.content_type LIKE ?", "Stat"]
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
   default_scope :order => 'created_at DESC'
