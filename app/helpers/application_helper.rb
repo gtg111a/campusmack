@@ -26,6 +26,7 @@ module ApplicationHelper
 
   def user_nav
       @user_nav << ['Help', help_path]
+      @user_nav << ['Reported Posts', reports_path] if can? :manage, :all
     if signed_in?
       @user_nav << [ 'My Posts', user_path(current_user) ]
       @user_nav << [ 'Edit Profile', edit_user_registration_path(current_user) ]

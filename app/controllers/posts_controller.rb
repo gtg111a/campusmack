@@ -58,6 +58,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def report
+    @post = Post.find(params[:id])
+    @post.increment!(:report_count)
+    flash[:success] = "Post Reported to Site Admin"
+    respond_to do |format|
+      format.html { redirect_back_or(@post) }
+    end
+  end
+
   def edit
     @user = current_user
     @post = Post.find(params[:id])
