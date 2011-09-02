@@ -9,8 +9,8 @@ namespace :db do
   desc "set up colleges"
   task :new => :environment do
     Rake::Task['db:reset'].invoke
-    make_admin
     make_colleges
+    make_admin
   end
 end
 
