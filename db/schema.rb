@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110902100949) do
+ActiveRecord::Schema.define(:version => 20110902110858) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110902100949) do
     t.string   "type"
     t.string   "news"
     t.integer  "on_frontpage_week"
+    t.integer  "report_count"
   end
 
   create_table "relationships", :force => true do |t|

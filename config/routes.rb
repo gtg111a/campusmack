@@ -29,6 +29,15 @@ Campusmack::Application.routes.draw do
   resources :colleges, :only => [:show] do
     resources :posts
   end
+
+  resources :posts do
+    member do
+      get :report
+    end
+  end
+
+  get '/reports', :to => 'reports#index'
+
   resources :colleges do
     resources :videos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'video' }
     resources :photos, :only => :index, :controller => 'posts', :defaults => { :content_type => 'photo' }

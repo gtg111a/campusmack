@@ -1,13 +1,15 @@
 <li id="post_<%= post.id %>" class="post <%= post.type.downcase %>">
   <% if signed_in? %>
-      <% if post.user_id == current_user.id || current_user.admin? %>
-          <div class="actions">
-            <%= link_to 'Edit', '/'+post.type.downcase+'s/'+post.id.to_s+'/edit', :class => 'button' %>
-            <%= link_to 'Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button' %>
-          </div>
-      <% end %>
+      <div class="actions">
+        <%= link_to('Edit', '/'+post.type.downcase+'s/'+post.id.to_s+'/edit', :class => 'button') if can? :update, post %>
+        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :delete, post %>
+        <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
+      </div>
   <% end %>
   <h4><%= link_to post.title, "/colleges/#{post.college_id}/posts/#{post.id}" %></h4>
+  <% if can? :manage, :all %>
+      <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
+  <% end %>
   <% unless post.photo_file_name.nil? %>
       <div id="photo_post" class="photo">
 		<a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>

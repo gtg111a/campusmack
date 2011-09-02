@@ -17,6 +17,7 @@ class Ability
       can [:vote_up, :vote_down], Post
       can [:manage], Authentication, :user_id => user.id
       can :manage, Vote, :user_id => user.id
+      can :report, Post
     end
 
   end
