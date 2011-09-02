@@ -1,40 +1,52 @@
-<%= render 'shared/error_messages', :object => f.object %> 
+<%= render 'shared/error_messages', :object => f.object %>
 <ul id="post_fields">
-	<li>
-		<div class="field"> 
-			<%= f.label :title %><br /> 
-			<%= f.text_field :title %>
-		</div> 
-	</li>
-	<li>
-		<div class="field" id="post_type">
-			<%= f.label :content_type %><br />
-		 	<%= f.select(:content_type, %w{Video Photo News Stats}, {:include_blank => true})  %><br />
-		</div>
-	</li>
-	<li id="news_field">
-		<div class="field">Paste in News Link:<br>
-			<%= f.label :News %>
-			<%= f.text_field :news %> 
-		</div>
-	</li>
-	<li id="video_field">
-		<div class="field">For a video post:<br>
-			<%= f.label :youtube_link %><br />
-			<%= f.text_field :content %> 
-		</div>
-	</li>
-	<li id="photo_field">
-		<div class="field">For a photo post:<br>
-			<%= f.label :upload_Photo %>
-			<%= f.file_field :photo %>
-		</div>
-	</li>
-	<li>
-		<div class="field">
-			<%= f.label :post_summary %><br />
-			<%= f.text_area :post_summary, :class => "comment"  %> 
-		</div>
-	</li>	
+  <li>
+    <div class="field">
+      <%= f.label :title %>
+      <br/>
+      <%= f.text_field :title %>
+    </div>
+  </li>
+  <li>
+    <div class="field">
+      <%= f.label :on_frontpage_week, 'Smack of the Week on this week' %><br/>
+      <%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %>
+      <p><%= "Current week is #{Date.today.cweek}" %></p>
+    </div>
+  </li>
+  <li>
+    <div class="field" id="post_type">
+      <%= f.label :content_type %>
+      <br/>
+      <%= f.select(:content_type, %w{Video Photo News Stats}, {:include_blank => true}) %>
+      <br/>
+    </div>
+  </li>
+  <li id="news_field">
+    <div class="field">Paste in News Link:<br>
+      <%= f.label :News %>
+      <%= f.text_field :news %>
+    </div>
+  </li>
+  <li id="video_field">
+    <div class="field">For a video post:<br>
+      <%= f.label :youtube_link %>
+      <br/>
+      <%= f.text_field :content %>
+    </div>
+  </li>
+  <li id="photo_field">
+    <div class="field">For a photo post:<br>
+      <%= f.label :upload_Photo %>
+      <%= f.file_field :photo %>
+    </div>
+  </li>
+  <li>
+    <div class="field">
+      <%= f.label :post_summary %>
+      <br/>
+      <%= f.text_area :post_summary, :class => "comment" %>
+    </div>
+  </li>
 
 </ul>

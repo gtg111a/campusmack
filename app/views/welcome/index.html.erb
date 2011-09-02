@@ -1,7 +1,10 @@
 <% unless signed_in? %>
   <%= link_to "Sign Up Now!", sign_up_path, :class => "button" %><br class="clear"/>
 <% end %>
-<h3>Click on a Campus Below</h3>
+<% if @sotw %>
+    <%= render :partial => 'sotw' %>
+<% end %>
+<h1>Most smacked colleges</h1>
 <ul class="colleges">
   <% @colleges.each do |college| %>
       <li><%= link_to college.name, college %> (<%= college.number_of_smacks %>)</li>

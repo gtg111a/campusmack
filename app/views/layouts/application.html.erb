@@ -21,25 +21,23 @@
   <%= main_nav %>
 
   <div id="content">
+    <%= render 'layouts/left_sidebar' %>
     <div class="container">
-      <%= render 'layouts/left_sidebar' %>
-      <div>
-        <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, :class => "flash #{key}") %>
-        <% end %>
-        <%= yield(:above) %>
-        <div class="block shadowed">
-          <div class="inner-boundary">
-            <div class="inner-border">
-              <%= yield %>
-            </div>
+      <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, :class => "flash #{key}") %>
+      <% end %>
+      <%= yield(:above) %>
+      <div class="block shadowed">
+        <div class="inner-boundary">
+          <div class="inner-border">
+            <%= yield %>
           </div>
         </div>
-        <%= yield(:below) %>
       </div>
+      <%= yield(:below) %>
     </div>
-    <div style="height: 125px;clear:both;"></div>
   </div>
+  <div style="height: 125px;clear:both;"></div>
 </div>
 <div id="footer">
   <div class="container">

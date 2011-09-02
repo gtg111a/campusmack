@@ -525,7 +525,7 @@ p {
     padding: 10px 0px
 }
 
-.posts li {
+.post {
     list-style: none;
     background-color: #ddd;
     padding: 20px;
@@ -534,11 +534,16 @@ p {
      margin-top: 10px;
 }
 
-.posts li p {
+.post div {
+    float: left;
+    font-size: 120%;
+}
+
+.post p {
     font-size: 13px
 }
 
-.posts li h3 {
+.post h3 {
     width: 310px;
     line-height: 15px;
     margin-top: 5px;
@@ -546,14 +551,14 @@ p {
     padding: 0px
 }
 
-.posts li h3 a {
+.post h3 a {
     font-size: 16px;
     font-family: Helvetica, sans-serif;
     color: #171717;
     font-weight: bold
 }
 
-.posts li .info {
+.post .info {
     float: right;
     margin-left: 20px;
     width: 100px;
@@ -562,22 +567,27 @@ p {
     padding-top: 40px
 }
 
-.posts div.vote {
+.post div.vote {
     float: right;
     width: 120px;
     text-align: center;
 }
 
-.posts div.vote div {
+.post div.vote div {
   width: 100%;
 }
 
-.posts div.vote img {
+.post div.vote img {
   float: right;
 }
 
-.posts div.vote div.vote_value {
+.post div.vote div.vote_value {
   padding-bottom: 20px;
+}
+
+.post .comments {
+    margin-left: 1em;
+    font-size: 14px;
 }
 
 .count {
@@ -616,31 +626,6 @@ textarea {
 .jqTransformSelectWrapper ul li {
     margin-bottom: 0px;
     padding-left: 0px
-}
-
-.post:after {
-    content: ".";
-    visibility: hidden;
-    display: block;
-    clear: both;
-    height: 0;
-    font-size: 0
-}
-
-.post{
-    position: relative;
-    clear: both;
-    padding: 5px 2px 5px 0px
-}
-
-.post .inner-boundary {
-    min-height: 95px
-}
-
-.post div.shadowed {
-    float: right;
-    width: 512px;
-    border-color: #c3bfbe
 }
 
 #services_list li {
@@ -786,57 +771,6 @@ div#photo_post {
 }
 div#photo_post img:hover{border:2px solid #c81419;}
 
-.posts div {
-    float: left;
-    font-size: 120%;
-}
-
-.posts div.content {
-  margin: 0 20px 20px 0;
-}
-
-.posts li {
-    list-style: none;
-    background-color: #ddd;
-    padding: 20px;
-    font-size: 11px;
-    position: relative;
-    margin-top: 10px;
-}
-
-.posts li p {
-    font-size: 13px
-}
-
-.posts li h3 {
-    width: 310px;
-    line-height: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 0px
-}
-
-.posts li h3 a {
-    font-size: 16px;
-    font-family: Helvetica, sans-serif;
-    color: #171717;
-    font-weight: bold
-}
-
-.posts li .info {
-    float: right;
-    margin-left: 20px;
-    width: 100px;
-    text-align: center;
-    position: relative;
-    padding-top: 40px
-}
-
-.posts div.actions {
-    font-size: 100%;
-}
-
-
 /* New Posts */
 li#video_field {display:none;}
 li#photo_field {display:none;}
@@ -902,11 +836,6 @@ div.post .content {
     text-align: center;
     padding: 10px 0;
 }
-div.post .vote,
-div.post .vote span {
-    font-size: 22px;
-}
-
 div.actions {
     float: right;
 }

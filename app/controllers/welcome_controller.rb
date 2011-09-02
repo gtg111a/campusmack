@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
                             :group => 'colleges.id',
                             :order => "number_of_smacks DESC",
                             :limit => 10)
+    @sotw = Post.smack_of_week.first
     if signed_in?
       @micropost = Micropost.new if signed_in?
       @feed_items = current_user.feed.paginate(:page => params[:page])

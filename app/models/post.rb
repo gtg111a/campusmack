@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   #Through the 'acts_as_commentable' gem
   acts_as_commentable
 
-  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo, :news
+  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo, :news, :on_frontpage_week
 
   attr_searchable :title, :post_summary
 
@@ -39,6 +39,7 @@ class Post < ActiveRecord::Base
   scope :stats, :conditions => ["posts.content_type LIKE ?", "Stat"]
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
+  scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
   default_scope :order => 'created_at DESC'
 
 end
