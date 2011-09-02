@@ -2,7 +2,7 @@
   <% if signed_in? %>
       <div class="actions">
         <%= link_to('Edit', '/'+post.type.downcase+'s/'+post.id.to_s+'/edit', :class => 'button') if can? :update, post %>
-        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :delete, post %>
+        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
         <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
       </div>
   <% end %>

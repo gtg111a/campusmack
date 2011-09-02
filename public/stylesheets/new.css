@@ -531,11 +531,24 @@ p {
     padding: 20px;
     font-size: 11px;
     position: relative;
-     margin-top: 10px;
+    margin-top: 10px;
+}
+
+.post:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    clear: both;
+    height: 0;
+    font-size: 0
+}
+
+ul.posts div.content, #smack_of_the_week div.content {
+  float: left;
+  padding: 0 10px 10px 0 !important;
 }
 
 .post div {
-    float: left;
     font-size: 120%;
 }
 
@@ -597,9 +610,15 @@ p {
     padding-top: 90px;
 }
 
-.vote span {
+div.vote span {
     color: #000066;
     font-size: 50px;
+    text-align: center;
+}
+
+span.vote span {
+    color: #000066;
+    font-size: 22px;
     text-align: center;
 }
 
