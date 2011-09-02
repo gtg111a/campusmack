@@ -1,14 +1,14 @@
+<% if can? :edit, @post %>
+    <div class="actions">
+      <%= link_to 'Edit', '/'+@post.type.downcase+'s/'+@post.id.to_s+'/edit', :class => 'button' %>
+      <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' %>
+    </div>
+<% end %>
 <h1><%= @post.title %></h1>
 <div class="post">
   <div class="top">
     posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
     <%= vote_buttons(@post, :small) %>
-    <% if can? :edit, @post %>
-        <div class="actions">
-          <%= link_to 'Edit', '/'+@post.type.downcase+'s/'+@post.id.to_s+'/edit', :class => 'button' %>
-          <%= link_to image_tag('delete.png'), @post, :method => :delete, :confirm => "Delete Post?" %>
-        </div>
-    <% end %>
     <br class="clear"/>
   </div>
 
@@ -26,8 +26,8 @@
   <br class="clear"/>
 
   <% if signed_in? %>
-      		<%= form_for [@post, Comment.new], :remote => true do |f| %>
-          	<%= render '/shared/comments', :f => f %>
+      <%= form_for [@post, Comment.new], :remote => true do |f| %>
+          <%= render '/shared/comments', :f => f %>
           <div>
             <%= f.submit "Submit Comment" %>
           </div>

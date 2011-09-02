@@ -1,4 +1,4 @@
-header a.sitename {
+div.header a.sitename {
     width: 210px
 }
 
@@ -70,7 +70,7 @@ img a {
     border: none
 }
 
-header {
+div.header {
     background-color: #232323;
     border-bottom: 1px solid #151515;
     display: block;
@@ -79,17 +79,17 @@ header {
     *z-index: 8001
 }
 
-header .container {
+div.header .container {
     height: 64px;
     position: relative
 }
 
-header .sitename {
+div.header .sitename {
     display: block;
     position: relative
 }
 
-header .sitename h2 {
+div.header .sitename h2 {
     display: block;
     position: absolute;
     left: -12px;
@@ -97,7 +97,7 @@ header .sitename h2 {
     color: silver;
 }
 
-nav[role=navigation] {
+div[role=navigation] {
     background-color: #333333;
     border-top: 1px solid #383838;
     border-bottom: 1px solid #444444;
@@ -106,18 +106,18 @@ nav[role=navigation] {
     min-width: 984px;
 }
 
-nav[role=navigation] > ul {
+div[role=navigation] > ul {
     position: relative;
     left: -5px
 }
 
-nav[role=navigation] ul, .info-nav {
+div[role=navigation] ul, .info-nav {
     margin: 0 auto;
     list-style: none;
     width: 994px
 }
 
-nav[role=navigation] ul li, .info-nav li {
+div[role=navigation] ul li, .info-nav li {
     display: inline-block;
     float: left;
     font-size: 12px;
@@ -126,7 +126,7 @@ nav[role=navigation] ul li, .info-nav li {
     z-index: 5000
 }
 
-nav[role=navigation] ul li .dropdown, .info-nav li .dropdown {
+div[role=navigation] ul li .dropdown, .info-nav li .dropdown {
     background-color: #fff;
     display: none;
     left: 0;
@@ -137,12 +137,12 @@ nav[role=navigation] ul li .dropdown, .info-nav li .dropdown {
     z-index: 9999
 }
 
-nav[role=navigation] ul li .dropdown ul, .info-nav li .dropdown ul {
+div[role=navigation] ul li .dropdown ul, .info-nav li .dropdown ul {
     width: 100%;
     list-style-type: none
 }
 
-nav[role=navigation] ul li .dropdown li, .info-nav li .dropdown li {
+div[role=navigation] ul li .dropdown li, .info-nav li .dropdown li {
     display: block;
     float: none;
     font-size: inherit;
@@ -152,7 +152,7 @@ nav[role=navigation] ul li .dropdown li, .info-nav li .dropdown li {
     z-index: auto
 }
 
-nav[role=navigation] ul li .dropdown li a, .info-nav li .dropdown li a {
+div[role=navigation] ul li .dropdown li a, .info-nav li .dropdown li a {
     border-bottom: 0;
     color: #7e7e7e;
     display: block;
@@ -164,17 +164,17 @@ nav[role=navigation] ul li .dropdown li a, .info-nav li .dropdown li a {
     text-shadow: 0 0 transparent
 }
 
-nav[role=navigation] ul li .dropdown li:hover, .info-nav li .dropdown li:hover {
+div[role=navigation] ul li .dropdown li:hover, .info-nav li .dropdown li:hover {
     background: transparent
 }
 
-nav[role=navigation] ul li .dropdown a:hover, .info-nav li .dropdown a:hover {
+div[role=navigation] ul li .dropdown a:hover, .info-nav li .dropdown a:hover {
     background: transparent;
     color: #232323;
     text-decoration: none
 }
 
-nav[role=navigation] ul .meta-links, .info-nav .meta-links {
+div[role=navigation] ul .meta-links, .info-nav .meta-links {
     border-top: 1px solid #fff;
     -moz-box-shadow: 0 -1px 0 0 #cccccc;
     -webkit-box-shadow: 0 -1px 0 0 #cccccc;
@@ -184,7 +184,7 @@ nav[role=navigation] ul .meta-links, .info-nav .meta-links {
     padding-top: 1px
 }
 
-nav[role=navigation] ul a, .info-nav a {
+div[role=navigation] ul a, .info-nav a {
     border-bottom: 1px solid transparent;
     color: #c5c5c5;
     font-size: 12px;
@@ -197,7 +197,7 @@ nav[role=navigation] ul a, .info-nav a {
     top: -1px
 }
 
-nav[role=navigation] ul li:hover a, .info-nav li:hover a {
+div[role=navigation] ul li:hover a, .info-nav li:hover a {
     background: #785a3a;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8a6741), color-stop(100%, #705536));
     background-image: -webkit-linear-gradient(#8a6741, #705536);
@@ -209,16 +209,16 @@ nav[role=navigation] ul li:hover a, .info-nav li:hover a {
     text-decoration: none
 }
 
-nav[role=navigation] ul li:hover div, .info-nav li:hover div {
+div[role=navigation] ul li:hover div, .info-nav li:hover div {
     display: block
 }
 
-nav[role=navigation] ul li:hover div a, .info-nav li:hover div a {
+div[role=navigation] ul li:hover div a, .info-nav li:hover div a {
     background: transparent;
     border-bottom: 0
 }
 
-nav[role=navigation] .search-container {
+div[role=navigation] .search-container {
     display: block;
     float: right;
     line-height: 45px;
@@ -422,6 +422,10 @@ ul.colleges  li {
     width: 984px
 }
 
+#content div.container {
+  padding: 0 10px;
+}
+
 html {
     overflow-y: scroll
 }
@@ -454,6 +458,7 @@ span.required {
 }
 
 div.shadowed {
+    overflow: hidden;
     border: 1px solid #bbb
 }
 
@@ -559,7 +564,20 @@ p {
 
 .posts div.vote {
     float: right;
-    width: 7%;
+    width: 120px;
+    text-align: center;
+}
+
+.posts div.vote div {
+  width: 100%;
+}
+
+.posts div.vote img {
+  float: right;
+}
+
+.posts div.vote div.vote_value {
+  padding-bottom: 20px;
 }
 
 .count {
@@ -767,10 +785,15 @@ div#photo_post {
     z-index: 1;
 }
 div#photo_post img:hover{border:2px solid #c81419;}
+
 .posts div {
     float: left;
+    font-size: 120%;
 }
 
+.posts div.content {
+  margin: 0 20px 20px 0;
+}
 
 .posts li {
     list-style: none;
@@ -810,8 +833,7 @@ div#photo_post img:hover{border:2px solid #c81419;}
 }
 
 .posts div.actions {
-    float: right;
-    padding-top: 80px;
+    font-size: 100%;
 }
 
 
@@ -840,14 +862,16 @@ li#news_field {display:none;}
 #error_explanation p { color: #333; margin-bottom: 0; padding: 5px;}
 #error_explanation ul li { font-size: 12px; list-style: square;}
 
+table.searchtbl {
+  float: right;
+}
 
 ul.masthead  {
-    font-size: 90%;
+    font-size: 100%;
     padding-left: 12px;
     padding-right: 10px;
     background-color: #ddd;
     border-radius: 10px;
-    width: 475px;
     margin: 0;
 }
 
@@ -864,6 +888,11 @@ ul.masthead li a:hover {
     color: #C81419;
 }
 
+ul.masthead li.righthead {
+  float: right;
+  padding: 4px;
+}
+
 div.post {
     float: none;
 }
@@ -871,13 +900,14 @@ div.post {
 div.post .photo,
 div.post .content {
     text-align: center;
+    padding: 10px 0;
 }
 div.post .vote,
 div.post .vote span {
     font-size: 22px;
 }
 
-div.post .actions {
+div.actions {
     float: right;
 }
 

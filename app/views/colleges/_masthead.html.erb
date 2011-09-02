@@ -3,5 +3,11 @@
   <li><%= link_to "Photos", college_photos_path(@college) %></li>
   <li><%= link_to "News" , college_news_index_path(@college) %></li>
   <li><%= link_to "Stats", college_stats_path(@college) %></li>
+  <li class="righthead">
+    <%= link_to "Add a Redemption", new_college_redemption_path(@college),:class => "button" %>
+  </li>
+  <li class="righthead">
+    <%= link_to "Add a Smack", new_college_smack_path(@college), :class => "button" %>
+  </li>
 </ul>
 

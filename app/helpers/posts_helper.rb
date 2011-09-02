@@ -63,12 +63,18 @@ module PostsHelper
   def vote_buttons(post, size = :large)
     imgwidth = {}
     imgwidth = { :width => 23 } if size == :small
-    html = '<div class="vote">'
-    html << %Q{<span>#{link_to image_tag('arrow-up.png', imgwidth), vote_up_post_path(post), :method => :post, :remote => true}</span>} if can? :create, Vote
-    html << %Q{Votes: <span id="vote_count_up#{post.id}">#{post.votes_for_b}</span>}
-    html << %Q{<span>#{link_to image_tag('arrow-down.png', imgwidth), vote_down_post_path(post), :method => :post, :remote => true}</span>} if can? :create, Vote
-    html << %Q{Against: <span id="vote_count_down#{post.id}">#{post.votes_against_b}</span>}
-    html << '</div>'
+    tag = size == :small ? 'span' : 'div';
+    html = %Q{<#{tag} class="vote">}
+    html << %Q{<#{tag} class="vote_title">Votes:</#{tag}>}
+    html << %Q{<#{tag} class="vote_value">}
+    html << %Q{<span id="vote_count_up#{post.id}">#{post.votes_for_b}</span>}
+    html << link_to(image_tag('arrow-up.png', imgwidth), vote_up_post_path(post), :method => :post, :remote => true) if can? :create, Vote
+    html << "</#{tag}>"
+    html << %Q{<#{tag} class="vote_title">Against:</#{tag}>}
+    html << %Q{<#{tag} class="vote_value">}
+    html << %Q{<span id="vote_count_down#{post.id}">#{post.votes_against_b}</span>}
+    html << link_to(image_tag('arrow-down.png', imgwidth), vote_down_post_path(post), :method => :post, :remote => true) if can? :create, Vote
+    html << "</#{tag}></#{tag}>"
     raw(html)
   end
 

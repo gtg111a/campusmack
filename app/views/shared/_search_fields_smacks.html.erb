@@ -1,14 +1,11 @@
-<table>
-	<tr>
-		<td width = 50%>	
-	<%= form_for @search, :url => college_smacks_path, :html => {:method => :get} do |f| %>
-	  <%= f.label "Search Posts:" %>
-	  <%= f.text_field :title_or_post_summary_contains %>
-	  <%= f.submit "Go!", :name =>nil %>
-	<% end %>
-		</td>
-		<td>
-		<!-- insert stuff later-->
-		</td>
-	</tr>
+<table class="searchtbl">
+  <tr>
+    <td>
+      <%= form_for @search, :url => college_smacks_path, :html => {:method => :get} do |f| %>
+          <%= f.label "Search Posts:" %>
+          <%= f.text_field :title_or_post_summary_contains %>
+          <%= f.submit "Go!", :name =>nil %>
+      <% end %>
+    </td>
+  </tr>
 </table>

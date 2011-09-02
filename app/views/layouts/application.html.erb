@@ -11,33 +11,35 @@
 </head>
 <body id="homepage">
 <div id="wrapper">
-  <header>
+  <div class="header">
     <div class="container">
       <a href="/" class="sitename"><h2>Campusmack</h2></a>
       <%= user_nav %>
     </div>
-  </header>
+  </div>
 
   <%= main_nav %>
 
   <div id="content">
-    <%= render 'layouts/left_sidebar' %>
     <div class="container">
-      <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, :class => "flash #{key}") %>
-      <% end %>
-      <%= yield(:above) %>
-      <div class="block shadowed">
-        <div class="inner-boundary">
-          <div class="inner-border">
-            <%= yield %>
+      <%= render 'layouts/left_sidebar' %>
+      <div>
+        <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, :class => "flash #{key}") %>
+        <% end %>
+        <%= yield(:above) %>
+        <div class="block shadowed">
+          <div class="inner-boundary">
+            <div class="inner-border">
+              <%= yield %>
+            </div>
           </div>
         </div>
+        <%= yield(:below) %>
       </div>
-      <%= yield(:below) %>
     </div>
+    <div style="height: 125px;clear:both;"></div>
   </div>
-  <div style="height: 125px;clear:both;"></div>
 </div>
 <div id="footer">
   <div class="container">

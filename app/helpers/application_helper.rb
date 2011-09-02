@@ -45,11 +45,11 @@ module ApplicationHelper
 
   def main_nav
     return if @main_menu.empty?
-    html = '<nav role="navigation" class="clearfix"><ul class="main-nav">'
+    html = '<div role="navigation" class="clearfix"><ul class="main-nav">'
     @main_menu.each do |text, link, other|
       html << '<li>' + link_to(text, link, *other) + '</li>'
     end
-    raw(html + '</ul></nav>')
+    raw(html + '</ul></div>')
   end
 
 end
