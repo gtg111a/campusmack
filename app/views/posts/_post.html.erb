@@ -6,23 +6,25 @@
         <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
       </div>
   <% end %>
-  <h4><%= link_to post.title, [ post.postable, post ] %></h4>
-  <% if can?(:manage, :all) && post.report_count.to_i > 0 %>
-      <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
-  <% end %>
-  <% if post.photo %>
-      <div id="photo_post" class="photo">
-		<a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
-      </div>
-  <% end %>
-  <% if post.video %>
-      <div class="content"><%= youtube_embed(post.video.url) %></div>
-  <% end %>
-  <%#= link_to "News post", post.news unless post.news.blank? %>
-  <div class="comments"><%= post.summary %>
-    <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
-        <%= link_to " [more...]", "/colleges/#{post.postable_id}/posts/#{post.id}" %>
+  <h4><%= link_to post.title, [post.postable, post] %></h4>
+  <div class="content">
+    <% if can?(:manage, :all) && post.report_count.to_i > 0 %>
+        <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
     <% end %>
+    <% if post.photo %>
+        <div id="photo_post" class="photo">
+          <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
+        </div>
+    <% end %>
+    <% if post.video %>
+        <div class="content"><%= youtube_embed(post.video.url) %></div>
+    <% end %>
+    <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
+    <div class="comments"><%= post.summary %>
+      <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
+          <%= link_to " [more...]", [ post.postable, post ] %>
+      <% end %>
+    </div>
   </div>
   <%= vote_buttons(post) %>
   <br class="clear"/>

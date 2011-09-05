@@ -20,10 +20,11 @@
         <img src="<%= @post.photo.url(:large) %>" alt=""/>
       </div>
   <% end %>
+  <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
   <% if @post.video %>
       <div class="content"><%= youtube_embed(@post.video.url, true) %></div>
   <% end %>
-  <div class="comments"><%= @post.summary %>
+  <div><%= @post.summary %>
     <% if @post.summary && params[:action] != 'show' %>
         <%= link_to " [more...]", [@parent, @post] %>
     <% end %>
@@ -37,8 +38,10 @@
           </div>
       <% end %>
   <% end %>
-  <h2>Comments:</h2>
-  <%= will_paginate(@comments) %>
+  <% if @post.comments.any? %>
+      <h2>Comments:</h2>
+      <%= will_paginate(@comments) %>
+  <% end %>
   <div class="comments">
     <%= render :partial => @post.comments %>
   </div>

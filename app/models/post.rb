@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   #Through the 'acts_as_commentable' gem
   acts_as_commentable
 
-  attr_accessible :title, :summary, :vote, :on_frontpage_week, :video_attributes, :photo_attributes, :statistic_attributes
+  attr_accessible :title, :summary, :vote, :on_frontpage_week, :video_attributes, :photo_attributes, :news_post_attributes, :statistic_attributes
 
   attr_searchable :title, :summary
 
@@ -25,6 +25,7 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :video
   accepts_nested_attributes_for :photo
+  accepts_nested_attributes_for :news_post
   accepts_nested_attributes_for :statistic
 
   validates :type, :presence => true
