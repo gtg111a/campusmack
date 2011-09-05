@@ -548,10 +548,6 @@ ul.posts div.content, #smack_of_the_week div.content {
   padding: 0 10px 10px 0 !important;
 }
 
-.post div {
-    font-size: 120%;
-}
-
 .post p {
     font-size: 13px
 }
@@ -596,11 +592,6 @@ ul.posts div.content, #smack_of_the_week div.content {
 
 .post div.vote div.vote_value {
   padding-bottom: 20px;
-}
-
-.post .comments {
-    margin-left: 1em;
-    font-size: 14px;
 }
 
 .count {
@@ -881,4 +872,23 @@ textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; paddi
 .smack h4 a:hover,
 .redemption h4 a:hover {
     color: #fff;
+}
+
+.comment {
+    border: 1px white outset;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.comment .content {
+    float: left;
+}
+
+.comment .content p {
+    text-align: left;
+}
+
+.comment .timestamp {
+    font-size: 10px;
+    color: gray;
 }

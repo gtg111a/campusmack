@@ -1,8 +1,0 @@
-
-$('a[data-method="delete"]').live('ajax:success', function(){
-	$ ("td#<%= escape_javascript("#{@redemption.id}") %>").remove();
-	$ (this).closest('tr').remove();
-});
-
-
-

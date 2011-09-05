@@ -1,15 +1,23 @@
 class College < ActiveRecord::Base
-  attr_accessible :name, :conference
-  
-  
-  has_many :posts, :dependent => :destroy
-  has_many :smacks, :dependent => :destroy
-  has_many :redemptions, :dependent => :destroy
-  
+  has_many :posts, :as => :postable, :dependent => :destroy
+  has_many :photos, :through => :posts
+  has_many :news_posts, :through => :posts
+  has_many :smacks, :as => :postable, :dependent => :destroy
+  has_many :redemptions, :as => :postable, :dependent => :destroy
+  belongs_to :conference
   validates :name, :presence => true
   
-  accepts_nested_attributes_for :smacks
-  accepts_nested_attributes_for :redemptions
   accepts_nested_attributes_for :posts
-  
+
+  before_save :create_permalink
+
+  def to_param
+    self.permalink
+  end
+
+  def create_permalink
+    return if name.nil?
+    self.permalink = name.parameterize
+  end
+
 end

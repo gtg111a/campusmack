@@ -1,59 +1,61 @@
+# This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
   load_and_authorize_resource
   before_filter :authenticate_user!, :except => [:show, :index]
   include PostsHelper
 
+  before_filter :find_parent
+
   def new
-    @user = current_user
-    @college = College.find(params[:college_id])
-    @post = @user.posts.build
-    @title = "Submit Post"
+    @post = @parent.send(@post_cls).build
+    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
     init_college_menu
+    render 'posts/new'
   end
 
   def create
-    @user = current_user
-    @college = College.find(params[:college_id])
-    @post = @user.posts.build(params[:post])
+    @post = @parent.send(@post_cls).build(params[@post_cls.singularize])
+    @post.user = current_user
     if @post.save
-      redirect_to store_location, :flash => {:success => "Post Submitted Successfully!"}
+      if store_location =~ /^\/conferences\//
+        redirect_to conference_path(@parent)
+      else
+        redirect_to store_location, :flash => {:success => "#{@parent.name} #{@post.class.to_s.titleize} Submitted Successfully!"}
+      end
     else
-      @title = "Submit Post"
-      render 'new'
+      render 'posts/new'
     end
   end
 
   def index
-    @college = College.find(params[:college_id])
-    @user = current_user
-    @title = "All posts"
-    posts = @college.posts
-    if [ 'video', 'photo', 'news', 'stat' ].include?(params[:content_type])
-      posts = posts.send(params[:content_type].pluralize)
+    @title = @parent.name + "'s #{@post_cls.titleize}"
+    posts = if ['smacks', 'redemptions'].include?(@post_cls)
+      @parent.send(@post_cls)
+    else
+      @parent.posts.joins(@post_cls.singularize.to_sym)
     end
     @search = posts.search(params[:search])
     @posts = @search.paginate(:page => params[:page])
     init_college_menu
+    # We use the views from the posts folder for everything
+    render 'posts/index'
   end
 
-
   def show
-    @college = College.find(params[:college_id])
     @post = Post.find(params[:id])
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
-    @title = @college.name
-    @posts = @college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+    @title = "#{@parent.name}'s #{@post.class.to_s.titleize}"
     init_college_menu
+    render 'posts/show'
   end
 
   def destroy
     @user = current_user
     @post = Post.find(params[:id])
-    @college = College.find(@post.college_id)
     @post.destroy
     flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
-      format.html { redirect_back_or(@user) }
+      format.html { redirect_after_destroy_back_or(@user) }
       format.js
     end
   end
@@ -71,11 +73,12 @@ class PostsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:id])
     @title = "Edit post"
+    render 'posts/edit'
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(params[@post.type.downcase])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"
@@ -103,5 +106,19 @@ class PostsController < ApplicationController
     end
   end
 
+  protected
+
+  def find_parent
+    @parent = College.where(:permalink => params[:college_id]).first
+    @parent ||= Conference.where(:name => params[:conference_id]).first
+    @post_cls = self.class.to_s.underscore.gsub('_controller','')
+  end
+
+  def init_college_menu
+    prefix = @parent.class.to_s.downcase
+    @main_menu << [ @parent.name, @parent ]
+    @main_menu << [ 'Smacks', eval("#{prefix}_smacks_path(@parent)") ]
+    @main_menu << [ 'Redemptions', eval("#{prefix}_redemptions_path(@parent)") ]
+  end
 
 end

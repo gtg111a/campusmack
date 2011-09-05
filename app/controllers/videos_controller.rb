@@ -1,0 +1,2 @@
+class VideosController < PostsController
+end

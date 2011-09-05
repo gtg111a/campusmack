@@ -21,9 +21,9 @@ class User < ActiveRecord::Base
   #Through the 'thumbs_up' gem
   acts_as_voter
 
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college, :remember_me
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me
 
-
+  belongs_to :college
   has_many :authentications, :dependent => :destroy
 
   has_many :posts, :dependent => :destroy

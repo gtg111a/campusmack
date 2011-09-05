@@ -1,9 +1,9 @@
-<h1><%= @college.name %></h1>
-<%= render :partial => 'colleges/masthead' %>
+<h1><%= @title %></h1>
+<%= render :partial => 'shared/masthead' %>
 <br class="clear"/>
 <%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
     <%= f.label :search %>
-    <%= f.text_field :title_or_post_summary_contains %>
+    <%= f.text_field :title_or_summary_contains %>
     <%= f.submit "Go!", :name =>nil %>
 <% end %>
 <% unless @posts.empty? %>
