@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @title = @parent.name + "'s #{@post_cls.titleize}"
+    @title = @parent.name + " #{@post_cls.titleize}"
     posts = if ['smacks', 'redemptions'].include?(@post_cls)
       @parent.send(@post_cls)
     else
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
-    @title = "#{@parent.name}'s #{@post.class.to_s.titleize}"
+    @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
     render 'posts/show'
   end
