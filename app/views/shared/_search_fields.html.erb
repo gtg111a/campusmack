@@ -1,11 +1,12 @@
 <table class="searchtbl">
   <tr>
     <td>
-      <%= form_for @search, :url => college_path, :html => {:method => :get} do |f| %>
+      <%= form_for Post.search do |f| %>
           <%= f.label "Search Posts:" %>
-          <%= f.text_field :title_or_post_summary_contains %>
+          <%= f.text_field :title_or_summary_contains %>
           <%= f.submit "Go!", :name =>nil %>
       <% end %>
     </td>
   </tr>
 </table>
+<br style="clear:both"/>

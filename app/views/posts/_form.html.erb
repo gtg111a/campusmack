@@ -1,0 +1,74 @@
+<%= form_for([ @parent, @post], :validate => true) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <ul id="post_fields">
+      <li>
+        <div class="field">
+          <%= f.label :title %>
+          <br/>
+          <%= f.text_field :title %>
+        </div>
+      </li>
+      <% if can? :manage, Post %>
+          <li>
+            <div class="field">
+              <%= f.label :on_frontpage_week, 'Smack of the Week on this week' %>
+              <br/>
+              <%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %>
+            </div>
+          </li>
+      <% end %>
+      <% if post.video %>
+          <li>
+            <%= f.fields_for :video, post.video do |vf| %>
+                <div class="field">
+                  <%= vf.label :url %>
+                  <br/>
+                  <%= vf.text_field :url %>
+                </div>
+            <% end %>
+          </li>
+      <% end %>
+      <% if post.photo %>
+          <li>
+            <%= f.fields_for :photo, post.photo do |pf| %>
+                <div class="field">
+                  <%= pf.label :caption %>
+                  <br/>
+                  <%= pf.text_field :caption %>
+                </div>
+                <div class="field">
+                  <%= pf.label :image, 'Photo' %>
+                  <br/>
+                  <%= pf.file_field :image %>
+                </div>
+            <% end %>
+          </li>
+      <% end %>
+      <% if post.statistic %>
+          <li>
+            <%= f.fields_for :statistic, post.statistic do |sf| %>
+                <div class="field">
+                  <%= sf.label :name %>
+                  <br/>
+                  <%= sf.text_field :name %>
+                </div>
+                <div class="field">
+                  <%= sf.label :data %>
+                  <br/>
+                  <%= sf.text_field :data %>
+                </div>
+            <% end %>
+          </li>
+      <% end %>
+      <li>
+        <div class="field">
+          <%= f.label :summary %>
+          <br/>
+          <%= f.text_area :summary, :class => "comment" %>
+        </div>
+      </li>
+    </ul>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

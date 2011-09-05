@@ -3,7 +3,7 @@
     <td>
       <%= form_for @search, :url => college_smacks_path, :html => {:method => :get} do |f| %>
           <%= f.label "Search Posts:" %>
-          <%= f.text_field :title_or_post_summary_contains %>
+          <%= f.text_field :title_or_summary_contains %>
           <%= f.submit "Go!", :name =>nil %>
       <% end %>
     </td>

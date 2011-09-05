@@ -1,5 +1,5 @@
 class CollegesController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   def new
     @college = College.new
@@ -14,10 +14,9 @@ class CollegesController < ApplicationController
   end
 
   def show
-    @college = College.find(params[:id])
-    @user = current_user
+    @college = College.where(:permalink => params[:id]).first
+    @parent = @college
     init_college_menu
-    @colleges = College.all
     @search = @college.posts.search(params[:search])
     @title = @college.name
     if params[:search]
@@ -51,6 +50,12 @@ class CollegesController < ApplicationController
     else
       return college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
     end
+  end
+
+  def init_college_menu
+    @main_menu << [ @college.name, @college ]
+    @main_menu << [ 'Smacks', college_smacks_path(@college) ]
+    @main_menu << [ 'Redemptions', college_redemptions_path(@college) ]
   end
 
 end

@@ -1,11 +1,118 @@
-</table>
-<h1>Submit a <%= @college.name %> Post</h1>
-<%= form_for [@user, @college, @post], :html => { :multipart => true }, :validate => true   do |f| %> 
-<%= render 'shared/fields', :f => f %>
-<div class="actions">
-	<%= f.submit "Submit" %> 
-</div>
+<h1><%= @title %></h1>
+<%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
+    <% # Rendering content to javascript variables to switch later on  %>
+    <% content_for :js do %>
+        var postcontent = [];
+        postcontent[0] = '<%= f.fields_for :video, Video.new do |vf| %>
+            <div class="field">
+              <%= vf.label :url %>
+              <br/>
+              <%= vf.text_field :url %>
+            </div>
+        <% end.gsub(/\r|\n/, '').html_safe %>
+        ';
+        postcontent[1] = '<%= f.fields_for :photo, Photo.new do |pf| %>
+            <div class="field">
+              <%= pf.label :caption %>
+              <br/>
+              <%= pf.text_field :caption %>
+            </div>
+            <div class="field">
+              <%= pf.label :image, 'Photo' %>
+              <br/>
+              <%= pf.file_field :image %>
+            </div>
+        <% end.gsub(/\r|\n/, '').html_safe %>
+        ';
+        postcontent[2] = '<%= f.fields_for :news_post, NewsPost.new do |npf| %>
+            <div class="field">
+              <%= npf.label :url %>
+              <br/>
+              <%= npf.text_field :url %>
+            </div>
+        <% end.gsub(/\r|\n/, '').html_safe %>';
+        postcontent[3] = '<%= f.fields_for :statistic, Statistic.new do |sf| %>
+            <div class="field">
+              <%= sf.label :name %>
+              <br/>
+              <%= sf.text_field :name %>
+            </div>
+            <div class="field">
+              <%= sf.label :data %>
+              <br/>
+              <%= sf.text_field :data %>
+            </div>
+        <% end.gsub(/\r|\n/, '').html_safe %>
+        ';
+        function switch_fields(num) {
+        $("div.content-switch a.pressed").removeClass("pressed");
+        $("#shifting_fields").html(postcontent[num]);
+        switch(num) {
+        case 0: $("#switch_video").addClass("pressed"); break;
+        case 1: $("#switch_photo").addClass("pressed"); break;
+        case 2: $("#switch_news").addClass("pressed"); break;
+        case 3: $("#switch_stats").addClass("pressed"); break;
+        }
+        }
+    <% end %>
+    <% content_for :jq do %>
+        $("#switch_video").click(function(){switch_fields(0); return false;});
+        $("#switch_photo").click(function(){switch_fields(1); return false;});
+        $("#switch_news").click(function(){switch_fields(2); return false;});
+        $("#switch_stats").click(function(){switch_fields(3); return false;});
+    <% end %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <ul id="post_fields">
+      <li>
+        <div class="field">
+          <%= f.label :title %>
+          <br/>
+          <%= f.text_field :title %>
+        </div>
+      </li>
+      <% if can? :manage, Post %>
+          <li>
+            <div class="field">
+              <%= f.label :on_frontpage_week, 'Smack of the Week on this week' %>
+              <br/>
+              <%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %>
+            </div>
+          </li>
+      <% end %>
+      <li>
+        <div class="lbuttons clearfix content-switch">
+          <a id="switch_video" href="#" class="licon licon1 withtext left pressed">
+            <span>Video</span>
+          </a>
+          <a id="switch_photo" href="#" class="licon licon2 withtext middle">
+            <span>Photo</span>
+          </a>
+          <a id="switch_news" href="#" class="licon licon3 withtext middle">
+            <span>News</span>
+          </a>
+          <a id="switch_stats" href="#" class="licon licon4 withtext right">
+            <span>Stats</span>
+          </a>
+        </div>
+      </li>
+      <li id="shifting_fields">
+        <%= f.fields_for :video, Video.new do |vf| %>
+            <div class="field">
+              <%= vf.label :url %>
+              <br/>
+              <%= vf.text_field :url %>
+            </div>
+        <% end %>
+      </li>
+      <li>
+        <div class="field">
+          <%= f.label :summary %>
+          <br/>
+          <%= f.text_area :summary, :class => "comment" %>
+        </div>
+      </li>
+    </ul>
+    <div>
+      <%= f.submit %>
+    </div>
 <% end %>
-
-			
-			

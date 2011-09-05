@@ -2,7 +2,8 @@ class CreateColleges < ActiveRecord::Migration
   def self.up
     create_table :colleges do |t|
       t.string :name
-      t.string :conference
+      t.references :conference
+      t.string :permalink
       t.timestamps
     end
   end

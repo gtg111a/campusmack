@@ -1,0 +1,2 @@
+class PhotosController < PostsController
+end

@@ -1,0 +1,13 @@
+<ul class="masthead">
+  <li><%= link_to "Videos", @parent.is_a?(College) ? college_videos_path(@parent) : conference_videos_path(@parent) %></li>
+  <li><%= link_to "Photos", @parent.is_a?(College) ? college_photos_path(@parent) : conference_photos_path(@parent) %></li>
+  <li><%= link_to "News" , @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %></li>
+  <li><%= link_to "Stats", @parent.is_a?(College) ? college_stats_path(@parent) : conference_stats_path(@parent) %></li>
+  <li class="righthead">
+    <%= link_to "Add a Redemption", @parent.is_a?(College) ? new_college_redemption_path(@parent) : new_conference_redemption_path(@parent),:class => "button" %>
+  </li>
+  <li class="righthead">
+    <%= link_to "Add a Smack", @parent.is_a?(College) ? new_college_smack_path(@parent) : new_conference_smack_path(@parent), :class => "button" %>
+  </li>
+</ul>
+

@@ -10,36 +10,32 @@ class Post < ActiveRecord::Base
   #Through the 'acts_as_commentable' gem
   acts_as_commentable
 
-  attr_accessible :content_type, :title, :content, :post_summary, :vote, :photo, :news, :on_frontpage_week
+  attr_accessible :title, :summary, :vote, :on_frontpage_week, :video_attributes, :photo_attributes, :news_post_attributes, :statistic_attributes
 
-  attr_searchable :title, :post_summary
+  attr_searchable :title, :summary
 
-  belongs_to :college
+  belongs_to :postable, :polymorphic => true
+  has_one :photo, :dependent => :destroy
+  has_one :video, :dependent => :destroy
+  has_one :statistic, :dependent => :destroy
+  has_one :news_post, :dependent => :destroy
+
   belongs_to :user
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  accepts_nested_attributes_for :user
-  accepts_nested_attributes_for :college
-
-
-  has_attached_file :photo,
-                    :styles => {:medium => "200x200", :large => "600x600"},
-                    :storage => :s3,
-                    :s3_credentials => S3_CREDENTIALS,
-                    :bucket => 'Campusmack',
-                    :path => "/:style/:id/:filename"
+  accepts_nested_attributes_for :video
+  accepts_nested_attributes_for :photo
+  accepts_nested_attributes_for :news_post
+  accepts_nested_attributes_for :statistic
 
   validates :type, :presence => true
-  validates :content_type, :presence => true
   validates :title, :presence => true
 
-  scope :videos, :conditions => ["posts.content_type LIKE ?", "Video"]
-  scope :photos, :conditions => ["posts.content_type LIKE ?", "Photo"]
-  scope :news, :conditions => ["posts.content_type LIKE ?", "News"]
-  scope :stats, :conditions => ["posts.content_type LIKE ?", "Stat"]
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
   scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
+  scope :by_conference, lambda { |conf| { :joins => :college, :conditions => [ 'conference = ?', conf ] } }
+
   default_scope :order => 'created_at DESC'
 
 end

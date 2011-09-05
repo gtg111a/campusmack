@@ -23,6 +23,14 @@ end
 
 
 namespace :db do
+  desc "add sample content"
+  task :add_content => :environment do
+    make_content
+  end
+end
+
+
+namespace :db do
   desc "Fill database with sample data"
   task :mopulate => :environment do
     Rake::Task['db:reset'].invoke
@@ -33,51 +41,29 @@ namespace :db do
 end
 
 def make_colleges
-  College.create!(:name => "Georgia", :conference => "SEC")
-  College.create!(:name => "Georgia Tech", :conference => "ACC")
-  College.create!(:name => "Clemson", :conference => "ACC")
-  College.create!(:name => "Florida", :conference => "SEC")
-  College.create!(:name => "Miami", :conference => "ACC")
-  College.create!(:name => "Duke", :conference => "ACC")
-  College.create!(:name => "Florida State", :conference => "ACC")
-  College.create!(:name => "North Carolina", :conference => "ACC")
-  College.create!(:name => "Boston College", :conference => "ACC")
-  College.create!(:name => "Maryland", :conference => "ACC")
-  College.create!(:name => "North Carolina State", :conference => "ACC")
-  College.create!(:name => "Virginia", :conference => "ACC")
-  College.create!(:name => "Virginia Tech", :conference => "ACC")
-  College.create!(:name => "Wake Forest", :conference => "ACC")
-  College.create!(:name => "Alabama", :conference => "SEC")
-  College.create!(:name => "Arkansas", :conference => "SEC")
-  College.create!(:name => "Auburn", :conference => "SEC")
-  College.create!(:name => "Kentucky", :conference => "SEC")
-  College.create!(:name => "LSU", :conference => "SEC")
-  College.create!(:name => "Mississippi State", :conference => "SEC")
-  College.create!(:name => "Ole Miss", :conference => "SEC")
-  College.create!(:name => "South Carolina", :conference => "SEC")
-  College.create!(:name => "Tennessee", :conference => "SEC")
-  College.create!(:name => "Vanderbilt", :conference => "SEC")
-  @colleges = College.all
+  sec = Conference.create!(:name => 'SEC')
+  acc = Conference.create!(:name => 'ACC')
+  [ "Alabama", "Arkansas", "Auburn", "Florida", "Georgia", "Kentucky", "LSU",
+    "Mississippi State", "Ole Miss", "South Carolina", "Tennessee", "Vanderbilt" ].each do |college|
+    sec.colleges.create!(:name => college)
+  end
+
+  [ "Boston College", "Clemson", "Duke", "Florida State", "Georgia Tech", "Maryland",
+    "Miami", "North Carolina", "North Carolina State", "Virginia", "Virginia Tech",
+    "Wake Forest" ].each do |college|
+    acc.colleges.create!(:name => college)
+  end
+  puts "Added #{College.count} colleges"
 end
 
 
 def make_content
-  @colleges.each do |college|
+  College.all.each do |college|
     5.times do |n|
-
-      college.smacks.create!(
-          :content_type => "Video",
-          :title => "Tech Nerds Everywhere",
-          :content => "http://www.youtube.com/watch?v=UaWXbqu5Bcs",
-   #       :vote => n,
-          :college_id => college.id)
-
-      college.redemptions.create!(
-          :content_type => "Video",
-          :title => "Calvin Johnson Highlights",
-          :content => "http://www.youtube.com/watch?v=YV_j7_CCc8A",
-    #      :vote => n,
-          :college_id => college.id)
+      smack = college.smacks.create!(:title => "Tech Nerds Everywhere")
+      smack.create_video(:url => "http://www.youtube.com/watch?v=UaWXbqu5Bcs")
+      redemption = college.redemptions.create!(:title => "Calvin Johnson Highlights")
+      redemption.create_video(:url => "http://www.youtube.com/watch?v=YV_j7_CCc8A")
     end
   end
 end
@@ -90,6 +76,7 @@ end
 def make_admin
   admin = Factory(:user, :username => '@campusmack', :password => 'campusmack', :admin => true)
   admin.confirm!
+  puts "Added admin"
 end
 
 def make_microposts

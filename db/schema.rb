@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110902110858) do
+ActiveRecord::Schema.define(:version => 20110904081448) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(:version => 20110902110858) do
 
   create_table "colleges", :force => true do |t|
     t.string   "name"
-    t.string   "conference"
+    t.integer  "conference_id"
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +42,12 @@ ActiveRecord::Schema.define(:version => 20110902110858) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "conferences", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -48,23 +55,36 @@ ActiveRecord::Schema.define(:version => 20110902110858) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", :force => true do |t|
-    t.string   "content_type"
-    t.string   "title"
-    t.string   "content"
-    t.integer  "college_id"
-    t.integer  "user_id"
-    t.string   "post_summary"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+  create_table "news_posts", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "caption"
+    t.integer  "post_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.string   "summary"
     t.string   "type"
-    t.string   "news"
+    t.boolean  "published"
+    t.integer  "postable_id"
+    t.string   "postable_type"
+    t.integer  "user_id"
     t.integer  "on_frontpage_week"
     t.integer  "report_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "relationships", :force => true do |t|
@@ -88,12 +108,21 @@ ActiveRecord::Schema.define(:version => 20110902110858) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "statistics", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "name"
+    t.string   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
+    t.string   "username"
     t.string   "email",                                 :default => "",    :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin",                                 :default => false
-    t.string   "college"
+    t.integer  "college_id"
     t.string   "affiliation"
     t.integer  "up_votes"
     t.integer  "down_votes"
@@ -111,11 +140,17 @@ ActiveRecord::Schema.define(:version => 20110902110858) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "votes", :force => true do |t|
     t.boolean  "vote",          :default => false

@@ -36,6 +36,10 @@ group :test do
 gem 'rspec-rails', '2.6.1'
 gem 'webrat', '0.7.1'
 gem 'spork', '0.9.0.rc5'
+gem 'cucumber'
+gem 'cucumber-rails'
+gem 'capybara'
+gem 'database_cleaner'
 end
 
 group :development, :test do

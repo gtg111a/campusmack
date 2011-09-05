@@ -1,0 +1,21 @@
+<%= render 'shared/search_fields' %>
+<h1><%= @conference.name %></h1>
+<ul class="masthead">
+  <li><%= link_to "Videos", conference_videos_path(@conference) %></li>
+  <li><%= link_to "Photos", conference_photos_path(@conference) %></li>
+  <li><%= link_to "News" , conference_news_index_path(@conference) %></li>
+  <li><%= link_to "Stats", conference_stats_path(@conference) %></li>
+  <li class="righthead">
+    <%= link_to "Add a Redemption", new_conference_redemption_path(@conference),:class => "button" %>
+  </li>
+  <li class="righthead">
+    <%= link_to "Add a Smack", new_conference_smack_path(@conference), :class => "button" %>
+  </li>
+</ul>
+<br class="clear"/>
+<% unless @posts.empty? %>
+    <%= will_paginate @posts %>
+    <ul class="posts">
+      <%= render :partial => "/posts/post", :collection => @posts %>
+    </ul>
+<% end %>
