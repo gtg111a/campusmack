@@ -13,11 +13,6 @@
         ';
         postcontent[1] = '<%= f.fields_for :photo, Photo.new do |pf| %>
             <div class="field">
-              <%= pf.label :caption %>
-              <br/>
-              <%= pf.text_field :caption %>
-            </div>
-            <div class="field">
               <%= pf.label :image, 'Photo' %>
               <br/>
               <%= pf.file_field :image %>
@@ -112,7 +107,5 @@
         </div>
       </li>
     </ul>
-    <div>
-      <%= f.submit %>
-    </div>
+    <%= f.submit %>
 <% end %>

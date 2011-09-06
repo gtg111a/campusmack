@@ -1,18 +1,23 @@
-Given /^I have (Smack|Redemption) "([^"]*)" with text "([^"]*)" created by "([^"]*)"$/ do |type, title, text, username|
+Given /^I have "([^"]*)" (conference|college) (Smack|Redemption) "([^"]*)" with text "([^"]*)" created by "([^"]*)"$/ do |name, confcoll, type, title, text, username|
   u = User.where(:username => username).first
-  college = u.college
+  if confcoll == "conference"
+    c = Conference.where(:name => name).first
+  else
+    c = College.where(:name => name).first
+  end
   if type == "Smack"
-    smack = college.smacks.build(:title => title,
+    smack = c.smacks.build(:title => title,
     :summary => text)
     smack.user_id = u.id
     smack.save!
   else
-    red = college.redemptions.build(:title => title,
+    red = c.redemptions.build(:title => title,
     :post_summary => text)
     red.user_id = u.id
     red.save!
   end
 end
+
 
 Given /^(Smack|Redemption) "([^"]*)" vote (up|down) count is (\d+)$/ do |type, title, dir, count|
   if type == "Smack"

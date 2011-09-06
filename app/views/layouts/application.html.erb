@@ -6,7 +6,7 @@
   <%= csrf_meta_tag %>
   <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js' %>
   <%= stylesheet_link_tag 'new', 'button', 'lionbuttons', 'jquery.fancybox-1.3.4.css' %>
-  <% unless Rails.env == 'development' %>
+  <% unless Rails.env == 'development' || Rails.env == 'test' %>
       <%= javascript_include_tag 'http://shots.snap.com/ss/d83b52a2e254661d23d1c0974a8b36c3/snap_shots.js' %>
   <% end %>
   <%= yield(:head) %>

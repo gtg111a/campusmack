@@ -544,8 +544,17 @@ p {
 }
 
 ul.posts div.content, #smack_of_the_week div.content {
+  width: 75%;
+  font-size: 120%;
+}
+
+div.video_post, div.photo_post {
   float: left;
   padding: 0 10px 10px 0 !important;
+}
+
+div.post div.summary {
+  font-size: 120%;
 }
 
 .post p {
@@ -584,6 +593,7 @@ ul.posts div.content, #smack_of_the_week div.content {
 
 .post div.vote div {
   width: 100%;
+  font-size: 120%;
 }
 
 .post div.vote img {
@@ -658,7 +668,6 @@ textarea {
 div.field, div.actions {
     margin-bottom: 10px;
 }
-
 
 .left {
     float: left;
@@ -807,10 +816,6 @@ li#news_field {display:none;}
 #error_explanation p { color: #333; margin-bottom: 0; padding: 5px;}
 #error_explanation ul li { font-size: 12px; list-style: square;}
 
-table.searchtbl {
-  float: right;
-}
-
 ul.masthead  {
     font-size: 100%;
     padding-left: 12px;
@@ -848,7 +853,7 @@ div.post .content {
     padding: 10px 0;
 }
 div.actions {
-    float: left;
+    float: right;
 }
 
 textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; padding: 5px;}

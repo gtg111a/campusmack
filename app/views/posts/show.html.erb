@@ -1,10 +1,6 @@
 <% if can? :edit, @post %>
     <div class="actions">
-      <% if @post.type == "Smack"%>
-        <%= link_to 'Edit', edit_college_smack_path(@parent, @post), :class => 'button' %>
-      <% else %>
-        <%= link_to 'Edit', edit_college_redemption_path(@parent, @post), :class => 'button' %>
-      <% end %>
+      <%= link_to 'Edit', method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@parent, @post), :class => 'button' %>
       <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' %>
     </div>
 <% end %>
@@ -24,7 +20,7 @@
   <% if @post.video %>
       <div class="content"><%= youtube_embed(@post.video.url, true) %></div>
   <% end %>
-  <div><%= @post.summary %>
+  <div class="summary"><%= @post.summary %>
     <% if @post.summary && params[:action] != 'show' %>
         <%= link_to " [more...]", [@parent, @post] %>
     <% end %>

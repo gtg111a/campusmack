@@ -1,7 +1,7 @@
-<%= render 'shared/search_fields' %>
 <h1><%= @college.name %></h1>
 <%= render :partial => 'shared/masthead' %>
 <br class="clear"/>
+<%= render 'shared/search_fields' %>
 <% unless @posts.empty? %>
     <%= will_paginate @posts %>
     <ul class="posts">

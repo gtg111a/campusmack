@@ -1,34 +1,33 @@
 <li id="post_<%= post.id %>" class="post <%= post.type.downcase %>">
   <% if signed_in? %>
       <div class="actions">
-        <%= link_to('Edit', edit_post_path(post), :class => 'button') if can? :update, post %>
+        <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
         <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
         <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
       </div>
   <% end %>
   <h4><%= link_to post.title, [post.postable, post] %></h4>
+  <%= vote_buttons(post) %>
   <div class="content">
     <% if can?(:manage, :all) && post.report_count.to_i > 0 %>
         <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
     <% end %>
     <% if post.photo %>
-        <div id="photo_post" class="photo">
+        <div class="photo_post">
           <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
         </div>
     <% end %>
     <% if post.video %>
-        <div class="content"><%= youtube_embed(post.video.url) %></div>
+        <div class="video_post"><%= youtube_embed(post.video.url) %></div>
     <% end %>
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
-    <div class="comments"><%= post.summary %>
+    <div class="comments">
+      <%= post.summary %>
       <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
-          <%= link_to " [more...]", [ post.postable, post ] %>
+          <%= link_to " [more...]", [ post.postable, post ] %><br /><br />
       <% end %>
     </div>
   </div>
-  <%= vote_buttons(post) %>
-  <br class="clear"/>
-
   <div class="timestamp">
     posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.try(:username) %>.
   </div>

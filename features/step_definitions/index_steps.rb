@@ -4,9 +4,17 @@ Given /^I have colleges$/ do |table|
   end
 end
 
+Given /^I have conferences$/ do |table|
+  table.hashes.each do |hash|
+    Conference.create(:name => hash["Conference"]) unless Conference.where(:name => hash["Conference"]).any?
+  end
+end
+
+
 Given /^I have posts$/ do |table|
   table.hashes.each do |hash|
-    c = College.where(:name => hash["College"]).first
+    c = College.where(:name => hash["College"]).first unless hash["College"].blank?
+    c = Conference.where(:name => hash["Conference"]).first unless hash["Conference"].blank?
     u = User.where(:username => hash["Username"]).first
     post = c.posts.build(:title => hash["Title"], :summary => "bla-bla")
     post.type = hash["Type"]

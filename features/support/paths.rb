@@ -13,10 +13,14 @@ module NavigationHelpers
 
     when /^signup page$/
       sign_up_path
-      
+
     when /^root page$/
       root_path
-      
+
+    when /^"([^\"]*)" comment edit page/
+      c = Comment.where(:comment => $1).first
+      edit_comment_path(c)
+
     when /^Smack "([^\"]*)" page/
       smack = Smack.where(:title => $1).first
       if smack.postable_type == "College"
@@ -24,7 +28,7 @@ module NavigationHelpers
       else
         "/conferences/#{smack.postable.name}/smacks/#{smack.id}"
       end
-    
+
     when /^Redemption "([^\"]*)" page/
       red = Redemption.where(:title => $1).first
       if red.postable_type == "College"
@@ -32,7 +36,7 @@ module NavigationHelpers
       else
         "/conferences/#{red.postable.name}/redemptions/#{red.id}"
       end
-    
+
     when /^Smack "([^\"]*)" edit page/
       smack = Smack.where(:title => $1).first
       if smack.postable_type == "College"
@@ -40,7 +44,7 @@ module NavigationHelpers
       else
         "/conferences/#{smack.postable.name}/smacks/#{smack.id}/edit"
       end
-    
+
     when /^Redemption "([^\"]*)" edit page/
       red = Redemption.where(:title => $1).first
       if red.postable_type == "College"
@@ -52,10 +56,16 @@ module NavigationHelpers
     when /^"([^\"]*)" college page/
       c = College.where(:name => $1).first
       "/colleges/#{c.permalink}"
-    
+
     when /^"([^\"]*)" college ([^\s]+) page/
       c = College.where(:name => $1).first
       "/colleges/#{c.permalink}/#{$2}"
+
+    when /^"([^\"]*)" conference page/
+      "/conferences/#{$1.parameterize}"
+
+    when /^"([^\"]*)" conference ([^\s]+) page/
+      "/conferences/#{$1.parameterize}/#{$2}"
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

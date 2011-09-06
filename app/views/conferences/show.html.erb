@@ -1,4 +1,3 @@
-<%= render 'shared/search_fields' %>
 <h1><%= @conference.name %></h1>
 <ul class="masthead">
   <li><%= link_to "Videos", conference_videos_path(@conference) %></li>
@@ -13,6 +12,7 @@
   </li>
 </ul>
 <br class="clear"/>
+<%= render 'shared/search_fields' %>
 <% unless @posts.empty? %>
     <%= will_paginate @posts %>
     <ul class="posts">

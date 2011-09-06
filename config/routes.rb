@@ -46,12 +46,8 @@ Campusmack::Application.routes.draw do
       resources :news, :controller => :news_posts
       resources :stats, :controller => :statistics
     end
-    resources :smacks, :redemptions do
-      resources :comments, :only => [:create, :destroy, :edit]
-    end
   end
 
-  resources :comments
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :authentications, :only => [:index, :destroy]

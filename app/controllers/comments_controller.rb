@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :find_commentable, :except => [:destroy, :edit]
+  before_filter :find_commentable, :except => [:destroy, :edit, :update]
 
   def find_commentable
     @commentable = Redemption.find(params[:redemption_id]) if params[:redemption_id]
@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @commentable = @comment.commentable
     @comment.destroy
     respond_to do |format|
@@ -28,12 +27,10 @@ class CommentsController < ApplicationController
 
   def edit
     @user = current_user
-    @comment = Comment.find(params[:id])
     @title = "Edit comment"
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @post = Post.find(@comment.commentable_id)
     if @comment.update_attributes(params[:comment])
       redirect_to [ @comment.commentable.postable, @post ], :flash => {:success => "Comment updated."}

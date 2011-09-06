@@ -15,7 +15,7 @@ Feature: Posts creation and edition
     And I fill in "Summary" with "<Text>"
     And I press "Create <Type>"
     Then I should see "<College> <Type> Submitted Successfully!"
-    And I should see "<College>'s <Type>s"
+    And I should see "<College> <Type>s"
     And I should see "<Title>"
     And I should see "<Text>"
     And I should see "posted less than a minute ago by <Username>"
@@ -35,7 +35,7 @@ Feature: Posts creation and edition
   Scenario Outline: Edit Smack and Redemption
     Given I have confirmed user "<First Name>" "<Last Name>" with username "<Username>", email "<Email>", password "<Password>", college "<College>" and affiliation "<Affiliation>"
     And user signed in as "<Email>" with "<Password>"
-    And I have <Type> "<Title>" with text "<Text>" created by "<Username>"
+    And I have "<College>" college <Type> "<Title>" with text "<Text>" created by "<Username>"
     And I am on <Type> "<Title>" page
     When I follow "Edit"
     And I fill in "Title" with "<New Title>"
@@ -58,7 +58,7 @@ Feature: Posts creation and edition
   Scenario Outline: Delete Smack and Redemption
     Given I have confirmed user "<First Name>" "<Last Name>" with username "<Username>", email "<Email>", password "<Password>", college "<College>" and affiliation "<Affiliation>"
     And user signed in as "<Email>" with "<Password>"
-    And I have <Type> "<Title>" with text "<Text>" created by "<Username>"
+    And I have "<College>" college <Type> "<Title>" with text "<Text>" created by "<Username>"
     And I am on <Type> "<Title>" page
     When I will confirm any dialog
     And I follow "Delete"
@@ -82,7 +82,7 @@ Feature: Posts creation and edition
     | Clemson        | Fan         | test_user    | Test       | User      | Fan         | test@example.com    | 12345678  |
     | Boston College | Alumni      | test_client  | Test       | Client    | Alumni      | client@example.com  | 87654321  |
     | Alabama        | Student     | test_student | Test       | Student   | Student     | student@example.com | 123456789 |
-    And I have <Type> "<Title>" with text "<Text>" created by "<Username>"
+    And I have "Clemson" college <Type> "<Title>" with text "<Text>" created by "<Username>"
     And user signed in as "<Email>" with "<Password>"
     And I am on <Type> "<Title>" page
     And <Type> "<Title>" vote <UpDown> count is 0
@@ -112,7 +112,7 @@ Feature: Posts creation and edition
     | Clemson        | Fan         | test_user    | Test       | User      | Fan         | test@example.com    | 12345678  |
     | Boston College | Alumni      | test_client  | Test       | Client    | Alumni      | client@example.com  | 87654321  |
     | Alabama        | Student     | test_student | Test       | Student   | Student     | student@example.com | 123456789 |
-    And I have <Type> "<Title>" with text "<Text>" created by "<Username>"
+    And I have "Clemson" college <Type> "<Title>" with text "<Text>" created by "<Username>"
     And user signed in as "<Email>" with "<Password>"
     When I am on <Type> "<Title>" page
     Then I should <Action> "Edit" within "div.inner-border"
@@ -136,7 +136,7 @@ Feature: Posts creation and edition
     | Clemson        | Fan         | test_user    | Test       | User      | Fan         | test@example.com    | 12345678  |
     | Boston College | Alumni      | test_client  | Test       | Client    | Alumni      | client@example.com  | 87654321  |
     | Alabama        | Student     | test_student | Test       | Student   | Student     | student@example.com | 123456789 |
-    And I have <Type> "<Title>" with text "<Text>" created by "<Username>"
+    And I have "Clemson" college <Type> "<Title>" with text "<Text>" created by "<Username>"
     And user signed in as "<Email>" with "<Password>"
     When I am on <Type> "<Title>" page
     Then I should <Action> "Delete" within "div.inner-border"
