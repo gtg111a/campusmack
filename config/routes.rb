@@ -48,6 +48,12 @@ Campusmack::Application.routes.draw do
     end
   end
 
+  resources :conferences do
+    member do
+      get :status, :to => 'conferences#status'
+    end
+  end
+
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :authentications, :only => [:index, :destroy]

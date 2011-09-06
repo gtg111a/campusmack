@@ -898,3 +898,13 @@ textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; paddi
     font-size: 10px;
     color: gray;
 }
+
+.conf_stat {
+    float: left;
+    margin: 10px;
+}
+
+.conf_stat th,
+.conf_stat td {
+    padding: 3px;
+}

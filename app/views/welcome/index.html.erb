@@ -4,10 +4,6 @@
 <% if @sotw %>
     <%= render :partial => 'sotw' %>
 <% end %>
-<h1>Most smacked colleges</h1>
-<ul class="colleges">
-  <% @colleges.each do |college| %>
-      <li><%= link_to college.name, college %> (<%= college.smacks_count %>/<%= college.redemptions_count %>)</li>
-  <% end %>
-</ul>
-<%= link_to "See full list", conferences_path, :class => :button%>
+<% Conference.all.each do |conference| %>
+    <%= render :partial => 'conferences/stats', :locals => { :conference => conference, :limit => 5 } %>
+<% end %>

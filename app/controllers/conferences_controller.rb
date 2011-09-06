@@ -13,6 +13,10 @@ class ConferencesController < ApplicationController
     @conferences = Conference.all
   end
 
+  def status
+    @conference = Conference.where(:name => params[:id].upcase).first
+  end
+
   def show
     @conference = Conference.where(:name => params[:id].upcase).first
     @parent = @conference

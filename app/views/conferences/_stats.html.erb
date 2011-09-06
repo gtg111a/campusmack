@@ -1,0 +1,17 @@
+<table class="conf_stat" cellspacing="5px">
+  <tr>
+    <th><%= conference.name %></th>
+    <th>Smacks</th>
+    <th>Redemptions</th>
+  </tr>
+  <% conference.colleges.limit(limit).order('smacks_count desc').each do |college| %>
+      <tr>
+        <td><%= link_to college.name, college %></td>
+        <td><%= college.smacks_count %></td>
+        <td><%= college.redemptions_count %></td>
+      </tr>
+  <% end %>
+  <% if limit %>
+      <tr><td colspan="3"><%= link_to "See full list", status_conference_path(conference), :class => :button%></td></tr>
+  <% end %>
+</table>

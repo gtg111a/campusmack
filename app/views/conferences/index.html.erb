@@ -1,8 +1,17 @@
-<% @conferences.each do |conference| %>
-  <h1><%= link_to conference.name, conference_path(conference) %></h1>
-  <ul class="colleges">
-    <% conference.colleges.order('smacks_count desc').each do |college| %>
-        <li><%= link_to college.name, college %> (<%= college.smacks_count %>/<%= college.redemptions_count %>)</li>
-    <% end %>
-  </ul>
+<% Conference.all.each do |conference| %>
+    <table class="conf_stat" cellspacing="5px">
+      <tr>
+        <th><%= link_to conference.name, conference_path(conference) %></th>
+        <th>Smacks</th>
+        <th>Redemptions</th>
+      </tr>
+      <% conference.colleges.limit(5).order('smacks_count desc').each do |college| %>
+          <tr>
+            <td><%= link_to college.name, college %></td>
+            <td><%= college.smacks_count %></td>
+            <td><%= college.redemptions_count %></td>
+          </tr>
+      <% end %>
+    </table>
 <% end %>
+<br style="clear:both"/>
