@@ -1,8 +1,6 @@
-
-
 $('a[data-method="delete"]').live('ajax:success', function(){
-	$ (this).closest('tr').remove();
-	$("div.flash").remove();
+    $(this).closest('div.comment').remove();
+    $("div.flash").remove();
 });
 
 
