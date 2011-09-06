@@ -1,0 +1,8 @@
+<% @conferences.each do |conference| %>
+  <h1><%= link_to conference.name, conference_path(conference) %></h1>
+  <ul class="colleges">
+    <% conference.colleges.order('smacks_count desc').each do |college| %>
+        <li><%= link_to college.name, college %> (<%= college.smacks_count %>/<%= college.redemptions_count %>)</li>
+    <% end %>
+  </ul>
+<% end %>

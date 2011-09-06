@@ -33,8 +33,10 @@ Campusmack::Application.routes.draw do
     resources :stats, :controller => :statistics
   end
 
+  resources :comments, :only => [:destroy, :edit, :update]
+
   resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
-    resources :comments, :only => [:create, :destroy, :edit]
+    resources :comments, :only => [:create]
   end
 
   resources :conferences, :colleges, :only => [:index, :show] do

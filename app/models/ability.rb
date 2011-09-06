@@ -12,8 +12,10 @@ class Ability
       can :manage, User, :id => user.id
       can :create, Redemption
       can :create, Smack
+      can :create, Comment
       can [:update, :destroy], Redemption, :user_id => user.id
       can [:update, :destroy], Smack, :user_id => user.id
+      can [:update, :destroy], Comment, :user_id => user.id
       can [:vote_up, :vote_down], Post
       can [:manage], Authentication, :user_id => user.id
       can :manage, Vote, :user_id => user.id
