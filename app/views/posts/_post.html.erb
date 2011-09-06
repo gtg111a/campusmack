@@ -1,4 +1,4 @@
-<li id="post_<%= post.id %>" class="post <%= post.type.downcase %>">
+<li id="post_<%= post.id %>" class="post">
   <% if signed_in? %>
       <div class="actions">
         <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
