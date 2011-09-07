@@ -7,6 +7,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :status, Conference
     end
     unless user.new_record?
       can :manage, User, :id => user.id

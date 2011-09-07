@@ -1,7 +1,7 @@
 <table class="searchtbl">
   <tr>
     <td>
-      <%= form_for Post.search do |f| %>
+      <%= form_for 'search', :url => request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search", :html => {:method => :post} do |f| %>
           <%= f.label "Search Posts:" %>
           <%= f.text_field :title_or_summary_contains %>
           <%= f.submit "Go!", :name =>nil %>

@@ -13,7 +13,16 @@ Campusmack::Application.routes.draw do
 
   resources :users do
     member do
+      match :search, :action => :show
+    end
+    member do
       get :following, :followers
+    end
+    member do
+      match :smacks
+      match 'smacks/search', :action => :smacks
+      match :redemptions
+      match 'redemptions/search', :action => :redemptions
     end
   end
 
@@ -27,10 +36,29 @@ Campusmack::Application.routes.draw do
   end
 
   resources :conferences, :colleges do
-    resources :videos
-    resources :photos
-    resources :news, :controller => :news_posts
-    resources :stats, :controller => :statistics
+    member do
+      match :search, :action => :show
+    end
+    resources :videos do
+       collection do
+         match :search, :action => :index
+       end
+    end
+    resources :photos do
+       collection do
+         match :search, :action => :index
+       end
+    end
+    resources :news, :controller => :news_posts do
+       collection do
+         match :search, :action => :index
+       end
+    end
+    resources :stats, :controller => :statistics do
+       collection do
+         match :search, :action => :index
+       end
+    end
   end
 
   resources :comments, :only => [:destroy, :edit, :update]
@@ -41,6 +69,9 @@ Campusmack::Application.routes.draw do
 
   resources :conferences, :colleges, :only => [:index, :show] do
     resources :smacks, :redemptions do
+      collection do
+        match :search, :action => :index
+      end
       resources :videos
       resources :photos
       resources :news, :controller => :news_posts
@@ -53,6 +84,7 @@ Campusmack::Application.routes.draw do
       get :status, :to => 'conferences#status'
     end
   end
+  resources :conferences
 
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]

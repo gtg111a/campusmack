@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   attr_accessible :title, :summary, :vote, :on_frontpage_week, :video_attributes, :photo_attributes, :news_post_attributes, :statistic_attributes
 
-  attr_searchable :title, :summary
+  attr_searchable :title, :summary, :type
 
   belongs_to :postable, :polymorphic => true
   has_one :photo, :dependent => :destroy

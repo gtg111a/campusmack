@@ -3,8 +3,6 @@ require 'mailgun'
 class UsersController < ApplicationController
   load_and_authorize_resource
   skip_authorization_check :only => [ :create, :new ]
-  #before_filter :correct_user, :only => [:edit, :update]
-  #before_filter :admin_user, :only => :destroy
   
   def index
     @users = User.paginate(:page => params[:page])
@@ -12,23 +10,13 @@ class UsersController < ApplicationController
   end
   
   def show
-    if params[:college]
-      @college = College.where("name =?", params[:college][:name]).first
-      init_college_menu
-    end
-    @colleges = College.all
-    @user = User.find(params[:id])
     @search = @user.posts.search(params[:search])
-    @title = @user.username
-    if params[:search]
-      @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
-    else
-      @posts = find_posts(@user)
-    end
+    @posts = @search.paginate(:page => params[:page])
+    render :show
   end
 
   def following
-   show_follow(:following)
+    show_follow(:following)
   end
   
   def followers
@@ -37,9 +25,20 @@ class UsersController < ApplicationController
   
   def show_follow(action)
     @title = action.to_s.capitalize
-    @user = User.find(params[:id])
     @users = @user.send(action).paginate(:page => params[:page])
     render 'show_follow'
+  end
+
+  def smacks
+    params[:search] ||= {}
+    params[:search][:type_contains] = 'Smack'
+    show
+  end
+
+  def redemptions
+    params[:search] ||= {}
+    params[:search][:type_contains] = 'Redemption'
+    show
   end
 
   def new
@@ -78,34 +77,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, :flash => { :success => "User destroyed." }
   end
-  
 
-  private
-  
-
-    def find_posts(user)
-      if request.fullpath.to_s =~ /Video/
-        return user.posts.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
-      elsif request.fullpath.to_s =~ /Photo/
-        return user.posts.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC') 
-      else
-        return user.posts.paginate(:page => params[:page], :order => 'created_at DESC')
-      end
-    end
-
-    
-
-=begin
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
-    end
-    
-    def admin_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) if !current_user.admin? || current_user?(@user)
-    end
-=end
 end
 
 
