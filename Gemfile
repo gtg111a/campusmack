@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rails', '3.0.10'
 gem 'spork', '0.9.0.rc5'
 #gem 'aws-sdk'
 gem 'paperclip'
@@ -17,17 +17,19 @@ gem 'meta_search'
 gem 'client_side_validations'
 gem 'compass', ">= 0.11.5"
 gem 'cancan'
+gem 'fastercsv'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '1.3.3'
+#gem 'sqlite3', '1.3.3'
+gem 'mysql2', '0.2.8'
 gem 'gravatar_image_tag'
 gem 'will_paginate', '3.0.pre2'
 
 group :development do
 gem 'rspec-rails', '2.6.1'
-gem 'annotated_models'
 gem 'faker', '0.3.1'
 #gem 'ruby-debug'
 end

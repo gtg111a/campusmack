@@ -22,6 +22,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :reports, :as => :reportable, :dependent => :destroy
 
   accepts_nested_attributes_for :video
   accepts_nested_attributes_for :photo

@@ -1,3 +1,19 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.simplemodal', 'osx' %>
+  <%= stylesheet_link_tag 'osx' %>
+<% end %>
+<% content_for :js do %>
+  var post_id = 0;
+  function updRepLink() {
+    $("#rep_btn").attr("href", "/posts/"+post_id+"/report?reason="+escape($("#custom-reason").val()));
+  }
+<% end %>
+<% content_for :jq do %>
+  $(".report-reasons").click(function(){$.modal.close()});
+  $("#rep_btn").click(function(){$.modal.close()});
+  $("#custom-reason").change(function(){updRepLink()});
+  $("#custom-reason").keyup(function(){updRepLink()});
+<% end %>
 <h1><%= @conference.name %></h1>
 <ul class="masthead">
   <li><%= link_to "Videos", conference_videos_path(@conference) %></li>
@@ -19,3 +35,13 @@
       <%= render :partial => "/posts/post", :collection => @posts %>
     </ul>
 <% end %>
+<div id="osx-modal-content">
+  <div id="osx-modal-title">Please, select a reason</div>
+  <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+  <div id="osx-modal-data">
+    <% Reason.all.each do |reason| %>
+      <a href="/posts/0/report?reason_id=<%= reason.id %>" id="reason_id_<%= reason.id %>" class="report-reasons" data-remote="true"><%= reason.reason %></a><br />
+    <% end %>
+    Other: <input type="text" id="custom-reason" /> <a href="/posts/0/report?reason=" id="rep_btn" class="lbutton" data-remote="true">Report</a>
+  </div>
+</div>

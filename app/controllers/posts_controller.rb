@@ -61,11 +61,15 @@ class PostsController < ApplicationController
   end
 
   def report
-    @post = Post.find(params[:id])
-    @post.increment!(:report_count)
-    flash[:success] = "Post Reported to Site Admin"
+    unless params[:reason_id].blank?
+      reason = Reason.find(params[:reason_id].to_i)
+    else
+      reason = nil
+    end
+    @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:reason])
     respond_to do |format|
-      format.html { redirect_back_or(@post) }
+      format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
+      format.js
     end
   end
 

@@ -3,15 +3,12 @@
       <div class="actions">
         <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
         <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
+        <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
       </div>
   <% end %>
   <h4><%= link_to post.title, [post.postable, post] %></h4>
   <%= vote_buttons(post) %>
   <div class="content">
-    <% if can?(:manage, :all) && post.report_count.to_i > 0 %>
-        <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
-    <% end %>
     <% if post.photo %>
         <div class="photo_post">
           <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>

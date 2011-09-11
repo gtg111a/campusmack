@@ -1,9 +1,24 @@
-<% if can? :edit, @post %>
-    <div class="actions">
-      <%= link_to 'Edit', method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@parent, @post), :class => 'button' %>
-      <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' %>
-    </div>
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.simplemodal', 'osx' %>
+  <%= stylesheet_link_tag 'osx' %>
 <% end %>
+<% content_for :js do %>
+  var post_id = 0;
+  function updRepLink() {
+    $("#rep_btn").attr("href", "/posts/"+post_id+"/report?reason="+escape($("#custom-reason").val()));
+  }
+<% end %>
+<% content_for :jq do %>
+  $(".report-reasons").click(function(){$.modal.close()});
+  $("#rep_btn").click(function(){$.modal.close()});
+  $("#custom-reason").change(function(){updRepLink()});
+  $("#custom-reason").keyup(function(){updRepLink()});
+<% end %>
+<div class="actions">
+  <%= link_to 'Edit', method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@parent, @post), :class => 'button' if can? :update, @post %>
+  <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' if can? :destroy, @post %>
+  <%= link_to('Report Abuse', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") if can? :report, @post %>
+</div>
 <h1><%= @post.title %></h1>
 <div class="post">
   <div class="top">
@@ -40,5 +55,15 @@
   <% end %>
   <div class="comments">
     <%= render :partial => @post.comments %>
+  </div>
+</div>
+<div id="osx-modal-content">
+  <div id="osx-modal-title">Please, select a reason</div>
+  <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+  <div id="osx-modal-data">
+    <% Reason.all.each do |reason| %>
+      <a href="/posts/<%= @post.id %>/report?reason_id=<%= reason.id %>" id="reason_id_<%= reason.id %>" class="report-reasons" data-remote="true"><%= reason.reason %></a><br />
+    <% end %>
+    Other: <input type="text" id="custom-reason" /> <a href="/posts/0/report?reason=" id="rep_btn" class="lbutton" data-remote="true">Report</a>
   </div>
 </div>

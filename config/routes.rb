@@ -61,7 +61,11 @@ Campusmack::Application.routes.draw do
     end
   end
 
-  resources :comments, :only => [:destroy, :edit, :update]
+  resources :comments, :only => [:destroy, :edit, :update] do
+    member do
+      get :report
+    end
+  end
 
   resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
     resources :comments, :only => [:create]
@@ -90,7 +94,6 @@ Campusmack::Application.routes.draw do
   resources :relationships, :only => [:create, :destroy]
   resources :authentications, :only => [:index, :destroy]
   resources :support, :only => [:new, :create]
-  get '/reports', :to => 'reports#index'
 
   match '/search', :to => 'posts#index'
   get '/contact-us', :to => 'support#new'

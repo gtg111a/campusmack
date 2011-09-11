@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  check_authorization
   include PostsHelper
   include SessionsHelper
   
