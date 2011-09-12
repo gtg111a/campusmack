@@ -14,4 +14,13 @@ class Vote < ActiveRecord::Base
   # Comment out the line below to allow multiple votes per user.
   validates_uniqueness_of :voteable_id, :scope => [:voteable_type, :voter_type, :voter_id]
 
+  def user_id
+    voter_id if voter_type == "User"
+  end
+
+  def user_id=(id)
+    voter_id = id
+    voter_type = "User"
+  end
+
 end
