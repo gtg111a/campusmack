@@ -35,7 +35,8 @@ class PostsController < ApplicationController
       @parent.posts.joins(@post_cls.singularize.to_sym)
     end
     @search = posts.search(params[:search])
-    @posts = @search.paginate(:page => params[:page])
+    @order = params[:order] || 'created_at desc'
+    @posts = @search.paginate(:page => params[:page], :order => @order)
     init_college_menu
     # We use the views from the posts folder for everything
     render 'posts/index'

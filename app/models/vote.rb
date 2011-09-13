@@ -10,6 +10,8 @@ class Vote < ActiveRecord::Base
 
   attr_accessible :vote, :voter, :voteable
 
+  after_create  :increment_counter_cache
+  after_destroy :decrement_counter_cache
 
   # Comment out the line below to allow multiple votes per user.
   validates_uniqueness_of :voteable_id, :scope => [:voteable_type, :voter_type, :voter_id]
@@ -21,6 +23,29 @@ class Vote < ActiveRecord::Base
   def user_id=(id)
     voter_id = id
     voter_type = "User"
+  end
+
+  private
+
+  def increment_counter_cache
+    return unless voteable_type == "Post"
+    p = Post.find(voteable_id)
+    if vote
+      p.up_votes += 1
+    else
+      p.down_votes += 1
+    end
+    p.save
+  end
+
+  def decrement_counter_cache
+    p = Post.find(voteable_id)
+    if vote
+      p.up_votes -= 1
+    else
+      p.down_votes -= 1
+    end
+    p.save
   end
 
 end

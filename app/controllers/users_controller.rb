@@ -10,8 +10,9 @@ class UsersController < ApplicationController
   end
   
   def show
+    @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
-    @posts = @search.paginate(:page => params[:page])
+    @posts = @search.paginate(:page => params[:page], :order => @order)
     render :show
   end
 

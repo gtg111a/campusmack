@@ -37,6 +37,4 @@ class Post < ActiveRecord::Base
   scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => [ 'conference = ?', conf ] } }
 
-  default_scope :order => 'created_at DESC'
-
 end
