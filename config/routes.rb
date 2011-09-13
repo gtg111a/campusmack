@@ -14,12 +14,15 @@ Campusmack::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers
+      get 'plaxo_import'
     end
   end
 
   resources :posts do
     member do
       get :report
+      get "opengraph"
+      get 'share_through_email_form'
     end
     member do
       post :vote_up, :vote_down
