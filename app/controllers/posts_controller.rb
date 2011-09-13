@@ -1,7 +1,7 @@
 # This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph]
   include PostsHelper
 
   before_filter :find_parent
@@ -104,6 +104,10 @@ class PostsController < ApplicationController
       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote down successful."} }
       format.js
     end
+  end
+
+  def opengraph
+    @post = Post.find(params[:id])
   end
 
   protected

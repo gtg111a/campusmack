@@ -1,0 +1,25 @@
+<% meta_tags({ "description" => " #{@post.title} <br/> #{@post.summary} "
+  }) -%>
+<% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
+    "og:type" => "article",
+    "og:url" => "#{opengraph_post_url(@post)}",
+    "og:site_name" => "#{SITE_NAME}",
+    "og:description" => " #{@post.title} <br/> #{@post.summary} "
+  }) -%>
+<h4><%= link_to @post.title, [@post.postable, @post] %></h4>
+<div class="content">
+  <% if @post.photo %>
+    <div class="photo_post">
+      <a class="photo snap_noshots" href="<%= @post.photo.url(:large) %>"><img src="<%= @post.photo.url(:medium) %>" alt=""/></a>
+    </div>
+  <% end %>
+  <% if @post.video %>
+    <div class="video_post"><%= youtube_embed(@post.video.url) %></div>
+  <% end %>
+  <div class="comments">
+    <%= @post.summary %>
+  </div>
+</div>
+<div class="timestamp">
+  posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
+</div>
