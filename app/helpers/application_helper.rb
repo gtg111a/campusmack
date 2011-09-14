@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def title
-    base_title = "Campus Smack"
+    base_title = "Campusmack"
     if @title.nil?
       base_title
     else
