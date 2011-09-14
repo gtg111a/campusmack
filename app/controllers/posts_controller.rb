@@ -1,7 +1,8 @@
 # This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
+  respond_to :js, :html
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except => [:show, :index, :opengraph]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph ,:share_through_email_form,:share_through_email]
   include PostsHelper
 
   before_filter :find_parent
@@ -108,6 +109,31 @@ class PostsController < ApplicationController
 
   def opengraph
     @post = Post.find(params[:id])
+  end
+
+  def share_through_email_form
+    @post = Post.find(params[:id])
+    @user = current_user
+    respond_with(@post) do |format|
+      format.js { render_to_facebox }
+    end
+  end
+
+  def share_through_email
+    @post = Post.find(params[:id])
+    @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    
+    respond_with(@post) do |format|
+      if(@message.to.present? && @message.body.present?)
+        puts "Ok found"
+        UserMailer.share_post(@post, current_user, @message).deliver
+        flash[:notice] = 'Post shared successfully!'
+      else
+        flash[:error] = 'Error while sharing post!'
+      end
+    #  flash[:error] = 'Error while sharing post!'
+      format.js
+    end
   end
 
   protected

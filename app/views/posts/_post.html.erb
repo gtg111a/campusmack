@@ -1,30 +1,30 @@
 <li id="post_<%= post.id %>" class="post">
   <% if signed_in? %>
-      <div class="actions">
-        <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
-        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
-      </div>
+    <div class="actions">
+      <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
+      <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
+      <%= link_to('Report this Post', report_post_path(post), :confirm => "Report this Post?", :class => 'button') if can? :report, Post %>
+    </div>
   <% end %>
   <h4><%= link_to post.title, [post.postable, post] %></h4>
   <%= vote_buttons(post) %>
   <div class="content">
-    <% if can?(:manage, :all) && post.report_count.to_i > 0 %>
-        <h5 style="color: red">Reported by <%= post.report_count %> times</h5>
+    <% if can?(:manage, :all) && post.reports_count.to_i > 0 %>
+      <h5 style="color: red">Reported by <%= post.reports_count %> times</h5>
     <% end %>
     <% if post.photo %>
-        <div class="photo_post">
-          <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
-        </div>
+      <div class="photo_post">
+        <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
+      </div>
     <% end %>
     <% if post.video %>
-        <div class="video_post"><%= youtube_embed(post.video.url) %></div>
+      <div class="video_post"><%= youtube_embed(post.video.url) %></div>
     <% end %>
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
     <div class="comments">
       <%= post.summary %>
       <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
-          <%= link_to " [more...]", [ post.postable, post ] %><br /><br />
+        <%= link_to " [more...]", [ post.postable, post ] %><br /><br />
       <% end %>
     </div>
   </div>
@@ -33,9 +33,9 @@
   </div>
   <br class="clear"/>
   <div style="float: right;" >
-        <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
-        <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
-        <%#= link_to(image_tag("email.png", :border => 0), share_through_email_form_post_path(post), :remote => true, :method => "GET") %>
+    <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
+    <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
+    <%= link_to(image_tag("email.png", :border => 0), share_through_email_form_post_path(post), :method => "GET" , :remote => true) %>
   </div>
 
 

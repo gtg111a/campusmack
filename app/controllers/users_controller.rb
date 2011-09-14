@@ -78,7 +78,10 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, :flash => { :success => "User destroyed." }
   end
-  
+
+  def plaxo_import
+    @user = current_user
+  end
 
   private
   
@@ -106,6 +109,7 @@ class UsersController < ApplicationController
       redirect_to(root_path) if !current_user.admin? || current_user?(@user)
     end
 =end
+
 end
 
 

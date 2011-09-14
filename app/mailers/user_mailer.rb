@@ -18,5 +18,12 @@ class UserMailer < ActionMailer::Base
          :from => support.email,
          :subject => "New #{support.support_type}")
   end
-
+  
+  def share_post(post, poster, message)
+    @post = post
+    @message = message
+    subject = "#{post.title} is shared by <#{poster.username}> as #{@post.type} through #{SITE_NAME}"
+    mail(:to => @message.to,:from => 'noreplay@campusmack.com', :subject => subject)
+  end
+  
 end

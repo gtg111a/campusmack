@@ -1,5 +1,9 @@
 module ApplicationHelper
   #Return a title on a per-page basis
+  def close_facebox()
+    return "jQuery.facebox.close();".html_safe
+  end
+  
   def logo
     image_tag("Smack That", :class => "round")
   end
@@ -25,8 +29,8 @@ module ApplicationHelper
   end
 
   def user_nav
-      @user_nav << ['Help', help_path]
-      @user_nav << ['Reported Posts', reports_path] if can? :manage, :all
+    @user_nav << ['Help', help_path]
+    @user_nav << ['Reported Posts', reports_path] if can? :manage, :all
     if signed_in?
       @user_nav << [ 'My Posts', user_path(current_user) ]
       @user_nav << [ 'Edit Profile', edit_user_registration_path(current_user) ]
@@ -40,7 +44,7 @@ module ApplicationHelper
     @user_nav.each do |text, link, other|
       html << '<li>' + link_to(text, link, *other) + '</li>'
     end
-     html << '<li id="alt_serv">Signed in with' + service_link(Authentication.where(:id => session[:provider]).first, 32, false) + '</li>' if signed_in? && session[:provider]
+    html << '<li id="alt_serv">Signed in with' + service_link(Authentication.where(:id => session[:provider]).first, 32, false) + '</li>' if signed_in? && session[:provider]
     raw(html + '</ul></div>')
   end
 
