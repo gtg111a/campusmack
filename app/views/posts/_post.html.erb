@@ -35,7 +35,7 @@
   <div style="float: right;" >
     <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
-    <%= link_to(image_tag("email.png", :border => 0), share_through_email_form_post_path(post), :method => "GET" , :remote => true) %>
+    <%= link_to(image_tag("email.png", :border => 0, :size =>'32x32'), share_through_email_form_post_path(post), :method => "GET" , :remote => true) %>
   </div>
 
 

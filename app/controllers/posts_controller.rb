@@ -1,8 +1,10 @@
 # This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
   respond_to :js, :html
+  skip_authorization_check
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except => [:show, :index, :opengraph ,:share_through_email_form,:share_through_email]
+  skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
   include PostsHelper
 
   before_filter :find_parent

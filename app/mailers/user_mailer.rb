@@ -22,7 +22,11 @@ class UserMailer < ActionMailer::Base
   def share_post(post, poster, message)
     @post = post
     @message = message
-    subject = "#{post.title} is shared by <#{poster.username}> as #{@post.type} through #{SITE_NAME}"
+    if poster.blank?
+      subject = "#{post.title} is shared through #{SITE_NAME} as #{@post.type} "
+    else
+      subject = "#{post.title} is shared by <#{poster.username}> as #{@post.type} through #{SITE_NAME}"
+    end
     mail(:to => @message.to,:from => 'noreplay@campusmack.com', :subject => subject)
   end
   

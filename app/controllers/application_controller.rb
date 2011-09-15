@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :init_menu
 
   rescue_from CanCan::AccessDenied do |exception|
+    logger.error exception.backtrace.join("\n")
     redirect_to root_url, :alert => exception.message
   end
 
