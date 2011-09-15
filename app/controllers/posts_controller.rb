@@ -38,7 +38,8 @@ class PostsController < ApplicationController
       @parent.posts.joins(@post_cls.singularize.to_sym)
     end
     @search = posts.search(params[:search])
-    @posts = @search.paginate(:page => params[:page])
+    @order = params[:order] || 'created_at desc'
+    @posts = @search.paginate(:page => params[:page], :order => @order)
     init_college_menu
     # We use the views from the posts folder for everything
     render 'posts/index'
@@ -64,11 +65,15 @@ class PostsController < ApplicationController
   end
 
   def report
-    @post = Post.find(params[:id])
-    @post.increment!(:report_count)
-    flash[:success] = "Post Reported to Site Admin"
+    unless params[:report][:reason_id].blank?
+      reason = Reason.find(params[:report][:reason_id].to_i)
+    else
+      reason = nil
+    end
+    @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
     respond_to do |format|
-      format.html { redirect_back_or(@post) }
+      format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
+      format.js
     end
   end
 

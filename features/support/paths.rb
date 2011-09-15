@@ -17,6 +17,18 @@ module NavigationHelpers
     when /^root page$/
       root_path
 
+    when /"([^\"]*)" user page/
+      u = User.where(:username => $1).first
+      user_path(u)
+
+    when /"([^\"]*)" user smacks page/
+      u = User.where(:username => $1).first
+      smacks_user_path(u)
+
+    when /"([^\"]*)" user redemptions page/
+      u = User.where(:username => $1).first
+      redemptions_user_path(u)
+
     when /^"([^\"]*)" comment edit page/
       c = Comment.where(:comment => $1).first
       edit_comment_path(c)

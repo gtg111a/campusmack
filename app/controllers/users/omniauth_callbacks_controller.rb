@@ -1,10 +1,10 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_authorization_check
+  skip_before_filter :verify_authenticity_token
 
   def method_missing(provider)
     return if User.omniauth_providers.index(provider).nil?
     omniauth = env["omniauth.auth"]
-
     # user already logged in, assign the new provider to him
     if current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])

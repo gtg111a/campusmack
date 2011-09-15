@@ -6,12 +6,9 @@
     <p><%= comment.comment %></p>
   </div>
   <div class="actions">
-    <% if can? :edit, comment %>
-        <%= link_to 'Edit', edit_comment_path(comment), :class => 'button' %>
-    <% end %>
-    <% if can? :destroy, comment %>
-        <%= link_to 'Delete', comment, :method => :delete, :remote => true, :confirm => "Delete Comment?", :class => 'button' %>
-    <% end %>
+    <%= link_to 'Edit', edit_comment_path(comment), :class => 'button' if can? :edit, comment %>
+    <%= link_to 'Delete', comment, :method => :delete, :remote => true, :confirm => "Delete Comment?", :class => 'button' if can? :destroy, comment %>
+    <%= link_to 'Report Abuse', report_comment_path(comment), :remote => true, :confirm => "Report Abuse?", :class => 'button', :id => "com_rep_#{comment.id}" if can? :report, comment %>
   </div>
   <br style="clear:both"/>
 </div>

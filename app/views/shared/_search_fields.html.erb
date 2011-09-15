@@ -1,10 +1,29 @@
+<% content_for :jq do %>
+  $("a.sort_switch").click(function(e){
+    e.preventDefault();
+    var sort = this.id.substring(5);
+    if ($(this).html().substr(-1) == "▼")
+      sort = sort + " asc";
+    else
+      sort = sort + " desc";
+    $("#sort_field").val(sort);
+    $("#search_form").submit();
+  });
+<% end %>
 <table class="searchtbl">
   <tr>
     <td>
-      <%= form_for Post.search do |f| %>
+      <%= form_for 'search', :url => request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search", :html => {:method => :post, :id => "search_form"} do |f| %>
           <%= f.label "Search Posts:" %>
           <%= f.text_field :title_or_summary_contains %>
-          <%= f.submit "Go!", :name =>nil %>
+          <%= f.submit "Go!", :name => nil %>
+          <%= f.hidden_field :order, :name => "order", :value => @order || "created_at desc",:id => "sort_field" %>
+          <%= f.label "Sort by:"%>
+          <%= link_to "Post Created#{ @order[0,10] == "created_at" ? @order[-4,4] == "desc" ? " ▼" : " ▲" : "" }", "?order=created_at%20#{@order[-4,4] == "desc" ? "asc" : "desc"}", :id => "sort_created_at", :class => "sort_switch" %>
+          |
+          <%= link_to "Votes For#{ @order[0,8] == "up_votes" ? @order[-4,4] == "desc" ? " ▼" : " ▲" : "" }", "?order=up_votes%20#{@order[-4,4] == "desc" ? "asc" : "desc"}", :id => "sort_up_votes", :class => "sort_switch" %>
+          |
+          <%= link_to "Votes Against#{ @order[0,10] == "down_votes" ? @order[-4,4] == "desc" ? " ▼" : " ▲" : "" }", "?order=down_votes%20#{@order[-4,4] == "desc" ? "asc" : "desc"}", :id => "sort_down_votes", :class => "sort_switch" %>
       <% end %>
     </td>
   </tr>

@@ -1,7 +1,5 @@
 class College < ActiveRecord::Base
   has_many :posts, :as => :postable, :dependent => :destroy
-  has_many :photos, :through => :posts
-  has_many :news_posts, :through => :posts
   has_many :smacks, :as => :postable, :dependent => :destroy
   has_many :redemptions, :as => :postable, :dependent => :destroy
   belongs_to :conference

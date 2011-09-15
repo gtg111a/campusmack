@@ -1,0 +1,24 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery.simplemodal', 'osx' %>
+  <%= stylesheet_link_tag 'osx' %>
+<% end %>
+<% content_for :jq do %>
+  $("#rep_btn").click(function(){$.modal.close()});
+<% end %>
+<div id="osx-modal-content">
+  <div id="osx-modal-title">Please, select a reason</div>
+  <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+  <div id="osx-modal-data">
+    <%= form_for "report", :url => "/posts/0/report", :remote => true, :html => {:id => "reportform"} do |f| %>
+      <%= f.label :reason %>
+      <br />
+      <%= f.collection_select(:reason_id, Reason.all, :id, :reason, :include_blank => true) %>
+      <br />
+      <%= f.label :other %>
+      <br />
+      <%= f.text_field :other, :size => 27 %>
+      <br />
+      <%= f.submit "Report", :class => "lbutton", :id => "rep_btn" %>
+    <% end %>
+  </div>
+</div>
