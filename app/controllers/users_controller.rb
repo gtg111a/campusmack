@@ -1,8 +1,10 @@
 require 'mailgun'
 
 class UsersController < ApplicationController
+
+  skip_authorization_check :only => [ :create, :new, :plaxo_import ]
   load_and_authorize_resource
-  skip_authorization_check :only => [ :create, :new ]
+  skip_authorize_resource :only => [:plaxo_import]
   #before_filter :correct_user, :only => [:edit, :update]
   #before_filter :admin_user, :only => :destroy
   
