@@ -28,7 +28,7 @@ Campusmack::Application.routes.draw do
 
   resources :posts do
     member do
-      get :report
+      post :report
     end
     member do
       post :vote_up, :vote_down

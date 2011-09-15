@@ -11,6 +11,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Photo do
+    object_label_method :url_label
     list do
       field :post
       field :caption
@@ -34,6 +35,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Vote do
+    object_label_method :vote_label
     list do
       field :id
       field :vote do
@@ -71,6 +73,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Authentication do
+    object_label_method :provider_label
     list do
       field :id
       field :user
@@ -128,6 +131,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Comment do
+    object_label_method :comment_label
     list do
       field :id
       field :user
@@ -161,6 +165,7 @@ RailsAdmin.config do |config|
   end
 
   config.model NewsPost do
+    object_label_method :url_label
     list do
       field :id
       field :post
@@ -181,6 +186,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Reason do
+    object_label_method :reason_label
     show do
       field :reason
       field :created_at
@@ -217,6 +223,7 @@ RailsAdmin.config do |config|
       field :photo
       field :news_post
       field :statistic
+      field :reports
     end
     edit do
       group :default do
@@ -262,6 +269,7 @@ RailsAdmin.config do |config|
       field :photo
       field :news_post
       field :statistic
+      field :reports
     end
     edit do
       group :default do
@@ -306,6 +314,7 @@ RailsAdmin.config do |config|
       field :photo
       field :news_post
       field :statistic
+      field :reports
     end
     edit do
       group :default do
@@ -324,6 +333,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Relationship do
+    object_label_method :relation_label
     list do
       field :id
       field :followed
@@ -344,6 +354,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Report do
+    object_label_method :report_label
     list do
       field :id
       field :reportable
@@ -392,6 +403,7 @@ RailsAdmin.config do |config|
   end
 
   config.model User do
+    object_label_method :email_label
     list do
       exclude_fields :up_votes, :down_votes
     end
@@ -404,6 +416,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Video do
+    object_label_method :url_label
     list do
       field :id
       field :post
@@ -421,6 +434,38 @@ RailsAdmin.config do |config|
       field :post
       field :url
     end
+  end
+
+  def relation_label
+    "#{self.follower} -> #{self.followed}"
+  end
+
+  def report_label
+    "[#{self.reason.reason}] #{self.custom_reason}"
+  end
+
+  def email_label
+    "(#{self.id}) #{self.email}"
+  end
+
+  def reason_label
+    "(#{self.id}) #{self.reason}"
+  end
+
+  def provider_label
+    "(#{self.id}) #{self.provider}"
+  end
+
+  def vote_label
+    "(#{self.id}) #{self.vote ? "UP" : "DOWN"}"
+  end
+
+  def url_label
+    "(#{self.id}) #{self.url}"
+  end
+
+  def comment_label
+    "(#{self.id}) #{self.comment}"
   end
 
 end

@@ -17,8 +17,8 @@ jQuery(function ($) {
 		init: function () {
 			$("input.postreport, a.postreport").click(function (e) {
 				e.preventDefault();
-				post_id = this.id.substring(9);
-				$(".report-reasons").each(function(k, v){v.href="/posts/"+post_id+"/report?reason_id="+v.id.substring(10)});
+				var post_id = this.id.substring(9);
+				$("#reportform").attr("action", "/posts/"+post_id+"/report");
 				$("#osx-modal-content").modal({
 					overlayId: 'osx-overlay',
 					containerId: 'osx-container',

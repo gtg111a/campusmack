@@ -21,10 +21,11 @@ class ConferencesController < ApplicationController
     @conference = Conference.where(:name => params[:id].upcase).first
     @parent = @conference
     init_main_menu
+    @order = params[:order] || 'created_at desc'
     @search = @conference.posts.search(params[:search])
     @title = @conference.name
     if params[:search]
-      @posts = @search.paginate(:page => params[:page], :order => 'created_at DESC')
+      @posts = @search.paginate(:page => params[:page], :order => @order)
     else
       @posts = find_posts(@conference)
     end
@@ -48,11 +49,11 @@ class ConferencesController < ApplicationController
 
   def find_posts(college)
     if request.fullpath.to_s =~ /Video/
-      return college.posts.where(:content_type => "Video").paginate(:page => params[:page], :order => 'created_at DESC')
+      return college.posts.where(:content_type => "Video").paginate(:page => params[:page], :order => @order)
     elsif request.fullpath.to_s =~ /Photo/
-      return college.posts.where(:content_type => "Photo").paginate(:page => params[:page], :order => 'created_at DESC')
+      return college.posts.where(:content_type => "Photo").paginate(:page => params[:page], :order => @order)
     else
-      return college.posts.paginate(:page => params[:page], :order => 'created_at DESC')
+      return college.posts.paginate(:page => params[:page], :order => @order)
     end
   end
 
