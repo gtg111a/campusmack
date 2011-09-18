@@ -1,4 +1,10 @@
 Campusmack::Application.routes.draw do
+  resources :contacts do
+    collection do
+      post 'import'
+    end
+  end
+
   devise_for :users, :controllers => {
       :omniauth_callbacks => "users/omniauth_callbacks",
       :registrations => 'users/registrations',
