@@ -1,0 +1,6 @@
+$("#flash-messages").html("");
+<% flash.each do |key, value| %>
+  $("#flash-messages").append("<%= escape_javascript("<div class='flash #{key}'>#{value}</div>").html_safe -%>");
+<% end %>
+<%# flash.clear %>
+<%= yield %>

@@ -1,0 +1,23 @@
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+<script type="text/javascript">
+  function onABCommComplete() {
+    // OPTIONAL: do something here after the new data has been populated in your text area
+    //alert($("#contact").val());
+    //var js_var =$("#message_to").val();
+    $.ajax({
+      type: "POST",
+      url: "<%= import_contacts_path() -%>",
+      data: $("#contact").serialize()
+    });
+
+  }
+</script>
+
+<%= text_area_tag("contact", nil, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px;display:none "}) %>
+
+<div style="float: right;">
+  <%= link_to("contacts", contacts_path()) -%> |
+  <a href="#" onclick="showPlaxoABChooser('contact', '<%=  plaxo_import_user_path(current_user) %>'); return false">Import from email address book</a>
+</div>
