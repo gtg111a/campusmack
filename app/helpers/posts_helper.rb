@@ -67,12 +67,12 @@ module PostsHelper
     html = %Q{<#{tag} class="vote">}
     html << %Q{<#{tag} class="vote_title">Votes:</#{tag}>}
     html << %Q{<#{tag} class="vote_value">}
-    html << %Q{<span id="vote_count_up#{post.id}">#{post.votes_for_b}</span>}
+    html << %Q{<span id="vote_count_up#{post.id}">#{post.up_votes}</span>}
     html << link_to(image_tag('arrow-up.png', imgwidth), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote
     html << "</#{tag}>"
     html << %Q{<#{tag} class="vote_title">Against:</#{tag}>}
     html << %Q{<#{tag} class="vote_value">}
-    html << %Q{<span id="vote_count_down#{post.id}">#{post.votes_against_b}</span>}
+    html << %Q{<span id="vote_count_down#{post.id}">#{post.down_votes}</span>}
     html << link_to(image_tag('arrow-down.png', imgwidth), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote
     html << "</#{tag}></#{tag}>"
     raw(html)

@@ -1,6 +1,7 @@
 <h1><%= @user.username %> Posts</h1>
 <%= render 'shared/search_fields' %>
-<% unless @posts.empty? %>
+<%= render 'shared/stats' %>
+<% unless @posts.blank? %>
     <%= will_paginate @posts %>
     <ul class="posts">
       <%= render :partial => "/posts/post", :collection => @posts %>

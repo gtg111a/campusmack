@@ -40,5 +40,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def report
+    @comment.reports.create!(:user => current_user)
+    respond_to do |format|
+      format.html { redirect_to [@comment.commentable.postable, @comment.commentable], :flash => {:success => "Thank you for your report."} }
+      format.js
+    end
+  end
 
 end

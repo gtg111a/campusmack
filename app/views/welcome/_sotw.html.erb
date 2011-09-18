@@ -1,24 +1,25 @@
 <h1>Smack of the week</h1>
 <div id="smack_of_the_week" class="post">
   <% if signed_in? %>
-      <% if @sotw.user_id == current_user.id || current_user.admin? %>
-          <div class="actions">
-            <%= link_to 'Edit', '/'+@sotw.type.downcase+'s/'+@sotw.id.to_s+'/edit', :class => 'button' %>
-            <%= link_to 'Delete', @sotw, :method => :delete, :confirm => "Delete post?", :class => 'button' %>
-          </div>
-      <% end %>
+      <div class="actions">
+        <%= link_to('Edit', '/'+@sotw.type.downcase+'s/'+@sotw.id.to_s+'/edit', :class => 'button') if can? :update, @sotw %>
+        <%= link_to('Delete', @sotw, :method => :delete, :confirm => "Delete post?", :class => 'button') if can? :destroy, @sotw %>
+      </div>
   <% end %>
-  <h4><%= link_to @sotw.title, "/colleges/#{@sotw.college_id}/posts/#{@sotw.id}" %></h4>
-  <% unless @sotw.photo_file_name.nil? %>
-      <div id="photo_post" class="photo">
+  <h4><%= link_to @sotw.title, [ @sotw.postable, @sotw ] %></h4>
+  <% if @sotw.photo %>
+      <div class="photo_post">
         <a class="photo snap_noshots" href="<%= @sotw.photo.url(:large) %>"><img src="<%= @sotw.photo.url(:medium) %>" alt=""/></a>
       </div>
   <% end %>
-  <div class="content"><%= youtube_embed(@sotw.content) %></div>
-  <%= link_to "News post", @sotw.news unless @sotw.news.blank? %>
-  <div class="comments"><%= @sotw.post_summary %>
-    <% if !@sotw.post_summary.nil? && !request.fullpath.include?("posts") %>
-        <%= link_to " [more...]", "/colleges/#{@sotw.college_id}/posts/#{@sotw.id}" %>
+  <% if @sotw.video %>
+      <div class="video_post"><%= youtube_embed(@sotw.video.url) %></div>
+  <% end %>
+  <%= link_to "News post", @sotw.news_post.url unless @sotw.news_post.blank? %>
+  <div class="comments">
+    <%= @sotw.summary %>
+    <% if @sotw.summary && params[:controller] != 'posts' %>
+        <%= link_to " [more...]", [ @sotw.postable, @sotw ] %>
     <% end %>
   </div>
   <%= vote_buttons(@sotw) %>

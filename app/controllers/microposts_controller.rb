@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate
   before_filter :authorized_user, :only => :destroy
   

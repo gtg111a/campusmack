@@ -1,7 +1,0 @@
-<h1>Reported posts</h1>
-<% unless @posts.empty? %>
-    <ul class="posts">
-      <%= render :partial => "/posts/post", :collection => @posts %>
-    </ul>
-    <%= will_paginate(@posts) %>
-<% end %>

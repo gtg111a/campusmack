@@ -908,3 +908,12 @@ textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; paddi
 .conf_stat td {
     padding: 3px;
 }
+
+.stats table {
+    margin-bottom: 1em;
+}
+
+.stats table td {
+    padding: 7px 14px;
+    background-color: #dcdcdc;
+}

@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate
   
   def create

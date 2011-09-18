@@ -1,11 +1,7 @@
 <h1><%= @title %></h1>
 <%= render :partial => 'shared/masthead' %>
 <br class="clear"/>
-<%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
-    <%= f.label :search %>
-    <%= f.text_field :title_or_summary_contains %>
-    <%= f.submit "Go!", :name =>nil %>
-<% end %>
+<%= render :partial => 'shared/search_fields' %>
 <% unless @posts.empty? %>
     <ul class="posts">
       <%= render :partial => "/posts/post", :collection => @posts %>
