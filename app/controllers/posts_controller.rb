@@ -121,6 +121,9 @@ class PostsController < ApplicationController
   def share_through_email_form
     @post = Post.find(params[:id])
     @user = current_user
+    @to_emails = ""
+    @to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?)
+
     respond_with(@post) do |format|
       format.js { render_to_facebox }
     end
@@ -129,7 +132,7 @@ class PostsController < ApplicationController
   def share_through_email
     @post = Post.find(params[:id])
     @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
-    
+
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
@@ -138,7 +141,7 @@ class PostsController < ApplicationController
       else
         flash[:error] = 'Error while sharing post!'
       end
-    #  flash[:error] = 'Error while sharing post!'
+      #  flash[:error] = 'Error while sharing post!'
       format.js
     end
   end

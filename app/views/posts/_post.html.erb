@@ -34,6 +34,8 @@
   <br class="clear"/>
 
   <div style="float: right;">
+    <%= link_to_if(current_user.present?, "Send as smack", share_through_email_form_post_path(post, :smack => true), :method => "GET", :remote => true) %>
+    <br/>
     <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
     <%= link_to(image_tag("email.png", :border => 0, :size =>'32x32'), share_through_email_form_post_path(post), :method => "GET", :remote => true) %>

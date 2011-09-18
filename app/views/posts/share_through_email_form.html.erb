@@ -12,7 +12,7 @@
     <tr>
       <td><%= label_tag("message[to]", "To") %></td>
       <td>
-        <%= text_area_tag("message[to]", nil, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px"}) %>
+        <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px"}) %>
         <a href="#" onclick="showPlaxoABChooser('message_to', '<%=  plaxo_import_user_path(@user) %>'); return false">
           <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
         </a>
