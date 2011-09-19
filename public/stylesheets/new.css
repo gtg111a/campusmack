@@ -917,3 +917,7 @@ textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; paddi
     padding: 7px 14px;
     background-color: #dcdcdc;
 }
+
+.hidden {
+  display: none;
+}

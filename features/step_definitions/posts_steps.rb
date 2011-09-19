@@ -50,3 +50,22 @@ Given /^I have confirmed users$/ do |table|
     Given %Q{I have confirmed user "#{hash["First Name"]}" "#{hash["Last Name"]}" with username "#{hash["Username"]}", email "#{hash["Email"]}", password "#{hash["Password"]}", college "#{hash["College"]}" and affiliation "#{hash["Affiliation"]}"}
   end
 end
+
+Given /^I have reasons$/ do |table|
+  table.raw.each do |row|
+    Reason.find_or_create_by_reason(row[0])
+  end
+end
+
+Then /^I should have report for "([^"]*)" from "([^"]*)" with reason "([^"]*)" and custom reason "([^"]*)"$/ do |title, email, reason, custom_reason|
+  p = Post.find_by_title!(title)
+  u = User.find_by_email!(email)
+  if reason.blank?
+    s = p.reports.where(:user_id => u.id)
+  else
+    r = Reason.find_by_reason!(reason)
+    s = p.reports.where(:user_id => u.id, :reason_id => r.id)
+  end
+  s.where(:custom_reason => custom_reason) unless custom_reason.blank?
+  s.any?.should be_true
+end

@@ -29,6 +29,17 @@ Given /^I have posts$/ do |table|
     when "Stats"
       post.build_statistic(:name => "Name", :data => "Data")
     end
+    if hash["Week"]
+      post.on_frontpage_week = if hash["Week"] == "current" then Date.today.cweek else hash["Week"] end
+    end
+    post.created_at = Time.now + hash["Created"].to_i if hash["Created"]
+    post.up_votes = hash["Votes Up"] if hash["Votes Up"]
+    post.down_votes = hash["Votes Down"] if hash["Votes Down"]
     post.save!
   end
+end
+
+Then /^(?:|I )should see a link to "([^"]*)" conference status$/ do |conf|
+  c = Conference.find_by_name(conf)
+  find("a[href=\"#{status_conference_path(c)}\"]")
 end

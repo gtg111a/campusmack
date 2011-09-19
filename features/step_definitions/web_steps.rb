@@ -31,6 +31,20 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+When /^I wait (\d+) seconds$/ do |secs|
+  sleep secs.to_i
+end
+
+Then /^I should see order "([^"]*)"$/ do |words|
+  words = words.split "/"
+  offset = 0
+  words.each do |word|
+    offset = page.html[offset..-1] =~ /#{word}/
+    puts page.html unless offset
+    assert offset
+  end
+end
+
 When /^I will confirm any dialog$/ do
   page.evaluate_script('window.confirm = function() { return true; }')
 end

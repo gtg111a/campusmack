@@ -1,10 +1,10 @@
 <h1>Smack of the week</h1>
 <div id="smack_of_the_week" class="post">
   <% if signed_in? %>
-      <div class="actions">
-        <%= link_to('Edit', '/'+@sotw.type.downcase+'s/'+@sotw.id.to_s+'/edit', :class => 'button') if can? :update, @sotw %>
-        <%= link_to('Delete', @sotw, :method => :delete, :confirm => "Delete post?", :class => 'button') if can? :destroy, @sotw %>
-      </div>
+    <div class="actions">
+      <%= link_to('Edit', method("edit_#{@sotw.postable_type.downcase}_#{@sotw.type.downcase}_path").call(@sotw.postable, @sotw), :class => 'button') if can? :update, @sotw %>
+      <%= link_to('Delete', @sotw, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @sotw %>
+    </div>
   <% end %>
   <h4><%= link_to @sotw.title, [ @sotw.postable, @sotw ] %></h4>
   <% if @sotw.photo %>

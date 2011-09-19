@@ -10,12 +10,20 @@
   <%= vote_buttons(post) %>
   <div class="content">
     <% if post.photo %>
-        <div class="photo_post">
-          <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
-        </div>
+      <div class="photo_post">
+        <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
+      </div>
+    <% end %>
+    <% if post.news_post && !post.news_post.image_file_name.blank? %>
+      <div class="photo_post">
+        <a class="photo snap_noshots" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" alt=""/></a>
+      </div>
     <% end %>
     <% if post.video %>
-        <div class="video_post"><%= youtube_embed(post.video.url) %></div>
+      <div class="video_post"><%= youtube_embed(post.video.url) %></div>
+    <% end %>
+    <% if post.news_post && !post.news_post.video_url.blank? %>
+      <div class="video_post"><%= youtube_embed(post.news_post.video_url) %></div>
     <% end %>
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
     <div class="comments">

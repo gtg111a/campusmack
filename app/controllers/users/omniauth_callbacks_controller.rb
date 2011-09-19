@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:notice] = "Added #{omniauth['provider']} to your existing account."
-      redirect_to edit_user_registration_path
+      redirect_to authentications_path
       return
     end
 

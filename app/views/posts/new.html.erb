@@ -25,6 +25,19 @@
               <br/>
               <%= npf.text_field :url %>
             </div>
+            <div id="news_post_addons">
+              <a href="#" id="news_add_photo">Add photo</a> or <a href="#" id="news_add_video">Add video</a>
+            </div>
+            <div class="field hidden" id="news_photo_div">
+              <%= npf.label :image, 'Photo' %>
+              <br/>
+              <%= npf.file_field :image %>
+            </div>
+            <div class="field hidden" id="news_video_div">
+              <%= npf.label :video_url %>
+              <br/>
+              <%= npf.text_field :video_url %>
+            </div>
         <% end.gsub(/\r|\n/, '').html_safe %>';
         postcontent[3] = '<%= f.fields_for :statistic, Statistic.new do |sf| %>
             <div class="field">
@@ -55,6 +68,8 @@
         $("#switch_photo").click(function(){switch_fields(1); return false;});
         $("#switch_news").click(function(){switch_fields(2); return false;});
         $("#switch_stats").click(function(){switch_fields(3); return false;});
+        $("#news_add_photo").live('click',function(e){e.preventDefault(); $("#news_post_addons").hide(); $("#news_photo_div").show();});
+        $("#news_add_video").live('click',function(e){e.preventDefault(); $("#news_post_addons").hide(); $("#news_video_div").show();});
     <% end %>
     <%= render 'shared/error_messages', :object => f.object %>
     <ul id="post_fields">
