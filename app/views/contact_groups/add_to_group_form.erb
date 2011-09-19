@@ -1,0 +1,33 @@
+<script type="text/javascript" >
+  $(document).ready(function(){
+    $('#add_contact').click(function(){
+      //alert($('input:checkbox:checked.chk_box').map(function () {return this.value;}).get());
+      $.ajax({
+        type: "POST",
+        url: "<%= add_to_group_contact_groups_path() -%>",
+        data: $('#group_select :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize()
+      });
+    });
+
+  });
+
+  
+</script>
+<div id ="group_select">
+  <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+
+  <input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />
+  <span> Select Your Group </span>
+  <%= select("name", 'id', @contact_groups.map {|u| [u.name,u.id]}) %>
+
+  <br />
+
+  <input class="rbtn" type="radio" name="group_type"  value="new" />
+  <span> Your Group </span>
+  <input type="text" name="new_group_name"/>
+
+<%#=   link_to "Add contacts", :controller => "contact_groups", :action => "add_to_group", :id => @profile %>
+  <div id="add_contact" style="text-align: center;padding: 9px;">
+    <%= link_to("Add contacts", add_to_group_contact_groups_path(@contact_group),
+      :method => "GET", :remote => true) %></div>
+</div>

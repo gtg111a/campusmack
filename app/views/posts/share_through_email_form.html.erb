@@ -12,7 +12,7 @@
     <tr>
       <td><%= label_tag("message[to]", "To") %></td>
       <td>
-        <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px"}) %>
+        <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
         <a href="#" onclick="showPlaxoABChooser('message_to', '<%=  plaxo_import_user_path(@user) %>'); return false">
           <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
         </a>
@@ -23,7 +23,7 @@
       <td><%= text_area_tag("message[body]","
       <a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a> is shared from <a href='campsmac.com'> #{SITE_NAME}</a>
     as #{(@post.type)}. <br/> Post Summary : #{(@post.summary)} <br/> ",
-          :style => "height:125px;width:380px;padding-right:20px;margin-right:10px") %>
+          :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
       </td>
     </tr>
     <tr>

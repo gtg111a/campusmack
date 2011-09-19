@@ -1,5 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
+  has_and_belongs_to_many :contact_groups
   validates :email, :uniqueness => {:scope => :user_id}
   validates :user_id, :presence => true
   validates :email, :presence => true
