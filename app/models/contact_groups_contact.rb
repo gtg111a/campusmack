@@ -9,7 +9,7 @@ class ContactGroupsContact < ActiveRecord::Base
     contact_Ids.each do |contact_id|
       contacts_in_group =  ContactGroupsContact.new(:contact_id=>contact_id ,:contact_group_id=>group_Id )
       contacts_in_group.save()
-      contacts_saved_in_group<<contacts_in_group
+      contacts_saved_in_group << contacts_in_group
     end
   end
 end

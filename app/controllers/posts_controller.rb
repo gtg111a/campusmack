@@ -131,7 +131,8 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
-    @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    #@message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    @message = Struct.new(:to, :body).new(params[:cb_email].join(","), params[:message][:body])
 
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
@@ -145,7 +146,7 @@ class PostsController < ApplicationController
       format.js
     end
   end
-
+  
   protected
 
   def find_parent

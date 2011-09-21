@@ -1,2 +1,4 @@
+
+$('#links_ul').append("<li><%= escape_javascript('<a href="/contacts?group_id='+@new_group_id.to_s+'">'+@new_group_name+'</a>').html_safe %></li>");
 <%= close_facebox()%>
 <%#*alert("closed");%>

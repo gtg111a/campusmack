@@ -94,9 +94,10 @@ class ContactGroupsController < ApplicationController
 
   def add_to_group
     @contacts = []
-    @group= []
+    group = nil
     @contact_count
-
+    @new_group_name = ""
+    @new_group_id = ''
     if params[:group_type]=='existing'
       @group_id = params[:name]['id']
       @contacts = ContactGroupsContact.add_group_contacts(@group_id,params[:cb])
@@ -105,12 +106,13 @@ class ContactGroupsController < ApplicationController
     else
 
       if params[:new_group_name].present? && params[:new_group_name].strip!=''
-        @group = ContactGroup.add_to_groupmodel(current_user,params[:new_group_name])
+        group = ContactGroup.add_to_groupmodel(current_user,params[:new_group_name])
       end
 
-      if @group[0]['id'].present?
-
-        @contacts = ContactGroupsContact.add_group_contacts(@group[0]['id'].to_int,params[:cb])
+      if group.present? && group['id'].present?
+        @new_group_id = group['id']
+        @new_group_name = params[:new_group_name];
+        @contacts = ContactGroupsContact.add_group_contacts(@new_group_id.to_int,params[:cb])
         @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
       end
 
