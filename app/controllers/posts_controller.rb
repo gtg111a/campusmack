@@ -131,14 +131,17 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
-    #@message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
-    @message = Struct.new(:to, :body).new(params[:cb_email].join(","), params[:message][:body])
-
+    @message = nil
+    if !params[:cb_email].present?
+      @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    else
+      @message = Struct.new(:to, :body).new(params[:cb_email].join(","), params[:message][:body])
+    end
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
         UserMailer.share_post(@post, current_user, @message).deliver
-        flash[:notice] = 'Post shared successfully!'
+        flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
       else
         flash[:error] = 'Error while sharing post!'
       end
@@ -146,7 +149,7 @@ class PostsController < ApplicationController
       format.js
     end
   end
-  
+
   protected
 
   def find_parent
