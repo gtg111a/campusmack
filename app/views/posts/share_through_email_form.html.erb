@@ -6,22 +6,63 @@
     // OPTIONAL: do something here after the new data has been populated in your text area
     //alert($("#message_to").val());
   }
+  $(document).ready(function() {
+   
+  })
+
+  function countChecked() {
+    var n = $("input:checked").length;
+    
+    $.ajax({
+      type: "POST",
+      url: "<%= get_group_emails_contacts_path() -%>",
+      data: $(".chk_box").serialize()
+    });
+  }
+
+  $(document).ready(function(){
+    $(".chk_box").click(countChecked);
+
+    $('.group_cb').click(function(){
+      $(this).find(':checkbox').attr('checked', true );
+    },function(){
+      $(this).find(':checkbox').attr('checked', false );
+    });
+    
+  }
+);
 </script>
 <%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
   <table>
     <tr>
       <td><%= label_tag("message[to]", "To") %></td>
       <td>
-        <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
-        <a href="#" onclick="showPlaxoABChooser('message_to', '<%=  plaxo_import_user_path(@user) %>'); return false">
-          <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
-        </a>
+  <%#= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5}) %>
+        <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+        <div >
+          <div style="float: left;min-width: 80px">
+            <ul>
+              <li>
+                <input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>
+                <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
+              <% @contact_groups.each do |contact_group|   %>
+                <li>
+
+                  <input class="chk_box" type="checkbox" value="<%= contact_group.id %>" name="cb[]" ></input>
+                  <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
+
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div id="message_to" style="float: right; min-width: 100px; margin: 10px" ></div>
+        </div>
       </td>
     </tr>
     <tr>
       <td><%= label_tag("message[body]", "Message:") %></td>
       <td><%= text_area_tag("message[body]","
-      <a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a> is shared from <a href='campsmac.com'> #{SITE_NAME}</a>
+    <a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a> is shared from <a href='campsmac.com'> #{SITE_NAME}</a>
     as #{(@post.type)}. <br/> Post Summary : #{(@post.summary)} <br/> ",
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
       </td>
