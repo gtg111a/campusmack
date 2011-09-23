@@ -119,7 +119,8 @@ class ContactsController < ApplicationController
       @contact = current_user.contacts.find(id)
       @contact.destroy
     }
-
+    
+    flash[:notice] = "#{@contacts_ids.count} contacts deleted"
     puts @contacts_ids;
   end
 

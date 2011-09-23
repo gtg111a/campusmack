@@ -74,7 +74,7 @@
             <tr id="<%= contact.id %>" >
               <td><span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span></td>
               <td style="padding-right: 10px;padding-left: 10px;" > <input class="chk_box" type="checkbox" value="<%= contact.id %>" name="cb[]" ></input> </td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%= contact.name.html_safe %></td>
+              <td style="padding-right: 10px;padding-left: 10px;" ><%= escape_javascript(contact.name) %></td>
               <td style="padding-right: 10px;padding-left: 10px;" ><%= contact.email %></td>
               <td></td>
               <td style="padding-right: 10px;padding-left: 10px;" ><%#= link_to 'Show', contact %></td>

@@ -8,11 +8,9 @@
   }
   $(document).ready(function() {
    
-  })
+  });
 
-  function countChecked() {
-    var n = $("input:checked").length;
-    
+  function get_group_emails() {
     $.ajax({
       type: "POST",
       url: "<%= get_group_emails_contacts_path() -%>",
@@ -21,13 +19,17 @@
   }
 
   $(document).ready(function(){
-    $(".chk_box").click(countChecked);
+    $(".chk_box").click(get_group_emails);
+      
+    $("#message_body").keydown(function(event) {
+    });
 
     $('.group_cb').click(function(){
       $(this).find(':checkbox').attr('checked', true );
     },function(){
       $(this).find(':checkbox').attr('checked', false );
     });
+
     
   }
 );
@@ -38,34 +40,96 @@
       <td><%= label_tag("message[to]", "To") %></td>
       <td>
   <%#= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5}) %>
-        <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
-        <div >
-          <div style="float: left;min-width: 80px">
-            <ul>
-              <li>
-                <input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>
-                <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
-              <% @contact_groups.each do |contact_group|   %>
+        <% if !params[:smack].present? %>
+          <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
+          <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
+          plaxo_path = '"'+plaxo_path+'"';
+        %>
+          <%=  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
+
+        <% else %>
+          <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+          <div >
+            <div style="float: left;min-width: 80px">
+              <ul>
                 <li>
+                  <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
+                  <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
+                <% @contact_groups.each do |contact_group|   %>
+                  <li>
 
-                  <input class="chk_box" type="checkbox" value="<%= contact_group.id %>" name="cb[]" ></input>
-                  <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
+                    <%
+                    box =  '<input class="chk_box" type="checkbox" value="'
+                    box = box + contact_group.id.to_s
+                    box = box +'" name="cb[]" ></input>'
+                  %>
+                    <%= box.html_safe %>
+                    <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
 
-                </li>
-              <% end %>
-            </ul>
+                  </li>
+
+                <% end %>
+              </ul>
+            </div>
+            <%= '<div id="message_to" style="float: right; min-width: 100px; margin: 10px" ></div>'.html_safe %>
           </div>
-          <div id="message_to" style="float: right; min-width: 100px; margin: 10px" ></div>
-        </div>
+        <%  end %>
       </td>
     </tr>
     <tr>
       <td><%= label_tag("message[body]", "Message:") %></td>
-      <td><%= text_area_tag("message[body]","
-    <a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a> is shared from <a href='campsmac.com'> #{SITE_NAME}</a>
-    as #{(@post.type)}. <br/> Post Summary : #{(@post.summary)} <br/> ",
+
+      <%
+             body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
+             body = body +  'posted '+ time_ago_in_words(@post.created_at) +' ago by '+ @post.user.try(:username)
+             body = body +  '<br class="clear"/></div>'
+               if @post.photo
+                body = body +  '<div class="photo">'
+                body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
+               end
+              body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+              if @post.video
+                body = body +  '<div class="content">'+ youtube_embed(@post.video.url, true) +'</div>'
+              end
+              body = body + '<div class="summary">' + @post.summary + '</div></div>'
+
+            %>
+
+
+
+      <td><%= text_area_tag("message[body]",body,
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
       </td>
+    </tr>
+    <tr>
+      <td>Preview</td>
+      <td>
+        <div id ="email_preview" >
+
+
+            <h1><%= @post.title %></h1>
+            <div class="post">
+              <div class="top">
+                posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
+                <br class="clear"/>
+              </div>
+              <% if @post.photo %>
+                <div class="photo">
+                  <img src="<%= @post.photo.url(:large) %>" alt=""/>
+                </div>
+              <% end %>
+              <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
+              <% if @post.video %>
+                <div class="content"><%= youtube_embed(@post.video.url, true) %></div>
+              <% end %>
+              <div class="summary"><%= @post.summary %></div>
+            </div>
+
+
+
+
+            
+        </div></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
