@@ -5,7 +5,6 @@ Campusmack::Application.routes.draw do
     collection do
     get 'add_to_group_form'
     post 'add_to_group'
-    get 'add_to_group'
   end
   end
 
@@ -13,6 +12,8 @@ Campusmack::Application.routes.draw do
     collection do
       post 'import'
       get 'add_to_group_form'
+      post 'get_group_emails'
+      post 'delete_emails'
     end
   end
 

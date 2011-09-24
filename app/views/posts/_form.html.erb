@@ -55,6 +55,18 @@
             <% end %>
           </li>
       <% end %>
+      <% if post.news_post %>
+          <li>
+            <%= f.fields_for :news_post, post.news_post do |sf| %>
+                <div class="field">
+                  <%= sf.label :url %>
+                  <br/>
+                  <%= sf.text_field :url %>
+                </div>
+            <% end %>
+          </li>
+      <% end %>
+      <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
       <li>
         <div class="field">
           <%= f.label :summary %>

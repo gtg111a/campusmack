@@ -11,21 +11,25 @@
 
   });
 
-  
+
 </script>
 <div id ="group_select">
   <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+  <div  style='padding:10px; margin: 10px'>
 
-  <input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />
-  <span> Select Your Group </span>
-  <%= select("name", 'id', @contact_groups.map {|u| [u.name,u.id]}) %>
+  <% if @contact_groups.present? %>
+    <%= '<input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />'.html_safe %>
+    <%=  "<span style='padding:10px'> Select Group </span>".html_safe %>
+    <%= select("name", 'id', @contact_groups.map {|u| [u.name,u.id]}, { :style => 'width:132px;' }) %>
+  <% end %>
 
-  <br />
+  <br/><br />
 
-  <input class="rbtn" type="radio" name="group_type"  value="new" />
-  <span> Your Group </span>
+  <input <% if !@contact_groups.present? %> <%=  'checked="checked"'.html_safe %> <% end %>
+    class="rbtn" type="radio" name="group_type"  value="new" />
+  <span > New Group </span>
   <input type="text" name="new_group_name"/>
-
+</div>
 <%#=   link_to "Add contacts", :controller => "contact_groups", :action => "add_to_group", :id => @profile %>
   <div id="add_contact" style="text-align: center;padding: 9px;">
     <%= link_to("Add contacts", add_to_group_contact_groups_path(@contact_group),

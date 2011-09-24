@@ -1,0 +1,14 @@
+
+$(document).ready(function()
+{
+//alert("called before");
+
+$("#message_to").slideUp(function(){
+$("#message_to").text("");
+$("#message_to").append("<%= escape_javascript(render(:partial => 'contacts/grouped_contacts_select').html_safe) %>");
+$("#message_to").slideDown();
+});
+
+//alert("called after");
+}
+);

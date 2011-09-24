@@ -3,7 +3,13 @@ class ContactsController < ApplicationController
   # GET /contacts.xml
   load_and_authorize_resource
   def index
-    @contacts = current_user.contacts.all
+
+    @id = (params[:group_id] || 0)
+    if(@id!=0)
+      @contacts = @contacts = User.find(current_user.id).contact_groups.find_by_id(@id).contacts.all
+    else
+      @contacts = current_user.contacts.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -91,5 +97,33 @@ class ContactsController < ApplicationController
       #format.js { redirect_to(contacts_path) } #render_to_facebox(:html => "test")
     end
   end
+  
+  def get_group_emails
+    @group_ids = params[:cb]
+    respond_to do |format|
+      format.js # index.html.erb
+      format.xml  { render :xml => @text }
+    end
+    #puts @group_ids[0]
+  end
+
+  def delete_emails
+    @contacts_ids = params[:cb]
+
+    #@contact_ids.each do |id|
+    #@contact = current_user.contacts.find(id)
+    #puts @contact
     
+    #end
+      @contacts_ids.each { |id|
+      @contact = current_user.contacts.find(id)
+      @contact.destroy
+    }
+    
+    flash[:notice] = "#{@contacts_ids.count} contacts deleted"
+    puts @contacts_ids;
+  end
+
 end
+
+

@@ -83,8 +83,9 @@ class ContactGroupsController < ApplicationController
     end
   end
 
+
   def add_to_group_form
-    
+
     @contact_list ="nil"
     respond_with(@contact_list) do |format|
       format.js { render_to_facebox }
@@ -92,12 +93,36 @@ class ContactGroupsController < ApplicationController
   end
 
   def add_to_group
-    @contacts = ContactGroup.add_to_groupmodel(current_user,params[:group_type],params[:name],params[:cb],params[:new_group_name])
-    #@contact_count = @contacts.count(){|contact| contact.errors.blank?}
+    @contacts = []
+    group = nil
+    @contact_count
+    @new_group_name = ""
+    @new_group_id = ''
+    if params[:group_type]=='existing'
+      @group_id = params[:name]['id']
+      @contacts = ContactGroupsContact.add_group_contacts(@group_id,params[:cb])
+      @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
+
+    else
+
+      if params[:new_group_name].present? && params[:new_group_name].strip!=''
+        group = ContactGroup.add_to_groupmodel(current_user,params[:new_group_name])
+      end
+
+      if group.present? && group['id'].present?
+        @new_group_id = group['id']
+        @new_group_name = params[:new_group_name];
+        @contacts = ContactGroupsContact.add_group_contacts(@new_group_id.to_int,params[:cb])
+        @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
+      end
+
+    end
+
     @contact_list = ""
     respond_with(@contact_list) do |format|
-      flash[:notice] = "contacts added to the group"
+      flash[:notice] = @contact_count.to_s + " contacts added to the group"
       format.js #{ render_to_facebox }
     end
+
   end
 end

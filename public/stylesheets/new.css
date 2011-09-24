@@ -921,3 +921,13 @@ textarea.comment { width: 500px; height: 100px; border: 3px solid #cccccc; paddi
 .hidden {
   display: none;
 }
+
+.group_cb{
+    display: table-cell;
+    width: 33%;
+}
+
+.group_cb label{
+    font-weight: normal;
+    font-size: 12px;
+}
