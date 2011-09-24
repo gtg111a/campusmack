@@ -122,8 +122,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = current_user
     @to_emails = ""
-    @to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?)
-
+    #@to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?) # is is added to collect emails brom db and populate the text area with emails
     respond_with(@post) do |format|
       format.js { render_to_facebox }
     end
@@ -135,7 +134,7 @@ class PostsController < ApplicationController
     if !params[:cb_email].present?
       @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
     else
-      @message = Struct.new(:to, :body).new(params[:cb_email].join(","), params[:message][:body])
+      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], params[:message][:body])
     end
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
