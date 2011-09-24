@@ -89,7 +89,7 @@
                end
               body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
               if @post.video
-                body = body +  '<div class="content">'+ youtube_embed(@post.video.url, true) +'</div>'
+                  body = body +  '<div class="content">' + @post.video.url+ '</div>'
               end
               body = body + '<div class="summary">' + @post.summary + '</div></div>'
 
