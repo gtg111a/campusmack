@@ -3,6 +3,7 @@
   <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' if can? :destroy, @post %>
   <%= link_to('Report Abuse', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") if can? :report, @post %>
 </div>
+
 <h1><%= @post.title %></h1>
 <div class="post">
   <div class="top">

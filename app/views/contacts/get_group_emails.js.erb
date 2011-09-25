@@ -2,40 +2,13 @@
 $(document).ready(function()
 {
 //alert("called before");
-<%
-@text= ""
-@group_ids.each do  |groupid|
-  @contacts = ContactGroup.group_emails_check_box(current_user, groupid )
 
-  @email_group_check_box = "";
-  @contacts.each do  |contact|
-    pattern =/<(.*)>/
-    match = nil
-    match = pattern.match(contact.name)
-    name =nil
-    if match != nil
-      name = match[1]
-    else
-      name = contact.name
-    end
-    @email_group_check_box = @email_group_check_box+'<span class="group_cb" style="padding:5px;" ><input class="chk_box_email" type="checkbox" checked="checked" value="'+contact.email+'" name="cb_email[]"/><span  >'+name+'</span></span>'
-  end
-  @group_name = ""
-  if groupid!='0'
-    @group_name = ContactGroup.find_by_id(groupid).name
-  else
-    @group_name = "All Contacts"
-  end
+$("#message_to").slideUp(function(){
+$("#message_to").text("");
+$("#message_to").append("<%= escape_javascript(render(:partial => 'contacts/grouped_contacts_select').html_safe) %>");
+$("#message_to").slideDown();
+});
 
-  @text = @text+'<div style="width:100%;background-color:skyBlue;padding:5px" >'+@group_name+'</div>'+ @email_group_check_box +'<br/>'
-end
-%>
-$("#message_to").text("")
-$("#message_to").html("<%= escape_javascript(@text.html_safe) %>");
-<%  @text="" %>
 //alert("called after");
 }
 );
-
-
-
