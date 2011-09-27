@@ -159,9 +159,17 @@ class PostsController < ApplicationController
 
   def init_college_menu
     prefix = @parent.class.to_s.downcase
-    @main_menu << [ @parent.name, @parent ]
-    @main_menu << [ 'Smacks', eval("#{prefix}_smacks_path(@parent)") ]
-    @main_menu << [ 'Redemptions', eval("#{prefix}_redemptions_path(@parent)") ]
+    @main_menu << [ :link, 'All', @parent, '' ]
+    if @post_cls == 'smacks'
+      @main_menu << [ :text, 'Smacks', '', 'active' ]
+    else
+      @main_menu << [ :link, 'Smacks', eval("#{prefix}_smacks_path(@parent)"), '' ]
+    end
+    if @post_cls == 'redemptions'
+      @main_menu << [ :text, 'Redemptions', '', 'active' ]
+    else
+      @main_menu << [ :link, 'Redemptions', eval("#{prefix}_redemptions_path(@parent)"), '' ]
+    end
   end
 
 end

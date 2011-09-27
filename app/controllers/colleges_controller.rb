@@ -54,9 +54,9 @@ class CollegesController < ApplicationController
   end
 
   def init_college_menu
-    @main_menu << [ @college.name, @college ]
-    @main_menu << [ 'Smacks', college_smacks_path(@college) ]
-    @main_menu << [ 'Redemptions', college_redemptions_path(@college) ]
+    @main_menu << [ :text, 'All', '', 'active' ]
+    @main_menu << [ :link, 'Smacks', college_smacks_path(@college) ]
+    @main_menu << [ :link, 'Redemptions', college_redemptions_path(@college) ]
   end
 
 end

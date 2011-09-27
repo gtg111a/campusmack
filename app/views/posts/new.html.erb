@@ -1,4 +1,7 @@
-<h1><%= @title %></h1>
+<div class="content new_level with_submenu clearfix">
+<div class="content_title"><%= @title %></div>
+<div class="content_container">
+  <div class="content_category">
 <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
     <% # Rendering content to javascript variables to switch later on  %>
     <% content_for :js do %>
@@ -72,7 +75,7 @@
         $("#news_add_video").live('click',function(e){e.preventDefault(); $("#news_post_addons").hide(); $("#news_video_div").show();});
     <% end %>
     <%= render 'shared/error_messages', :object => f.object %>
-    <ul id="post_fields">
+    <ul class="no-bullets">
       <li>
         <div class="field">
           <%= f.label :title %>
@@ -124,3 +127,6 @@
     </ul>
     <%= f.submit %>
 <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<% content_for :jq do %>
+    $("a.sort_switch").click(function(e){
+    e.preventDefault();
+    var sort = this.id.substring(5);
+    if ($(this).html().substr(-1) == "▼")
+    sort = sort + " asc";
+    else
+    sort = sort + " desc";
+    $("#sort_field").val(sort);
+    $("#search_form").submit();
+    });
+<% end %>
+<div class="category_sort">
+  Sort by:
+  <%= link_to "Post Created#{ @order[0, 10] == "created_at" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=created_at%20#{@order[0, 10] == "created_at" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_created_at", :class => "sort_switch" %>
+  |
+  <%= link_to "Votes For#{ @order[0, 8] == "up_votes" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=up_votes%20#{@order[0, 8] == "up_votes" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_up_votes", :class => "sort_switch" %>
+  |
+  <%= link_to "Votes Against#{ @order[0, 10] == "down_votes" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=down_votes%20#{@order[0, 10] == "down_votes" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_down_votes", :class => "sort_switch" %>
+</div>

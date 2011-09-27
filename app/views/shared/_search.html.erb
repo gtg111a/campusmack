@@ -1,0 +1,8 @@
+<div class="search">
+  <%= form_for 'search', :url => request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search", :html => {:method => :post, :id => "search_form"} do |f| %>
+      <%= f.label :title_or_summary_contains, "Search:" %>
+      <%= f.text_field :title_or_summary_contains, :class => :input_search %>
+      <%= f.submit "Go!", :name => nil, :class => 'button blue' %>
+      <%= f.hidden_field :order, :name => "order", :value => @order || "created_at desc", :id => "sort_field" %>
+  <% end %>
+</div>

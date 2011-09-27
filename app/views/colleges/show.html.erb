@@ -1,11 +1,44 @@
-<h1><%= @college.name %></h1>
-<%= render :partial => 'shared/masthead' %>
-<br class="clear"/>
-<%= render 'shared/search_fields' %>
-<% unless @posts.empty? %>
-    <%= will_paginate @posts %>
-    <ul class="posts">
-      <%= render :partial => "/posts/post", :collection => @posts %>
-    </ul>
-<% end %>
-<%= render 'shared/report_form' %>
+<div class="content new_level with_submenu clearfix">
+  <%= render :partial => 'shared/masthead' %>
+  <div class="content_title"><%= @college.name %></div>
+  <div class="content_stats clearfix">
+    <div class="buttons clearfix">
+      <div class="button">
+        <b>Smacks:</b> <%= @college.smacks_count %>
+      </div>
+      <div class="button">
+        <b>Redemtions:</b> <%= @college.redemptions_count %>
+      </div>
+      <div class="button blue">
+        <a href="">View stats</a>
+      </div>
+    </div>
+    <%= render 'shared/search' %>
+  </div>
+
+  <% unless @posts.empty? %>
+
+      <div class="content_container">
+        <div class="content_category">
+          <%= render :partial => 'shared/sorter' %>
+          <div class="category_container clearfix">
+            <%= will_paginate @posts %>
+            <%= render :partial => "/posts/post", :collection => @posts %>
+            <div class="view_more_link clear_both">
+              <a href="">See all videos</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="category_container">
+          <div class="content_category">
+            <div class="category_title">
+              Photos
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <% end %>
+  <%= render 'shared/report_form' %>
+</div>

@@ -1,15 +1,14 @@
-<div class="left sidebar">
-  <div id="nav_list">
-    <ul id="nav">
-      <% Conference.all.each do |conference| %>
-          <li><b><%= link_to conference.name, conference %></b>
-            <ul>
-              <% conference.colleges.each do |college| %>
-                  <li class="side_nav"><%= link_to college.name, college %></li>
-              <% end %>
-            </ul>
-          </li>
-      <% end %>
-    </ul>
-  </div>
+<div class="left_menu new_level">
+  <ul>
+    <% Conference.all.each do |conference| %>
+        <li class="with_submenu<%= ' active' if @conference == conference %>">
+          <a href="<%= url_for(conference) %>"><%= conference.name %></a>
+          <ul>
+            <% conference.colleges.each do |college| %>
+                <li><%= link_to college.name, college %></li>
+            <% end %>
+          </ul>
+        </li>
+    <% end %>
+  </ul>
 </div>

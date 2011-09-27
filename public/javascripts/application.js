@@ -3,22 +3,10 @@
 
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
-/* This is the code for the side navigation */
 $(function() {
-  if (document.all&&document.getElementById) {
-  navRoot = document.getElementById("nav");
-  for (i=0; i<navRoot.childNodes.length; i++) {
-  node = navRoot.childNodes[i];
-  if (node.nodeName=="LI") {
-  node.onmouseover=function() {
-  this.className+=" over";
-   };
-  node.onmouseout=function() {
-  this.className=this.className.replace(" over", "");
-   };
-   }
-  }
- }
+    $(".smack").click(function() {
+        jQuery.facebox("<span style='text-align: center;padding-left:45%'><%= escape_javascript(image_tag('ajax-loader.gif')) %></span>")
+    });
 });
 
 /* This code hides the video/photo field depending on what the user selects */
