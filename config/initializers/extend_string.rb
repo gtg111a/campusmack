@@ -82,4 +82,12 @@ class String
     str.gsub!(/\ /,'_') if options[:convert_spaces]
     str.gsub(options[:regexp], '')
   end
+
+  def censored
+    s = self
+    CENSORED_WORDS.each do |censored_word|
+      s.gsub!(/#{censored_word}/i, CENSOR_REPLACE)
+    end
+    return s
+  end
 end

@@ -78,4 +78,12 @@ module ApplicationHelper
     end
   end
 
+  def censored_text(original_text)
+    if(current_user.present? && current_user.censor_text?)
+      original_text.present? ? original_text.censored : ""
+    else
+      return original_text
+    end
+  end
+
 end

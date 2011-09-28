@@ -130,6 +130,7 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
+    title=params[:message][:title]
     @message = nil
     if !params[:cb_email].present?
       @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
@@ -139,7 +140,7 @@ class PostsController < ApplicationController
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
-        UserMailer.share_post(@post, current_user, @message).deliver
+        UserMailer.share_post(@post, current_user,title, @message).deliver
         flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
       else
         flash[:error] = 'Error while sharing post!'

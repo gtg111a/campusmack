@@ -12,7 +12,7 @@
         <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
       </div>
   <% end %>
-  <h4><%= link_to post.title, [post.postable, post] %></h4>
+  <h4><%= link_to censored_text(post.title), [post.postable, post] %></h4>
   <%= vote_buttons(post) %>
   <div class="content">
     <% if post.photo %>
@@ -25,7 +25,7 @@
     <% end %>
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
     <div class="comments">
-      <%= post.summary %>
+      <%= censored_text(post.summary) %>
       <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
           <%= link_to " [more...]", [post.postable, post] %>
           <br/><br/>

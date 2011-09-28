@@ -1,4 +1,5 @@
-<h1>Listing contacts</h1>
+
+<div><h3>Contacts - (<%= @group_name%>)</h3><div style="text-align: right"><%= render("import_form")  %> </div></div>
 <script type="text/javascript">
   $(document).ready(function() {
     $('.image_load').hide();
@@ -42,10 +43,10 @@
   }
 </script>
 <div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Delete Selected</div>
+
 <table>
   <tr >
-    <td style="padding-right: 10px;padding-left: 10px; margin-top: 2px;vertical-align: top; margin: 10px">
-      <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+    <td style="padding-right: 10px;padding-left: 10px; margin-top: 2px;vertical-align: top; margin: 10px">      
       <ul id="links_ul" style=" background-color: #EEEEEE;">
         <li><%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
         <% @contact_groups.each do |contact_group|   %>
@@ -59,7 +60,6 @@
     <td>
       <form>
         <table id ="rowclick1">
-
           <tr>
             <th></th>
             <th style="padding-right: 10px;padding-left: 10px;" ><!--input type="checkbox" value="0" name="cb" ></input--></th>
@@ -69,7 +69,6 @@
             <th></th>
             <th></th>
           </tr>
-
           <% @contacts.each do |contact| %>
             <tr id="<%= contact.id %>" >
               <td><span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span></td>
@@ -86,7 +85,7 @@
         </table>
       </form>
       <br />
-      
+
       <%= link_to 'New Contact', new_contact_path %>
     </td>
     <td style="vertical-align: top;margin: 20px;" ><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true) %></td>
