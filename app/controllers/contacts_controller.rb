@@ -3,12 +3,15 @@ class ContactsController < ApplicationController
   # GET /contacts.xml
   load_and_authorize_resource
   def index
-
-    @id = (params[:group_id] || 0)
-    if(@id!=0)
-      @contacts = @contacts = User.find(current_user.id).contact_groups.find_by_id(@id).contacts.all
+    group_id = (params[:group_id] || 0)
+    @contact_groups = current_user.contact_groups
+    if(group_id != 0)
+      group       = @contact_groups.find_by_id(group_id)
+      @contacts   = group.contacts.all
+      @group_name = group.name
     else
       @contacts = current_user.contacts.all
+      @group_name = "All"
     end
 
     respond_to do |format|

@@ -11,42 +11,42 @@
   });
 
   function get_group_emails() {
-  //$("#message_to").hide("slow");
-  $("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");
-  //$("#message_to").show("slow");
-  $.ajax({
-    type: "POST",
-    url: "<%= get_group_emails_contacts_path() -%>",
-    data: $(".chk_box").serialize()
-    //beforeSend: function(xhr, settings){$("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");}
-  });
-}
-function sending_email_wait()
-{
-  $('#email_sending').html("<span style='padding-top:20px; margin-top: 10px'><%= escape_javascript(image_tag('ajax-cb-loader.gif')) %></span>");
-}
+    //$("#message_to").hide("slow");
+    $("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");
+    //$("#message_to").show("slow");
+    $.ajax({
+      type: "POST",
+      url: "<%= get_group_emails_contacts_path() -%>",
+      data: $(".chk_box").serialize()
+      //beforeSend: function(xhr, settings){$("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");}
+    });
+  }
+  function sending_email_wait()
+  {
+    $('#email_sending').html("<span style='padding-top:20px; margin-top: 10px'><%= escape_javascript(image_tag('ajax-cb-loader.gif')) %></span>");
+  }
 
-$(document).ready(function(){
-  $(".chk_box").click(get_group_emails);
-  $(".share_by_email").click(sending_email_wait);
-  $("#message_body").keydown(function(event) {
-  });
+  $(document).ready(function(){
+    $(".chk_box").click(get_group_emails);
+    $(".share_by_email").click(sending_email_wait);
+    $("#message_body").keydown(function(event) {
+    });
 
-  $('.group_cb').click(function(){
-    $(this).find(':checkbox').attr('checked', true );
-  },function(){
-    $(this).find(':checkbox').attr('checked', false );
-  });
+    $('.group_cb').click(function(){
+      $(this).find(':checkbox').attr('checked', true );
+    },function(){
+      $(this).find(':checkbox').attr('checked', false );
+    });
 
     
-}
+  }
 );
 </script>
 <%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
   <table>
     <tr>
       <td>
-      <%= label_tag("message[to]", "To") %></td>
+        <%= label_tag("message[to]", "To") %></td>
       <td>
   <%#= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5}) %>
         <% if !params[:smack].present? %>
@@ -80,11 +80,22 @@ $(document).ready(function(){
                 <% end %>
               </ul>
             </div>
+
             <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
             <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
           </div>
         <%  end %>
       </td>
+    </tr>
+    <tr>
+      <td>
+        Title:
+      </td>
+      <td>
+        <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
+            <%= text_field_tag("message[title]","", :size =>20) %>
+      </td>
+
     </tr>
     <tr>
       <td><%= label_tag("message[body]", "Message:") %></td>

@@ -110,9 +110,9 @@ class ContactGroupsController < ApplicationController
       end
 
       if group.present? && group['id'].present?
-        @new_group_id = group['id']
+        @group_id = group['id']
         @new_group_name = params[:new_group_name];
-        @contacts = ContactGroupsContact.add_group_contacts(@new_group_id.to_int,params[:cb])
+        @contacts = ContactGroupsContact.add_group_contacts(@group_id.to_int,params[:cb])
         @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
       end
 
@@ -120,7 +120,7 @@ class ContactGroupsController < ApplicationController
 
     @contact_list = ""
     respond_with(@contact_list) do |format|
-      flash[:notice] = @contact_count.to_s + " contacts added to the group"
+      flash[:notice] = @contact_count.to_s + " contacts added to  #{ContactGroup.find(@group_id).name}"
       format.js #{ render_to_facebox }
     end
 
