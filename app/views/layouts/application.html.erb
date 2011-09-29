@@ -27,14 +27,17 @@
 </div>
 <div class="center_page">
   <div class="top_menu">
-    <span>sign in:</span>
-    <a href="/sign_in" class="network icon"></a>
-    <%= header_service_link(:facebook) %>
-    <%= header_service_link(:twitter) %>
-    <div class="line"></div>
-    <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
+    <% unless current_user %>
+        <span>sign in:</span>
+        <a href="/sign_in" class="network icon"></a>
+        <%= header_service_link(:facebook) %>
+        <%= header_service_link(:twitter) %>
+        <div class="line"></div>
+        <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
+    <% end %>
   </div>
   <img src="/images/logo.png" alt="" class="logo"/>
+
   <div class="new_line"></div>
   <%= user_nav %>
 </div>
@@ -59,10 +62,6 @@
     </div>
 
   </div>
-
-
 </div>
-
-
 </body>
 </html>

@@ -1,9 +1,15 @@
-<h1><%= @user.username %> Posts</h1>
-<%= render 'shared/search_fields' %>
-<%= render 'shared/stats' %>
-<% unless @posts.blank? %>
-    <%= will_paginate @posts %>
-    <ul class="posts">
-      <%= render :partial => "/posts/post", :collection => @posts %>
-    </ul>
-<% end %>
+<div class="content new_level with_submenu clearfix">
+  <div class="content_title"><%= @user.username %> Posts</div>
+  <div class="content_container">
+    <div class="content_category">
+      <%= render 'shared/search' %>
+      <%= render 'shared/stats' %>
+      <% unless @posts.blank? %>
+          <%= will_paginate @posts %>
+          <ul class="posts">
+            <%= render :partial => "/posts/post", :collection => @posts %>
+          </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,8 @@
-<h1><%= @title %></h1>
+<div class="content new_level with_submenu clearfix">
+<div class="content_title"><%= @title %></div>
+<div class="content_container">
+  <div class="content_category">
 <%= render 'posts/form', :post => @post, :parent => @parent %>
+  </div>
+</div>
+</div>
