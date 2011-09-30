@@ -38,8 +38,8 @@ module ApplicationHelper
     @user_nav << ['CONTACT', '/contact-us', [ :class => :big]]
     @user_nav << ['ABOUT', '/about']
     if signed_in?
-      #@user_nav << ['My Posts', user_path(current_user)]
-      #@user_nav << ['Edit Profile', edit_user_registration_path(current_user)]
+      @user_nav << ['MY POSTS', user_path(current_user), [ :class => :big]]
+      @user_nav << ['PROFILE', edit_user_registration_path(current_user), [ :class => :big]]
       @user_nav << ['SIGN OUT', sign_out_path, [ :class => :big]]
     else
       #@user_nav << ['Create Account', sign_up_path]
