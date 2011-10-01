@@ -1,6 +1,8 @@
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+ <%= init_tinymce_hammer_if_required %>
+
 <script type="text/javascript">
   function onABCommComplete() {
     // OPTIONAL: do something here after the new data has been populated in your text area
@@ -43,6 +45,7 @@
 );
 </script>
 <%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
+  <% message = "" %>
   <table>
     <tr>
       <td>
@@ -54,8 +57,8 @@
           <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
           plaxo_path = '"'+plaxo_path+'"';
         %>
-          <%=  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
-
+    <%#  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
+          <% message = " #{current_user.first_name} #{current_user.last_name} shared a post from campusmack.com" %>
         <% else %>
           <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
           <div >
@@ -63,6 +66,7 @@
               <ul>
                 <li>
                   <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
+                  <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
                   <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
                 <% @contact_groups.each do |contact_group|   %>
                   <li>
@@ -93,7 +97,7 @@
       </td>
       <td>
         <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
-            <%= text_field_tag("message[title]","", :size =>20) %>
+        <%= text_field_tag("message[title]",message, :size =>70) %>
       </td>
 
     </tr>
@@ -108,18 +112,20 @@
         body = body +  '<div class="photo">'
         body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
       end
-      body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+      # body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
       if @post.video
-        body = body +  '<div class="content">' + @post.video.url+ '</div>'
+        body = body +  '<div class="content"><a href="'+ @post.video.url+'" style="display:none">' + "Click here to see the video"+ '</a></div>'
+        # body = body + youtube_embed(@post.video.url, true)
       end
-      body = body + '<div class="summary">' + @post.summary + '</div></div>'
+      #  body = body + '<div class="summary">' + @post.summary + '</div></div>'
 
     %>
 
-
-
-      <td><%= text_area_tag("message[body]",body,
+     
+      <%=  hidden_field_tag "message[body1]", body %>
+      <td><%= tinymce_tag("message[body2]","", :class => "mce-editor",
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
+       
       </td>
     </tr>
     <tr>

@@ -3,7 +3,7 @@
     <div class="timestamp">
       Posted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.username %>.
     </div>
-    <p><%= comment.comment %></p>
+    <p><%= censored_text(comment.comment) %></p>
   </div>
   <div class="actions">
     <%= link_to 'Edit', edit_comment_path(comment), :class => 'button' if can? :edit, comment %>

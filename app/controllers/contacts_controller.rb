@@ -124,7 +124,7 @@ class ContactsController < ApplicationController
     }
     
     flash[:notice] = "#{@contacts_ids.count} contacts deleted"
-    puts @contacts_ids;
+   # puts @contacts_ids;
   end
 
 end

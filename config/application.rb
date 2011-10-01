@@ -47,5 +47,7 @@ module Campusmack
     config.filter_parameters += [:password]
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.raise_delivery_errors = true
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
