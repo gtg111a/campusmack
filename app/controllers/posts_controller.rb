@@ -47,6 +47,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
@@ -120,6 +122,8 @@ class PostsController < ApplicationController
 
   def share_through_email_form
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @user = current_user
     @to_emails = ""
     #@to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?) # is is added to collect emails brom db and populate the text area with emails
@@ -130,12 +134,15 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     title=params[:message][:title]
     @message = nil
+    msg = params[:message][:body1] + "<br>" + params[:message][:body2]
     if !params[:cb_email].present?
-      @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+      @message = Struct.new(:to, :body).new(params[:message][:to], msg)
     else
-      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], params[:message][:body])
+      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], msg)
     end
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
