@@ -49,6 +49,8 @@
 
   <div style="float: right;">
     <%= link_to_if(current_user.present?, "Send as smack" , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
+    <% s = SmackSend.count_by_sql "select count(*) from smack_sends where user_id=#{current_user.id} and post_id=#{post.id}"  %>
+    <br/> you send this <%= s %> times
     <br/>
     <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>

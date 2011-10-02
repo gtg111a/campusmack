@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    
     @title = @parent.name + " #{@post_cls.titleize}"
     posts = if ['smacks', 'redemptions'].include?(@post_cls)
       @parent.send(@post_cls)
@@ -136,6 +137,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
+    inc_count=0
+    if params[:smack] == "1"
+      inc_count=1
+    else
+      inc_count=0
+    end
     title=params[:message][:title]
     @message = nil
     msg = params[:message][:body1] + "<br>" + params[:message][:body2]
@@ -147,8 +154,9 @@ class PostsController < ApplicationController
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
-        UserMailer.share_post(@post, current_user,title, @message).deliver
+        UserMailer.share_post(@post, current_user,title, @message, inc_count).deliver
         flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
+        
       else
         flash[:error] = 'Error while sharing post!'
       end

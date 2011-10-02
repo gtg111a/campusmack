@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928131409) do
+ActiveRecord::Schema.define(:version => 20111001122634) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -176,6 +176,14 @@ ActiveRecord::Schema.define(:version => 20110928131409) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "smack_sends", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "send_number"
+  end
+
   create_table "statistics", :force => true do |t|
     t.integer  "post_id"
     t.string   "name"
@@ -209,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20110928131409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "censor_text",                           :default => true
+    t.integer  "smack_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
