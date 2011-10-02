@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910142621) do
+ActiveRecord::Schema.define(:version => 20111001122634) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +53,28 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
     t.integer  "redemptions_count", :default => 0, :null => false
   end
 
+  create_table "contact_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_groups_contacts", :id => false, :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "contact_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -90,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "reports_count",     :default => 0, :null => false
+    t.integer  "up_votes",          :default => 0, :null => false
+    t.integer  "down_votes",        :default => 0, :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -98,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "reports", :force => true do |t|
@@ -145,6 +169,14 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "smack_sends", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "send_number"
+  end
 
   create_table "statistics", :force => true do |t|
     t.integer  "post_id"
@@ -178,10 +210,12 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "censor_text",                           :default => true
+    t.integer  "smack_count"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "videos", :force => true do |t|
     t.integer  "post_id"
@@ -201,7 +235,7 @@ ActiveRecord::Schema.define(:version => 20110910142621) do
   end
 
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
-  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
   add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end
