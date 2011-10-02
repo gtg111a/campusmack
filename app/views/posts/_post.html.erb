@@ -3,32 +3,32 @@
   $(".smack").click( function(){
     jQuery.facebox("<span style='text-align: center;padding-left:45%'><%= escape_javascript(image_tag('ajax-loader.gif')) %></span>")
   }
-  );
+);
 </script><li id="post_<%= post.id %>" class="post">
   <% if signed_in? %>
-      <div class="actions">
-        <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
-        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
-      </div>
+    <div class="actions">
+      <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
+      <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
+      <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
+    </div>
   <% end %>
   <h4><%= link_to censored_text(post.title), [post.postable, post] %></h4>
   <%= vote_buttons(post) %>
   <div class="content">
     <% if post.photo %>
-        <div class="photo_post">
-          <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
-        </div>
+      <div class="photo_post">
+        <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
+      </div>
     <% end %>
     <% if post.video %>
-        <div class="video_post"><%= youtube_embed(post.video.url) %></div>
+      <div class="video_post"><%= youtube_embed(post.video.url) %></div>
     <% end %>
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
     <div class="comments">
       <%= censored_text(post.summary) %>
       <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
-          <%= link_to " [more...]", [post.postable, post] %>
-          <br/><br/>
+        <%= link_to " [more...]", [post.postable, post] %>
+        <br/><br/>
       <% end %>
     </div>
   </div>
@@ -40,9 +40,10 @@
   <br class="clear"/>
 
   <div style="float: right;">
-    <%= link_to_if(current_user.present?, "Send as smack" , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
-    <% s = SmackSend.count_by_sql "select count(*) from smack_sends where user_id=#{current_user.id} and post_id=#{post.id}"  %>
-    <br/> you send this <%= s %> times
+    <% if(current_user.present?) %>
+      <%= link_to("Send as smack" , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
+      <br/> you send this <%= SmacSend.smac_count(current_user.id, post.id) %> times
+    <% end %>
     <br/>
     <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
