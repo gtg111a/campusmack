@@ -6,12 +6,14 @@
         <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
       </div>
   <% end %>
+
   <div class="preview">
     <% if post.photo %>
         <div class="photo_post">
           <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
         </div>
     <% end %>
+
     <% if post.news_post && !post.news_post.image_file_name.blank? %>
         <div class="photo_post">
           <a class="photo snap_noshots" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" alt=""/></a>
@@ -20,6 +22,7 @@
     <% if post.video %>
         <div class="video_post"><%= youtube_embed(post.video.url) %></div>
     <% end %>
+
     <% if post.news_post && !post.news_post.video_url.blank? %>
         <div class="video_post"><%= youtube_embed(post.news_post.video_url) %></div>
     <% end %>
@@ -32,7 +35,7 @@
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "content_tw.png"}) %>
     <%= link_to_if(current_user.present?, image_tag('send_as_smack.png'), share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]", :class=>"smack", :method => "GET", :remote => true) %>
   </div>
-  <div class="title"><%= link_to post.title, [post.postable, post] %></div>
+  <div class="title"><%= link_to censored_text(post.title), [post.postable, post] %></div>
   <div class="unit_info">
     Posted <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
     by: <%= link_to(post.user.try(:username), post.user, :class => :author) %>
@@ -40,7 +43,7 @@
   <%#= vote_buttons(post) %>
   <div class="description">
     <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
-    <%= post.summary %>
+    <%= censored_text(post.summary) %>
     <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
         <%= link_to " [more...]", [post.postable, post] %>
         <br/><br/>
@@ -50,6 +53,4 @@
     <a href=""><img src="/images/like.png"></a>
     <a href=""><img src="/images/dislike.png"></a>
   </div>
-
 </div>
-

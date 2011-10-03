@@ -1,4 +1,6 @@
 Campusmack::Application.routes.draw do
+  get "smack_sends/index"
+
   resources :contact_groups_contacts
 
   resources :contact_groups do

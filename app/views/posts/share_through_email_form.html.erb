@@ -1,68 +1,81 @@
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+<%= javascript_include_tag "tinymce/tiny_mce" %>
+
 <script type="text/javascript">
   function onABCommComplete() {
     // OPTIONAL: do something here after the new data has been populated in your text area
     //alert($("#message_to").val());
   }
   $(document).ready(function() {
+
+    tinyMCE.init({
+      theme : "simple",
+      mode : "textareas"
+
+    });
+    tinyMCE.execCommand('mceAddControl', false, 'message_body2');
    
   });
 
   function get_group_emails() {
-  //$("#message_to").hide("slow");
-  $("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");
-  //$("#message_to").show("slow");
-  $.ajax({
-    type: "POST",
-    url: "<%= get_group_emails_contacts_path() -%>",
-    data: $(".chk_box").serialize()
-    //beforeSend: function(xhr, settings){$("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");}
-  });
-}
-function sending_email_wait()
-{
-  $('#email_sending').html("<span style='padding-top:20px; margin-top: 10px'><%= escape_javascript(image_tag('ajax-cb-loader.gif')) %></span>");
-}
+    //$("#message_to").hide("slow");
+    $("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");
+    //$("#message_to").show("slow");
+    $.ajax({
+      type: "POST",
+      url: "<%= get_group_emails_contacts_path() -%>",
+      data: $(".chk_box").serialize()
+      //beforeSend: function(xhr, settings){$("#message_to").html("<%= escape_javascript(image_tag('ajax-loader.gif')) %>");}
+    });
+  }
+  function sending_email_wait()
+  {
+    $('#email_sending').html("<span style='padding-top:20px; margin-top: 10px'><%= escape_javascript(image_tag('ajax-cb-loader.gif')) %></span>");
+  }
 
-$(document).ready(function(){
-  $(".chk_box").click(get_group_emails);
-  $(".share_by_email").click(sending_email_wait);
-  $("#message_body").keydown(function(event) {
-  });
+  $(document).ready(function(){
+    $(".chk_box").click(get_group_emails);
+    $(".share_by_email").click(sending_email_wait);
+    $("#message_body").keydown(function(event) {
+    });
 
-  $('.group_cb').click(function(){
-    $(this).find(':checkbox').attr('checked', true );
-  },function(){
-    $(this).find(':checkbox').attr('checked', false );
-  });
+    $('.group_cb').click(function(){
+      $(this).find(':checkbox').attr('checked', true );
+    },function(){
+      $(this).find(':checkbox').attr('checked', false );
+    });
 
     
-}
+  }
 );
 </script>
 <%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
+  <% message = "" %>
   <table>
     <tr>
       <td>
-      <%= label_tag("message[to]", "To") %></td>
+        <%= label_tag("message[to]", "To") %></td>
       <td>
   <%#= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5}) %>
         <% if !params[:smack].present? %>
+
           <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
           <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
           plaxo_path = '"'+plaxo_path+'"';
         %>
-          <%=  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
-
+    <%#  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
+          <% message = " #{current_user.first_name} #{current_user.last_name} shared a post from campusmack.com" %>
         <% else %>
+          <input type="hidden" id="smack" name="smack" value="1"></input>
           <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
           <div >
             <div style="min-width: 80px;">
               <ul>
                 <li>
                   <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
+                  <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
                   <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
                 <% @contact_groups.each do |contact_group|   %>
                   <li>
@@ -80,11 +93,22 @@ $(document).ready(function(){
                 <% end %>
               </ul>
             </div>
+
             <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
             <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
           </div>
         <%  end %>
       </td>
+    </tr>
+    <tr>
+      <td>
+        Title:
+      </td>
+      <td>
+        <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
+        <%= text_field_tag("message[title]",message, :size =>70) %>
+      </td>
+
     </tr>
     <tr>
       <td><%= label_tag("message[body]", "Message:") %></td>
@@ -97,18 +121,20 @@ $(document).ready(function(){
         body = body +  '<div class="photo">'
         body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
       end
-      body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+      # body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
       if @post.video
-        body = body +  '<div class="content">' + @post.video.url+ '</div>'
+        body = body +  '<div class="content"><a href="'+ @post.video.url+'" style="display:none">' + "Click here to see the video"+ '</a></div>'
+        # body = body + youtube_embed(@post.video.url, true)
       end
-      body = body + '<div class="summary">' + @post.summary + '</div></div>'
+      #  body = body + '<div class="summary">' + @post.summary + '</div></div>'
 
     %>
 
 
-
-      <td><%= text_area_tag("message[body]",body,
+      <%=  hidden_field_tag "message[body1]", body %>
+      <td><%= tinymce_tag("message[body2]","", :class => "mce-editor",
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
+
       </td>
     </tr>
     <tr>

@@ -3,7 +3,7 @@ module ApplicationHelper
   def close_facebox()
     return "jQuery.facebox.close();".html_safe
   end
-  
+
   def logo
     image_tag("Smack That", :class => "round")
   end
@@ -35,15 +35,15 @@ module ApplicationHelper
   def user_nav
     #@user_nav << ['Help', help_path]
     @user_nav << ['HOME', '/']
-    @user_nav << ['CONTACT', '/contact-us', [ :class => :big]]
+    @user_nav << ['CONTACT', '/contact-us', [:class => :big]]
     @user_nav << ['ABOUT', '/about']
     if signed_in?
-      @user_nav << ['MY POSTS', user_path(current_user), [ :class => :big]]
-      @user_nav << ['PROFILE', edit_user_registration_path(current_user), [ :class => :big]]
-      @user_nav << ['SIGN OUT', sign_out_path, [ :class => :big]]
+      @user_nav << ['MY POSTS', user_path(current_user), [:class => :big]]
+      @user_nav << ['PROFILE', edit_user_registration_path(current_user), [:class => :big]]
+      @user_nav << ['SIGN OUT', sign_out_path, [:class => :big]]
     else
       #@user_nav << ['Create Account', sign_up_path]
-      @user_nav << ['SIGN IN', sign_in_path ]
+      @user_nav << ['SIGN IN', sign_in_path]
     end
     html = '<div class="menu">'
     html << '<ul>'
@@ -65,7 +65,7 @@ module ApplicationHelper
 
   def open_graph_meta_tags(meta_hash)
     meta_text = ""
-    meta_hash.each_pair do |key,value|
+    meta_hash.each_pair do |key, value|
       meta_text << "<meta property=\"#{key}\" content=\"#{value.html_safe}\" />
       "
     end
@@ -76,7 +76,7 @@ module ApplicationHelper
 
   def meta_tags(meta_hash)
     meta_text = ""
-    meta_hash.each_pair do |key,value|
+    meta_hash.each_pair do |key, value|
       meta_text << "<meta name=\"#{key}\" content=\"#{value.html_safe}\" />
       "
     end
@@ -92,6 +92,14 @@ module ApplicationHelper
     <a href="#">Breadcrumb</a> &gt;
     <b class="actual">Actual page</b>
     </div>}.html_safe
+  end
+
+  def censored_text(original_text)
+    if (current_user.present? && current_user.censor_text?)
+      original_text.present? ? original_text.censored : ""
+    else
+      return original_text
+    end
   end
 
 end

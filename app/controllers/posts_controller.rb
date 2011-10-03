@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    
     @title = @parent.name + " #{@post_cls.titleize}"
     posts = if ['smacks', 'redemptions'].include?(@post_cls)
       @parent.send(@post_cls)
@@ -47,6 +48,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
@@ -120,6 +123,8 @@ class PostsController < ApplicationController
 
   def share_through_email_form
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @user = current_user
     @to_emails = ""
     #@to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?) # is is added to collect emails brom db and populate the text area with emails
@@ -130,17 +135,28 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
-    @message = nil
-    if !params[:cb_email].present?
-      @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
+    inc_count=0
+    if params[:smack] == "1"
+      inc_count=1
     else
-      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], params[:message][:body])
+      inc_count=0
+    end
+    title=params[:message][:title]
+    @message = nil
+    msg = params[:message][:body1] + "<br>" + params[:message][:body2]
+    if !params[:cb_email].present?
+      @message = Struct.new(:to, :body).new(params[:message][:to], msg)
+    else
+      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], msg)
     end
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
-        UserMailer.share_post(@post, current_user, @message).deliver
+        UserMailer.share_post(@post, current_user,title, @message, inc_count).deliver
         flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
+        
       else
         flash[:error] = 'Error while sharing post!'
       end
