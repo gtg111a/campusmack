@@ -127,7 +127,7 @@ class PostsController < ApplicationController
     @post.censored_text(@post.summary,current_user)
     @user = current_user
     @to_emails = ""
-    #@to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?) # is is added to collect emails brom db and populate the text area with emails
+   
     respond_with(@post) do |format|
       format.js { render_to_facebox }
     end
@@ -162,7 +162,7 @@ class PostsController < ApplicationController
       else
         flash[:error] = 'Error while sharing post!'
       end
-      #  flash[:error] = 'Error while sharing post!'
+     
       format.js
     end
   end
