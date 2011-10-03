@@ -43,11 +43,13 @@
   <div style="float: right;">
     <% if(current_user.present?) %>
       <%= link_to("Send as smack" , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
-      <br/> you send this <%= SmacSend.smac_count(current_user.id, post.id) %> times
+      <br/> you send this <%= SmackSend.smac_count(current_user.id, post.id) %> times
     <% end %>
     <br/>
     <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "facebook_32.png"}) %>
     <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "twitter_32.png"}) %>
+     <% if(current_user.present?) %>
     <%= link_to(image_tag("email.png", :border => 0, :size =>'32x32'), share_through_email_form_post_path(post), :method => "GET",:class=>"smack", :remote => true) %>
+    <% end %>
   </div>
 </li>
