@@ -107,24 +107,15 @@ class ContactsController < ApplicationController
       format.js # index.html.erb
       format.xml  { render :xml => @text }
     end
-    #puts @group_ids[0]
   end
 
   def delete_emails
     @contacts_ids = params[:cb]
-
-    #@contact_ids.each do |id|
-    #@contact = current_user.contacts.find(id)
-    #puts @contact
-    
-    #end
-      @contacts_ids.each { |id|
+    @contacts_ids.each { |id|
       @contact = current_user.contacts.find(id)
       @contact.destroy
     }
-    
     flash[:notice] = "#{@contacts_ids.count} contacts deleted"
-   # puts @contacts_ids;
   end
 
 end

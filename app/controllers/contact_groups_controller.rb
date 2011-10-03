@@ -93,36 +93,23 @@ class ContactGroupsController < ApplicationController
   end
 
   def add_to_group
-    @contacts = []
-    group = nil
-    @contact_count
-    @new_group_name = ""
-    @new_group_id = ''
-    if params[:group_type]=='existing'
-      @group_id = params[:name]['id']
-      @contacts = ContactGroupsContact.add_group_contacts(@group_id,params[:cb])
-      @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
-
+    if params[:group_type] == 'existing'
+      @group = ContactGroup.find(params[:group]['id'])
     else
-
-      if params[:new_group_name].present? && params[:new_group_name].strip!=''
-        group = ContactGroup.add_to_groupmodel(current_user,params[:new_group_name])
-      end
-
-      if group.present? && group['id'].present?
-        @group_id = group['id']
-        @new_group_name = params[:new_group_name];
-        @contacts = ContactGroupsContact.add_group_contacts(@group_id.to_int,params[:cb])
-        @contact_count = @contacts.count #(){|contact| contact.errors.blank?}
-      end
-
+      @group = current_user.contact_groups.create(:name => params[:new_group_name].strip)
     end
-
-    @contact_list = ""
-    respond_with(@contact_list) do |format|
-      flash[:notice] = @contact_count.to_s + " contacts added to  #{ContactGroup.find(@group_id).name}"
+    if @group.present? && !@group.new_record?
+      contacts = ContactGroupsContact.add_group_contacts(@group.id, params[:cb])
+      @contact_count = contacts.count
+    end
+    
+    respond_with(@group) do |format|
+      if(@group.valid?)
+        flash[:notice] = @contact_count.to_s + " contacts added to  #{@group.name}"
+      else
+        flash[:error] = "Error saving group. May be you left group name blank."
+      end
       format.js #{ render_to_facebox }
     end
-
   end
 end
