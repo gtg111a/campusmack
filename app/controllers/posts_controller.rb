@@ -145,7 +145,9 @@ class PostsController < ApplicationController
     end
     title=params[:message][:title]
     @message = nil
-    msg = params[:message][:body1] + "<br>" + params[:message][:body2]
+    formatted_2nd_message = params[:message][:body2]
+    formatted_2nd_message.gsub!(/\n/, '<br/>')
+    msg = params[:message][:body1] + "<br>" + formatted_2nd_message
     if !params[:cb_email].present?
       @message = Struct.new(:to, :body).new(params[:message][:to], msg)
     else
