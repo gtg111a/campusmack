@@ -132,7 +132,7 @@
 
 
       <%=  hidden_field_tag "message[body1]", body %>
-      <td><%= tinymce_tag("message[body2]","", :class => "mce-editor",
+      <td><%= text_field_tag("message[body2]","", 
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
 
       </td>
