@@ -1,7 +1,7 @@
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
 <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
-<%= javascript_include_tag "tinymce/tiny_mce" %>
+
 
 <script type="text/javascript">
   function onABCommComplete() {
@@ -10,12 +10,7 @@
   }
   $(document).ready(function() {
 
-    tinyMCE.init({
-      theme : "simple",
-      mode : "textareas"
-
-    });
-    tinyMCE.execCommand('mceAddControl', false, 'message_body2');
+   
    
   });
 
@@ -58,14 +53,14 @@
       <td>
         <%= label_tag("message[to]", "To") %></td>
       <td>
-  <%#= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5}) %>
+
         <% if !params[:smack].present? %>
 
           <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
           <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
           plaxo_path = '"'+plaxo_path+'"';
         %>
-    <%#  raw('<a href="#" onclick='+plaxo_path+'><img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" /></a>') %>
+
           <% message = " #{current_user.first_name} #{current_user.last_name} shared a post from campusmack.com" %>
         <% else %>
           <input type="hidden" id="smack" name="smack" value="1"></input>
@@ -115,24 +110,26 @@
 
       <%
       body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
-      body = body +  'posted '+ time_ago_in_words(@post.created_at) +' ago by '+ @post.user.try(:username)
+      username = @post.user.try(:username) || "Campusmack Team"
+      body = body +  'Posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
       body = body +  '<br class="clear"/></div>'
       if @post.photo
+        body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
         body = body +  '<div class="photo">'
         body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
       end
-      # body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+      body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
       if @post.video
         body = body +  '<div class="content"><a href="'+ @post.video.url+'" style="display:none">' + "Click here to see the video"+ '</a></div>'
-        # body = body + youtube_embed(@post.video.url, true)
+
       end
-      #  body = body + '<div class="summary">' + @post.summary + '</div></div>'
+
 
     %>
 
 
       <%=  hidden_field_tag "message[body1]", body %>
-      <td><%= tinymce_tag("message[body2]","", :class => "mce-editor",
+      <td><%= text_area_tag("message[body2]","",
           :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
 
       </td>
@@ -160,11 +157,6 @@
             <% end %>
             <div class="summary"><%= @post.summary %></div>
           </div>
-
-
-
-
-
         </div></td>
     </tr>
     <tr>
