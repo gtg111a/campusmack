@@ -244,7 +244,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
-  x86-mingw32
+  ruby
 
 DEPENDENCIES
   acts_as_commentable
