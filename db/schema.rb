@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111001122634) do
+ActiveRecord::Schema.define(:version => 20111003130450) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(:version => 20111001122634) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "censor_text",                           :default => true
-    t.integer  "smack_count"
+    t.integer  "smack_count",                           :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
