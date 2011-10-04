@@ -1,11 +1,20 @@
-<h1>Edit comment</h1>
-<%= form_for @comment do |f| %> 
-<%= render '/shared/comments', :f => f %>
-
-<div class="actions">
-  	<%= f.submit "Update Comment" %>	
-</div>
-<% end %>
-<div><%= button_to "Delete Comment", @comment, :method => :delete,
-														:confirm => "You sure"%>
+<div class="content new_level with_submenu clearfix">
+  <div class="content_title">Edit comment</div>
+  <div class="content_container">
+    <div class="content_category clearfix">
+      <%= form_for @comment do |f| %>
+          <div class="field">
+            <%= f.label :comment %>
+            <br/>
+            <%= f.text_area :comment, :rows => 5 %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Update Comment" %>
+          </div>
+      <% end %>
+      <div>
+        <%= button_to "Delete Comment", @comment, :method => :delete, :confirm => "Are you sure?" %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,13 @@
 Campusmack::Application.routes.draw do
+  get "smack_sends/index"
+
   resources :contact_groups_contacts
 
   resources :contact_groups do
     collection do
-    get 'add_to_group_form'
-    post 'add_to_group'
-  end
+      get 'add_to_group_form'
+      post 'add_to_group'
+    end
   end
 
   resources :contacts do
@@ -14,14 +16,15 @@ Campusmack::Application.routes.draw do
       get 'add_to_group_form'
       post 'get_group_emails'
       post 'delete_emails'
+      post 'remove_emails_from_group'
     end
   end
 
   devise_for :users, :controllers => {
-      :omniauth_callbacks => "users/omniauth_callbacks",
-      :registrations => 'users/registrations',
-      :confirmations => 'users/confirmations',
-      :sessions => 'users/sessions'
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    :registrations => 'users/registrations',
+    :confirmations => 'users/confirmations',
+    :sessions => 'users/sessions'
   }, :skip => [:sessions] do
     get 'sign_up' => 'users/registrations#new', :as => :sign_up
     get 'sign_in' => 'users/sessions#new', :as => :sign_in
@@ -62,24 +65,24 @@ Campusmack::Application.routes.draw do
       match :search, :action => :show
     end
     resources :videos do
-       collection do
-         match :search, :action => :index
-       end
+      collection do
+        match :search, :action => :index
+      end
     end
     resources :photos do
-       collection do
-         match :search, :action => :index
-       end
+      collection do
+        match :search, :action => :index
+      end
     end
     resources :news, :controller => :news_posts do
-       collection do
-         match :search, :action => :index
-       end
+      collection do
+        match :search, :action => :index
+      end
     end
     resources :stats, :controller => :statistics do
-       collection do
-         match :search, :action => :index
-       end
+      collection do
+        match :search, :action => :index
+      end
     end
   end
 

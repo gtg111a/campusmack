@@ -1,32 +1,44 @@
-<div class="content new_level clearfix">
-  <div class="content_title">Campusmack Sign in</div>
-  <div style="padding: 1em;margin-top:1em">
-    <section id="services_signin" class="services">
-      <p>Sign in with your Campusmack account -- OR -- use an alternate authentication service:</p>
-
-      <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
-          <%= render 'shared/error_messages', :object => f.object %>
-          <div class="field">
-            <%= f.label :email %>
-            <%= f.email_field :email %>
-          </div>
-          <div class="field">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
-              <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-          <% end -%>
-
-          <%= f.submit "Sign in" %>
-      <% end %>
-      <br>
-
-      <p> New user? <%= link_to "Sign up now!", sign_up_path %></p>
-
-      <%= render :partial => "users/shared/links" %>
-      <%= render :partial => "users/shared/services_list" %>
-    </section>
+<div class="standard clearfix">
+  <div class="title_wrapper">
+    <h1>Campusmack Sign in</h1>
+  </div>
+  <div class="column_wrapper clearfix">
+    <div class="left_column">
+      <div class="title_box">
+        <h2>SIGN IN TO CAMPUSMACK</h2>
+      </div>
+      <div class="form_container form_sign_in">
+        <div class="form_wrapper">
+          <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
+              <%= render 'shared/error_messages', :object => f.object %>
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="description"><%= f.label :email, "Email:" %></td>
+                  <td class="entry"><%= f.email_field :email %></td>
+                </tr>
+                <tr>
+                  <td class="description"><%= f.label :password, "Password:" %></td>
+                  <td class="entry"><%= f.password_field :password %></td>
+                </tr>
+              </table>
+              <% if devise_mapping.rememberable? -%>
+                  <div class="remember"><%= f.check_box :remember_me %> <%= f.label :remember_me, "Remember Me On This Computer" %></div>
+              <% end -%>
+              <%= render :partial => "users/shared/sign_in_links", :locals => {:resource_name => resource_name, :f => f} %>
+              <div class="not_a_member_box">
+                <div class="not_a_member clearfix">
+                  <div class="not_a_member_text">NOT A MEMBER YET?</div>
+                  <div class="sign_up_now_button">
+                    <%= link_to "SIGN UP NOW!", sign_up_path %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="right_column sign_in_column">
+      <%= render :partial => "users/shared/sign_up_services_list" %>
+    </div>
   </div>
 </div>

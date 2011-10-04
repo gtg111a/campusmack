@@ -1,29 +1,44 @@
-<% @college = College.all%>
-<%= render 'shared/error_messages', :object => f.object %> 
-<div class="field">
-<span class="required">*</span><%= f.label :username, "Username:" %>
-<%= f.text_field :username %>
-</div>
-<div class="field">
-<span class="required">*</span><%= f.label :first_name, "First Name:" %>
-<%= f.text_field :first_name %> 
-<span class="required">*</span><%= f.label :last_name, "Last Name:" %>
-<%= f.text_field :last_name %> 
-</div>
-<div class="field">
-<span class="required">*</span><b>Affiliation:</b>
-<%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true})  %>
-<b>of</b> <%= f.select(:college_id, @college.map {|a| [a.name, a.id]}, {:include_blank => true})  %>
-</div>
-<div class="field">
-<span class="required">*</span><%= f.label :email, "Email:" %>
-<%= f.text_field :email, :validate =>{:presence => true, :confirmation => true } %>
-</div> 
-<div class="field">
-<span class="required">*</span><%= f.label :password, "Password:"  %>
-<%= f.password_field :password, :validate =>{:presence => true, :confirmation => true } %> 
-</div>
-<div class="field"> 
-<span class="required">*</span><%= f.label :password_confirmation, "Password Confirmation:" %>
-<%= f.password_field :password_confirmation, :validate =>{:presence => true, :confirmation => true} %>
-</div>
+<% @college = College.all %>
+<%= render 'shared/error_messages', :object => f.object %>
+
+<tr>
+  <td class="description"><%= f.label :username, "Username:" %></td>
+  <td class="entry"><%= f.text_field :username %><%= mark_required(resource, :username) %></td>
+</tr>
+
+<tr>
+  <td class="description"><%= f.label :first_name, "First Name:" %></td>
+  <td class="entry"><%= f.text_field :first_name %><%= mark_required(resource, :first_name) %></td>
+</tr>
+
+<tr>
+  <td class="description"><%= f.label :last_name, "Last Name:" %></td>
+  <td class="entry"><%= f.text_field :last_name %><%= mark_required(resource, :last_name) %> </td>
+</tr>
+
+<tr>
+  <td class="description">Gender:</td>
+  <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], {:include_blank => true}, :class => 'gender') %></td>
+</tr>
+
+<tr>
+  <td class="description">Affiliation:</td>
+  <td class="entry"><%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true}, :class => 'affilation') %>
+    of
+    <%= f.select(:college_id, @college.map { |a| [a.name, a.id] }, {:include_blank => true}, :class => 'college') %><%= mark_required(resource, :affiliation) %></td>
+</tr>
+
+<tr>
+  <td class="description"><%= f.label :email, "Email:" %></td>
+  <td class="entry"><%= f.text_field :email, :validate =>{:presence => true, :confirmation => true} %><%= mark_required(resource, :email) %></td>
+</tr>
+
+<tr>
+  <td class="description"><%= f.label :password, "Password:" %></td>
+  <td class="entry"><%= f.password_field :password, :validate =>{:presence => true, :confirmation => true} %><%= mark_required(resource, :password) %> </td>
+</tr>
+
+<tr>
+  <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
+  <td class="entry"><%= f.password_field :password_confirmation, :validate =>{:presence => true, :confirmation => true} %><%= mark_required(resource, :password_confirmation) %></td>
+</tr>

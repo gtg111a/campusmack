@@ -1,9 +1,13 @@
-<h1>Campusmack Sign up</h1>
-<%= form_for(@user) do |f| %> 
-<%= render 'fields', :f => f %>
-<div class="actions">
-	<%= f.submit "Sign up" %> 
+<div id="standard">
+  <div class="title_wrapper">
+    <h1>Campusmack Sign up</h1>
+  </div>
+
+  <%= form_for(@user) do |f| %>
+      <%= render 'fields', :f => f %>
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+  <% end %>
 </div>
-<% end %>
-			
 			

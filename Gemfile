@@ -19,7 +19,7 @@ gem 'compass', ">= 0.11.5"
 gem 'cancan'
 gem 'fastercsv'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
-
+gem 'breadcrumbs'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

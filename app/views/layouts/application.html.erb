@@ -4,10 +4,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= title %></title>
   <%= csrf_meta_tag %>
-  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js' %>
-  <%= stylesheet_link_tag 'style', 'lionbuttons', 'jquery.fancybox-1.3.4.css' %>
+  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js' %>
+  <%= stylesheet_link_tag 'style', 'lionbuttons', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
   <%= javascript_include_tag "facebox" %>
   <%= stylesheet_link_tag 'facebox' %>
+  <%= stylesheet_link_tag 'sign_in_up' if params[:controller]['registrations'] || params[:controller]['sessions'] %>
   <% unless Rails.env == 'development' || Rails.env == 'test' %>
       <%= javascript_include_tag 'http://shots.snap.com/ss/d83b52a2e254661d23d1c0974a8b36c3/snap_shots.js' %>
   <% end %>
@@ -17,42 +18,54 @@
   <script type="text/javascript">
       <%= yield :js %>
       $(function () {
+          <% flash.each do |key, value| %>
+          $().toastmessage('showToast', {
+              text     : "<%= value %>",
+              sticky   : <%= get_toast_sticky(key) %>,
+              position : 'top-center',
+              type     : "<%= get_toast_type(key) %>"
+          });
+          <% end %>
           <%= yield :jq %>
       });
   </script>
 </head>
-<body>
-<div id="header_bg">
-  <div id="top_menu_bg"></div>
-</div>
-<div class="center_page">
-  <div class="top_menu">
+<body id="<%= @body_id %>">
+<div id="super_wrapper" class="clearfix">
+  <div id="header_bg">
     <% unless current_user %>
-        <span>sign in:</span>
-        <a href="/sign_in" class="network icon"></a>
-        <%= header_service_link(:facebook) %>
-        <%= header_service_link(:twitter) %>
-        <div class="line"></div>
-        <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
+        <div id="top_menu_bg"></div>
     <% end %>
   </div>
-  <img src="/images/logo.png" alt="" class="logo"/>
-
-  <div class="new_line"></div>
-  <%= user_nav %>
-</div>
-
-<div class="second_body">
-  <div class="center_page">
-    <%= breadcrumbs %>
-    <%= yield(:above) %>
-    <%= render 'layouts/left_sidebar' %>
-    <div id="flash-messages">
-      <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, :class => "flash #{key}") %>
+  <div class="center_page clearfix">
+    <div class="top_menu">
+      <% unless current_user %>
+          <span>sign in:</span>
+          <a href="/sign_in" class="network icon"></a>
+          <%= header_service_link(:facebook) %>
+          <%= header_service_link(:twitter) %>
+          <div class="line"></div>
+          <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
       <% end %>
     </div>
-    <%= yield %>
+    <img src="/images/logo.png" alt="" class="logo"/>
+
+    <div class="new_line"></div>
+    <%= user_nav %>
+  </div>
+  <div class="second_body clearfix">
+    <div id="basic_content" class="center_page clearfix">
+      <%= yield(:above) %>
+      <%= render_breadcrumbs %>
+      <div class="wrapper clearfix">
+        <div id="conference_column" class="column">
+          <%= render 'layouts/left_sidebar' %>
+        </div>
+        <div id="yield_column" class="column">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="footer ">
     <div class="footer_content">
@@ -60,7 +73,6 @@
       <img src="/images/tw_ducks.png" class="ducks" alt=""/>
       <a href="#" class="footer_link">Follow us on Twitter</a>
     </div>
-
   </div>
 </div>
 </body>

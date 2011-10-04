@@ -15,7 +15,10 @@ class CollegesController < ApplicationController
 
   def show
     @college = College.where(:permalink => params[:id]).first
+    @conference = @college.conference
     @parent = @college
+    breadcrumbs.add @college.conference.name, conference_path(@college.conference)
+    breadcrumbs.add @college.name, college_path(@college)
     init_college_menu
     @order = params[:order] || 'created_at desc'
     @search = @college.posts.search(params[:search])

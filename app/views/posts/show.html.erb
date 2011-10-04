@@ -1,74 +1,96 @@
 <div class="content new_level with_submenu clearfix">
   <div class="content_actions">
     <ul>
-    <% if can? :update, @post %>
-      <li>
-        <%= link_to 'Edit', method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@parent, @post), :class => 'button' %>
-      </li>
-    <% end %>
-    <% if can? :destroy, @post %>
-      <li>
-        <%= link_to 'Delete', @post, :method => :delete, :confirm => "Delete Post?", :class => 'button' %>
-      </li>
-    <% end %>
-    <% if can? :report, @post %>
-      <li>
-        <%= link_to('Report Abuse', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") %>
-      </li>
-    <% end %>
+      <% if can? :report, @post %>
+          <li>
+            <%= link_to('Report Post', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") %>
+          </li>
+      <% end %>
     </ul>
   </div>
-<div class="content_title"><%= @post.title %></div>
-<div class="content_container">
-  <div class="content_category">
-<div class="post">
-  <div class="top">
-    posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
-    <%= vote_buttons(@post, :small) %>
-    <br class="clear"/>
-  </div>
-  <% if @post.photo %>
-    <div class="photo">
-      <img src="<%= @post.photo.url(:large) %>" alt=""/>
-    </div>
-  <% end %>
-  <% if @post.news_post %>
-    <%= link_to "News post", @post.news_post.url %>
-    <% unless @post.news_post.image_file_name.blank? %>
-      <div class="photo">
-        <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>
-      </div>
-    <% end %>
-    <% unless @post.news_post.video_url.blank? %>
-      <div><%= youtube_embed(@post.news_post.video_url, true) %></div>
-    <% end %>
-  <% end %>
-  <% if @post.video %>
-    <div><%= youtube_embed(@post.video.url, true) %></div>
-  <% end %>
-  <div class="summary"><%= @post.summary %>
-    <% if @post.summary && params[:action] != 'show' %>
-      <%= link_to " [more...]", [@parent, @post] %>
-    <% end %>
-  </div>
-  <br class="clear"/>
-  <% if signed_in? %>
-    <%= form_for [@post, Comment.new], :remote => true do |f| %>
-      <%= render '/shared/comments', :f => f %>
-        <div>
-          <%= f.submit "Submit Comment" %>
+  <div class="content_title"><%= @post.title %></div>
+  <div class="content_container">
+    <div class="content_category">
+      <div class="smack_container clearfix">
+        <div class="actions">
+          <%= link_to(image_tag('like.png'), vote_up_post_path(@post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
+          <b id="vote_count_up<%= @post.id %>"><%= @post.up_votes %></b>
+          <span class="divider_vert">&nbsp;</span>
+          <%= link_to(image_tag('dislike.png'), vote_down_post_path(@post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
+          <b id="vote_count_down<%= @post.id %>"><%= @post.down_votes %></b>
+          <span class="divider_vert">&nbsp;</span>
+          <a href="" class="content_email_small"><img src="/images/content_email.png" alt=""/></a>
+          <%= render(:partial => "posts/facebook_share", :locals => {:post => @post, :image => "content_fb.png"}) %>
+          <%= render(:partial => "posts/twitter_share", :locals => {:post => @post, :image => "content_tw.png"}) %>
+          <span class="divider_vert">&nbsp;</span>
+          <a href=""><img src="/images/send_as_smack.png" alt=""/></a>
+          <span class="divider_vert">&nbsp;</span>
+          <% if signed_in? %>
+              <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
+              <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+          <% end %>
         </div>
-    <% end %>
-  <% end %>
-  <% if @post.comments.any? %>
-    <h2>Comments:</h2>
-    <%= will_paginate(@comments) %>
-  <% end %>
-  <div class="comments">
-    <%= render :partial => @post.comments %>
+
+        <div class="smack_info">
+    <span class="team">
+      Team:
+      <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
+    </span>
+          Posted
+          <span class="date"><%= time_ago_in_words(@post.created_at) %> ago</span>
+          <em>by</em>
+          <%= link_to @post.user.try(:username), user_path(@post.user), :class => "author" %>
+        </div>
+
+        <% if @post.photo || @post.news_post || @post.video %>
+            <div class="smack_content">
+        <% end %>
+        <% if @post.photo %>
+            <div class="photo">
+              <img src="<%= @post.photo.url(:large) %>" alt=""/>
+            </div>
+        <% end %>
+        <% if @post.news_post %>
+            <%= link_to "News post", @post.news_post.url %>
+            <% unless @post.news_post.image_file_name.blank? %>
+                <div class="photo">
+                  <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>
+                </div>
+            <% end %>
+            <% unless @post.news_post.video_url.blank? %>
+                <div><%= youtube_embed(@post.news_post.video_url, :large) %></div>
+            <% end %>
+        <% end %>
+        <% if @post.video %>
+            <div><%= youtube_embed(@post.video.url, :large) %></div>
+        <% end %>
+        <% if @post.photo || @post.news_post || @post.video %>
+            </div>
+        <% end %>
+        <div class="summary"><%= @post.summary %>
+          <% if @post.summary && params[:action] != 'show' %>
+              <%= link_to " [more...]", [@parent, @post] %>
+          <% end %>
+        </div>
+        <br class="clear"/>
+
+        <div class="content_title2">Comments</div>
+        <%= will_paginate(@comments) %>
+        <div class="comments_container">
+          <%= render :partial => @post.comments %>
+        </div>
+        <% if signed_in? %>
+            <div class="add_comment">
+              <%= form_for [@post, Comment.new], :remote => true do |f| %>
+                  <%= render '/shared/comments', :f => f %>
+                  <div>
+                    <%= f.submit "Submit Comment" %>
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+      <%= render 'shared/report_form' %>
+    </div>
   </div>
-</div>
-<%= render 'shared/report_form' %>
-</div>
-</div>
 </div>

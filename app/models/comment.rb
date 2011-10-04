@@ -1,10 +1,10 @@
 class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
-
+  include Filter
   belongs_to :commentable, :polymorphic => true
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'created_at ASC'
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
@@ -13,4 +13,10 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
   has_many :reports, :as => :reportable, :dependent => :destroy
+
+  def self.censor
+    censored_text(self.comment,current_user) rescue 0
+
+
+  end
 end

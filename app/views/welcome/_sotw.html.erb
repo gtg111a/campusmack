@@ -1,13 +1,7 @@
-<div class="content_header ">
-  <div class="content_title">SMACKS OF THE WEEK</div>
-  <div class="content_stats clearfix">
-    <div class="search">
-      <form action="#" method="post">
-        <label for="input_search">Search:</label>
-        <input type="text" name="q" class="input_search" id="input_search"/>
-        <input type="submit" value="Go" class="button blue"/>
-      </form>
-    </div>
+<div class="standard clearfix">
+  <div class="title_wrapper"><h1>Smacks of the week</h1></div>
+  <div class="column_wrapper clearfix">
+    <%= render :partial => 'shared/search' %>
   </div>
 
   <div class="content_container clearfix">
@@ -21,10 +15,10 @@
       </div>
       <div class="img_section">
         <% if @sotw.photo %>
-            <a class="photo snap_noshots" href="<%= @sotw.photo.url(:large) %>"><img src="<%= @sotw.photo.url(:medium) %>" alt="" class="img"/></a>
+            <img src="<%= @sotw.photo.url(:medium) %>" alt="" class="img"/>
         <% end %>
         <% if @sotw.video %>
-            <%= youtube_embed(@sotw.video.url) %>
+            <%= youtube_embed(@sotw.video.url, :medium) %>
         <% end %>
         <%= link_to "News post", @sotw.news_post.url unless @sotw.news_post.blank? %>
       </div>

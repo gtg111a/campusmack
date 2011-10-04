@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @post = @parent.send(@post_cls).build
     @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
     init_college_menu
+    add_breadcrumbs
     render 'posts/new'
   end
 
@@ -41,12 +42,22 @@ class PostsController < ApplicationController
     @order = params[:order] || 'created_at desc'
     @posts = @search.paginate(:page => params[:page], :order => @order)
     init_college_menu
+    add_breadcrumbs
+    if request[:controller] == 'videos' || request[:controller] == 'photos' || request[:controller] == 'news_posts' || request[:controller] == 'statistics'
+      title = request[:controller].capitalize
+      title = "News" if request[:controller] == 'news_posts'
+      title = "Stats" if request[:controller] == 'statistics'
+      breadcrumbs.add title, method("#{@parent.class.name.downcase}_#{title.downcase}#{"_index" if request[:controller] == 'news_posts'}_path").call(@parent)
+    end
+
     # We use the views from the posts folder for everything
     render 'posts/index'
   end
 
   def show
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
@@ -120,9 +131,11 @@ class PostsController < ApplicationController
 
   def share_through_email_form
     @post = Post.find(params[:id])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
     @user = current_user
     @to_emails = ""
-    #@to_emails = current_user.contacts().collect(&:email).join(", ") if(params[:smack].present?) # is is added to collect emails brom db and populate the text area with emails
+   
     respond_with(@post) do |format|
       format.js { render_to_facebox }
     end
@@ -130,21 +143,34 @@ class PostsController < ApplicationController
 
   def share_through_email
     @post = Post.find(params[:id])
-    @message = nil
-    if !params[:cb_email].present?
-      @message = Struct.new(:to, :body).new(params[:message][:to], params[:message][:body])
+    @post.censored_text(@post.title, current_user)
+    @post.censored_text(@post.summary,current_user)
+    inc_count=0
+    if params[:smack] == "1"
+      inc_count=1
     else
-      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], params[:message][:body])
+      inc_count=0
+    end
+    title=params[:message][:title]
+    @message = nil
+    formatted_2nd_message = params[:message][:body2]
+    formatted_2nd_message.gsub!(/\n/, '<br/>')
+    msg = params[:message][:body1] + "<br>" + formatted_2nd_message
+    if !params[:cb_email].present?
+      @message = Struct.new(:to, :body).new(params[:message][:to], msg)
+    else
+      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], msg)
     end
     respond_with(@post) do |format|
       if(@message.to.present? && @message.body.present?)
         puts "Ok found"
-        UserMailer.share_post(@post, current_user, @message).deliver
+        UserMailer.share_post(@post, current_user,title, @message, inc_count).deliver
         flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
+        
       else
         flash[:error] = 'Error while sharing post!'
       end
-      #  flash[:error] = 'Error while sharing post!'
+     
       format.js
     end
   end
@@ -170,6 +196,19 @@ class PostsController < ApplicationController
     else
       @main_menu << [ :link, 'Redemptions', eval("#{prefix}_redemptions_path(@parent)"), '' ]
     end
+  end
+
+  def add_breadcrumbs
+    if @parent.class.name == 'Conference'
+      breadcrumbs.add @parent.name, conference_path(@parent)
+    else
+      breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
+    end
+    breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
+    @main_menu.each do |x|
+      breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
+    end
+    breadcrumbs.add params[:action].gsub(/new|create/, 'Add')
   end
 
 end

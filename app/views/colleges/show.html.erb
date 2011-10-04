@@ -2,17 +2,7 @@
   <%= render :partial => 'shared/masthead' %>
   <div class="content_title"><%= @college.name %></div>
   <div class="content_stats clearfix">
-    <div class="buttons clearfix">
-      <div class="button">
-        <b>Smacks:</b> <%= @college.smacks_count %>
-      </div>
-      <div class="button">
-        <b>Redemtions:</b> <%= @college.redemptions_count %>
-      </div>
-      <div class="button blue">
-        <a href="">View stats</a>
-      </div>
-    </div>
+    <%= render 'shared/photovideomenu' %>
     <%= render 'shared/search' %>
   </div>
 

@@ -3,12 +3,15 @@ class ContactsController < ApplicationController
   # GET /contacts.xml
   load_and_authorize_resource
   def index
-
-    @id = (params[:group_id] || 0)
-    if(@id!=0)
-      @contacts = @contacts = User.find(current_user.id).contact_groups.find_by_id(@id).contacts.all
+    group_id = (params[:group_id] || 0)
+    @contact_groups = current_user.contact_groups
+    if(group_id != 0)
+      group       = @contact_groups.find_by_id(group_id)
+      @contacts   = group.contacts.all
+      @group_name = group.name
     else
       @contacts = current_user.contacts.all
+      @group_name = "All"
     end
 
     respond_to do |format|
@@ -104,24 +107,27 @@ class ContactsController < ApplicationController
       format.js # index.html.erb
       format.xml  { render :xml => @text }
     end
-    #puts @group_ids[0]
   end
 
   def delete_emails
     @contacts_ids = params[:cb]
-
-    #@contact_ids.each do |id|
-    #@contact = current_user.contacts.find(id)
-    #puts @contact
-    
-    #end
-      @contacts_ids.each { |id|
+    @contacts_ids.each { |id|
       @contact = current_user.contacts.find(id)
       @contact.destroy
     }
-    
     flash[:notice] = "#{@contacts_ids.count} contacts deleted"
-    puts @contacts_ids;
+  end
+
+  def remove_emails_from_group
+    @contacts_ids = params[:cb]
+    if @contacts_ids != nil
+      @contacts_ids.each { |id|
+        contact = current_user.contacts.find(id)
+        contact_group = contact.contact_groups
+        contact_group.delete(contact_group)
+      }
+      flash[:notice] = "#{@contacts_ids.count} contacts deleted from group #{params[:groupname]}"
+    end
   end
 
 end

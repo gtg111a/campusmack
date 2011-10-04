@@ -1,0 +1,6 @@
+<h1>SmackSends report</h1>
+<% @smack_sends.each do |smack_send| %>
+<br/>
+user (<%=User.find(smack_send.user_id).username %> ) send the post (<%=Post.find(smack_send.post_id).title %>) to (<%= smack_send.send_number  %> ) persons at (<%= smack_send.created_at  %>)
+<br/>
+<% end %>
