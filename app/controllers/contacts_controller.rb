@@ -118,6 +118,16 @@ class ContactsController < ApplicationController
     flash[:notice] = "#{@contacts_ids.count} contacts deleted"
   end
 
+  def remove_emails_from_group
+    @contacts_ids = params[:cb]
+    @contacts_ids.each { |id|
+      contact = current_user.contacts.find(id)
+      contact_group = contact.contact_groups
+      contact_group.delete(contact_group)
+    }
+    flash[:notice] = "#{@contacts_ids.count} contacts deleted from group #{params[:groupname]}"
+  end
+
 end
 
 

@@ -16,6 +16,7 @@ Campusmack::Application.routes.draw do
       get 'add_to_group_form'
       post 'get_group_emails'
       post 'delete_emails'
+      post 'remove_emails_from_group'
     end
   end
 

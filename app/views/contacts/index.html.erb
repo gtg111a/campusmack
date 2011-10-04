@@ -20,6 +20,15 @@
       });
       
     });
+    $('#remove_selected').click(function(event) {
+      show_img_selected();
+      $.ajax({
+        type: "POST",
+        url: "<%= remove_emails_from_group_contacts_path() -%>",
+        data: $("form").serialize()
+      });
+
+    });
 
   });
 
@@ -42,8 +51,12 @@
 
   }
 </script>
-<div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Remove Selected</div>
-
+<% if @group_name == "All"  %>
+  <div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Delete Selected</div>
+<% else %>
+  <div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Delete Selected</div>
+  <div id="remove_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Remove Selected</div>
+<% end %>
 <table>
   <tr >
     <td style="padding-right: 10px;padding-left: 10px; margin-top: 2px;vertical-align: top; margin: 10px">      
@@ -76,13 +89,14 @@
               <td style="padding-right: 10px;padding-left: 10px;" ><%= escape_javascript((contact.name).html_safe) %></td>
               <td style="padding-right: 10px;padding-left: 10px;" ><%= contact.email %></td>
               <td></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%#= link_to 'Show', contact %></td>
+              <td style="padding-right: 10px;padding-left: 10px;" ></td>
               <td style="padding-right: 10px;padding-left: 10px;" ><%= link_to 'Edit', edit_contact_path(contact) %></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%#= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+              <td style="padding-right: 10px;padding-left: 10px;" ></td>
             </tr>
           <% end %>
 
         </table>
+        <input type ="hidden" name="groupname" value ="<%= @group_name%>" />
       </form>
       <br />
 

@@ -99,7 +99,9 @@ class ContactGroupsController < ApplicationController
       @group = current_user.contact_groups.create(:name => params[:new_group_name].strip)
     end
     if @group.present? && !@group.new_record?
-      contacts = ContactGroupsContact.add_group_contacts(@group.id, params[:cb])
+      if params[:cb] != nil
+        contacts = ContactGroupsContact.add_group_contacts(@group.id, params[:cb])
+      end
       @contact_count = contacts.count
     end
     
