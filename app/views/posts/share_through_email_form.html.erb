@@ -110,7 +110,8 @@
 
       <%
       body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
-      body = body +  'posted '+ time_ago_in_words(@post.created_at) +' ago by '+ @post.user.try(:username)
+      username = @post.user.try(:username) || "Campusmack Team"
+      body = body +  'posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
       body = body +  '<br class="clear"/></div>'
       if @post.photo
         body = body +  '<div class="photo">'
