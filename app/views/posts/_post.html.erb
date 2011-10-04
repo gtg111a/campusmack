@@ -1,56 +1,48 @@
-<div id="post_<%= post.id %>" class="content_unit2 clearfix">
-  <% if signed_in? %>
-      <div class="actions">
-        <%= link_to('Edit', method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
-        <%= link_to('Delete', post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('Report Abuse', report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
-      </div>
-  <% end %>
-
-  <div class="preview">
-    <% if post.photo %>
-        <div class="photo_post">
-          <a class="photo snap_noshots" href="<%= post.photo.url(:large) %>"><img src="<%= post.photo.url(:medium) %>" alt=""/></a>
-        </div>
-    <% end %>
-
-    <% if post.news_post && !post.news_post.image_file_name.blank? %>
-        <div class="photo_post">
-          <a class="photo snap_noshots" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" alt=""/></a>
-        </div>
-    <% end %>
-    <% if post.video %>
-        <div class="video_post"><%= youtube_embed(post.video.url) %></div>
-    <% end %>
-
-    <% if post.news_post && !post.news_post.video_url.blank? %>
-        <div class="video_post"><%= youtube_embed(post.news_post.video_url) %></div>
-    <% end %>
-  </div>
-  <div class="actions">
-    Votes: <b><%= post.up_votes %></b><br/>
-    Against: <b><%= post.down_votes %></b><br/>
-    <%= link_to(image_tag("content_email.png"), share_through_email_form_post_path(post), :method => "GET", :remote => true) %>
-    <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "content_fb.png"}) %>
-    <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "content_tw.png"}) %>
-    <%= link_to_if(current_user.present?, image_tag('send_as_smack.png'), share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]", :class=>"smack", :method => "GET", :remote => true) %>
-  </div>
-  <div class="title"><%= link_to censored_text(post.title), [post.postable, post] %></div>
-  <div class="unit_info">
-    Posted <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
-    by: <%= link_to(post.user.try(:username), post.user, :class => :author) %>
-  </div>
-  <%#= vote_buttons(post) %>
-  <div class="description">
-    <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
-    <%= censored_text(post.summary) %>
-    <% if !post.summary.nil? && !request.fullpath.include?("posts") %>
-        <%= link_to " [more...]", [post.postable, post] %>
-        <br/><br/>
-    <% end %>
-  </div>
-  <div class="actions2">
-    <a href=""><img src="/images/like.png"></a>
-    <a href=""><img src="/images/dislike.png"></a>
-  </div>
+<div class="content_unit2 clearfix">
+    <div class="preview">
+        <% if post.photo %>
+            <img src="<%= post.photo.url(:small) %>" alt=""/>
+        <% end %>
+        <% if post.news_post && !post.news_post.image_file_name.blank? %>
+            <img src="<%= post.news_post.image_url(:small) %>" alt=""/>
+        <% end %>
+        <% if post.video %>
+            <%= youtube_embed(post.video.url) %>
+        <% end %>
+        <% if post.news_post && !post.news_post.video_url.blank? %>
+            <%= youtube_embed(post.news_post.video_url) %>
+        <% end %>
+    </div>
+    <div class="title">
+        <%= link_to post.title, [post.postable, post] %>
+    </div>
+    <div class="unit_info">
+        Posted
+        <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
+        by:
+        <%= link_to(post.user.try(:username), post.user, :class => :author) %>
+    </div>
+    <div class="description">
+        <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
+        <%= post.summary %>
+    </div>
+    <div class="actions">
+        <%= link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
+        <b id="vote_count_up<%= post.id %>"><%= post.up_votes %></b>
+        <span class="divider_vert2">&nbsp;</span>
+        <%= link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
+        <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
+        <span class="divider_vert2">&nbsp;</span>
+        <a href="" class="content_email_small"><img src="/images/content_email_.png" alt="" /></a>
+        <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "content_fb_.png"}) %>
+        <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "content_tw_.png"}) %>
+        <span class="divider_vert2">&nbsp;</span>
+        <a href=""><img src="/images/send_as_smack_.png" alt="" /></a>
+        <span class="divider_vert2">&nbsp;</span>
+        <% if signed_in? %>
+          <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
+          <%= link_to('<img src="/images/delete_.png" alt="Delete" />'.html_safe, post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
+          <%= link_to('<img src="/images/report_.png" alt="Report" />'.html_safe, report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
+        <% end %>
+    </div>
 </div>

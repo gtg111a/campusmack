@@ -1,0 +1,9 @@
+<div class="links clearfix">
+  <div class="l_column">
+    <%= link_to "Forgot your password?", new_password_path(resource_name), :class => "forgot_pass" %>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), :class => "confirmation" %>
+  </div>
+  <div class="r_column blue_button">
+    <%= f.submit "SIGN IN" %>
+  </div>
+</div>

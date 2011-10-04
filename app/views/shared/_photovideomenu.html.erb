@@ -1,0 +1,23 @@
+<ul class="inner_menu">
+  <li>
+    <% if controller_name == 'videos' %>
+        <span>Videos</span>
+    <% else %>
+        <%= link_to "Videos", @parent.is_a?(College) ? college_videos_path(@parent) : conference_videos_path(@parent) %>
+    <% end %>
+  </li>
+  <li>
+    <% if controller_name == 'photos' %>
+        <span>Photos</span>
+    <% else %>
+        <%= link_to "Photos", @parent.is_a?(College) ? college_photos_path(@parent) : conference_photos_path(@parent) %>
+    <% end %>
+  </li>
+  <li>
+    <% if controller_name == 'news_posts' %>
+        <span>News</span>
+    <% else %>
+        <%= link_to "News", @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %>
+    <% end %>
+  </li>
+</ul>

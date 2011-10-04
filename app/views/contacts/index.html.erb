@@ -1,94 +1,96 @@
-
-<div><h3>Contacts - (<%= @group_name%>)</h3><div style="text-align: right"><%= render("import_form")  %> </div></div>
+<h1>Listing contacts</h1>
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('.image_load').hide();
-    
-      $('#rowclick1 tr').click(function(event) {
-          
-          if (event.target.type !== 'checkbox') {
-              $(':checkbox', this).trigger('click');
-          }
-      });
+    $(document).ready(function() {
+        $('.image_load').hide();
 
-    $('#delete_selected').click(function(event) {
-      show_img_selected();
-      $.ajax({
-        type: "POST",
-        url: "<%= delete_emails_contacts_path() -%>",
-        data: $("form").serialize()
-      });
-      
+        $('#rowclick1 tr').click(function(event) {
+
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+
+        $('#delete_selected').click(function(event) {
+            show_img_selected();
+            $.ajax({
+                type: "POST",
+                url: "<%= delete_emails_contacts_path() -%>",
+                data: $("form").serialize()
+            });
+
+        });
+
     });
 
-  });
+    function remove_selected() {
+        var ids = $(".chk_box:checked")
+        for (var i = 0; i < ids.length; i++) {
+            var id = "#" + ids[i].value + "";
+            $(id).remove()
+        }
 
-  function remove_selected()
-  {
-    var ids = $(".chk_box:checked")
-    for( var i=0;i<ids.length;i++){
-      var id = "#"+ids[i].value+"";
-      $(id).remove()
     }
+    function show_img_selected() {
+        var ids = $(".chk_box:checked")
+        for (var i = 0; i < ids.length; i++) {
+            var id = "#img" + ids[i].value;
+            $(id).show();
+        }
 
-  }
-  function show_img_selected()
-  {
-    var ids = $(".chk_box:checked")
-    for( var i=0;i<ids.length;i++){
-      var id = "#img"+ids[i].value;
-      $(id).show();
     }
-
-  }
 </script>
-<div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Remove Selected</div>
-
+<div id="delete_selected" style="cursor: pointer; padding-left: 15%; width: 23%; font-weight: bolder; color: blue ">Delete
+  Selected
+</div>
 <table>
-  <tr >
-    <td style="padding-right: 10px;padding-left: 10px; margin-top: 2px;vertical-align: top; margin: 10px">      
+  <tr>
+    <td style="padding-right: 10px;padding-left: 10px; margin-top: 2px;vertical-align: top; margin: 10px">
+      <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
       <ul id="links_ul" style=" background-color: #EEEEEE;">
-        <li><%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
-        <% @contact_groups.each do |contact_group|   %>
-          <li>
-            <%= link_to(contact_group.name, contacts_path(:group_id=>contact_group.id),:method => "GET", :remote => false) %>
-  <%#= contact_group.name %>
-          </li>
+        <li><%= link_to('All', contacts_path(), :method => "GET", :remote => false) %></li>
+        <% @contact_groups.each do |contact_group| %>
+            <li>
+              <%= link_to(contact_group.name, contacts_path(:group_id=>contact_group.id), :method => "GET", :remote => false) %>
+              <%#= contact_group.name %>
+            </li>
         <% end %>
       </ul>
     </td>
     <td>
       <form>
-        <table id ="rowclick1">
+        <table id="rowclick1">
+
           <tr>
             <th></th>
-            <th style="padding-right: 10px;padding-left: 10px;" ><!--input type="checkbox" value="0" name="cb" ></input--></th>
-            <th style="padding-right: 10px;padding-left: 10px;" >Name</th>
-            <th style="padding-right: 10px;padding-left: 10px;" >Email</th>
+            <th style="padding-right: 10px;padding-left: 10px;"><!--input type="checkbox" value="0" name="cb" ></input--></th>
+            <th style="padding-right: 10px;padding-left: 10px;">Name</th>
+            <th style="padding-right: 10px;padding-left: 10px;">Email</th>
             <th></th>
             <th></th>
             <th></th>
           </tr>
+
           <% @contacts.each do |contact| %>
-            <tr id="<%= contact.id %>" >
-              <td><span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span></td>
-              <td style="padding-right: 10px;padding-left: 10px;" > <input class="chk_box" type="checkbox" value="<%= contact.id %>" name="cb[]" ></input> </td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%= escape_javascript((contact.name).html_safe) %></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%= contact.email %></td>
-              <td></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%#= link_to 'Show', contact %></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%= link_to 'Edit', edit_contact_path(contact) %></td>
-              <td style="padding-right: 10px;padding-left: 10px;" ><%#= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
-            </tr>
+              <tr id="<%= contact.id %>">
+                <td><span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span>
+                </td>
+                <td style="padding-right: 10px;padding-left: 10px;">
+                  <input class="chk_box" type="checkbox" value="<%= contact.id %>" name="cb[]"></input></td>
+                <td style="padding-right: 10px;padding-left: 10px;"><%= escape_javascript(contact.name) %></td>
+                <td style="padding-right: 10px;padding-left: 10px;"><%= contact.email %></td>
+                <td></td>
+                <td style="padding-right: 10px;padding-left: 10px;"><%#= link_to 'Show', contact %></td>
+                <td style="padding-right: 10px;padding-left: 10px;"><%= link_to 'Edit', edit_contact_path(contact) %></td>
+                <td style="padding-right: 10px;padding-left: 10px;"><%#= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+              </tr>
           <% end %>
 
         </table>
       </form>
-      <br />
-
+      <br/>
       <%= link_to 'New Contact', new_contact_path %>
     </td>
-    <td style="vertical-align: top;margin: 20px;" ><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true) %></td>
+    <td style="vertical-align: top;margin: 20px;"><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true) %></td>
   </tr>
 </table>
 

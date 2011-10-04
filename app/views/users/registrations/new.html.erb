@@ -1,11 +1,57 @@
-<h1>Campusmack Sign up</h1>
-<span class="required">* Required fields</span>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f| %>
-    <% devise_error_messages! %>
-    <%= render 'fields', :f => f %>
-    <%= f.submit "Sign up" %>
-    </br></br>
-<% end %>
+<div class="standard clearfix">
+  <div class="title_wrapper">
+    <h1>Campusmack Sign up</h1>
+  </div>
+  <div class="column_wrapper clearfix">
+    <div class="left_column">
+      <div class="title_box">
+        <h2>SIGN UP WITH CAMPUSMACK</h2>
+      </div>
+      <div class="form_container form_sign_up">
+        <div class="form_wrapper">
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f| %>
+              <% devise_error_messages! %>
+              <table cellpadding="0" cellspacing="0">
+                <%= render 'fields', :f => f %>
+              </table>
+              <div class="important_notice clearfix">
+                <span class='required_sign'>*</span>
+                <span class="important_notice_text">Required fields</span>
+              </div>
+              <div class="confirmation_container clearfix">
+                <div class="terms clearfix">
+                  <span class="check_box"><%= check_box_tag :terms %></span><span class="text">I agree to <%= link_to 'Terms and Conditions of Use', root_url %>
+                  and <%= link_to 'Privacy Police', root_url %></span></div>
 
-<%= render :partial => "users/shared/links" %>
-<%= render :partial => "users/shared/services_list" %>
+                <div class="blue_button"><%= f.submit "SIGN UP" %></div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="right_column">
+      <%= render :partial => "users/shared/sign_up_services_list" %>
+      <div class="title_box">
+        <h2>ALREADY A MEMBER?</h2>
+      </div>
+      <div class="sign_in_container">
+        <div class="sign_in_wrapper">
+          <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
+              <%= render 'shared/error_messages', :object => f.object %>
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="description"><%= f.label :email, "Email:" %></td>
+                  <td class="entry"><%= f.email_field :email %></td>
+                </tr>
+                <tr>
+                  <td class="description"><%= f.label :password, "Password:" %></td>
+                  <td class="entry"><%= f.password_field :password %></td>
+                </tr>
+              </table>
+              <%= render :partial => "users/shared/sign_in_links", :locals => {:resource_name => resource_name, :f => f} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

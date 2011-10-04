@@ -22,6 +22,10 @@
           <br>
 
           <div class="field">
+            <span class="required">*</span><b>Gender:<b>
+            <%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], :include_blank => true) %>
+          </div>
+          <div class="field">
             <span class="required">*</span><b>Affiliation:<b>
             <%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true}) %><b> of<b>
             <%= f.select(:college_id, @college.map { |a| [a.name, a.id] }, {:include_blank => true}) %>
@@ -29,10 +33,6 @@
           <div class="field">
             <span class="required">*</span><%= f.label :email, "Email:" %>
             <%= f.text_field :email, :validate =>{:presence => true, :confirmation => true} %>
-          </div>
-          <div class="field">
-            <span class=""></span><%= f.label :censor_text, "Censor Text?" %>
-            <%= f.check_box(:censor_text, :validate =>{:presence => true, :confirmation => true}) %>
           </div>
           <% if session[:provider].nil? %>
               <div class="field">
@@ -52,13 +52,14 @@
           <% end %>
           <p><%= f.submit "Update" %></p>
       <% end %>
+
       <h3>Cancel my account</h3>
 
       <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
         .</p>
 
-
       <p><%= link_to 'Manage my alternative authentications', authentications_path %></p>
+
       <%= link_to "Back", :back %>
     </div>
   </div>

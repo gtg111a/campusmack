@@ -47,7 +47,7 @@ module PostsHelper
     ).count
   end
 
-  def youtube_embed(youtube_url, large = false)
+  def youtube_embed(youtube_url, size = :small)
     if youtube_url =~ /youtube|youtu.be/
       if youtube_url[/youtu\.be\/([^\?]*)/]
         youtube_id = $1
@@ -56,7 +56,21 @@ module PostsHelper
         youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
         youtube_id = $5
       end
-      return raw %Q{<iframe title="YouTube video player" width="#{large ? 500 : 200}" height="#{large ? 400 : 200}" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+      case size
+      when :small
+        w = 158
+        h = 92
+      when :medium
+        w = 217
+        h = 163
+      when :large
+        w = 500
+        h = 400
+      else
+        w = 158
+        h = 92
+      end
+      return raw %Q{<iframe title="YouTube video player" width="#{w}" height="#{h}" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
     end
   end
 

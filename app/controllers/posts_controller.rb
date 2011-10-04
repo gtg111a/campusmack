@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @post = @parent.send(@post_cls).build
     @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
     init_college_menu
+    add_breadcrumbs
     render 'posts/new'
   end
 
@@ -31,7 +32,6 @@ class PostsController < ApplicationController
   end
 
   def index
-    
     @title = @parent.name + " #{@post_cls.titleize}"
     posts = if ['smacks', 'redemptions'].include?(@post_cls)
       @parent.send(@post_cls)
@@ -42,6 +42,14 @@ class PostsController < ApplicationController
     @order = params[:order] || 'created_at desc'
     @posts = @search.paginate(:page => params[:page], :order => @order)
     init_college_menu
+    add_breadcrumbs
+    if request[:controller] == 'videos' || request[:controller] == 'photos' || request[:controller] == 'news_posts' || request[:controller] == 'statistics'
+      title = request[:controller].capitalize
+      title = "News" if request[:controller] == 'news_posts'
+      title = "Stats" if request[:controller] == 'statistics'
+      breadcrumbs.add title, method("#{@parent.class.name.downcase}_#{title.downcase}#{"_index" if request[:controller] == 'news_posts'}_path").call(@parent)
+    end
+
     # We use the views from the posts folder for everything
     render 'posts/index'
   end
@@ -186,6 +194,19 @@ class PostsController < ApplicationController
     else
       @main_menu << [ :link, 'Redemptions', eval("#{prefix}_redemptions_path(@parent)"), '' ]
     end
+  end
+
+  def add_breadcrumbs
+    if @parent.class.name == 'Conference'
+      breadcrumbs.add @parent.name, conference_path(@parent)
+    else
+      breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
+    end
+    breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
+    @main_menu.each do |x|
+      breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
+    end
+    breadcrumbs.add params[:action].gsub(/new|create/, 'Add')
   end
 
 end
