@@ -111,18 +111,19 @@
       <%
       body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
       username = @post.user.try(:username) || "Campusmack Team"
-      body = body +  'posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
+      body = body +  'Posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
       body = body +  '<br class="clear"/></div>'
       if @post.photo
+        body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
         body = body +  '<div class="photo">'
         body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
       end
-      # body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+      body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
       if @post.video
         body = body +  '<div class="content"><a href="'+ @post.video.url+'" style="display:none">' + "Click here to see the video"+ '</a></div>'
-        # body = body + youtube_embed(@post.video.url, true)
+
       end
-      #  body = body + '<div class="summary">' + @post.summary + '</div></div>'
+
 
     %>
 

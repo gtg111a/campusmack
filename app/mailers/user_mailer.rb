@@ -30,13 +30,12 @@ class UserMailer < ActionMailer::Base
     end
     mail(:to => @message.to,:from => 'noreplay@campusmack.com', :subject => title)
     if inc_count == 1
-      poster.smack_count += 1
+      poster.increment_smack_send
       smack_send = SmackSend.new
       smack_send.user_id = poster.id
       smack_send.post_id = @post.id
       message_array = recevier.split(",") rescue @mesage.to
       smack_send.send_number = message_array.length
-      poster.save
       smack_send.save  
     end
   end
