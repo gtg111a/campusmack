@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110919155522) do
-=======
 ActiveRecord::Schema.define(:version => 20111003161623) do
->>>>>>> 00da1692779e249a97902b93ed8f8dd65f13956d
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -221,7 +217,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "censor_text",                           :default => true
-    t.integer  "smack_count"
+    t.integer  "smack_count",                           :default => 0
     t.string   "gender",                 :limit => 1
   end
 
