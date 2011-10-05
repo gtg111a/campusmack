@@ -34,6 +34,10 @@
             <span class="required">*</span><%= f.label :email, "Email:" %>
             <%= f.text_field :email, :validate =>{:presence => true, :confirmation => true} %>
           </div>
+          <div class="field">
+            <span class="required">*</span><%= f.label :censor_text, "Censor Text?" %>
+            <%= f.check_box(:censor_text, :validate =>{:presence => true, :confirmation => true}) %>
+          </div>
           <% if session[:provider].nil? %>
               <div class="field">
                 <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
