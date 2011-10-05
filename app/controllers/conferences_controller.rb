@@ -58,9 +58,9 @@ class ConferencesController < ApplicationController
   end
 
   def init_main_menu
-    @main_menu << [@conference.name, @conference]
-    @main_menu << ['Smacks', conference_smacks_path(@conference)]
-    @main_menu << ['Redemptions', conference_redemptions_path(@conference)]
+    @main_menu << [ :text, 'All', '', 'active' ]
+    @main_menu << [ :link, 'Smacks', conference_smacks_path(@conference)]
+    @main_menu << [ :link, 'Redemptions', conference_redemptions_path(@conference)]
   end
 
 end

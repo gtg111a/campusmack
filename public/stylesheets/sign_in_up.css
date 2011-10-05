@@ -1,0 +1,479 @@
+#login .content_title {
+    padding-top: 28px;
+    padding-bottom: 10px;
+}
+
+#login .title {
+    padding: 12px 15px 0 20px;
+    height: 25px;
+}
+
+#login .left_col {
+    float: left;
+    border-right: 1px solid #CFCFCF;
+    width: 389px;
+}
+
+#login .right_col {
+    float: right;
+    width: 390px;
+}
+
+.standard .column_wrapper{
+    margin: 0 0 0 0;
+}
+
+.standard .left_column{
+    width: 476px;
+    float: left;
+}
+
+.standard .right_column{
+    width: 310px;
+    float: left;
+}
+
+.standard .left_column .title_box{
+    width: 475px;
+    height: 35px;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+.standard .title_box h2{
+    margin: 0px;
+    font-size:13px;
+    font-weight: normal;
+    padding:12px 0 0 20px;
+}
+
+.standard .right_column .title_box{
+    width: 310px;
+    height: 35px;
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
+.standard .left_column .form_container{
+    padding:2px;
+    width: 471px;
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
+.standard .left_column .form_container .form_wrapper{
+    background: #F3F3F3;
+    height:100%;
+    width: 100%;
+}
+
+.standard .left_column .form_sign_up{
+    height:395px;
+}
+
+.standard table{
+    padding: 30px 0 0px 0;
+    width: 100%;
+}
+
+.standard table tr{
+    height:35px;
+}
+
+
+.standard table .description{
+    width: 148px;
+    text-align: right;
+    font-size: 10pt;
+    color:#09689E;
+}
+
+.standard table .entry{
+    padding: 0 0 0 9px;
+    color: #7a7b7d;
+}
+
+.standard .required_sign{
+    color:#09689E;
+    font-size: 13pt;
+    vertical-align: super;
+    padding: 0 0 0 2px;
+    position: absolute;
+}
+
+.standard table .gender {width: 260px;}
+.standard table .affilation {width: 100px;}
+.standard table .college {width: 144px;}
+
+.standard input{
+    height:27px;
+    color: #7a7b7d;
+    width: 260px;
+    background: #fbfbfb;
+    border-width: 1px 1px 2px 1px;
+    border-color:#cdcdcd;
+    border-style:solid;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    float:left;
+}
+
+.standard input[type="checkbox"]{
+    height: 13px;
+    width: 13px;
+}
+
+.standard select{
+    /*
+    height:27px;
+    color: #7a7b7d;
+    background: #fbfbfb;
+    border-width: 1px 1px 2px 1px;
+    border-color:#cdcdcd;
+    border-style:solid;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    */
+}
+
+.standard #user_new .important_notice{
+    width: 260px;
+    margin: 8px 0 6px 157px;
+}
+
+.standard #user_new .important_notice .required_sign{
+    float:left;
+    color:#09689E;
+    font-size: 13pt;
+    display:block;
+    position: relative;
+}
+
+.standard #user_new .important_notice_text{
+    float:left;
+    color: #7a7b7d;
+    font-size:11px;
+    padding: 0 0 0 2px;
+    display:block;
+}
+
+.standard .form_wrapper .blue_button{
+    width: 69px;
+    float:right;
+}
+
+.standard #user_new .confirmation_container{
+    margin: 0 0 0 135px;
+    width: 290px;
+}
+
+.standard #user_new .confirmation_container .terms{
+    float:left;
+}
+
+.standard #user_new .confirmation_container .terms .check_box{
+    float:left;
+}
+
+.standard #user_new .confirmation_container .terms .text{
+    font-size:11px;
+    float:left;
+    color:#7A7B7D;
+    width: 185px;
+    margin: 0 0 0 11px;
+}
+
+.standard #user_new .confirmation_container .terms .text a{
+    text-decoration: underline;
+    color:#7A7B7D;
+}
+
+.blue_button{
+    display:block;
+    height:28px;
+    background: url('/images/bg_blue_button.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.blue_button a{
+    display:block;
+    padding-top: 4px;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.blue_button input{
+    cursor:pointer;
+    background: none repeat scroll 0 0 transparent!important;
+    border: medium none!important;
+    color: #FFFFFF!important;
+    display: block;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+    padding-top: 4px;
+    width: 100%!important;
+}
+
+.standard .right_column .sign_up_with_container{
+    width: 310px;
+    height:193px;
+}
+
+.standard  .sign_in_column .sign_up_with_container{
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+    height:247px;
+}
+
+.standard .right_column .sign_up_with_container ul{
+    background: #F3F3F3;
+    border-width: 2px;
+    border-color: #fff;
+    border-style: solid;
+    padding: 9px 64px 0 55px;
+    width: 187px;
+    height:180px;
+}
+
+.standard  .sign_in_column .sign_up_with_container ul{
+    height: 212px;
+    padding: 31px 64px 0 55px;
+}
+
+.standard .right_column .sign_up_with_container ul li{
+    margin: 22px 0 0 0;
+}
+
+
+.standard .right_column .sign_up_with_container ul li a{
+    display:block;
+    width: 187px;
+    height: 28px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.standard .right_column .sign_up_with_container ul li a .symbol{
+    display: block;
+    float:left;
+    height:28px;
+    width:27px;
+    margin: 0 0 0 3px;
+}
+
+.standard .right_column .sign_up_with_container ul li a .invitation{
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: 21px;
+    padding: 7px 0 0;
+    text-align: center;
+    width: 156px;
+}
+
+.standard .right_column .sign_up_with_container ul .twitter a{
+    background: url('/images/bg_twitter_button.png') repeat-x;
+}
+
+.standard .right_column .sign_up_with_container ul .twitter a .symbol{
+    /*background: url('/images/twitter_symbol_button.png');*/
+}
+
+
+.standard .right_column .sign_up_with_container ul .facebook a{
+    background: url('/images/bg_facebook_button.png') repeat-x;
+}
+
+.standard .right_column .sign_up_with_container ul .facebook a .symbol{
+    /*background: url('/images/facebook_symbol_button.png');*/
+}
+
+.standard .right_column .sign_up_with_container ul .google a{
+    background: url('/images/bg_google_button.png') repeat-x;
+}
+
+.standard .right_column .sign_up_with_container ul .google a .symbol{
+    width:30px;
+    margin: 0 0 0 0px;
+    /*background: url('/images/google_symbol_button.png');*/
+}
+
+.standard .right_column .sign_in_container{
+    width: 310px;
+    height: 169px;
+    border-color: #CFCFCF;
+    border-style: solid;
+    border-width: 0 0px 1px 0;
+}
+
+.standard .right_column .sign_in_container .sign_in_wrapper{
+    width: 306px;
+    height: 164px;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    background: #F3F3F3;
+}
+
+.standard .sign_in_container table{
+    padding: 20px 0 22px 0;
+}
+
+.standard .sign_in_container table tr{
+    height:35px;
+}
+
+.standard .sign_in_container table .description{
+    width: 84px;
+}
+
+.standard .sign_in_container input{
+    width: 190px;
+}
+
+.standard .sign_in_container .links .l_column{
+    float:left;
+    width:209px;
+    text-align: right;
+    font-size:11px;
+    padding: 0px 10px 0 0 ;
+}
+
+.standard .sign_in_container .links .l_column a:focus,.standard .sign_in_container .links .l_column a:hover{
+    text-decoration: underline;
+}
+
+.standard .sign_in_container .links .l_column a{
+    color: #7A7B7D;
+    display:block;
+}
+
+.standard .sign_in_container .links .r_column{
+    float:left;
+    width: 69px;
+}
+
+.standard .sign_in_container .links .r_column .blue_button {
+    width: 69px;
+    float:left;
+}
+.standard .left_column .form_sign_in{
+    padding:2px;
+    width: 471px;
+    height:243px;
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
+.standard .left_column .remember{
+    font-size: 11px;
+}
+
+.standard .left_column .form_sign_in .remember{
+    margin: 9px 0 13px 157px;
+}
+
+.standard .left_column .form_sign_in .remember label{
+    padding: 0 0 0 5px;
+}
+
+.standard .left_column .form_sign_in input{
+    width: 272px;
+}
+
+.standard .left_column .form_sign_in input[type="checkbox"]{
+    height: 13px;
+    width: 13px;
+}
+
+.standard .left_column .form_sign_in .links{
+    margin: 0 0 15px 157px;
+}
+
+.standard .form_sign_in .links .l_column{
+    float:left;
+    width:193px;
+    text-align: right;
+    font-size:11px;
+    padding: 0px 10px 0 0 ;
+}
+
+.standard .form_sign_in .links .l_column a{
+    color: #7A7B7D;
+    display:block;
+}
+
+.standard .form_sign_in .links .r_column{
+    float:left;
+    width: 69px;
+}
+
+.standard .form_sign_in .links .r_column .blue_button {
+    width: 69px;
+    float:left;
+}
+
+.standard .form_sign_in .not_a_member_box{
+    border-top: 1px solid #cbcbcb;
+    margin: 0 0 0 157px;
+    padding: 10px 0 0 0;
+    width: 272px;
+}
+
+.standard .form_sign_in .not_a_member_box .not_a_member{
+    font-size:12px;
+    color:#000;
+    padding: 0 0 0 2px;
+}
+
+.standard .form_sign_in .not_a_member_box .sign_up_now_button{
+    float:right;
+}
+
+.standard .form_sign_in .not_a_member_box .sign_up_now_button a{
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.standard .form_sign_in .not_a_member_box .not_a_member_text{
+    font-size: 13px;
+    padding: 6px 0 0 0 ;
+    float:left;
+}
+
+.sign_up_now_button{
+    display:block;
+    height:28px;
+    background: url('/images/sign_up_now_button.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sign_up_now_button a{
+    display:block;
+    padding-top: 4px;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+

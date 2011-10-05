@@ -1,6 +1,6 @@
 <%= form_for([ @parent, @post], :validate => true) do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
-    <ul id="post_fields">
+    <ul class="no-bullets">
       <li>
         <div class="field">
           <%= f.label :title %>
@@ -55,11 +55,23 @@
             <% end %>
           </li>
       <% end %>
+      <% if post.news_post %>
+          <li>
+            <%= f.fields_for :news_post, post.news_post do |sf| %>
+                <div class="field">
+                  <%= sf.label :url %>
+                  <br/>
+                  <%= sf.text_field :url %>
+                </div>
+            <% end %>
+          </li>
+      <% end %>
+      <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
       <li>
         <div class="field">
           <%= f.label :summary %>
           <br/>
-          <%= f.text_area :summary, :class => "comment" %>
+          <%= f.text_area :summary, :class => "comment", :rows => 5 %>
         </div>
       </li>
     </ul>

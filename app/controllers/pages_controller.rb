@@ -10,12 +10,8 @@ class PagesController < ApplicationController
     end
   end
 
-  def contact
-    @title = "Contact"
-  end
-
   def about
-    @title = "About"
+    breadcrumbs.add 'About Us', '/about'
   end
 
   def help

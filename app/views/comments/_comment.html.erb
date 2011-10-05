@@ -1,14 +1,23 @@
 <div class="comment">
-  <div class="content">
-    <div class="timestamp">
-      Posted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.username %>.
+  <div class="author_photo">
+    <%= gravatar_for(comment.user, :size => 38) %>
+  </div>
+  <div class="comment_content">
+    <div class="actions">
+      <%= link_to '<img src="/images/edit_.png" alt="Edit" />'.html_safe, edit_comment_path(comment), :class => 'button' if can? :edit, comment %>
+      <%= link_to '<img src="/images/delete_.png" alt="Delete" />'.html_safe, comment, :method => :delete, :remote => true, :confirm => "Delete Comment?", :class => 'button' if can? :destroy, comment %>
+      <%= link_to '<img src="/images/report_.png" alt="Report" />'.html_safe, report_comment_path(comment), :remote => true, :confirm => "Report Abuse?", :class => 'button', :id => "com_rep_#{comment.id}" if can? :report, comment %>
     </div>
-    <p><%= censored_text(comment.comment) %></p>
+    <div class="comment_info">
+      <em>by:</em>
+      <%= link_to comment.user.try(:username), user_path(comment.user), :class => "author" %>
+      <em>on:</em>
+      <span class="date"><%= comment.created_at.strftime("%B %d %Y") %></span>
+      <em>at:</em>
+      <span class="time"><%= comment.created_at.strftime("%H:%M") %></span>
+    </div>
+    <div class="comment_text">
+      <%= censored_text(comment.comment) %>
+    </div>
   </div>
-  <div class="actions">
-    <%= link_to 'Edit', edit_comment_path(comment), :class => 'button' if can? :edit, comment %>
-    <%= link_to 'Delete', comment, :method => :delete, :remote => true, :confirm => "Delete Comment?", :class => 'button' if can? :destroy, comment %>
-    <%= link_to 'Report Abuse', report_comment_path(comment), :remote => true, :confirm => "Report Abuse?", :class => 'button', :id => "com_rep_#{comment.id}" if can? :report, comment %>
-  </div>
-  <br style="clear:both"/>
 </div>

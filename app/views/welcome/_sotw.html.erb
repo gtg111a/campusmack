@@ -1,32 +1,43 @@
-<h1>Smack of the week</h1>
-<div id="smack_of_the_week" class="post">
-  <% if signed_in? %>
-    <div class="actions">
-      <%= link_to('Edit', method("edit_#{@sotw.postable_type.downcase}_#{@sotw.type.downcase}_path").call(@sotw.postable, @sotw), :class => 'button') if can? :update, @sotw %>
-      <%= link_to('Delete', @sotw, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @sotw %>
-    </div>
-  <% end %>
-  <h4><%= link_to @sotw.title, [ @sotw.postable, @sotw ] %></h4>
-  <% if @sotw.photo %>
-      <div class="photo_post">
-        <a class="photo snap_noshots" href="<%= @sotw.photo.url(:large) %>"><img src="<%= @sotw.photo.url(:medium) %>" alt=""/></a>
-      </div>
-  <% end %>
-  <% if @sotw.video %>
-      <div class="video_post"><%= youtube_embed(@sotw.video.url) %></div>
-  <% end %>
-  <%= link_to "News post", @sotw.news_post.url unless @sotw.news_post.blank? %>
-  <div class="comments">
-    <%= @sotw.summary %>
-    <% if @sotw.summary && params[:controller] != 'posts' %>
-        <%= link_to " [more...]", [ @sotw.postable, @sotw ] %>
-    <% end %>
+<div class="standard clearfix">
+  <div class="title_wrapper"><h1>Smacks of the week</h1></div>
+  <div class="column_wrapper clearfix">
+    <%= render :partial => 'shared/search' %>
   </div>
-  <%= vote_buttons(@sotw) %>
-  <br class="clear"/>
 
-  <div class="timestamp">
-    posted <%= time_ago_in_words(@sotw.created_at) %> ago by <%= @sotw.user.try(:username) %>.
+  <div class="content_container clearfix">
+    <div class="new_line"></div>
+    <div class="section">
+      <div class="section_title">
+        <%= link_to @sotw.title, [@sotw.postable, @sotw] %>
+      </div>
+      <div class="section_undertitle">
+        COLLEGE SMACKED: <%= link_to @sotw.postable.name.upcase, @sotw.postable, :class => :section_link %>
+      </div>
+      <div class="img_section">
+        <% if @sotw.photo %>
+            <img src="<%= @sotw.photo.url(:medium) %>" alt="" class="img"/>
+        <% end %>
+        <% if @sotw.video %>
+            <%= youtube_embed(@sotw.video.url, :medium) %>
+        <% end %>
+        <%= link_to "News post", @sotw.news_post.url unless @sotw.news_post.blank? %>
+      </div>
+      <div class="img_title">
+        <%= @sotw.created_at.to_date.to_s(:long) %> by <%= link_to(@sotw.user.try(:username), @sotw.user) %>
+      </div>
+      <div class="content_text">
+        Praesent dui sapien, accumsan sed fermentum in, facilisis eu sem. Ut varius porttitor ac sed dolor.
+        Pellentesque
+        et sem nec metus auctor bibendum in eget odio.
+      </div>
+      <div class="content_share">
+        <a href="#" class="mail"></a>
+
+        <a href="#" class="content_fb"></a>
+        <a href="#" class="content_tw"></a>
+        <%= link_to 'Read more', @sotw, :class => 'read_more' %>
+
+      </div>
+    </div>
   </div>
 </div>
-<br/>

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :store_location, :only => [:index, :show]
   before_filter :store_location_edit, :only => [:index, :show]
   before_filter :init_menu
+  before_filter :add_initial_breadcrumbs
 
   rescue_from CanCan::AccessDenied do |exception|
     logger.error exception.backtrace.join("\n")
@@ -19,4 +20,7 @@ class ApplicationController < ActionController::Base
     @main_menu = []
   end
 
+  def add_initial_breadcrumbs
+    breadcrumbs.add 'Home', root_path
+  end
 end

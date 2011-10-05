@@ -50,10 +50,10 @@ Campusmack::Application.routes.draw do
 
   resources :posts do
     member do
-      get :report
+      post :report
       get "opengraph"
       get 'share_through_email_form'
-      post 'share_through_email'   
+      post 'share_through_email'
     end
     member do
       post :vote_up, :vote_down

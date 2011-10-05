@@ -1,10 +1,32 @@
-<h1><%= @title %></h1>
-<%= render :partial => 'shared/masthead' %>
-<br class="clear"/>
-<%= render :partial => 'shared/search_fields' %>
+<div class="content new_level with_submenu clearfix">
+  <%= render :partial => 'shared/masthead' %>
+  <div class="content_title"><%= @title %></div>
+  <div class="content_stats clearfix">
+    <%= render 'shared/photovideomenu' %>
+    <%= render 'shared/search' %>
+  </div>
+
 <% unless @posts.empty? %>
-    <ul class="posts">
-      <%= render :partial => "/posts/post", :collection => @posts %>
-    </ul>
-    <%= will_paginate(@posts) %>
+    <div class="content_container">
+      <div class="content_category">
+        <%= render :partial => 'shared/sorter' %>
+        <div class="category_container clearfix">
+          <%= will_paginate @posts %>
+          <%= render :partial => "/posts/post", :collection => @posts %>
+          <div class="view_more_link clear_both">
+            <a href="">See all videos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category_container">
+        <div class="content_category">
+          <div class="category_title">
+            Photos
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
+  <%= render 'shared/report_form' %>
+</div>

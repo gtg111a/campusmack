@@ -1,9 +1,16 @@
-<% unless signed_in? %>
-  <%= link_to "Sign Up Now!", sign_up_path, :class => "button" %><br class="clear"/>
+<% content_for :above do %>
+    <div class="stat_title">CONFERENCE STATISTICS</div>
+    <div class="table new_level">
+      <div class="table_button_left"></div>
+      <div class="table_middle clearfix">
+        <% Conference.all.each do |conference| %>
+            <%= render :partial => 'conferences/stats', :locals => {:conference => conference, :limit => 3} %>
+        <% end %>
+      </div>
+      <div class="table_button_right"></div>
+    </div>
 <% end %>
+
 <% if @sotw %>
     <%= render :partial => 'sotw' %>
-<% end %>
-<% Conference.all.each do |conference| %>
-    <%= render :partial => 'conferences/stats', :locals => { :conference => conference, :limit => 5 } %>
 <% end %>

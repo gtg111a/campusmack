@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   #Through the 'thumbs_up' gem
   acts_as_voter
 
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me, :censor_text
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me, :censor_text, :gender
 
   belongs_to :college
   has_many :authentications, :dependent => :destroy
@@ -52,7 +52,6 @@ class User < ActiveRecord::Base
     :uniqueness => {:case_sensitive => false}
   validates :college, :presence => true
   validates :affiliation, :presence => true
-
 
   def feed
     Micropost.from_users_followed_by(self)
