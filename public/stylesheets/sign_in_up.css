@@ -33,9 +33,15 @@
     float: left;
 }
 
+.standard .title_box{
+    height: 35px;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
 .standard .left_column .title_box{
     width: 475px;
-    height: 35px;
     border-width: 1px 1px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
@@ -49,7 +55,6 @@
 
 .standard .right_column .title_box{
     width: 310px;
-    height: 35px;
     border-width: 1px 0px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
@@ -73,8 +78,11 @@
     height:395px;
 }
 
+.standard .table_padding {
+  padding-top: 30px;
+}
+
 .standard table{
-    padding: 30px 0 0px 0;
     width: 100%;
 }
 
@@ -88,22 +96,22 @@
     text-align: right;
     font-size: 10pt;
     color:#09689E;
+    vertical-align: middle;
 }
 
 .standard table .entry{
     padding: 0 0 0 9px;
     color: #7a7b7d;
+    vertical-align: middle;
 }
 
 .standard .required_sign{
     color:#09689E;
     font-size: 13pt;
-    vertical-align: super;
     padding: 0 0 0 2px;
-    position: absolute;
 }
 
-.standard table .gender {width: 260px;}
+/*.standard table .gender {width: 260px;}*/
 .standard table .affilation {width: 100px;}
 .standard table .college {width: 144px;}
 
@@ -128,8 +136,8 @@
 }
 
 .standard select{
+        height:27px;
     /*
-    height:27px;
     color: #7a7b7d;
     background: #fbfbfb;
     border-width: 1px 1px 2px 1px;
@@ -142,12 +150,12 @@
     */
 }
 
-.standard #user_new .important_notice{
+.standard .important_notice{
     width: 260px;
     margin: 8px 0 6px 157px;
 }
 
-.standard #user_new .important_notice .required_sign{
+.standard .important_notice .required_sign{
     float:left;
     color:#09689E;
     font-size: 13pt;
@@ -155,7 +163,7 @@
     position: relative;
 }
 
-.standard #user_new .important_notice_text{
+.standard .important_notice_text{
     float:left;
     color: #7a7b7d;
     font-size:11px;
@@ -168,20 +176,20 @@
     float:right;
 }
 
-.standard #user_new .confirmation_container{
+.standard .confirmation_container{
     margin: 0 0 0 135px;
     width: 290px;
 }
 
-.standard #user_new .confirmation_container .terms{
+.standard .confirmation_container .terms{
     float:left;
 }
 
-.standard #user_new .confirmation_container .terms .check_box{
+.standard .confirmation_container .terms .check_box{
     float:left;
 }
 
-.standard #user_new .confirmation_container .terms .text{
+.standard .confirmation_container .terms .text{
     font-size:11px;
     float:left;
     color:#7A7B7D;
@@ -189,7 +197,7 @@
     margin: 0 0 0 11px;
 }
 
-.standard #user_new .confirmation_container .terms .text a{
+.standard .confirmation_container .terms .text a{
     text-decoration: underline;
     color:#7A7B7D;
 }
@@ -477,3 +485,304 @@
     font-size: 20px;
 }
 
+.standard .form_sign_up .star{
+    width:54px;
+    vertical-align: super;
+}
+
+
+.standard .field_with_errors{
+    display: inline-block;
+}
+
+.standard .field_with_errors .message{
+    display:none;
+}
+
+.standard .description .field_with_errors label{
+    color:red;
+}
+
+.standard .affiliation_span{display: inline-block;float:left}
+
+.standard .college_span{display: inline-block;float:right}
+
+
+.standard .edit_profile .confirmation_container{
+    margin: 7px 0 0 157px;
+    width: 262px;
+    padding: 0 0 22px 0;
+}
+
+.standard .edit_profile .confirmation_container .accept{
+    float:left;
+    width: 262px;
+}
+
+.standard .edit_profile .accept .blue_button{
+    float:right;
+}
+
+.standard .edit_profile .important_notice{
+    float:left;
+    margin: 0;
+    width: auto;
+}
+
+ .dotted_area{
+    width: 782px;
+    margin: 2px;
+    height:44px;
+    background: url('/images/dotted_bg.png') repeat-x;
+}
+
+.dotted_area .back_button{
+    width: 85px;
+    margin: 10px 14px 0 0;
+    height:25px;
+    background: url('/images/back_button.png') repeat-x;
+    float:right;
+}
+
+.standard .edit_profile .star{
+    width:54px;
+    vertical-align: super;
+}
+
+.standard .right_column .cancel_account_container{
+    width: 310px;
+    border-width: 0px 0px 0px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
+
+.standard .right_column .cancel_account_container .cancel_account_wrapper{
+    width: 306px;
+    height: 400px;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    background: #F3F3F3;
+}
+
+.info_container{
+    margin:21px 0 0 18px;
+}
+
+.info_container .auths {
+  height: 130px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.info_text{
+    margin: 0 0 9px 0;
+}
+
+.info_container ul li a{
+    text-decoration: underline;
+}
+
+.cont_title{
+    float:left;
+    display:block;
+}
+
+.additional_buttons{
+    float:right;
+    margin:33px 7px 0 0;
+}
+
+.dark_button{
+    margin: 0 0px 0 0;
+    display:block;
+    height:28px;
+    background: url('/images/dark_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    float:left;
+}
+
+.dark_button a{
+    display:block;
+    padding-top: 4px;
+    padding-left:9px;
+    padding-right: 9px;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+#services_manage{
+   float:left;
+}
+
+#services_manage .service_in_use{
+    width: 270px;
+    height:64px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    background: #dadbdd;
+    margin: 0 0 20px 0;
+}
+
+#services_manage .service_img{
+    width: 70px;
+    height:64px;
+    float:left;
+}
+
+#services_manage .service_userdata{
+    padding: 6px 0 8px 0;
+    width: 200px;
+    float:left;
+    font-size:12px;
+    line-height: 14px;
+    color: #48494e;
+}
+
+#services_manage .service_userdata p{
+
+}
+
+#services_manage #services_list{
+    width: 233px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    background: #dadbdd;
+    margin: 0 0 22px 0;
+    padding: 20px 0 9px 37px;
+}
+
+
+#services_manage #services_list li{
+    margin: 0px 0 11px 0;
+}
+
+
+#services_manage #services_list li a{
+    display:block;
+    width: 187px;
+    height: 28px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    margin:0;
+    text-decoration: none;
+}
+
+#services_manage #services_list li a .symbol{
+    display: block;
+    float:left;
+    height:28px;
+    width:27px;
+    margin: 0 0 0 3px;
+}
+
+#services_manage #services_list li a .invitation{
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: 21px;
+    padding: 7px 0 0;
+    text-align: center;
+    width: 156px;
+}
+
+#services_manage #services_list .twitter a{
+    background: url('/images/bg_twitter_button.png') repeat-x;
+}
+
+#services_manage #services_list .facebook a{
+    background: url('/images/bg_facebook_button.png') repeat-x;
+}
+
+#services_manage #services_list .google a{
+    background: url('/images/bg_google_button.png') repeat-x;
+}
+
+#services_manage #services_list .google a .symbol{
+    width:30px;
+    margin: 0 0 0 0px;
+}
+
+.cancel_account_container .cancel_account{
+    padding:16px 0 25px 0;
+    width: 273px;
+}
+
+.white_button{
+    margin: 0 9px 0 0;
+    display:block;
+    height:28px;
+    background: url('/images/white_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    border-color:#bebebe;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+}
+
+.white_button a{
+    display:block;
+    padding-top: 4px;
+    padding-left:10px;
+    padding-right: 10px;
+    color: #4190c9;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.cancel_account_container .cancel_account .white_button{
+    float:left;
+}
+
+ .email_settings_container{
+    width: 310px;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #cfcfcf;
+}
+
+
+.email_settings_wrapper{
+    width: 306px;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    background: #F3F3F3;
+}
+
+.email_settings_wrapper ul{
+    margin: 22px 7px 22px 7px;
+}
+
+.email_settings_wrapper ul li{
+    float:left;
+}
+
+.email_settings_wrapper .im{
+    float:left;
+}
+
+.email_settings_wrapper .mg{
+    float:right;
+}
+
+.email_settings_wrapper .dark_button a {font-size: 18px;}
+
+.edit_profile_left_column .edit_profile{height:513px;}

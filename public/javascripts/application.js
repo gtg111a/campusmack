@@ -1,6 +1,14 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+$(function() {
+    $('div[rel=twipsy]').twipsy({
+       'placement': 'above',
+        'title': function() { return $(this).find('.message').text(); },
+        'live': true
+    });
+});
+
 $('a[data-method="delete"]').live('ajax:success', function(){});
 
 $(function() {

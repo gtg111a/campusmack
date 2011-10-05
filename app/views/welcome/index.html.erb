@@ -1,8 +1,8 @@
 <% content_for :above do %>
     <div class="stat_title">CONFERENCE STATISTICS</div>
-    <div class="table new_level">
+    <div class="table new_level clearfix">
       <div class="table_button_left"></div>
-      <div class="table_middle clearfix">
+      <div class="table_middle ">
         <% Conference.all.each do |conference| %>
             <%= render :partial => 'conferences/stats', :locals => {:conference => conference, :limit => 3} %>
         <% end %>

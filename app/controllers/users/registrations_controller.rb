@@ -1,11 +1,12 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_authorization_check :only => [ :new, :create ]
-  load_and_authorize_resource :class => 'User', :except => [ :new, :create ]
+  before_filter :services, :only => [:edit, :update]
+  skip_authorization_check :only => [:new, :create]
+  load_and_authorize_resource :class => 'User', :except => [:new, :create]
 
   def new
     resource = build_resource({})
     [:first_name, :last_name, :email, :username].each { |x| resource.send(x.to_s+'=', session.delete(x)) }
-    respond_with_navigational(resource){ render_with_scope :new }
+    respond_with_navigational(resource) { render_with_scope :new }
   end
 
   def create
@@ -33,4 +34,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with_navigational(resource) { render_with_scope :new }
     end
   end
+
+  private
+
+  def services
+    @services = current_user.authentications.order('provider asc')
+    @available_services = []
+    User.omniauth_providers.each do |s|
+      next if current_user.authentications.where(:provider => s.to_s).any?
+      @available_services << s
+    end
+  end
+
+
 end

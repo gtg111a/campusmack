@@ -1,1 +1,7 @@
-<%= render :partial => 'stats', :locals => { :conference => @conference, :limit => nil } %>
+<div class="standard clearfix">
+  <div class="title_wrapper"><h1>Statistics of <%= @conference.name %></h1></div>
+  <div class="content_container fullstats clearfix">
+    <div class="new_line"></div>
+    <%= render :partial => 'stats', :locals => {:conference => @conference, :limit => nil} %>
+  </div>
+</div>

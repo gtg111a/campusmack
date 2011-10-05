@@ -1,23 +1,22 @@
-<% form_for @support, :url => {:action => 'create'} do |f| %>
-    <div class="field">
+<% form_for @support, :url => { :action => 'create' }, :html => {:class => 'semantic'} do |f| %>
+  <div class="field">
       <%= f.label "Name:" %>
       <%= f.text_field :sender_name %>
-    </div>
-    <div class="field">
+  </div>
+  <div class="field">
       <%= f.label "Email:" %>
       <%= f.text_field :email %>
-    </div>
-    <div class="field">
+  </div>
+  <div class="field">
       <%= f.label "Type:" %>
       <%= f.select :support_type, options_for_select(["Feedback", "Question", "Bug", "Other"]) %>
-    </div>
-    <div class="field">
-      <%= f.label "Comments:" %>
-    </div>
-    <div class="field">
-      <%= f.text_area :content, :class => "comment" %>
-    </div>
-    <%= f.submit "Submit" %>
+  </div>
+  <div class="field">
+    <%= f.label "Comments:" %>
+    <%= f.text_area :content, :class => "comment", :rows => '8'  %>
+  </div>
+
+  <div class="field submit">
+    <button>Submit</button>
+  </div>
 <% end %>
-			
-			

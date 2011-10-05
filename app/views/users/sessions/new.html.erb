@@ -11,16 +11,18 @@
         <div class="form_wrapper">
           <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
               <%= render 'shared/error_messages', :object => f.object %>
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="description"><%= f.label :email, "Email:" %></td>
-                  <td class="entry"><%= f.email_field :email %></td>
-                </tr>
-                <tr>
-                  <td class="description"><%= f.label :password, "Password:" %></td>
-                  <td class="entry"><%= f.password_field :password %></td>
-                </tr>
-              </table>
+              <div class="table_padding">
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="description"><%= f.label :email, "Email:" %></td>
+                    <td class="entry"><%= f.email_field :email %></td>
+                  </tr>
+                  <tr>
+                    <td class="description"><%= f.label :password, "Password:" %></td>
+                    <td class="entry"><%= f.password_field :password %></td>
+                  </tr>
+                </table>
+              </div>
               <% if devise_mapping.rememberable? -%>
                   <div class="remember"><%= f.check_box :remember_me %> <%= f.label :remember_me, "Remember Me On This Computer" %></div>
               <% end -%>

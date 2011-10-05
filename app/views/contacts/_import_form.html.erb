@@ -16,8 +16,5 @@
 </script>
 
 <%= text_area_tag("contact", nil, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px;display:none "}) %>
+<a href="#" onclick="showPlaxoABChooser('contact', '<%=  plaxo_import_user_path(current_user) %>'); return false">IMPORT CONTACTS</a>
 
-<div style="float: right;">
-<%= link_to("contacts", contacts_path()) -%> |
-<a href="#" onclick="showPlaxoABChooser('contact', '<%=  plaxo_import_user_path(current_user) %>'); return false">Import from email address book</a>
-</div>

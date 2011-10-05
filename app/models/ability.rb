@@ -12,9 +12,6 @@ class Ability
     else
       can :read, :all
       can :status, Conference
-      can :report, [Comment, Post] do |reportable|
-        !(reportable.reports.where(:user_id => user.id).any? || reportable.user_id == user.id)
-      end
     end
     unless user.new_record?
       can :manage, User, :id => user.id
@@ -29,6 +26,9 @@ class Ability
       can :manage, Vote, :user_id => user.id
       can :manage, Contact, :user_id => user.id
       can :manage, ContactGroup, :user_id => user.id
+      can :report, [Comment, Post] do |reportable|
+        !(reportable.reports.where(:user_id => user.id).any? || reportable.user_id == user.id)
+      end
     end
 
   end

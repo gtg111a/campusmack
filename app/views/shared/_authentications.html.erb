@@ -1,0 +1,39 @@
+<div id="services_manage" class="services">
+  <% if @services.any? %>
+      <p class="info_text">Authentication services Settings</p>
+  <% end %>
+  
+  <div class="auths">
+  <% @services.each do |service| %>
+      <div class="service_in_use round clearfix">
+        <div class="service_img">
+          <%= service_link(service.provider, 64, false) %>
+        </div>
+        <div class="service_userdata">
+          <% if service.uid.starts_with?('http') %>
+              <p><%= service.uid.scan(/http[s]*:\/\/.*?\//)[0] %></p>
+          <% else %>
+              <p><%= service.provider.capitalize %>: <%= service.uid %></p>
+          <% end %>
+          <% if service.user %>
+            <p><%= service.user %></p>
+            <p><%= service.user.email %></p>
+          <% end %>
+          <% if session[:provider] == service.id %>
+              <span>Signed in</span>
+          <% else %>
+              <%= link_to "Remove this service", service, :confirm => 'Are you sure you want to remove this authentication?', :method => :delete, :class => "remove" %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+  </div>
+  <div id="services_available">
+    <p class="info_text">You can connect more accounts to sign in</p>
+    <ul id="services_list" class="clearfix">
+      <%- @available_services.each do |provider| %>
+          <li><%= sign_up_service_link(provider) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,8 +1,12 @@
-<div class="content new_level with_submenu clearfix">
-<div class="content_title"><%= @title %></div>
-<div class="content_container">
-  <div class="content_category">
-<%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
+<div class="standard clearfix">
+  <div class="title_wrapper clearfix">
+    <div class="cont_title"><h1><%= @title %></h1></div>
+  </div>
+  <div class="title_box">
+    <h2>FILL IN THE FOLLOWING TO SUBMIT A SMACK</h2>
+  </div>
+  <div class="form_container">
+  <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
     <% # Rendering content to javascript variables to switch later on  %>
     <% content_for :js do %>
         var postcontent = [];
@@ -126,7 +130,6 @@
       </li>
     </ul>
     <%= f.submit %>
-<% end %>
+  <% end %>
   </div>
-</div>
 </div>
