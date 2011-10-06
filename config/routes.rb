@@ -30,6 +30,7 @@ Campusmack::Application.routes.draw do
     get 'sign_in' => 'users/sessions#new', :as => :sign_in
     post 'sign_in' => 'users/sessions#create', :as => :new_user_session
     get 'sign_out' => 'users/sessions#destroy', :as => :sign_out
+    get 'profile' => 'users/registrations#edit', :as => :edit_user_registration
   end
 
   resources :users do

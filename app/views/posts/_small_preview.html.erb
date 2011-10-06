@@ -1,0 +1,26 @@
+<div class="team-item">
+  <div class="item-top clearfix">
+    <div class="which-college">by: <%= link_to post.postable.name, post.postable %></div>
+    <div class="votes">
+      <%= image_tag('like.png') %>
+      <%= post.up_votes %>
+      <%= image_tag('dislike.png', :class => 'dislike') %>
+      <%= post.down_votes %>
+    </div>
+  </div>
+  <div class="preview">
+    <%= youtube_embed(post.video.url) if post.video %>
+    <% if post.photo %>
+      <img src="<%= post.photo.url(:small) %>" alt=""/>
+    <% end %>
+  </div>
+  <div class="summary">
+    <%= post.summary %>
+  </div>
+  <div class="item-buttons">
+    <%= link_to(image_tag('content_email_.png'), share_through_email_form_post_path(post), :method => "GET",:class=>"smack", :remote => true) %>
+    <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "content_fb_.png"}) %>
+    <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "content_tw_.png"}) %>
+    <%= link_to_if(current_user.present?, image_tag('send_as_smack_.png', :alt => 'Send as smack') , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
+  </div>
+</div>

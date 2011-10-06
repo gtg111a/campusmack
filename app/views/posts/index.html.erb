@@ -6,27 +6,16 @@
     <%= render 'shared/search' %>
   </div>
 
-<% unless @posts.empty? %>
-    <div class="content_container">
-      <div class="content_category">
-        <%= render :partial => 'shared/sorter' %>
-        <div class="category_container clearfix">
-          <%= will_paginate @posts %>
-          <%= render :partial => "/posts/post", :collection => @posts %>
-          <div class="view_more_link clear_both">
-            <a href="">See all videos</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="category_container">
+  <% unless @posts.empty? %>
+      <div class="content_container">
         <div class="content_category">
-          <div class="category_title">
-            Photos
+          <%= render :partial => 'shared/sorter' %>
+          <div class="category_container clearfix">
+            <%= will_paginate @posts %>
+            <%= render :partial => "/posts/post", :collection => @posts %>
           </div>
         </div>
       </div>
-    </div>
-<% end %>
+  <% end %>
   <%= render 'shared/report_form' %>
 </div>

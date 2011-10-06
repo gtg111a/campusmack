@@ -1,0 +1,120 @@
+/* 
+   This stylesheet contains buttons, inputs, checkboxes, selects 
+   and rest of utility components of app.
+*/
+
+.back_button{
+    width: 85px;
+    height:25px;
+    background: url('/images/back_button.png') repeat-x;
+}
+
+.blue_button{
+    display:block;
+    height:28px;
+    background: url('/images/bg_blue_button.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.blue_button a{
+    display:block;
+    padding-top: 4px;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.sign_up_now_button{
+    display:block;
+    height:28px;
+    background: url('/images/sign_up_now_button.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sign_up_now_button a{
+    display:block;
+    padding-top: 4px;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.dark_button{
+    display:block;
+    height:28px;
+    background: url('/images/dark_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dark_button a{
+    display:block;
+    padding: 4px 9px 0;
+    color: #fff;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.white_button{
+    display:block;
+    height:28px;
+    background: url('/images/white_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    border-color:#bebebe;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+}
+
+.white_button a{
+    display:block;
+    padding: 4px 10px 0;
+    color: #4190c9;
+    font-family: Conv_MyriadPro-BoldCond;
+    font-size: 20px;
+}
+
+.table_button {
+  font-style: Conv_MyriadPro-BoldCond;
+  background: #fff url(/images/utility_button-bg.png) repeat-x top;
+  display: block;
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: #c2c2c2;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 0 10px;
+  line-height: 18px;
+  color: #484848;
+  height: 17px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.table_button:hover {
+  background-position: bottom;
+  color: #fff;
+}
+
+  .table_button.black {
+    color: #494949;
+    font-size: 10px;
+    background-image: url(/images/table_button-black-bg.png);
+    height: 14px;
+    line-height: 15px;
+  }

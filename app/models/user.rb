@@ -1,27 +1,15 @@
-# == Schema Information
-# Schema version: 20110616141827
-#
-# Table name: users
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 require 'digest'
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :recoverable,
-    :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+         :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   #Through the 'thumbs_up' gem
   acts_as_voter
 
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me, :censor_text, :gender
+  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me, :gender
 
   belongs_to :college
   has_many :authentications, :dependent => :destroy
@@ -33,25 +21,30 @@ class User < ActiveRecord::Base
 
   has_many :microposts, :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
-    :foreign_key => "follower_id"
+           :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,
-    :foreign_key => "followed_id",
-    :class_name => "Relationship"
+           :foreign_key => "followed_id",
+           :class_name => "Relationship"
   has_many :following, :through => :relationships, :source => :followed
   has_many :followers, :through => :reverse_relationships, :source => :follower
   has_many :contacts
   has_many :contact_groups
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+  validate :confirmation_password_must_match, :if => :password_required?
+
+  validates :terms_of_service, :acceptance => true
   validates :first_name, :presence => true,
-    :length => {:maximum => 50}
+            :length => {:maximum => 50}
   validates :last_name, :presence => true,
-    :length => {:maximum => 50}
+            :length => {:maximum => 50}
   validates :username, :presence => true,
-    :length => {:maximum => 50},
-    :uniqueness => {:case_sensitive => false}
+            :length => {:maximum => 50},
+            :uniqueness => {:case_sensitive => false}
   validates :college, :presence => true
   validates :affiliation, :presence => true
+  validates :password_confirmation, :presence => true, :on => :create
+
 
   def feed
     Micropost.from_users_followed_by(self)
@@ -77,18 +70,26 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    [ self.first_name, self.last_name ].join(' ')
+    [self.first_name, self.last_name].join(' ')
   end
 
   def increment_smack_send
     self.smack_count = ((self.smack_count || 0) + 1)
     self.save
   end
+
   private
 
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
   end
+
+  protected
+
+  def confirmation_password_must_match
+    errors.add(:password_confirmation, "doesn't match confirmation") if password != password_confirmation
+  end
+
 end
    
 

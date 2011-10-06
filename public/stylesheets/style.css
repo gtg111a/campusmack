@@ -2,12 +2,17 @@
 "utf-8"
 ;
 /* CSS Document */
-
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+@font-face {
+    font-family: 'Conv_MyriadPro-BoldCond';
+    src: url('fonts/MyriadPro-BoldCond.eot');
+    src: local('☺'), url('fonts/MyriadPro-BoldCond.woff') format('woff'), url('fonts/MyriadPro-BoldCond.ttf') format('truetype'), url('fonts/MyriadPro-BoldCond.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
+/* Need to place footer on bottom of the page */
+html, body, #super_wrapper { height: 100%; }
+body > #super_wrapper { height: auto; min-height: 100%; }
 
 body {
     text-align: left;
@@ -17,37 +22,10 @@ body {
     color: #000;
 }
 
-@font-face {
-    font-family: 'Conv_MyriadPro-BoldCond';
-    src: url('fonts/MyriadPro-BoldCond.eot');
-    src: local('☺'), url('fonts/MyriadPro-BoldCond.woff') format('woff'), url('fonts/MyriadPro-BoldCond.ttf') format('truetype'), url('fonts/MyriadPro-BoldCond.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-#super_wrapper {
-    min-height: 100%;
-    position: relative;
-}
-
 a,
 a:link,
 a:visited {
     color: #30a0f0;
-    text-decoration: none;
-}
-
-a:hover,
-a:active {
-    text-decoration: none;
-}
-
-a img {
-    border: none;
-}
-
-ul {
-    list-style: none;
 }
 
 .clear_both {
@@ -325,7 +303,8 @@ a.sign_up:visited {
     background: #fff url(/images/shadow_top.png) top repeat-x;
     width: 100%;
     position: relative;
-    padding-bottom: 40px;
+    padding-bottom: 124px;
+    margin: 0 0 40px 0;
     min-height: 450px;
     z-index: 10;
 }
@@ -367,7 +346,6 @@ a.sign_up:visited {
 
 .new_level {
     float: none;
-    margin-bottom: 5px;
     overflow: hidden;
 }
 
@@ -459,10 +437,6 @@ a.sign_up:visited {
     border-width: 1px 1px 0 0;
     border-style: solid;
     border-color: #fff;
-}
-
-.content_header {
-    margin-bottom: 20px;
 }
 
 .content_title {
@@ -589,8 +563,9 @@ a.sign_up:visited {
 }
 
 .content_container .content_category {
-    padding: 10px 18px;
+    padding: 15px 18px;
     border-bottom: 1px solid #d4d4d4;
+    overflow: hidden;
 }
 
 .content_container .content_category .category_title {
@@ -622,12 +597,11 @@ a.sign_up:visited {
     font-weight: bold;
     background-image: url(/images/view_more_button.png);
     background-repeat: no-repeat;
-    width: 100px;
+    width: 92px;
     height: 26px;
-
-    margin-top: 5px;
+    margin-top: 4px;
     padding-left: 10px;
-    padding-top: 3px;
+    padding-top: 5px;
 
 }
 
@@ -935,6 +909,9 @@ ul.news li {
     clear: both;
     background-color: #36373b;
     height: 124px;
+    position: relative;
+    z-index: 10;
+    margin-top: -124px;
 }
 
 .footer_content {
@@ -944,13 +921,13 @@ ul.news li {
 }
 
 .copyright {
-    line-height: 130px;
-    margin-left: 10px;
+    float:left;
+    margin: 50px 0 0 10px;
 }
 
 .ducks {
     float: right;
-    margin: 40px 0 0 0;
+    margin: 33px 0 0 0;
 }
 
 .footer_link {
@@ -961,7 +938,7 @@ ul.news li {
     color: #fff !important;
     text-align: center;
     float: right;
-    margin: 50px 10px 0 0;
+    margin: 43px 23px 0 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1em;
     -webkit-border-radius: 7px;
@@ -973,6 +950,7 @@ ul.news li {
     padding: 4px 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
+    height:20px;
 }
 
 .breadcrumbs a,
@@ -985,6 +963,14 @@ ul.news li {
 .breadcrumbs a.last:visited {
     font-weight: normal;
     color: #2d8fdc;
+}
+
+/*
+Padding-bottom (124px-like footer height) is nessecary
+to keep footer on the bottom of page.
+*/
+.no_breadcrumbs{
+    padding:20px 0 124px 0;
 }
 
 .clearfix:after {
@@ -1024,6 +1010,9 @@ ul.news li {
     width: 786px;
     float: left;
     border-left: 3px solid #acacac;
+    min-height:710px;
+    height:auto !important;
+    height:710px;
 }
 
 .left_menu {
@@ -1331,10 +1320,11 @@ ul.inner_menu li a, ul.inner_menu li span {
     background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
 }
 
-ul.inner_menu li a {
+ul.inner_menu li a, ul.inner_menu li span.normal {
     background-image: url(/images/view_more_bg.png);
     color: #000;
 }
+
 
 /* Forms */
 
@@ -1343,8 +1333,8 @@ form.semantic {
     background: #F3F3F3;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #CFCFCF;
-    margin: -20px;
     padding-top: 20px;
+    margin-top: -20px;
 }
 
 /* This is the form fields separtor. Use this instead of table layout for forms. */
@@ -1421,4 +1411,103 @@ form.semantic button {
     background: none;
     padding-left: 20px;
     border-right: 0;
+}
+
+.photovideo {
+  float: left;
+  width: 550px;
+  border-right: 1px solid #CFCFCF;
+}
+
+.team-item {
+  width: 158px;
+  margin-left: 20px;
+  float: left;
+}
+
+.items .team-item:first-child {
+  margin-left: 0;
+}
+
+.content_category .team_item:first-child {
+  margin-left: 0;
+}
+
+.team-item .item-top {
+  font-size: 70%;
+}
+
+.team-item .dislike {
+  margin-left: 5px;
+}
+
+.team-item .which-college {
+  width: 92px;
+  float: left;
+  overflow: hidden;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.team-item .votes {
+  float: right;
+}
+
+.team-item .preview {
+  clear: both;
+  height: 92px;
+  margin: 2px 0 5px 0;
+  overflow: hidden;
+}
+
+.team-item .summary{
+  font-size: 8.5pt;
+  height: 53px;
+  overflow: hidden;
+}
+
+.team-item .item-buttons {
+  margin-top: 3px;
+  border-top: solid 1px #CFCFCF;
+  padding-top: 3px;
+  padding-bottom: 12px;
+}
+
+.team-item .item-buttons img[alt="Send as smack"] {
+  margin-left: 32px;
+}
+
+.news {
+  float: right;
+  width: 210px;
+  height: 588px;
+  background: #F3F3F3;
+  margin: 2px;
+  padding: 13px 10px 10px 10px;
+}
+
+.news .category_title {
+  font-size: 18.72pt;
+  font-weight: bold;
+  border-bottom: 1px solid #D4D4D4;
+  margin-bottom: 10px;
+}
+
+.news .items {
+  padding: 5px 0;
+}
+
+.news .team-item {
+  width: auto;
+  margin-left: 0;
+  float: none;
+  margin-top: 5px;
+}
+
+.news .team-item .item-buttons img[alt="Send as smack"] {
+  margin-left: 84px;
+}
+
+.news .summary {
+  height: auto;
 }

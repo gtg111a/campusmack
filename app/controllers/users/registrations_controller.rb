@@ -35,6 +35,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    render_with_scope :edit
+  end
+
+  def update
+    if params[resource_name][:password].blank? && params[resource_name][:password_confirmation].blank? && params[resource_name][:password_confirmation].blank?
+      params[resource_name].delete(:password)
+      params[resource_name].delete(:password_confirmation)
+      params[resource_name].delete(:current_password)
+    end
+
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+
+    if resource.update_with_password(params[resource_name])
+      set_flash_message :notice, :updated if is_navigational_format?
+      sign_in resource_name, resource, :bypass => true
+      respond_with resource, :location => after_update_path_for(resource)
+    else
+      clean_up_passwords(resource)
+      respond_with_navigational(resource) { render_with_scope :edit }
+    end
+  end
+
   private
 
   def services

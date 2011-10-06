@@ -2,33 +2,55 @@
   <%= render :partial => 'shared/masthead' %>
   <div class="content_title"><%= @college.name %></div>
   <div class="content_stats clearfix">
-    <%= render 'shared/photovideomenu' %>
+    <%= render 'shared/counts' %>
     <%= render 'shared/search' %>
   </div>
 
-  <% unless @posts.empty? %>
-
-      <div class="content_container">
+  <div class="content_container clearfix">
+    <div class="photovideo">
+      <div class="category_container">
         <div class="content_category">
-          <%= render :partial => 'shared/sorter' %>
-          <div class="category_container clearfix">
-            <%= will_paginate @posts %>
-            <%= render :partial => "/posts/post", :collection => @posts %>
-            <div class="view_more_link clear_both">
-              <a href="">See all videos</a>
-            </div>
+          <div class="category_title">
+            Videos
           </div>
-        </div>
-
-        <div class="category_container">
-          <div class="content_category">
-            <div class="category_title">
-              Photos
-            </div>
+          <div class="items">
+            <% @videos.each do |post| %>
+                <%= render "posts/small_preview", :post => post %>
+            <% end %>
+          </div>
+          <div class="view_more_link clear_both">
+            <%= link_to "See all videos", @parent.is_a?(College) ? college_videos_path(@parent) : conference_videos_path(@parent) %>
           </div>
         </div>
       </div>
+      <div class="category_container">
+        <div class="content_category">
+          <div class="category_title">
+            Photos
+          </div>
+          <% @photos.each do |post| %>
+              <%= render "posts/small_preview", :post => post %>
+          <% end %>
+          <div class="view_more_link clear_both">
+            <%= link_to "See all photos", @parent.is_a?(College) ? college_photos_path(@parent) : conference_photos_path(@parent) %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <% end %>
-  <%= render 'shared/report_form' %>
+    <div class="news">
+      <div class="category_title">
+        News
+      </div>
+      <div class="items">
+        <% @news.each do |post| %>
+            <%= render "posts/news_preview", :post => post %>
+        <% end %>
+        <div class="view_more_link clear_both">
+          <%= link_to "See all news", @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

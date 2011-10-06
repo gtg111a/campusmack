@@ -1,6 +1,12 @@
 <% @college = College.all %>
 
 <tr>
+  <td class="description">Gender:</td>
+  <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], {:include_blank => true}, :class => 'gender') %></td>
+  <td class="star"><%= mark_required(resource, :gender) %></td>
+</tr>
+
+<tr>
   <td class="description"><%= f.label :username, "Username:" %></td>
   <td class="entry"><%= f.text_field :username %></td>
   <td class="star"><%= mark_required(resource, :username) %></td>
@@ -16,12 +22,6 @@
   <td class="description"><%= f.label :last_name, "Last Name:" %></td>
   <td class="entry"><%= f.text_field :last_name %></td>
   <td class="star"><%= mark_required(resource, :last_name) %></td>
-</tr>
-
-<tr>
-  <td class="description">Gender:</td>
-  <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], {:include_blank => true}, :class => 'gender') %></td>
-  <td class="star"><%= mark_required(resource, :gender) %></td>
 </tr>
 
 <tr>
@@ -55,5 +55,5 @@
 <tr>
   <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
   <td class="entry"><%= f.password_field :password_confirmation, :validate =>{:presence => true, :confirmation => true} %></td>
-  <td class="star"><%= mark_required(resource, :password_confirmation) %></td>
+  <td class="star"><%= mark_required(resource, :password) %></td>
 </tr>

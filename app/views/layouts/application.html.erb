@@ -3,13 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= title %></title>
-  <%= csrf_meta_tag %>
-  <%= javascript_include_tag 'jquery', 'application', 'jquery.min', 'jquery_ujs', 'rails.validations','twipsy','/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js' %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'rails.validations', 'twipsy', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js' %>
 
-  <%= stylesheet_link_tag 'reset', 'style', 'lionbuttons', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
+  <%= stylesheet_link_tag 'reset', 'style', 'user', 'twipsy', 'lionbuttons', 'utility_components', 'facebox', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
   <%= javascript_include_tag "facebox" %>
-  <%= stylesheet_link_tag 'facebox' %>
-  <%= stylesheet_link_tag 'sign_in_up','twipsy' %>
   <% unless Rails.env == 'development' || Rails.env == 'test' %>
       <%= javascript_include_tag 'http://shots.snap.com/ss/d83b52a2e254661d23d1c0974a8b36c3/snap_shots.js' %>
   <% end %>
@@ -30,6 +28,7 @@
           <%= yield :jq %>
       });
   </script>
+  <%= csrf_meta_tag %>
 </head>
 <body id="<%= @body_id %>">
 <div id="super_wrapper">
@@ -37,18 +36,18 @@
     <div class="center_page ">
       <div class="top_menu">
         <% unless current_user %>
-          <span>sign in:</span>
-          <a href="/sign_in" class="network icon"></a>
-          <%= header_service_link(:facebook) %>
-          <%= header_service_link(:twitter) %>
-          <div class="line"></div>
-          <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
+            <span>sign in:</span>
+            <a href="/sign_in" class="network icon"></a>
+            <%= header_service_link(:facebook) %>
+            <%= header_service_link(:twitter) %>
+            <div class="line"></div>
+            <%= link_to "Sign Up", sign_up_path, :class => "sign_up" %>
         <% else %>
-          <%= link_to 'My Posts', user_path(current_user), :class => "white" %>
-          |
-          <%= link_to 'Profile', edit_user_registration_path(current_user), :class => "white" %>
-          |
-          <%= link_to 'Sign Out', sign_out_path, :class => "white" %>
+            <%= link_to 'My Posts', user_path(current_user), :class => "white" %>
+            |
+            <%= link_to 'Profile', edit_user_registration_path, :class => "white" %>
+            |
+            <%= link_to 'Sign Out', sign_out_path, :class => "white" %>
         <% end %>
       </div>
 
@@ -57,7 +56,7 @@
       <%= user_nav %>
     </div>
   </div>
-  <div class="second_body clearfix">
+  <div class="second_body clearfix <%= add_padd_if_no_breadcrumbs %>">
     <div id="basic_content" class="center_page clearfix">
       <%= yield(:above) %>
       <%= render_breadcrumbs %>
@@ -71,12 +70,12 @@
       </div>
     </div>
   </div>
-  <div class="footer ">
-    <div class="footer_content">
-      <span class="copyright">2011 Campusmack All rights reserved</span>
-      <img src="/images/tw_ducks.png" class="ducks" alt=""/>
-      <a href="#" class="footer_link">Follow us on Twitter</a>
-    </div>
+</div>
+<div class="footer ">
+  <div class="footer_content">
+    <span class="copyright">2011 Campusmack All rights reserved</span>
+    <img src="/images/tw_ducks.png" class="ducks" alt=""/>
+    <a href="#" class="footer_link">Follow us on Twitter</a>
   </div>
 </div>
 </body>

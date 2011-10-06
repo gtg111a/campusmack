@@ -109,9 +109,17 @@ module ApplicationHelper
     end
   end
 
+  def breadcrumbs_exceptions
+    params[:controller]['registrations'] || params[:controller]['sessions'] || params[:controller] == 'welcome'
+  end
+
   def render_breadcrumbs
-    return if params[:controller]['registrations'] || params[:controller]['sessions'] || params[:controller] == 'welcome'
+    return if breadcrumbs_exceptions
     raw('<div class="breadcrumbs">'+breadcrumbs.render(:format => :inline, :separator => '>')+'</div>')
+  end
+
+  def add_padd_if_no_breadcrumbs
+    "no_breadcrumbs" if breadcrumbs_exceptions
   end
 
   def gravatar_for(user, options = {:size => 50})

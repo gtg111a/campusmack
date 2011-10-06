@@ -1,0 +1,98 @@
+.contacts_table {
+  background: #fff url(/images/contact_groups-bg.png) repeat-y left;
+  overflow: hidden;
+  border-bottom: 1px solid #DEDEDE;
+}
+.contacts .table_content {
+  border-top: 1px solid #DEDEDE;
+  float: left;
+  width: 590px;
+  padding: 0 10px;
+}
+
+.contacts .contact_groups {
+  border-top: 1px solid #DEDEDE;
+  float: left;
+  width: 137px;
+}
+
+  .contacts .contact_groups li:first-child {
+    border-top: 2px solid #fff;
+  }
+  .contacts .contact_groups li a {
+    display: block;
+    border-right: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    height: 19px;
+  }
+  .contacts .contact_groups li span {
+    display: block;
+    background: #fff;
+    border-left: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+  }
+
+  .contacts .contact_groups li a, .contacts .contact_groups li span {
+    color: #09689e;
+    line-height: 19px;
+    padding: 0 10px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+.contacts .table_head, .contacts table {
+  width: 100%;
+}
+
+.contacts .table_head {
+  padding: 8px 0;
+  overflow: hidden;
+  margin-left: 20px;
+}
+.contacts .table_head ul {
+  float: left;
+}
+
+.contacts .table_head li {
+  float: left;
+  margin-right: 5px;
+}
+
+.contacts .table_head .button_bg {
+  float: left;
+  padding: 0 4px;
+  margin-right: 5px;
+}
+.contacts .table_head .button_bg input {
+  margin: 0;
+  padding: 2px;
+}
+
+.contacts table {
+}
+
+.contacts table td {
+  border-top: 1px solid #DEDEDE;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+  .contacts table td input {
+    display: inline;
+  }
+
+  .contacts table td.table_preloader {
+    border-top: none;
+    width: 20px;
+  }
+
+  .contacts table td.table_check {
+    padding-left: 1px;
+    width: 30px;
+  }
+
+  .contacts table td.row_actions a {
+    display: inline-block;
+    float: right;
+    margin-top: 2px;
+  }

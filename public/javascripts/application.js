@@ -1,6 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// Twipsy is used by validation of user model, in sign in/sign up views.
 $(function() {
     $('div[rel=twipsy]').twipsy({
        'placement': 'above',
