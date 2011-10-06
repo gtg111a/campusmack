@@ -13,7 +13,7 @@ $('a[data-method="delete"]').live('ajax:success', function(){});
 
 $(function() {
     $(".smack").click(function() {
-        jQuery.facebox("<span style='text-align: center;padding-left:45%'><%= escape_javascript(image_tag('ajax-loader.gif')) %></span>")
+        jQuery.facebox("<span style='text-align: center;padding-left:45%'><img src='/images/ajax-loader.gif' /></span>")
     });
 });
 

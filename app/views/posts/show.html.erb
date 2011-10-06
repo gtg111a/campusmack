@@ -19,11 +19,11 @@
           <%= link_to(image_tag('dislike.png'), vote_down_post_path(@post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
           <b id="vote_count_down<%= @post.id %>"><%= @post.down_votes %></b>
           <span class="divider_vert">&nbsp;</span>
-          <a href="" class="content_email_small"><img src="/images/content_email.png" alt=""/></a>
+          <%= link_to(image_tag('content_email.png'), share_through_email_form_post_path(@post), :method => "GET",:class=>"smack", :remote => true) %>
           <%= render(:partial => "posts/facebook_share", :locals => {:post => @post, :image => "content_fb.png"}) %>
           <%= render(:partial => "posts/twitter_share", :locals => {:post => @post, :image => "content_tw.png"}) %>
           <span class="divider_vert">&nbsp;</span>
-          <a href=""><img src="/images/send_as_smack.png" alt=""/></a>
+          <%= link_to_if(current_user.present?, image_tag('send_as_smack.png', :alt => 'Send as smack') , share_through_email_form_post_path(@post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
           <span class="divider_vert">&nbsp;</span>
           <% if signed_in? %>
               <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
