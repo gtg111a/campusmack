@@ -14,7 +14,7 @@ class ConferencesController < ApplicationController
   end
 
   def status
-    @conference = Conference.where(:name => params[:id].upcase).first
+    @conferences = Conference.all
   end
 
   def show
@@ -43,7 +43,6 @@ class ConferencesController < ApplicationController
     @user = current_user
     @user.down_vote(@post)
   end
-
 
   private
 

@@ -8,4 +8,6 @@ class Conference < ActiveRecord::Base
     self.name.downcase
   end
 
+  default_scope :order => 'name'
+
 end

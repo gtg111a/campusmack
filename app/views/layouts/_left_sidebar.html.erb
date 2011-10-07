@@ -1,6 +1,14 @@
+<div class="top_submenu clearfix">
+  <ul>
+    <li>Division:</li>
+    <% [ 'I-A', 'I-AA' ].each do |div| %>
+        <li<%= ' class="active"' if session[:division] == div %>><%= link_to_if(session[:division] != div, div, change_div_path(div)) %></li>
+    <% end %>
+  </ul>
+</div>
 <div class="left_menu">
   <ul>
-    <% Conference.all.each do |conference| %>
+    <% @conferences.each do |conference| %>
         <li class="with_submenu<%= ' active' if @conference == conference %>">
           <a href="<%= url_for(conference) %>"><%= conference.name %></a>
           <ul>

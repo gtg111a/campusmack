@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003161623) do
+ActiveRecord::Schema.define(:version => 20111007114012) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
     t.datetime "updated_at"
     t.integer  "smacks_count",      :default => 0, :null => false
     t.integer  "redemptions_count", :default => 0, :null => false
+    t.string   "abbrev"
   end
 
   create_table "comments", :force => true do |t|
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
     t.datetime "updated_at"
     t.integer  "smacks_count",      :default => 0, :null => false
     t.integer  "redemptions_count", :default => 0, :null => false
+    t.string   "division"
   end
 
   create_table "contact_groups", :force => true do |t|
@@ -128,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -149,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id"
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "reports", :force => true do |t|
@@ -221,8 +222,8 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
     t.string   "gender",                 :limit => 1
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
   create_table "videos", :force => true do |t|
     t.integer  "post_id"
@@ -242,7 +243,7 @@ ActiveRecord::Schema.define(:version => 20111003161623) do
   end
 
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
-  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity"
   add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end

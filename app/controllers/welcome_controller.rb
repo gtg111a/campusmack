@@ -10,4 +10,9 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def change_division
+    session[:division] = params['division']
+    redirect_to :back
+  end
+
 end

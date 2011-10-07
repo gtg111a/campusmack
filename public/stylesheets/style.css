@@ -11,8 +11,14 @@
 }
 
 /* Need to place footer on bottom of the page */
-html, body, #super_wrapper { height: 100%; }
-body > #super_wrapper { height: auto; min-height: 100%; }
+html, body, #super_wrapper {
+    height: 100%;
+}
+
+body > #super_wrapper {
+    height: auto;
+    min-height: 100%;
+}
 
 body {
     text-align: left;
@@ -248,9 +254,23 @@ a.sign_up:visited {
     background-color: #ffffff;
 }
 
+#conference_column .top_submenu {
+    position: relative;
+}
+
+#conference_column .top_submenu li {
+    display: block;
+    float: left;
+    padding: 5px 10px;
+}
+
+#conference_column .top_submenu li a {
+    padding: 0;
+}
+
 .content_actions {
     position: absolute;
-    top: 40px;
+    top: 35px;
     right: 18px;
 }
 
@@ -273,7 +293,7 @@ a.sign_up:visited {
     font-size: 14.42pt;
     border-radius: 4px;
     -moz-border-radius: 4px;
-    margin-left: 3px;
+    margin-left: 5px;
     font-family: Conv_MyriadPro-BoldCond;
     text-transform: uppercase;
 }
@@ -313,6 +333,7 @@ a.sign_up:visited {
     width: 961px;
     height: 106px;
     float: left;
+    margin-bottom: 5px;
     -moz-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
@@ -452,6 +473,7 @@ a.sign_up:visited {
     font-size: 11pt;
     line-height: 28pt;
     border-bottom: 1px solid #C4C4C4;
+    overflow: hidden;
 }
 
 .content_title, .content_subtitle {
@@ -504,6 +526,12 @@ a.sign_up:visited {
     float: left;
     cursor: pointer;
     width: auto;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .buttons .button.blue a,
@@ -516,6 +544,7 @@ a.sign_up:visited {
 .search {
     float: right;
     padding: 5px 15px 4px 5px;
+    margin-right: -10px;
     font-size: 10.17pt;
 }
 
@@ -524,6 +553,7 @@ a.sign_up:visited {
     float: left;
     margin: 6px 5px 0px 0px;
     text-transform: uppercase;
+    line-height: 20px;
 }
 
 .search .input_search {
@@ -547,7 +577,7 @@ a.sign_up:visited {
 }
 
 .content_container {
-    border-top: 1px solid #cfcfcf;
+    background: #fff;
 }
 
 .content_container.width550 {
@@ -720,7 +750,7 @@ ul.news li {
 }
 
 .comment .actions img {
-  padding-bottom: 4px;
+    padding-bottom: 4px;
 }
 
 .comment .comment_info {
@@ -921,7 +951,7 @@ ul.news li {
 }
 
 .copyright {
-    float:left;
+    float: left;
     margin: 50px 0 0 10px;
 }
 
@@ -950,7 +980,7 @@ ul.news li {
     padding: 4px 0;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    height:20px;
+    height: 20px;
 }
 
 .breadcrumbs a,
@@ -969,8 +999,8 @@ ul.news li {
 Padding-bottom (124px-like footer height) is nessecary
 to keep footer on the bottom of page.
 */
-.no_breadcrumbs{
-    padding:20px 0 124px 0;
+.no_breadcrumbs {
+    padding: 20px 0 124px 0;
 }
 
 .clearfix:after {
@@ -1010,9 +1040,9 @@ to keep footer on the bottom of page.
     width: 786px;
     float: left;
     border-left: 3px solid #acacac;
-    min-height:710px;
-    height:auto !important;
-    height:710px;
+    min-height: 710px;
+    height: auto !important;
+    height: 710px;
 }
 
 .left_menu {
@@ -1325,7 +1355,6 @@ ul.inner_menu li a, ul.inner_menu li span.normal {
     color: #000;
 }
 
-
 /* Forms */
 
 /* since there is no generic styles for the site forms, I have to add .semantic to not to kill all other forms on the site. TO-DO make generic styles for site forms */
@@ -1333,8 +1362,7 @@ form.semantic {
     background: #F3F3F3;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #CFCFCF;
-    padding-top: 20px;
-    margin-top: -20px;
+    padding: 20px;
 }
 
 /* This is the form fields separtor. Use this instead of table layout for forms. */
@@ -1349,6 +1377,16 @@ form.semantic label {
     padding-right: 20px;
     text-align: right;
     width: 200px;
+}
+
+form.semantic.left_align label {
+    float: none;
+    display: inline-block;
+    width: 100px;
+}
+
+form.semantic.left_align .actions {
+    margin-left: 122px;
 }
 
 form.semantic input, form.semantic textarea {
@@ -1386,8 +1424,7 @@ form.semantic .field.submit {
     width: 492px;
 }
 
-/* Use <button> as form submit element. This will resolve css conflicts between inputs types */
-form.semantic button {
+form.semantic button, form.semantic .actions input {
     background: url("/images/bg_blue_button.png") repeat-x;
     border: none;
     color: #fff;
@@ -1400,9 +1437,29 @@ form.semantic button {
     font-family: Conv_MyriadPro-BoldCond, sans-serif;
     font-size: 20px;
     line-height: 28px;
+    width: auto;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+form.semantic .actions .alt {
+    color: #888;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: Conv_MyriadPro-BoldCond, sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+    margin-left: 20px;
+    height: 28px;
+    padding: 0 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+form.semantic .actions .alt:hover {
+    background: #fff;
 }
 
 .fullstats .inbox_table {
@@ -1414,100 +1471,100 @@ form.semantic button {
 }
 
 .photovideo {
-  float: left;
-  width: 550px;
-  border-right: 1px solid #CFCFCF;
+    float: left;
+    width: 550px;
+    border-right: 1px solid #CFCFCF;
 }
 
 .team-item {
-  width: 158px;
-  margin-left: 20px;
-  float: left;
+    width: 158px;
+    margin-left: 20px;
+    float: left;
 }
 
 .items .team-item:first-child {
-  margin-left: 0;
+    margin-left: 0;
 }
 
 .content_category .team_item:first-child {
-  margin-left: 0;
+    margin-left: 0;
 }
 
 .team-item .item-top {
-  font-size: 70%;
+    font-size: 70%;
 }
 
 .team-item .dislike {
-  margin-left: 5px;
+    margin-left: 5px;
 }
 
 .team-item .which-college {
-  width: 92px;
-  float: left;
-  overflow: hidden;
-  color: #999;
-  text-transform: uppercase;
+    width: 92px;
+    float: left;
+    overflow: hidden;
+    color: #999;
+    text-transform: uppercase;
 }
 
 .team-item .votes {
-  float: right;
+    float: right;
 }
 
 .team-item .preview {
-  clear: both;
-  height: 92px;
-  margin: 2px 0 5px 0;
-  overflow: hidden;
+    clear: both;
+    height: 92px;
+    margin: 2px 0 5px 0;
+    overflow: hidden;
 }
 
-.team-item .summary{
-  font-size: 8.5pt;
-  height: 53px;
-  overflow: hidden;
+.team-item .summary {
+    font-size: 8.5pt;
+    height: 53px;
+    overflow: hidden;
 }
 
 .team-item .item-buttons {
-  margin-top: 3px;
-  border-top: solid 1px #CFCFCF;
-  padding-top: 3px;
-  padding-bottom: 12px;
+    margin-top: 3px;
+    border-top: solid 1px #CFCFCF;
+    padding-top: 3px;
+    padding-bottom: 12px;
 }
 
 .team-item .item-buttons img[alt="Send as smack"] {
-  margin-left: 32px;
+    margin-left: 32px;
 }
 
 .news {
-  float: right;
-  width: 210px;
-  height: 588px;
-  background: #F3F3F3;
-  margin: 2px;
-  padding: 13px 10px 10px 10px;
+    float: right;
+    width: 210px;
+    height: 588px;
+    background: #F3F3F3;
+    margin: 2px;
+    padding: 13px 10px 10px 10px;
 }
 
 .news .category_title {
-  font-size: 18.72pt;
-  font-weight: bold;
-  border-bottom: 1px solid #D4D4D4;
-  margin-bottom: 10px;
+    font-size: 18.72pt;
+    font-weight: bold;
+    border-bottom: 1px solid #D4D4D4;
+    margin-bottom: 10px;
 }
 
 .news .items {
-  padding: 5px 0;
+    padding: 5px 0;
 }
 
 .news .team-item {
-  width: auto;
-  margin-left: 0;
-  float: none;
-  margin-top: 5px;
+    width: auto;
+    margin-left: 0;
+    float: none;
+    margin-top: 5px;
 }
 
 .news .team-item .item-buttons img[alt="Send as smack"] {
-  margin-left: 84px;
+    margin-left: 84px;
 }
 
 .news .summary {
-  height: auto;
+    height: auto;
 }

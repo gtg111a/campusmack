@@ -1,0 +1,19 @@
+<li>
+  <h3><a name='<%= conference.id %>'><%= conference.name %></a></h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Smack</th>
+      <th>Redemp</th>
+    </tr>
+
+    <% conference.colleges.limit(limit).order('smacks_count desc').each do |college| %>
+      <tr class="<%= cycle("even", "odd") %>">
+        <td><%= link_to college.name.split.first, college %></td>
+        <td class="smack"><%= college.smacks_count %></td>
+        <td class="redemp"><%= college.redemptions_count %></td>
+      </tr>
+    <% end %>
+
+  </table>
+</li>

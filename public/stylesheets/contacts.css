@@ -1,27 +1,29 @@
 .contacts_table {
-  background: #fff url(/images/contact_groups-bg.png) repeat-y left;
+  background: #fff url(/images/contact_groups-bg.png) repeat-y left bottom;
+  clear: both;
   overflow: hidden;
-  border-bottom: 1px solid #DEDEDE;
+  border-color: #DEDEDE;
+  border-style: solid;
+  border-width: 1px 0;
 }
 .contacts .table_content {
-  border-top: 1px solid #DEDEDE;
   float: left;
-  width: 590px;
-  padding: 0 10px;
+  width: 600px;
+  padding: 0 10px 0 0;
 }
 
 .contacts .contact_groups {
-  border-top: 1px solid #DEDEDE;
   float: left;
   width: 137px;
 }
 
   .contacts .contact_groups li:first-child {
-    border-top: 2px solid #fff;
+    border-top: 3px solid #fff;
+    border-right: 1px solid #DEDEDE;
+    margin-top: -1px;
   }
   .contacts .contact_groups li a {
     display: block;
-    border-right: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
     height: 19px;
   }
@@ -74,7 +76,7 @@
 .contacts table td {
   border-top: 1px solid #DEDEDE;
   line-height: 20px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
   .contacts table td input {

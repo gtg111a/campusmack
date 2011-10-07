@@ -21,7 +21,6 @@ namespace :db do
   end
 end
 
-
 namespace :db do
   desc "add sample content"
   task :add_content => :environment do
@@ -41,17 +40,308 @@ namespace :db do
 end
 
 def make_colleges
-  sec = Conference.create!(:name => 'SEC')
-  acc = Conference.create!(:name => 'ACC')
-  [ "Alabama", "Arkansas", "Auburn", "Florida", "Georgia", "Kentucky", "LSU",
-    "Mississippi State", "Ole Miss", "South Carolina", "Tennessee", "Vanderbilt" ].each do |college|
-    sec.colleges.create!(:name => college)
-  end
-
-  [ "Boston College", "Clemson", "Duke", "Florida State", "Georgia Tech", "Maryland",
-    "Miami", "North Carolina", "North Carolina State", "Virginia", "Virginia Tech",
-    "Wake Forest" ].each do |college|
-    acc.colleges.create!(:name => college)
+  {
+    'I-A' => {
+      'ACC' => [
+        ['Boston College', 'BC'],
+        ['Clemson', 'CLEM'],
+        ['Duke', 'DUKE'],
+        ['Florida State', 'FSU'],
+        ['Georgia Tech', 'GT'],
+        ['Maryland', 'MD'],
+        ['Miami (FL)', 'MIAMI'],
+        ['North Carolina', 'UNC'],
+        ['North Carolina State', 'NCST'],
+        ['Virginia', 'UVA'],
+        ['Virginia Tech', 'VT'],
+        ['Wake Forest', 'WAKE']
+      ],
+      'Big 12' => [
+        ['Baylor', 'BU'],
+        ['Iowa State', 'ISU'],
+        ['Kansas', 'KAN'],
+        ['Kansas State', 'KSU'],
+        ['Missouri', 'MIZZ'],
+        ['Oklahoma', 'OU'],
+        ['Oklahoma State', 'OSU'],
+        ['Texas', 'TEXAS'],
+        ['Texas A&M', 'TA&M'],
+        ['Texas Tech', 'TTU']
+      ],
+      'Big East' => [
+        ['Cincinnati', 'CIN'],
+        ['Connecticut', 'UCONN'],
+        ['Louisville', 'LOU'],
+        ['Pittsburgh', 'PITT'],
+        ['Rutgers', 'RU'],
+        ['South Florida', 'USF'],
+        ['Syracuse', 'SYR'],
+        ['West Virginia', 'WVU'],
+      ],
+      'Big Ten' => [
+        ['Illinois', 'ILL'],
+        ['Indiana', 'IU'],
+        ['Iowa', 'IOWA'],
+        ['Michigan', 'MICH'],
+        ['Michigan State', 'MSU'],
+        ['Minnesota', 'MINN'],
+        ['Nebraska', 'NEB'],
+        ['Northwestern', 'NU'],
+        ['Ohio State', 'OSU'],
+        ['Penn State', 'PENN'],
+        ['Purdue', 'PU'],
+        ['Wisconsin', 'UW']
+      ],
+      'Conference USA' => [
+        ['East Carolina', 'ECU'],
+        ['Houston', 'HOU'],
+        ['Marshall', 'MAR'],
+        ['Memphis', 'MEM'],
+        ['Rice', 'RICE'],
+        ['Southern Methodist', 'SMU'],
+        ['Southern Miss', 'USM'],
+        ['Tulane', 'TU'],
+        ['Tulsa', 'TULSA'],
+        ['UAB', 'UAB'],
+        ['UCF', 'UCF'],
+        ['UTEP', 'UTEP']
+      ],
+      'IA Independents' => [
+        ['Army', 'ARMY'],
+        ['Brigham Young', 'BYU'],
+        ['Navy', 'NAVY'],
+        ['Notre Dame', 'UND']
+      ],
+      'Mid-American' => [
+        ['Akron', 'AKRON'],
+        ['Ball State', 'BSU'],
+        ['Bowling Green', 'BGSU'],
+        ['Buffalo', 'UB'],
+        ['Central Michigan', 'CMU'],
+        ['Eastern Michigan', 'EMU'],
+        ['Kent State', 'KENT'],
+        ['Miami (OH)', 'UM'],
+        ['Northern Illinois', 'NIU'],
+        ['Ohio', 'OHIO'],
+        ['Temple', 'TEMP'],
+        ['Toledo', 'TOLEDO'],
+        ['Western Michigan', 'WMU']
+      ],
+      'Mountain West' => [
+        ['Air Force', 'AFRC'],
+        ['Boise State', 'BSU'],
+        ['Colorado State', 'CSU'],
+        ['New Mexico', 'NMU'],
+        ['San Diego State', 'UNM'],
+        ['TCU', 'TCU'],
+        ['UNLV', 'UNLV'],
+        ['Wyoming', 'UW']
+      ],
+      'Pacific-12' => [
+        ['Arizona', 'UA'],
+        ['Arizona State', 'ASU'],
+        ['California', 'CAL'],
+        ['Colorado', 'CU'],
+        ['Oregon', 'ORE'],
+        ['Oregon State', 'OSU'],
+        ['Stanford', 'STAN'],
+        ['UCLA', 'UCLA'],
+        ['USC', 'USC'],
+        ['Utah', 'UTAH'],
+        ['Washington', 'WASH'],
+        ['Washington State', 'WSU']
+      ],
+      'SEC' => [
+        ['Alabama', 'BAMA'],
+        ['Arkansas', 'ARK'],
+        ['Auburn', 'AUB'],
+        ['Florida', 'UF'],
+        ['Georgia', 'UGA'],
+        ['Kentucky', 'UK'],
+        ['LSU', 'LSU'],
+        ['Mississippi State', 'MSU'],
+        ['Ole Miss', 'UM'],
+        ['South Carolina', 'SCAR'],
+        ['Tennessee', 'UT'],
+        ['Vanderbilt', 'VANDY']
+      ],
+      'Sun Belt' => [
+        ['Arkansas State', 'ASU'],
+        ['Florida Atlantic', 'FAU'],
+        ['Florida International', 'FIU'],
+        ['Louisiana-Lafayette', 'UL'],
+        ['Louisiana-Monroe', 'ULM'],
+        ['Middle Tennessee', 'MTSU'],
+        ['North Texas', 'UNT'],
+        ['Troy', 'TROY'],
+        ['Western Kentucky', 'WKU']
+      ],
+      'WAC' => [
+        ['Fresno State', 'FRESNO'],
+        ['Hawaii', 'HAWAII'],
+        ['Idaho', 'IDAHO'],
+        ['Louisiana Tech', 'LTU'],
+        ['Nevada', 'NEV'],
+        ['New Mexico State', 'NMSU'],
+        ['San Jose State', 'SJSU'],
+        ['Utah State', 'USU']
+      ]
+    },
+    'I-AA' => {
+      'Big Sky' => [
+        ['Eastern Washington', ''],
+        ['Idaho State', ''],
+        ['Montana', ''],
+        ['Montana State', ''],
+        ['Northern Arizona', ''],
+        ['Northern Colorado', ''],
+        ['Portland State', ''],
+        ['Sacramento State', ''],
+        ['Weber State', '']
+      ],
+      'Big South' => [
+        ['Charleston Southern', ''],
+        ['Coastal Carolina', ''],
+        ['Gardner-Webb', ''],
+        ['Liberty', ''],
+        ['Presbyterian', ''],
+        ['Stony Brook', ''],
+        ['Virginia Military Institute', '']
+      ],
+      'CAA' => [
+        ['Delaware', ''],
+        ['James Madison', ''],
+        ['Maine', ''],
+        ['Massachusetts', ''],
+        ['New Hampshire', ''],
+        ['Old Dominion', ''],
+        ['Rhode Island', ''],
+        ['Richmond', ''],
+        ['Towson', ''],
+        ['Villanova', ''],
+        ['William & Mary', '']
+      ],
+      'Great West' => [
+        ['Cal Poly', ''],
+        ['North Dakota', ''],
+        ['South Dakota', ''],
+        ['Souhtern Utah', ''],
+        ['UC Davis', '']
+      ],
+      'IAA Independents' => [
+        ['Georgia State', ''],
+        ['South Alabama', ''],
+        ['Texas State', ''],
+        ['Texas-San Antonio', '']
+      ],
+      'Ivy' => [
+        ['Brown', ''],
+        ['Columbia', ''],
+        ['Cornell', ''],
+        ['Dartmouth', ''],
+        ['Harvard', ''],
+        ['Pennsylvania', ''],
+        ['Princeton', ''],
+        ['Yale', '']
+      ],
+      'MEAC' => [
+        ['Berthune-Cookman', ''],
+        ['Delaware State', ''],
+        ['Florida A&M', ''],
+        ['Hampton', ''],
+        ['Howard', ''],
+        ['Morgan State', ''],
+        ['Norfolk State', ''],
+        ['North Carolina A&T', ''],
+        ['North Carolina Central', ''],
+        ['Savannah State', ''],
+        ['South Carolina State', '']
+      ],
+      'Missouri Valley' => [
+        ['Illinois State', ''],
+        ['Indiana State', ''],
+        ['Missouri State', ''],
+        ['North Dakota State', ''],
+        ['Northern Iowa', ''],
+        ['South Dakota State', ''],
+        ['Southern Illinois', ''],
+        ['Western Illinois', ''],
+        ['Youngstown State', '']
+      ],
+      'Northeast' => [
+        ['Albany', ''],
+        ['Bryant University', ''],
+        ['Central Connecticut State', ''],
+        ['Duquesne', ''],
+        ['Monmouth', ''],
+        ['Robert Morris', ''],
+        ['Sacred Heart', ''],
+        ['St. Francis (PA)', ''],
+        ['Wagner', '']
+      ],
+      'Ohio Valley' => [
+        ['Austin Peay', ''],
+        ['Eastern Illinois', ''],
+        ['Eastern Kentucky', ''],
+        ['Jacksonville State', ''],
+        ['Murray State', ''],
+        ['Southeast Missouri State', ''],
+        ['Tennessee State', ''],
+        ['Tennessee Tech', ''],
+        ['Tennessee-Martin', '']
+      ],
+      'Patriot League' => [
+        ['Bucknell', ''],
+        ['Colgate', ''],
+        ['Fordham', ''],
+        ['Georgetown', ''],
+        ['Holy Cross', ''],
+        ['Lafayette', ''],
+        ['Lehigh', '']
+      ],
+      'Pioneer' => [
+        ['Butler', ''],
+        ['Campbell', ''],
+        ['Davidson', ''],
+        ['Dayton', ''],
+        ['Drake', ''],
+        ['Jacksonville', ''],
+        ['Marist', ''],
+        ['Morehead State', ''],
+        ['San Diego', ''],
+        ['Valparaiso', '']
+      ],
+      'Southland' => [
+        ['Appalachain State', ''],
+        ['Chattanooga', ''],
+        ['Citadel', ''],
+        ['Elon', ''],
+        ['Furman', ''],
+        ['Georgia Southern', ''],
+        ['Samford', ''],
+        ['Western Carolina', ''],
+        ['Wofford', '']
+      ],
+      'SWAC' => [
+        ['Alabama A&M', ''],
+        ['Alabama State', ''],
+        ['Alcorn State', ''],
+        ['Arkansas-Pine Bluff', ''],
+        ['Grambling State', ''],
+        ['Jackson State', ''],
+        ['Mississippi Valley State', ''],
+        ['Prairie View A&M', ''],
+        ['Southern University', ''],
+        ['Texas Southern', '']
+      ]
+    }
+  }.each do |division, conferences|
+    conferences.each do |conference, colleges|
+      conf = Conference.create!(:name => conference, :division => division)
+      colleges.each do |name, abbrev|
+        conf.colleges.create!(:name => name, :abbrev => abbrev)
+      end
+    end
   end
   puts "Added #{College.count} colleges"
 end

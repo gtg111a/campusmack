@@ -21,30 +21,35 @@
 
 .standard .column_wrapper{
     margin: 0 0 0 0;
+    position: relative;
+    padding-bottom: 1px;
+}
+
+.standard .column_wrapper.sign_in-bg {
+    background: url(/images/user_colums-bg.png) no-repeat bottom;
 }
 
 .standard .left_column{
-    width: 476px;
+    width: 475px;
     float: left;
 }
 
 .standard .right_column{
-    width: 310px;
+    border-left: 1px solid #CFCFCF;
+    width: 309px;
     float: left;
 }
 
 .standard .title_box{
+    background: #fff;
     height: 35px;
-    border-width: 1px 0 1px 0;
+    border-width: 1px 0;
     border-style: solid;
     border-color: #cfcfcf;
 }
 
 .standard .left_column .title_box{
-    width: 475px;
-    border-width: 1px 1px 1px 0px;
-    border-style: solid;
-    border-color: #cfcfcf;
+    width: 476px;
 }
 .standard .title_box h2{
     margin: 0px;
@@ -55,17 +60,15 @@
 
 .standard .right_column .title_box{
     width: 310px;
-    border-width: 1px 0px 1px 0px;
+    border-width: 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
 }
 
 .standard .left_column .form_container{
-    padding:2px;
+    background: #fff;
+    padding: 2px 2px 0;
     width: 471px;
-    border-width: 0px 1px 1px 0px;
-    border-style: solid;
-    border-color: #cfcfcf;
 }
 
 .standard .left_column .form_container .form_wrapper{
@@ -75,7 +78,6 @@
 }
 
 .standard .left_column .form_sign_up{
-    height:395px;
 }
 
 .form_sign_up .table_padding, .form_sign_in .table_padding, .edit_profile .table_padding {
@@ -305,10 +307,7 @@
 
 .standard .right_column .sign_in_container{
     width: 310px;
-    height: 169px;
-    border-color: #CFCFCF;
-    border-style: solid;
-    border-width: 0 0px 1px 0;
+    height: 168px;
 }
 
 .standard .right_column .sign_in_container .sign_in_wrapper{
@@ -522,7 +521,7 @@
 
 .standard .right_column .cancel_account_container .cancel_account_wrapper{
     width: 306px;
-    height: 400px;
+    min-height: 400px;
     border-color: #fff;
     border-style: solid;
     border-width: 2px;
@@ -658,9 +657,6 @@
 
  .email_settings_container{
     width: 310px;
-    border-width: 0px 0px 1px 0px;
-    border-style: solid;
-    border-color: #cfcfcf;
 }
 
 
@@ -690,5 +686,4 @@
 
 .email_settings_wrapper .dark_button a {font-size: 18px;}
 
-.edit_profile_left_column .edit_profile{height:513px;}
 

@@ -14,7 +14,7 @@
   <% end %>
   <% if limit %>
       <div class="stat_center">
-        <%= link_to 'FULL LIST >>', status_conference_path(conference), :class => :text_center %>
+        <%= link_to 'FULL LIST >>', "/conference_stats##{conference.id}", :class => :text_center %>
       </div>
   <% end %>
 </div>
