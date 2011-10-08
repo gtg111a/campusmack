@@ -1,73 +1,107 @@
-/* line 4, ../../app/stylesheets/print.scss */
-body.bp {
-  line-height: 1.5;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  color: black;
-  background: none;
-  font-size: 10pt;
-}
-/* line 45, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp .container {
-  background: none;
-}
-/* line 47, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp hr {
-  background: #cccccc;
-  color: #cccccc;
-  width: 100%;
-  height: 2px;
-  margin: 2em 0;
-  padding: 0;
-  border: none;
-}
-/* line 55, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp hr.space {
-  background: white;
-  color: white;
-}
-/* line 58, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp h1, body.bp h2, body.bp h3, body.bp h4, body.bp h5, body.bp h6 {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-/* line 60, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp code {
-  font-size: 0.9em;
-  font-family: "andale mono", "lucida console", monospace;
-}
-/* line 65, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp a img {
-  border: none;
-}
-/* line 68, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp a:link, body.bp a:visited {
-  background: transparent;
-  font-weight: 700;
-  text-decoration: underline;
-}
-/* line 72, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp p img.top {
-  margin-top: 0;
-}
-/* line 74, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp blockquote {
-  margin: 1.5em;
-  padding: 1em;
-  font-style: italic;
-  font-size: 0.9em;
-}
-/* line 79, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp .small {
-  font-size: 0.9em;
-}
-/* line 81, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp .large {
-  font-size: 1.1em;
-}
-/* line 83, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp .quiet {
-  color: #999999;
-}
-/* line 85, ../../../.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_print.scss */
-body.bp .hide {
-  display: none;
-}
+/*
+Syntax error: File to import not found or unreadable: blueprint.
+              Load paths:
+                Compass::SpriteImporter
+                /Users/michaelbivone/campusmack/public/stylesheets/sass
+                /Users/michaelbivone/campusmack/app/stylesheets
+                /Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets
+                /Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/compass/stylesheets
+        on line 1 of /Users/michaelbivone/campusmack/app/stylesheets/print.scss
+
+1: @import "blueprint";
+2: 
+3: //Recommended Blueprint configuration with scoping and semantic layout:
+4: body.bp {
+5:   @include blueprint-print(true); }
+
+Backtrace:
+/Users/michaelbivone/campusmack/app/stylesheets/print.scss:1
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/import_node.rb:64:in `rescue in import'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/import_node.rb:42:in `import'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/import_node.rb:25:in `imported_file'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:149:in `rescue in visit_import'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:154:in `visit_import'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/tree/root_node.rb:20:in `render'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/engine.rb:293:in `_render'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/engine.rb:241:in `block in render'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/util.rb:297:in `silence_sass_warnings'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/engine.rb:241:in `render'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:175:in `each'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:173:in `each'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin.rb:54:in `check_for_updates'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/sass-3.1.8/lib/sass/plugin/rack.rb:51:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/client_side_validations-3.1.0/lib/client_side_validations/middleware.rb:18:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/warden-1.0.5/lib/warden/manager.rb:35:in `block in call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/warden-1.0.5/lib/warden/manager.rb:34:in `catch'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/warden-1.0.5/lib/warden/manager.rb:34:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/methodoverride.rb:24:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activerecord-3.0.10/lib/active_record/query_cache.rb:32:in `block in call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activerecord-3.0.10/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activerecord-3.0.10/lib/active_record/query_cache.rb:12:in `cache'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activerecord-3.0.10/lib/active_record/query_cache.rb:31:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activerecord-3.0.10/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activesupport-3.0.10/lib/active_support/callbacks.rb:421:in `_run_call_callbacks'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/sendfile.rb:106:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/rack/logger.rb:13:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/runtime.rb:17:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/activesupport-3.0.10/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/lock.rb:11:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/actionpack-3.0.10/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/application.rb:168:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/application.rb:77:in `method_missing'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/content_length.rb:13:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/chunked.rb:15:in `call'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/connection.rb:84:in `block in pre_process'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/connection.rb:82:in `catch'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/connection.rb:82:in `pre_process'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/connection.rb:57:in `process'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/connection.rb:42:in `receive_data'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/eventmachine-0.12.10/lib/eventmachine.rb:256:in `run_machine'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/eventmachine-0.12.10/lib/eventmachine.rb:256:in `run'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/backends/base.rb:61:in `start'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/thin-1.2.11/lib/thin/server.rb:159:in `start'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/handler/thin.rb:14:in `run'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/rack-1.2.4/lib/rack/server.rb:217:in `start'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/commands/server.rb:65:in `start'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/commands.rb:30:in `block in <top (required)>'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/commands.rb:27:in `tap'
+/Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/railties-3.0.10/lib/rails/commands.rb:27:in `<top (required)>'
+script/rails:6:in `require'
+script/rails:6:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: blueprint.\A               Load paths:\A                 Compass::SpriteImporter\A                 /Users/michaelbivone/campusmack/public/stylesheets/sass\A                 /Users/michaelbivone/campusmack/app/stylesheets\A                 /Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/blueprint/stylesheets\A                 /Users/michaelbivone/.rvm/gems/ruby-1.9.2-p180@rails3tutorial/gems/compass-0.11.5/frameworks/compass/stylesheets\A         on line 1 of /Users/michaelbivone/campusmack/app/stylesheets/print.scss\A \A 1: @import \"blueprint\";\A 2: \A 3: //Recommended Blueprint configuration with scoping and semantic layout:\A 4: body.bp {\A 5:   @include blueprint-print(true); }"; }

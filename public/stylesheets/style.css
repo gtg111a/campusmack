@@ -1099,7 +1099,8 @@ to keep footer on the bottom of page.
 .left_menu ul li a:hover,
 .left_menu ul li a:active {
     text-decoration: none;
-    color: #000;
+    color: #fff;
+	background-color: #589ED5;
 }
 
 .left_menu ul li.active {
