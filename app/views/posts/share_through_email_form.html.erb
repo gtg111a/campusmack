@@ -67,14 +67,15 @@
           <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
           <div >
             <div style="min-width: 80px;">
-              <ul>
-                <li>
-                  <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
-                  <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
-                  <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %></li>
-                <% @contact_groups.each do |contact_group|   %>
-                  <li>
 
+
+              <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
+              <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
+              <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %><br/>
+              <ul class="contact-groups">
+                <% @contact_groups.each do |contact_group|   %>
+
+                  <li style="width: 150px; float: left">
                     <%
                     box =  '<input class="chk_box" type="checkbox" value="'
                     box = box + contact_group.id.to_s
@@ -82,16 +83,17 @@
                   %>
                     <%= box.html_safe %>
                     <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
-
                   </li>
+
 
                 <% end %>
               </ul>
             </div>
-
-            <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
+            </div>
+<br/>
+            <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px; padding: 20px" ></div>'.html_safe %>
             <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
-          </div>
+          
         <%  end %>
       </td>
     </tr>
@@ -120,7 +122,7 @@
       end
       body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
       if @post.video
-        body = body +  '<div class="content"><a href="'+ @post.video.url+'" style="color:white">' + ""+ '</a></div>'
+        body = body +  '<a href="'+ @post.video.url+'" style="color:white">' + "."+ '</a>'
 
       end
 

@@ -1,4 +1,4 @@
-<div id ="group_select">
+<div id ="contact_group_form">
   <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
   <div  style='padding:10px; margin: 10px'>
 
@@ -11,7 +11,7 @@
     <br/><br />
 
     <input <% if !@contact_groups.present? %> <%=  'checked="checked"'.html_safe %> <% end %>
-      class="rbtn" type="radio" name="group_type"  value="new" />
+      class="rbtn" type="radio" name="group_type" value="new" />
     <span > New Group </span>
     <input type="text" name="new_group_name"/>
   </div>
@@ -27,9 +27,13 @@
       $.ajax({
         type: "POST",
         url: "<%= add_to_group_contact_groups_path() -%>",
-        data: $('#group_select :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize()
+        data: $('#contact_group_form :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize()
       });
       return false;
+    });
+
+    $('#contact_group_form input[name=new_group_name]').focus(function(){
+      $('#contact_group_form input.rbtn[value=new]').prop('checked', true);
     });
   });
 </script>

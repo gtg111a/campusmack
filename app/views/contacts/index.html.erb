@@ -24,6 +24,10 @@
         }
       });
 
+      $('input.select_all').click(function (event){
+        $("#contact_list").find(':checkbox').attr('checked', this.checked);
+      });
+
       $('#delete_selected').click(function(event) {
         show_img_selected();
         $.ajax({

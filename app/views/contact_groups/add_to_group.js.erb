@@ -1,6 +1,6 @@
 <% if(params[:group_type] == 'new') %>
   <% if(!@group.new_record?) %>
-    $('#links_ul').append("<li><a href='<%= contacts_path(:group_id => @group.id) -%>'><%= @group.name -%></a></li>");
+    $('div.contacts_table ul.contact_groups').append("<li><a href='<%= contacts_path(:group_id => @group.id) -%>'><%= @group.name -%></a></li>");
     <%= close_facebox()%>
   <% end %>
 <% else %>

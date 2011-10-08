@@ -1,6 +1,13 @@
-$("#flash-messages").html("");
+$(function () {
 <% flash.each do |key, value| %>
-  $("#flash-messages").append("<%= escape_javascript("<div class='flash #{key}'>#{value}</div>").html_safe -%>");
+  $().toastmessage('showToast', {
+  text     : "<%= value %>",
+  sticky   : <%= get_toast_sticky(key) %>,
+  position : 'top-center',
+  type     : "<%= get_toast_type(key) %>"
+  });
 <% end %>
-<%# flash.clear %>
+});
+
+<% flash.clear %>
 <%= yield %>
