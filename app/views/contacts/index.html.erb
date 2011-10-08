@@ -13,53 +13,54 @@
 
   <!-- TO-DO move this js code to index.js.erb. I tried, but seems that UJS is not working. I recomend to update rails -->
   <script type="text/javascript">
-      $(document).ready(function() {
-          $('.image_load').hide();
+    $(document).ready(function() {
+      $('.image_load').hide();
 
-          $('#rowclick1 tr').click(function(event) {
+      $('#rowclick1 tr').click(function(event) {
 
-              if (event.target.type !== 'checkbox') {
-                  $(':checkbox', this).trigger('click');
-              }
-          });
+        if (event.target.type !== 'checkbox') {
+          $(':checkbox', this).trigger('click');
+        }
+      });
 
-          $('#delete_selected').click(function(event) {
-              show_img_selected();
-              $.ajax({
-                  type: "POST",
-                  url: "<%= delete_emails_contacts_path() -%>",
-                  data: $("form").serialize()
-              });
-
-          });
+      $('#delete_selected').click(function(event) {
+        show_img_selected();
+        $.ajax({
+          type: "POST",
+          url: "<%= delete_emails_contacts_path() -%>",
+          data: $("#contact_list input").serialize()
+        });
 
       });
+
+   
       $('#remove_selected').click(function(event) {
-          show_img_selected();
-          $.ajax({
-              type: "POST",
-              url: "<%= remove_emails_from_group_contacts_path() -%>",
-              data: $("form").serialize()
-          });
+        show_img_selected();
+        $.ajax({
+          type: "POST",
+          url: "<%= remove_emails_from_group_contacts_path() -%>",
+          data: $("#contact_list input").serialize()
+        });
 
       });
+    });
 
-      function remove_selected() {
-          var ids = $(".chk_box:checked")
-          for (var i = 0; i < ids.length; i++) {
-              var id = "#" + ids[i].value + "";
-              $(id).remove()
-          }
-
+    function remove_selected() {
+      var ids = $(".chk_box:checked")
+      for (var i = 0; i < ids.length; i++) {
+        var id = "#" + ids[i].value + "";
+        $(id).remove()
       }
-      function show_img_selected() {
-          var ids = $(".chk_box:checked")
-          for (var i = 0; i < ids.length; i++) {
-              var id = "#img" + ids[i].value;
-              $(id).show();
-          }
 
+    }
+    function show_img_selected() {
+      var ids = $(".chk_box:checked")
+      for (var i = 0; i < ids.length; i++) {
+        var id = "#img" + ids[i].value;
+        $(id).show();
       }
+
+    }
   </script>
   <div class="content_container">
     <div class="content_category">
@@ -69,12 +70,12 @@
           <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
           <li><%= link_to('All', contacts_path(), :method => "GET", :remote => false) %></li>
           <% @contact_groups.each do |contact_group| %>
-              <li>
-                <%= link_to_unless_current(contact_group.name, contacts_path(:group_id=>contact_group.id), :method => "GET", :remote => false, :class => "active") do %>
-                    <span><%= contact_group.name %></span>
-                <% end %>
-                <%#= contact_group.name %>
-              </li>
+            <li>
+              <%= link_to_unless_current(contact_group.name, contacts_path(:group_id=>contact_group.id), :method => "GET", :remote => false, :class => "active") do %>
+                <span><%= contact_group.name %></span>
+              <% end %>
+
+            </li>
           <% end %>
         </ul>
 
@@ -87,14 +88,14 @@
               <li><%= link_to "Delete Selected", "#", :id => "delete_selected", :class => "table_button" %></li>
               <!-- TO-DO remove this logic from this view -->
               <% if @group_name != "All" %>
-                  <li><%= link_to "Remove Selected", "#", :id => "remove_selected", :class => "table_button" %></li>
+                <li><%= link_to "Remove Selected", "#", :id => "remove_selected", :class => "table_button" %></li>
               <% end %>
               <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button") %></li>
             </ul>
           </div>
-
-          <table id="rowclick1">
-            <% @contacts.each do |contact| %>
+          <div id ="contact_list">
+            <table id="rowclick1">
+              <% @contacts.each do |contact| %>
                 <tr id="<%= contact.id %>">
                   <td class="table_preloader">
                     <span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span>
@@ -105,8 +106,9 @@
                   <td><%= contact.email %></td>
                   <td class="row_actions"><%= link_to 'Edit', edit_contact_path(contact), :class => "table_button black" %></td>
                 </tr>
-            <% end %>
-          </table>
+              <% end %>
+            </table>
+          </div>
           <input type="hidden" name="groupname" value="<%= @group_name %>"/>
         </div>
 
