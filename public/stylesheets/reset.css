@@ -132,6 +132,18 @@ strong {
   font-weight: bold;
 }
 
+a,
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+
 img {
   color: transparent;
   font-size: 0;
@@ -141,6 +153,14 @@ img {
   http://css-tricks.com/ie-fix-bicubic-scaling-for-images
 */
   -ms-interpolation-mode: bicubic;
+}
+
+a img {
+    border: none;
+}
+
+ul {
+    list-style: none;
 }
 
 li {
