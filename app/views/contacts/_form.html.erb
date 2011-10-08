@@ -4,22 +4,48 @@
       <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
       <ul>
-      <% @contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="standard clearfix">
+    <div class="column_wrapper clearfix sign_in-bg">
+      <div class="form_container edit_profile">
+        <div class="form_wrapper">
+          <div class="table_padding">
+            <table cellspacing="0" cellpadding="0">
+              <tr>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+              <div class="field">
+                <td class="description">
+                  <%= f.label :name %><br />
+                </td>
+                <td class="entry">
+                  <%= f.text_field :name %>
+                </td>
+              </div>
+              </tr>
+              <tr>
+              <div class="field">
+                <td class="description"> <%= f.label :email %><br /> </td>
+                <td class="entry"><%= f.text_field :email %> </td>
+              </div>
+              </tr>
+              <tr>
+
+              <div class="actions">
+                <td></td>
+                <td>
+                  <%= f.submit %>
+                </td>
+              </div>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
