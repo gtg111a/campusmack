@@ -7,7 +7,8 @@
   <div class="content_actions">
     <ul>
       <li><%= link_to 'New Contact', new_contact_path %></li>
-      <li><%= link_to 'Import Contacts', '#' %></li>
+      <!-- <li><%= link_to 'Import Contacts', '#' %></li> -->
+      <li class="dark_button im"> <%= render :partial => 'contacts/import_form' -%></li>
     </ul>
   </div>
 
