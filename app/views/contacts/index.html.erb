@@ -3,12 +3,12 @@
 
 <!-- Not a DRY to use in each view "content". TO-DO move it to the layout -->
 <div class="content contacts">
-  <div class="content_title"><h1>Contacts</h1></div>
+  <div class="content_title"><h1>Contacts  <% if @group_name != "All" %>(<%=@group_name %>) <% end%>  </h1></div>
   <div class="content_actions">
     <ul>
       <li><%= link_to 'New Contact', new_contact_path %></li>
       <!-- <li><%= link_to 'Import Contacts', '#' %></li> -->
-      <li class="dark_button im"> <%= render :partial => 'contacts/import_form' -%></li>
+      <li > <%= render :partial => 'contacts/import_form' -%></li>
     </ul>
   </div>
 
