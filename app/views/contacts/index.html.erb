@@ -3,6 +3,7 @@
 
 <!-- Not a DRY to use in each view "content". TO-DO move it to the layout -->
 <div class="content contacts">
+
   <div class="content_title"><h1>Contacts  <% if @group_name != "All" %>(<%=@group_name %>) <% end%>  </h1></div>
   <div class="content_actions">
     <ul>
@@ -11,10 +12,13 @@
       <li > <%= render :partial => 'contacts/import_form' -%></li>
     </ul>
   </div>
-
+  <div id ="loading_div">
+    <p align="center"><%= image_tag("ajax-loader.gif") %></p>
+  </div>
   <!-- TO-DO move this js code to index.js.erb. I tried, but seems that UJS is not working. I recomend to update rails -->
   <script type="text/javascript">
     $(document).ready(function() {
+    
       $('.image_load').hide();
 
       $('#rowclick1 tr').click(function(event) {
@@ -121,3 +125,12 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('#loading_div').hide().ajaxStart(function() {
+    $(this).show();
+  })
+  .ajaxStop(function() {
+    $(this).hide();
+  })
+  ;
+</script>
