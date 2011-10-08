@@ -122,10 +122,10 @@
 .standard table .affilation {width: 100px;}
 .standard table .college {width: 144px;}
 
-.standard input{
+.standard input, .standard textarea{
     height:24px;
     color: #7a7b7d;
-    width: 253px;
+    width: 386px;
     background: #fbfbfb;
     border-width: 1px 1px 2px 1px;
     border-color:#cdcdcd;

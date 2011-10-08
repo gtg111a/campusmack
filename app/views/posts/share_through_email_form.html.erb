@@ -46,124 +46,127 @@
   }
 );
 </script>
-<%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
-  <% message = "" %>
-  <table>
-    <tr>
-      <td>
-        <%= label_tag("message[to]", "To") %></td>
-      <td>
+<div class="standard clearfix">
+  <%  form_tag(share_through_email_post_path(@post), {:remote => true, :method => :post}) do -%>
+    <% message = "" %>
+    <table>
+      <tr>
+        <td>
+          <%= label_tag("message[to]", "To") %></td>
+        <td>
 
-        <% if !params[:smack].present? %>
+          <% if !params[:smack].present? %>
 
-          <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
-          <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
-          plaxo_path = '"'+plaxo_path+'"';
-        %>
+            <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
+            <% plaxo_path = "showPlaxoABChooser('message_to','"+plaxo_import_user_path(@user) +"'); return false"
+            plaxo_path = '"'+plaxo_path+'"';
+          %>
 
-          <% message = " #{current_user.first_name} #{current_user.last_name} shared a post from campusmack.com" %>
-        <% else %>
-          <input type="hidden" id="smack" name="smack" value="1"></input>
-          <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
-          <div >
-            <div style="min-width: 80px;">
-
-
-              <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
-              <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
-              <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %><br/>
-              <ul class="contact-groups">
-                <% @contact_groups.each do |contact_group|   %>
-
-                  <li style="width: 150px; float: left">
-                    <%
-                    box =  '<input class="chk_box" type="checkbox" value="'
-                    box = box + contact_group.id.to_s
-                    box = box +'" name="cb[]" ></input>'
-                  %>
-                    <%= box.html_safe %>
-                    <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
-                  </li>
+            <% message = " #{current_user.first_name} #{current_user.last_name} shared a post from campusmack.com" %>
+          <% else %>
+            <input type="hidden" id="smack" name="smack" value="1"></input>
+            <% @contact_groups = ContactGroup.find_all_by_user_id(current_user)  %>
+            <div >
+              <div style="min-width: 80px;">
 
 
-                <% end %>
-              </ul>
+                <%= '<input class="chk_box" type="checkbox" value="0" name="cb[]" ></input>'.html_safe %>
+                <% message = "You just got smacked by #{current_user.first_name} #{current_user.last_name}" %>
+                <%= link_to('All', contacts_path(),:method => "GET", :remote => false) %><br/><br/>
+                <ul class="contact-groups">
+                  <% @contact_groups.each do |contact_group|   %>
+
+                    <li style="width: 150px; float: left">
+                      <%
+                      box =  '<input class="chk_box" type="checkbox" value="'
+                      box = box + contact_group.id.to_s
+                      box = box +'" name="cb[]" ></input>'
+                    %>
+                      <%= box.html_safe %>
+                      <%= link_to(contact_group.name, contacts_path(:id=>contact_group.id),:method => "GET", :remote => false) %>
+                    </li>
+
+
+                  <% end %>
+                </ul>
+              </div>
             </div>
-            </div>
-<br/>
+            <br/>
             <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px; padding: 20px" ></div>'.html_safe %>
             <%= text_area_tag("message[to]", @to_emails, {:rows => 1, :cols => 5, :style => "height:80px;width:380px;padding-right:5px;margin-right:10px;margin-top:10px;"}) %>
-          
-        <%  end %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Title:
-      </td>
-      <td>
-        <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
-        <%= text_field_tag("message[title]",message, :size =>70) %>
-      </td>
 
-    </tr>
-    <tr>
-      <td><%= label_tag("message[body]", "Message:") %></td>
+          <%  end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br/>
+          Title:
+        </td>
+        <td>
+          <%= '<div id="message_to" style="text-align: left; min-width: 100px; margin: 10px" ></div>'.html_safe %>
+          <%= text_field_tag("message[title]",message, :size =>50) %>
+        </td>
 
-      <%
-      body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
-      username = @post.user.try(:username) || "Campusmack Team"
-      body = body +  'Posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
-      body = body +  '<br class="clear"/></div>'
-      if @post.photo
+      </tr>
+      <tr>
+        <td><%= label_tag("message[body]", "Message:") %></td>
+
+        <%
+        body = '<h1>'+@post.title + '</h1><div class="post"><div class="top">'
+        username = @post.user.try(:username) || "Campusmack Team"
+        body = body +  'Posted '+ time_ago_in_words(@post.created_at) +' ago by '+ username
+        body = body +  '<br class="clear"/></div>'
+        if @post.photo
+          body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
+          body = body +  '<div class="photo">'
+          body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
+        end
         body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
-        body = body +  '<div class="photo">'
-        body = body +    '<img src="'+@post.photo.url(:large) +'"'+ 'alt=""/></div>'
-      end
-      body = body + "<a href='#{polymorphic_url([@post.postable,@post])}'>#{@post.title}</a>"
-      if @post.video
-        body = body +  '<a href="'+ @post.video.url+'" style="color:white">' + "."+ '</a>'
+        if @post.video
+          body = body +  '<a href="'+ @post.video.url+'" style="color:white">' + "."+ '</a>'
 
-      end
+        end
 
 
-    %>
+      %>
 
 
-      <%=  hidden_field_tag "message[body1]", body %>
-      <td><%= text_area_tag("message[body2]","",
-          :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
+        <%=  hidden_field_tag "message[body1]", body %>
+        <td><%= text_area_tag("message[body2]","",
+            :style => "height:125px;width:380px;padding-right:5px;margin-right:10px") %>
 
-      </td>
-    </tr>
-    <tr>
-      <td>Preview</td>
-      <td>
-        <div id ="email_preview" >
+        </td>
+      </tr>
+      <tr>
+        <td>Preview</td>
+        <td>
+          <div id ="email_preview" >
 
 
-          <h1><%= @post.title %></h1>
-          <div class="post">
-            <div class="top">
-              posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
-              <br class="clear"/>
-            </div>
-            <% if @post.photo %>
-              <div class="photo">
-                <img src="<%= @post.photo.url(:large) %>" alt=""/>
+            <h1><%= @post.title %></h1>
+            <div class="post">
+              <div class="top">
+                posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
+                <br class="clear"/>
               </div>
-            <% end %>
-            <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
-            <% if @post.video %>
-              <div class="content"><%= youtube_embed(@post.video.url, true) %></div>
-            <% end %>
-            <div class="summary"><%= @post.summary %></div>
-          </div>
-        </div></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><%= submit_tag("Share",:class=>"share_by_email") %><span style="padding-top:20px; margin-top: 10px" id="email_sending" ></span></td>
-    </tr>
-  </table>
-<% end -%>
+              <% if @post.photo %>
+                <div class="photo">
+                  <img src="<%= @post.photo.url(:large) %>" alt=""/>
+                </div>
+              <% end %>
+              <%= link_to "News post", @post.news_post.url unless @post.news_post.blank? %>
+              <% if @post.video %>
+                <div class="content"><%= youtube_embed(@post.video.url, true) %></div>
+              <% end %>
+              <div class="summary"><%= @post.summary %></div>
+            </div>
+          </div></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><%= submit_tag("Share",:class=>"share_by_email") %><span style="padding-top:20px; margin-top: 10px" id="email_sending" ></span></td>
+      </tr>
+    </table>
+  <% end -%>
+</div>

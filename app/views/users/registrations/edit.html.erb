@@ -1,4 +1,7 @@
 <div class="standard clearfix">
+  <div id ="loading_div">
+    <p align="center"><%= image_tag("ajax-loader.gif") %></p>
+  </div>
   <div class="title_wrapper clearfix">
     <div class="cont_title"><h1>Edit <%= resource_name.to_s.humanize %></h1></div>
   </div>
@@ -121,3 +124,12 @@
     <%= link_to "", :back, :class => 'back_button' %>
   </div>
 </div>
+<script type="text/javascript">
+  $('#loading_div').hide().ajaxStart(function() {
+    $(this).show();
+  })
+  .ajaxStop(function() {
+    $(this).hide();
+  })
+  ;
+</script>

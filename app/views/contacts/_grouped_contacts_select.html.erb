@@ -1,45 +1,47 @@
-<% @group_ids.each do |groupid| %>
-  <% @contacts = ContactGroup.group_emails_check_box(current_user, groupid ) %>
-  <% @group_name = "" %>
-  <% @group_name = groupid != '0' ? ContactGroup.find_by_id(groupid).name : "All Contacts" %>
+<% if @group_ids != nil  %>
+  <% @group_ids.each do |groupid| %>
+    <% @contacts = ContactGroup.group_emails_check_box(current_user, groupid ) %>
+    <% @group_name = "" %>
+    <% @group_name = groupid != '0' ? ContactGroup.find_by_id(groupid).name : "All Contacts" %>
 
-  <div style='width: 100%; background-color: skyBlue; padding:5px'>
-    <%= @group_name %>
-  </div>
-
-  <% if(@contacts.count == 0) %>
-    No contact for this group
-  <% end %>
-
-  <%  @email_group_check_box = "" %>
-
-  <% @contacts.in_groups_of(2, false) do |row| %>
-
-    <div style="display: table-row">
-      <ul class="contact-groups">
-
-        <% row.each() do |contact| %>
-
-          <%
-          pattern = /<(.*)>/
-          match = pattern.match(contact.name)
-          name = nil
-          name = (match != nil ? match[1] : contact.name)
-        %>
-
-          <% input_id = "#{groupid}-#{contact.id}" %>
-          <li style="width: 200px; float: left">
-
-            <input class="chk_box_email" type="checkbox" checked="checked" name="cb_email[]"
-                   value="<%= contact.email -%>" id="<%= input_id -%>"/>
-            <!--span title="<%= name -%>"><%= truncate(name, :length => 18) -%></span-->
-            <%= label_tag(input_id, truncate(name, :length => 18), :title => name) -%>
-
-          </li>
-        <% end %>
-      </ul>
+    <div style='width: 100%; background-color: skyBlue; padding:5px'>
+      <%= @group_name %>
     </div>
 
-  <% end %>
+    <% if(@contacts.count == 0) %>
+      No contact for this group
+    <% end %>
 
-<% end %>
+    <%  @email_group_check_box = "" %>
+
+    <% @contacts.in_groups_of(2, false) do |row| %>
+
+      <div style="display: table-row">
+        <ul class="contact-groups">
+
+          <% row.each() do |contact| %>
+
+            <%
+            pattern = /<(.*)>/
+            match = pattern.match(contact.name)
+            name = nil
+            name = (match != nil ? match[1] : contact.name)
+          %>
+
+            <% input_id = "#{groupid}-#{contact.id}" %>
+            <li style="width: 200px; float: left">
+
+              <input class="chk_box_email" type="checkbox" checked="checked" name="cb_email[]"
+                     value="<%= contact.email -%>" id="<%= input_id -%>"/>
+              <!--span title="<%= name -%>"><%= truncate(name, :length => 18) -%></span-->
+              <%= label_tag(input_id, truncate(name, :length => 18), :title => name) -%>
+
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+    <% end %>
+
+  <% end %>
+<%end%>

@@ -75,7 +75,7 @@
     <div class="content_category">
 
       <div class="contacts_table">
-        <ul class="contact_groups">
+        <ul class="contact_groups" >
           <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
           <li><%= link_to('All', contacts_path(), :method => "GET", :remote => false) %></li>
           <% @contact_groups.each do |contact_group| %>
@@ -93,7 +93,7 @@
             <div class="button_bg table_button">
               <input type="checkbox" value="0" name="cb" class="select_all"/>
             </div>
-            <ul class="table_actions">
+            <ul class="table_actions" style="list-style-type: none">
               <li><%= link_to "Delete Selected", "#", :id => "delete_selected", :class => "table_button" %></li>
               <!-- TO-DO remove this logic from this view -->
               <% if @group_name != "All" %>
