@@ -1100,7 +1100,7 @@ to keep footer on the bottom of page.
 .left_menu ul li a:active {
     text-decoration: none;
     color: #fff;
-	background-color: #589ED5;
+    background-color: #589ED5;
 }
 
 .left_menu ul li.active {
@@ -1356,6 +1356,21 @@ ul.inner_menu li a, ul.inner_menu li span.normal {
     color: #000;
 }
 
+.create_post ul.inner_menu {
+    width: 308px;
+}
+
+.create_post ul.inner_menu li {
+    width: 33%;
+    border-right: none;
+    text-align: center;
+}
+
+.create_post ul.inner_menu span {
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
 /* Forms */
 
 /* since there is no generic styles for the site forms, I have to add .semantic to not to kill all other forms on the site. TO-DO make generic styles for site forms */
@@ -1570,6 +1585,10 @@ form.semantic .actions .alt:hover {
     height: auto;
 }
 
-ul.contact-groups{
+ul.contact-groups {
     list-style-type: none;
+}
+
+#loading_div {
+    display: none;
 }

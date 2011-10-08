@@ -19,7 +19,7 @@
     width: 390px;
 }
 
-.standard .column_wrapper{
+.standard .column_wrapper {
     margin: 0 0 0 0;
     position: relative;
     padding-bottom: 1px;
@@ -29,18 +29,18 @@
     background: url(/images/user_colums-bg.png) no-repeat bottom;
 }
 
-.standard .left_column{
+.standard .left_column {
     width: 475px;
     float: left;
 }
 
-.standard .right_column{
+.standard .right_column {
     border-left: 1px solid #CFCFCF;
     width: 309px;
     float: left;
 }
 
-.standard .title_box{
+.standard .title_box {
     background: #fff;
     height: 35px;
     border-width: 1px 0;
@@ -48,107 +48,144 @@
     border-color: #cfcfcf;
 }
 
-.standard .left_column .title_box{
+.standard .left_column .title_box {
     width: 476px;
 }
-.standard .title_box h2{
+
+.standard .title_box h2 {
     margin: 0px;
-    font-size:13px;
+    font-size: 13px;
     font-weight: normal;
-    padding:12px 0 0 20px;
+    padding: 12px 0 0 20px;
 }
 
-.standard .right_column .title_box{
+.standard .right_column .title_box {
     width: 310px;
     border-width: 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
 }
 
-.standard .left_column .form_container{
+.standard .left_column .form_container {
     background: #fff;
     padding: 2px 2px 0;
     width: 471px;
 }
 
-.standard .left_column .form_container .form_wrapper{
+.standard .create_post.form_container {
+    background: #fff;
+    padding: 2px;
+    border-bottom: solid 1px #cfcfcf;
+}
+
+.standard .left_column .form_container .form_wrapper {
     background: #F3F3F3;
-    height:100%;
+    height: 100%;
     width: 100%;
 }
 
-.standard .left_column .form_sign_up{
+.standard .create_post .form_wrapper {
+    background: #F3F3F3;
+}
+
+.standard .left_column .form_sign_up {
 }
 
 .form_sign_up .table_padding, .form_sign_in .table_padding, .edit_profile .table_padding {
     padding-top: 26px;
 }
 
+.create_post .table_padding {
+    padding: 28px 0;
+}
+
 .sign_in_wrapper .table_padding {
     padding-top: 24px;
 }
 
-
-.standard table{
+.standard table {
     width: 100%;
 }
 
-.standard table tr{
-    height:37px;
+.standard table tr {
+    height: 37px;
 }
 
-
-.standard table .description{
+.standard table .description {
     width: 148px;
     text-align: right;
     font-size: 13px;
-    color:#09689E;
+    color: #09689E;
     vertical-align: middle;
 }
 
-.standard table .entry{
+.standard .create_post table .description {
+    width: 230px;
+}
+
+.standard table .entry {
     padding: 0 0 0 9px;
     color: #7a7b7d;
     vertical-align: middle;
 }
 
-.standard .required_sign{
-    color:#09689E;
+.standard .required_sign {
+    color: #09689E;
     font-size: 13pt;
     padding: 0 0 0 2px;
 }
 
 /*.standard table .gender {width: 260px;}*/
-.standard table .affilation {width: 100px;}
-.standard table .college {width: 144px;}
+.standard table .affilation {
+    width: 100px;
+}
 
-.standard input{
-    height:24px;
+.standard table .college {
+    width: 144px;
+}
+
+.standard input {
+    height: 24px;
     color: #7a7b7d;
     width: 253px;
     background: #fbfbfb;
     border-width: 1px 1px 2px 1px;
-    border-color:#cdcdcd;
-    border-style:solid;
+    border-color: #cdcdcd;
+    border-style: solid;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     -khtml-border-radius: 4px;
     border-radius: 4px;
-    float:left;
-    font-size:13px;
+    float: left;
+    font-size: 13px;
 }
 
-.standard table .entry input {
+.standard .create_post input, .standard .create_post textarea {
+    width: 293px;
+}
+
+.standard .create_post textarea {
+    height: 210px;
+}
+
+.standard table .entry input, .standard table .entry textarea {
     padding: 0 0 0 7px;
 }
 
-.standard input[type="checkbox"]{
+.standard input[type="file"] {
+    height: auto;
+    border: none;
+    padding: 0 !important;
+    background: transparent;
+}
+
+.standard input[type="checkbox"] {
     height: 13px;
     width: 13px;
 }
 
-.standard select{
-        height:24px;
+.standard select {
+    height: 24px;
     /*
     color: #7a7b7d;
     background: #fbfbfb;
@@ -162,104 +199,108 @@
     */
 }
 
-.standard .important_notice{
+.standard .important_notice {
     width: 260px;
     margin: 4px 0 0px 157px;
 }
 
-.standard .important_notice .required_sign{
-    float:left;
-    color:#09689E;
+.standard .important_notice .required_sign {
+    float: left;
+    color: #09689E;
     font-size: 13pt;
-    display:block;
+    display: block;
     position: relative;
 }
 
-.standard .important_notice_text{
-    float:left;
+.standard .important_notice_text {
+    float: left;
     color: #7a7b7d;
-    font-size:11px;
+    font-size: 11px;
     padding: 0 0 0 2px;
-    display:block;
+    display: block;
 }
 
-.standard .form_wrapper .blue_button{
+.standard .form_wrapper .blue_button {
     width: 69px;
-    float:right;
+    float: right;
 }
 
-.standard .confirmation_container{
+.standard .confirmation_container {
     margin: 0 0 0 135px;
     width: 290px;
 }
 
-.standard .confirmation_container .terms{
-    float:left;
+.standard .create_post .confirmation_container {
+    margin: 15px 0 0 0;
+    width: 541px;
 }
 
-.standard .confirmation_container .terms .check_box{
-    float:left;
+.standard .confirmation_container .terms {
+    float: left;
 }
 
-.standard .confirmation_container .terms .text{
-    font-size:11px;
-    float:left;
-    color:#7A7B7D;
+.standard .confirmation_container .terms .check_box {
+    float: left;
+}
+
+.standard .confirmation_container .terms .text {
+    font-size: 11px;
+    float: left;
+    color: #7A7B7D;
     width: 185px;
     margin: 0 0 0 11px;
 }
 
-.standard .confirmation_container .terms .text a{
+.standard .confirmation_container .terms .text a {
     text-decoration: underline;
-    color:#7A7B7D;
+    color: #7A7B7D;
 }
 
-.blue_button input{
-    cursor:pointer;
-    background: none repeat scroll 0 0 transparent!important;
-    border: medium none!important;
-    color: #FFFFFF!important;
+.blue_button input {
+    cursor: pointer;
+    background: none repeat scroll 0 0 transparent !important;
+    border: medium none !important;
+    color: #FFFFFF !important;
     display: block;
     font-family: Conv_MyriadPro-BoldCond;
     font-size: 20px;
     padding-top: 4px;
-    width: 100%!important;
+    width: 100% !important;
 }
 
-.standard .right_column .sign_up_with_container{
+.standard .right_column .sign_up_with_container {
     width: 310px;
-    height:193px;
+    height: 193px;
 }
 
-.standard  .sign_in_column .sign_up_with_container{
+.standard  .sign_in_column .sign_up_with_container {
     border-width: 0px 0px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
-    height:247px;
+    height: 247px;
 }
 
-.standard .right_column .sign_up_with_container ul{
+.standard .right_column .sign_up_with_container ul {
     background: #F3F3F3;
     border-width: 2px;
     border-color: #fff;
     border-style: solid;
     padding: 9px 64px 0 55px;
     width: 187px;
-    height:180px;
+    height: 180px;
 }
 
-.standard  .sign_in_column .sign_up_with_container ul{
+.standard  .sign_in_column .sign_up_with_container ul {
     height: 212px;
     padding: 31px 64px 0 55px;
 }
 
-.standard .right_column .sign_up_with_container ul li{
+.standard .right_column .sign_up_with_container ul li {
     margin: 22px 0 0 0;
 }
 
-
-.standard .right_column .sign_up_with_container ul li a{
-    display:block;
+.standard .right_column .sign_up_with_container ul li a {
+    display: block;
     width: 187px;
     height: 28px;
     -moz-border-radius: 5px;
@@ -268,15 +309,15 @@
     border-radius: 5px;
 }
 
-.standard .right_column .sign_up_with_container ul li a .symbol{
+.standard .right_column .sign_up_with_container ul li a .symbol {
     display: block;
-    float:left;
-    height:28px;
-    width:27px;
+    float: left;
+    height: 28px;
+    width: 27px;
     margin: 0 0 0 3px;
 }
 
-.standard .right_column .sign_up_with_container ul li a .invitation{
+.standard .right_column .sign_up_with_container ul li a .invitation {
     color: #FFFFFF;
     display: block;
     float: left;
@@ -288,29 +329,29 @@
     width: 156px;
 }
 
-.standard .right_column .sign_up_with_container ul .twitter a{
+.standard .right_column .sign_up_with_container ul .twitter a {
     background: url('/images/bg_twitter_button.png') repeat-x;
 }
 
-.standard .right_column .sign_up_with_container ul .facebook a{
+.standard .right_column .sign_up_with_container ul .facebook a {
     background: url('/images/bg_facebook_button.png') repeat-x;
 }
 
-.standard .right_column .sign_up_with_container ul .google a{
+.standard .right_column .sign_up_with_container ul .google a {
     background: url('/images/bg_google_button.png') repeat-x;
 }
 
-.standard .right_column .sign_up_with_container ul .google a .symbol{
-    width:30px;
+.standard .right_column .sign_up_with_container ul .google a .symbol {
+    width: 30px;
     margin: 0 0 0 0px;
 }
 
-.standard .right_column .sign_in_container{
+.standard .right_column .sign_in_container {
     width: 310px;
     height: 168px;
 }
 
-.standard .right_column .sign_in_container .sign_in_wrapper{
+.standard .right_column .sign_in_container .sign_in_wrapper {
     width: 306px;
     height: 164px;
     border-color: #fff;
@@ -319,207 +360,211 @@
     background: #F3F3F3;
 }
 
-.standard .sign_in_container table{
+.standard .sign_in_container table {
     padding: 20px 0 22px 0;
 }
 
-.standard .sign_in_container table tr{
-    height:35px;
+.standard .sign_in_container table tr {
+    height: 35px;
 }
 
-.standard .sign_in_container table .description{
+.standard .sign_in_container table .description {
     width: 84px;
 }
 
-.standard .sign_in_container input{
+.standard .sign_in_container input {
     width: 190px;
 }
 
-.standard .sign_in_container .links{
+.standard .sign_in_container .links {
     margin: 24px 0 0 0;
 }
 
-.standard .sign_in_container .links .l_column{
-    float:left;
-    width:209px;
+.standard .sign_in_container .links .l_column {
+    float: left;
+    width: 209px;
     text-align: right;
-    font-size:11px;
-    padding: 0px 10px 0 0 ;
+    font-size: 11px;
+    padding: 0px 10px 0 0;
 }
 
-.standard .sign_in_container .links .l_column a:focus,.standard .sign_in_container .links .l_column a:hover{
+.standard .sign_in_container .links .l_column a:focus, .standard .sign_in_container .links .l_column a:hover {
     text-decoration: underline;
 }
 
-.standard .sign_in_container .links .l_column a{
+.standard .sign_in_container .links .l_column a {
     color: #7A7B7D;
-    display:block;
+    display: block;
 }
 
-.standard .sign_in_container .links .r_column{
-    float:left;
+.standard .sign_in_container .links .r_column {
+    float: left;
     width: 69px;
 }
 
 .standard .sign_in_container .links .r_column .blue_button {
     width: 69px;
-    float:left;
+    float: left;
 }
-.standard .left_column .form_sign_in{
-    padding:2px;
+
+.standard .left_column .form_sign_in {
+    padding: 2px;
     width: 471px;
-    height:243px;
+    height: 243px;
     border-width: 0px 1px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
 }
 
-.standard .left_column .remember{
+.standard .left_column .remember {
     font-size: 11px;
 }
 
-.standard .left_column .form_sign_in .remember{
+.standard .left_column .form_sign_in .remember {
     margin: 9px 0 13px 157px;
 }
 
-.standard .left_column .form_sign_in .remember label{
+.standard .left_column .form_sign_in .remember label {
     padding: 0 0 0 5px;
 }
 
-.standard .left_column .form_sign_in input{
+.standard .left_column .form_sign_in input {
     width: 272px;
 }
 
-.standard .left_column .form_sign_in input[type="checkbox"]{
+.standard .left_column .form_sign_in input[type="checkbox"] {
     height: 13px;
     width: 13px;
 }
 
-.standard .left_column .form_sign_in .links{
+.standard .left_column .form_sign_in .links {
     margin: 0 0 15px 157px;
 }
 
-.standard .form_sign_in .links .l_column{
-    float:left;
-    width:193px;
+.standard .form_sign_in .links .l_column {
+    float: left;
+    width: 193px;
     text-align: right;
-    font-size:11px;
-    padding: 0px 10px 0 0 ;
+    font-size: 11px;
+    padding: 0px 10px 0 0;
 }
 
-.standard .form_sign_in .links .l_column a{
+.standard .form_sign_in .links .l_column a {
     color: #7A7B7D;
-    display:block;
+    display: block;
 }
 
-.standard .form_sign_in .links .r_column{
-    float:left;
+.standard .form_sign_in .links .r_column {
+    float: left;
     width: 69px;
 }
 
 .standard .form_sign_in .links .r_column .blue_button {
     width: 69px;
-    float:left;
+    float: left;
 }
 
-.standard .form_sign_in .not_a_member_box{
+.standard .form_sign_in .not_a_member_box {
     border-top: 1px solid #cbcbcb;
     margin: 0 0 0 157px;
     padding: 10px 0 0 0;
     width: 272px;
 }
 
-.standard .form_sign_in .not_a_member_box .not_a_member{
-    font-size:12px;
-    color:#000;
+.standard .form_sign_in .not_a_member_box .not_a_member {
+    font-size: 12px;
+    color: #000;
     padding: 0 0 0 2px;
 }
 
-.standard .form_sign_in .not_a_member_box .sign_up_now_button{
-    float:right;
+.standard .form_sign_in .not_a_member_box .sign_up_now_button {
+    float: right;
 }
 
-.standard .form_sign_in .not_a_member_box .sign_up_now_button a{
+.standard .form_sign_in .not_a_member_box .sign_up_now_button a {
     padding-left: 9px;
     padding-right: 9px;
 }
 
-.standard .form_sign_in .not_a_member_box .not_a_member_text{
+.standard .form_sign_in .not_a_member_box .not_a_member_text {
     font-size: 13px;
-    padding: 6px 0 0 0 ;
-    float:left;
+    padding: 6px 0 0 0;
+    float: left;
 }
 
-.standard .form_sign_up .star{
-    width:54px;
+.standard .form_sign_up .star {
+    width: 54px;
     vertical-align: super;
 }
 
-
-.standard .field_with_errors{
+.standard .field_with_errors {
     display: inline-block;
 }
 
-.standard .field_with_errors .message{
-    display:none;
+.standard .field_with_errors .message {
+    display: none;
 }
 
-.standard .description .field_with_errors label, .field_with_errors label .text a{
-    color:red!important;
+.standard .description .field_with_errors label, .field_with_errors label .text a {
+    color: red !important;
 }
 
-.standard .affiliation_span{display: inline-block;float:left}
+.standard .affiliation_span {
+    display: inline-block;
+    float: left
+}
 
-.standard .college_span{display: inline-block;float:right}
+.standard .college_span {
+    display: inline-block;
+    float: right
+}
 
-
-.standard .edit_profile .confirmation_container{
+.standard .edit_profile .confirmation_container {
     margin: 7px 0 0 157px;
     width: 262px;
     padding: 0 0 22px 0;
 }
 
-.standard .edit_profile .confirmation_container .accept{
-    float:left;
+.standard .edit_profile .confirmation_container .accept {
+    float: left;
     width: 262px;
 }
 
-.standard .edit_profile .accept .blue_button{
-    float:right;
+.standard .edit_profile .accept .blue_button {
+    float: right;
 }
 
-.standard .edit_profile .important_notice{
-    float:left;
+.standard .edit_profile .important_notice {
+    float: left;
     margin: 0;
     width: auto;
 }
 
- .dotted_area{
+.dotted_area {
     width: 782px;
     margin: 2px;
-    height:44px;
+    height: 44px;
     background: url('/images/dotted_bg.png') repeat-x;
 }
 
-.dotted_area .back_button{
+.dotted_area .back_button {
     margin: 10px 14px 0 0;
-    float:right;
+    float: right;
 }
 
-.standard .edit_profile .star{
-    width:54px;
+.standard .edit_profile .star {
+    width: 54px;
     vertical-align: super;
 }
 
-.standard .right_column .cancel_account_container{
+.standard .right_column .cancel_account_container {
     width: 310px;
     border-width: 0px 0px 0px 0px;
     border-style: solid;
     border-color: #cfcfcf;
 }
 
-
-.standard .right_column .cancel_account_container .cancel_account_wrapper{
+.standard .right_column .cancel_account_container .cancel_account_wrapper {
     width: 306px;
     min-height: 400px;
     border-color: #fff;
@@ -528,35 +573,35 @@
     background: #F3F3F3;
 }
 
-.info_container{
-    margin:21px 0 0 18px;
+.info_container {
+    margin: 21px 0 0 18px;
 }
 
 .info_container .auths {
 
 }
 
-.info_text{
+.info_text {
     margin: 0 0 9px 0;
 }
 
-.info_container ul li a{
+.info_container ul li a {
     text-decoration: underline;
 }
 
-.cont_title{
-    float:left;
-    display:block;
+.cont_title {
+    float: left;
+    display: block;
 }
 
-.additional_buttons{
-    float:right;
-    margin:33px 7px 0 0;
+.additional_buttons {
+    float: right;
+    margin: 33px 7px 0 0;
 }
 
-#services_manage .service_in_use{
+#services_manage .service_in_use {
     width: 270px;
-    height:64px;
+    height: 64px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -565,22 +610,22 @@
     margin: 0 0 20px 0;
 }
 
-#services_manage .service_img{
+#services_manage .service_img {
     width: 70px;
-    height:64px;
-    float:left;
+    height: 64px;
+    float: left;
 }
 
-#services_manage .service_userdata{
+#services_manage .service_userdata {
     padding: 6px 0 8px 0;
     width: 200px;
-    float:left;
-    font-size:12px;
+    float: left;
+    font-size: 12px;
     line-height: 14px;
     color: #48494e;
 }
 
-#services_manage #services_list{
+#services_manage #services_list {
     width: 233px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -591,31 +636,31 @@
     padding: 20px 0 9px 37px;
 }
 
-#services_manage #services_list li{
+#services_manage #services_list li {
     margin: 0px 0 11px 0;
 }
 
-#services_manage #services_list li a{
-    display:block;
+#services_manage #services_list li a {
+    display: block;
     width: 187px;
     height: 28px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
-    margin:0;
+    margin: 0;
     text-decoration: none;
 }
 
-#services_manage #services_list li a .symbol{
+#services_manage #services_list li a .symbol {
     display: block;
-    float:left;
-    height:28px;
-    width:27px;
+    float: left;
+    height: 28px;
+    width: 27px;
     margin: 0 0 0 3px;
 }
 
-#services_manage #services_list li a .invitation{
+#services_manage #services_list li a .invitation {
     color: #FFFFFF;
     display: block;
     float: left;
@@ -627,40 +672,39 @@
     width: 156px;
 }
 
-#services_manage #services_list .twitter a{
+#services_manage #services_list .twitter a {
     background: url('/images/bg_twitter_button.png') repeat-x;
 }
 
-#services_manage #services_list .facebook a{
+#services_manage #services_list .facebook a {
     background: url('/images/bg_facebook_button.png') repeat-x;
 }
 
-#services_manage #services_list .google a{
+#services_manage #services_list .google a {
     background: url('/images/bg_google_button.png') repeat-x;
 }
 
-#services_manage #services_list .google a .symbol{
-    width:30px;
+#services_manage #services_list .google a .symbol {
+    width: 30px;
     margin: 0 0 0 0px;
 }
 
-.cancel_account_container .cancel_account{
-    padding:16px 0 25px 0;
+.cancel_account_container .cancel_account {
+    padding: 16px 0 25px 0;
     width: 273px;
     border-top: 1px solid #cbcbcb;
 }
 
-.cancel_account_container .cancel_account .white_button{
-    float:left;
+.cancel_account_container .cancel_account .white_button {
+    float: left;
     margin: 0 9px 0 0;
 }
 
- .email_settings_container{
+.email_settings_container {
     width: 310px;
 }
 
-
-.email_settings_wrapper{
+.email_settings_wrapper {
     width: 306px;
     border-color: #fff;
     border-style: solid;
@@ -668,22 +712,24 @@
     background: #F3F3F3;
 }
 
-.email_settings_wrapper ul{
-    margin: 5px ;
+.email_settings_wrapper ul {
+    margin: 5px;
 }
 
-.email_settings_wrapper ul li{
-    float:left;
+.email_settings_wrapper ul li {
+    float: left;
 }
 
-.email_settings_wrapper .im{
-    float:left;
+.email_settings_wrapper .im {
+    float: left;
 }
 
-.email_settings_wrapper .mg{
-    float:right;
+.email_settings_wrapper .mg {
+    float: right;
 }
 
-.email_settings_wrapper .dark_button a {font-size: 18px;}
+.email_settings_wrapper .dark_button a {
+    font-size: 18px;
+}
 
 

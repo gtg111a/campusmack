@@ -14,7 +14,7 @@ class ConferencesController < ApplicationController
   end
 
   def status
-    @conferences = Conference.all
+    @conferences = Conference.where(:division => session[:division])
   end
 
   def show
