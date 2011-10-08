@@ -15,7 +15,6 @@ gem 'omniauth', '0.2.6'
 gem 'jquery-rails'
 gem 'meta_search'
 gem 'client_side_validations'
-gem 'compass', ">= 0.11.5"
 gem 'cancan'
 gem 'fastercsv'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
