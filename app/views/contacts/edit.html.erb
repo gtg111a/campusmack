@@ -1,6 +1,12 @@
-<h1>Editing contact</h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'contacts' %>
+<% end %>
 
-<%= render 'form' %>
+<div class="content contacts">
+  <div class="content_title"><h1>Editing contact</h1></div>
 
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>
+  <div class="content_container">
+
+    <%= render 'form' %>
+  </div>
+</div>
