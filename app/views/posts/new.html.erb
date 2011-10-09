@@ -3,7 +3,7 @@
     <div class="cont_title"><h1><%= @title %></h1></div>
   </div>
   <div class="title_box">
-    <h2>FILL IN THE FOLLOWING TO SUBMIT A SMACK</h2>
+    <h2><%= @submit %></h2>
   </div>
   <div class="form_container create_post">
     <div class="form_wrapper">
@@ -63,7 +63,7 @@
         <div class="table_padding">
           <table cellpadding="0" cellspacing="0">
             <tr>
-              <td class="description"><%= f.label :type, 'Smack type:' %></td>
+              <td class="description"><%= f.label :type, 'Post type:' %></td>
               <td class="entry">
                 <ul class="inner_menu">
                   <li>
