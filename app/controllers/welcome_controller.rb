@@ -11,7 +11,8 @@ class WelcomeController < ApplicationController
   end
 
   def change_division
-    session[:division] = params['division']
+    # Do not change division until further notice
+    #session[:division] = params['division']
     redirect_to :back
   end
 
