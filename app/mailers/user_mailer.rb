@@ -28,7 +28,7 @@ class UserMailer < ActionMailer::Base
     else
       subject = "#{post.title} is shared by <#{poster.username}> as #{@post.type} through #{SITE_NAME}"
     end
-    mail(:to => @message.to,:from => 'noreplay@campusmack.com', :subject => title)
+    mail(:to => @message.to,:from => 'Campusmack.com', :subject => title)
     if inc_count == 1
       poster.increment_smack_send
       smack_send = SmackSend.new
