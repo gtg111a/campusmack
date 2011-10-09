@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def new
     @post = @parent.send(@post_cls).build
     @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.titleize.upcase
+    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
     init_college_menu
     add_breadcrumbs
     render 'posts/new'
