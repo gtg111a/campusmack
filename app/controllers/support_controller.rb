@@ -4,6 +4,7 @@ class SupportController < ApplicationController
   def new
     # id is required to deal with form
     @support = Support.new(:id => 1)
+    breadcrumbs.add 'Contact Us'
   end
 
   def create

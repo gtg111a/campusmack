@@ -1,13 +1,11 @@
 <% content_for :above do %>
     <div class="stat_title">CONFERENCE STATISTICS</div>
-    <div class="table new_level clearfix">
-      <div class="table_button_left"></div>
-      <div class="table_middle ">
-        <% Conference.all.each do |conference| %>
+    <div id="stats_widget" class="table new_level clearfix">
+      <div id="stats_container" class="table_middle">
+        <% Conference.where(:division => session[:division]).each do |conference| %>
             <%= render :partial => 'conferences/stats', :locals => {:conference => conference, :limit => 3} %>
         <% end %>
       </div>
-      <div class="table_button_right"></div>
     </div>
 <% end %>
 

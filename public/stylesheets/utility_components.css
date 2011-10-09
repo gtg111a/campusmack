@@ -25,6 +25,7 @@
     padding-top: 4px;
     color: #fff;
     font-family: Conv_MyriadPro-BoldCond;
+    text-transform: uppercase;
     font-size: 20px;
 }
 
@@ -45,6 +46,7 @@
     color: #fff;
     font-family: Conv_MyriadPro-BoldCond;
     font-size: 20px;
+    text-transform: uppercase;
 }
 
 .dark_button {
@@ -64,6 +66,7 @@
     color: #fff;
     font-family: Conv_MyriadPro-BoldCond;
     font-size: 20px;
+    text-transform: uppercase;
 }
 
 .white_button {
@@ -86,6 +89,7 @@
     color: #4190c9;
     font-family: Conv_MyriadPro-BoldCond;
     font-size: 20px;
+    text-transform: uppercase;
 }
 
 .table_button {

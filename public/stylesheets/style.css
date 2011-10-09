@@ -55,7 +55,7 @@ a:visited {
     float: right;
     margin-top: -2px;
     color: #fff;
-    font-size: 1.1em;
+    font-size: 12px;
     padding: 6px 0 0 25px;
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
@@ -133,7 +133,7 @@ a:visited {
     height: 22px;
     float: left;
     background: url(/images/sign_up.png);
-    padding-top: 3px;
+    padding-top: 2px;
     font-size: 9px;
     line-height: 1.7em;
     font-family: Arial, Helvetica, sans-serif;
@@ -241,10 +241,12 @@ a.sign_up:visited {
     display: block;
     float: left;
     padding: 5px 10px;
+    color: #2c2c2c;
 }
 
-.top_submenu li.active a:hover {
+.top_submenu li.active a:hover, .top_submenu li a:hover {
     background-color: #ffffff;
+    color: black;
 }
 
 .top_submenu li.active b {
@@ -261,11 +263,28 @@ a.sign_up:visited {
 #conference_column .top_submenu li {
     display: block;
     float: left;
-    padding: 5px 10px;
+
 }
 
 #conference_column .top_submenu li a {
-    padding: 0;
+    padding: 5px 10px;
+    color: #2c2c2c;
+}
+
+#conference_column .top_submenu li a:hover {
+    padding: 5px 10px;
+    color: #000;
+}
+
+#conference_column .top_submenu li.active {
+    padding: 5px 10px;
+    font-weight: normal;
+    color: #2e86cb;
+    background-color: #ffffff;
+}
+
+.conference_column_first {
+    padding: 5px 25px 5px 18px !important;
 }
 
 .content_actions {
@@ -282,20 +301,9 @@ a.sign_up:visited {
 }
 
 .content_actions li {
-    margin: 0;
-    padding: 3px 5px;
     float: left;
-    list-style: none;
-    background-image: url(/images/button_bg.png);
-    background-repeat: repeat-x;
-    height: 22px;
     overflow: hidden;
-    font-size: 14.42pt;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
     margin-left: 5px;
-    font-family: Conv_MyriadPro-BoldCond;
-    text-transform: uppercase;
 }
 
 .content_actions li a,
@@ -343,28 +351,6 @@ a.sign_up:visited {
     border-radius: 5px;
 }
 
-.table_button_left {
-    background: url(/images/scroll_left.png);
-    width: 17px;
-    height: 106px;
-    float: left;
-}
-
-.table_button_right {
-    background: url(/images/scroll_right.png);
-    width: 17px;
-    height: 106px;
-    float: right;
-}
-
-.table_middle {
-    width: 921px;
-    background: url(/images/table_bg.png) repeat-x;
-    float: left;
-    height: 106px;
-    padding-left: 6px;
-}
-
 .new_level {
     float: none;
     overflow: hidden;
@@ -384,8 +370,8 @@ a.sign_up:visited {
     width: 116px;
     height: 20px;
     text-align: left;
-    padding: 3px 5px 0 5px;
-    font-size: 10.7pt;
+    padding: 1px 5px 2px 5px;
+    font-size: 15px;
     font-family: Conv_MyriadPro-BoldCond;
 }
 
@@ -409,6 +395,10 @@ a.sign_up:visited {
     width: 70px;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.colname a:hover {
+    text-decoration: underline;
 }
 
 .smcount {
@@ -439,10 +429,14 @@ a.sign_up:visited {
 
 .stat_center {
     text-align: center;
-    padding-top: 6px;
+    padding-top: 5px;
     font-weight: bold;
     font-weight: bold;
     font-size: 7.2pt;
+}
+
+.stat_center a:hover {
+    text-decoration: underline;
 }
 
 .stat_title {
@@ -495,6 +489,7 @@ a.sign_up:visited {
 
 .content_stats {
     background-color: #ffffff;
+    border-bottom: 1px solid #C4C4C4;
 }
 
 .buttons {
@@ -518,6 +513,7 @@ a.sign_up:visited {
 .buttons .button.blue,
 .search .button.blue {
     background-image: url(/images/button_blue_bg.png);
+    background-color: #51abed;
     border-radius: 0px 4px 4px 0px;
     font-size: 12.96pt;
     color: #ffffff;
@@ -532,6 +528,10 @@ a.sign_up:visited {
     -moz-border-radius-bottomright: 4px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+}
+
+.search .button.blue:hover {
+    background-image: url(/images/button_blue_bg_hover.png);
 }
 
 .buttons .button.blue a,
@@ -551,13 +551,13 @@ a.sign_up:visited {
 .search label {
     display: block;
     float: left;
-    margin: 6px 5px 0px 0px;
+    margin: 4px 5px 0px 0px;
     text-transform: uppercase;
     line-height: 20px;
 }
 
 .search .input_search {
-    width: 183px;
+    width: 178px;
     height: 23px;
     border-width: 1px 0px 1px 1px;
     border-style: solid;
@@ -565,6 +565,7 @@ a.sign_up:visited {
     border-radius: 5px 0px 0px 5px;
     display: block;
     float: left;
+    padding-left: 5px;
 }
 
 .search .button.blue {
@@ -828,21 +829,29 @@ ul.news li {
     float: left;
 }
 
+.section .content_text {
+    font-size: 1.0em;
+}
+
 .section_title {
-    font-family: Conv_MyriadPro-BoldCond;
-    font-size: 2.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.8em;
     margin: 15px 0 0 20px;
     float: left;
     width: 100%;
 }
 
+.section_title a {
+    color: #494846;
+}
+
 .section_undertitle {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: -5px 0 0 20px;
+    color: #9D9D9D;
     float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin: 0 0 0 20px;
     width: 100%;
-    color: #a5a5a5;
-    font-size: 1.1em;
 }
 
 .section_link {
@@ -856,7 +865,7 @@ ul.news li {
     float: left;
     border: 1px solid #000;
     background-color: #fff;
-    margin: 10px 0 0 20px;
+    margin: 7px 0 0 20px;
     overflow: hidden;
 }
 
@@ -876,6 +885,11 @@ ul.news li {
     font-family: Arial, Helvetica, sans-serif;
     margin: 5px 0 0 20px;
     text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.img_title a:hover {
+    text-decoration: underline;
 }
 
 .img_link {
@@ -899,27 +913,39 @@ ul.news li {
 }
 
 .mail {
-    background: url(/images/email.png);
-    width: 15px;
-    height: 15px;
+    background: url(/images/email.png) no-repeat;
+    width: 19px;
+    height: 13px;
     float: left;
     margin-left: 2px;
+}
+
+.mail:hover {
+    background: url(/images/email_hover.png);
 }
 
 .content_fb {
-    background: url(/images/content_fb.png);
-    width: 15px;
-    height: 15px;
+    background: url(/images/content_fb.png) no-repeat !important;
+    width: 14px;
+    height: 13px;
     float: left;
     margin-left: 2px;
 }
 
+.content_fb:hover {
+    background: url(/images/content_fb_hover.png);
+}
+
 .content_tw {
-    background: url(/images/content_tw.png);
-    width: 14px;
-    height: 15px;
+    background: url(/images/content_tw.png) no-repeat;
+    width: 13px;
+    height: 13px;
     float: left;
     margin-left: 2px;
+}
+
+.content_tw:hover {
+    background: url(/images/content_tw_hover.png);
 }
 
 .read_more {
@@ -989,8 +1015,12 @@ ul.news li {
     color: #000;
 }
 
-.breadcrumbs a.last:link,
-.breadcrumbs a.last:visited {
+.breadcrumbs a:hover {
+    text-decoration: underline;
+    color: #2d8fdc;
+}
+
+.breadcrumbs .last {
     font-weight: normal;
     color: #2d8fdc;
 }
@@ -1000,7 +1030,7 @@ Padding-bottom (124px-like footer height) is nessecary
 to keep footer on the bottom of page.
 */
 .no_breadcrumbs {
-    padding: 20px 0 124px 0;
+    padding: 0px 0 124px 0;
 }
 
 .clearfix:after {
@@ -1033,6 +1063,14 @@ to keep footer on the bottom of page.
     background: #fff;
     width: 171px;
     float: left;
+}
+
+#conference_column .top_submenu {
+
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    border-top-color: white;
+    border-bottom: 1px solid #BCBCBC;
 }
 
 #yield_column {
@@ -1082,6 +1120,10 @@ to keep footer on the bottom of page.
     background-repeat: no-repeat;
 }
 
+.with_submenu.active a:hover {
+    background: transparent !important;
+}
+
 .left_menu ul li a {
     display: block;
     height: 31px;
@@ -1099,8 +1141,8 @@ to keep footer on the bottom of page.
 .left_menu ul li a:hover,
 .left_menu ul li a:active {
     text-decoration: none;
-    color: #fff;
-    background-color: #589ED5;
+    color: #2c2c2c;
+    background-color: #ececec;
 }
 
 .left_menu ul li.active {
@@ -1133,8 +1175,8 @@ to keep footer on the bottom of page.
 
 .left_menu ul li ul {
     position: absolute;
-    top: 3px;
-    left: 140px;
+    top: -1px;
+    left: 170px;
     display: none;
     z-index: 100;
 }
@@ -1591,4 +1633,40 @@ ul.contact-groups {
 
 #loading_div {
     display: none;
+}
+
+.fakebtn:hover {
+    cursor: pointer;
+}
+
+#stats_container {
+    overflow: auto;
+}
+
+#stats_widget {
+    width: 960px;
+}
+
+#stats_widget .control {
+    cursor: pointer;
+    width: 17px;
+    height: 106px;
+    position: absolute;
+}
+
+#stats_widget .control#left_arrow {
+    left: 0;
+    background: url(/images/scroll_left.png);
+}
+
+#stats_widget .control#right_arrow {
+    right: 0;
+    background: url(/images/scroll_right.png);
+}
+
+.table_middle {
+    background: url(/images/table_bg.png) repeat-x;
+    float: left;
+    height: 106px;
+    padding-left: 6px;
 }

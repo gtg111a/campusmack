@@ -1,136 +1,123 @@
-<% content_for :head do %><%= stylesheet_link_tag 'contacts' %>
+<% content_for :head do %>
+    <%= stylesheet_link_tag 'contacts' %>
 <% end %>
 
 <!-- Not a DRY to use in each view "content". TO-DO move it to the layout -->
 <div class="content contacts">
 
-  <div class="content_title"><h1>Contacts  <% if @group_name != "All" %>(<%=@group_name %>) <% end%>  </h1></div>
+  <div class="content_title"><h1>Contacts
+    <% if @group_name != "All" %>(<%= @group_name %>)
+    <% end %>  </h1></div>
   <div class="content_actions">
     <ul>
-      <li><%= link_to 'New Contact', new_contact_path %></li>
-      <!-- <li><%= link_to 'Import Contacts', '#' %></li> -->
-      <li > <%= render :partial => 'contacts/import_form' -%></li>
+      <li class="dark_button"><%= link_to 'New Contact', new_contact_path %></li>
+      <li class="dark_button"><%= render :partial => 'contacts/import_form' -%></li>
     </ul>
-  </div>
-  <div id ="loading_div">
-    <p align="center"><%= image_tag("ajax-loader.gif") %></p>
   </div>
   <!-- TO-DO move this js code to index.js.erb. I tried, but seems that UJS is not working. I recomend to update rails -->
   <script type="text/javascript">
-    $(document).ready(function() {
-    
-      $('.image_load').hide();
+      $(document).ready(function() {
+          $('.image_load').hide();
 
-      $('#rowclick1 tr').click(function(event) {
+          $('#rowclick1 tr').click(function(event) {
 
-        if (event.target.type !== 'checkbox') {
-          $(':checkbox', this).trigger('click');
-        }
-      });
+              if (event.target.type !== 'checkbox') {
+                  $(':checkbox', this).trigger('click');
+              }
+          });
 
-      $('input.select_all').click(function (event){
-        $("#contact_list").find(':checkbox').attr('checked', this.checked);
-      });
+          $('input.select_all').click(function (event) {
+              $("#contact_list").find(':checkbox').attr('checked', this.checked);
+          });
 
-      $('#delete_selected').click(function(event) {
-        show_img_selected();
-        $.ajax({
-          type: "POST",
-          url: "<%= delete_emails_contacts_path() -%>",
-          data: $("#contact_list input").serialize()
-        });
+          $('#delete_selected').click(function(event) {
+              show_img_selected();
+              $.ajax({
+                  type: "POST",
+                  url: "<%= delete_emails_contacts_path() -%>",
+                  data: $("#contact_list input").serialize()
+              });
+          });
+          $('#remove_selected').click(function(event) {
+              show_img_selected();
+              $.ajax({
+                  type: "POST",
+                  url: "<%= remove_emails_from_group_contacts_path() -%>",
+                  data: $("#contact_list input").serialize()
+              });
 
-      });
-
-   
-      $('#remove_selected').click(function(event) {
-        show_img_selected();
-        $.ajax({
-          type: "POST",
-          url: "<%= remove_emails_from_group_contacts_path() -%>",
-          data: $("#contact_list input").serialize()
-        });
+          });
 
       });
-    });
 
-    function remove_selected() {
-      var ids = $(".chk_box:checked")
-      for (var i = 0; i < ids.length; i++) {
-        var id = "#" + ids[i].value + "";
-        $(id).remove()
+      function remove_selected() {
+          var ids = $(".chk_box:checked")
+          for (var i = 0; i < ids.length; i++) {
+              var id = "#" + ids[i].value + "";
+              $(id).remove()
+          }
+
       }
 
-    }
-    function show_img_selected() {
-      var ids = $(".chk_box:checked")
-      for (var i = 0; i < ids.length; i++) {
-        var id = "#img" + ids[i].value;
-        $(id).show();
-      }
+      function show_img_selected() {
+          var ids = $(".chk_box:checked")
+          for (var i = 0; i < ids.length; i++) {
+              var id = "#img" + ids[i].value;
+              $(id).show();
+          }
 
-    }
+      }
   </script>
   <div class="content_container">
     <div class="content_category">
-
       <div class="contacts_table">
-        <ul class="contact_groups" >
-          <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
-          <li><%= link_to('All', contacts_path(), :method => "GET", :remote => false) %></li>
+        <ul class="contact_groups">
+          <li<%= ' class="active"'.html_safe if @group_name == 'All' %>>
+            <%= link_to_unless(@group_name == 'All', 'All', contacts_path) do %>
+                <span>All</span>
+            <% end %>
+          </li>
           <% @contact_groups.each do |contact_group| %>
-            <li>
-              <%= link_to_unless_current(contact_group.name, contacts_path(:group_id=>contact_group.id), :method => "GET", :remote => false, :class => "active") do %>
-                <span><%= contact_group.name %></span>
-              <% end %>
-
-            </li>
+              <li<%= ' class="active"'.html_safe if @group_name == contact_group.name %>>
+                <%= link_to_unless_current(contact_group.name, contacts_path(:group_id=>contact_group.id)) do %>
+                    <span><%= contact_group.name %></span>
+                <% end %>
+              </li>
           <% end %>
         </ul>
-
         <div class="table_content">
           <div class="table_head">
             <div class="button_bg table_button">
               <input type="checkbox" value="0" name="cb" class="select_all"/>
             </div>
             <ul class="table_actions" style="list-style-type: none">
-              <li><%= link_to "Delete Selected", "#", :id => "delete_selected", :class => "table_button" %></li>
-              <!-- TO-DO remove this logic from this view -->
-              <% if @group_name != "All" %>
-                <li><%= link_to "Remove Selected", "#", :id => "remove_selected", :class => "table_button" %></li>
-              <% end %>
               <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button") %></li>
+              <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
             </ul>
           </div>
-          <div id ="contact_list">
+          <div id="contact_list">
             <table id="rowclick1">
               <% @contacts.each do |contact| %>
-                <tr id="<%= contact.id %>">
-                  <td class="table_preloader">
-                    <span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span>
-                  </td>
-                  <td class="table_check">
-                    <input class="chk_box" type="checkbox" value="<%= contact.id %>" name="cb[]"></input></td>
-                  <td><%= escape_javascript((contact.name).html_safe) %></td>
-                  <td><%= contact.email %></td>
-                  <td class="row_actions"><%= link_to 'Edit', edit_contact_path(contact), :class => "table_button black" %></td>
-                </tr>
+                  <tr id="<%= contact.id %>">
+                    <td class="table_preloader">
+                      <span class="image_load" id="img<%= contact.id %>"><%= image_tag('ajax-cb-loader.gif') %></span>
+                    </td>
+                    <td class="table_check">
+                      <input class="chk_box" type="checkbox" value="<%= contact.id %>" name="cb[]"></input></td>
+                    <td><%= contact.name %></td>
+                    <td><%= contact.email %></td>
+                    <td class="row_actions"><%= link_to 'Edit', edit_contact_path(contact), :class => "table_button black" %></td>
+                  </tr>
               <% end %>
             </table>
           </div>
           <input type="hidden" name="groupname" value="<%= @group_name %>"/>
         </div>
-
+        <div class="add_edit_group"><%= link_to("Edit / Add groups", contact_groups_path(@contact)) %></div>
+      </div>
+      <div class="pagination">
+        <%= will_paginate @contacts %>
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $('#loading_div').hide().ajaxStart(function() {
-    $(this).show();
-  })
-  .ajaxStop(function() {
-    $(this).hide();
-  })
-  ;
-</script>

@@ -110,7 +110,7 @@ module ApplicationHelper
   end
 
   def breadcrumbs_exceptions
-    params[:controller]['registrations'] || params[:controller]['sessions'] || params[:controller] == 'welcome'
+    params[:controller] == 'welcome'
   end
 
   def render_breadcrumbs

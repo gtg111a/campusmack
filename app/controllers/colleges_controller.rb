@@ -18,7 +18,7 @@ class CollegesController < ApplicationController
     @conference = @college.conference
     @parent = @college
     breadcrumbs.add @college.conference.name, conference_path(@college.conference)
-    breadcrumbs.add @college.name, college_path(@college)
+    breadcrumbs.add @college.name
     init_college_menu
     @order = params[:order] || 'created_at desc'
     @search = @college.posts.search(params[:search])

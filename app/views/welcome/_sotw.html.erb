@@ -32,10 +32,9 @@
       </div>
       <div class="content_share">
         <a href="#" class="mail"></a>
-
         <a href="#" class="content_fb"></a>
         <a href="#" class="content_tw"></a>
-        <%= link_to 'Read more', @sotw, :class => 'read_more' %>
+        <%= link_to 'Read more', [@sotw.postable, @sotw], :class => 'read_more' %>
 
       </div>
     </div>

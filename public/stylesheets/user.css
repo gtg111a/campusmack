@@ -119,6 +119,11 @@
     vertical-align: middle;
 }
 
+.standard table .description.va-top {
+    vertical-align: top;
+    padding-top: 2px;
+}
+
 .standard .create_post table .description {
     width: 230px;
 }
@@ -144,7 +149,7 @@
     width: 144px;
 }
 
-.standard input {
+.standard input, .standard textarea {
     height: 24px;
     color: #7a7b7d;
     width: 253px;
@@ -425,7 +430,11 @@
 }
 
 .standard .left_column .form_sign_in .remember label {
-    padding: 0 0 0 5px;
+    clear: left;
+    display: block;
+    float: left;
+    line-height: 1.8em;
+    padding: 0 2px 0 5px;
 }
 
 .standard .left_column .form_sign_in input {
@@ -435,6 +444,7 @@
 .standard .left_column .form_sign_in input[type="checkbox"] {
     height: 13px;
     width: 13px;
+    float:left;
 }
 
 .standard .left_column .form_sign_in .links {
@@ -497,15 +507,15 @@
     vertical-align: super;
 }
 
-.standard .field_with_errors {
+.standard .field_with_errors, .content .field_with_errors {
     display: inline-block;
 }
 
-.standard .field_with_errors .message {
+.standard .field_with_errors .message, .content .field_with_errors .message {
     display: none;
 }
 
-.standard .description .field_with_errors label, .field_with_errors label .text a {
+.standard .description .field_with_errors label, .field_with_errors label .text a, .content .field_with_errors label {
     color: red !important;
 }
 

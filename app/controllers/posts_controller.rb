@@ -43,12 +43,6 @@ class PostsController < ApplicationController
     @posts = @search.paginate(:page => params[:page], :order => @order)
     init_college_menu
     add_breadcrumbs
-    if request[:controller] == 'videos' || request[:controller] == 'photos' || request[:controller] == 'news_posts' || request[:controller] == 'statistics'
-      title = request[:controller].capitalize
-      title = "News" if request[:controller] == 'news_posts'
-      title = "Stats" if request[:controller] == 'statistics'
-      breadcrumbs.add title, method("#{@parent.class.name.downcase}_#{title.downcase}#{"_index" if request[:controller] == 'news_posts'}_path").call(@parent)
-    end
 
     # We use the views from the posts folder for everything
     render 'posts/index'
@@ -61,6 +55,7 @@ class PostsController < ApplicationController
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
+    add_breadcrumbs
     render 'posts/show'
   end
 
@@ -208,7 +203,15 @@ class PostsController < ApplicationController
     @main_menu.each do |x|
       breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
     end
-    breadcrumbs.add params[:action].gsub(/new|create/, 'Add')
+    breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
+    action = params[:action].dup
+    return if action == 'index'
+    if action
+      action.gsub!(/new|create/, 'Add')
+      action.gsub!('show', @post.title) unless @post.new_record?
+      breadcrumbs.add action
+    end
+
   end
 
 end

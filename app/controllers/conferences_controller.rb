@@ -14,6 +14,7 @@ class ConferencesController < ApplicationController
   end
 
   def status
+    breadcrumbs.add 'Statistics', '/conference_stats'
     @conferences = Conference.where(:division => session[:division])
   end
 
@@ -21,6 +22,7 @@ class ConferencesController < ApplicationController
     @conference = Conference.where(:name => params[:id].upcase).first
     @parent = @conference
     init_main_menu
+    breadcrumbs.add @conference.name, conference_path(@conference)
     @order = params[:order] || 'created_at desc'
     @search = @conference.posts.search(params[:search])
     @title = @conference.name

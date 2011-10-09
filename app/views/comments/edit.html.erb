@@ -1,20 +1,33 @@
-<div class="content new_level with_submenu clearfix">
-  <div class="content_title">Edit comment</div>
-  <div class="content_container">
-    <div class="content_category clearfix">
+<div class="standard clearfix">
+  <div class="title_wrapper clearfix">
+    <div class="cont_title"><h1>Edit comment</h1></div>
+  </div>
+  <div class="form_container create_post">
+    <div class="form_wrapper">
       <%= form_for @comment do |f| %>
-          <div class="field">
-            <%= f.label :comment %>
-            <br/>
-            <%= f.text_area :comment, :rows => 5 %>
+        <div class="table_padding">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="description va-top"><%= f.label :comment, 'Comment:' %></td>
+              <td class="entry"><%= f.text_area :comment %></td>
+            </tr>
+          </table>
+          <div class="confirmation_container clearfix">
+            <div class="accept clearfix">
+              <div class="important_notice clearfix">
+              </div>
+              <div class="blue_button"><%= f.submit "SUBMIT" %></div>
+            </div>
           </div>
-          <div class="actions">
-            <%= f.submit "Update Comment" %>
+          <div class="confirmation_container clearfix">
+            <div class="accept clearfix">
+              <div class="important_notice clearfix">
+              </div>
+              <div class="blue_button"><%= button_to "DELETE", @comment, :method => :delete, :confirm => "Are you sure?" %></div>
+            </div>
           </div>
+        </div>
       <% end %>
-      <div>
-        <%= button_to "Delete Comment", @comment, :method => :delete, :confirm => "Are you sure?" %>
-      </div>
     </div>
   </div>
 </div>

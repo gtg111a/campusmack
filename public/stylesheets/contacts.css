@@ -16,33 +16,58 @@
 .contacts .contact_groups {
     float: left;
     width: 137px;
+    background: #f3f3f3;
 }
 
-.contacts .contact_groups li:first-child {
-    border-top: 3px solid #fff;
-    border-right: 1px solid #DEDEDE;
-    margin-top: -1px;
+.contacts .contact_groups li:first-child span,.contacts .contact_groups li:first-child a{
+    border-top: 2px solid #fff;
 }
 
 .contacts .contact_groups li a {
     display: block;
+    background: #f3f3f3;
+}
+
+.contacts .add_edit_group,
+.contacts .contact_groups li{
     border-bottom: 1px solid #DEDEDE;
-    height: 19px;
+    border-right: 1px solid #DEDEDE;
+    width: 136px;
+}
+
+.contacts .contact_groups li.active{
+    border-left: 1px solid #DEDEDE;
 }
 
 .contacts .contact_groups li span {
     display: block;
     background: #fff;
-    border-left: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
 }
 
-.contacts .contact_groups li a, .contacts .contact_groups li span {
+.contacts .contact_groups li.active {
+    border-right: 0;
+}
+
+.contacts .add_edit_group {
+    border: 0;
+    border-right: 1px solid #DEDEDE;
+    clear: left;
+    float: left;
+}
+
+.contacts .add_edit_group a:link,
+.contacts .add_edit_group a:visited {
+    color:#565656;
+}
+
+.contacts .add_edit_group,
+.contacts .contact_groups li a,
+.contacts .contact_groups li span {
     color: #09689e;
-    line-height: 19px;
-    padding: 0 10px;
+    padding: 5px 8px 5px 10px;
     font-weight: bold;
     font-size: 12px;
+    border-right: 2px #fff solid;
 }
 
 .contacts .table_head, .contacts table {
@@ -75,6 +100,10 @@
     padding: 2px;
 }
 
+#contact_list{
+    padding: 0 0 5px 0;
+}
+
 .contacts table {
 }
 
@@ -90,7 +119,8 @@
 
 .contacts table td.table_preloader {
     border-top: none;
-    width: 20px;
+    width: 18px;
+    margin: 0 0 0 2px;
 }
 
 .contacts table td.table_check {

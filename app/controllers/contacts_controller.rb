@@ -5,12 +5,14 @@ class ContactsController < ApplicationController
   def index
     group_id = (params[:group_id] || 0)
     @contact_groups = current_user.contact_groups
+    breadcrumbs.add 'Contacts'
     if(group_id != 0)
       group       = @contact_groups.find_by_id(group_id)
-      @contacts   = group.contacts.all
+      @contacts   = group.contacts.paginate(:page => params[:page], :per_page => 16)
       @group_name = group.name
+      breadcrumbs.add @group_name, "#{contacts_path}?group_id=#{group_id}"
     else
-      @contacts = current_user.contacts.all
+      @contacts = current_user.contacts.paginate(:page => params[:page], :per_page => 16)
       @group_name = "All"
     end
 
@@ -36,7 +38,8 @@ class ContactsController < ApplicationController
   # GET /contacts/new.xml
   def new
     @contact = current_user.contacts.build
-
+    breadcrumbs.add 'Contacts', contacts_path
+    breadcrumbs.add 'New Contact'
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @contact }
@@ -45,6 +48,8 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    breadcrumbs.add 'Contacts', contacts_path
+    breadcrumbs.add 'Edit Contact'
     @contact = Contact.find(params[:id])
   end
 
@@ -55,7 +60,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to(@contact, :notice => 'Contact was successfully created.') }
+        format.html { redirect_to contacts_url, :notice => 'Contact was successfully created.' }
         format.xml  { render :xml => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }
@@ -71,7 +76,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to(@contact, :notice => 'Contact was successfully updated.') }
+        format.html { redirect_to contacts_url, :notice => 'Contact was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

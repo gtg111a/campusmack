@@ -4,12 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   load_and_authorize_resource :class => 'User', :except => [:new, :create]
 
   def new
+    breadcrumbs.add 'Signing Up'
     resource = build_resource({})
     [:first_name, :last_name, :email, :username].each { |x| resource.send(x.to_s+'=', session.delete(x)) }
     respond_with_navigational(resource) { render_with_scope :new }
   end
 
   def create
+    breadcrumbs.add 'Signing Up'
     build_resource
 
     # Confirm the new account if the user used an external service to sign up
@@ -36,6 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    breadcrumbs.add 'Editing Profile'
     render_with_scope :edit
   end
 

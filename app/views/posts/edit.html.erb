@@ -1,8 +1,63 @@
-<div class="content new_level with_submenu clearfix">
-<div class="content_title"><%= @title %></div>
-<div class="content_container">
-  <div class="content_category">
-<%= render 'posts/form', :post => @post, :parent => @parent %>
+<div class="standard clearfix">
+  <div class="title_wrapper clearfix">
+    <div class="cont_title"><h1><%= @title %></h1></div>
   </div>
-</div>
+  <div class="title_box">
+    <h2>FILL IN THE FOLLOWING TO EDIT A SMACK</h2>
+  </div>
+  <div class="form_container create_post">
+    <div class="form_wrapper">
+      <%= form_for([ @parent, @post], :validate => true) do |f| %>
+        <div class="table_padding">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="description"><%= f.label :title, 'Title:' %></td>
+              <td class="entry"><%= f.text_field :title %></td>
+            </tr>
+            <% if can? :manage, Post %>
+              <tr>
+                <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+              </tr>
+            <% end %>
+            <% if @post.video %>
+              <%= f.fields_for :video, @post.video do |vf| %>
+                <tr>
+                  <td class="description"><%= vf.label :url, 'Video URL:' %></td>
+                  <td class="entry"><%= vf.text_field :url %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% if @post.photo %>
+              <%= f.fields_for :photo, @post.photo do |pf| %>
+                <tr>
+                  <td class="description"><%= pf.label :image, 'Photo:' %></td>
+                  <td class="entry"><%= pf.file_field :image %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% if @post.news_post %>
+              <%= f.fields_for :news_post, @post.news_post do |npf| %>
+                <tr>
+                  <td class="description"><%= npf.label :url, 'News URL:' %></td>
+                  <td class="entry"><%= npf.text_field :url %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
+              <td class="entry"><%= f.text_area :summary %></td>
+            </tr>
+          </table>
+          <div class="confirmation_container clearfix">
+            <div class="accept clearfix">
+              <div class="important_notice clearfix">
+              </div>
+              <div class="blue_button"><%= f.submit "SUBMIT" %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
