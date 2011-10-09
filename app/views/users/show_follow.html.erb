@@ -15,7 +15,22 @@
       <strong>URL</strong> <%= link_to user_path(@user), @user %>
       <br/>
       <strong>Microposts</strong> <%= @user.microposts.count %>
-      <%= render 'shared/stats' %>
+      <ul class="inner_menu">
+        <li>
+          <%= link_to "#{current_user.following.count} following", following_user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to pluralize(current_user.followers.count, "follower"), followers_user_path(current_user) %>
+        </li>
+      </ul>
+      <ul class="inner_menu">
+        <li>
+          <%= link_to "#{current_user.smacks.count} smacks", smacks_user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "#{current_user.redemptions.count} redemptions", redemptions_user_path(current_user) %>
+        </li>
+      </ul>
       <% unless @users.empty? %>
           <% @users.each do |user| %>
               <%= link_to gravatar_for(user, :size => 30), user %>

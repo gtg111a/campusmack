@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   def create
     @post = @parent.send(@post_cls).build(params[@post_cls.singularize])
     @post.user = current_user
+    init_college_menu
     if @post.save
       if store_location =~ /^\/conferences\//
         redirect_to conference_path(@parent)
@@ -87,6 +88,8 @@ class PostsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:id])
     @title = "Edit post"
+    init_college_menu
+    add_breadcrumbs
     render 'posts/edit'
   end
 
@@ -208,6 +211,7 @@ class PostsController < ApplicationController
     return if action == 'index'
     if action
       action.gsub!(/new|create/, 'Add')
+      action.gsub!(/edit|update/, 'Edit')
       action.gsub!('show', @post.title) unless @post.new_record?
       breadcrumbs.add action
     end
