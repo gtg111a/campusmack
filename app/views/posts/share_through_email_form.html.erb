@@ -105,7 +105,7 @@
              end
              body = body + "<a href='#{polymorphic_url([@post.postable, @post])}'>#{@post.title}</a>"
              if @post.video
-                 body = body + '<a href="'+ @post.video.url+'" style="color:white">' + "."+ '</a>'
+                 body = body + '<a href="'+ @post.video.url+'" style="color:white">' + "click here to see this video"+ '</a>'
 
              end
 
