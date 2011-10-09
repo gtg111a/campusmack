@@ -7,6 +7,8 @@
     $.ajax({
       type: "POST",
       url: "<%= import_contacts_path() -%>",
+      beforeSend: function(xhr){$("#loading-message").html("Importing contacts")},
+      success: function(data){$("#loading-message").html("Redirecting to contact list. Please wait...")},
       data: $("#contact").serialize()
     });
 
