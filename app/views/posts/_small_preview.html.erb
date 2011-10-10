@@ -1,6 +1,6 @@
 <div class="team-item">
   <div class="item-top clearfix">
-    <div class="which-college">by: <%= link_to post.postable.name, post.postable %></div>
+    <div class="which-college">by: <%= link_to(post.user.try(:username), post.user, :class => :author) %></div>
     <div class="votes">
       <%= image_tag('like.png') %>
       <%= post.up_votes %>
