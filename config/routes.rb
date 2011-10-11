@@ -7,6 +7,7 @@ Campusmack::Application.routes.draw do
     collection do
       get 'add_to_group_form'
       post 'add_to_group'
+      get 'delete'
     end
   end
 
@@ -53,8 +54,8 @@ Campusmack::Application.routes.draw do
     member do
       post :report
       get "opengraph"
-      get 'share_through_email_form'
-      post 'share_through_email'
+      match 'send_in_email'
+      match 'send_as_smack'
     end
     member do
       post :vote_up, :vote_down

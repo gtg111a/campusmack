@@ -72,7 +72,7 @@
     width: 471px;
 }
 
-.standard .create_post.form_container {
+.standard .post_form.form_container {
     background: #fff;
     padding: 2px;
     border-bottom: solid 1px #cfcfcf;
@@ -84,7 +84,7 @@
     width: 100%;
 }
 
-.standard .create_post .form_wrapper {
+.standard .post_form .form_wrapper {
     background: #F3F3F3;
 }
 
@@ -95,7 +95,7 @@
     padding-top: 26px;
 }
 
-.create_post .table_padding {
+.post_form .table_padding {
     padding: 28px 0;
 }
 
@@ -103,15 +103,19 @@
     padding-top: 24px;
 }
 
-.standard table {
+.standard table, .facebox_form table {
     width: 100%;
 }
 
-.standard table tr {
+.standard .share_post table {
+    width: 770px;
+}
+
+.standard table tr, .facebox_form table tr {
     height: 37px;
 }
 
-.standard table .description {
+.standard table .description, .facebox_form table .description {
     width: 148px;
     text-align: right;
     font-size: 13px;
@@ -119,16 +123,29 @@
     vertical-align: middle;
 }
 
-.standard table .description.va-top {
+.standard table .description.va-top, .facebox_form table .description.va-top {
     vertical-align: top;
     padding-top: 2px;
 }
 
-.standard .create_post table .description {
+.standard table .description.va-top2, .facebox_form table .description.va-top2 {
+    vertical-align: top;
+    padding-top: 6px;
+}
+
+.facebox_form table .description {
+    width: 125px;
+}
+
+.standard .post_form table .description {
     width: 230px;
 }
 
-.standard table .entry {
+.standard .post_form.share_post table .description {
+    width: 80px;
+}
+
+.standard table .entry, .facebox_form table .entry {
     padding: 0 0 0 9px;
     color: #7a7b7d;
     vertical-align: middle;
@@ -149,7 +166,11 @@
     width: 144px;
 }
 
-.standard input, .standard textarea {
+.facebox_form {
+  padding: 10px 20px;
+}
+
+.standard input, .standard textarea, .facebox_form input, .facebox_form textarea {
     height: 24px;
     color: #7a7b7d;
     width: 253px;
@@ -165,31 +186,39 @@
     font-size: 13px;
 }
 
-.standard .create_post input, .standard .create_post textarea {
+.standard .post_form input, .standard .post_form textarea {
     width: 293px;
 }
 
-.standard .create_post textarea {
+.facebox_form input, .facebox_form textarea {
+    width: 167px;
+}
+
+.standard .post_form textarea, .facebox_form textarea {
     height: 210px;
 }
 
-.standard table .entry input, .standard table .entry textarea {
+.standard .post_form.share_post textarea {
+    height: 130px;
+}
+
+.standard table .entry input, .standard table .entry textarea, .facebox_form table .entry input, .facebox_form table .entry textarea {
     padding: 0 0 0 7px;
 }
 
-.standard input[type="file"] {
+.standard input[type="file"], .facebox_form input[type="file"] {
     height: auto;
     border: none;
     padding: 0 !important;
     background: transparent;
 }
 
-.standard input[type="checkbox"] {
+.standard input[type="checkbox"], .facebox_form input[type="checkbox"] {
     height: 13px;
     width: 13px;
 }
 
-.standard select {
+.standard select, .facebox_form select {
     height: 24px;
     /*
     color: #7a7b7d;
@@ -225,9 +254,19 @@
     display: block;
 }
 
-.standard .form_wrapper .blue_button {
+.standard .form_wrapper .blue_button, .facebox_form .blue_button {
     width: 69px;
     float: right;
+}
+
+.standard .form_wrapper table .blue_button {
+    float: right;
+    margin: 3px 0;
+    width: 160px;
+    color: #FFF;
+    font-size: 14.42pt;
+    line-height: 24pt;
+    font-family: Conv_MyriadPro-BoldCond;
 }
 
 .standard .confirmation_container {
@@ -235,9 +274,28 @@
     width: 290px;
 }
 
-.standard .create_post .confirmation_container {
+.standard .post_form .confirmation_container {
     margin: 15px 0 0 0;
     width: 541px;
+}
+
+.standard .post_form.share_post .confirmation_container {
+    margin: 15px 0 0 0;
+    width: 391px;
+}
+
+.standard .share_post .content_bg {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    background-image: url(/images/view_more_bg.png);
+}
+
+.facebox_form .confirmation_container {
+    margin: 5px 0;
+    padding-top: 10px;
+    width: 100%;
+    border-top: solid 1px #cfcfcf;
 }
 
 .standard .confirmation_container .terms {

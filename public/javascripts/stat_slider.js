@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var currentPosition = 0;
-  var slideWidth = 124;
+  var slideWidth = 128;
   var slides = $('.inbox_table');
   var numberOfSlides = slides.length;
 
@@ -16,8 +16,11 @@ $(document).ready(function(){
     'width' : slideWidth
   });
 
+  // 5 = 2px of the borer + 3p x of marin
+  slideWidth = slideWidth +5;
+
   // Set #slideInner width equal to total width of all slides
-  $('#slideInner').css('width', slideWidth * numberOfSlides);
+  $('#slideInner').css('width', (slideWidth) * numberOfSlides);
 
   // Insert left and right arrow controls in the DOM
   $('#stats_widget')
@@ -27,6 +30,17 @@ $(document).ready(function(){
   // Hide left arrow control on first load
   manageControls(currentPosition);
 
+  // Easing functions for smooth scroll
+  $.extend($.easing,
+  {
+      def: 'easeOutQuad',
+      easeOutExpo: function (x, t, b, c, d) {
+          return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+      }
+
+  });
+
+  
   // Create event listeners for .controls clicks
   $('.control')
     .bind('click', function(){
@@ -38,8 +52,8 @@ $(document).ready(function(){
       manageControls(currentPosition);
       // Move slideInner using margin-left
       $('#slideInner').animate({
-        'marginLeft' : slideWidth*(-currentPosition)
-      });
+        left: slideWidth*(-currentPosition)
+      }, '800', 'easeOutExpo');
     });
 
   // manageControls: Hides and shows controls depending on currentPosition
@@ -48,7 +62,7 @@ $(document).ready(function(){
     if(position==0){ $('#left_arrow').hide() }
     else{ $('#left_arrow').show() }
     // Hide right arrow if position is last slide
-    if(position==numberOfSlides-1){ $('#right_arrow').hide() }
+    if(position==numberOfSlides-7){ $('#right_arrow').hide() }
     else{ $('#right_arrow').show() }
     }
   });

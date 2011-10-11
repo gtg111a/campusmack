@@ -24,7 +24,7 @@
                 </table>
               </div>
               <% if devise_mapping.rememberable? -%>
-                  <div class="remember clearfix"><label for="remember_me"><%= f.check_box :remember_me %> Remember Me On This Computer</label></div>
+                  <div class="remember clearfix"><label for="user_remember_me"><%= f.check_box :remember_me %> Remember Me On This Computer</label></div>
               <% end -%>
               <%= render :partial => "users/shared/sign_in_links", :locals => {:resource_name => resource_name, :f => f} %>
               <div class="not_a_member_box">

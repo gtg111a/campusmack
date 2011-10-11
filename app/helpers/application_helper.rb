@@ -130,11 +130,11 @@ module ApplicationHelper
 
   def get_toast_type(flash)
     case flash
-      when 'success', 'warning', 'error', 'notice'
-        flash
-      when 'alert'
+      when :success, :warning, :error, :notice
+        flash.to_s
+      when :alert
         'warning'
-      when 'info'
+      when :info
         'notice'
       else
         'notice'
@@ -155,4 +155,39 @@ module ApplicationHelper
         false
     end
   end
+
+  # place can be:
+  # :preview -> small_preview, news_preview partials
+  # :show -> show on full page
+  # :post -> _post partial (team, college/show)
+  def share_icons(post, place = nil)
+    cls = 'share_icons'
+    cls = 'items-buttons' if place == :preview
+    ("<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place) + send_as_smack_btn(post, place) + "</div>").html_safe
+  end
+
+  def send_as_smack_btn(post, place)
+    img = 'send_as_smack'
+    img += '_' if place != :show
+    img += '.png'
+    link_to(image_tag(img, :alt => 'Send as smack'), send_as_smack_post_path(post), :class => 'share_smack_btn')
+  end
+
+  def share_through_email_btn(post, place)
+    link_to('', send_in_email_post_path(post), :class => 'mail', :alt => 'Share through email')
+  end
+
+  def facebook_share(post, place)
+    link_to '', "http://www.facebook.com/sharer.php?u=#{opengraph_post_url(post)}",
+            :class => 'content_fb',
+            :title => 'Share on Facebook',
+            :target => '_blank',
+            :onclick => "window.open('http://www.facebook.com/sharer.php?u=#{polymorphic_url([post.postable, post])}','newWindow', 'width=626, height=436'); return false;"
+  end
+
+  def twitter_share(post, place)
+    link_to '', '', :title => 'Share on Twitter', :target => '_blank', :class => 'content_tw',
+            :onclick => "window.open('http://twitter.com/share?url=#{polymorphic_url([post.postable, post])}&text=Check out \"#{post.title}\" on Campusmack.com : '); return false;"
+  end
+
 end

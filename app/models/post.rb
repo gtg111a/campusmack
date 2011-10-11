@@ -36,12 +36,15 @@ class Post < ActiveRecord::Base
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
   scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
-  scope :by_conference, lambda { |conf| { :joins => :college, :conditions => [ 'conference = ?', conf ] } }
+  scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
   def self.censor
-    censored_text(self.title,current_user) rescue 0
-    censored_text(self.summary,current_user) rescue 0
+    censored_text(self.title, current_user) rescue 0
+    censored_text(self.summary, current_user) rescue 0
+  end
 
+  def photo_url(params=nil)
+    self.photo.image.url(params)
   end
 
 end

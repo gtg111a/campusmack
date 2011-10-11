@@ -62,11 +62,15 @@
 
 .dark_button a {
     display: block;
-    padding: 4px 9px 0;
+    padding: 3px 9px 0;
     color: #fff;
     font-family: Conv_MyriadPro-BoldCond;
-    font-size: 20px;
+    font-size: 19px;
     text-transform: uppercase;
+}
+
+.dark_button:hover {
+   background:#3d3d3d url('/images/button_bg_hover.png') repeat-x;
 }
 
 .white_button {
@@ -139,7 +143,7 @@
 }
 
 .pagination a, .pagination em, .pagination span {
-    padding: 0 6px 0 3px;
+    padding: 0 5px;
     border-right: 1px solid #B6B6B6;
 }
 
@@ -171,4 +175,10 @@
 .items_per_page em {
     font-style: normal;
     font-weight: bold;
+}
+
+/* Fancybox close button */
+#photo-close {
+  float: right;
+  margin-right: -25px;
 }

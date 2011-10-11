@@ -1,10 +1,10 @@
 <div class="content_unit2 clearfix">
   <div class="preview">
     <% if post.photo %>
-        <img src="<%= post.photo.url(:medium) %>" alt=""/>
+      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:small) %>" alt=""/></a>
     <% end %>
     <% if post.news_post && !post.news_post.image_file_name.blank? %>
-        <img src="<%= post.news_post.image_url(:medium) %>" alt=""/>
+      <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:small) %>" alt=""/></a>
     <% end %>
     <% if post.video %>
         <%= youtube_embed(post.video.url) %>
@@ -19,7 +19,7 @@
   <div class="unit_info">
     Posted
     <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
-    by:
+    <span class="by">by:</span>
     <%= link_to(post.user.try(:username), post.user, :class => :author) %>
   </div>
   <div class="description">
@@ -33,12 +33,8 @@
     <%= link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
     <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
     <span class="divider_vert2">&nbsp;</span>
-    <%= link_to(image_tag('content_email_.png'), share_through_email_form_post_path(post), :method => "GET",:class=>"smack", :remote => true) %>
-    <%= render(:partial => "posts/facebook_share", :locals => {:post => post, :image => "content_fb_.png"}) %>
-    <%= render(:partial => "posts/twitter_share", :locals => {:post => post, :image => "content_tw_.png"}) %>
+    <%= share_icons(post, :post) %>
     <% if signed_in? %>
-        <span class="divider_vert2">&nbsp;</span>
-        <%= link_to(image_tag('send_as_smack_.png', :alt => 'Send as smack') , share_through_email_form_post_path(post, :smack => true), :rel=>"facebox[.bolder]",:class=>"smack", :method => "GET", :remote => true) %>
         <span class="divider_vert2">&nbsp;</span>
         <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
         <%= link_to('<img src="/images/delete_.png" alt="Delete" />'.html_safe, post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>

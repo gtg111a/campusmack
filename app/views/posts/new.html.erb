@@ -5,7 +5,7 @@
   <div class="title_box">
     <h2><%= @submit %></h2>
   </div>
-  <div class="form_container create_post">
+  <div class="form_container post_form">
     <div class="form_wrapper">
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
       <% # Rendering content to javascript variables to switch later on  %>
@@ -99,7 +99,7 @@
           </table>
           <table cellpadding="0" cellspacing="0">
             <tr>
-              <td class="description"><%= f.label :summary, 'Summary:' %></td>
+              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
               <td class="entry"><%= f.text_area :summary %></td>
             </tr>
           </table>

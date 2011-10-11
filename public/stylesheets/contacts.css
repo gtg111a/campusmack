@@ -1,3 +1,44 @@
+.content_categories {
+    border-bottom: 1px solid #D4D4D4;
+    padding: 0px 18px 15px;
+}
+
+.contacts_items_per_page{
+    height:20px;
+    padding:2px 0;
+    line-height: 1.8em;
+    text-align: right;
+    width: 765px;
+    overflow: hidden;
+    font-size:12px;
+}
+
+.contacts_items_per_page .active span{
+
+}
+
+.contacts_items_per_page_text{
+    color:#09689E;
+    float:right;
+}
+
+.contacts_items_per_page_text span{
+    color:#DEDEDE;
+}
+
+.contacts_items_per_page ul li{
+    float:right;
+    margin: 0 0 0 5px;
+}
+
+.contacts_items_per_page ul li a {
+    color:#565656;
+}
+
+.contacts_items_per_page ul li a:focus, .contacts_items_per_page ul li a:hover{
+    text-decoration: underline;
+}
+
 .contacts_table {
     background: #fff url(/images/contact_groups-bg.png) repeat-y left bottom;
     clear: both;
@@ -7,10 +48,68 @@
     border-width: 1px 0;
 }
 
+#facebox .contacts_table {
+    background: #fff url(/images/contact_groups_box-bg.png) repeat-y left bottom;
+}
+
 .contacts .table_content {
     float: left;
     width: 600px;
     padding: 0 10px 0 0;
+}
+
+#facebox .contacts {
+    width: 860px;
+}
+
+#facebox .contacts .table_content {
+    margin-left: 20px;
+}
+
+.facebox_form_name_td{
+    width: 80%;
+}
+
+#div_facebox_ajax .row_actions{
+    width: 10%;
+    text-align: center;
+}
+
+#div_facebox_ajax .row_actions a{
+    margin: 2px 0 0 0;
+}
+
+#div_facebox_ajax table td {
+    border-top: 1px solid #DEDEDE;
+    font-size: 11px;
+    line-height: 20px;
+    padding: 0px 0 0px 2px;
+}
+
+#div_facebox_ajax{
+    padding: 10px 0 0 0;
+}
+
+#div_facebox_ajax .title_box_facebox{
+    margin: 0 0 25px 0;
+}
+
+#div_facebox_ajax .title_box_facebox h3{
+    color: #30A0F0;
+    float: left;
+    font-size: 18px;
+}
+
+#div_facebox_ajax .title_box_facebox .add_contact_group{
+    float:right;
+}
+
+#form_facebox_ajax .blue_button{
+    width: auto;
+}
+
+#form_facebox_ajax .blue_button input{
+    text-transform: uppercase;
 }
 
 .contacts .contact_groups {
@@ -19,8 +118,8 @@
     background: #f3f3f3;
 }
 
-.contacts .contact_groups li:first-child span,.contacts .contact_groups li:first-child a{
-    border-top: 2px solid #fff;
+#facebox .contacts .contact_groups {
+    width: 177px;
 }
 
 .contacts .contact_groups li a {
@@ -28,24 +127,12 @@
     background: #f3f3f3;
 }
 
-.contacts .add_edit_group,
-.contacts .contact_groups li{
-    border-bottom: 1px solid #DEDEDE;
-    border-right: 1px solid #DEDEDE;
-    width: 136px;
+#facebox .contacts .contact_groups li a {
+    display: inline;
 }
 
-.contacts .contact_groups li.active{
-    border-left: 1px solid #DEDEDE;
-}
-
-.contacts .contact_groups li span {
-    display: block;
-    background: #fff;
-}
-
-.contacts .contact_groups li.active {
-    border-right: 0;
+.contacts .add_edit_group{
+    border-bottom:0 !important;
 }
 
 .contacts .add_edit_group {
@@ -55,12 +142,45 @@
     float: left;
 }
 
+.contacts .add_edit_group,
+.contacts .contact_groups li{
+    border-bottom: 1px solid #DEDEDE;
+    border-right: 1px solid #DEDEDE;
+    width: 136px;
+    background: #f3f3f3;
+}
+
+#facebox .contacts .contact_groups li{
+    width: 176px;
+}
+
+.contacts .contact_groups li.active{
+    border-left: 1px solid #DEDEDE;
+}
+
+.contacts .contact_groups li span {
+    display: block;
+}
+
+.contacts .contact_groups li.active {
+    border-right: 0;
+    background: #fff;
+}
+
 .contacts .add_edit_group a:link,
 .contacts .add_edit_group a:visited {
     color:#565656;
 }
 
-.contacts .add_edit_group,
+.contacts .add_edit_group {
+    color: #09689e;
+    padding: 5px 8px 5px 10px;
+    font-weight: bold;
+    font-size: 12px;
+    border-right: 2px #fff solid;
+    width: 116px;
+}
+
 .contacts .contact_groups li a,
 .contacts .contact_groups li span {
     color: #09689e;
@@ -68,6 +188,19 @@
     font-weight: bold;
     font-size: 12px;
     border-right: 2px #fff solid;
+}
+
+#facebox .contacts .contact_groups li a {
+    border-right: none;
+}
+
+#facebox .contacts img.add_recipients {
+    cursor: pointer;
+}
+
+#facebox .contacts li img.add_recipients {
+    top: -1px;
+    position: relative;
 }
 
 .contacts .table_head, .contacts table {
@@ -78,6 +211,10 @@
     padding: 8px 0;
     overflow: hidden;
     margin-left: 20px;
+}
+
+#facebox .contacts .table_head {
+    margin-left: 0;
 }
 
 .contacts .table_head ul {
@@ -126,6 +263,10 @@
 .contacts table td.table_check {
     padding-left: 1px;
     width: 30px;
+}
+
+#facebox .contacts table td.table_check {
+    width: 40px;
 }
 
 .contacts table td.row_actions a {

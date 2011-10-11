@@ -1,26 +1,17 @@
 class ContactsController < ApplicationController
-  # GET /contacts
-  # GET /contacts.xml
-  load_and_authorize_resource
-  def index
-    group_id = (params[:group_id] || 0)
-    @contact_groups = current_user.contact_groups
-    breadcrumbs.add 'Contacts'
-    if(group_id != 0)
-      group       = @contact_groups.find_by_id(group_id)
-      @contacts   = group.contacts.paginate(:page => params[:page], :per_page => 16)
-      @group_name = group.name
-      breadcrumbs.add @group_name, "#{contacts_path}?group_id=#{group_id}"
-    else
-      @contacts = current_user.contacts.paginate(:page => params[:page], :per_page => 16)
-      @group_name = "All"
-    end
+  authorize_resource
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @contacts }
-      format.js
-    end
+  def index
+    breadcrumbs.add 'Contacts'
+    @group = ContactGroup.find_by_id(params[:group_id])
+    @contact_groups = current_user.contact_groups
+    @contacts = if @group
+                  @group.contacts
+                else
+                  @group = ContactGroup.new(:name => 'All')
+                  current_user.contacts
+                end.paginate(:page => params[:page], :per_page => params[:per])
+
   end
 
   # GET /contacts/1
@@ -41,7 +32,7 @@ class ContactsController < ApplicationController
     breadcrumbs.add 'Contacts', contacts_path
     breadcrumbs.add 'New Contact'
     respond_to do |format|
-      format.html # new.html.erb
+      format.js {render_to_facebox}
       format.xml  { render :xml => @contact }
     end
   end
@@ -51,6 +42,9 @@ class ContactsController < ApplicationController
     breadcrumbs.add 'Contacts', contacts_path
     breadcrumbs.add 'Edit Contact'
     @contact = Contact.find(params[:id])
+    respond_to do |format|
+      format.js {render_to_facebox}
+    end
   end
 
   # POST /contacts
@@ -100,10 +94,8 @@ class ContactsController < ApplicationController
   def import
     @contacts = current_user.contacts.import(current_user, params[:contact])
     import_count = @contacts.count(){|contact| contact.errors.blank?}
-    flash[:notice] = "#{import_count} contacts imported"
     respond_to do |format|
       format.js { render(:update){|page| page.redirect_to(contacts_path) } }
-      #format.js { redirect_to(contacts_path) } #render_to_facebox(:html => "test")
     end
   end
   
@@ -132,7 +124,6 @@ class ContactsController < ApplicationController
         contact_group = contact.contact_groups
         contact_group.delete(contact_group)
       }
-      flash[:notice] = "#{@contacts_ids.count} contacts deleted from group #{params[:groupname]}"
     end
   end
 

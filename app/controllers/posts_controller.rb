@@ -128,49 +128,31 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def share_through_email_form
-    @post = Post.find(params[:id])
-    @post.censored_text(@post.title, current_user)
-    @post.censored_text(@post.summary,current_user)
-    @user = current_user
-    @to_emails = ""
-   
-    respond_with(@post) do |format|
-      format.js { render_to_facebox }
-    end
+  def send_in_email
+    send_as_smack
+    @submit = 'SHARE BY EMAIL'
+    render :send_as_smack
   end
 
-  def share_through_email
-    @post = Post.find(params[:id])
-    @post.censored_text(@post.title, current_user)
-    @post.censored_text(@post.summary,current_user)
-    inc_count=0
-    if params[:smack] == "1"
-      inc_count=1
-    else
-      inc_count=0
-    end
-    title=params[:message][:title]
-    @message = nil
-    formatted_2nd_message = params[:message][:body2]
-    formatted_2nd_message.gsub!(/\n/, '<br/>')
-    msg = params[:message][:body1] + "<br>" + formatted_2nd_message
-    if !params[:cb_email].present?
-      @message = Struct.new(:to, :body).new(params[:message][:to], msg)
-    else
-      @message = Struct.new(:to, :body).new(params[:cb_email].join(",") + "," + params[:message][:to], msg)
-    end
-    respond_with(@post) do |format|
-      if(@message.to.present? && @message.body.present?)
-        puts "Ok found"
-        UserMailer.share_post(@post, current_user,title, @message, inc_count).deliver
-        flash[:notice] = "<b>#{ @post.title}</b> is shared successfully!".html_safe
-        
-      else
-        flash[:error] = 'Error while sharing post!'
+  def send_as_smack
+    @contacts = current_user.contacts.all
+    @submit = 'SEND AS SMACK'
+    @subject = if request.post? then params[:share][:subject] else @post.title end
+    @message = if request.post? then params[:share][:message] else @post.summary end
+    if request.post?
+      #@post = Post.find(params[:id])
+      title = params[:share][:subject]
+
+      to = ""
+      if (params[:share][:to].present?)
+        to = params[:share][:to].split(",").map do |c_id|
+          c = Contact.find(c_id)
+          if c.user_id == current_user.id then c.email else next end
+        end.join(",")
       end
-     
-      format.js
+      UserMailer.share_post(@post, title, to, params[:share][:message]).deliver
+      flash[:success] = 'Successfully sent!'
+      redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
   end
 

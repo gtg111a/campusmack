@@ -1,0 +1,24 @@
+<div id="div_facebox_ajax">
+  <div class="title_box_facebox clearfix">
+    <h3>All contact groups</h3>
+    <div class="add_contact_group dark_button"><%= link_to 'New contact group', new_contact_group_path, :remote => true %></div>
+  </div>
+<table id="facebox_div">
+  <% @contact_groups.each do |contact_group| %>
+    <tr id="<%= contact_group.id %>">
+      <td class="facebox_form_name_td"><%= contact_group.name %></td>
+      <td class="row_actions">
+        <%= link_to 'Edit', edit_contact_group_path(contact_group), :remote => true, :class => "facebox_link table_button black" %>
+      </td>
+      <td class="row_actions">
+         <%= link_to 'Destroy', contact_group, :confirm => "Are yo sure?", :method => :delete, :remote => true, :class => "table_button black" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<div class="pagination facebox_paggination">
+  <%= will_paginate @contacts, :inner_window => 1%>
+</div>
+</div>

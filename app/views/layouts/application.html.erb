@@ -4,10 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= title %></title>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag 'rails.validations', 'twipsy', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js' %>
+  <%= javascript_include_tag 'rails.validations', 'twipsy', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js', 'jquery.tokeninput.js' %>
 
-  <%= stylesheet_link_tag 'reset', 'style', 'user', 'twipsy', 'utility_components', 'facebox', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
+  <%= stylesheet_link_tag 'reset', 'style', 'user', 'contacts', 'token-input-facebook', 'twipsy', 'utility_components', 'facebox', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
   <%= javascript_include_tag "facebox", 'stat_slider' %>
+  <% if params[:controller] == 'contacts' %>
+      <%= javascript_include_tag 'contacts' %>
+  <% end %>
   <% unless Rails.env == 'development' || Rails.env == 'test' %>
       <%= javascript_include_tag 'http://shots.snap.com/ss/d83b52a2e254661d23d1c0974a8b36c3/snap_shots.js' %>
   <% end %>

@@ -10,6 +10,10 @@ ul.statistics li {
     width: 344px;
 }
 
+ul.statistics li:nth-child(2n+1) {
+  clear: both;
+}
+
 ul.statistics li h3 {
     background: url(/images/bg_blue_button.png);
     font-family: "Tahoma";

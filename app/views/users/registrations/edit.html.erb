@@ -1,5 +1,5 @@
 <div class="standard clearfix">
-  <div id ="loading_div">
+  <div id="loading_div">
     <p align="center"><%= image_tag("ajax-loader.gif") %></p>
   </div>
   <div id="loading-message" style="text-align: center; width: 100%; font-weight: bold;"></div>
@@ -13,80 +13,7 @@
       </div>
       <div class="form_container edit_profile">
         <div class="form_wrapper">
-          <% @college = College.all %>
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put}, :validate => true) do |f| %>
-              <div class="table_padding">
-                <table cellpadding="0" cellspacing="0">
-                  <% @college = College.all %>
-
-                  <tr>
-                    <td class="description"><%= f.label :gender, "Gender:" %></td>
-                    <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], {:include_blank => true}, :class => 'gender') %></td>
-                    <td class="star"><%= mark_required(resource, :gender) %></td>
-                  </tr>
-
-                  <tr>
-                    <td class="description"><%= f.label :username, "Username:" %></td>
-                    <td class="entry"><%= f.text_field :username %></td>
-                    <td class="star"><%= mark_required(resource, :username) %></td>
-                  </tr>
-
-                  <tr>
-                    <td class="description"><%= f.label :first_name, "First Name:" %></td>
-                    <td class="entry"><%= f.text_field :first_name %></td>
-                    <td class="star"><%= mark_required(resource, :first_name) %></td>
-                  </tr>
-
-                  <tr>
-                    <td class="description"><%= f.label :last_name, "Last Name:" %></td>
-                    <td class="entry"><%= f.text_field :last_name %></td>
-                    <td class="star"><%= mark_required(resource, :last_name) %></td>
-                  </tr>
-
-                  <tr>
-                    <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
-                    <td class="entry">
-                      <span class="affiliation_span"><%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true}, :class => 'affilation') %></span>
-                      <span class="college_span">of <%= f.select(:college_id, @college.map { |a| [a.name, a.id] }, {:include_blank => true}, :class => 'college') %></span>
-                    </td>
-                    <td class="star"><%= mark_required(resource, :affiliation) %></td>
-                  </tr>
-
-                  <tr>
-                    <td class="description"><%= f.label :email, "Email:" %></td>
-                    <td class="entry"><%= f.text_field :email, :validate =>{:presence => true, :confirmation => true} %></td>
-                    <td class="star"><%= mark_required(resource, :email) %></td>
-                  </tr>
-
-                  <% if session[:provider].nil? %>
-                      <tr>
-                        <td class="description"><%= f.label :password, "New password:" %></td>
-                        <td class="entry"><%= f.password_field :password, :validate =>{:presence => true, :confirmation => true} %></td>
-
-                      </tr>
-                      <tr>
-                        <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
-                        <td class="entry"><%= f.password_field :password_confirmation, :validate =>{:presence => true, :confirmation => true} %></td>
-
-                      </tr>
-                      <tr id="name">
-                        <td class="description"><%= f.label :current_password, "Old password:" %></td>
-                        <td class="entry"><%= f.password_field :current_password %></td>
-                        <td class="star"><%= mark_required(resource, :password) %></td>
-                      </tr>
-                  <% end %>
-                </table>
-              </div>
-              <div class="confirmation_container clearfix">
-                <div class="accept clearfix">
-                  <div class="important_notice clearfix">
-                    <span class='required_sign'>*</span>
-                    <span class="important_notice_text">Required fields</span>
-                  </div>
-                  <div class="blue_button"><%= f.submit "UPDATE" %></div>
-                </div>
-              </div>
-          <% end %>
+          <%= render :partial => 'form' %>
         </div>
       </div>
     </div>
@@ -126,11 +53,11 @@
   </div>
 </div>
 <script type="text/javascript">
-  $('#loading_div').hide().ajaxStart(function() {
-    $(this).show();
-  })
-  .ajaxStop(function() {
-    $(this).hide();
-  })
-  ;
+    $('#loading_div').hide().ajaxStart(function() {
+        $(this).show();
+    })
+            .ajaxStop(function() {
+        $(this).hide();
+    })
+            ;
 </script>

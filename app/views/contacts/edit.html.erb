@@ -1,12 +1,4 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag 'contacts' %>
-<% end %>
-
-<div class="content contacts">
-  <div class="content_title"><h1>Editing contact</h1></div>
-
-  <div class="content_container">
-
-    <%= render 'form' %>
-  </div>
-</div>
+<%= render 'form' %>
+<script>
+  $("form.edit_contact").validate();
+</script>

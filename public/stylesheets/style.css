@@ -28,6 +28,19 @@ body {
     color: #000;
 }
 
+.ajax_loader {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#rowclick1 .ajax_loader{vertical-align: middle;}
+
+.contact_groups td{
+    vertical-align: middle;
+    text-align: center;
+}
+
 a,
 a:link,
 a:visited {
@@ -284,7 +297,7 @@ a.sign_up:visited {
 }
 
 .conference_column_first {
-    padding: 5px 25px 5px 18px !important;
+    padding: 5px 20px 5px 18px !important;
 }
 
 .content_actions {
@@ -386,7 +399,7 @@ a.sign_up:visited {
     line-height: 17px;
 }
 
-.noborder {
+.cell:last-child, .noborder {
     border: none !important;
 }
 
@@ -610,6 +623,7 @@ a.sign_up:visited {
     font-size: 8.44pt;
     border-bottom: 1px solid #d4d4d4;
     margin-bottom: 10px;
+    margin-top: -10px;
 }
 
 .view_more_link {
@@ -678,12 +692,36 @@ a.sign_up:visited {
 
 .content_unit2 .description {
     font-size: 8.75pt;
-    margin-bottom: 3px;
+    margin-bottom: 14px !important;
 }
 
 .content_unit2 .title, .content_unit2 .unit_info, .content_unit2 .description, .content_unit2 .actions {
     margin-left: 170px;
+    margin-bottom: 5px;
 }
+.content_unit2 .unit_info {
+  font-size: 80%;
+  color: #777;
+  color: #A5A5A5;
+}
+  .content_unit2 .unit_info span.date {
+    color: #4D4D4D;
+  }
+  .content_unit2 .unit_info span.by {
+    font-style: italic;
+  }
+  .content_unit2 .unit_info a {
+    text-decoration: underline;
+  }
+  .content_unit2 .unit_info a:hover {
+    text-decoration: none;
+  }
+
+  .share_smack_btn {
+    margin-left: 6px;
+    padding: 2px 0 2px 6px;
+    border-left: 1px solid #B4B4B4;
+  }
 
 ul.news {
     list-style-type: square;
@@ -913,39 +951,49 @@ ul.news li {
 }
 
 .mail {
-    background: url(/images/email.png) no-repeat;
-    width: 19px;
-    height: 13px;
+    background-image: url(/images/email.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width: 16px;
+    height: 16px;
     float: left;
     margin-left: 2px;
 }
 
 .mail:hover {
-    background: url(/images/email_hover.png);
+    background-position: top;
 }
 
 .content_fb {
-    background: url(/images/content_fb.png) no-repeat;
-    width: 14px;
-    height: 13px;
+    background-image: url(/images/content_fb.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width: 16px;
+    height: 16px;
     float: left;
     margin-left: 2px;
 }
 
 .content_fb:hover {
-    background: url(/images/content_fb_hover.png);
+    background-position: top;
 }
 
 .content_tw {
-    background: url(/images/content_tw.png) no-repeat;
-    width: 13px;
-    height: 13px;
+    background-image: url(/images/content_tw.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width: 16px;
+    height: 16px;
     float: left;
     margin-left: 2px;
 }
 
 .content_tw:hover {
-    background: url(/images/content_tw_hover.png);
+    background-position: top;
+}
+
+.share_icons {
+    display: inline-block;
 }
 
 .read_more {
@@ -1534,22 +1582,30 @@ form.semantic .actions .alt:hover {
     border-right: 1px solid #CFCFCF;
 }
 
+ul.items {
+  margin-right: -20px;
+}
+
+ul.items.news {
+  margin-right: 0;
+  list-style: none;
+}
+
 .team-item {
-    width: 158px;
-    margin-left: 20px;
-    float: left;
+  margin-right: 20px;
+  float: left;
+  list-style: none;
+  width: 158px;
 }
 
-.items .team-item:first-child {
-    margin-left: 0;
-}
-
-.content_category .team_item:first-child {
-    margin-left: 0;
+ul.items.news .team-item {
+  margin-right: 0;
+  margin-bottom: 10px;
 }
 
 .team-item .item-top {
     font-size: 70%;
+    margin-bottom: 5px;
 }
 
 .team-item .dislike {
@@ -1570,27 +1626,29 @@ form.semantic .actions .alt:hover {
 
 .team-item .preview {
     clear: both;
-    height: 92px;
-    margin: 2px 0 5px 0;
+    height: 94px;
+    margin-bottom: 5px;
     overflow: hidden;
 }
 
 .team-item .summary {
     font-size: 8.5pt;
-    height: 53px;
+    height: 45px;
+    margin-bottom: 5px;
     overflow: hidden;
 }
 
-.team-item .item-buttons {
-    margin-top: 3px;
+.team-item .items-buttons {
     border-top: solid 1px #CFCFCF;
-    padding-top: 3px;
-    padding-bottom: 12px;
+    overflow: hidden;
+    padding-top: 4px;
+    margin-bottom: 5px;
 }
 
-.team-item .item-buttons img[alt="Send as smack"] {
-    margin-left: 32px;
-}
+  .team-item .items-buttons .share_smack_btn {
+    float: right;
+    border: none;
+  }
 
 .news {
     float: right;
@@ -1641,10 +1699,17 @@ ul.contact-groups {
 
 #stats_container {
     overflow: auto;
+  position: relative;
 }
 
 #stats_widget {
-    width: 960px;
+    background: url("/images/table_bg.png") repeat-x;
+    width: 926px;
+    padding: 0 17px;
+}
+
+#stats_container #slideInner {
+  position: relative;
 }
 
 #stats_widget .control {
@@ -1665,8 +1730,6 @@ ul.contact-groups {
 }
 
 .table_middle {
-    background: url(/images/table_bg.png) repeat-x;
     float: left;
     height: 106px;
-    padding-left: 6px;
 }

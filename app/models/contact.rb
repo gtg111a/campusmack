@@ -24,4 +24,8 @@ class Contact < ActiveRecord::Base
     return imported_contacts
   end
 
+  def name_or_email
+    name.empty? ? email : name
+  end
+
 end
