@@ -11,7 +11,7 @@
   <div class="preview">
     <%= youtube_embed(post.video.url) if post.video %>
     <% if post.photo %>
-      <img src="<%= post.photo.url(:small) %>" alt=""/>
+      <img src="<%= post.photo.url(:medium) %>" alt=""/>
     <% end %>
   </div>
   <div class="summary">

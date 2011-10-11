@@ -1,10 +1,10 @@
 <div class="content_unit2 clearfix">
   <div class="preview">
     <% if post.photo %>
-        <img src="<%= post.photo.url(:small) %>" alt=""/>
+        <img src="<%= post.photo.url(:medium) %>" alt=""/>
     <% end %>
     <% if post.news_post && !post.news_post.image_file_name.blank? %>
-        <img src="<%= post.news_post.image_url(:small) %>" alt=""/>
+        <img src="<%= post.news_post.image_url(:medium) %>" alt=""/>
     <% end %>
     <% if post.video %>
         <%= youtube_embed(post.video.url) %>
