@@ -2,11 +2,12 @@
 class PostsController < ApplicationController
   respond_to :js, :html
   skip_authorization_check
-  load_and_authorize_resource
+  authorize_resource
   skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
   before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
   include PostsHelper
 
+  before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent
 
   def new
@@ -51,7 +52,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -120,7 +120,6 @@ class PostsController < ApplicationController
   end
 
   def opengraph
-    @post = Post.find(params[:id])
   end
 
   def send_in_email
@@ -131,6 +130,7 @@ class PostsController < ApplicationController
   end
 
   def send_as_smack
+    redirect_to @post and return if params[:commit] == 'CANCEL'
     @contacts = current_user.contacts.all
     @submit = 'SEND AS SMACK'
     @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + @post.user.first_name + " " + @post.user.last_name end
@@ -152,9 +152,14 @@ class PostsController < ApplicationController
 
   protected
 
+  def find_post
+    @post = Post.find params[:id]
+  end
+
   def find_parent
     @parent = College.where(:permalink => params[:college_id]).first
     @parent ||= Conference.where(:name => params[:conference_id]).first
+    @parent ||= @post.postable
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end
 

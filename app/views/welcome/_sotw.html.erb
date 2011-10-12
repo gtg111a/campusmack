@@ -29,10 +29,7 @@
        <%= @sotw.summary %>
       </div>
       <div class="content_share">
-        <a href="#" class="mail"></a>
-        <a href="#" class="content_fb"></a>
-        <a href="#" class="content_tw"></a>
-        <%= send_as_smack_btn(@sotw, :style => 'float: left; margin-left: 104px;') %>
+        <%= share_icons(@sotw, :post) %>
       </div>
     </div>
   </div>

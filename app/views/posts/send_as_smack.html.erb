@@ -1,10 +1,12 @@
 <% content_for :jq do %>
   $("#mail_recipients").tokenInput([
-    <%= @contacts.map do |c| "{id: #{c.id}, name: '#{c.name_or_email}'}" end.join "," %>
-    ], {
-    preventDuplicates: true,
-    theme: "facebook",
-    hintText: "Start typing a name..."
+  <%= @contacts.map do |c|
+    "{id: #{c.id}, name: '#{c.name_or_email}'}"
+  end.join "," %>
+  ], {
+  preventDuplicates: true,
+  theme: "facebook",
+  hintText: "Start typing a name..."
   });
 <% end %>
 <div class="standard clearfix">
@@ -41,11 +43,8 @@
             </tr>
           </table>
           <div class="confirmation_container clearfix">
-            <div class="accept clearfix">
-              <div class="important_notice clearfix">
-              </div>
-              <div class="blue_button"><%= f.submit "SEND" %></div>
-            </div>
+            <span class="blue_button"><%= f.submit "SEND" %></span>
+            <span class="blue_button"><%= f.submit "CANCEL" %></span>
           </div>
         </div>
       <% end %>

@@ -18,6 +18,7 @@
     -khtml-border-radius: 5px;
     border-radius: 5px;
     text-align: center;
+    margin: 0 5px;
 }
 
 .blue_button a {
@@ -70,7 +71,7 @@
 }
 
 .dark_button:hover {
-   background:#3d3d3d url('/images/button_bg_hover.png') repeat-x;
+    background: #3d3d3d url('/images/button_bg_hover.png') repeat-x;
 }
 
 .white_button {
@@ -179,6 +180,6 @@
 
 /* Fancybox close button */
 #photo-close {
-  float: right;
-  margin-right: -25px;
+    float: right;
+    margin-right: -25px;
 }
