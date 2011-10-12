@@ -10,6 +10,14 @@ $(document).ready(function() {
         $("#contact_list").find(':checkbox').attr('checked', this.checked);
     });
 
+    $('#add_to_group_button').click(function(event) {
+        show_img_selected();
+    });
+
+    $('.edit').click(function(event) {
+        show_img(this.parent().parent('.tr').attr('id'));
+    });
+
     $('#delete_selected').click(function(event) {
         show_img_selected();
         $.ajax({
@@ -29,6 +37,8 @@ $(document).ready(function() {
 
     });
 });
+
+
 
 $(function() {
   $(".facebox_paggination a").live("click", function() {
@@ -61,7 +71,6 @@ $(document).bind('close.facebox', function() {
      var h = $('.contact_groups').height();
      $('.contact_groups').html("<table><td class='ajax_loader' style='height:" + h + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
      $('.contact_groups').load(this.location + ' ' + '.contact_groups' );
-
     }
 });
 
@@ -97,10 +106,17 @@ function show_img_selected() {
         var id = "#img" + ids[i].value;
         $(id).show();
     }
-
 }
 
-function show_img(i) {
-    var id = "#img" + i;
+function hide_img_selected() {
+    var ids = $(".chk_box:checked")
+    for (var i = 0; i < ids.length; i++) {
+        var id = "#img" + ids[i].value;
+        $(id).hide();
+    }
+}
+
+function show_img(t) {
+    var id = "#img" + t;
     $(id).show();
 }

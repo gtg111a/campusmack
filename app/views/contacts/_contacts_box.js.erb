@@ -1,0 +1,70 @@
+<div class="contacts">
+  <div class="contacts_items_per_page clearfix">
+    <ul>
+      <%= items_per_page([200,100,50,25], :remote => true) %>
+    </ul>
+    <div class="contacts_items_per_page_text"><span>|</span> Items per page:</div>
+  </div>
+  <div class="content_categories">
+    <div class="contacts_table">
+      <ul class="contact_groups">
+        <li<%= ' class="active"'.html_safe if @group.name == 'All' %>>
+          <span><img alt="Add" class="add_recipients" data-json='[<% current_user.contacts.each do |c| %>{"id": <%= c.id %>, "name": "<%= c.name_or_email %>"},<% end %>{}]' src="/images/add_all_.png" />
+            <%= link_to_unless(@group.name == 'All', 'All', contacts_path(:page => params[:page], :per => params[:per]), :remote => true) do %>
+            <% end %>
+          </span>
+        </li>
+        <% @contact_groups.each do |contact_group| %>
+        <% if @group.name == contact_group.name%>
+            <li class="active">
+              <span><img alt="Add" class="add_recipients" data-json='[<% contact_group.contacts.each do |c| %>{"id": <%= c.id %>, "name": "<%= c.name_or_email %>"},<% end %>{}]' src="/images/add_.png" />
+                <%= contact_group.name %>
+              </span>
+            </li>
+        <% else %>
+            <li>
+              <span><img alt="Add" class="add_recipients" data-json='[<% contact_group.contacts.each do |c| %>{"id": <%= c.id %>, "name": "<%= c.name_or_email %>"},<% end %>{}]' src="/images/add_.png" />
+                <%= link_to(contact_group.name, contacts_path(:group_id=>contact_group.id, :page => params[:page], :per => params[:per]), :remote => true) %>
+              </span>
+            </li>
+        <% end %>
+        <% end %>
+      </ul>
+      <div class="table_content">
+        <div class="table_head">
+          <% if @group.name == 'All' %>
+            <img alt="Add" class="add_recipients" data-json='[<% current_user.contacts.each do |c| %>{"id": <%= c.id %>, "name": "<%= c.name_or_email %>"},<% end %>{}]' src="/images/add_all_.png" />
+          <% else %>
+            <img alt="Add" class="add_recipients" data-json='[<% @group.contacts.each do |c| %>{"id": <%= c.id %>, "name": "<%= c.name_or_email %>"},<% end %>{}]' src="/images/add_.png" />
+          <% end %>
+        </div>
+        <div id="contact_list">
+          <table id="rowclick1">
+            <% @contacts.each do |contact| %>
+              <tr id="<%= contact.id %>">
+                <td class="table_check">
+                  <img alt="Add" class="add_recipients" data-json='[{"id": <%= contact.id %>, "name": "<%= contact.name_or_email %>"}]' src="/images/add_.png" />
+                </td>
+                <td><%= contact.name %></td>
+                <td><%= contact.email %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <%= will_paginate @contacts %>
+    </div>
+  </div>
+</div>
+<script>
+  $('.pagination a').attr('data-remote', 'true');
+  $('img.add_recipients').click(function(){
+    mails = $(this).data('json');
+    for (m in mails) {
+      if (mails[m].name != undefined) $("#mail_recipients").tokenInput("add", mails[m]);
+    }
+    $(this).hide();
+  });
+</script>

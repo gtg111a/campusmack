@@ -20,7 +20,7 @@
         <% if @sotw.video %>
             <%= youtube_embed(@sotw.video.url, :medium) %>
         <% end %>
-        <%= link_to "News post", @sotw.news_post.url unless @sotw.news_post.blank? %>
+        <%= link_to "News post", @sotw.news_post.url, :class => 'snap_shots' unless @sotw.news_post.blank? %>
       </div>
       <div class="img_title">
         <%= @sotw.created_at.to_date.to_s(:long) %> by <%= link_to(@sotw.user.try(:username), @sotw.user) %>

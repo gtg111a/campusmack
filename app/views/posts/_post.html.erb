@@ -23,7 +23,7 @@
     <%= link_to(post.user.try(:username), post.user, :class => :author) %>
   </div>
   <div class="description">
-    <%= link_to "News post", post.news_post.url unless post.news_post.blank? %>
+    <%= link_to "News post", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
     <%= post.summary %>
   </div>
   <div class="actions">

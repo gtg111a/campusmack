@@ -21,18 +21,43 @@
   <div class='dark_button' style="float:right"><%= link_to("Add contacts", add_to_group_contact_groups_path(@contact_group), :id => "add_contact") %></div>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#add_contact').click(function() {
-      $.ajax({
-        type: "POST",
-        url: "<%= add_to_group_contact_groups_path() -%>",
-        data: $('#contact_group_form :input').serialize() + "&" + $('input:checkbox:checked.chk_box').serialize()
-      });
+
+<script type="text/javascript" >
+  $(document).ready(function(){
+
+    var h = $('#rowclick1').height();
+
+    $('#add_contact').click(function(){
+
+        $.ajax({
+          type: "POST",
+          url: "<%= add_to_group_contact_groups_path() -%>",
+          data: $('#contact_group_form :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize(),
+          success: function(){
+                   $('#rowclick1').html("<table><td class='ajax_loader' style='height:" + h + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+                   $('#rowclick1').load(location + ' ' + '#rowclick1' );
+               }
+        });
+      
       return false;
     });
 
-    $('#contact_group_form input[name=new_group_name]').focus(function() {
+
+$(document).bind('close.facebox', function() {
+      hide_img_selected();
+});
+
+
+
+function hide_img_selected() {
+    var ids = $(".chk_box:checked")
+    for (var i = 0; i < ids.length; i++) {
+        var id = "#img" + ids[i].value;
+        $(id).hide();
+    }
+}
+
+    $('#contact_group_form input[name=new_group_name]').focus(function(){
       $('#contact_group_form input.rbtn[value=new]').prop('checked', true);
     });
   });

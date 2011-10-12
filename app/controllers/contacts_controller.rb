@@ -11,7 +11,9 @@ class ContactsController < ApplicationController
                   @group = ContactGroup.new(:name => 'All')
                   current_user.contacts
                 end.paginate(:page => params[:page], :per_page => params[:per])
-
+    if request.xhr?
+      render_to_facebox :partial => "contacts_box"
+    end
   end
 
   # GET /contacts/1

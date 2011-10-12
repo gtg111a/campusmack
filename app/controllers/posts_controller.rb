@@ -63,7 +63,6 @@ class PostsController < ApplicationController
 
   def destroy
     @user = current_user
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
@@ -87,7 +86,6 @@ class PostsController < ApplicationController
 
   def edit
     @user = current_user
-    @post = Post.find(params[:id])
     @title = "Edit post"
     init_college_menu
     add_breadcrumbs
@@ -95,7 +93,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update_attributes(params[@post.type.downcase])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
@@ -106,7 +103,6 @@ class PostsController < ApplicationController
 
   def vote_up
     @user = current_user
-    @post = Post.find(params[:id])
     vote_check_for(@post)
     respond_to do |format|
       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote up successful."} }
@@ -116,7 +112,6 @@ class PostsController < ApplicationController
 
   def vote_down
     @user = current_user
-    @post = Post.find(params[:id])
     vote_check_against(@post)
     respond_to do |format|
       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote down successful."} }
@@ -131,6 +126,7 @@ class PostsController < ApplicationController
   def send_in_email
     send_as_smack
     @submit = 'SHARE BY EMAIL'
+    @subject =  "#{current_user.first_name} #{current_user.last_name} wants to share this post from Campusmack.com."
     render :send_as_smack
   end
 
@@ -138,9 +134,7 @@ class PostsController < ApplicationController
     @contacts = current_user.contacts.all
     @submit = 'SEND AS SMACK'
     @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + @post.user.first_name + " " + @post.user.last_name end
-    #@message = if request.post? then params[:share][:message] else @post.summary end
     if request.post?
-      #@post = Post.find(params[:id])
       title = params[:share][:subject]
 
       to = ""

@@ -43,7 +43,7 @@
               <input type="checkbox" value="0" name="cb" class="select_all"/>
             </div>
             <ul class="table_actions" style="list-style-type: none">
-              <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button") %></li>
+              <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button", :id => "add_to_group_button") %></li>
               <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
             </ul>
           </div>

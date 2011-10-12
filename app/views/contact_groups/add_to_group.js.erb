@@ -1,6 +1,8 @@
 <% if(params[:group_type] == 'new') %>
   <% if(!@group.new_record?) %>
-    $('div.contacts_table ul.contact_groups').append("<li><a href='<%= contacts_path(:group_id => @group.id) -%>'><%= @group.name -%></a></li>");
+     var h = $('.contact_groups').height();
+     $('.contact_groups').html("<table><td class='ajax_loader' style='height:" + h + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+     $('.contact_groups').load(this.location + ' ' + '.contact_groups' );
     <%= close_facebox()%>
   <% end %>
 <% else %>
