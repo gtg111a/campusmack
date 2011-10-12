@@ -26,9 +26,7 @@
         <%= @sotw.created_at.to_date.to_s(:long) %> by <%= link_to(@sotw.user.try(:username), @sotw.user) %>
       </div>
       <div class="content_text">
-        Praesent dui sapien, accumsan sed fermentum in, facilisis eu sem. Ut varius porttitor ac sed dolor.
-        Pellentesque
-        et sem nec metus auctor bibendum in eget odio.
+       <%= @sotw.summary %>
       </div>
       <div class="content_share">
         <a href="#" class="mail"></a>
