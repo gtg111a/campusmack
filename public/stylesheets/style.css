@@ -1624,6 +1624,19 @@ ul.items.news .team-item {
   margin-bottom: 5px;
 }
 
+.team-item .item-top h3 {
+    font-size: 12px;
+}
+
+.team-item .item-top h3 a:visited,
+.team-item .item-top h3 a:link {
+    color: #000;
+}
+
+.team-item .item-top h3 a:hover {
+    color: #30A0F0;
+}
+
 .team-item .dislike {
   margin-left: 5px;
 }

@@ -1,5 +1,6 @@
 <li class="team-item">
   <div class="item-top clearfix">
+    <h3><%= link_to post.title, post %></h3>
     <div class="which-college">by: <%= link_to(post.user.try(:username), post.user, :class => :author) %></div>
     <div class="votes">
       <%= image_tag('like.png') %>
@@ -10,7 +11,9 @@
   </div>
   <div class="preview">
     <%= youtube_embed(post.video.url) if post.video %>
-    <%= image_tag post.photo.url(:small) if post.photo %>
+    <% if post.photo %>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:small) %>" alt=""/></a>
+    <% end %>
   </div>
   <div class="summary">
     <%= truncate(post.summary, :length => 70) %>
