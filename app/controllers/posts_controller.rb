@@ -132,6 +132,7 @@ class PostsController < ApplicationController
   def send_as_smack
     redirect_to @post and return if params[:commit] == 'CANCEL'
     @contacts = current_user.contacts.all
+    @groups = current_user.contact_groups.all
     @submit = 'SEND AS SMACK'
     @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + @post.user.first_name + " " + @post.user.last_name end
     if request.post?

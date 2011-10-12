@@ -278,3 +278,42 @@
 .image_load {
     display: none;
 }
+
+#contact_group_form table{
+    margin: 0 0 20px 0;
+}
+
+#contact_group_form td{
+    vertical-align: middle;
+}
+
+#contact_group_form select, #contact_group_form input{
+    width: 190px;
+}
+
+#contact_group_form .rbtn{margin:0;}
+
+#contact_group_form .radio{
+    width: 7%;
+}
+
+#contact_group_form .text{
+    width: 26%;
+}
+
+.ajax{
+   display: none;
+}
+
+.content_actions .ajax{
+    position: relative;
+    top: -2px;
+}
+
+.add_edit_group .ajax{
+    float:right;
+}
+
+.add_edit_group a{
+    float:left;
+}

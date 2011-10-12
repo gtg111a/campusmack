@@ -1,9 +1,8 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :contact_groups#, :dependent => :delete_all
-  validates :email, :uniqueness => {:scope => :user_id}
+  validates :email, :uniqueness => {:scope => :user_id}, :presence => true
   validates :user_id, :presence => true
-  validates :email, :presence => true
   
   def self.import (user, emails_csv)
     puts emails_csv

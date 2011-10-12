@@ -1,3 +1,12 @@
+<% content_for :js do %>
+  function addRemoveContact(contact) {
+    if ($(contact).prop("checked")) {
+      $("#mail_recipients").tokenInput("add", $(contact).data('json'));
+    } else {
+      $("#mail_recipients").tokenInput("remove", $(contact).data('json'));
+    }
+  }
+<% end %>
 <% content_for :jq do %>
   $("#mail_recipients").tokenInput([
   <%= @contacts.map do |c|
@@ -6,7 +15,78 @@
   ], {
   preventDuplicates: true,
   theme: "facebook",
-  hintText: "Start typing a name..."
+  hintText: "Start typing a name...",
+  onAdd: function (item) {
+    $("#contact-"+item.id).prop("checked", true);
+  },
+  onDelete: function (item) {
+    $("#contact-"+item.id).prop("checked", false);
+  }
+  });
+  $(".contact_checkbox").change(function(){
+    addRemoveContact(this);
+  });
+  $("#current_group_checkbox").change(function(){
+    var addRemove = $(this).prop("checked");
+    $(".contact_checkbox:visible").each(function(i) {
+      if ($(this).prop("checked") != addRemove) {
+        $(this).prop("checked", addRemove);
+        addRemoveContact(this);
+      }
+    });
+  });
+  $(".group_checkbox").change(function(){
+    var addRemove = $(this).prop("checked");
+    $(".licontact_checkbox").hide();
+    if ($(this).data('ids').toString().length > 0) {
+      var ids = $(this).data('ids').toString().split(',');
+      for (id in ids) {
+        $(".contact_checkbox").each(function(i) {
+          if ($(this).attr('id') == 'contact-'+ids[id]) {
+            $("#li"+$(this).attr('id')).show('fast');
+            if ($(this).prop("checked") != addRemove) {
+              $(this).prop("checked", addRemove);
+              addRemoveContact(this);
+            }
+          }
+        });
+      }
+    }
+  });
+  $(".group_link").click(function(){
+    $(".licontact_checkbox").hide();
+    $("#address_book .groups li").removeClass("active");
+    $(this).closest("li").addClass("active");
+    if ($(this).data('ids').toString().length > 0) {
+      var ids = $(this).data('ids').toString().split(',');
+      for (id in ids) {
+        $(".contact_checkbox").each(function(i) {
+          if ($(this).attr('id') == 'contact-'+ids[id]) {
+            $("#li"+$(this).attr('id')).show('fast');
+          }
+        });
+      }
+    }
+  });
+  $("#all_checkbox").change(function(){
+    $("#address_book .groups li").removeClass("active");
+    $(this).closest("li").addClass("active");
+    var addRemove = $(this).prop("checked");
+    $(".group_checkbox").prop("checked", addRemove);
+    $(".contact_checkbox").each(function(i) {
+      if ($(this).prop("checked") != addRemove) {
+        $(this).prop("checked", addRemove);
+        addRemoveContact(this);
+      }
+    });
+  });
+  $("#show_all_contacts").click(function(){
+    $(".licontact_checkbox").show('fast');
+    $("#address_book .groups li").removeClass("active");
+    $(this).closest("li").addClass("active");
+  });
+  $("#show_address_book").click(function(){
+    $("#address_book").toggle('slow');
   });
 <% end %>
 <div class="standard clearfix">
@@ -23,7 +103,30 @@
           <table cellpadding="0" cellspacing="0">
             <tr>
               <td class="description va-top2"><%= f.label :to, 'To:' %></td>
-              <td class="entry" colspan="2"><%= link_to "ADD RECIPIENTS", contacts_path, :class => "blue_button", :remote => true %><%= f.text_field :to, :id => 'mail_recipients' %></td>
+              <td class="entry" colspan="2"><%= link_to "ADD RECIPIENTS", 'javascript:void(0)', :class => "blue_button", :id => "show_address_book" %><%= f.text_field :to, :id => 'mail_recipients' %></td>
+            </tr>
+            <tr class="hidden" id="address_book">
+              <td class="description"></td>
+              <td class="entry" colspan="2">
+                <div class="groups">
+                  <span>Groups:</span>
+                  <ul>
+                    <li class="active"><input type="checkbox" id="all_checkbox"/> <a href="javascript:void(0)" id="show_all_contacts">All</a></li>
+                    <% @groups.each do |group| %>
+                      <li><input type="checkbox" class="group_checkbox" id="group-<%= group.id %>" data-ids="<%= group.contacts.map(&:id).join(",") %>"/> <a href="javascript:void(0)" class="group_link" data-ids="<%= group.contacts.map(&:id).join(",") %>"><%= group.name %></a></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class="contacts">
+                  <span>Contacts:</span>
+                  <ul>
+                    <li><input type="checkbox" id="current_group_checkbox" /> All</li>
+                    <% @contacts.each do |contact| %>
+                      <li class="licontact_checkbox" id="licontact-<%= contact.id %>"><input type="checkbox" class="contact_checkbox" data-json='{"id": <%= contact.id %>, "name": "<%= contact.name_or_email %>"}' id="contact-<%= contact.id %>"/> <label for="contact-<%= contact.id %>"><%= contact.name %> &lt;<%= contact.email %>&gt;</label></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </td>
             </tr>
             <tr>
               <td class="description"><%= f.label :subject, 'Subject:' %></td>

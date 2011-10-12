@@ -29,12 +29,13 @@ body {
 }
 
 .ajax_loader {
-  text-align: center;
-  width: 100%;
-  height: 100%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-top: 0!important;
 }
 
-#rowclick1 .ajax_loader {
+.ajax_loader {
   vertical-align: middle;
 }
 

@@ -2,7 +2,8 @@
   <div class="content_title"><h1>Contacts<%= " (#{@group.name})" if @group.name != "All" %></h1></div>
   <div class="content_actions">
     <ul>
-      <li class="dark_button"><%= link_to 'New Contact', new_contact_path, :remote => true %></li>
+      <li class="ajax"><img src='/images/ajax-loader.gif'/></li>
+      <li class="dark_button"><%= link_to 'New Contact', new_contact_path, :remote => true, :class => "new" %></li>
       <li class="dark_button"><%= render :partial => 'contacts/import_form' -%></li>
     </ul>
   </div>
@@ -22,7 +23,7 @@
             <% end %>
           </li>
           <% @contact_groups.each do |contact_group| %>
-          <% if @group.name == contact_group.name%>
+          <% if @group.id == contact_group.id%>
               <li class="active">
                 <%= link_to_unless_current(contact_group.name, contacts_path(:group_id=>contact_group.id, :page => params[:page], :per => params[:per])) do %>
                     <span><%= contact_group.name %></span>
@@ -43,6 +44,9 @@
               <input type="checkbox" value="0" name="cb" class="select_all"/>
             </div>
             <ul class="table_actions" style="list-style-type: none">
+              <% if !params[:group_id].blank? && ContactGroup.exists?(params[:group_id]) == true %>
+                <li><%= link_to("Remove Group", @group, :confirm => "Are yo sure?", :method => :delete, :remote => true, :class => "table_button", :id => "remove_group_button") %></li>
+              <%end%>
               <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button", :id => "add_to_group_button") %></li>
               <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
             </ul>
@@ -54,7 +58,7 @@
           </div>
           <input type="hidden" name="groupname" value="<%= @group.name %>"/>
         </div>
-        <div class="add_edit_group"><%= link_to 'Edit / Add groups', contact_groups_path, :remote => true %></div>
+        <div class="add_edit_group clearfix"><%= link_to 'Edit / Add groups', contact_groups_path, :remote => true %><span class="ajax"><img src='/images/ajax-cb-loader.gif'/></span></div>
       </div>
       <div class="pagination">
         <%= will_paginate @contacts %>

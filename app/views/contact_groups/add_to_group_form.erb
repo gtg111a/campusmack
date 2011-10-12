@@ -1,22 +1,24 @@
-<div id="contact_group_form">
+<div id="contact_group_form" class="facebox_form">
   <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
-  <div style='padding:10px; margin: 10px'>
-
+  <table cellspacing="0" cellpadding="0">
+    <tr>
     <% if @contact_groups.present? %>
-      <%= '<input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />'.html_safe %>
-      <%= "<span style='padding:10px'> Select Group </span>".html_safe %>
-      <%= select("group", 'id', @contact_groups.map { |u| [u.name, u.id] }, {:style => 'width:132px;'}) %>
+      <td class="radio"><%= '<input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />'.html_safe %></td>
+      <td class="text"><%= "<span'> Select Group </span>".html_safe %></td>
+      <td><%= select("group", 'id', @contact_groups.map { |u| [u.name, u.id] }) %></td>
     <% end %>
-
-    <br/><br/>
-
-    <input
-    <% if !@contact_groups.present? %> <%= 'checked="checked"'.html_safe %>
-    <% end %>
-    class="rbtn" type="radio" name="group_type" value="new"/>
-    <span>New Group</span>
-    <input type="text" name="new_group_name"/>
-  </div>
+    </tr>
+    <tr>
+      <td class="radio">
+        <input
+        <% if !@contact_groups.present? %> <%= 'checked="checked"'.html_safe %>
+        <% end %>
+        class="rbtn" type="radio" name="group_type" value="new"/>
+      </td>
+      <td class="text"><span>New Group</span> </td>
+      <td><input type="text" name="new_group_name"/></td>
+    </tr>
+  </table>
 
   <div class='dark_button' style="float:right"><%= link_to("Add contacts", add_to_group_contact_groups_path(@contact_group), :id => "add_contact") %></div>
 </div>
@@ -41,21 +43,6 @@
       
       return false;
     });
-
-
-$(document).bind('close.facebox', function() {
-      hide_img_selected();
-});
-
-
-
-function hide_img_selected() {
-    var ids = $(".chk_box:checked")
-    for (var i = 0; i < ids.length; i++) {
-        var id = "#img" + ids[i].value;
-        $(id).hide();
-    }
-}
 
     $('#contact_group_form input[name=new_group_name]').focus(function(){
       $('#contact_group_form input.rbtn[value=new]').prop('checked', true);

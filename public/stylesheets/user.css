@@ -291,6 +291,39 @@
     background-image: url(/images/view_more_bg.png);
 }
 
+#address_book .groups {
+    width: 160px;
+}
+
+#address_book .contacts {
+    width: 520px;
+}
+
+#address_book .groups, #address_book .contacts {
+    float: left;
+}
+
+#address_book .groups li, #address_book .contacts li {
+    height: 15px;
+    padding: 5px 0;
+    border-bottom: solid 1px #cfcfcf;
+}
+
+#address_book .groups li {
+    border-right: solid 1px #cfcfcf;
+}
+
+#address_book .groups li.active, #address_book .contacts ul {
+    background: #FFF;
+    border-right: none;
+}
+
+#address_book .groups span, #address_book .contacts span {
+    display: block;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
 .facebox_form .confirmation_container {
     margin: 5px 0;
     padding-top: 10px;

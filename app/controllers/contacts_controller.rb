@@ -11,9 +11,6 @@ class ContactsController < ApplicationController
                   @group = ContactGroup.new(:name => 'All')
                   current_user.contacts
                 end.paginate(:page => params[:page], :per_page => params[:per])
-    if request.xhr?
-      render_to_facebox :partial => "contacts_box"
-    end
   end
 
   # GET /contacts/1
@@ -23,7 +20,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @contact }
+      format.xml { render :xml => @contact }
     end
   end
 
@@ -34,8 +31,8 @@ class ContactsController < ApplicationController
     breadcrumbs.add 'Contacts', contacts_path
     breadcrumbs.add 'New Contact'
     respond_to do |format|
-      format.js {render_to_facebox}
-      format.xml  { render :xml => @contact }
+      format.js { render_to_facebox }
+      format.xml { render :xml => @contact }
     end
   end
 
@@ -45,7 +42,7 @@ class ContactsController < ApplicationController
     breadcrumbs.add 'Edit Contact'
     @contact = Contact.find(params[:id])
     respond_to do |format|
-      format.js {render_to_facebox}
+      format.js { render_to_facebox }
     end
   end
 
@@ -57,10 +54,10 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
         format.html { redirect_to contacts_url, :notice => 'Contact was successfully created.' }
-        format.xml  { render :xml => @contact, :status => :created, :location => @contact }
+        format.xml { render :xml => @contact, :status => :created, :location => @contact }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @contact.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -69,14 +66,12 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.xml
   def update
     @contact = current_user.contacts.find(params[:id])
-
+    @contact.update_attributes(params[:contact])
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to contacts_url, :notice => 'Contact was successfully updated.' }
-        format.xml  { head :ok }
+        format.js
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -89,23 +84,23 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(contacts_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 
   def import
     @contacts = current_user.contacts.import(current_user, params[:contact])
-    import_count = @contacts.count(){|contact| contact.errors.blank?}
+    import_count = @contacts.count() { |contact| contact.errors.blank? }
     respond_to do |format|
-      format.js { render(:update){|page| page.redirect_to(contacts_path) } }
+      format.js { render(:update) { |page| page.redirect_to(contacts_path) } }
     end
   end
-  
+
   def get_group_emails
     @group_ids = params[:cb]
     respond_to do |format|
       format.js # index.html.erb
-      format.xml  { render :xml => @text }
+      format.xml { render :xml => @text }
     end
   end
 

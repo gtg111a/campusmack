@@ -1,5 +1,5 @@
 class ContactGroupsController < ApplicationController
-  respond_to :js, :html
+  respond_to :js
   # GET /contact_groups
   # GET /contact_groups.xml
   load_and_authorize_resource
@@ -65,7 +65,8 @@ class ContactGroupsController < ApplicationController
 
 
   def add_to_group_form
-    @contact_list ="nil"
+    @group = ContactGroup.new
+    @contact_list = "nil"
     respond_with(@contact_list) do |format|
       format.js { render_to_facebox }
     end
