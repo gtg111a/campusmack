@@ -18,6 +18,8 @@ class Ability
       can :create, Redemption
       can :create, Smack
       can :create, Comment
+      can :send_in_email, Post
+      can :send_as_smack, Post
       can [:update, :destroy], Redemption, :user_id => user.id
       can [:update, :destroy], Smack, :user_id => user.id
       can [:update, :destroy], Comment, :user_id => user.id
