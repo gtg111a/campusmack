@@ -408,8 +408,7 @@ a.sign_up:visited {
 
 .colname {
   float: left;
-  width: 70px;
-  overflow: hidden;
+  width: 72px;
   white-space: nowrap;
 }
 
@@ -747,6 +746,7 @@ ul.news li {
 
 .smack_container .actions {
   float: right;
+  margin: -3px 0 6px;
 }
 
 .smack_container .smack_info {
@@ -796,8 +796,21 @@ ul.news li {
   padding: 5px 5px 5px 35px;
 }
 
-.comment .actions img {
-  padding-bottom: 4px;
+.comment .actions .report_abuse {
+  border: 1px solid #d9d9d9;
+  display: inline-block;
+  font-size: 8px;
+  font-weight: bold;
+  padding: 0 2px;
+  margin-right: 5px;
+  line-height: 12px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.comment .actions .report_abuse:hover {
+  color: #fff;
+  background: #30A0F0;
+  border-color: #30A0F0;
 }
 
 .comment .comment_info {
@@ -849,11 +862,13 @@ ul.news li {
 }
 
 .add_comment {
-  margin-left: 105px;
+  margin: 26px 0 0 105px;
 }
 
 .add_comment label {
   font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
 }
 
 #new_comment textarea {
@@ -867,7 +882,7 @@ ul.news li {
 }
 
 #new_comment input[type=submit] {
-  margin: 3px 0;
+  margin: 15px 15px 0 0;
 }
 
 .section {
@@ -1490,7 +1505,10 @@ form.semantic {
 
 /* This is the form fields separtor. Use this instead of table layout for forms. */
 form.semantic .field {
+  color: #2680c6;
   margin-bottom: 10px;
+  clear: both;
+  overflow: hidden;
 }
 
 form.semantic label {
@@ -1503,13 +1521,8 @@ form.semantic label {
 }
 
 form.semantic.left_align label {
-  float: none;
-  display: inline-block;
+  display: block;
   width: 100px;
-}
-
-form.semantic.left_align .actions {
-  margin-left: 122px;
 }
 
 form.semantic input, form.semantic textarea {
@@ -1519,6 +1532,7 @@ form.semantic input, form.semantic textarea {
   border-color: #cdcdcd;
   border-style: solid;
   font-size: 11pt;
+  float: none;
   width: 260px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1535,6 +1549,12 @@ form.semantic input {
 form.semantic textarea {
   font-family: Helvetica, Arial, sans-serif;
   padding: 5px;
+}
+
+/* use this class to size the textarea using html cols & rows */
+form.semantic textarea.autosize {
+  width: auto;
+  height: auto;
 }
 
 form.semantic select {
@@ -1585,6 +1605,15 @@ form.semantic .actions .alt:hover {
   background: #fff;
 }
 
+form.semantic.left_align .actions {
+  margin-left: 122px;
+}
+
+form.semantic.left_align button, form.semantic.left_align .actions input, form.semantic.left_align .actions .blue_button {
+  float: left;
+}
+
+
 .fullstats .inbox_table {
   height: auto;
   width: auto;
@@ -1627,6 +1656,7 @@ ul.items.news .team-item {
 
 .team-item .item-top h3 {
     font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .team-item .item-top h3 a:visited,

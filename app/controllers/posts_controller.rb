@@ -141,8 +141,12 @@ class PostsController < ApplicationController
       to = ""
       if (params[:share][:to].present?)
         to = params[:share][:to].split(",").map do |c_id|
-          c = Contact.find(c_id)
-          if c.user_id == current_user.id then c.email else next end
+          begin
+            c = Contact.find(c_id)
+            if c.user_id == current_user.id then c.email else next end
+          rescue ActiveRecord::RecordNotFound
+            c_id
+          end
         end.join(",")
       end
       UserMailer.share_post(@post, title, to, params[:share][:message]).deliver

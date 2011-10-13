@@ -1,6 +1,6 @@
 <li class="team-item">
   <div class="summary">
-    <%= post.title %>
+    <%= truncate(post.title, :length => 80) %>
   </div>
   <%= share_icons(post, :preview) %>
 </li>

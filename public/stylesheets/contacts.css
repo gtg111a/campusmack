@@ -35,7 +35,7 @@
     color:#565656;
 }
 
-.contacts_items_per_page ul li a:focus, .contacts_items_per_page ul li a:hover{
+.contacts_items_per_page ul li a:focus, .contacts_items_per_page ul li a:hover {
     text-decoration: underline;
 }
 
@@ -291,7 +291,10 @@
     width: 190px;
 }
 
-#contact_group_form .rbtn{margin:0;}
+#contact_group_form .rbtn{
+  margin: 0;
+  width: auto;
+}
 
 #contact_group_form .radio{
     width: 7%;
@@ -316,4 +319,8 @@
 
 .add_edit_group a{
     float:left;
+}
+
+tr#address_book .entry {
+  padding-bottom: 20px;
 }

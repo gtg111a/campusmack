@@ -12,11 +12,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#new_contact").live("submit", function() {
-        $(document).trigger('close.facebox');
-        reload_contacts();
-    });
-
     $('input.select_all').live('click',function (event) {
         $("#contact_list").find(':checkbox').attr('checked', this.checked);
     });
@@ -65,11 +60,12 @@ $(document).ready(function() {
 
     $("#facebox .popup .content #form_facebox_ajax form").live("submit", function() {
         var action = $('#facebox .popup .content #form_facebox_ajax form').attr('action');
-        indicator_progress_in_facebox(action)
+        indicator_progress_in_facebox(action);
     });
 
     $("#facebox .popup .content #div_facebox_ajax a[data-method='delete']").live("click", function() {
         indicator_progress_in_facebox('/contact_groups');
+        $.getScript('/contact_groups');
     });
 
     $("#facebox .popup .content a").live("click", function() {

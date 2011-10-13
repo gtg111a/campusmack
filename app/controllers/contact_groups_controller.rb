@@ -3,12 +3,13 @@ class ContactGroupsController < ApplicationController
   # GET /contact_groups
   # GET /contact_groups.xml
   load_and_authorize_resource
+
   def index
     @contact_groups = current_user.contact_groups.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
-      format.xml  { render :xml => @contact_groups }
-      format.js {render_to_facebox}
+      format.xml { render :xml => @contact_groups }
+      format.js { render_to_facebox }
     end
   end
 
@@ -18,8 +19,8 @@ class ContactGroupsController < ApplicationController
     @contact_group = current_user.contact_groups.find(params[:id])
 
     respond_to do |format|
-      format.xml  { render :xml => @contact_group }
-      format.js {render_to_facebox}
+      format.xml { render :xml => @contact_group }
+      format.js { render_to_facebox }
     end
   end
 
@@ -29,8 +30,8 @@ class ContactGroupsController < ApplicationController
     @contact_group = current_user.contact_groups.build
 
     respond_to do |format|
-      format.xml  { render :xml => @contact_group }
-      format.js {render_to_facebox}
+      format.xml { render :xml => @contact_group }
+      format.js { render_to_facebox }
     end
   end
 
@@ -38,7 +39,7 @@ class ContactGroupsController < ApplicationController
   def edit
     @contact_group = ContactGroup.find(params[:id])
     respond_to do |format|
-      format.js {render_to_facebox}
+      format.js { render_to_facebox }
     end
   end
 
@@ -47,6 +48,9 @@ class ContactGroupsController < ApplicationController
   def create
     @contact_group = current_user.contact_groups.build(params[:contact_group])
     @contact_group.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   # PUT /contact_groups/1
@@ -54,6 +58,9 @@ class ContactGroupsController < ApplicationController
   def update
     @contact_group = current_user.contact_groups.find(params[:id])
     @contact_group.update_attributes(params[:contact_group])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # DELETE /contact_groups/1
@@ -85,9 +92,9 @@ class ContactGroupsController < ApplicationController
         @contact_count = contacts.count if contacts.any?
       end
     end
-    
+
     respond_with(@group) do |format|
-      if(@group.valid?)
+      if (@group.valid?)
         flash[:notice] = @contact_count.to_s + " contacts added to  #{@group.name}"
       else
         flash[:error] = "Error saving group. May be you left group name blank."

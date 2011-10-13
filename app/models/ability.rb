@@ -23,7 +23,7 @@ class Ability
       can [:update, :destroy], Redemption, :user_id => user.id
       can [:update, :destroy], Smack, :user_id => user.id
       can [:update, :destroy], Comment, :user_id => user.id
-      can [:vote_up, :vote_down], Post
+      can [:vote_up, :vote_down, :send_as_smack, :send_in_email], Post
       can [:manage], Authentication, :user_id => user.id
       can :manage, Vote, :user_id => user.id
       can :manage, Contact, :user_id => user.id

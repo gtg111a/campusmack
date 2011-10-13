@@ -289,6 +289,7 @@
     text-align: center;
     vertical-align: middle;
     background-image: url(/images/view_more_bg.png);
+    margin-top: 10px;
 }
 
 #address_book .groups {

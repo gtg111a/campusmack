@@ -5,7 +5,7 @@
         <%# FIXME widget shows stats only for I-A now %>
         <%# Conference.where(:division => session[:division]).each do |conference| %>
         <% Conference.where(:division => 'I-A').each do |conference| %>
-            <%= render :partial => 'conferences/stats', :locals => {:conference => conference, :limit => 3} %>
+            <%= render :partial => 'conferences/stats_widget', :locals => {:conference => conference, :limit => 3} %>
         <% end %>
       </div>
     </div>

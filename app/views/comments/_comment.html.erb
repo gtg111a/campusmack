@@ -4,6 +4,7 @@
   </div>
   <div class="comment_content">
     <div class="actions">
+      <%= link_to "Report Abuse", "#", :class => "report_abuse" %>
       <%= link_to '<img src="/images/edit_.png" alt="Edit" />'.html_safe, edit_comment_path(comment), :class => 'button' if can? :edit, comment %>
       <%= link_to '<img src="/images/delete_.png" alt="Delete" />'.html_safe, comment, :method => :delete, :remote => true, :confirm => "Delete Comment?", :class => 'button' if can? :destroy, comment %>
       <%= link_to '<img src="/images/report_.png" alt="Report" />'.html_safe, report_comment_path(comment), :remote => true, :confirm => "Report Abuse?", :class => 'button', :id => "com_rep_#{comment.id}" if can? :report, comment %>

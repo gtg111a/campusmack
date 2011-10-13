@@ -10,7 +10,7 @@
 <% content_for :jq do %>
   $("#mail_recipients").tokenInput([
   <%= @contacts.map do |c|
-    "{id: #{c.id}, name: '#{c.name_or_email}'}"
+    "{id: #{c.id}, name: '#{escape_javascript(c.name_or_email)}'}"
   end.join "," %>
   ], {
   preventDuplicates: true,

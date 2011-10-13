@@ -271,6 +271,12 @@ $.TokenList = function (input, url_or_data, settings) {
                     add_token($(selected_dropdown_item).data("tokeninput"));
                     hidden_input.change();
                     return false;
+                  } else {
+                    if($(this).val().length > 0) {
+                      var new_token = {id: $(this).val(), name: $(this).val()};
+                      add_token(new_token);
+                      return false;
+                    }
                   }
                   break;
 
