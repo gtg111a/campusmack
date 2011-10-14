@@ -45,7 +45,7 @@ class ContactGroupsContactsController < ApplicationController
 
     respond_to do |format|
       if @contact_groups_contact.save
-        format.html { redirect_to(@contact_groups_contact, :notice => 'Contact groups contact was successfully created.') }
+        format.html { redirect_to(@contact_groups_contact, :notice => 'Contact created successfully.') }
         format.xml  { render :xml => @contact_groups_contact, :status => :created, :location => @contact_groups_contact }
       else
         format.html { render :action => "new" }
@@ -61,7 +61,7 @@ class ContactGroupsContactsController < ApplicationController
 
     respond_to do |format|
       if @contact_groups_contact.update_attributes(params[:contact_groups_contact])
-        format.html { redirect_to(@contact_groups_contact, :notice => 'Contact groups contact was successfully updated.') }
+        format.html { redirect_to(@contact_groups_contact, :notice => 'Contact updated successfully.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

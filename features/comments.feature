@@ -109,7 +109,7 @@ Feature: Comments creating, editing and deleting
     Then I should not see "Edit" within "div.comment"
     And I should not see "Delete" within "div.comment"
     And I go to "<Old Text>" comment edit page
-    And I should see "You are not authorized to access this page."
+    And I should see "You must sign up/sign in to use this function."
     
     Examples:
     | ConfOrColl | Name   | Type       | Title           | Username  | Email              | Password | Old Text           | New Text          |

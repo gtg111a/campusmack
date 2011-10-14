@@ -97,7 +97,7 @@ class ContactGroupsController < ApplicationController
       if (@group.valid?)
         flash[:notice] = @contact_count.to_s + " contacts added to  #{@group.name}"
       else
-        flash[:error] = "Error saving group. May be you left group name blank."
+        flash[:error] = "Error saving group. Group name should not be blank."
       end
       format.js #{ render_to_facebox }
     end

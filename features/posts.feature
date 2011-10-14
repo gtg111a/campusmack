@@ -122,13 +122,13 @@ Feature: Posts creation and edition
     Examples:
     | Type       | Title           | Text                                     | Username  | Email               | Password  | Action  | Edit Page Content                          |
     | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user | test@example.com    | 12345678  | see     | Edit post                                  |
-    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user | client@example.com  | 87654321  | not see | You are not authorized to access this page |
-    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user | student@example.com | 123456789 | not see | You are not authorized to access this page |
-    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user |                     |           | not see | You are not authorized to access this page |
+    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user | client@example.com  | 87654321  | not see | You must sign up/sign in to use this function |
+    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user | student@example.com | 123456789 | not see | You must sign up/sign in to use this function |
+    | Smack      | Test Smack      | Since I recommend you verify outcomes    | test_user |                     |           | not see | You must sign up/sign in to use this function |
     | Redemption | Test Redemption | Rescue all errors and render error pages | test_user | test@example.com    | 12345678  | see     | Edit post                                  |
-    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user | client@example.com  | 87654321  | not see | You are not authorized to access this page |
-    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user | student@example.com | 123456789 | not see | You are not authorized to access this page |
-    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user |                     |           | not see | You are not authorized to access this page |
+    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user | client@example.com  | 87654321  | not see | You must sign up/sign in to use this function |
+    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user | student@example.com | 123456789 | not see | You must sign up/sign in to use this function |
+    | Redemption | Test Redemption | Rescue all errors and render error pages | test_user |                     |           | not see | You must sign up/sign in to use this function |
 
   Scenario Outline: Posts delete access
     Given I have confirmed users

@@ -12,7 +12,7 @@ class SupportController < ApplicationController
     if @support.save
       redirect_to root_path, :flash => {:success => "Message Sent!"}
     else
-      flash[:alert] = "You must fill all fields."
+      flash[:alert] = "You must fill in all fields."
       render 'new'
     end
   end
