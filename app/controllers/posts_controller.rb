@@ -134,7 +134,7 @@ class PostsController < ApplicationController
     @contacts = current_user.contacts.all
     @groups = current_user.contact_groups.all
     @submit = 'SEND AS SMACK'
-    @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + @post.user.first_name + " " + @post.user.last_name end
+    @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + current_user.first_name + " " + current_user.last_name end
     if request.post?
       title = params[:share][:subject]
 

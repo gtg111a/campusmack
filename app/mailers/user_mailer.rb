@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
   def share_post(post, title, to, message)
     @post = post
     @message = message
-    mail(:to => to, :from => 'noreply@campusmack.com', :subject => title)
+    mail(:to => to, :from => 'Campusmack@campusmack.com', :subject => title)
   end
 
 end
