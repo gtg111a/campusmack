@@ -236,15 +236,19 @@ a.sign_up:visited {
   background-color: #ededed;
 }
 
-.top_submenu ul,
+.top_submenu ul {
+  background: #fff;
+  list-style: none;
+  overflow: hidden;
+}
+
 .top_submenu li {
+  background-color: #EDEDED;
   margin: 0;
   padding: 0;
   float: left;
   list-style: none;
-}
-
-.top_submenu li {
+  line-height: 23px;
   border-right: 1px solid #bcbcbc;
 }
 
@@ -255,8 +259,7 @@ a.sign_up:visited {
 .top_submenu li a,
 .top_submenu li b {
   display: block;
-  float: left;
-  padding: 5px 10px;
+  padding: 0 10px;
   color: #2c2c2c;
 }
 
@@ -277,30 +280,33 @@ a.sign_up:visited {
 }
 
 #conference_column .top_submenu li {
+  text-align: center;
   display: block;
   float: left;
-
+  line-height: 23px;
+  width: 50px;
 }
 
 #conference_column .top_submenu li a {
-  padding: 5px 10px;
+  padding: 0 10px;
   color: #2c2c2c;
 }
 
 #conference_column .top_submenu li a:hover {
-  padding: 5px 10px;
   color: #000;
 }
 
 #conference_column .top_submenu li.active {
-  padding: 5px 10px;
+  background-color: #ffffff;
+  padding: 0 10px;
   font-weight: normal;
   color: #2e86cb;
-  background-color: #ffffff;
+  width: 30px;
 }
 
-.conference_column_first {
-  padding: 5px 20px 5px 18px !important;
+#conference_column .top_submenu li.conference_column_first {
+  width: 69px;
+  background: #EDEDED;
 }
 
 .content_actions {
@@ -1233,7 +1239,7 @@ to keep footer on the bottom of page.
 .left_menu ul li.active a,
 .left_menu ul li.active a:link,
 .left_menu ul li.active a:visited {
-/*color: #fff;*/
+  color: #fff;
 }
 
 .left_menu ul li.active a:hover,

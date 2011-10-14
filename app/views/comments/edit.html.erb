@@ -10,7 +10,7 @@
 
     <div class="field actions">
       <div class="blue_button"><%= f.submit "SUBMIT" %></div>
-      <div class="blue_button"><%= button_to "DELETE", @comment, :method => :delete, :confirm => "Are you sure?" %></div>
+      <div class="blue_button"><%= link_to "DELETE", @comment, :method => :delete, :confirm => "Are you sure?" %></div>
     </div>
   <% end %>
 </div>

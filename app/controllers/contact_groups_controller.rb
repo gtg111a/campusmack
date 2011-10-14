@@ -49,7 +49,7 @@ class ContactGroupsController < ApplicationController
     @contact_group = current_user.contact_groups.build(params[:contact_group])
     @contact_group.save
     respond_to do |format|
-      format.js
+      format.js { render :update }
     end
   end
 
@@ -68,6 +68,7 @@ class ContactGroupsController < ApplicationController
   def destroy
     @contact_group = current_user.contact_groups.find(params[:id])
     @contact_group.destroy
+    render :nothing => true
   end
 
 
@@ -94,12 +95,7 @@ class ContactGroupsController < ApplicationController
     end
 
     respond_with(@group) do |format|
-      if (@group.valid?)
-        flash[:notice] = @contact_count.to_s + " contacts added to  #{@group.name}"
-      else
-        flash[:error] = "Error saving group. May be you left group name blank."
-      end
-      format.js #{ render_to_facebox }
+      format.js
     end
   end
 end

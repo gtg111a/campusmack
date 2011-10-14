@@ -38,12 +38,14 @@
   $(".group_checkbox").change(function(){
     var addRemove = $(this).prop("checked");
     $(".licontact_checkbox").hide();
+    $("#address_book .groups li").removeClass("active");
+    $(this).closest("li").addClass("active");
     if ($(this).data('ids').toString().length > 0) {
       var ids = $(this).data('ids').toString().split(',');
       for (id in ids) {
         $(".contact_checkbox").each(function(i) {
           if ($(this).attr('id') == 'contact-'+ids[id]) {
-            $("#li"+$(this).attr('id')).show('fast');
+            $("#li"+$(this).attr('id')).show();
             if ($(this).prop("checked") != addRemove) {
               $(this).prop("checked", addRemove);
               addRemoveContact(this);
@@ -62,7 +64,7 @@
       for (id in ids) {
         $(".contact_checkbox").each(function(i) {
           if ($(this).attr('id') == 'contact-'+ids[id]) {
-            $("#li"+$(this).attr('id')).show('fast');
+            $("#li"+$(this).attr('id')).show();
           }
         });
       }
@@ -81,12 +83,18 @@
     });
   });
   $("#show_all_contacts").click(function(){
-    $(".licontact_checkbox").show('fast');
+    $(".licontact_checkbox").show();
     $("#address_book .groups li").removeClass("active");
     $(this).closest("li").addClass("active");
   });
   $("#show_address_book").click(function(){
-    $("#address_book").toggle('slow');
+    if ($("#show_address_book").html() == "ADD RECIPIENTS") {
+      $("#address_book").show('slow');
+      $("#show_address_book").html("I'M DONE!");
+    } else {
+      $("#address_book").hide('slow');
+      $("#show_address_book").html("ADD RECIPIENTS");
+    }
   });
 <% end %>
 <div class="standard clearfix">

@@ -28,7 +28,7 @@
 
 .blue_button a, .blue_button input {
     display: block;
-    padding-top: 4px;
+    padding: 4px 5px 0;
     color: #fff;
     font-family: Conv_MyriadPro-BoldCond;
     text-transform: uppercase;

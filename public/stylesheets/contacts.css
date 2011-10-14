@@ -40,7 +40,7 @@
 }
 
 .contacts_table {
-    background: #fff url(/images/contact_groups-bg.png) repeat-y left bottom;
+    background: #fff url(/images/contact_groups-bg-repeat.png) repeat-y left bottom;
     clear: both;
     overflow: hidden;
     border-color: #DEDEDE;
@@ -133,13 +133,21 @@
 
 .contacts .add_edit_group{
     border-bottom:0 !important;
+    border-right: 1px solid #DEDEDE;
 }
 
-.contacts .add_edit_group {
-    border: 0;
-    border-right: 1px solid #DEDEDE;
-    clear: left;
-    float: left;
+.add_edit_group .ajax{
+    border-right: 0 none !important;
+    float: right;
+    margin: 0 0 0 2px;
+    padding: 0 !important;
+    position: relative;
+    width: 16px !important;
+}
+
+.add_edit_group a{
+    float:left;
+    width: 116px;
 }
 
 .contacts .add_edit_group,
@@ -174,7 +182,6 @@
 
 .contacts .add_edit_group {
     color: #09689e;
-    padding: 5px 8px 5px 10px;
     font-weight: bold;
     font-size: 12px;
     border-right: 2px #fff solid;
@@ -311,14 +318,6 @@
 .content_actions .ajax{
     position: relative;
     top: -2px;
-}
-
-.add_edit_group .ajax{
-    float:right;
-}
-
-.add_edit_group a{
-    float:left;
 }
 
 tr#address_book .entry {

@@ -197,6 +197,10 @@ $.TokenList = function (input, url_or_data, settings) {
         })
         .blur(function () {
             hide_dropdown();
+            if($(this).val().length > 0) {
+              var new_token = {id: $(this).val(), name: $(this).val()};
+              add_token(new_token);
+            }
             $(this).val("");
         })
         .bind("keyup keydown blur update", resize_input)
