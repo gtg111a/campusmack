@@ -72,11 +72,11 @@ ul.statistics li table td.smack, ul.statistics li table td.redemp {
 }
 
 ul.statistics li table td.smack {
-    color: #b30000
+	color: #106f00;
 }
 
 ul.statistics li table td.redemp {
-    color: #106f00;
+	color: #b30000;
     border-color: #CACBCB
 }
 
