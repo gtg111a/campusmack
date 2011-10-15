@@ -27,18 +27,11 @@
 <script type="text/javascript" >
   $(document).ready(function(){
 
-    var h = $('#rowclick1').height();
-
     $('#add_contact').click(function(){
-
         $.ajax({
           type: "POST",
           url: "<%= add_to_group_contact_groups_path() -%>",
-          data: $('#contact_group_form :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize(),
-          success: function(){
-                   $('#rowclick1').html("<table><td class='ajax_loader' style='height:" + h + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
-                   $('#rowclick1').load(location + ' ' + '#rowclick1' );
-               }
+          data: $('#contact_group_form :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize()
         });
       
       return false;

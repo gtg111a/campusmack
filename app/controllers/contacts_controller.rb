@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
                 else
                   @group = ContactGroup.new(:name => 'All')
                   current_user.contacts
-                end.paginate(:page => params[:page], :per_page => params[:per])
+                end.order("name ASC").paginate(:page => params[:page], :per_page => params[:per])
   end
 
   # GET /contacts/1
@@ -50,9 +50,10 @@ class ContactsController < ApplicationController
   # POST /contacts.xml
   def create
     @contact = current_user.contacts.build(params[:contact])
-
+    @group = ContactGroup.find(params[:group_id]) if !params[:group_id].empty?
     respond_to do |format|
       if @contact.save
+        @contact.contact_groups << @group if @group
         format.js
       else
         format.js
@@ -108,7 +109,6 @@ class ContactsController < ApplicationController
       @contact = current_user.contacts.find(id)
       @contact.destroy
     }
-    flash[:notice] = "#{@contacts_ids.count} contacts deleted"
   end
 
   def remove_emails_from_group
@@ -117,11 +117,10 @@ class ContactsController < ApplicationController
       @contacts_ids.each { |id|
         contact = current_user.contacts.find(id)
         contact_group = contact.contact_groups
-        contact_group.delete(contact_group)
+        contact_item = ContactGroup.find(params[:group_id])
+        contact_group.delete(contact_item)
       }
     end
   end
 
 end
-
-
