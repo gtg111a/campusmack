@@ -41,6 +41,7 @@
         <% unless current_user %>
             <span>sign in:</span>
             <a href="/sign_in" class="network icon"></a>
+			<%= header_service_link(:google_apps) %>
             <%= header_service_link(:facebook) %>
             <%= header_service_link(:twitter) %>
             <div class="line"></div>
@@ -50,7 +51,7 @@
             |
             <%= link_to 'Profile', edit_user_registration_path, :class => "white" %>
             |
-            <%= link_to 'Sign Out', sign_out_path, :class => "white" %>
+            <%= link_to 'Help', help_path, :class => "white" %>
         <% end %>
       </div>
 

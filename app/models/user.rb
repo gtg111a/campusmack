@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
             :uniqueness => {:case_sensitive => false}
   validates :college, :presence => true
   validates :affiliation, :presence => true
+  validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
 
 
