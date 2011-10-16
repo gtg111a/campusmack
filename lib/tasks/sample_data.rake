@@ -1,3 +1,4 @@
+require "ffaker"
 namespace :db do
   desc "Reset db"
   task :crush => :environment do
@@ -350,7 +351,7 @@ def make_colleges
     }
   }.each do |division, conferences|
     conferences.each do |conference, colleges|
-      conf = Conference.create!(:name => conference, :division => division)
+      conf = Conference.create!(:name => conference, :division => division, :permalink => conference.downcase.gsub(' ', '-'))
       colleges.each do |name, abbrev|
         conf.colleges.create!(:name => name, :abbrev => abbrev)
       end

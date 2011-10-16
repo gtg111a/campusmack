@@ -1,9 +1,31 @@
 <% content_for :js do %>
-  function addRemoveContact(contact) {
+  function addRemoveContact(contact, addRemove) {
+    if ($(contact).prop("checked") != addRemove) {
+      $(contact).prop("checked", addRemove);
+      syncContact(contact);
+    }
+  }
+  function syncContact(contact) {
     if ($(contact).prop("checked")) {
       $("#mail_recipients").tokenInput("add", $(contact).data('json'));
     } else {
       $("#mail_recipients").tokenInput("remove", $(contact).data('json'));
+    }
+  }
+  function switchGroup(group, addRemove, sync) {
+    $(".licontact_checkbox").hide();
+    $("#address_book .groups li").removeClass("active");
+    $(group).closest("li").addClass("active");
+    if ($(group).data('ids').toString().length > 0) {
+      var ids = $(group).data('ids').toString().split(',');
+      for (id in ids) {
+        $(".contact_checkbox").each(function(i) {
+          if ($(this).attr('id') == 'contact-'+ids[id]) {
+            $("#li"+$(this).attr('id')).show();
+            if (sync) addRemoveContact(this, addRemove);
+          }
+        });
+      }
     }
   }
 <% end %>
@@ -24,51 +46,23 @@
   }
   });
   $(".contact_checkbox").change(function(){
-    addRemoveContact(this);
+    syncContact(this);
   });
   $("#current_group_checkbox").change(function(){
     var addRemove = $(this).prop("checked");
     $(".contact_checkbox:visible").each(function(i) {
-      if ($(this).prop("checked") != addRemove) {
-        $(this).prop("checked", addRemove);
-        addRemoveContact(this);
-      }
+      addRemoveContact(this, addRemove);
     });
   });
   $(".group_checkbox").change(function(){
     var addRemove = $(this).prop("checked");
-    $(".licontact_checkbox").hide();
-    $("#address_book .groups li").removeClass("active");
-    $(this).closest("li").addClass("active");
-    if ($(this).data('ids').toString().length > 0) {
-      var ids = $(this).data('ids').toString().split(',');
-      for (id in ids) {
-        $(".contact_checkbox").each(function(i) {
-          if ($(this).attr('id') == 'contact-'+ids[id]) {
-            $("#li"+$(this).attr('id')).show();
-            if ($(this).prop("checked") != addRemove) {
-              $(this).prop("checked", addRemove);
-              addRemoveContact(this);
-            }
-          }
-        });
-      }
-    }
+    switchGroup($(this).closest("li"), addRemove, true);
   });
-  $(".group_link").click(function(){
-    $(".licontact_checkbox").hide();
-    $("#address_book .groups li").removeClass("active");
-    $(this).closest("li").addClass("active");
-    if ($(this).data('ids').toString().length > 0) {
-      var ids = $(this).data('ids').toString().split(',');
-      for (id in ids) {
-        $(".contact_checkbox").each(function(i) {
-          if ($(this).attr('id') == 'contact-'+ids[id]) {
-            $("#li"+$(this).attr('id')).show();
-          }
-        });
-      }
-    }
+  $("li.group_link").click(function(){
+    switchGroup(this, false, false);
+  });
+  $("a.group_link").click(function(){
+    switchGroup($(this).closest("li"), false, false);
   });
   $("#all_checkbox").change(function(){
     $("#address_book .groups li").removeClass("active");
@@ -76,13 +70,10 @@
     var addRemove = $(this).prop("checked");
     $(".group_checkbox").prop("checked", addRemove);
     $(".contact_checkbox").each(function(i) {
-      if ($(this).prop("checked") != addRemove) {
-        $(this).prop("checked", addRemove);
-        addRemoveContact(this);
-      }
+      addRemoveContact(this, addRemove);
     });
   });
-  $("#show_all_contacts").click(function(){
+  $(".show_all_contacts").click(function(){
     $(".licontact_checkbox").show();
     $("#address_book .groups li").removeClass("active");
     $(this).closest("li").addClass("active");
@@ -119,9 +110,9 @@
                 <div class="groups">
                   <span>Groups:</span>
                   <ul>
-                    <li class="active"><input type="checkbox" id="all_checkbox"/> <a href="javascript:void(0)" id="show_all_contacts">All</a></li>
+                    <li class="active show_all_contacts"><input type="checkbox" id="all_checkbox"/> <a href="javascript:void(0)" class="show_all_contacts">All</a></li>
                     <% @groups.each do |group| %>
-                      <li><input type="checkbox" class="group_checkbox" id="group-<%= group.id %>" data-ids="<%= group.contacts.map(&:id).join(",") %>"/> <a href="javascript:void(0)" class="group_link" data-ids="<%= group.contacts.map(&:id).join(",") %>"><%= group.name %></a></li>
+                      <li class="group_link" data-ids="<%= group.contacts.map(&:id).join(",") %>"><input type="checkbox" class="group_checkbox" id="group-<%= group.id %>"/> <a href="javascript:void(0)" class="group_link"><%= group.name %></a></li>
                     <% end %>
                   </ul>
                 </div>
@@ -130,7 +121,7 @@
                   <ul>
                     <li><input type="checkbox" id="current_group_checkbox" /> All</li>
                     <% @contacts.each do |contact| %>
-                      <li class="licontact_checkbox" id="licontact-<%= contact.id %>"><input type="checkbox" class="contact_checkbox" data-json='{"id": <%= contact.id %>, "name": "<%= contact.name_or_email %>"}' id="contact-<%= contact.id %>"/> <label for="contact-<%= contact.id %>"><%= contact.name %> &lt;<%= contact.email %>&gt;</label></li>
+                      <li class="licontact_checkbox" id="licontact-<%= contact.id %>"><input type="checkbox" class="contact_checkbox" data-json='{"id": <%= contact.id %>, "name": "<%= escape_javascript(contact.name_or_email.gsub("'","&#39;")) %>"}' id="contact-<%= contact.id %>"/> <label for="contact-<%= contact.id %>"><%= contact.name %> &lt;<%= contact.email %>&gt;</label></li>
                     <% end %>
                   </ul>
                 </div>

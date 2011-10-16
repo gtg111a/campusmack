@@ -312,6 +312,7 @@
 
 #address_book .groups li {
     border-right: solid 1px #cfcfcf;
+    cursor: pointer;
 }
 
 #address_book .groups li.active, #address_book .contacts ul {

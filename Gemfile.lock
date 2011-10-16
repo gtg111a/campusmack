@@ -57,6 +57,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.7.2)
+      capybara (< 1.2, >= 1.0.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     client_side_validations (3.1.0)
@@ -86,12 +88,12 @@ GEM
     factory_girl_rails (1.2.0)
       factory_girl (~> 2.1.0)
       railties (>= 3.0.0)
-    faker (0.3.1)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
     fastercsv (1.5.4)
+    ffaker (1.8.1)
     ffi (1.0.9)
     gherkin (2.4.21)
       json (>= 1.4.6)
@@ -103,6 +105,7 @@ GEM
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.1)
+    launchy (2.0.3)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -213,6 +216,7 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
+    shoulda-matchers (1.0.0.beta3)
     spork (0.9.0.rc5)
     sqlite3 (1.3.3)
     term-ansicolor (1.0.6)
@@ -229,10 +233,7 @@ GEM
     tzinfo (0.3.30)
     warden (1.0.5)
       rack (>= 1.0)
-    webrat (0.7.1)
-      nokogiri (>= 1.2.0)
-      rack (>= 1.0)
-      rack-test (>= 0.5.3)
+    watchr (0.7)
     will_paginate (3.0.pre2)
     xml-simple (1.1.0)
     xpath (0.1.4)
@@ -247,16 +248,18 @@ DEPENDENCIES
   breadcrumbs
   cancan
   capybara
+  capybara-webkit
   client_side_validations
   cucumber
   cucumber-rails
   database_cleaner
   devise (= 1.4.2)
   factory_girl_rails
-  faker (= 0.3.1)
   fastercsv
+  ffaker (= 1.8.1)
   gravatar_image_tag
   jquery-rails
+  launchy
   meta_search
   omniauth (= 0.2.6)
   paperclip
@@ -265,9 +268,10 @@ DEPENDENCIES
   rails_admin!
   rake
   rspec-rails (= 2.6.1)
+  shoulda-matchers
   spork (= 0.9.0.rc5)
   sqlite3 (= 1.3.3)
   thin
   thumbs_up
-  webrat (= 0.7.1)
+  watchr
   will_paginate (= 3.0.pre2)

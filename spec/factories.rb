@@ -5,20 +5,22 @@ Factory.define :user do |user|
   user.last_name { Faker::Name.name }
   user.email { Faker::Internet.email }
   user.affiliation 'Student'
-  user.college { College.all.sample }
-  user.password "foobar"
+  user.association :college
+  user.password "password"
   user.password_confirmation { |x| x.password }
 end
 
-Factory.sequence :email do |n|
-  "person-#{n}@example.com"
+Factory.define :college do |i|
+  i.name { Faker::Name.name }
 end
 
-Factory.define :micropost do |micropost|
-  micropost.content "Foo bar"
-  micropost.association :user
+Factory.define :contact_group, :class => ContactGroup do |i|
+  i.association :user
+  i.name { Faker::Name.name }
 end
 
-Factory.sequence :content do |n|
-  "POOOFACE"
+Factory.define :contact, :class => Contact do |i|
+  i.association :user
+  i.email { Faker::Internet.email }
+  i.name { Faker::Name.name }
 end

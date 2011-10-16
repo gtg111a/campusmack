@@ -10,8 +10,8 @@
   <% conferences.each_with_index do |college, i| %>
     <div class="cell clearfix <% if i == conferences.size-1 %>noborder<% end %>">
       <div class="black colname"><%= link_to college.abbrev, college %></div>
-      <div class="red redcount"><%= college.smacks_count %></div>
-      <div class="green smcount"><%= college.redemptions_count %></div>
+      <div class="green smcount"><%= college.smacks_count %></div>
+      <div class="red redcount"><%= college.redemptions_count %></div>
     </div>
   <% end %>
   <% if limit %>

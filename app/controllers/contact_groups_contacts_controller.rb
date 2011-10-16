@@ -1,6 +1,5 @@
 class ContactGroupsContactsController < ApplicationController
-  # GET /contact_groups_contacts
-  # GET /contact_groups_contacts.xml
+
   authorize_resource
   def index
     @contact_groups_contacts = ContactGroupsContact.all
@@ -11,8 +10,6 @@ class ContactGroupsContactsController < ApplicationController
     end
   end
 
-  # GET /contact_groups_contacts/1
-  # GET /contact_groups_contacts/1.xml
   def show
     @contact_groups_contact = ContactGroupsContact.find(params[:id])
 
@@ -22,8 +19,6 @@ class ContactGroupsContactsController < ApplicationController
     end
   end
 
-  # GET /contact_groups_contacts/new
-  # GET /contact_groups_contacts/new.xml
   def new
     @contact_groups_contact = ContactGroupsContact.new
 
@@ -33,7 +28,6 @@ class ContactGroupsContactsController < ApplicationController
     end
   end
 
-  # GET /contact_groups_contacts/1/edit
   def edit
     @contact_groups_contact = ContactGroupsContact.find(params[:id])
   end
@@ -54,8 +48,6 @@ class ContactGroupsContactsController < ApplicationController
     end
   end
 
-  # PUT /contact_groups_contacts/1
-  # PUT /contact_groups_contacts/1.xml
   def update
     @contact_groups_contact = ContactGroupsContact.find(params[:id])
 
@@ -70,8 +62,6 @@ class ContactGroupsContactsController < ApplicationController
     end
   end
 
-  # DELETE /contact_groups_contacts/1
-  # DELETE /contact_groups_contacts/1.xml
   def destroy
     @contact_groups_contact = ContactGroupsContact.find(params[:id])
     @contact_groups_contact.destroy
