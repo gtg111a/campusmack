@@ -19,7 +19,7 @@ class ConferencesController < ApplicationController
   end
 
   def show
-    @conference = Conference.where(:name => params[:id].upcase).first
+    @conference = Conference.where(:lowername => params[:id]).first
     @parent = @conference
     init_main_menu
     breadcrumbs.add @conference.name, conference_path(@conference)
@@ -62,6 +62,5 @@ class ConferencesController < ApplicationController
     @main_menu << [ :text, 'All', '', 'active' ]
     @main_menu << [ :link, 'Smacks', conference_smacks_path(@conference)]
     @main_menu << [ :link, 'Redemptions', conference_redemptions_path(@conference)]
-  end
-
+    end
 end
