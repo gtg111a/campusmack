@@ -1,45 +1,51 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
 require 'spork'
+
 Spork.prefork do
-# Loading more in this block will cause your tests to run faster. However,
-# if you change any configuration or code from libraries loaded here, you'll
-# need to restart spork for it take effect.
+  ENV["RAILS_ENV"] ||= 'test'
 
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
+  require 'capybara/rspec'
+  require 'ffaker'
 
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
+  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  require 'factory_girl'
+  Capybara.javascript_driver = :webkit
+  RSpec.configure do |config|
+    config.mock_with :rspec
 
-require 'factory_girl'
-Factory.find_definitions
+    config.use_transactional_fixtures = false
 
-RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-  config.mock_with :rspec
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+    end
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
-  
-  
-  def test_sign_in(user)
-    controller.sign_in(user)
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+
   end
-end
+
+  def login(user)
+    visit sign_in_path
+    fill_in 'Email', :with => user.email
+    fill_in 'Password', :with => 'password'
+    click_button 'user_submit'
+  end
+
+  def handle_js_confirm(accept=true)
+    page.evaluate_script "window.original_confirm_function = window.confirm"
+    page.evaluate_script "window.confirm = function(msg) { return #{!!accept}; }"
+  ensure
+    page.evaluate_script "window.confirm = window.original_confirm_function"
+  end
 end
 
 Spork.each_run do

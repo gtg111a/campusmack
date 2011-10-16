@@ -19,8 +19,6 @@ gem 'cancan'
 gem 'fastercsv'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
 gem 'breadcrumbs'
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', '1.3.3'
 #gem 'mysql2', '0.2.8'
@@ -29,21 +27,23 @@ gem 'will_paginate', '3.0.pre2'
 
 group :development do
 gem 'rspec-rails', '2.6.1'
-gem 'faker', '0.3.1'
-#gem 'ruby-debug'
 end
 
 group :test do
 gem 'rspec-rails', '2.6.1'
-gem 'webrat', '0.7.1'
 gem 'spork', '0.9.0.rc5'
 gem 'cucumber'
 gem 'cucumber-rails'
 gem 'capybara'
+gem 'capybara-webkit'
 gem 'database_cleaner'
+gem 'ffaker', '1.8.1'
+gem 'watchr'
+gem 'shoulda-matchers'
 end
 
 group :development, :test do
+  gem 'launchy'
   gem 'factory_girl_rails'
 end
 
