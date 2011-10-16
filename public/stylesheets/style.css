@@ -111,6 +111,13 @@ a:visited {
   float: left;
 }
 
+.icon.google_apps {
+  background: url(/images/google.png);
+  width: 14px;
+  height: 14px;
+  float: left;
+}
+
 .icon.network {
   background: url(/images/network.png);
   width: 14px;
