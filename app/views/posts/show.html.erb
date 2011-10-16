@@ -71,18 +71,18 @@
         <br class="clear"/>
 
         <div class="content_title2">Comments</div>
-
-        <%= will_paginate(@comments) %>
-        <div class="comments_container">
-          <%= render :partial => @post.comments %>
-        </div>
         <% if signed_in? %>
           <div class="add_comment">
             <%= form_for [@post, Comment.new], :remote => true do |f| %>
               <%= render '/shared/comments', :f => f %>
               <%= f.submit "Comment", :class => "blue_button right" %>
             <% end %>
-          </div>
+          </div><br class="clear"/>
+
+        <%= will_paginate(@comments) %>
+        <div class="comments_container">
+          <%= render :partial => @post.comments %>
+        </div>
         <% end %>
 
       </div>

@@ -1,4 +1,4 @@
 
-$('.comments_container').append("<%= escape_javascript("#{render(:partial => @comment)}").html_safe %>");
+$('.comments_container').prepend("<%= escape_javascript("#{render(:partial => @comment)}").html_safe %>");
 $("#new_comment")[0].reset();
 $("div.flash").remove();

@@ -57,8 +57,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.7.2)
-      capybara (< 1.2, >= 1.0.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     client_side_validations (3.1.0)
@@ -248,7 +246,6 @@ DEPENDENCIES
   breadcrumbs
   cancan
   capybara
-  capybara-webkit
   client_side_validations
   cucumber
   cucumber-rails
