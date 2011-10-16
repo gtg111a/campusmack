@@ -1217,6 +1217,7 @@ to keep footer on the bottom of page.
   padding-left: 17px;
 }
 
+
 .left_menu ul li a,
 .left_menu ul li a:link,
 .left_menu ul li a:visited {
@@ -1236,16 +1237,24 @@ to keep footer on the bottom of page.
   background-repeat: no-repeat;
 }
 
+
 .left_menu ul li.active a,
 .left_menu ul li.active a:link,
 .left_menu ul li.active a:visited {
   color: #fff;
 }
 
+.left_menu ul li.college a,
+.left_menu ul li.college a:link,
+.left_menu ul li.college a:visited {
+  color: #09689e;
+}
+
 .left_menu ul li.active a:hover,
 .left_menu ul li.active a:active {
   color: #000;
 }
+
 
 .left_menu ul li.active:before {
   content: '.';
