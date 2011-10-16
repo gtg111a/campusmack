@@ -81,7 +81,7 @@
 
         <%= will_paginate(@comments) %>
         <div class="comments_container">
-          <%= render :partial => @post.comments %>
+          <%= render :partial => @post.comments.sort_by {|c| c.created_at}.reverse %>
         </div>
         <% end %>
 
