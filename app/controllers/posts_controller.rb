@@ -163,7 +163,7 @@ class PostsController < ApplicationController
 
   def find_parent
     @parent = College.where(:permalink => params[:college_id]).first
-    @parent ||= Conference.where(:name => params[:conference_id]).first
+    @parent ||= Conference.where(:lowername => params[:conference_id]).first
     @parent ||= @post.postable
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end
