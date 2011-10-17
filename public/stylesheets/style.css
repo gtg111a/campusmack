@@ -436,7 +436,7 @@ a.sign_up:visited {
   text-align: right;
 }
 
-.redcount {
+.greencount {
   float: left;
   width: 22px;
   overflow: hidden;

@@ -2,7 +2,7 @@
   <div class="thh clearfix">
     <div class="black colname"><%= truncate(conference.name, :length => 12) %></div>
     <div class="smcount">S</div>
-    <div class="redcount">R</div>
+    <div class="greencount">R</div>
   </div>
 
   <%# FIXME move this logic to controller. No, really, view is not a place for queries like this. %>
@@ -10,8 +10,8 @@
   <% conferences.each_with_index do |college, i| %>
     <div class="cell clearfix <% if i == conferences.size-1 %>noborder<% end %>">
       <div class="black colname"><%= link_to college.abbrev, college %></div>
-      <div class="green smcount"><%= college.smacks_count %></div>
-      <div class="red redcount"><%= college.redemptions_count %></div>
+      <div class="red smcount"><%= college.smacks_count %></div>
+      <div class="green greencount"><%= college.redemptions_count %></div>
     </div>
   <% end %>
   <% if limit %>

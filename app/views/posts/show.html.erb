@@ -77,13 +77,13 @@
               <%= render '/shared/comments', :f => f %>
               <%= f.submit "Comment", :class => "blue_button right" %>
             <% end %>
+			<% end %>
           </div><br class="clear"/>
-
         <%= will_paginate(@comments) %>
         <div class="comments_container">
           <%= render :partial => @post.comments.sort_by {|c| c.created_at}.reverse %>
         </div>
-        <% end %>
+
 
       </div>
       <%= render 'shared/report_form' %>
