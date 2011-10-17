@@ -13,7 +13,7 @@
           <a href="<%= url_for(conference) %>"><%= conference.name %></a>
           <ul>
             <% conference.colleges.each do |college| %>
-                <li class="college"><%= link_to college.name, college %></li>
+                <li<%= if college == @college then; ' class="active"'.html_safe end %>><%= link_to college.name, college %></li>
             <% end %>
           </ul>
         </li>

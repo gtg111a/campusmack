@@ -69,7 +69,6 @@
           <% end %>
         </div>
         <br class="clear"/>
-
         <div class="content_title2">Comments</div>
         <% if signed_in? %>
           <div class="add_comment">
@@ -77,14 +76,12 @@
               <%= render '/shared/comments', :f => f %>
               <%= f.submit "Comment", :class => "blue_button right" %>
             <% end %>
-			<% end %>
-          </div><br class="clear"/>
+        <% end %>
+        </div><br class="clear"/>
         <%= will_paginate(@comments) %>
         <div class="comments_container">
-          <%= render :partial => @post.comments.sort_by {|c| c.created_at}.reverse %>
+          <%= render :partial => @post.comments.sort_by { |c| c.created_at }.reverse %>
         </div>
-
-
       </div>
       <%= render 'shared/report_form' %>
     </div>
