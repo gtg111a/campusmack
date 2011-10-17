@@ -70,7 +70,8 @@ module PostsHelper
         w = 158
         h = 92
       end
-      return raw %Q{<iframe title="YouTube video player" width="#{w}" height="#{h}" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+      return raw %Q{<div id="ytplayer-#{youtube_id}"></div><script type="text/javascript">var params = { allowScriptAccess: "always", wmode:"opaque" };var atts = { id: "ytplayer-#{youtube_id}" };swfobject.embedSWF("http://www.youtube.com/e/#{youtube_id}?enablejsapi=1&playerapiid=ytplayer","ytplayer-#{youtube_id}", "#{w}", "#{h}", "8", null, null, params, atts);</script>}
+
     end
   end
 
