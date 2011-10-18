@@ -1,7 +1,7 @@
 <li class="team-item">
-  <h3><%= link_to "News post", post.news_post.url, :class => 'snap_shots' %></h3>
-  <div class="summary">
-    <%= truncate(post.title, :length => 80) %>
+	<div class="summary">
+    <%= link_to truncate(post.title, :length => 80), [post.postable, post] %>
   </div>
+  <h3><%= link_to "Preview Article", post.news_post.url, :class => 'snap_shots' %></h3>
   <%= share_icons(post, :preview) %>
 </li>
