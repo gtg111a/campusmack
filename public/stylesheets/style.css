@@ -1099,7 +1099,7 @@ ul.news li {
   padding: 4px 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
-  height: 20px;
+  line-height: 20px;
 }
 
 .breadcrumbs a,
@@ -1213,7 +1213,9 @@ to keep footer on the bottom of page.
   background-repeat: no-repeat;
 }
 
-.with_submenu.active a:hover {
+
+.with_submenu.active > a:hover,
+.with_submenu.active ul li.active a:hover {
   background: transparent !important;
 }
 
@@ -1238,7 +1240,8 @@ to keep footer on the bottom of page.
   background-color: #ececec;
 }
 
-.left_menu ul li.active {
+.left_menu ul li.active,
+.left_menu ul li.active:hover {
   background-image: url(/images/left_button_active.png);
   background-repeat: no-repeat;
 }
@@ -1277,7 +1280,7 @@ to keep footer on the bottom of page.
   top: -1px;
   left: 170px;
   display: none;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .left_menu ul li:hover > ul {
@@ -1286,6 +1289,19 @@ to keep footer on the bottom of page.
   -webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
 
+}
+
+.left_menu ul li > ul li a {
+  color: #09689E !important;
+}
+
+.left_menu ul li > ul li a:hover,
+.left_menu ul li > ul li a:active {
+  color: #000 !important;
+}
+
+.left_menu ul li > ul li.active a {
+  color: #fff !important;
 }
 
 div.flash {
