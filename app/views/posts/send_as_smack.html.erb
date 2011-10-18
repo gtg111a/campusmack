@@ -1,4 +1,5 @@
 <% content_for :js do %>
+  var dont_change_group = false;
   function addRemoveContact(contact, addRemove) {
     if ($(contact).prop("checked") != addRemove) {
       $(contact).prop("checked", addRemove);
@@ -12,7 +13,11 @@
       $("#mail_recipients").tokenInput("remove", $(contact).data('json'));
     }
   }
-  function switchGroup(group, addRemove, sync) {
+  function switchGroup(group) {
+    if (dont_change_group) {
+      dont_change_group = false;
+      return;
+    }
     $(".licontact_checkbox").hide();
     $("#address_book .groups li").removeClass("active");
     $(group).closest("li").addClass("active");
@@ -22,11 +27,23 @@
         $(".contact_checkbox").each(function(i) {
           if ($(this).attr('id') == 'contact-'+ids[id]) {
             $("#li"+$(this).attr('id')).show();
-            if (sync) addRemoveContact(this, addRemove);
           }
         });
       }
     }
+  }
+  function addRemoveGroup(group, addRemove) {
+    if ($(group).data('ids').toString().length > 0) {
+      var ids = $(group).data('ids').toString().split(',');
+      for (id in ids) {
+        $(".contact_checkbox").each(function(i) {
+          if ($(this).attr('id') == 'contact-'+ids[id]) {
+            addRemoveContact(this, addRemove);
+          }
+        });
+      }
+    }
+    dont_change_group = true;
   }
 <% end %>
 <% content_for :jq do %>
@@ -56,13 +73,13 @@
   });
   $(".group_checkbox").change(function(){
     var addRemove = $(this).prop("checked");
-    switchGroup($(this).closest("li"), addRemove, true);
+    addRemoveGroup($(this).closest("li"), addRemove);
   });
   $("li.group_link").click(function(){
-    switchGroup(this, false, false);
+    switchGroup(this);
   });
   $("a.group_link").click(function(){
-    switchGroup($(this).closest("li"), false, false);
+    switchGroup($(this).closest("li"));
   });
   $("#all_checkbox").change(function(){
     $("#address_book .groups li").removeClass("active");

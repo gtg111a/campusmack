@@ -3,21 +3,33 @@
     <% if controller_name == 'videos' %>
         <span>Videos</span>
     <% else %>
+      <% if @parent %>
         <%= link_to "Videos", @parent.is_a?(College) ? college_videos_path(@parent) : conference_videos_path(@parent) %>
+      <% else %>
+        <%= link_to "Videos", videos_path %>
+      <% end %>
     <% end %>
   </li>
   <li>
     <% if controller_name == 'photos' %>
         <span>Photos</span>
     <% else %>
+      <% if @parent %>
         <%= link_to "Photos", @parent.is_a?(College) ? college_photos_path(@parent) : conference_photos_path(@parent) %>
+      <% else %>
+        <%= link_to "Photos", photos_path %>
+      <% end %>
     <% end %>
   </li>
   <li>
     <% if controller_name == 'news_posts' %>
         <span>News</span>
     <% else %>
+      <% if @parent %>
         <%= link_to "News", @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %>
+      <% else %>
+        <%= link_to "News", news_index_path %>
+      <% end %>
     <% end %>
   </li>
 </ul>

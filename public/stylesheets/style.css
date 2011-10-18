@@ -571,7 +571,7 @@ a.sign_up:visited {
 
 .search {
   float: right;
-  padding: 5px 15px 4px 5px;
+  padding: 5px 0 4px 5px;
   margin-right: -10px;
   font-size: 10.17pt;
 }
@@ -579,30 +579,56 @@ a.sign_up:visited {
 .search label {
   display: block;
   float: left;
-  margin: 4px 5px 0px 0px;
+  margin-right: 8px;
   text-transform: uppercase;
-  line-height: 20px;
+  line-height: 27px;
 }
 
 .search .input_search {
   width: 178px;
-  height: 23px;
+  height: 25px;
   border-width: 1px 0px 1px 1px;
   border-style: solid;
   border-color: #dadada;
-  border-radius: 5px 0px 0px 5px;
   display: block;
   float: left;
-  padding-left: 5px;
+  padding: 0 5px;
+  -webkit-border-radius: 5px;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius: 5px;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
 }
 
-.search .button.blue {
+.search .button {
+  background: url(/images/bg_search_button.png) no-repeat left top;
+  color: #fff;
   border-width: 1px 1px 1px 0px;
   border-style: solid;
   border-color: #dadada;
-  border-radius: 0px 5px 5px 0px;
-  height: 27px; /* fuck me! inputs don't count paddings */
+  text-indent: -9999px;
+  height: 27px;
+  width: 40px;
   margin-left: 0px;
+  cursor: pointer;
+  -webkit-border-radius: 0;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius: 0;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.search .button:hover {
+  background-position: bottom left;
 }
 
 .content_container {
@@ -1827,4 +1853,27 @@ ul.contact-groups {
 .table_middle {
   float: left;
   height: 106px;
+}
+
+div.page {
+  padding: 15px;
+}
+
+.page h3 {
+  font-size: 22px;
+  margin-top: 1em;
+}
+
+.page h4 {
+  font-size: 18px;
+  margin-top: 1em;
+}
+
+.page ol {
+  padding-left: 40px;
+}
+
+.page p,
+.page ol {
+  margin: 1em 0;
 }

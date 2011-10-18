@@ -49,29 +49,28 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.xml
   def create
-    @contact = current_user.contacts.build(params[:contact])
-    @group = ContactGroup.find(params[:group_id]) if !params[:group_id].empty?
-    respond_to do |format|
-      if @contact.save
-        @contact.contact_groups << @group if @group
-        format.js
-      else
-        format.js
+    contact = current_user.contacts.build(params[:contact])
+
+    if contact.save
+      unless params[:group_id].empty?
+        contact_group = current_user.contact_groups.find(params[:group_id])
+        contact.contact_groups << contact_group
       end
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
   # PUT /contacts/1
   # PUT /contacts/1.xml
   def update
-    @contact = current_user.contacts.find(params[:id])
-    @contact.update_attributes(params[:contact])
+    contact = current_user.contacts.find(params[:id])
+    contact.update_attributes(params[:contact])
+
     respond_to do |format|
-      if @contact.update_attributes(params[:contact])
-        format.js
-      else
-        format.js
-      end
+      format.js
     end
   end
 

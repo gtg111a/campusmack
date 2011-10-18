@@ -190,4 +190,9 @@ module ApplicationHelper
             :onclick => "window.open('http://twitter.com/share?url=#{polymorphic_url([post.postable, post])}&text=Check out \"#{post.title}\" on Campusmack.com : '); return false;"
   end
 
+  def get_search_path
+    return "/posts/search" if request.env['PATH_INFO'] == '/'
+    request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search"
+  end
+
 end
