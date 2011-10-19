@@ -125,6 +125,8 @@ Campusmack::Application.routes.draw do
   post '/contact-us', :to => 'support#create'
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
+  match '/terms', :to => 'pages#terms'
+  match '/privacy', :to => 'pages#privacy'
 
   root :to => 'welcome#index'
 end

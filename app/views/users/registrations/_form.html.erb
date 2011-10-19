@@ -78,8 +78,8 @@
       <div class="accept clearfix">
         <% if f.object.new_record? %>
             <div class="terms clearfix">
-              <span class="check_box"><%= f.check_box :terms_of_service %></span><label for="user_terms_of_service"><span class="text">I agree to <%= link_to 'Terms and Conditions of Use', root_url %>
-              and <%= link_to 'Privacy Police', root_url %></span></label>
+              <span class="check_box"><%= f.check_box :terms_of_service %></span><label for="user_terms_of_service"><span class="text">I agree to <%= link_to 'Terms and Conditions of Use', terms_path %>
+              and <%= link_to 'Privacy Policy', privacy_path %></span></label>
             </div>
         <% end %>
 
