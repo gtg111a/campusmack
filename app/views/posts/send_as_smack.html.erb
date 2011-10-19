@@ -1,5 +1,6 @@
 <% content_for :js do %>
   var dont_change_group = false;
+  var timer_group_change;
   function addRemoveContact(contact, addRemove) {
     if ($(contact).prop("checked") != addRemove) {
       $(contact).prop("checked", addRemove);
@@ -13,11 +14,12 @@
       $("#mail_recipients").tokenInput("remove", $(contact).data('json'));
     }
   }
-  function switchGroup(group) {
+  function switchGroup(group_id) {
     if (dont_change_group) {
       dont_change_group = false;
       return;
     }
+    group = $("#"+group_id);
     $(".licontact_checkbox").hide();
     $("#address_book .groups li").removeClass("active");
     $(group).closest("li").addClass("active");
@@ -76,10 +78,11 @@
     addRemoveGroup($(this).closest("li"), addRemove);
   });
   $("li.group_link").click(function(){
-    switchGroup(this);
+    clearTimeout(timer_group_change);
+    timer_group_change = setTimeout("switchGroup('"+$(this).attr('id')+"')", 50);
   });
   $("a.group_link").click(function(){
-    switchGroup($(this).closest("li"));
+    switchGroup($(this).closest("li").attr('id'));
   });
   $("#all_checkbox").change(function(){
     $("#address_book .groups li").removeClass("active");
@@ -129,7 +132,7 @@
                   <ul>
                     <li class="active show_all_contacts"><input type="checkbox" id="all_checkbox"/> <a href="javascript:void(0)" class="show_all_contacts">All</a></li>
                     <% @groups.each do |group| %>
-                      <li class="group_link" data-ids="<%= group.contacts.map(&:id).join(",") %>"><input type="checkbox" class="group_checkbox" id="group-<%= group.id %>"/> <a href="javascript:void(0)" class="group_link"><%= group.name %></a></li>
+                      <li class="group_link" data-ids="<%= group.contacts.map(&:id).join(",") %>" id="ligroup-<%= group.id %>"><input type="checkbox" class="group_checkbox" id="group-<%= group.id %>"/> <a href="javascript:void(0)" class="group_link"><%= group.name %></a></li>
                     <% end %>
                   </ul>
                 </div>
@@ -164,6 +167,7 @@
           <div class="confirmation_container clearfix">
             <span class="blue_button"><%= f.submit "SEND" %></span>
             <span class="blue_button"><%= f.submit "CANCEL" %></span>
+            <div class="dark_button im" style="float:right"> <%= render :partial => 'contacts/import_form' -%></div>
           </div>
         </div>
       <% end %>

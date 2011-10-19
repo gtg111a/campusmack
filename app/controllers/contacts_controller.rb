@@ -88,9 +88,22 @@ class ContactsController < ApplicationController
 
   def import
     @contacts = current_user.contacts.import(current_user, params[:contact])
-    import_count = @contacts.count() { |contact| contact.errors.blank? }
+    errors = {}
+    import_count = @contacts.count() do |contact|
+      valid = contact.errors.blank?
+      unless valid
+        errors[contact.errors.first] ||= 0
+        errors[contact.errors.first] += 1
+      end
+      valid
+    end
+    flash[:notice] = "#{import_count} out of #{@contacts.count} contacts has been imported."
+    if errors.keys.any?
+      flash[:error] = ''
+      errors.each { |error| flash[:error] << "#{error.last} contacts can not be imported because of '#{error.first.join(' ')}'" }
+    end
     respond_to do |format|
-      format.js { render(:update) { |page| page.redirect_to(contacts_path) } }
+      format.js { render(:update) { |page| page.redirect_to :back } }
     end
   end
 
