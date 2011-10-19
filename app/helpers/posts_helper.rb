@@ -70,7 +70,9 @@ module PostsHelper
         w = 158
         h = 92
       end
-      return raw %Q{<div id="ytplayer-#{youtube_id}"></div><script type="text/javascript">var params = { allowScriptAccess: "always", wmode:"opaque" };var atts = { id: "ytplayer-#{youtube_id}" };swfobject.embedSWF("http://www.youtube.com/e/#{youtube_id}?enablejsapi=1&playerapiid=ytplayer","ytplayer-#{youtube_id}", "#{w}", "#{h}", "8", null, null, params, atts);</script>}
+      # generate random hex for youtube id uniqueness
+      random = ActiveSupport::SecureRandom.hex(6)
+      return raw %Q{<div id="ytplayer-#{youtube_id + random}"></div><script type="text/javascript">var params = { allowScriptAccess: "always", wmode:"opaque" };var atts = { id: "ytplayer-#{youtube_id + random}" };swfobject.embedSWF("http://www.youtube.com/e/#{youtube_id}?enablejsapi=1&playerapiid=ytplayer","ytplayer-#{youtube_id + random}", "#{w}", "#{h}", "8", null, null, params, atts);</script>}
 
     end
   end
