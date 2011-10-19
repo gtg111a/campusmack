@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  skip_authorization_check
 
   def index
     @colleges = College.all(:order => "smacks_count DESC", :limit => 10)

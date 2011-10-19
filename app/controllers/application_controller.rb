@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include FaceboxRender
-  check_authorization
   include PostsHelper
   include SessionsHelper
 
