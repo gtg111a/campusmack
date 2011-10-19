@@ -1698,6 +1698,12 @@ ul.items.news {
   list-style: none;
 }
 
+ul.items.news .votes {
+  position: relative;
+  top: -22px;
+  left: -88px;
+}
+
 .team-item {
   margin-right: 20px;
   float: left;
