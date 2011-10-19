@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     logger.error exception.backtrace.join("\n")
-    redirect_to root_url, :alert => exception.message
+    redirect_to signed_in? ? root_url : sign_up_url, :alert => exception.message
   end
 
   def init
