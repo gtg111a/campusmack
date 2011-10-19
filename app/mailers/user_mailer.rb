@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "campusmack.heroku.com"
     mail(:to => @user.email,
-      :subject => "Welcome to Campus Smack. Now Get Smacking!") do |format|
+      :subject => "Welcome to Campusmack. Now Get Smacking!") do |format|
       format.html
       #format.text
     end

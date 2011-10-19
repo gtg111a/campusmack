@@ -2,6 +2,6 @@
 	<div class="summary">
     <%= link_to truncate(post.title, :length => 80), [post.postable, post] %>
   </div>
-  <h3><%= link_to "Preview Article", post.news_post.url, :class => 'snap_shots' %></h3>
+  <h3><%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' %></h3>
   <%= share_icons(post, :preview) %>
 </li>
