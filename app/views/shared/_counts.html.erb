@@ -1,8 +1,8 @@
 <ul class="inner_menu">
   <li>
-    <span class="normal">Smacks: <%= @college.smacks_count %></span>
+    <a href="<%= college_smacks_path(@college) %>">Smacks: <%= @college.smacks_count %></a>
   </li>
   <li>
-    <span class="normal">Redemptions: <%= @college.redemptions_count %></span>
+    <a href="<%= college_redemptions_path(@college) %>">Redemptions: <%= @college.redemptions_count %></a>
   </li>
 </ul>
