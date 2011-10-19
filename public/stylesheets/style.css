@@ -483,6 +483,7 @@ a.sign_up:visited {
 }
 
 .content_title {
+  background: #F6F6F6 url(/images/content_header.png) repeat-x;
   font-size: 23.78pt;
   font-weight: bold;
   line-height: 40pt;
@@ -518,6 +519,7 @@ a.sign_up:visited {
 .content_stats {
   background-color: #ffffff;
   border-bottom: 1px solid #C4C4C4;
+  padding-right: 10px;
 }
 
 .buttons {
@@ -572,7 +574,6 @@ a.sign_up:visited {
 .search {
   float: right;
   padding: 5px 0 4px 5px;
-  margin-right: -10px;
   font-size: 10.17pt;
 }
 
@@ -663,7 +664,7 @@ a.sign_up:visited {
 .content_container .content_category .category_sort {
   font-size: 8.44pt;
   border-bottom: 1px solid #d4d4d4;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-top: -10px;
 }
 
@@ -709,7 +710,7 @@ a.sign_up:visited {
 }
 
 .content_unit2 {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .content_unit2 .preview {
@@ -737,7 +738,6 @@ a.sign_up:visited {
 }
 
 .content_unit2 .title, .content_unit2 .unit_info, .content_unit2 .description, .content_unit2 .actions {
-  margin-left: 170px;
   margin-bottom: 5px;
 }
 
