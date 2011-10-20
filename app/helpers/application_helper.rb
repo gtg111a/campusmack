@@ -14,6 +14,7 @@ module ApplicationHelper
 
   def title
     base_title = "Campusmack"
+    base_title += ' | STAGING' if Rails.env == 'staging'
     if @title.nil?
       base_title
     else
