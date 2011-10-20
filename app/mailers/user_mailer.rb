@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = "campusmack.heroku.com"
+    @url = "campusmack.com"
     mail(:to => @user.email,
       :subject => "Welcome to Campusmack. Now Get Smacking!") do |format|
       format.html
