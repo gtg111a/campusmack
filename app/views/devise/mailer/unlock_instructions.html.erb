@@ -8,13 +8,14 @@
   <table cellspacing="0" border="0" cellpadding="0" width="600" bgcolor="#fff" align="center">
     <tr valign="top">
       <td valign="top">
+
         <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
           <tr>
             <td bgcolor="#3a99e2">
               <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
                 <tr>
                   <td height="24" color="#fff">
-                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #fff; text-decoration: none;"><%= @to %></a>
+                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #fff; text-decoration: none;"><%= @resource.email %></a>
                   </td>
                   <td height="24" align="right" style="font-family: Arial, sans-serif;">
                     <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #fff;" href="#">View
@@ -28,61 +29,31 @@
               <img width="600" height="62" alt="Campusmack" src="<%= root_url %>images/email/header_main.jpg"></td>
           </tr>
         </table>
+
         <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
           <tr>
             <td>
 
-              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
-              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
-                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= @post.title %></h1>
-                  </td>
-                </tr>
-                <% if @post.photo %>
-                  <tr>
-                    <td align="center">
-                      <img style="padding: 20px;" src="<%= @post.photo(:large) %>" alt=""/>
-                    </td>
-                  </tr>
-                <% end %>
-                <tr>
-                  <td>
-                    <% if  @post.video %>
-                      <p><%= link_to @post.video.url, @post.video.url, :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %></p>
-                    <% end %>
-                    <p><%= link_to(@post.title, polymorphic_url([@post.postable, @post]), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;") %></p>
+                    <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
 
-                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 14px; margin: 0 0 20px"><%= @post.summary %></p>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 30px; font-weight: normal; margin: 0 0 20px">Hello <%= @resource.email %>
+                      !</h1>
+
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Your
+                      account has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
+
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Click
+                      the link below to unlock your account:</p>
+
+                    <p><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %></p>
+
                   </td>
                 </tr>
               </table>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
-              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
-
-              <table width="525" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td>
-                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px"><%= raw(@message.gsub(/\n/, '<br/>')) %></p>
-                  </td>
-                </tr>
-              </table>
-              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
-              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
-
-              <table width="525" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td>
-                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Are
-                      you going to take that?</p>
-
-                    <p><%= link_to @smacker.to_s, college_smacks_path(@smacker.college) %> Back!</a></p>
-                  </td>
-                </tr>
-              </table>
-              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
-
             </td>
           </tr>
         </table>

@@ -2,13 +2,19 @@
 "utf-8"
 ;
 /* CSS Document */
+
 @font-face {
-  font-family: 'Conv_MyriadPro-BoldCond';
-  src: url('fonts/MyriadPro-BoldCond.eot');
-  src: local('☺'), url('fonts/MyriadPro-BoldCond.woff') format('woff'), url('fonts/MyriadPro-BoldCond.ttf') format('truetype'), url('fonts/MyriadPro-BoldCond.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Conv_MyriadPro-BoldCond';
+    src: url('/fonts/MyriadPro-BoldCond.eot');
+    src: local('☺'),
+         url('/fonts/MyriadPro-BoldCond.eot?') format('embedded-opentype'),
+         url('/fonts/MyriadPro-BoldCond.woff') format('woff'),
+         url('/fonts/MyriadPro-BoldCond.ttf') format('truetype'),
+         url('/fonts/MyriadPro-BoldCond.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
 
 /* Need to place footer on bottom of the page */
 html, body, #super_wrapper {
@@ -57,6 +63,7 @@ a:visited {
 #header {
   height: 103px;
   background: url(/images/header_bg.png) 50% 0% repeat-x;
+  overflow: hidden;
 }
 
 .real_header {
@@ -200,14 +207,14 @@ a.sign_up:visited {
 .menu a {
   background: url(/images/menu_button.png) top;
   width: 55px;
-  height: 27px;
+  height: 29px;
   float: left;
   text-align: center;
   display: block;
   font-size: 14.42pt;
   margin-left: 10px;
-  padding-top: 4px;
-  font-family: Conv_MyriadPro-BoldCond;
+  padding-top: 2px;
+  font-family: "Conv_MyriadPro-BoldCond";
   color: #fff;
 }
 
@@ -221,14 +228,6 @@ a.sign_up:visited {
 .menu a.big {
   background: url(/images/menu_button1.png) top;
   width: 75px;
-  height: 27px;
-  float: left;
-  text-align: center;
-  display: block;
-  color: #fff !important;
-  margin-left: 10px;
-  padding-top: 4px;
-  font-family: Conv_MyriadPro-BoldCond;
 }
 
 .menu a.big:hover {
@@ -284,6 +283,11 @@ a.sign_up:visited {
 
 #conference_column .top_submenu {
   position: relative;
+  overflow: hidden;
+  width: 171px;
+}
+#conference_column .top_submenu ul {
+  width: 175px;
 }
 
 #conference_column .top_submenu li {
@@ -381,8 +385,6 @@ a.sign_up:visited {
 }
 
 .new_level {
-  float: none;
-  overflow: hidden;
 }
 
 .inbox_table {
@@ -401,7 +403,7 @@ a.sign_up:visited {
   text-align: left;
   padding: 1px 5px 2px 5px;
   font-size: 15px;
-  font-family: Conv_MyriadPro-BoldCond;
+  font-family: "Conv_MyriadPro-BoldCond";
 }
 
 .cell {
@@ -520,6 +522,7 @@ a.sign_up:visited {
   background-color: #ffffff;
   border-bottom: 1px solid #C4C4C4;
   padding-right: 10px;
+  overflow: hidden;
 }
 
 .buttons {
@@ -1172,10 +1175,11 @@ to keep footer on the bottom of page.
 /* */
 
 #basic_content .wrapper {
+  overflow: visible;
+  clear: both;
   -moz-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.4);
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.4);
-  overflow: visible;
 }
 
 #conference_column {
@@ -1194,12 +1198,9 @@ to keep footer on the bottom of page.
 
 #yield_column {
   background: #fff;
-  width: 786px;
-  float: left;
   border-left: 3px solid #acacac;
   min-height: 710px;
-  height: auto !important;
-  height: 710px;
+  margin-left: 171px;
 }
 
 .left_menu {
@@ -1495,8 +1496,7 @@ ul.no-bullets {
 
 .standard {
   min-height: 710px;
-  height: auto !important;
-  height: 710px;
+  overflow: hidden;
 }
 
 .standard .title_wrapper {
@@ -1511,6 +1511,10 @@ ul.no-bullets {
   padding: 25px 0 0 20px;
   font-weight: bold;
   font-size: 25px;
+}
+
+ul.inner_menu {
+  float: left;
 }
 
 ul.inner_menu li {
@@ -1568,7 +1572,6 @@ form.semantic {
 form.semantic .field {
   color: #2680c6;
   margin-bottom: 10px;
-  clear: both;
   overflow: hidden;
 }
 
@@ -1638,7 +1641,7 @@ form.semantic button, form.semantic .actions input {
   cursor: pointer;
   padding: 0 5px;
   text-transform: uppercase;
-  font-family: Conv_MyriadPro-BoldCond, sans-serif;
+  font-family: "Conv_MyriadPro-BoldCond", sans-serif;
   font-size: 20px;
   line-height: 28px;
   width: auto;
@@ -1651,7 +1654,7 @@ form.semantic .actions .alt {
   color: #888;
   display: inline-block;
   text-transform: uppercase;
-  font-family: Conv_MyriadPro-BoldCond, sans-serif;
+  font-family: "Conv_MyriadPro-BoldCond", sans-serif;
   font-size: 18px;
   line-height: 28px;
   margin-left: 20px;
@@ -1691,17 +1694,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 ul.items {
   margin-right: -20px;
-}
-
-ul.items.news {
-  margin-right: 0;
-  list-style: none;
-}
-
-ul.items.news .votes {
-  position: relative;
-  top: -22px;
-  left: -88px;
+  overflow: hidden;
 }
 
 .team-item {
@@ -1709,11 +1702,6 @@ ul.items.news .votes {
   float: left;
   list-style: none;
   width: 158px;
-}
-
-ul.items.news .team-item {
-  margin-right: 0;
-  margin-bottom: 10px;
 }
 
 .team-item .item-top {
@@ -1777,12 +1765,13 @@ ul.items.news .team-item {
   border: none;
 }
 
+/* News sidebar */
+
 .news {
-  float: right;
   width: 210px;
   height: 588px;
   background: #F3F3F3;
-  margin: 2px;
+  margin: 2px 2px 2px 553px;
   padding: 13px 10px 10px 10px;
 }
 
@@ -1812,6 +1801,22 @@ ul.items.news .team-item {
   height: auto;
 }
 
+.news ul.items {
+  margin-right: 0;
+  list-style: none;
+}
+
+.news ul.items .votes {
+  position: relative;
+  top: -22px;
+  left: -88px;
+}
+
+.news ul.items .team-item {
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+
 ul.contact-groups {
   list-style-type: none;
 }
@@ -1833,6 +1838,7 @@ ul.contact-groups {
   background: url("/images/table_bg.png") repeat-x;
   width: 926px;
   padding: 0 17px;
+  overflow: hidden;
 }
 
 #stats_container #slideInner {

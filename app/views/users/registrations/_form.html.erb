@@ -1,93 +1,107 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f| %>
-    <div class="table_padding">
-      <table>
-        <tr>
-          <td class="description"><%= f.label :gender, "Gender:" %></td>
-          <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], {:include_blank => true}, :class => 'gender') %></td>
-          <td class="star"><%= mark_required(resource, :gender) %></td>
-        </tr>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => { :multipart => true }) do |f| %>
+  <div class="table_padding">
+    <table>
+      <tr>
+        <td class="description"><%= f.label :gender, "Gender:" %></td>
+        <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], { :include_blank => true }, :class => 'gender') %></td>
+        <td class="star"><%= mark_required(resource, :gender) %></td>
+      </tr>
 
-        <tr>
-          <td class="description"><%= f.label :username, "Username:" %></td>
-          <td class="entry"><%= f.text_field :username %></td>
-          <td class="star"><%= mark_required(resource, :username) %></td>
-        </tr>
+      <tr>
+        <td class="description"><%= f.label :username, "Username:" %></td>
+        <td class="entry"><%= f.text_field :username %></td>
+        <td class="star"><%= mark_required(resource, :username) %></td>
+      </tr>
 
-        <tr>
-          <td class="description"><%= f.label :first_name, "First Name:" %></td>
-          <td class="entry"><%= f.text_field :first_name %></td>
-          <td class="star"><%= mark_required(resource, :first_name) %></td>
-        </tr>
+      <tr>
+        <td class="description"><%= f.label :first_name, "First Name:" %></td>
+        <td class="entry"><%= f.text_field :first_name %></td>
+        <td class="star"><%= mark_required(resource, :first_name) %></td>
+      </tr>
 
-        <tr>
-          <td class="description"><%= f.label :last_name, "Last Name:" %></td>
-          <td class="entry"><%= f.text_field :last_name %></td>
-          <td class="star"><%= mark_required(resource, :last_name) %></td>
-        </tr>
+      <tr>
+        <td class="description"><%= f.label :last_name, "Last Name:" %></td>
+        <td class="entry"><%= f.text_field :last_name %></td>
+        <td class="star"><%= mark_required(resource, :last_name) %></td>
+      </tr>
 
-        <tr>
-          <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
-          <td class="entry">
-            <span class="affiliation_span"><%= f.select(:affiliation, %w{Student Alumni Fan}, {:include_blank => true}, :class => 'affilation') %></span>
-            <span>of <%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, {:include_blank => true}, :class => 'college') %></span>
-          </td>
-          <td class="star"><%= mark_required(resource, :affiliation) %></td>
-        </tr>
+      <tr>
+        <td class="description"><%= f.label :birthday, "Birthday:" %></td>
+        <td class="entry"><%= f.date_select :birthday, :start_year => 60.years.ago.year, :end_year => 14.years.ago.year %></td>
+      </tr>
 
-        <tr>
-          <td class="description"><%= f.label :email, "Email:" %></td>
-          <td class="entry"><%= f.text_field :email, :validate =>{:presence => true, :confirmation => true} %></td>
-          <td class="star"><%= mark_required(resource, :email) %></td>
-        </tr>
+      <tr>
+        <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
+        <td class="entry">
+          <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affilation') %></span>
+          <span>of <%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span>
+        </td>
+        <td class="star"><%= mark_required(resource, :affiliation) %></td>
+      </tr>
 
+      <tr>
+        <td class="description"><%= f.label :email, "Email:" %></td>
+        <td class="entry"><%= f.text_field :email, :validate =>{ :presence => true, :confirmation => true } %></td>
+        <td class="star"><%= mark_required(resource, :email) %></td>
+      </tr>
+
+      <% unless f.object.new_record? %>
+        <tr>
+          <td class="description"><%= f.label :censor_text, "Censor Text?" %></td>
+          <td class="entry"><%= f.check_box(:censor_text, :validate =>{ :presence => true, :confirmation => true }) %></td>
+        </tr>
+      <% end %>
+
+      <% if session[:provider].nil? %>
+        <tr>
+          <td class="description"><%= f.label :password, "New password:" %></td>
+          <td class="entry"><%= f.password_field :password, :validate =>{ :presence => f.object.new_record?, :confirmation => true } %></td>
+          <% if f.object.new_record? %>
+            <td class="star"><%= mark_required(resource, :password) %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
+          <td class="entry"><%= f.password_field :password_confirmation, :validate =>{ :presence => f.object.new_record?, :confirmation => true } %></td>
+          <% if f.object.new_record? %>
+            <td class="star"><%= mark_required(resource, :password) %></td>
+          <% end %>
+        </tr>
         <% unless f.object.new_record? %>
-            <tr>
-              <td class="description"><%= f.label :censor_text, "Censor Text?" %></td>
-              <td class="entry"><%= f.check_box(:censor_text, :validate =>{:presence => true, :confirmation => true}) %></td>
-            </tr>
+          <tr id="name">
+            <td class="description"><%= f.label :current_password, "Old password:" %></td>
+            <td class="entry"><%= f.password_field :current_password, :validate =>{ :presence => true } %></td>
+            <td class="star"><%= mark_required(resource, :password) %></td>
+          </tr>
         <% end %>
+      <% end %>
 
+      <tr>
+        <td class="description"><%= f.label :avatar, "Avatar:" %></td>
+        <td class="entry"><%= f.file_field :avatar %></td>
+        <td>
+          <% if f.object.avatar.exists? %>
+            <%= image_tag f.object.avatar.url(:small) %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-        <% if session[:provider].nil? %>
-            <tr>
-              <td class="description"><%= f.label :password, "New password:" %></td>
-              <td class="entry"><%= f.password_field :password, :validate =>{:presence => f.object.new_record?, :confirmation => true} %></td>
-              <% if f.object.new_record? %>
-                  <td class="star"><%= mark_required(resource, :password) %></td>
-              <% end %>
-            </tr>
-            <tr>
-              <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
-              <td class="entry"><%= f.password_field :password_confirmation, :validate =>{:presence => f.object.new_record?, :confirmation => true} %></td>
-              <% if f.object.new_record? %>
-                  <td class="star"><%= mark_required(resource, :password) %></td>
-              <% end %>
-            </tr>
-            <% unless f.object.new_record? %>
-                <tr id="name">
-                  <td class="description"><%= f.label :current_password, "Old password:" %></td>
-                  <td class="entry"><%= f.password_field :current_password, :validate =>{:presence => true} %></td>
-                  <td class="star"><%= mark_required(resource, :password) %></td>
-                </tr>
-            <% end %>
-        <% end %>
-      </table>
-    </div>
-
-    <div class="confirmation_container clearfix">
-      <div class="accept clearfix">
-        <% if f.object.new_record? %>
-            <div class="terms clearfix">
-              <span class="check_box"><%= f.check_box :terms_of_service %></span><label for="user_terms_of_service"><span class="text">I agree to <%= link_to 'Terms and Conditions of Use', terms_path %>
-              and <%= link_to 'Privacy Policy', privacy_path %></span></label>
-            </div>
-        <% end %>
-
-        <div class="important_notice clearfix">
-          <span class='required_sign'>*</span>
-          <span class="important_notice_text">Required fields</span>
+  <div class="confirmation_container clearfix">
+    <div class="accept clearfix">
+      <% if f.object.new_record? %>
+        <div class="terms clearfix">
+          <span class="check_box"><%= f.check_box :terms_of_service %></span><label for="user_terms_of_service"><span class="text">I agree to <%= link_to 'Terms and Conditions of Use', terms_path %>
+          and <%= link_to 'Privacy Policy', privacy_path %></span></label>
         </div>
-        <div class="blue_button"><%= f.submit f.object.new_record? ? 'SIGN UP' : 'UPDATE' %></div>
+      <% end %>
+
+      <div class="important_notice clearfix">
+        <span class='required_sign'>*</span>
+        <span class="important_notice_text">Required fields</span>
       </div>
+      <div class="blue_button"><%= f.submit f.object.new_record? ? 'SIGN UP' : 'UPDATE' %></div>
     </div>
+  </div>
 <% end %>

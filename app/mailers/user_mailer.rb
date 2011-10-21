@@ -18,9 +18,12 @@ class UserMailer < ActionMailer::Base
       :subject => "New #{support.support_type}")
   end
   
-  def share_post(post, title, to, message)
+  def share_post(post, smacker, title, to, message)
     @post = post
+    @smacker = smacker
     @message = message
+    @to =  to
+    @time = Time.new
     mail(:to => to, :from => 'Campusmack@campusmack.com', :subject => title)
   end
 

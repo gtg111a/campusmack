@@ -1,12 +1,12 @@
-<div class="content new_level with_submenu clearfix">
+<div class="content new_level with_submenu">
   <%= render :partial => 'shared/masthead' %>
   <div class="content_title"><%= @college.name %></div>
-  <div class="content_stats clearfix">
+  <div class="content_stats">
     <%= render 'shared/counts' %>
     <%= render 'shared/search' %>
   </div>
 
-  <div class="content_container clearfix">
+  <div class="content_container">
     <div class="photovideo">
       <div class="category_container">
         <div class="content_category">
@@ -44,11 +44,11 @@
       <div class="category_title">
         News
       </div>
-      <ul class="items news">
+      <ul class="items">
         <% @news.each do |post| %>
             <%= render "posts/news_preview", :post => post %>
         <% end %>
-        <div class="view_more_link clear_both">
+        <div class="view_more_link">
           <%= link_to "See all news", @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %>
         </div>
       </ul>

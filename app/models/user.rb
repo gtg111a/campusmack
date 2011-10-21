@@ -1,6 +1,9 @@
 require 'digest'
 
 class User < ActiveRecord::Base
+
+  AFFILIATION_OPTIONS = %w{Student Alumni Fan}
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -8,8 +11,6 @@ class User < ActiveRecord::Base
 
   #Through the 'thumbs_up' gem
   acts_as_voter
-
-  attr_accessible :username, :first_name, :last_name, :email, :password, :password_confirmation, :affiliation, :college_id, :remember_me, :gender
 
   belongs_to :college
   has_many :authentications, :dependent => :destroy
@@ -46,6 +47,7 @@ class User < ActiveRecord::Base
   validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
 
+  has_attached_file :avatar, :styles => {:small => "39x39", :medium => "100x100", :large => "400x400>"}
 
   def feed
     Micropost.from_users_followed_by(self)

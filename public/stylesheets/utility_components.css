@@ -17,7 +17,7 @@
     margin: 0 5px;
     border: none;
     color: #fff;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     text-transform: uppercase;
     font-size: 20px;
     -moz-border-radius: 5px;
@@ -28,11 +28,12 @@
 
 .blue_button a, .blue_button input {
     display: block;
-    padding: 4px 5px 0;
+    padding: 0 5px;
     color: #fff;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     text-transform: uppercase;
     font-size: 20px;
+    line-height: 28px;
 }
 
 .sign_up_now_button {
@@ -50,7 +51,7 @@
     display: block;
     padding-top: 4px;
     color: #fff;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     font-size: 20px;
     text-transform: uppercase;
 }
@@ -59,7 +60,7 @@ input.dark_button{
     display: block;
     padding: 3px 9px 0;
     color: #fff;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     font-size: 19px;
     text-transform: uppercase;
     display: block;
@@ -88,10 +89,11 @@ input.dark_button{
 
 .dark_button a {
     display: block;
-    padding: 3px 9px 0;
+    padding: 0 10px;
     color: #fff;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     font-size: 19px;
+    line-height: 28px;
     text-transform: uppercase;
 }
 
@@ -115,15 +117,16 @@ input.dark_button{
 
 .white_button a {
     display: block;
-    padding: 4px 10px 0;
+    padding: 0 10px;
     color: #4190c9;
-    font-family: Conv_MyriadPro-BoldCond;
+    font-family: "Conv_MyriadPro-BoldCond";
     font-size: 20px;
+    line-height: 28px;
     text-transform: uppercase;
 }
 
 .table_button {
-    font-style: Conv_MyriadPro-BoldCond;
+    font-style: "Conv_MyriadPro-BoldCond";
     background: #fff url(/images/utility_button-bg.png) repeat-x top;
     display: block;
     border-style: solid;
@@ -156,6 +159,12 @@ input.dark_button{
 
 .table_button.black:hover {
     color: #fff;
+}
+
+form small {
+  margin-left: 9px;
+  color: #333;
+  line-height: 28px;
 }
 
 /* Used will_paginate template styling */

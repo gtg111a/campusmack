@@ -162,7 +162,7 @@ class PostsController < ApplicationController
           end
         end.join(",")
       end
-      UserMailer.share_post(@post, title, to, params[:share][:message]).deliver
+      UserMailer.share_post(@post, current_user, title, to, params[:share][:message]).deliver
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
