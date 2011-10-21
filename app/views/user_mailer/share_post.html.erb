@@ -43,7 +43,7 @@
                 <% if @post.photo %>
                   <tr>
                     <td align="center">
-                      <img style="padding: 20px;" src="<%= @post.photo(:large).url %>" alt=""/>
+                      <img style="padding: 20px;" src="<%= @post.photo_url(:large) %>" alt=""/>
                     </td>
                   </tr>
                 <% end %>
