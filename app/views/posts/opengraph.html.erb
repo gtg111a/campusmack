@@ -1,10 +1,13 @@
 <% meta_tags({ "description" => " #{@post.title} <br/> #{@post.summary} "
   }) -%>
 <% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
-    "og:type" => "post",
+    "og:type" => "movie",
     "og:url" => "#{ polymorphic_url([@post.postable, @post])}",
     "og:site_name" => "#{SITE_NAME}",
     "og:description" => " #{@post.title} <br/> #{@post.summary} "
+    "og:video:height" => " #{@post.title} <br/> #{@post.summary} "
+    "og:video:width" => " #{@post.title} <br/> #{@post.summary} "
+    "og:video" => " #{@post.video.url if @post.video}"
   }) -%>
 <h4><%= link_to @post.title, [@post.postable, @post] %></h4>
 <div class="content">
