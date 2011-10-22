@@ -27,7 +27,7 @@
           ';
           postcontent[2] = '<%= f.fields_for :news_post, NewsPost.new do |npf| %>
             <tr>
-              <td class="description"><%= npf.label :url, 'URL:' %></td>
+              <td class="description"><%= npf.label :url, 'Article URL:' %></td>
               <td class="entry"><%= npf.text_field :url %></td>
             </tr>
             <tr id="news_post_addons">
