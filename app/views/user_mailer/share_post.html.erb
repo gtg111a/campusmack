@@ -34,15 +34,6 @@
 
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
               <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
-	              <table width="525" cellspacing="0" cellpadding="0" border="0">
-	                <tr>
-	                  <td>
-	                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px"><%= raw(@message.gsub(/\n/, '<br/>')) %></p>
-	                  </td>
-	                </tr>
-	              </table>
-	              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
-	              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
@@ -61,29 +52,42 @@
                     <% if  @post.video %>
                       <p><%= link_to @post.video.url, @post.video.url, :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %></p>
                     <% end %>
+                    <p><%= link_to(@post.title, polymorphic_url([@post.postable, @post]), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;") %></p>
+
                     <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 14px; margin: 0 0 20px"><%= @post.summary %></p>
                   </td>
                 </tr>
               </table>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+
+              <table width="525" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td>
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px"><%= raw(@message.gsub(/\n/, '<br/>')) %></p>
+                  </td>
+                </tr>
+              </table>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
                     <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Are
                       you going to take that?</p>
 
-                    <p><%= link_to "Smack " + @smacker.first_name + " Back!", college_smacks_url(@smacker.college) %></a></p>
+                    <p><%= link_to "Smack" + @smacker.first_name + "Back!", college_smacks_url(@smacker.college) %></a></p>
                   </td>
                 </tr>
               </table>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+
             </td>
           </tr>
         </table>
-
-        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
-          <tr>
-            <td colspan="2">
-              <table bgcolor="#e0e0e0" cellpadding="10" width="100%">
+            </td>
+          </tr>
           <tr>
             <td align="right" style="vertical-align: middle;">
               <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0;">Copyright &#169; <%= @time.year %>
