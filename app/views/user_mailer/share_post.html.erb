@@ -37,7 +37,7 @@
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
-                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to(@post.title, polymorphic_url([@post.postable, @post]) %></h1>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= @post.title %></h1>
                   </td>
                 </tr>
                 <% if @post.photo %>
@@ -86,9 +86,24 @@
             </td>
           </tr>
         </table>
+
+        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
+          <tr>
+            <td colspan="2">
+              <table bgcolor="#e0e0e0" cellpadding="10" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="#" style="font-family: Arial, sans-serif; color: #30a0f0; font-size: 10px">FOLLOW ON
+                      TWITTER</a><span style="font-family: Arial, sans-serif; font-size: 10px;">&nbsp;|&nbsp;</span><a href="#" style="color: #30a0f0; font-size: 10px">FRIEND
+                    ON FACEBOOK</a></td>
+                </tr>
+              </table>
             </td>
           </tr>
           <tr>
+            <td height="30" style="vertical-align: middle;">
+              <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0">You received this
+                email because you signed up to Campusmack.</p></td>
             <td align="right" style="vertical-align: middle;">
               <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0;">Copyright &#169; <%= @time.year %>
                 Campusmack</p></td>
