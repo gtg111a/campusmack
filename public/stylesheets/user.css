@@ -614,7 +614,8 @@
 
 .standard .affiliation_span {
     display: inline-block;
-    float: left
+    float: left;
+	padding: 0 0 5px 0;
 }
 
 .standard .college_span {
