@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "Welcome@campusmack.com"
+  default :from => 'Campusmack <donotreply@campusmack.com>'
 
   def welcome_email(user)
     @user = user
@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
     @message = message
     @to =  to
     @time = Time.new
-    mail(:to => to, :from => 'Campusmack@campusmack.com', :subject => title)
+    mail(:to => to, :subject => title)
   end
 
 end
