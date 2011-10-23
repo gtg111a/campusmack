@@ -97,6 +97,7 @@
 
 .post_form .table_padding {
     padding: 28px 0;
+    min-height: 450px;
 }
 
 .sign_in_wrapper .table_padding {
@@ -149,6 +150,10 @@
     padding: 0 0 0 9px;
     color: #7a7b7d;
     vertical-align: middle;
+}
+
+.standard table .entry.vtop, .facebox_form table .entry.vtop {
+  vertical-align: top;
 }
 
 .standard .required_sign {
@@ -285,11 +290,17 @@
 }
 
 .standard .share_post .content_bg {
+  position: relative;
+  display: block;
+}
+
+.standard .share_post .content_bg img {
     padding: 10px;
-    text-align: center;
-    vertical-align: middle;
     background-image: url(/images/view_more_bg.png);
     margin-top: 10px;
+    position: absolute;
+    right: 20px;
+    top: 0;
 }
 
 #address_book .groups {
