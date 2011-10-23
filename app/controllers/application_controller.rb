@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  rescue_from Exception, :with => :render_error
+
   protect_from_forgery
   include FaceboxRender
   include PostsHelper
@@ -13,6 +15,12 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     logger.error exception.backtrace.join("\n")
     redirect_to signed_in? ? root_url : sign_up_url, :alert => exception.message
+  end
+
+  private
+
+  def render_error(exception)
+    render :template => 'pages/500.html.erb', :status => 500
   end
 
   def init
