@@ -1893,3 +1893,9 @@ div.page {
 .about {
 	  font-size: 15px;
 }
+
+.about_faq {
+	font-size: 25px;
+	font-weight:bold;
+	border-bottom: 2px solid #D4D4D4;
+}
