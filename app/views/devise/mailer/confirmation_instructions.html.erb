@@ -38,13 +38,12 @@
                   <td>
                     <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
 
-                    <h1 style="font-family: Arial, sans-serif; font-size: 30px; font-weight: normal; margin: 0 0 20px">Welcome
-                      to campusmack.com, <%= @user.first_name %></h1>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 20px; font-weight: normal; margin: 0 0 20px">Welcome
+                      to Campusmack.com, <%= @user.first_name %></h1>
 
                     <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20p">Thanks
-                      for signing up to Campusmack, the world's first smack page that lets you find out about colleges,
-                      teams and the overall US college community. Please click on the link below to get started. Happy
-                      Smackin'</p>
+                      for signing up to Campusmack, your source for posting and sharing content about the colleges you love, and love to hate. Please click on the link below to get started. Happy
+                      Smackin!</p>
                     <%= link_to 'Click this link to confirm your email address', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %>
                   </td>
                 </tr>
@@ -60,9 +59,10 @@
               <table bgcolor="#e0e0e0" cellpadding="10" width="100%">
                 <tr>
                   <td align="center">
+					<!-->
                     <a href="#" style="font-family: Arial, sans-serif; color: #30a0f0; font-size: 10px">FOLLOW ON
                       TWITTER</a><span style="font-family: Arial, sans-serif; font-size: 10px;">&nbsp;|&nbsp;</span><a href="#" style="color: #30a0f0; font-size: 10px">FRIEND
-                    ON FACEBOOK</a></td>
+                    ON FACEBOOK</a></td><-->
                 </tr>
               </table>
             </td>

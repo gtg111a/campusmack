@@ -54,7 +54,11 @@
 
       <% if session[:provider].nil? %>
         <tr>
-          <td class="description"><%= f.label :password, "New password:" %></td>
+		  <% if f.object.new_record? %>
+          <td class="description"><%= f.label :password, "Password:" %></td>
+		  <% else %>
+		  <td class="description"><%= f.label :password, "New Password:" %></td>
+		  <% end %>
           <td class="entry"><%= f.password_field :password, :validate =>{ :presence => f.object.new_record?, :confirmation => true } %></td>
           <% if f.object.new_record? %>
             <td class="star"><%= mark_required(resource, :password) %></td>
