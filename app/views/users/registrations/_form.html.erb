@@ -27,7 +27,7 @@
 
       <tr>
         <td class="description"><%= f.label :birthday, "Date of Birth:" %></td>
-        <td class="entry"><%= f.date_select :birthday, :start_year => 60.years.ago.year, :end_year => 14.years.ago.year %></td>
+        <td class="entry"><%= f.date_select :birthday, :start_year => 100.years.ago.year, :end_year => Date.today.year, :include_blank => true %></td>
       </tr>
 
       <tr>
