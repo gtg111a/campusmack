@@ -1,4 +1,0 @@
-<a title="Share on Twitter" target="_blank" onclick="window.open('http://twitter.com/share?url=<%= polymorphic_url([post.postable, post])%>&text=Check out <%= %Q*"#{ post.title }"* %> <%= %Q* #{post.twitpic_url if !post.twitpic_url.nil?} * %> on Campusmack.com : '); return false;">
-  <%= image_tag(image, :border => 0) %>
-</a>
-

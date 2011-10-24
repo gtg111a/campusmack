@@ -68,7 +68,7 @@
 
 .standard .left_column .form_container {
     background: #fff;
-    padding: 2px 2px 0;
+    padding: 2px;
     width: 471px;
 }
 
@@ -80,8 +80,9 @@
 
 .standard .left_column .form_container .form_wrapper {
     background: #F3F3F3;
-    height: 100%;
+    min-height: 261px;
     width: 100%;
+    padding-bottom: 20px;
 }
 
 .standard .post_form .form_wrapper {
@@ -269,8 +270,8 @@
     margin: 3px 0;
     width: 160px;
     color: #FFF;
-    font-size: 14.42pt;
-    line-height: 24pt;
+    font-size: 22px;
+    line-height: 28px;
     font-family: Conv_MyriadPro-BoldCond;
 }
 
@@ -294,7 +295,7 @@
   display: block;
 }
 
-.standard .share_post .content_bg img {
+.standard .share_post .content_bg img, .standard .share_post .content_bg object {
     padding: 10px;
     background-image: url(/images/view_more_bg.png);
     margin-top: 10px;
@@ -373,20 +374,17 @@
     display: block;
     font-family: Conv_MyriadPro-BoldCond;
     font-size: 20px;
-    padding-top: 4px;
+    line-height: 28px;
     width: 100% !important;
 }
 
 .standard .right_column .sign_up_with_container {
-    width: 310px;
-    height: 193px;
 }
 
 .standard  .sign_in_column .sign_up_with_container {
     border-width: 0px 0px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
-    height: 247px;
 }
 
 .standard .right_column .sign_up_with_container ul {
@@ -400,7 +398,7 @@
 }
 
 .standard  .sign_in_column .sign_up_with_container ul {
-    height: 212px;
+    min-height: 250px;
     padding: 31px 64px 0 55px;
 }
 
@@ -465,7 +463,7 @@
     height: 164px;
     border-color: #fff;
     border-style: solid;
-    border-width: 2px;
+    border-width: 2px 2px 0;
     background: #F3F3F3;
 }
 
@@ -519,7 +517,6 @@
 .standard .left_column .form_sign_in {
     padding: 2px;
     width: 471px;
-    height: 243px;
     border-width: 0px 1px 1px 0px;
     border-style: solid;
     border-color: #cfcfcf;
@@ -625,7 +622,8 @@
 
 .standard .affiliation_span {
     display: inline-block;
-    float: left;
+    float: left
+    margin-right: 4px;
 }
 
 .standard .college_span {
