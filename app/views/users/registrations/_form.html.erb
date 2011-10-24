@@ -27,13 +27,13 @@
 
       <tr>
         <td class="description"><%= f.label :birthday, "Date of Birth:" %></td>
-        <td class="entry"><%= f.date_select :birthday, :start_year => 100.years.ago.year, :end_year => Date.today.year, :include_blank => true %></td>
+        <td class="entry"><%= f.date_select :birthday, :start_year => 100.years.ago.year, :end_year => 15.years.ago.year, :include_blank => true %></td>
       </tr>
 
       <tr>
         <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
         <td class="entry">
-          <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affilation') %></span>
+          <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affiliation') %></span>
           <span> of <%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span>
         </td>
         <td class="star"><%= mark_required(resource, :affiliation) %></td>
