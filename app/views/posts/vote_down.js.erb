@@ -1,2 +1,8 @@
 $("#vote_count_down<%= escape_javascript("#{@post.id}") %>").html('<%= @post.votes_against_b %>')
 $("#vote_count_up<%= escape_javascript("#{@post.id}") %>").html('<%= @post.votes_for_b %>')
+$().toastmessage('showToast', {
+  text     : 'Post Voted Down Successfully',
+  sticky   : false,
+  position : 'top-center',
+  type     : "success"
+});
