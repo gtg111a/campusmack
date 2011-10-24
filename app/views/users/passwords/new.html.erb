@@ -1,12 +1,37 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
-
-  <p><%= f.submit "Send me reset password instructions" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div class="standard clearfix">
+  <div class="title_wrapper">
+    <h1>Forgot your password?</h1>
+  </div>
+  <div class="column_wrapper clearfix">
+    <div class="left_column">
+      <div class="title_box">
+        <h2>FORGOT YOUR PASSWORD?</h2>
+      </div>
+      <div class="form_container form_sign_in">
+        <div class="form_wrapper">
+          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+            <%= render 'shared/error_messages', :object => f.object %>
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="description"><%= f.label :email %></td>
+                <td class="entry"><%= f.email_field :email %></td>
+              </tr>
+            </table>
+            <%= render :partial => "users/shared/links", :locals => { :resource_name => resource_name, :f => f } %>
+            <div class="not_a_member_box">
+              <div class="not_a_member clearfix">
+                <div class="not_a_member_text">NOT A MEMBER YET?</div>
+                <div class="sign_up_now_button">
+                  <%= link_to "SIGN UP NOW!", sign_up_path %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="right_column sign_in_column">
+      <%= render :partial => "users/shared/sign_up_services_list" %>
+    </div>
+  </div>
+</div>
