@@ -46,10 +46,10 @@
             </div>
             <ul class="table_actions" style="list-style-type: none">
               <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button", :id => "add_to_group_button") %></li>
-              <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
-              <% if !params[:group_id].blank? && ContactGroup.exists?(params[:group_id]) == true %>
-              <li id="remove_selected" class="table_button fakebtn" title="remove<%=params[:group_id]%>">Remove selected</li>
+			  <% if !params[:group_id].blank? && ContactGroup.exists?(params[:group_id]) == true %>
+              <li id="remove_selected" class="table_button fakebtn" title="remove<%=params[:group_id]%>">Remove From Group</li>
               <%end%>
+              <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
             </ul>
           </div>
           <div id="contact_list">
