@@ -1,3 +1,15 @@
+<% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
+    "og:type" => "movie",
+    "og:url" => "#{@youtube_video.url if @youtube_video}",
+    "og:site_name" => "#{SITE_NAME}",
+    "og:description" => " #{@post.title} <br/> #{@post.summary} ",
+    "og:image" => " #{@youtube_video.thumbnail_small if @youtube_video}",
+    "og:video:type" => "application/x-shockwave-flash",
+    "og:video:height" => "398",
+    "og:video:width" => "224",
+    "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id if @youtube_video}"
+  }) -%>
+
 <div class="content new_level with_submenu clearfix">
   <div class="content_actions">
     <ul>

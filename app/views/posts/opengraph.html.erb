@@ -1,11 +1,17 @@
 <% meta_tags({ "description" => " #{@post.title} <br/> #{@post.summary} "
   }) -%>
 <% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
-    "og:type" => "post",
-    "og:url" => "#{ polymorphic_url([@post.postable, @post])}",
+    "og:type" => "movie",
+    "og:url" => "#{@youtube_video.url if @youtube_video}",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => " #{@post.title} <br/> #{@post.summary} "
+    "og:description" => " #{@post.title} <br/> #{@post.summary} ",
+    "og:image" => " #{@youtube_video.thumbnail_small if @youtube_video}",
+    "og:video:type" => "application/x-shockwave-flash",
+    "og:video:height" => "398",
+    "og:video:width" => "224",
+    "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id if @youtube_video}"
   }) -%>
+
 <h4><%= link_to @post.title, [@post.postable, @post] %></h4>
 <div class="content">
   <% if @post.photo %>
