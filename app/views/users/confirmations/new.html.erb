@@ -10,7 +10,6 @@
       <div class="form_container form_sign_in">
         <div class="form_wrapper">
           <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-
             <%= render 'shared/error_messages', :object => f.object %>
             <table cellpadding="0" cellspacing="0">
               <tr>
