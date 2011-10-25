@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
   private
 
   def render_error(exception)
+    logger.error exception.to_s
+    logger.error exception.backtrace.join("\n")
     render :template => 'pages/500.html.erb', :status => 500
   end
 
