@@ -136,14 +136,16 @@ class PostsController < ApplicationController
   end
 
   def send_in_email
+    @url = send_in_email_post_path(@post)
     send_as_smack
     @submit = 'SHARE BY EMAIL'
     @subject =  "#{current_user.first_name} #{current_user.last_name} wants to share this post from Campusmack.com."
-    render :send_as_smack
+    render :send_as_smack unless request.post?
   end
 
   def send_as_smack
     redirect_to @post and return if params[:commit] == 'CANCEL'
+    @url ||= send_as_smack_post_path(@post)
     @contacts = current_user.contacts.all
     @groups = current_user.contact_groups.all
     @submit = 'SEND AS SMACK'
@@ -162,7 +164,7 @@ class PostsController < ApplicationController
           end
         end.join(",")
       end
-      UserMailer.share_post(@post, current_user, title, to, params[:share][:message]).deliver
+      UserMailer.share_post(@post, current_user, title, to, params[:share][:message], params[:action] == 'send_as_smack').deliver
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
