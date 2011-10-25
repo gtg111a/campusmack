@@ -1,198 +1,22 @@
 <div class="content new_level">
   <div class="content_header">
-    <div class="content_title">ABOUT US</div>
+    <div class="content_title">About</div>
+      <%= render 'nav' %>
   </div>
-<div class="content_container">
-<div class="page">
-	
-<div class="about_faq">FAQ</div>
 
-<p class="about"><strong>What is Campusmack?</strong></p>
+  <div class="content_container">
+    <div class="page">
+      <h3>What is Campusmack?</h3>
 
-<p>Campusmack is a website where College Students, Alumni, and Fans alike can post and share content about campuses they love or love to hate.  Have you ever been frustrated by a friend, coworker, or family member who constantly gets in your face about how the College you love sucks?  Campusmack is designed to help you find and post dirt on the Campus your antagonist supports so you can put them in their place!</p>
+      <p>Campusmack is a website where College Students, Alumni, and Fans alike can post and share content about
+        campuses they love or love to hate. Have you ever been frustrated by a friend, coworker, or family member who
+        constantly gets in your face about how the College you love sucks? Campusmack is designed to help you find and
+        post dirt on the Campus your antagonist supports so you can put them in their place!</p>
 
-<p>While it can be tough to hold back sometimes when talking smack, Campusmack wants to build an edgy yet clean environment for its users.  This means absolutely no bullying, nudity, or profanity.  Please Smack Responsibly!</p>
+      <p>While it can be tough to hold back sometimes when talking smack, Campusmack wants to build an edgy yet clean
+        environment for its users. This means absolutely no bullying, nudity, or profanity. Please Smack
+        Responsibly!</p>
 
-<p class="about"><strong>What is a Smack?</strong></p>
-
-<p>A Smack can be a photo, youtube video, or a news article about a Campus that can be used as smack talk against that Campus.  For example, a photo of a Duke basketball player getting dunked on by a UNC player would be a photo Smack that a user could post onto the Duke landing page.  Once the Smack is posted, it can be viewed by other users and sent as Smack.</p>
-
-<p class="about"><strong>What does "Send as Smack" do?</strong></p>
-
-<p>Everything posted onto Campusmack can be sent as Smack Talk.  If you find a post on Campusmack that you’d like to rub in the face of the opposition, click the <img src="<%= root_url %>images/About/Send as Smack_big.jpg"> button associated with that post.  You’ll be brought to a landing page that allows you to import contacts from your preferred email provider (Gmail, Yahoo, AOL, etc.) and send an email to those you want to Smack.  You can type in a custom message and once you click “Send” and email will be sent from our servers to the people you selected to receive the Smack.  The content from the post you chose to share will show up in the recipients Inbox with a Subject line that reads "You just got SMACKED by (your first name) (your last name)".</p>
-
-<p class="about"><strong>What is a Redemption?</strong></p>
-
-<p>Redemptions are posts used to talk up a Campus you support.  For example, if a College you like is ranked by US News as having a top 10 MBA program, you can post this information as a News article Redemption on that College's landing page.  Redemptions can also be used as Smack talk.  If one of your annoying friends sends you a Smack about the College with the top 10 MBA program, you can "Smack Back" by sending the article to them about your superior academic ranking!</p>
-
-<p class="about"><strong>What are the Conference Statistics on the Home page?</strong></p>
-
-<img src="<%= root_url %>images/About/Conference Statistics.jpg">
-<p>The snapshot above is of one of the Conference Statistics tables from the home page.  The Conference Statistics bar is made up of all Division I-A conferences.  Each table displays the top three Colleges from each conference in terms of total number of Smacks descending.  "S" is an abbreviation for "Smacks" and "R" is an abbreviation for "Redemptions".</p>
-
-<p>If you click on "Full List", it will take you to a landing page with a full list of Colleges from that conference with their respective Smack/Redemption counts.</p>
-
-<p class="about"><strong>What if I don't want to Smack someone and I just want to Share the post?</strong></p>
-
-<p>If you stumble upon a post you think is funny and you just want to share it with your friends, click on one of the grey icons <img src="<%= root_url %>images/About/Share Icons.jpg"> associated with that post.  If you click the Mail icon, you'll be be able to send the post in an email.  If you click the Facebook icon, you can share the post content as a status update on your wall.  If you click the Twitter icon, you can share the link for the landing page of the post through your Twitter status.</p><br>
-
-<div class="about_faq">Campusmack Features</div>
-
-<ol start="I" type="I">
-<strong><li class="about">Adding Smacks</li></strong>
-
-<ol start="1" type="1">
-	<li>Sign in to your Campusmack account.</li><br>
-	
-	<li>Using the side navigation bar, hover over the conference of the team you wish to Smack.  Click on the College you want to Smack on the list that pops up, this will take you to that College’s main landing page.</li><br>
-
-	<li>Click on the <img src="<%= root_url %>images/About/Add Smack.jpg">  button at the top right hand corner of the page.</li><br>
-
-	<li>Click the box  to the right of the “Post type:” label corresponding to the type of post you’d like to upload:  <img src="<%= root_url %>images/About/Post Type.jpg"></li><br>
-
-	<li>Type in a Title for the post.</li><br>
-
-	<li>For Video posts, just paste in a Youtube URL in the “URL” field.  For Photo posts, click the “Browse” button and upload a photo.  For News articles, just paste in the URL of the article you want to share.  You can add either a Photo or Video to a News article by clicking the “Add Photo” or “Add Video” link beneath the “Article URL:” box.</li><br>
-
-	<li>Type in a summary of the content you plan to upload in the "Summary:" box.</li><br>
-
-	<li>Click the <img src="<%= root_url %>images/About/Submit.jpg"> button and the information will be posted to the College you selected.</li><br>
-
-</ol>
-
-<strong><li class="about">Adding Redemptions</li></strong>
-
-<ol start="1" type="1">
-	<li>Sign in to your Campusmack account.</li><br>
-
-	<li>Using the side navigation bar, hover over the conference of the team you wish to add a Redemption to.  Click on the College you want to add a Redemption to on the list that pops up, this will take you to that College’s main landing page.</li><br>
-
-	<li>Click on the <img src="<%= root_url %>images/About/Add Redemption.jpg">  button at the top right hand corner of the page.</li><br>
-
-	<li>Click the box  to the right of the “Post type:” label corresponding to the type of post you’d like to upload:  <img src="<%= root_url %>images/About/Post Type.jpg"></li><br>
-
-	<li>Type in a Title for the post.</li><br>
-
-<li>For Video posts, just paste in a Youtube URL in the “URL” field.  For Photo posts, click the “Browse” button and upload a photo.  For News articles, just paste in the URL of the article you want to share.  You can add either a Photo or Video to a News article by clicking the “Add Photo” or “Add Video” link beneath the “Article URL:” box.</li><br>
-
-<li>Type in a summary of the content you plan to upload in the "Summary:" box.</li><br>
-
-<li>Click the <img src="<%= root_url %>images/About/Submit.jpg"> button and the information will be posted to the College you selected.</li><br>
-
-</ol>
-
-<strong><li class="about">Importing Contacts</li></strong>
-
-<ol start="A" type="A">
-	<strong><li>Importing Contacts Within the “Edit Profile” Settings</li></strong>
-		<ol start="1" type="1">
-			<li>Once signed in to your account, click on the “Profile” link in the upper right hand corner of the website.</li><br>
-			
-			<li>Click on the <img src="<%= root_url %>images/About/Import Contacts.jpg"> button in the “EMAIL SETTINGS” section in the lower right hand corner of the page.  
-				Our site uses the Plaxo plug in to import your contacts; you should see the following pop up once you click on the Import Contacts button:<br>
-<img src="<%= root_url %>images/About/Plaxo.jpg"></li>
-			
-			<li>Click on the radio button next to the Email Provider that you use then click "Next".</li><br>
-			
-			<li>Enter in your username and password and click "Sign In".</li><br>
-			
-			<li>Plaxo will now bring up a list of all of your contacts.  You can either scroll through this list and put a check mark next to the contacts that you want to import, or you can just select the "Check All" option above the "Back" button and all of your contacts will be selected.  Once you've selected all of the contacts you want to import, click the "Next" button.  If you forget to import certain contacts or want to add additional contacts some time in the future, just go through these steps again.</li><br>
-			
-			<li>Plaxo should now display a message that says "Your contacts have been added".  Click the "Done" button.  Campusmack will now save all of your contacts in our protected database for easy retrieval; this might take a while so just wait until the website re-routes you to a page with all of your contacts listed.</li><br>
-			</ol>
-			
-		<strong><li>Importing Contacts Through the "Send as Smack" Function</li></strong>
-		<ol start="1" type="1">	
-			<li>Once signed in to your account, click on the <img src="<%= root_url %>images/About/Send as Smack_big.jpg"> button on any Campusmack post.</li><br>
-			
-			<li>On the next page, click on the <img src="<%= root_url %>images/About/Import Contacts.jpg"> button beneath the "Message" box.</li><br>
-			
-			<li>Plaxo will now bring up a list of all of your contacts.  You can either scroll through this list and put a check mark next to the contacts that you want to import, or you can just select the "Check All" option above the "Back" button and all of your contacts will be selected.  Once you've selected all of the contacts you want to import, click the "Next" button.  If you forget to import certain contacts or want to add additional contacts some time in the future, just go through these steps again.</li><br>
-
-			<li>Plaxo should now display a message that says "Your contacts have been added".  Click the "Done" button.  You can now use these contacts to easily send emails to your friends.  See instructions below for managing your contacts list and creating email groups.</li><br>
-			 		
-		</ol>	
-	</ol>			
-
-<strong><li class="about">Managing Your Email Contacts</li></strong>
-
-<ol start="A" type="A">
-	<strong><li>Creating an Email Group</li></strong>
-
-	<ol start="1" type="1">
-		<li>Once signed in to your account, click on the “Profile” link in the upper right hand corner of the website.</li><br>
-	
-		<li>If you haven't already, Import your contacts using the steps outlined in the section above.</li><br>
-	
-		<li>Click on the <img src="<%= root_url %>images/About/Manage Contacts.jpg"> button in the “EMAIL SETTINGS” section in the lower right hand corner of the page.</li><br>
-	
-		<li>Check the boxes of the contacts you'd like to add to a group and then click the <img src="<%= root_url %>images/About/Add to Group.jpg"> button at the top of the list of contacts</li><br>
-	
-		<li>Click the radio button next to "New Group" and then type the name of the group in the box to the right and click the "Add Contacts" button.</li><br>
-	</ol>
-	
-	<strong><li>Removing a Contact From a Group</li></strong>
-	<ol start="1" type="1">
-		<li>Once you've added an email group, it will show up in a menu to the left of your list of contacts.  To remove a contact from a group, click on the group you wish to remove that contact from.  The site will display a full list of contacts included in that group.</li><br>
-		<li>Click on the check box next to the contact you wish to remove from the group and then click the <img src="<%= root_url %>images/About/Remove From Group.jpg"> button above the list of contacts.  This will remove the contact from the group but will not delete the contact from your Contacts list.</li><br>
-	</ol>
-	
-	<strong><li>Adding a New Contact</li></strong>
-	<ol start="1" type="1">
-		<li>Click on the <img src="<%= root_url %>images/About/New Contact.jpg"> button in the top right hand side of the "Contacts" page.</li><br>
-		<li>Enter the Contact's Name and Email into the pop up and click "Submit".</li><br>
-	</ol>
-	
-	<strong><li>Deleting a Contact</li></strong>
-	<ol start="1" type="1">
-		<li>Click on the check box next to the contact you wish to delete (you can select multiple contacts to delete) and then click the <img src="<%= root_url %>images/About/Delete Selected.jpg"> button above the list of contacts.  This will permanently remove the contact(s) from your Contacts list.</li><br>
-		<li>If you want to add this contact back in the future, you can either add it through the "New Contact" or "Import Contacts" feature.</li><br>
-	</ol>
-	
-	<strong><li>Editing a Contact</li></strong>
-	<ol start="1" type="1">
-		<li>Click on the <img src="<%= root_url %>images/About/Edit.jpg"> button to the right of the contact that you want to change.  This will bring up a pop up box with that contact's name and email address.</li><br>
-		<li>Make your changes and then click the "Submit" button.</li>
-	</ol>
-</ol>
-
-<strong><li class="about">Sharing Content</li></strong>
-
-<ol start="A" type="A">
-	<strong><li>Send as Smack</li></strong>
-	<ol start="1" type="1">
-		<li>Once you find a post you want to send as Smack talk, click the <img src="<%= root_url %>images/About/Send as Smack_big.jpg"> button.  You will be routed to a landing page to compose the Smack email.</li></br>
-		<li>  If you've imported your email contacts, click the "Add Recipients" button and you'll be able to select groups or individual contacts to send the Smack to.  Once you're done selecting contacts, click the "I'm Done" button next to the "To" box.  You can also manually enter email addresses separated by a comma.  Once you've finished manually entering email addresses, hit the "Tab" key.</li></br>
-		<li>You can edit the default subject line to whatever you want.</li><br>
-		<li>Type a message for the body of the email in the "Message" box.</li><br>
-		<li>Click "Send" to send the message.</li><br>
-		<li>Sit back and smile because you just SMACKED someone...not physically, but through the computer.</li>
-	</ol>
-
-	<strong><li>Email Share</li></strong>
-	<ol start="1" type="1">
-		<li>Once you find a post you want to share with your friends through email, click the <img src="<%= root_url %>images/About/Email Share.jpg"> icon.  You will be routed to a landing page to compose the email.</li></br>
-		<li>  If you've imported your email contacts, click the "Add Recipients" button and you'll be able to select groups or individual contacts to share the post with.  Once you're done selecting contacts, click the "I'm Done" button next to the "To" box.  You can also manually enter email addresses separated by a comma.  Once you've finished manually entering email addresses, hit the "Tab" key.</li></br>
-		<li>You can edit the default subject line to whatever you want.</li><br>
-		<li>Type a message for the body of the email in the "Message" box.</li><br>
-		<li>Click "Send" to send the message.</li><br>
-	</ol>
-	
-	<strong><li>Facebook Share</li></strong>
-	<ol start="1" type="1">
-		<li>If you find a post you want to share with your friends through Facebook, click the <img src="<%= root_url %>images/About/Facebook Share.jpg"> icon.</li></br>
-		<li>Write a message in the box of the Facebook pop up and click the "Share Link" button.  This will share the information about the Campusmack post to your Facebook wall.</li></br>
-	</ol>
-	
-	<strong><li>Twitter Share</li></strong>
-	<ol start="1" type="1">
-		<li>If you find a post you want to share with your friends through Twitter, click the <img src="<%= root_url %>images/About/Twitter Share.jpg"> icon.</li></br>
-		<li>You'll be routed to a Twitter page with a field for entering your Twitter status.  The field will have an auto generated message from Campusmack with a link back to the post you want to share.  Click "Tweet" once you're satisfied with the message.</li></br>
-	</ol>
-
-</ol>
-	
-
-</div>
-</div>
+    </div>
+  </div>
 </div>

@@ -165,7 +165,7 @@ a:visited {
   background: url(/images/sign_up.png);
   padding-top: 2px;
   font-size: 9px;
-  line-height: 1.7em;
+  line-height: 1.9em;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   margin: -3px 0 0 4px;
@@ -1536,6 +1536,7 @@ ul.inner_menu li a, ul.inner_menu li span {
   background-color: rgb(38, 139, 217);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
   background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
+  cursor: pointer;
 }
 
 ul.inner_menu li a, ul.inner_menu li span.normal {
@@ -1648,6 +1649,10 @@ form.semantic button, form.semantic .actions input {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+
+form.semantic .actions input {
+  height: 26px;
 }
 
 form.semantic .actions .alt {
@@ -1769,7 +1774,7 @@ ul.items {
 
 .news {
   width: 210px;
-  height: 588px;
+  height: 624px;
   background: #F3F3F3;
   margin: 2px 2px 2px 553px;
   padding: 13px 10px 10px 10px;
@@ -1871,13 +1876,20 @@ div.page {
   padding: 15px;
 }
 
+.page h2 {
+  font-size: 25px;
+  margin-top: 1em;
+  font-weight:bold;
+	border-bottom: 2px solid #D4D4D4;
+}
+
 .page h3 {
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 1em;
 }
 
 .page h4 {
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 1em;
 }
 
@@ -1887,15 +1899,24 @@ div.page {
 
 .page p,
 .page ol {
-  margin: 1em 0;
+  margin: 15px 0;
 }
 
-.about {
-	  font-size: 15px;
+.page img.left {
+  margin-right: 15px;
+  float: left;
 }
 
-.about_faq {
-	font-size: 25px;
-	font-weight:bold;
-	border-bottom: 2px solid #D4D4D4;
+.page li {
+  line-height: 2em;
+}
+
+.page a,
+.page a:link,
+.page a:visited {
+  color: #000;
+}
+
+.page a:hover {
+  color: #30A0F0;
 }
