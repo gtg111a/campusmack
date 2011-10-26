@@ -1893,6 +1893,7 @@ div.page {
   margin-top: 1em;
 }
 
+.page ul.links li ul li,
 .page ol {
   padding-left: 40px;
 }
@@ -1911,12 +1912,6 @@ div.page {
   line-height: 2em;
 }
 
-.page a,
-.page a:link,
-.page a:visited {
-  color: #000;
-}
-
-.page a:hover {
-  color: #30A0F0;
+.page a {
+  text-decoration: underline;
 }

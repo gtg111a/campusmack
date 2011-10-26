@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def about
     @menu = [
       [:link, 'FAQ', '/faq'],
-      [:link, 'Howto', '/howto']
+      [:link, 'How To', '/howto']
     ]
     breadcrumbs.add 'About'
   end
@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   def faq
     @menu = [
       [:text, 'FAQ', '', 'active'],
-      [:link, 'Howto', '/howto']
+      [:link, 'How To', '/howto']
     ]
     breadcrumbs.add 'About', '/about'
     breadcrumbs.add 'FAQ'
@@ -21,10 +21,10 @@ class PagesController < ApplicationController
   def howto
     @menu = [
       [:link, 'FAQ', '/faq'],
-      [:text, 'Howto', '', 'active']
+      [:text, 'How To', '', 'active']
     ]
     breadcrumbs.add 'About', '/about'
-    breadcrumbs.add 'Howto'
+    breadcrumbs.add 'How To'
   end
 
   def help
