@@ -1,28 +1,100 @@
-<div class="notification-header"></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+</head>
+<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" bgcolor="#e4e4e4" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;">
+<table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#e4e4e4">
+  <table cellspacing="0" border="0" cellpadding="0" width="600" bgcolor="#fff" align="center">
+    <tr valign="top">
+      <td valign="top">
+        <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+          <tr>
+            <td bgcolor="#3a99e2">
+              <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
+                <tr>
+                  <td height="24" color="#fff">
+                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #fff; text-decoration: none;"><%= @to %></a>
+                  </td>
+                  <td height="24" align="right" style="font-family: Arial, sans-serif;">
+                    <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #fff;" href="#">View
+                    it in your browser</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="600" height="62">
+              <img width="600" height="62" alt="Campusmack" src="<%= root_url %>images/email/header_main.jpg"></td>
+          </tr>
+        </table>
+        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
+          <tr>
+            <td>
 
-<div class="notification-body">
-  <h1><%= @post.title %> </h1>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+              <table width="525" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td>
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px"><%= raw(@message.gsub(/\n/, '<br/>')) %></p>
+                  </td>
+                </tr>
+              </table>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+              <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+              <table width="525" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to @post.title, polymorphic_url([@post.postable, @post]) %></h1>
+                  </td>
+                </tr>
+                <% if @post.photo %>
+                  <tr>
+                    <td align="center">
+                      <img style="padding: 20px;" src="<%= @post.photo_url(:large) %>" alt=""/>
+                    </td>
+                  </tr>
+                <% end %>
+                <tr>
+                  <td>
+                    <% if  @post.video %>
+                      <p><%= link_to @post.video.url, @post.video.url, :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %></p>
+                    <% end %>
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 14px; margin: 0 0 20px"><%= @post.summary %></p>
+                  </td>
+                </tr>
+              </table>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+              <% if @send_as_smack %>
+                <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+                <table width="525" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td>
+                      <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Are
+                        you going to take that?</p>
 
-  <div class="post">
-    <div class="top">
-      Posted <%= time_ago_in_words(@post.created_at) -%>  ago by <%= @post.user.try(:username) || "Campusmack Team" %>
-      <br class="clear"/>
-    </div>
-    <% if @post.photo %>
-        <%= link_to(@post.title, polymorphic_url([@post.postable, @post])) %>
-        <div class="photo">
-          <img src="<%= @post.photo.url(:large) %>" alt=""/>
-        </div>
-    <% end %>
-    <%= link_to(@post.title, polymorphic_url([@post.postable, @post])) -%>
-    <% if  @post.video %>
-        <a href="<%= @post.video.url %>" style="color:white">.</a>
-    <% end %>
-    <br/>
-    <%= @post.summary %>
-  </div>
-  <br/>
-  <p><%= raw(@message.gsub(/\n/, '<br/>')) %></p>
-</div>
+                      <p><%= link_to "Smack " + @smacker.first_name + " Back!", college_smacks_url(@smacker.college) %></a></p>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
 
-<div class="notification-footer"></div>
+            </td>
+          </tr>
+        </table>
+
+        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
+          <tr>
+            <td align="right" style="vertical-align: middle;">
+              <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0;">&copy; <%= Date.today.year %>
+                Campusmack</p></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</table>
+</body>
+</html>

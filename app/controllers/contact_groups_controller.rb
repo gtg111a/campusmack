@@ -73,7 +73,7 @@ class ContactGroupsController < ApplicationController
 
 
   def add_to_group_form
-    @group = ContactGroup.new
+    @group = current_user.contact_groups.build
     @contact_list = "nil"
     respond_with(@contact_list) do |format|
       format.js { render_to_facebox }
@@ -84,7 +84,7 @@ class ContactGroupsController < ApplicationController
     if params[:group_type] == 'existing'
       @group = ContactGroup.find(params[:group]['id'])
     else
-      @group = current_user.contact_groups.create(:name => params[:new_group_name].strip)
+      @group = current_user.contact_groups.create(params[:contact_group])
     end
     @contact_count = 0
     if @group.present? && !@group.new_record?

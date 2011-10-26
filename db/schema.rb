@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016110618) do
+ActiveRecord::Schema.define(:version => 20111024094653) do
 
   create_table "authentications", :force => true do |t|
     t.integer   "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20111016110618) do
     t.integer  "redemptions_count", :default => 0, :null => false
     t.string   "division"
     t.string   "permalink"
+    t.integer  "weight",            :default => 0
   end
 
   create_table "contact_groups", :force => true do |t|
@@ -258,6 +259,11 @@ ActiveRecord::Schema.define(:version => 20111016110618) do
     t.boolean   "censor_text",                           :default => true
     t.integer   "smack_count",                           :default => 0
     t.string    "gender",                 :limit => 1
+    t.date      "birthday"
+    t.string    "avatar_file_name"
+    t.string    "avatar_content_type"
+    t.integer   "avatar_file_size"
+    t.datetime  "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

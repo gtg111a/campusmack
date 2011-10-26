@@ -49,29 +49,28 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.xml
   def create
-    @contact = current_user.contacts.build(params[:contact])
-    @group = ContactGroup.find(params[:group_id]) if !params[:group_id].empty?
-    respond_to do |format|
-      if @contact.save
-        @contact.contact_groups << @group if @group
-        format.js
-      else
-        format.js
+    contact = current_user.contacts.build(params[:contact])
+
+    if contact.save
+      unless params[:group_id].empty?
+        contact_group = current_user.contact_groups.find(params[:group_id])
+        contact.contact_groups << contact_group
       end
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
   # PUT /contacts/1
   # PUT /contacts/1.xml
   def update
-    @contact = current_user.contacts.find(params[:id])
-    @contact.update_attributes(params[:contact])
+    contact = current_user.contacts.find(params[:id])
+    contact.update_attributes(params[:contact])
+
     respond_to do |format|
-      if @contact.update_attributes(params[:contact])
-        format.js
-      else
-        format.js
-      end
+      format.js
     end
   end
 
@@ -89,9 +88,22 @@ class ContactsController < ApplicationController
 
   def import
     @contacts = current_user.contacts.import(current_user, params[:contact])
-    import_count = @contacts.count() { |contact| contact.errors.blank? }
+    errors = {}
+    import_count = @contacts.count() do |contact|
+      valid = contact.errors.blank?
+      unless valid
+        errors[contact.errors.first] ||= 0
+        errors[contact.errors.first] += 1
+      end
+      valid
+    end
+    flash[:notice] = "#{import_count} out of #{@contacts.count} contacts has been imported."
+    if errors.keys.any?
+      flash[:error] = ''
+      errors.each { |error| flash[:error] << "#{error.last} contacts can not be imported because of '#{error.first.join(' ')}'" }
+    end
     respond_to do |format|
-      format.js { render(:update) { |page| page.redirect_to(contacts_path) } }
+      format.js { render(:update) { |page| page.redirect_to :back } }
     end
   end
 

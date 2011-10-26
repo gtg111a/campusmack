@@ -51,6 +51,9 @@ Campusmack::Application.routes.draw do
   end
 
   resources :posts do
+    collection do
+      match :search, :action => :index
+    end
     member do
       post :report
       get "opengraph"
@@ -95,6 +98,9 @@ Campusmack::Application.routes.draw do
   end
 
   resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
+    collection do
+      match :search, :action => :index
+    end
     resources :comments, :only => [:create]
   end
 
@@ -107,6 +113,17 @@ Campusmack::Application.routes.draw do
       resources :photos
       resources :news, :controller => :news_posts
       resources :stats, :controller => :statistics
+    end
+  end
+
+  resources :videos, :photos do
+    collection do
+      match :search, :action => :index
+    end
+  end
+  resources :news, :controller => :news_posts do
+    collection do
+      match :search, :action => :index
     end
   end
 
@@ -124,7 +141,11 @@ Campusmack::Application.routes.draw do
   get '/contact-us', :to => 'support#new'
   post '/contact-us', :to => 'support#create'
   match '/about', :to => 'pages#about'
+  match '/faq', :to => 'pages#faq'
+  match '/howto', :to => 'pages#howto'
   match '/help', :to => 'pages#help'
+  match '/terms', :to => 'pages#terms'
+  match '/privacy', :to => 'pages#privacy'
 
   root :to => 'welcome#index'
 end

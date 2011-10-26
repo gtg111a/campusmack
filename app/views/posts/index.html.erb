@@ -11,8 +11,8 @@
         <div class="content_category">
           <%= render :partial => 'shared/sorter' %>
           <div class="category_container clearfix">
-            <%= will_paginate @posts %>
             <%= render :partial => "/posts/post", :collection => @posts %>
+            <%= will_paginate @posts %>
           </div>
         </div>
       </div>

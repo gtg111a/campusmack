@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+</head>
+<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" bgcolor="#e4e4e4" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;">
+<table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#e4e4e4">
+  <table cellspacing="0" border="0" cellpadding="0" width="600" bgcolor="#fff" align="center">
+    <tr valign="top">
+      <td valign="top">
+        <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+          <tr>
+            <td bgcolor="#3a99e2">
+              <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
+                <tr>
+                  <td height="24" color="#fff">
+                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #fff; text-decoration: none;"><%= @resource.email %></a>
+                  </td>
+                  <td height="24" align="right" style="font-family: Arial, sans-serif;">
+                    <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #fff;" href="#">View
+                    it in your browser</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="600" height="62">
+              <img width="600" height="62" alt="Campusmack" src="<%= root_url %>images/email/header_main.jpg"></td>
+          </tr>
+        </table>
+
+        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
+          <tr>
+            <td>
+
+              <table width="525" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td>
+                    <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+
+                    <h1 style="font-family: Arial, sans-serif; font-size: 20px; font-weight: normal; margin: 0 0 20px">Welcome
+                      to Campusmack.com, <%= @user.first_name %></h1>
+
+                    <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20p">Thanks
+                      for signing up to Campusmack, your source for posting and sharing content about the colleges you love, and love to hate. Please click on the link below to get started. Happy
+                      Smackin!</p>
+                    <%= link_to 'Click this link to confirm your email address', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %>
+                  </td>
+                </tr>
+              </table>
+              <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
+            </td>
+          </tr>
+        </table>
+
+        <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
+          <tr>
+            <td colspan="2">
+              <table bgcolor="#e0e0e0" cellpadding="10" width="100%">
+                <tr>
+                  <td align="center">
+					<!-->
+                    <a href="#" style="font-family: Arial, sans-serif; color: #30a0f0; font-size: 10px">FOLLOW ON
+                      TWITTER</a><span style="font-family: Arial, sans-serif; font-size: 10px;">&nbsp;|&nbsp;</span><a href="#" style="color: #30a0f0; font-size: 10px">FRIEND
+                    ON FACEBOOK</a></td><-->
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height="30" style="vertical-align: middle;">
+              <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0">You received this
+                email because you signed up to Campusmack.</p></td>
+            <td align="right" style="vertical-align: middle;">
+              <p style="font-family: Arial, sans-serif; color: #878787; font-size: 9px; margin: 0;">Copyright &#169; <%= @time.year %>
+                Campusmack</p></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</table>
+</body>
+</html>

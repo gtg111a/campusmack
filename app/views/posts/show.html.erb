@@ -59,7 +59,7 @@
           </div>
         <% end %>
         <% if @post.news_post %>
-          <%= link_to "News post", @post.news_post.url %>
+          <%= link_to "Article Preview", @post.news_post.url, :class => 'snap_shots' unless @post.news_post.blank? %>
           <% unless @post.news_post.image_file_name.blank? %>
             <div class="photo">
               <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>

@@ -1,7 +1,13 @@
 <li class="team-item">
-  <h3><%= link_to "News post", post.news_post.url, :class => 'snap_shots' %></h3>
-  <div class="summary">
-    <%= truncate(post.title, :length => 80) %>
+	<div class="summary">
+    <%= link_to truncate(post.title, :length => 80), [post.postable, post] %>
   </div>
+  <h3><%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' %></h3>
   <%= share_icons(post, :preview) %>
+  <div class="votes">
+    <%= link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
+    <b id="vote_count_up<%= post.id %>"><%= post.up_votes %></b>
+    <%= link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
+    <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
+  </div>
 </li>

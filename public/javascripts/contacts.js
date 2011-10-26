@@ -29,6 +29,14 @@ $(document).ready(function() {
         $("#contact_list").find(':checkbox').attr('checked', this.checked);
     });
 
+    $('.edit_contact').live('ajax:before', function(){
+        indicator_progress_in_facebox();
+    });
+
+    $('.new_contact').live('ajax:before', function(){
+        indicator_progress_in_facebox();
+    });
+
     $('#add_to_group_button').bind('ajax:beforeSend', function(evt, xhr, settings){
         var chk = $(".chk_box:checked").length;
         if(chk == 0){
@@ -76,6 +84,7 @@ $(document).ready(function() {
     $(".facebox_paggination a").live("click", function(event) {
         event.preventDefault();
         indicator_progress_in_facebox(this.href);
+        $.getScript(this.href);
     });
 
     $("#facebox .popup .content #form_facebox_ajax form").live("submit", function() {
@@ -131,12 +140,18 @@ function show_img(t) {
     $(id).show();
 }
 
-function reload_contacts(id) {
+function reload_contacts(id,href,after_load) {
     if(id){
 
     }
     else{
         id = '#rowclick1';
+    }
+    if(href){
+
+    }
+    else{
+        href = location
     }
     var height_contacts = $('.table_content').height();
     var height_rowclick = $('#rowclick1').height();
@@ -149,7 +164,10 @@ function reload_contacts(id) {
     else{
       $(id).html("<table><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
     }
-    $(id).load(location + ' ' + id );   
+    $(id).load(href + ' ' + id, function(){
+        after_load;
+    }) ;
+
 }
 
 function reload_contacts_groups() {
@@ -183,8 +201,14 @@ function clear_checkboxes(){
     });
 }
 
-function reload_pagination(){
+function reload_pagination(href){
+    if(href){
+
+    }
+    else{
+        href = location
+    }
     var height = $('#pagination_container').height();
     $('#pagination_container div.pagination').html("<table><td class='ajax_loader' style='height:" + height + "px;'><img src='/images/ajax-cb-loader.gif'/></td></table>");
-    $('#pagination_container').load(this.location + ' ' + '#pagination_container > *' );
+    $('#pagination_container').load(href + ' ' + '#pagination_container > *' );
 }

@@ -148,11 +148,22 @@ RailsAdmin.config do |config|
 
   config.model Conference do
     list do
+      sort_by :weight
+      sort_reverse :true
       field :id
       field :name
-      field :smacks_count
-      field :redemptions_count
-      field :updated_at
+      field :smacks_count do
+        column_width 20
+        label 'Smacks'
+      end
+      field :redemptions_count do
+        column_width 20
+        label 'Redemptions'
+      end
+      field :updated_at do
+        column_width 100
+      end
+      field :weight
     end
     show do
       field :name
@@ -160,6 +171,7 @@ RailsAdmin.config do |config|
       field :redemptions_count
       field :created_at
       field :updated_at
+      field :weight
       field :colleges
     end
   end

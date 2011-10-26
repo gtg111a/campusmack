@@ -1,40 +1,64 @@
+<%= form_for @group, :remote => true, :validate => true, :url => add_to_group_contact_groups_path(@contact_group) do |f| %>
 <div id="contact_group_form" class="facebox_form">
+  <div class="facebox_form">
   <% @contact_groups = ContactGroup.find_all_by_user_id(current_user) %>
   <table cellspacing="0" cellpadding="0">
-    <tr>
+    <tr class="add_radio">
     <% if @contact_groups.present? %>
-      <td class="radio"><%= '<input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" />'.html_safe %></td>
+      <td class="radio"><%= '<input class="rbtn" type="radio" name="group_type" value="existing" checked="checked" id="contact_existing_radio" />'.html_safe %></td>
       <td class="text"><%= "<span'> Select Group </span>".html_safe %></td>
       <td><%= select("group", 'id', @contact_groups.map { |u| [u.name, u.id] }) %></td>
     <% end %>
     </tr>
-    <tr>
+    <tr class="new_radio">
       <td class="radio">
         <input
         <% if !@contact_groups.present? %> <%= 'checked="checked"'.html_safe %>
         <% end %>
-        class="rbtn" type="radio" name="group_type" value="new"/>
+        class="rbtn" type="radio" name="group_type" value="new" id="contact_group_name_radio"/>
       </td>
-      <td class="text"><span>New Group</span> </td>
-      <td><input type="text" name="new_group_name"/></td>
+
+      <td class="text"><span><label for="contact_group_name">New Group</label></span></td>
+      <td><%= f.text_field :name %></td>
     </tr>
   </table>
-
-  <div class='dark_button' style="float:right"><%= link_to("Add contacts", add_to_group_contact_groups_path(@contact_group), :id => "add_contact") %></div>
+  <div style="float:right">
+    <%= f.submit "Add contacts", :id => "add_contact", :class => 'dark_button'  %>
+  </div>
+  </div>
 </div>
+<%end%>
+
 
 
 <script type="text/javascript" >
-  $(document).ready(function(){
 
-    $('#add_contact').click(function(){
-        $.ajax({
-          type: "POST",
-          url: "<%= add_to_group_contact_groups_path() -%>",
-          data: $('#contact_group_form :input').serialize() + "&" +$('input:checkbox:checked.chk_box').serialize()
-        });
-      
-      return false;
+  $(document).ready(function(){
+    var param = $('input:checkbox:checked.chk_box').serialize();
+    var s = $('.new_radio').html();
+
+    $('#contact_group_form tr').live('click',function(){
+      if( $(this).find('.rbtn').val() == 'new'){
+        $("#new_contact_group").validate();
+        $('#contact_group_name').attr('data-validate',true)
+      }
+      else{
+        $('.new_radio td').remove();
+        $('.new_radio').append(s);
+        $('#contact_group_name').attr('data-validate','');
+      }
+    });
+
+    $('#contact_group_form tr').click('click',function(){
+      $(this).find('.rbtn').attr('checked',true);
+    });
+
+    $('#new_contact_group').live('ajax:before', function(event, xhr, settings){
+      indicator_progress_in_facebox();
+    });
+
+    $('#new_contact_group').live('ajax:beforeSend', function(event, xhr, settings){
+      settings.data += '&' + param;
     });
 
     $('#contact_group_form input[name=new_group_name]').focus(function(){

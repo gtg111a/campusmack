@@ -28,7 +28,6 @@ module PostsHelper
     end
   end
 
-
   def clear_votes(voteable)
     @user = current_user
     Vote.where(
@@ -57,20 +56,22 @@ module PostsHelper
         youtube_id = $5
       end
       case size
-      when :small
-        w = 158
-        h = 92
-      when :medium
-        w = 217
-        h = 163
-      when :large
-        w = 500
-        h = 400
-      else
-        w = 158
-        h = 92
+        when :small
+          w = 158
+          h = 92
+        when :medium
+          w = 217
+          h = 163
+        when :large
+          w = 500
+          h = 400
+        else
+          w = 158
+          h = 92
       end
-      return raw %Q{<div id="ytplayer-#{youtube_id}"></div><script type="text/javascript">var params = { allowScriptAccess: "always", wmode:"opaque" };var atts = { id: "ytplayer-#{youtube_id}" };swfobject.embedSWF("http://www.youtube.com/e/#{youtube_id}?enablejsapi=1&playerapiid=ytplayer","ytplayer-#{youtube_id}", "#{w}", "#{h}", "8", null, null, params, atts);</script>}
+      # generate random hex for youtube id uniqueness
+      random = ActiveSupport::SecureRandom.hex(6)
+      return raw %Q{<div id="ytplayer-#{youtube_id + random}"></div><script type="text/javascript">var params = { allowScriptAccess: "always", wmode:"opaque" };var atts = { id: "ytplayer-#{youtube_id + random}" };swfobject.embedSWF("http://www.youtube.com/e/#{youtube_id}?enablejsapi=1&playerapiid=ytplayer","ytplayer-#{youtube_id + random}", "#{w}", "#{h}", "8", null, null, params, atts);</script>}
 
     end
   end

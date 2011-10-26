@@ -41,7 +41,6 @@
 
 .contacts_table {
     background: #fff url(/images/contact_groups-bg-repeat.png) repeat-y left bottom;
-    clear: both;
     overflow: hidden;
     border-color: #DEDEDE;
     border-style: solid;
@@ -218,6 +217,7 @@
     padding: 8px 0;
     overflow: hidden;
     margin-left: 20px;
+    width: 582px;
 }
 
 #facebox .contacts .table_head {

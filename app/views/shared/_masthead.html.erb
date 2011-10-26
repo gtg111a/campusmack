@@ -14,9 +14,11 @@
   </ul>
 </div>
 <% end %>
-<div class="content_actions">
-  <ul>
-    <li class="dark_button"><%= link_to "Add Smack", @parent.is_a?(College) ? new_college_smack_path(@parent) : new_conference_smack_path(@parent) %></li>
-    <li class="dark_button"><%= link_to 'Add Redemption', @parent.is_a?(College) ? new_college_redemption_path(@parent) : new_conference_redemption_path(@parent) %></li>
-  </ul>
-</div>
+<% if @parent %>
+  <div class="content_actions">
+    <ul>
+      <li class="dark_button"><%= link_to "Add Smack", @parent.is_a?(College) ? new_college_smack_path(@parent) : new_conference_smack_path(@parent) %></li>
+      <li class="dark_button"><%= link_to 'Add Redemption', @parent.is_a?(College) ? new_college_redemption_path(@parent) : new_conference_redemption_path(@parent) %></li>
+    </ul>
+  </div>
+<% end %>

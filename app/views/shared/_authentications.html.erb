@@ -1,6 +1,6 @@
 <div id="services_manage" class="services">
   <% if @services.any? %>
-      <p class="info_text">Authentication services Settings</p>
+      <p class="info_text">Authentication Services Settings</p>
   <% end %>
   
   <div class="auths">
@@ -10,11 +10,6 @@
           <%= service_link(service.provider, 64, false) %>
         </div>
         <div class="service_userdata">
-          <% if service.uid.starts_with?('http') %>
-              <p><%= service.uid.scan(/http[s]*:\/\/.*?\//)[0] %></p>
-          <% else %>
-              <p><%= service.provider.capitalize %>: <%= service.uid %></p>
-          <% end %>
           <% if service.user %>
             <p><%= service.user %></p>
             <p><%= service.user.email %></p>

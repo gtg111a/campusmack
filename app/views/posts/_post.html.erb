@@ -1,10 +1,10 @@
 <div class="content_unit2 clearfix">
   <div class="preview">
     <% if post.photo %>
-      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:small) %>" alt=""/></a>
+      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="158" alt=""/></a>
     <% end %>
     <% if post.news_post && !post.news_post.image_file_name.blank? %>
-      <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:small) %>" alt=""/></a>
+      <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="158" alt=""/></a>
     <% end %>
     <% if post.video %>
         <%= youtube_embed(post.video.url) %>
@@ -23,7 +23,7 @@
     <%= link_to(post.user.try(:username), post.user, :class => :author) %>
   </div>
   <div class="description">
-    <%= link_to "News post", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
+    <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
     <%= post.summary %>
   </div>
   <div class="actions">

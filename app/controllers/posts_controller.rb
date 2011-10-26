@@ -1,14 +1,13 @@
 # This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
   respond_to :js, :html
-  skip_authorization_check
   authorize_resource
   skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
   before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
   include PostsHelper
 
   before_filter :find_post, :except => [ :new, :create, :index ]
-  before_filter :find_parent
+  before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
     @post = @parent.send(@post_cls).build
@@ -35,11 +34,25 @@ class PostsController < ApplicationController
   end
 
   def index
-    @title = @parent.name + " #{@post_cls.titleize}"
-    posts = if ['smacks', 'redemptions'].include?(@post_cls)
-      @parent.send(@post_cls)
+    if @parent
+      @title = @parent.name + " #{@post_cls.titleize}"
+      posts = if ['smacks', 'redemptions'].include?(@post_cls)
+        @parent.send(@post_cls)
+      else
+        @parent.posts.joins(@post_cls.singularize.to_sym)
+      end
     else
-      @parent.posts.joins(@post_cls.singularize.to_sym)
+      @title = "All Posts"
+      posts = case @post_cls
+      when 'smacks'
+        Smack
+      when 'redemptions'
+        Redemption
+      when 'photos', 'videos', 'news_posts'
+        Post.joins(@post_cls.singularize.to_sym)
+      else
+        Post
+      end
     end
     @search = posts.search(params[:search])
     @order = params[:order] || 'created_at desc'
@@ -125,14 +138,16 @@ class PostsController < ApplicationController
   end
 
   def send_in_email
+    @url = send_in_email_post_path(@post)
     send_as_smack
     @submit = 'SHARE BY EMAIL'
     @subject =  "#{current_user.first_name} #{current_user.last_name} wants to share this post from Campusmack.com."
-    render :send_as_smack
+    render :send_as_smack unless request.post?
   end
 
   def send_as_smack
     redirect_to @post and return if params[:commit] == 'CANCEL'
+    @url ||= send_as_smack_post_path(@post)
     @contacts = current_user.contacts.all
     @groups = current_user.contact_groups.all
     @submit = 'SEND AS SMACK'
@@ -151,7 +166,7 @@ class PostsController < ApplicationController
           end
         end.join(",")
       end
-      UserMailer.share_post(@post, title, to, params[:share][:message]).deliver
+      UserMailer.share_post(@post, current_user, title, to, params[:share][:message], params[:action] == 'send_as_smack').deliver
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
@@ -164,31 +179,36 @@ class PostsController < ApplicationController
   end
 
   def find_parent
-    @parent = College.where(:permalink => params[:college_id]).first
-    @parent ||= Conference.where(:permalink => params[:conference_id]).first
-    @parent ||= @post.postable
+    @parent = College.where(:permalink => params[:college_id]).first if params[:college_id]
+    @parent ||= Conference.where(:permalink => params[:conference_id]).first if params[:conference_id]
+    @parent ||= @post.postable if @post
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end
 
   def init_college_menu
-    prefix = @parent.class.to_s.downcase
-    @main_menu << [ :link, 'All', @parent, '' ]
+    if @parent
+      prefix = "#{@parent.class.to_s.downcase}_"
+      @main_menu << [ :link, 'All', @parent, '' ]
+    else
+      prefix = ""
+      @main_menu << [ :link, 'All', posts_path, '' ]
+    end
     if @post_cls == 'smacks'
       @main_menu << [ :text, 'Smacks', '', 'active' ]
     else
-      @main_menu << [ :link, 'Smacks', eval("#{prefix}_smacks_path(@parent)"), '' ]
+      @main_menu << [ :link, 'Smacks', eval("#{prefix}smacks_path(@parent)"), '' ]
     end
     if @post_cls == 'redemptions'
       @main_menu << [ :text, 'Redemptions', '', 'active' ]
     else
-      @main_menu << [ :link, 'Redemptions', eval("#{prefix}_redemptions_path(@parent)"), '' ]
+      @main_menu << [ :link, 'Redemptions', eval("#{prefix}redemptions_path(@parent)"), '' ]
     end
   end
 
   def add_breadcrumbs
     if @parent.class.name == 'Conference'
       breadcrumbs.add @parent.name, conference_path(@parent)
-    else
+    elsif @parent.class.name == 'College'
       breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
     end
     breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'

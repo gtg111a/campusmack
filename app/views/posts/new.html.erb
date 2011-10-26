@@ -13,8 +13,8 @@
           var postcontent = [];
           postcontent[0] = '<%= f.fields_for :video, Video.new do |vf| %>
             <tr>
-              <td class="description"><%= vf.label :url, 'URL:' %></td>
-              <td class="entry"><%= vf.text_field :url %></td>
+              <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
+              <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
             </tr>
           <% end.gsub(/\r|\n/, '').html_safe %>
           ';
@@ -27,7 +27,7 @@
           ';
           postcontent[2] = '<%= f.fields_for :news_post, NewsPost.new do |npf| %>
             <tr>
-              <td class="description"><%= npf.label :url, 'URL:' %></td>
+              <td class="description"><%= npf.label :url, 'Article URL:' %></td>
               <td class="entry"><%= npf.text_field :url %></td>
             </tr>
             <tr id="news_post_addons">
@@ -39,8 +39,8 @@
               <td class="entry"><%= npf.file_field :image %></td>
             </tr>
             <tr class="hidden" id="news_video_div">
-              <td class="description"><%= npf.label :video_url, 'Video URL:' %></td>
-              <td class="entry"><%= npf.text_field :video_url %></td>
+              <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= npf.label :video_url, ' URL:' %></td>
+              <td class="entry"><%= npf.text_field :video_url %><small>Enter Youtube Links Only</small></td>
             </tr>
           <% end.gsub(/\r|\n/, '').html_safe %>';
           function switch_fields(num) {
@@ -92,8 +92,8 @@
           <table id="shifting_fields" cellpadding="0" cellspacing="0">
             <%= f.fields_for :video, Video.new do |vf| %>
               <tr>
-                <td class="description"><%= vf.label :url, 'URL:' %></td>
-                <td class="entry"><%= vf.text_field :url %></td>
+                <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
+                <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
               </tr>
             <% end %>
           </table>

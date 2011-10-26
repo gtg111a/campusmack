@@ -14,6 +14,7 @@ module ApplicationHelper
 
   def title
     base_title = "Campusmack"
+    base_title += ' | STAGING' if Rails.env == 'staging'
     if @title.nil?
       base_title
     else
@@ -122,7 +123,11 @@ module ApplicationHelper
     "no_breadcrumbs" if breadcrumbs_exceptions
   end
 
-  def gravatar_for(user, options = {:size => 50})
+  def gravatar_for(user, options = { :size => 50 })
+    if user.avatar.exists?
+      return image_tag user.avatar.url(:small)
+    end
+    options[:default] = root_url + "images/avatar_#{user.gender}.png"
     gravatar_image_tag(user.email.downcase, :alt => user.username,
                        :class => 'gravatar',
                        :gravatar => options)
@@ -188,6 +193,11 @@ module ApplicationHelper
   def twitter_share(post, place)
     link_to '', '', :title => 'Share on Twitter', :target => '_blank', :class => 'content_tw',
             :onclick => "window.open('http://twitter.com/share?url=#{polymorphic_url([post.postable, post])}&text=Check out \"#{post.title}\" on Campusmack.com : '); return false;"
+  end
+
+  def get_search_path
+    return "/posts/search" if request.env['PATH_INFO'] == '/'
+    request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search"
   end
 
 end
