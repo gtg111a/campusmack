@@ -378,7 +378,7 @@ def make_users
 end
 
 def make_admin
-  admin = Factory(:user, :username => '@campusmack', :password => 'campusmack', :email => 'test@campusmack.com', :admin => true)
+  admin = Factory(:user, :username => '@campusmack', :password => 'campusmack', :email => 'test@campusmack.com', :admin => true, :college => College.first)
   admin.confirm!
   puts "Added admin"
 end

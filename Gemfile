@@ -26,7 +26,7 @@ gem 'ffaker', '1.8.1'
 
 group :development do
   gem 'sqlite3', '1.3.3'
-  #gem 'mysql2', '0.2.8'
+  gem 'mysql2', '0.2.8'
   gem 'heroku'
   gem 'rspec-rails', '2.6.1'
 end
