@@ -52,7 +52,7 @@
                 <% if @post.photo %>
                   <tr>
                     <td align="center">
-                      <img style="padding: 20px;" src="<%= @post.photo_url(:large) %>" alt=""/>
+                      <%= link_to image_tag(@post.photo_url(:medium), :style => "padding: 20px;"), @post.photo_url(:large) %>
                     </td>
                   </tr>
                 <% end %>
