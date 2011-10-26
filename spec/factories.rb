@@ -3,8 +3,10 @@ Factory.define :user do |user|
   user.username { Faker::Internet.user_name }
   user.first_name { Faker::Name.name }
   user.last_name { Faker::Name.name }
+  user.gender 'M'
   user.email { Faker::Internet.email }
-  user.affiliation 'Student'
+  user.birthday { (14 + rand(40)).years.ago.to_date }
+  user.affiliation { User::AFFILIATION_OPTIONS.sample }
   user.association :college
   user.password "password"
   user.password_confirmation { |x| x.password }
