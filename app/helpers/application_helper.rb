@@ -123,11 +123,11 @@ module ApplicationHelper
     "no_breadcrumbs" if breadcrumbs_exceptions
   end
 
-  def gravatar_for(user, options = {:size => 50})
+  def gravatar_for(user, options = { :size => 50 })
     if user.avatar.exists?
       return image_tag user.avatar.url(:small)
     end
-    options[:default] = if user.gender == "F" then "http://localhost:3000/images/avatar_female.png" else "http://localhost:3000/images/avatar_male.png" end
+    options[:default] = root_url + "images/avatar_#{user.gender}.png"
     gravatar_image_tag(user.email.downcase, :alt => user.username,
                        :class => 'gravatar',
                        :gravatar => options)

@@ -319,7 +319,13 @@ $.TokenList = function (input, url_or_data, settings) {
         .click(function (event) {
             var li = $(event.target).closest("li");
             if(li && li.get(0) && $.data(li.get(0), "tokeninput")) {
-                toggle_select_token(li);
+                input_box.val($($($(li)[0]).children()[0]).html());
+                delete_token($(li));
+                hidden_input.change();
+                resize_input();
+                setTimeout(function(){do_search();}, 5);
+                return false;
+                //toggle_select_token(li);
             } else {
                 // Deselect selected token
                 if(selected_token) {

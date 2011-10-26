@@ -1,0 +1,243 @@
+<div class="content new_level">
+<div class="content_header">
+  <div class="content_title">Campusmack Features</div>
+  <%= render 'nav' %>
+</div>
+<div class="content_container">
+<div class="page">
+
+<ul>
+<li>
+  <h3>Adding Smacks</h3>
+  <ol start="1" type="1">
+    <li>Sign in to your Campusmack account.</li>
+    <li>Using the side navigation bar, hover over the conference of the team you wish to Smack. Click on the
+      College you want to Smack on the list that pops up, this will take you to that College’s main landing page.
+    </li>
+    <li>Click on the <%= image_tag('about/add_smack.jpg') %>  button at the top right hand corner of the page.</li>
+    <li>Click the box to the right of the “Post type:” label corresponding to the type of post you’d like to
+      upload:  <%= image_tag('about/post_type.jpg') %></li>
+    <li>Type in a Title for the post.</li>
+    <li>For Video posts, just paste in a Youtube URL in the “URL” field. For Photo posts, click the “Browse”
+      button and upload a photo. For News articles, just paste in the URL of the article you want to share. You
+      can add either a Photo or Video to a News article by clicking the “Add Photo” or “Add Video” link beneath
+      the “Article URL:” box.
+    </li>
+    <li>Type in a summary of the content you plan to upload in the "Summary:" box.</li>
+    <li>Click the <%= image_tag('about/submit.jpg') %> button and the information will be posted to the College
+      you selected.
+    </li>
+  </ol>
+</li>
+<li>
+  <h3>Adding Redemptions</h3>
+  <ol start="1" type="1">
+    <li>Sign in to your Campusmack account.</li>
+    <li>Using the side navigation bar, hover over the conference of the team you wish to add a Redemption to.
+      Click on the College you want to add a Redemption to on the list that pops up, this will take you to that
+      College’s main landing page.
+    </li>
+    <li>Click on the <%= image_tag('about/add_redemption.jpg') %>  button at the top right hand corner of the page.
+    </li>
+    <li>Click the box to the right of the “Post type:” label corresponding to the type of post you’d like to
+      upload:  <%= image_tag('about/post_type.jpg') %></li>
+    <li>Type in a Title for the post.</li>
+    <li>For Video posts, just paste in a Youtube URL in the “URL” field. For Photo posts, click the “Browse”
+      button and upload a photo. For News articles, just paste in the URL of the article you want to share. You
+      can add either a Photo or Video to a News article by clicking the “Add Photo” or “Add Video” link beneath
+      the “Article URL:” box.
+    </li>
+    <li>Type in a summary of the content you plan to upload in the "Summary:" box.</li>
+    <li>Click the <%= image_tag('about/submit.jpg') %> button and the information will be posted to the College
+      you selected.
+    </li>
+  </ol>
+
+</li>
+<li><h3>Importing Contacts</h3>
+
+  <ul>
+    <li>
+      <h4>Importing Contacts Within the “Edit Profile” Settings</h4>
+      <ol start="1" type="1">
+        <li>Once signed in to your account, click on the “Profile” link in the upper right hand corner of the
+          website.
+        </li>
+        <li>Click on the <%= image_tag('about/import_contacts.jpg') %> button in the “EMAIL SETTINGS” section in the
+          lower right hand corner of the page.
+          Our site uses the Plaxo plug in to import your contacts; you should see the following pop up once you
+          click on the Import Contacts button:<br/>
+          <%= image_tag('about/plaxo.jpg') %>
+        </li>
+        <li>Click on the radio button next to the Email Provider that you use then click "Next".</li>
+        <li>Enter in your username and password and click "Sign In".</li>
+        <li>Plaxo will now bring up a list of all of your contacts. You can either scroll through this list and put
+          a check mark next to the contacts that you want to import, or you can just select the "Check All" option
+          above the "Back" button and all of your contacts will be selected. Once you've selected all of the
+          contacts you want to import, click the "Next" button. If you forget to import certain contacts or want to
+          add additional contacts some time in the future, just go through these steps again.
+        </li>
+        <li>Plaxo should now display a message that says "Your contacts have been added". Click the "Done" button.
+          Campusmack will now save all of your contacts in our protected database for easy retrieval; this might
+          take a while so just wait until the website re-routes you to a page with all of your contacts listed.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h4>Importing Contacts Through the "Send as Smack" Function</h4>
+      <ol start="1" type="1">
+        <li>Once signed in to your account, click on the <%= image_tag('about/send_as_smack_big.jpg') %> button on
+          any Campusmack post.
+        </li>
+        <li>On the next page, click on the <%= image_tag('about/import_contacts.jpg') %> button beneath the
+          "Message" box.
+        </li>
+        <li>Plaxo will now bring up a list of all of your contacts. You can either scroll through this list and put
+          a check mark next to the contacts that you want to import, or you can just select the "Check All" option
+          above the "Back" button and all of your contacts will be selected. Once you've selected all of the
+          contacts you want to import, click the "Next" button. If you forget to import certain contacts or want to
+          add additional contacts some time in the future, just go through these steps again.
+        </li>
+        <li>Plaxo should now display a message that says "Your contacts have been added". Click the "Done" button.
+          You can now use these contacts to easily send emails to your friends. See instructions below for managing
+          your contacts list and creating email groups.
+        </li>
+      </ol>
+    </li>
+  </ul>
+
+</li>
+<li><h3>Managing Your Email Contacts</h3>
+
+  <ul>
+    <li>
+      <h4>Creating an Email Group</h4>
+      <ol start="1" type="1">
+        <li>Once signed in to your account, click on the “Profile” link in the upper right hand corner of the
+          website.
+        </li>
+        <li>If you haven't already, Import your contacts using the steps outlined in the section above.</li>
+        <li>Click on the <%= image_tag('about/manage_contacts.jpg') %> button in the “EMAIL SETTINGS” section in the
+          lower right hand corner of the page.
+        </li>
+        <li>Check the boxes of the contacts you'd like to add to a group and then click
+          the <%= image_tag('about/add_to_group.jpg') %> button at the top of the list of contacts
+        </li>
+        <li>Click the radio button next to "New Group" and then type the name of the group in the box to the right
+          and click the "Add Contacts" button.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h4>Removing a Contact From a Group</h4>
+      <ol start="1" type="1">
+        <li>Once you've added an email group, it will show up in a menu to the left of your list of contacts. To
+          remove a contact from a group, click on the group you wish to remove that contact from. The site will
+          display a full list of contacts included in that group.
+        </li>
+        <li>Click on the check box next to the contact you wish to remove from the group and then click
+          the <%= image_tag('about/remove_from_group.jpg') %> button above the list of contacts. This will remove
+          the contact from the group but will not delete the contact from your Contacts list.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h4>Adding a New Contact</h4>
+      <ol start="1" type="1">
+        <li>Click on the <%= image_tag('about/new_contact.jpg') %> button in the top right hand side of the
+          "Contacts" page.
+        </li>
+        <li>Enter the Contact's Name and Email into the pop up and click "Submit".</li>
+      </ol>
+    </li>
+    <li>
+      <h4>Deleting a Contact</h4>
+      <ol start="1" type="1">
+        <li>Click on the check box next to the contact you wish to delete (you can select multiple contacts to
+          delete) and then click the <%= image_tag('about/delete_selected.jpg') %> button above the list of
+          contacts. This will permanently remove the contact(s) from your Contacts list.
+        </li>
+        <li>If you want to add this contact back in the future, you can either add it through the "New Contact" or
+          "Import Contacts" feature.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h4>Editing a Contact</h4>
+      <ol start="1" type="1">
+        <li>Click on the <%= image_tag('about/edit.jpg') %> button to the right of the contact that you want to
+          change. This will bring up a pop up box with that contact's name and email address.
+        </li>
+        <li>Make your changes and then click the "Submit" button.</li>
+      </ol>
+    </li>
+  </ul>
+
+</li>
+<li><h3>Sharing Content</h3>
+
+  <ul>
+    <li>
+      <h4>Send as Smack</h4>
+      <ol start="1" type="1">
+        <li>Once you find a post you want to send_as_mack talk, click
+          the <%= image_tag('about/send_as_smack_big.jpg') %> button. You will be routed to a landing page to
+          compose the Smack email.
+        </li>
+        <li> If you've imported your email contacts, click the "Add Recipients" button and you'll be able to select
+          groups or individual contacts to send the Smack to. Once you're done selecting contacts, click the "I'm
+          Done" button next to the "To" box. You can also manually enter email addresses separated by a comma. Once
+          you've finished manually entering email addresses, hit the "Tab" key.
+        </li>
+        <li>You can edit the default subject line to whatever you want.</li>
+        <li>Type a message for the body of the email in the "Message" box.</li>
+        <li>Click "Send" to send the message.</li>
+        <li>Sit back and smile because you just SMACKED someone...not physically, but through the computer.</li>
+      </ol>
+    </li>
+    <li>
+      <h4>Email Share</h4>
+      <ol start="1" type="1">
+        <li>Once you find a post you want to share with your friends through email, click
+          the <%= image_tag('about/email_share.jpg') %> icon. You will be routed to a landing page to compose the
+          email.
+        </li>
+        <li> If you've imported your email contacts, click the "Add Recipients" button and you'll be able to select
+          groups or individual contacts to share the post with. Once you're done selecting contacts, click the "I'm
+          Done" button next to the "To" box. You can also manually enter email addresses separated by a comma. Once
+          you've finished manually entering email addresses, hit the "Tab" key.
+        </li>
+        <li>You can edit the default subject line to whatever you want.</li>
+        <li>Type a message for the body of the email in the "Message" box.</li>
+        <li>Click "Send" to send the message.</li>
+      </ol>
+    </li>
+    <li>
+      <h4>Facebook Share</h4>
+      <ol start="1" type="1">
+        <li>If you find a post you want to share with your friends through Facebook, click
+          the <%= image_tag('about/facebook_share.jpg') %> icon.
+        </li>
+        <li>Write a message in the box of the Facebook pop up and click the "Share Link" button. This will share the
+          information about the Campusmack post to your Facebook wall.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <h4>Twitter Share</h4>
+      <ol start="1" type="1">
+        <li>If you find a post you want to share with your friends through Twitter, click
+          the <%= image_tag('about/twitter_share.jpg') %> icon.
+        </li>
+        <li>You'll be routed to a Twitter page with a field for entering your Twitter status. The field will have an
+          auto generated message from Campusmack with a link back to the post you want to share. Click "Tweet" once
+          you're satisfied with the message.
+        </li>
+      </ol>
+    </li>
+  </ul>
+</li>
+</ul>
+</div>
+</div>
+</div>

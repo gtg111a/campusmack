@@ -1,0 +1,13 @@
+<div class="top_submenu">
+  <ul>
+    <% @menu.each do |type, text, link, aclass| %>
+      <li class="<%= aclass %>">
+        <% if type == :text %>
+          <b><%= text %></b>
+        <% else %>
+          <%= link_to(text, link) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
