@@ -927,6 +927,10 @@ ul.news li {
   margin: 15px 15px 0 0;
 }
 
+.comments_container .comment_auth_message {
+  margin: 20px 0 20px 106px;
+}
+
 .section {
   width: 260px;
   float: left;
@@ -1804,6 +1808,22 @@ ul.items {
 
 .news .summary {
   height: auto;
+}
+
+.news .summary a {
+  color: #000000;
+}
+
+.news .summary a:hover {
+  color: #30A0F0;
+}
+
+.news .snap_shots {
+  font-size: 10px;
+}
+
+.news .snap_shots:hover {
+  text-decoration: underline;
 }
 
 .news ul.items {
