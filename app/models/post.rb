@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  before_destroy :decrement_counter_cache
 
   include PostsHelper
   include Filter
@@ -45,6 +46,10 @@ class Post < ActiveRecord::Base
 
   def photo_url(params=nil)
     self.photo.image.url(params)
+  end
+
+  def decrement_counter_cache
+    self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
   end
 
 end
