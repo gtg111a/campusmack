@@ -10,6 +10,10 @@ RailsAdmin.config do |config|
     visible false
   end
 
+  config.model Statistic do
+    visible false
+  end
+
   config.model Photo do
     object_label_method :url_label
     list do
@@ -234,7 +238,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
       field :reports
     end
     edit do
@@ -250,7 +253,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
     end
   end
 
@@ -280,7 +282,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
       field :reports
     end
     edit do
@@ -295,7 +296,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
     end
   end
 
@@ -325,7 +325,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
       field :reports
     end
     edit do
@@ -340,7 +339,6 @@ RailsAdmin.config do |config|
       field :video
       field :photo
       field :news_post
-      field :statistic
     end
   end
 
@@ -389,28 +387,6 @@ RailsAdmin.config do |config|
       field :reason
       field :user
       field :custom_reason
-    end
-  end
-
-  config.model Statistic do
-    list do
-      field :id
-      field :post
-      field :name
-      field :data
-      field :updated_at
-    end
-    show do
-      field :post
-      field :name
-      field :data
-      field :created_at
-      field :updated_at
-    end
-    edit do
-      field :post
-      field :name
-      field :data
     end
   end
 

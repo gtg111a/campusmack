@@ -14,9 +14,4 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   has_many :reports, :as => :reportable, :dependent => :destroy
 
-  def self.censor
-    censored_text(self.comment,current_user) rescue 0
-
-
-  end
 end

@@ -15,12 +15,12 @@
     <ul>
       <% if can? :report, @post %>
         <li class="dark_button">
-          <%= link_to('Report Post', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") %>
+          <%= link_to('Report Post', report_post_path(@post), :class => 'button postreport', :remote => true, :id => "post_rep_#{@post.id}") %>
         </li>
       <% end %>
     </ul>
   </div>
-  <div class="content_title"><%= @post.title %></div>
+  <div class="content_title"><%= censoring(@post.title) %></div>
   <div class="content_container">
     <div class="content_category">
       <div class="smack_container clearfix">
@@ -75,7 +75,7 @@
         <% if @post.photo || @post.news_post || @post.video %>
           </div>
         <% end %>
-        <div class="summary"><%= @post.summary %>
+        <div class="summary"><%= censoring(@post.summary) %>
           <% if @post.summary && params[:action] != 'show' %>
             <%= link_to " [more...]", [@parent, @post] %>
           <% end %>
@@ -98,7 +98,6 @@
           <% end %>
         </div>
       </div>
-      <%= render 'shared/report_form' %>
     </div>
   </div>
 </div>

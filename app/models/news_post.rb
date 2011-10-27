@@ -6,8 +6,10 @@ class NewsPost < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :bucket => 'Campusmack',
-                    :path => "/:style/:id/:filename"
+                    :path => "/news/:style/:id/:filename"
 
+  validates :url, :presence => true
+  validates :url, :url_format => true
 
   def image_url(params=nil)
     self.image.url(params)

@@ -7,8 +7,12 @@
     $.ajax({
       type: "POST",
       url: "<%= import_contacts_path() -%>",
-      beforeSend: function(xhr){$("#loading-message").html("Importing contacts")},
-      success: function(data){$("#loading-message").html("Redirecting to contact list. Please wait...")},
+      beforeSend: function(xhr){
+        $('.content_actions .ajax').show();
+      },
+      success: function(data){
+
+      },
       data: $("#contact").serialize()
     });
 
@@ -16,5 +20,5 @@
 </script>
 
 <%= text_area_tag("contact", nil, {:rows => 1, :cols => 5, :style => "height:28px;width:380px;padding:10px;display:none "}) %>
-<a href="#" onclick="showPlaxoABChooser('contact', '<%=  plaxo_import_user_path(current_user) %>'); return false"><p>IMPORT CONTACTS</p></a>
+<a href="#" class="import" onclick="showPlaxoABChooser('contact', '<%=  plaxo_import_user_path(current_user) %>'); return false"><p>IMPORT CONTACTS</p></a>
 

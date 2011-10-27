@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  before_destroy :decrement_counter_cache
 
   include PostsHelper
   include Filter
@@ -38,13 +39,12 @@ class Post < ActiveRecord::Base
   scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
-  def self.censor
-    censored_text(self.title, current_user) rescue 0
-    censored_text(self.summary, current_user) rescue 0
-  end
-
   def photo_url(params=nil)
     self.photo.image.url(params)
+  end
+
+  def decrement_counter_cache
+    self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
   end
 
 end

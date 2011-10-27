@@ -55,7 +55,7 @@ Campusmack::Application.routes.draw do
       match :search, :action => :index
     end
     member do
-      post :report
+      match :report
       get "opengraph"
       match 'send_in_email'
       match 'send_as_smack'

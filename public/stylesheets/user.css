@@ -214,7 +214,8 @@
 
 .standard input[type="file"], .facebox_form input[type="file"] {
     height: auto;
-    border: none;
+    border-width: 1px;
+    border-style: inset;
     padding: 0 !important;
     background: transparent;
 }

@@ -65,7 +65,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @youtube_video = VideoInfo.new(@post.video.url)
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -86,15 +85,22 @@ class PostsController < ApplicationController
   end
 
   def report
-    unless params[:report][:reason_id].blank?
-      reason = Reason.find(params[:report][:reason_id].to_i)
+    if request.get?
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
-      reason = nil
-    end
-    @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
-    respond_to do |format|
-      format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
-      format.js
+      unless params[:report][:reason_id].blank?
+        reason = Reason.find(params[:report][:reason_id].to_i)
+      else
+        reason = nil
+      end
+      @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
+      respond_to do |format|
+        format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
+        format.js
+      end
     end
   end
 
@@ -134,7 +140,6 @@ class PostsController < ApplicationController
   end
 
   def opengraph
-    @youtube_video = VideoInfo.new(@post.video.url) if @post
   end
 
   def send_in_email

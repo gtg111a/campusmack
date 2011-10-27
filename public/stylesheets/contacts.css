@@ -323,3 +323,20 @@
 tr#address_book .entry {
   padding-bottom: 20px;
 }
+
+#search_contacts ul{
+    float:right;
+}
+
+#search_contacts ul li{
+    margin-right:0;
+}
+
+#search_contacts ul li .table_button, #search_contacts ul li a{
+    float:left;
+}
+
+#search_contacts ul li a{
+    height:16px;
+    margin-left:2px;
+}

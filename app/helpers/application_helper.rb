@@ -102,21 +102,13 @@ module ApplicationHelper
     end
   end
 
-  def censored_text(original_text)
-    if (current_user.present? && current_user.censor_text?)
-      original_text.present? ? original_text.censored : ""
-    else
-      return original_text
-    end
-  end
-
   def breadcrumbs_exceptions
     params[:controller] == 'welcome'
   end
 
   def render_breadcrumbs
     return if breadcrumbs_exceptions
-    raw('<div class="breadcrumbs">'+breadcrumbs.render(:format => :inline, :separator => '>')+'</div>')
+    raw('<div class="breadcrumbs">'+censoring(breadcrumbs.render(:format => :inline, :separator => '>'))+'</div>')
   end
 
   def add_padd_if_no_breadcrumbs
@@ -198,6 +190,14 @@ module ApplicationHelper
   def get_search_path
     return "/posts/search" if request.env['PATH_INFO'] == '/'
     request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search"
+  end
+
+  def censoring(text)
+    if current_user && current_user.censor_text? && text
+      Profanalyzer.filter text
+    else
+      text
+    end
   end
 
 end
