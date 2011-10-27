@@ -85,15 +85,22 @@ class PostsController < ApplicationController
   end
 
   def report
-    unless params[:report][:reason_id].blank?
-      reason = Reason.find(params[:report][:reason_id].to_i)
+    if request.get?
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
-      reason = nil
-    end
-    @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
-    respond_to do |format|
-      format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
-      format.js
+      unless params[:report][:reason_id].blank?
+        reason = Reason.find(params[:report][:reason_id].to_i)
+      else
+        reason = nil
+      end
+      @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
+      respond_to do |format|
+        format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
+        format.js
+      end
     end
   end
 

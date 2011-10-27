@@ -17,7 +17,7 @@
       <span class="time"><%= comment.created_at.strftime("%H:%M") %></span>
     </div>
     <div class="comment_text">
-      <%= censored_text(comment.comment) %>
+      <%= censoring(comment.comment) %>
     </div>
   </div>
 </div>

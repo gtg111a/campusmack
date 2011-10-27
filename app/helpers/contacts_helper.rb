@@ -16,7 +16,7 @@ module ContactsHelper
     end
     min = array.min_by {|x| x }
     array.each do |x|
-      (x == params[:per].to_i or (params[:per] == nil && x == min )) ? html << "<li class='active'><span>#{x.to_s}</span></li>" : html << "<li>#{link_to x.to_s, contacts_path(:page => 1, :per => x, :group_id => params[:group_id]), :remote => (options[:remote] || false)}</li>"
+      (x == params[:per].to_i or (params[:per] == nil && x == min )) ? html << "<li class='active'><span>#{x.to_s}</span></li>" : html << "<li>#{link_to x.to_s, contacts_path(:page => 1, :per => x, :group_id => params[:group_id], :search => params[:search]), :remote => (options[:remote] || false)}</li>"
     end
     return raw html
   end

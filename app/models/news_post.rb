@@ -8,6 +8,8 @@ class NewsPost < ActiveRecord::Base
                     :bucket => 'Campusmack',
                     :path => "/news/:style/:id/:filename"
 
+  validates :url, :presence => true
+  validates :url, :url_format => true
 
   def image_url(params=nil)
     self.image.url(params)
