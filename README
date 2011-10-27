@@ -5,9 +5,9 @@
 
 == Branch strategy
 
-* production: this is always should be the same that we have on PROD
-* staging: this is like master but with things we need to test on the server
 * master: this is for daily commits and local tests
+* staging: this is like master but with things we need to test on the server
+* production: this is always should be the same that we have on PROD
 
 == General workflow
 
@@ -24,3 +24,25 @@ heroku rake db:migrate --app campusmack-staging
 == Deploy to staging
 
 git push heroku-staging staging:master
+
+If you just cloned from the repo you need to add the remote repo:
+
+git remote add heroku-staging git@heroku.com:campusmack-staging.git
+
+Same for master branch:
+
+git remote add heroku git@heroku.com:campusmack.git
+
+== Deploying to PROD from the production branch
+
+git push heroku production:master
+
+Note: if you deployed to PROD from another branch earlier (which is not recommended),
+your push might be rejected.
+You need to use the -f to force the push. Since we don't track history on heroku's
+repo, we use only for transfer, that is fine.
+So, the above command will look like this:
+
+git push -f heroku production:master
+
+However the recommended way is to merge into the production branch first, then do the deploy.

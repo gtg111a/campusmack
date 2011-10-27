@@ -134,7 +134,6 @@ class PostsController < ApplicationController
   end
 
   def opengraph
-    @youtube_video = VideoInfo.new(@post.video.url) if @post
   end
 
   def send_in_email
