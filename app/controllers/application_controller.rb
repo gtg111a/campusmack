@@ -35,6 +35,18 @@ class ApplicationController < ActionController::Base
     breadcrumbs.add 'Home', root_path
   end
 
+  def add_breadcrumbs
+    controller, action = params[:controller], params[:action]
+
+    # The main breadcrumb
+    breadcrumbs.add controller.underscore.titlecase, contacts_path
+
+    unless action == "index" # No breadcrumbs needed for the index page
+      # Breadcrumb for the actual page, notice the conventions used.
+      breadcrumbs.add "#{action}_#{controller.singularize}".titlecase
+    end
+  end
+
   def get_leftmenu_content
     @conferences = Conference.where(:division => session[:division])
   end
