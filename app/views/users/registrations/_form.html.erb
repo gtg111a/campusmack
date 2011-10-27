@@ -9,7 +9,7 @@
 
       <tr>
         <td class="description"><%= f.label :username, "Username:" %></td>
-        <td class="entry"><%= f.text_field :username %></td>
+        <td class="entry"><%= f.text_field :username, :validate => false %></td>
         <td class="star"><%= mark_required(resource, :username) %></td>
       </tr>
 
@@ -41,7 +41,7 @@
 
       <tr>
         <td class="description"><%= f.label :email, "Email:" %></td>
-        <td class="entry"><%= f.text_field :email, :validate =>{ :presence => true, :confirmation => true } %></td>
+        <td class="entry"><%= f.text_field :email, :validate => false %></td>
         <td class="star"><%= mark_required(resource, :email) %></td>
       </tr>
 

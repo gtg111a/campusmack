@@ -21,6 +21,7 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch =>
 gem 'breadcrumbs'
 gem 'gravatar_image_tag'
 gem 'will_paginate', '3.0.pre2'
+gem 'video_info'
 gem 'ffaker', '1.8.1'
 
 group :development do

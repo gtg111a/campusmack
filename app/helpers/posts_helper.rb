@@ -28,7 +28,6 @@ module PostsHelper
     end
   end
 
-
   def clear_votes(voteable)
     @user = current_user
     Vote.where(
@@ -57,18 +56,18 @@ module PostsHelper
         youtube_id = $5
       end
       case size
-      when :small
-        w = 158
-        h = 92
-      when :medium
-        w = 217
-        h = 163
-      when :large
-        w = 500
-        h = 400
-      else
-        w = 158
-        h = 92
+        when :small
+          w = 158
+          h = 92
+        when :medium
+          w = 217
+          h = 163
+        when :large
+          w = 500
+          h = 400
+        else
+          w = 158
+          h = 92
       end
       # generate random hex for youtube id uniqueness
       random = ActiveSupport::SecureRandom.hex(6)
