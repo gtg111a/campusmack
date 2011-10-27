@@ -8,7 +8,7 @@
   <div class="form_container post_form">
     <div class="form_wrapper">
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
-      <% # Rendering content to javascript variables to switch later on  %>
+      <% # Rendering content to javascript variables to switch later on %>
       <% content_for :js do %>
           var postcontent = [];
           postcontent[0] = '<%= f.fields_for :video, Video.new do |vf| %>

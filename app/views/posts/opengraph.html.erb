@@ -11,6 +11,7 @@
     "og:video:width" => "224",
     "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id if @youtube_video}"
   }) -%>
+
 <h4><%= link_to @post.title, [@post.postable, @post] %></h4>
 <div class="content">
   <% if @post.photo %>
