@@ -9,7 +9,7 @@
 
     <% conference.colleges.limit(limit).order('smacks_count desc').each do |college| %>
       <tr class="<%= cycle("even", "odd") %>">
-        <td><%= link_to college.name.split.first, college %></td>
+        <td><%= link_to college.name, college %></td>
         <td class="smack"><%= college.smacks_count %></td>
         <td class="redemp"><%= college.redemptions_count %></td>
       </tr>
