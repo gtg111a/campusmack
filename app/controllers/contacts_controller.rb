@@ -1,15 +1,16 @@
 class ContactsController < ApplicationController
   authorize_resource
 
+  before_filter :add_breadcrumbs, :only => [:index]
+
   def index
-    breadcrumbs.add 'Contacts'
     @group = ContactGroup.find_by_id(params[:group_id])
     @contact_groups = current_user.contact_groups
     @contacts = if @group
-                  @group.contacts
+                  @group.contacts.search(params[:search])
                 else
                   @group = ContactGroup.new(:name => 'All')
-                  current_user.contacts
+                  current_user.contacts.search(params[:search])
                 end.order("name ASC").paginate(:page => params[:page], :per_page => params[:per])
   end
 
@@ -24,30 +25,21 @@ class ContactsController < ApplicationController
     end
   end
 
-  # GET /contacts/new
-  # GET /contacts/new.xml
   def new
     @contact = current_user.contacts.build
-    breadcrumbs.add 'Contacts', contacts_path
-    breadcrumbs.add 'New Contact'
     respond_to do |format|
       format.js { render_to_facebox }
       format.xml { render :xml => @contact }
     end
   end
 
-  # GET /contacts/1/edit
   def edit
-    breadcrumbs.add 'Contacts', contacts_path
-    breadcrumbs.add 'Edit Contact'
     @contact = Contact.find(params[:id])
     respond_to do |format|
       format.js { render_to_facebox }
     end
   end
 
-  # POST /contacts
-  # POST /contacts.xml
   def create
     contact = current_user.contacts.build(params[:contact])
 
@@ -63,8 +55,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PUT /contacts/1
-  # PUT /contacts/1.xml
   def update
     contact = current_user.contacts.find(params[:id])
     contact.update_attributes(params[:contact])
@@ -74,8 +64,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /contacts/1
-  # DELETE /contacts/1.xml
   def destroy
     @contact = current_user.contacts.find(params[:id])
     @contact.destroy

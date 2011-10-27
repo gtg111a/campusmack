@@ -8,7 +8,7 @@
     <div class="new_line"></div>
     <div class="section">
       <div class="section_title">
-        <%= link_to @sotw.title, [@sotw.postable, @sotw] %>
+        <%= link_to censoring(@sotw.title), [@sotw.postable, @sotw] %>
       </div>
       <div class="section_undertitle">
         COLLEGE SMACKED: <%= link_to @sotw.postable.name.upcase, @sotw.postable, :class => :section_link %>
@@ -26,11 +26,14 @@
         <%= @sotw.created_at.to_date.to_s(:long) %> by <%= link_to(@sotw.user.try(:username), @sotw.user) %>
       </div>
       <div class="content_text">
-       <%= @sotw.summary %>
+       <%= censoring(@sotw.summary) %>
       </div>
       <div class="content_share">
         <%= share_icons(@sotw, :post) %>
       </div>
     </div>
+  </div>
+  <div class="view_more_link clear_both">
+    <%= link_to "All posts", posts_path %>
   </div>
 </div>

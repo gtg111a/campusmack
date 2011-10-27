@@ -33,8 +33,13 @@
       <tr>
         <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
         <td class="entry">
-          <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affiliation') %></span>
-          <span> of <%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span>
+          <table>
+            <tr>
+              <td style="vertical-align: middle"><span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affiliation') %></span></td>
+              <td style="vertical-align: middle">&nbsp;of&nbsp;</td>
+              <td style="vertical-align: middle"><span><%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span></td>
+            </tr>
+          </table>
         </td>
         <td class="star"><%= mark_required(resource, :affiliation) %></td>
       </tr>

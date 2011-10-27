@@ -2,6 +2,10 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  errors:
+    messages:
+      url_format: "url is not formatted properly"
+      youtube_url_format: "is not youtube url"
   unauthorized:
     manage:
       all: 'You must be signed-up/signed-in to use this function'
