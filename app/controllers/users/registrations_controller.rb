@@ -14,14 +14,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     breadcrumbs.add 'Signing Up'
     build_resource
 
-    # Confirm the new account if the user used an external service to sign up
-    if session[:provider]
-      resource.confirm!
-      authentication = Authentication.find(session[:provider])
-      resource.authentications << authentication
-    end
-
     if resource.save
+      # Confirm the new account if the user used an external service to sign up
+      if session[:provider]
+        resource.confirm!
+        authentication = Authentication.find(session[:provider])
+        resource.authentications << authentication
+      end
+
       if resource.active_for_authentication?
         set_flash_message :success, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
@@ -32,6 +32,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
     else
+      flash[:error] = "Please fix the followings:<br/><ul>"
+      resource.errors.each {|e, m| flash[:error] << "<li><b>#{e}:</b> #{m}</li>" }
+      flash[:error] << '</ul>'
       clean_up_passwords(resource)
       respond_with_navigational(resource) { render_with_scope :new }
     end
