@@ -177,6 +177,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def view_email
+    @subject = 'You just got SMACKED'
+    @message = ''
+    @smacker = current_user
+    render 'user_mailer/share_post', :layout => false
+  end
+
   protected
 
   def find_post
