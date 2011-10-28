@@ -27,11 +27,7 @@
     <%= censoring(post.summary) %>
   </div>
   <div class="actions">
-    <%= link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
-    <b id="vote_count_up<%= post.id %>"><%= post.up_votes %></b>
-    <span class="divider_vert2">&nbsp;</span>
-    <%= link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
-    <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
+    <%= voting_icons(post) %>
     <span class="divider_vert2">&nbsp;</span>
     <%= share_icons(post, :post) %>
     <% if signed_in? %>
