@@ -31,18 +31,18 @@ module PostsHelper
   def clear_votes(voteable)
     @user = current_user
     Vote.where(
-        :voter_id => @user.id,
-        :voter_type => @user.class.name,
-        :voteable_id => voteable.id
+      :voter_id => @user.id,
+      :voter_type => @user.class.name,
+      :voteable_id => voteable.id
     ).map(&:destroy)
   end
 
   def post_voted_on?(voteable)
     @user = current_user
     0 < Vote.where(
-        :voter_id => @user.id,
-        :voter_type => @user.class.name,
-        :voteable_id => voteable.id
+      :voter_id => @user.id,
+      :voter_type => @user.class.name,
+      :voteable_id => voteable.id
     ).count
   end
 
@@ -77,7 +77,7 @@ module PostsHelper
   end
 
   def vote_buttons(post, size = :large)
-    imgwidth = {}
+    imgwidth = { }
     imgwidth = { :width => 23 } if size == :small
     tag = size == :small ? 'span' : 'div';
     html = %Q{<#{tag} class="vote">}
