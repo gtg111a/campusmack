@@ -1615,12 +1615,10 @@ ul.items {
 }
 
 .team-item {
+  margin-right: 20px;
   float: left;
-  list-style: none outside none;
-  margin-bottom: 20px;
-  margin-left: 8px;
-  margin-right: 8px;
-  width: 240px;
+  list-style: none;
+  width: 158px;
 }
 
 .team-item .item-top {

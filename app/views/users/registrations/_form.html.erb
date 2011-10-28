@@ -61,7 +61,6 @@
         </tr>
       <% end %>
 
-      <% if session[:provider].nil? %>
         <tr>
           <% if f.object.new_record? %>
             <td class="description"><%= f.label :password, "Password:" %></td>
@@ -87,7 +86,6 @@
             <td class="star"><%= mark_required(resource, :password) %></td>
           </tr>
         <% end %>
-      <% end %>
 
       <tr>
         <td class="description"><%= f.label :avatar, "Avatar:" %></td>
