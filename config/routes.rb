@@ -59,6 +59,7 @@ Campusmack::Application.routes.draw do
       get "opengraph"
       match 'send_in_email'
       match 'send_as_smack'
+      match 'view_email'
     end
     member do
       post :vote_up, :vote_down

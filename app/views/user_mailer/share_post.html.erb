@@ -5,22 +5,26 @@
 </head>
 <body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" bgcolor="#e4e4e4" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;">
 <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#e4e4e4">
-  <table cellspacing="0" border="0" cellpadding="0" width="600" bgcolor="#fff" align="center">
+  <table cellspacing="0" border="0" cellpadding="0" width="600" bgcolor="#ffffff" align="center">
     <tr valign="top">
       <td valign="top">
         <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
           <tr>
             <td bgcolor="#3a99e2">
-              <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
-                <tr>
-                  <td height="24" color="#fff">
-                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #fff; text-decoration: none;"><%= @to %></a>
-                  </td>
-                  <td height="24" align="right" style="font-family: Arial, sans-serif;">
-                    <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #fff;" href="#">View
-                    it in your browser</a></td>
-                </tr>
-              </table>
+              <% if params[:action] != 'view_email' %>
+                <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
+                  <tr>
+                    <td height="24" color="#ffffff">
+                      <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff; text-decoration: none;"><%= @to %></a>
+                    </td>
+                    <td height="24" align="right" style="font-family: Arial, sans-serif;">
+                      <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff;" href="<%= view_email_post_url(@post) %>">View
+                      it in your browser</a></td>
+                  </tr>
+                </table>
+              <% else %>
+                <br/>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -31,7 +35,7 @@
         <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
           <tr>
             <td>
-
+              <% if params[:action] != 'view_email' %>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
               <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
               <table width="525" cellspacing="0" cellpadding="0" border="0">
@@ -43,10 +47,11 @@
               </table>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
               <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+              <% end %>
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
-                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to @post.title, polymorphic_url([@post.postable, @post]) %></h1>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to @post.title, polymorphic_url([@post.postable, @post]), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 24px; font-weight: bold;" %></h1>
                   </td>
                 </tr>
                 <% if @post.photo %>
@@ -74,7 +79,7 @@
                       <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; margin: 0 0 20px">Are
                         you going to take that?</p>
 
-                      <p><%= link_to "Smack " + @smacker.first_name + " Back!", college_smacks_url(@smacker.college) %></a></p>
+                        <p><%= link_to "Smack " + @smacker.first_name + " Back!", college_smacks_url(@smacker.college), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 12px; font-weight: bold;" %></a></p>
                     </td>
                   </tr>
                 </table>

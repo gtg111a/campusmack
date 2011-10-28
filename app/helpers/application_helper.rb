@@ -163,6 +163,19 @@ module ApplicationHelper
     ("<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place) + send_as_smack_btn(post, place) + "</div>").html_safe
   end
 
+  def voting_icons(post)
+    html = ''
+    if can? :create, Vote
+      html << link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up")
+    end
+    html << %Q{<b id="vote_count_up#{post.id}">#{post.up_votes}</b>}
+    if can? :create, Vote
+      html << link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down")
+    end
+    html << %Q{<b id="vote_count_down#{post.id}">#{post.down_votes}</b></div>}
+    html.html_safe
+  end
+
   def send_as_smack_btn(post, place)
     img = 'send_as_smack'
     img += '_' if place != :show

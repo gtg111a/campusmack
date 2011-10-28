@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   validates :affiliation, :presence => true
   validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
-
+  validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
   has_attached_file :avatar, :styles => {:small => "39x39", :medium => "100x100", :large => "400x400>"}
 
   def feed
