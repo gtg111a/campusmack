@@ -11,16 +11,20 @@
         <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
           <tr>
             <td bgcolor="#3a99e2">
-              <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
-                <tr>
-                  <td height="24" color="#ffffff">
-                    <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff; text-decoration: none;"><%= @to %></a>
-                  </td>
-                  <td height="24" align="right" style="font-family: Arial, sans-serif;">
-                    <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff;" href="#">View
-                    it in your browser</a></td>
-                </tr>
-              </table>
+              <% if params[:action] != 'view_email' %>
+                <table cellspacing="0" cellpadding="0" border="0" align="center" width="525">
+                  <tr>
+                    <td height="24" color="#ffffff">
+                      <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff; text-decoration: none;"><%= @to %></a>
+                    </td>
+                    <td height="24" align="right" style="font-family: Arial, sans-serif;">
+                      <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff;" href="<%= view_email_post_url(@post) %>">View
+                      it in your browser</a></td>
+                  </tr>
+                </table>
+              <% else %>
+                <br/>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -31,7 +35,7 @@
         <table cellspacing="0" cellpadding="0" border="0" width="525" align="center">
           <tr>
             <td>
-
+              <% if params[:action] != 'view_email' %>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
               <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
               <table width="525" cellspacing="0" cellpadding="0" border="0">
@@ -43,6 +47,7 @@
               </table>
               <img width="10" height="20" src="<%= root_url %>images/email/spacer.gif">
               <img width="525" height="21" src="<%= root_url %>images/email/divider.gif">
+              <% end %>
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
