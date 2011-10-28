@@ -33,8 +33,17 @@
       <tr>
         <td class="description"><%= f.label :affiliation, "Affiliation:" %></td>
         <td class="entry">
-          <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affiliation') %></span>
-          <span> of <%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span>
+          <table>
+            <tr>
+              <td style="vertical-align: middle">
+                <span class="affiliation_span"><%= f.select(:affiliation, User::AFFILIATION_OPTIONS, { :include_blank => true }, :class => 'affiliation') %></span>
+              </td>
+              <td style="vertical-align: middle">&nbsp;of&nbsp;</td>
+              <td style="vertical-align: middle">
+                <span><%= f.select(:college_id, College.find(:all, :order => "name ASC").collect { |a| [a.name, a.id] }, { :include_blank => true }, :class => 'college') %></span>
+              </td>
+            </tr>
+          </table>
         </td>
         <td class="star"><%= mark_required(resource, :affiliation) %></td>
       </tr>
@@ -52,13 +61,12 @@
         </tr>
       <% end %>
 
-      <% if session[:provider].nil? %>
         <tr>
-		  <% if f.object.new_record? %>
-          <td class="description"><%= f.label :password, "Password:" %></td>
-		  <% else %>
-		  <td class="description"><%= f.label :password, "New Password:" %></td>
-		  <% end %>
+          <% if f.object.new_record? %>
+            <td class="description"><%= f.label :password, "Password:" %></td>
+          <% else %>
+            <td class="description"><%= f.label :password, "New Password:" %></td>
+          <% end %>
           <td class="entry"><%= f.password_field :password, :validate =>{ :presence => f.object.new_record?, :confirmation => true } %></td>
           <% if f.object.new_record? %>
             <td class="star"><%= mark_required(resource, :password) %></td>
@@ -78,7 +86,6 @@
             <td class="star"><%= mark_required(resource, :password) %></td>
           </tr>
         <% end %>
-      <% end %>
 
       <tr>
         <td class="description"><%= f.label :avatar, "Avatar:" %></td>

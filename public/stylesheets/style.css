@@ -1935,3 +1935,15 @@ div.page {
 .page a {
   text-decoration: underline;
 }
+
+.page a:hover {
+  color: #30A0F0;
+}
+
+#shifting_fields .description .field_with_errors, #shifting_fields .description label {
+  float: right;
+}
+
+#shifting_fields .entry .field_with_errors, #shifting_fields .entry small {
+  float: left;
+}
