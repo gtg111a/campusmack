@@ -1652,8 +1652,14 @@ ul.items {
   text-transform: uppercase;
 }
 
-.team-item .votes {
-  float: right;
+.voting_icons {
+  width: 215px;
+  text-align: center;
+  margin-top: -18px;
+}
+
+.team-item .voting_icons {
+  margin-top: -24px;
 }
 
 .team-item .preview {
@@ -1737,12 +1743,6 @@ ul.items {
 .news ul.items {
   margin-right: 0;
   list-style: none;
-}
-
-.news ul.items .votes {
-  position: relative;
-  top: -22px;
-  left: -88px;
 }
 
 .news ul.items .team-item {
