@@ -1,11 +1,11 @@
 <% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
   }) -%>
 <% if @youtube_video %>
-<% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
+<% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "movie",
     "og:url" => "#{@youtube_video.url if @youtube_video}",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => "#{@post.title}: #{@post.summary} ",
+    "og:description" => "#{@post.summary} ",
     "og:image" => " #{@youtube_video.thumbnail_large if @youtube_video}",
     "og:video:type" => "application/x-shockwave-flash",
     "og:video:height" => "398",
@@ -13,10 +13,10 @@
     "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id if @youtube_video}"
   }) -%>
 <%else%>
-<% open_graph_meta_tags({ "og:title" => "#{SITE_NAME}",
+<% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "album",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => "#{@post.title}: #{@post.summary}"
+    "og:description" => "#{@post.summary}"
   }) -%>
 <%end%>
 <h4><%= link_to @post.title, [@post.postable, @post] %></h4>
