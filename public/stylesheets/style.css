@@ -1615,12 +1615,10 @@ ul.items {
 }
 
 .team-item {
+  margin-right: 20px;
   float: left;
-  list-style: none outside none;
-  margin-bottom: 20px;
-  margin-left: 8px;
-  margin-right: 8px;
-  width: 240px;
+  list-style: none;
+  width: 158px;
 }
 
 .team-item .item-top {
@@ -1654,8 +1652,14 @@ ul.items {
   text-transform: uppercase;
 }
 
-.team-item .votes {
-  float: right;
+.voting_icons {
+  width: 215px;
+  text-align: center;
+  margin-top: -18px;
+}
+
+.team-item .voting_icons {
+  margin-top: -24px;
 }
 
 .team-item .preview {
@@ -1739,12 +1743,6 @@ ul.items {
 .news ul.items {
   margin-right: 0;
   list-style: none;
-}
-
-.news ul.items .votes {
-  position: relative;
-  top: -22px;
-  left: -88px;
 }
 
 .news ul.items .team-item {
