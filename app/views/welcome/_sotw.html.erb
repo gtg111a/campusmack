@@ -1,4 +1,10 @@
 <div class="content standard clearfix">
+  <div class="content_actions">
+    <ul>
+      <li class="dark_button"><%= link_to "Add Smack", "#{new_post_path}?type=Smack", :remote => true %></li>
+      <li class="dark_button"><%= link_to 'Add Redemption', "#{new_post_path}?type=Redemption", :remote => true %></li>
+    </ul>
+  </div>
   <div class="content_title"><h1>Smacks of the Week</h1></div>
   <div class="content_subtitle">
     <%= link_to "All posts", posts_path, :class => "view_more" %>

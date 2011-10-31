@@ -10,12 +10,19 @@ class PostsController < ApplicationController
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
-    @post = @parent.send(@post_cls).build
-    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
-    init_college_menu
-    add_breadcrumbs
-    render 'posts/new'
+    if request.xhr? && ['Smack', 'Redemption'].include?(params[:type])
+      @type = params[:type]
+      # populates @conferences
+      get_leftmenu_content
+      @colleges = College.order('name ASC').all
+    else
+      @post = @parent.send(@post_cls).build
+      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+      init_college_menu
+      add_breadcrumbs
+      render 'posts/new'
+    end
   end
 
   def create
@@ -175,13 +182,6 @@ class PostsController < ApplicationController
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
-  end
-
-  def view_email
-    @subject = 'You just got SMACKED'
-    @message = ''
-    @smacker = current_user
-    render 'user_mailer/share_post', :layout => false
   end
 
   protected
