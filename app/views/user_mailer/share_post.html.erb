@@ -18,7 +18,7 @@
                       <a href="#" style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff; text-decoration: none;"><%= @to %></a>
                     </td>
                     <td height="24" align="right" style="font-family: Arial, sans-serif;">
-                      <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff;" href="<%= view_email_post_url(@post) %>">View
+                      <span style="font-size: 11px;">your email not loading properly?&nbsp;&nbsp;</span><a style="font-family: Arial, sans-serif; font-size: 11px; color: #ffffff;" href="<%= polymorphic_url([ @post.postable, @post ]) %>">View
                       it in your browser</a></td>
                   </tr>
                 </table>
@@ -57,7 +57,7 @@
                 <% if @post.photo %>
                   <tr>
                     <td align="center">
-                      <%= link_to image_tag(@post.photo_url(:medium), :style => "padding: 20px;"), @post.photo_url(:large) %>
+                      <%= link_to image_tag(@post.photo_url(:medium), :style => "padding: 20px;"), [ @post.postable, @post ] %>
                     </td>
                   </tr>
                 <% end %>
