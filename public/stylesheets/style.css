@@ -672,23 +672,33 @@ a.sign_up:visited {
   background-position: left bottom;
   background-repeat: repeat-x;
   border-top: 1px solid #D4D4D4;
+  clear: both;
   height: 32px;
 }
 
-.view_more_link a {
+.view_more_link a, a.view_more {
+  background-image: url(/images/view_more_button.png);
+  background-repeat: no-repeat;
+  background-position: top;
   display: block;
   float: right;
   font-size: 8.88pt;
   font-style: italic;
   font-weight: bold;
-  background-image: url(/images/view_more_button.png);
-  background-repeat: no-repeat;
-  width: 92px;
+  text-align: center;
+  line-height: 27px;
+  margin-top: 3px;
+  width: 102px;
   height: 26px;
-  margin-top: 4px;
-  padding-left: 10px;
-  padding-top: 5px;
+}
 
+.view_more_link a:hover, a.view_more:hover {
+  background-position: bottom;
+}
+
+a.view_more {
+  float: left;
+  padding-top
 }
 
 .content_unit {
@@ -715,7 +725,6 @@ a.sign_up:visited {
 .content_unit2 .preview {
   float: left;
   margin-right: 10px;
-  width: 160px;
 }
 
 .content_unit2 .preview img {
@@ -738,6 +747,23 @@ a.sign_up:visited {
 
 .content_unit2 .title, .content_unit2 .unit_info, .content_unit2 .description, .content_unit2 .actions {
   margin-bottom: 5px;
+}
+
+.content_unit2 .actions li {
+  float: left;
+  margin-right: 6px;
+  padding-right: 6px;
+  border-right: 1px solid #999;
+  height: 16px;
+  line-height: 16px;
+}
+
+.content_unit2 .actions li:last-child {
+  border: 0;
+}
+
+.content_unit2 .share_smack_btn {
+  padding: 2px 0 2px 6px;
 }
 
 .content_unit2 .unit_info {
@@ -764,7 +790,7 @@ a.sign_up:visited {
 
 .share_smack_btn {
   margin-left: 6px;
-  padding: 2px 0 2px 6px;
+  padding: 0 0 0 6px;
   border-left: 1px solid #B4B4B4;
 }
 
@@ -785,6 +811,19 @@ ul.news li {
 .smack_container .actions {
   float: right;
   margin: -3px 0 6px;
+}
+
+.smack_container .actions li {
+  float: left;
+  padding-left: 6px;
+  margin-left: 6px;
+  border-left: 1px solid #999;
+  height: 18px;
+  line-height: 18px;
+}
+
+.smack_container .actions li:first-child {
+  border: 0;
 }
 
 .smack_container .smack_info {
@@ -1074,7 +1113,7 @@ ul.news li {
 }
 
 .share_icons {
-  display: inline-block;
+  display: inline;
 }
 
 .read_more {
@@ -1611,7 +1650,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .photovideo {
   float: left;
-  width: 550px;
+  width: 588px;
   border-right: 1px solid #CFCFCF;
 }
 
@@ -1621,10 +1660,10 @@ ul.items {
 }
 
 .team-item {
-  margin-right: 20px;
+  margin-right: 18px;
   float: left;
   list-style: none;
-  width: 158px;
+  width: 172px;
 }
 
 .team-item .item-top {
@@ -1651,7 +1690,6 @@ ul.items {
 }
 
 .team-item .which-college {
-  width: 92px;
   float: left;
   overflow: hidden;
   color: #999;
@@ -1664,7 +1702,11 @@ ul.items {
 }
 
 .voting_icons {
-  margin-left: 30px;
+  margin-left: 22px;
+}
+
+.team-item .voting_icons {
+  margin-left: 10px;
 }
 
 .voting_icons a {
@@ -1708,10 +1750,10 @@ ul.actions li {
 /* News sidebar */
 
 .news {
-  width: 210px;
+  width: 173px;
   height: 624px;
   background: #F3F3F3;
-  margin: 2px 2px 2px 553px;
+  margin: 2px 2px 2px 591px;
   padding: 13px 10px 10px 10px;
 }
 
@@ -1762,8 +1804,21 @@ ul.actions li {
   list-style: none;
 }
 
+.news ul.items .votes {
+  position: absolute;
+  bottom: 0;
+  left: 61px;
+}
+
+.news ul.items .votes .vote_up_count {
+  border-right: 1px solid #999;
+  padding-right: 5px;
+}
+
 .news ul.items .team-item {
   margin-right: 0;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 ul.contact-groups {
