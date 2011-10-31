@@ -176,7 +176,11 @@ module ApplicationHelper
 
   def send_as_smack_btn(post, place)
     img = 'send_as_smack'
-    img += '_' if place != :show
+    if place == :news_preview
+      img = 'smack'
+    else
+      img += '_' if place != :show
+    end
     img += '.png'
     link_to(image_tag(img, :alt => 'Send as smack'), send_as_smack_post_path(post), :class => 'share_smack_btn')
   end

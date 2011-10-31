@@ -2,8 +2,6 @@
   <div class="stat_title">CONFERENCE STATISTICS</div>
   <div id="stats_widget" class="table new_level clearfix">
     <div id="stats_container" class="table_middle">
-      <%# FIXME widget shows stats only for I-A now %>
-      <%# Conference.where(:division => session[:division]).each do |conference| %>
       <% Conference.where(:division => Division.default).order('name asc').each do |conference| %>
         <%= render :partial => 'conferences/stats_widget', :locals => {:conference => conference, :limit => 3} %>
       <% end %>
