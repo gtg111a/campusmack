@@ -13,22 +13,29 @@ class ApplicationController < ActionController::Base
   before_filter :get_leftmenu_content
 
   rescue_from CanCan::AccessDenied do |exception|
-    logger.error exception.backtrace.join("\n")
-    redirect_to signed_in? ? root_url : sign_up_url, :alert => exception.message
+    log_exception(exception)
+    target_url = signed_in? ? root_url : sign_up_url
+    flash[:alert] = exception.message
+    if request.post?
+      respond_to do |format|
+        format.js { render(:update) { |page| page.redirect_to target_url } }
+      end
+      return
+    end
+    redirect_to target_url
   end
 
   private
 
   def render_error(exception)
-    logger.error exception.to_s
-    logger.error exception.backtrace.join("\n")
+    log_exception(exception)
     render :template => 'pages/500.html.erb', :status => 500
   end
 
   def init
     @user_nav = []
     @main_menu = []
-    session[:division] ||= 'I-A'
+    session[:division] ||= Division.default
   end
 
   def add_initial_breadcrumbs
@@ -50,4 +57,10 @@ class ApplicationController < ActionController::Base
   def get_leftmenu_content
     @conferences = Conference.where(:division => session[:division])
   end
+
+  def log_exception(exception)
+    logger.error "\nEXCEPTION: #{exception}\n--------- BACKTRACE:\n"
+    logger.error exception.backtrace[0..4].join("\n") + "\n--------- END OF BACKTRACE\n"
+  end
+
 end

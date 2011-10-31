@@ -57,8 +57,8 @@ module PostsHelper
       end
       case size
         when :small
-          w = 158
-          h = 92
+          w = 173
+          h = 101
         when :medium
           w = 217
           h = 163
@@ -66,8 +66,8 @@ module PostsHelper
           w = 500
           h = 400
         else
-          w = 158
-          h = 92
+          w = 173
+          h = 101
       end
       # generate random hex for youtube id uniqueness
       random = ActiveSupport::SecureRandom.hex(6)

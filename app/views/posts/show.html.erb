@@ -33,20 +33,15 @@
   <div class="content_container">
     <div class="content_category">
       <div class="smack_container clearfix">
-        <div class="actions">
-          <%= link_to(image_tag('like.png'), vote_up_post_path(@post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
-          <b id="vote_count_up<%= @post.id %>"><%= @post.up_votes %></b>
-          <span class="divider_vert">&nbsp;</span>
-          <%= link_to(image_tag('dislike.png'), vote_down_post_path(@post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
-          <b id="vote_count_down<%= @post.id %>"><%= @post.down_votes %></b>
-          <span class="divider_vert">&nbsp;</span>
-          <%= share_icons(@post, :show) %>
-          <span class="divider_vert">&nbsp;</span>
+        <ul class="actions">
+          <li class="voting_icons"><%= share_and_voting_icons(@post, :show) %></li>
           <% if signed_in? %>
-            <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
-            <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+            <li>
+              <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
+              <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+            </li>
           <% end %>
-        </div>
+        </ul>
 
         <div class="smack_info">
     <span class="team">

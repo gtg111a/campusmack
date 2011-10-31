@@ -127,7 +127,7 @@ class PostsController < ApplicationController
     vote_check_for(@post)
     respond_to do |format|
       format.html { redirect_to "/colleges/#{@post.college_id}/#{@post.type.downcase}s", :flash => {:success => "Vote up successful."} }
-      format.js
+      format.js { render(:update) { |page| page.redirect_to :back } }
     end
   end
 

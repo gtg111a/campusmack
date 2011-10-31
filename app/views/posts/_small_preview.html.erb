@@ -1,22 +1,19 @@
 <li class="team-item">
   <div class="item-top clearfix">
     <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
-    <div class="which-college">by: <%= link_to(post.user.try(:username), post.user, :class => :author) %></div>
+    <div class="which-college"><span>by:</span> <%= link_to(post.user.try(:username), post.user, :class => :author) %></div>
     <div class="votes">
-      <%= link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
-      <b id="vote_count_up<%= post.id %>"><%= post.up_votes %></b>
-      <%= link_to(image_tag('dislike.png', :class => 'dislike'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
-      <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
+      <%= voting_icons(post, :preview) %>
     </div>
   </div>
   <div class="preview">
     <%= youtube_embed(post.video.url) if post.video %>
     <% if post.photo %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="158" alt=""/></a>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="173" alt=""/></a>
     <% end %>
   </div>
   <div class="summary">
     <%= censoring(truncate(post.summary, :length => 75)) %>
   </div>
-  <%= share_icons(post, :preview) %>
+  <%= share_and_voting_icons(post, :preview) %>
 </li>
