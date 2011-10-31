@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   before_filter :get_leftmenu_content
 
   rescue_from CanCan::AccessDenied do |exception|
-    log_exception(exception)
     target_url = signed_in? ? root_url : sign_up_url
     flash[:alert] = exception.message
     if request.post?

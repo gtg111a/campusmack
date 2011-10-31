@@ -58,7 +58,7 @@ $(function() {
 		
 /* This code is to activate the Fancybox plugin for photos. */
 function formatTitle() {
-    return '<div id="photo-close"><span><a href="javascript:;" onclick="$.fancybox.close();"><img src="/javascripts/fancybox/fancy_close.png" /></a></span></div>';
+    return '<div id="photo-close"><span><a href="javascript:;" onclick="$.fancybox.close();"><img src="/images/fancybox/fancy_close.png" /></a></span></div>';
 }
 $(function() {
 

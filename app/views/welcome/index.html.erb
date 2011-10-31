@@ -1,3 +1,9 @@
+<% content_for :jq do %>
+  $("#add_post_select").live("change",function(){
+    apsl = $("#add_post_select_link");
+    apsl.attr("href", apsl.data("before") + $(this).val() + apsl.data("after"));
+  });
+<% end %>
 <% content_for :above do %>
   <div class="stat_title">CONFERENCE STATISTICS</div>
   <div id="stats_widget" class="table new_level clearfix">
