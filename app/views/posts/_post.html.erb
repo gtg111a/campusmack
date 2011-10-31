@@ -27,9 +27,7 @@
     <%= censoring(post.summary) %>
   </div>
   <div class="actions">
-    <%= voting_icons(post) %>
-    <span class="divider_vert2">&nbsp;</span>
-    <%= share_icons(post, :post) %>
+    <%= share_and_voting_icons(post, :post) %>
     <% if signed_in? %>
         <span class="divider_vert2">&nbsp;</span>
         <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>

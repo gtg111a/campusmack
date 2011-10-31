@@ -10,6 +10,7 @@ class NewsPost < ActiveRecord::Base
 
   validates :url, :presence => true
   validates :url, :url_format => true
+  validates :video_url, :youtube_url_format => true
 
   def image_url(params=nil)
     self.image.url(params)

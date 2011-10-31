@@ -830,6 +830,12 @@ ul.news li {
   margin-right: 4px;
 }
 
+.voting_icons .divider_vert2 {
+  border-right: 1px solid #b4b4b4;
+  padding-top: 0px;
+  margin-right: 4px;
+}
+
 .comment {
   padding: 5px 5px 5px 35px;
 }
@@ -1652,14 +1658,25 @@ ul.items {
   text-transform: uppercase;
 }
 
-.voting_icons {
-  width: 215px;
-  text-align: center;
-  margin-top: -18px;
+.votes .voting_icons {
+  float: right;
+  margin-left: 0;
 }
 
-.team-item .voting_icons {
-  margin-top: -24px;
+.voting_icons {
+  margin-left: 30px;
+}
+
+.voting_icons a {
+  margin-right: 4px;
+}
+
+ul.actions li {
+  float: left;
+}
+
+.actions .voting_icons {
+  margin-left: 4px;
 }
 
 .team-item .preview {
@@ -1747,7 +1764,6 @@ ul.items {
 
 .news ul.items .team-item {
   margin-right: 0;
-  margin-bottom: 10px;
 }
 
 ul.contact-groups {

@@ -157,22 +157,20 @@ module ApplicationHelper
   # :preview -> small_preview, news_preview partials
   # :show -> show on full page
   # :post -> _post partial (team, college/show)
-  def share_icons(post, place = nil)
+  def share_and_voting_icons(post, place = nil)
     cls = 'share_icons'
-    cls = 'items-buttons' if place == :preview
-    ("<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place) + send_as_smack_btn(post, place) + "</div>").html_safe
+    cls = 'items-buttons' if place.to_s.include?('preview')
+    html = "<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
+    html << voting_icons(post, place) if [:news_preview, :post, :show].include?(place)
+    (html + send_as_smack_btn(post, place) + "</div>").html_safe
   end
 
-  def voting_icons(post)
-    html = ''
-    if can? :create, Vote
-      html << link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up")
-    end
-    html << %Q{<b id="vote_count_up#{post.id}">#{post.up_votes}</b>}
-    if can? :create, Vote
-      html << link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down")
-    end
-    html << %Q{<b id="vote_count_down#{post.id}">#{post.down_votes}</b></div>}
+  def voting_icons(post, place = nil)
+    html = '<span class="voting_icons">'
+    html << link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up")
+    html << %Q{<b id="vote_count_up#{post.id}">#{post.up_votes}</b><span class="divider_vert2">&nbsp;</span>}
+    html << link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down")
+    html << %Q{<b id="vote_count_down#{post.id}">#{post.down_votes}</b></span>}
     html.html_safe
   end
 

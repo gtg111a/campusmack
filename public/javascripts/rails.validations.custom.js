@@ -5,7 +5,7 @@ clientSideValidations.validators.local["url_format"] = function(element, options
 }
 
 clientSideValidations.validators.local["youtube_url_format"] = function(element, options) {
-  if (!/((http|ftp)\:\/\/)?([w]{3}\.)?(youtube\.)([a-z]{2,4})(\/watch\?v=)([a-zA-Z0-9_-]+)(\&feature=)?([a-zA-Z0-9_-]+)?/.test(element.val())) {
+  if (element.val().length > 0 && !/((http|ftp)\:\/\/)?([w]{3}\.)?(youtube\.)([a-z]{2,4})(\/watch\?v=)([a-zA-Z0-9_-]+)(\&feature=)?([a-zA-Z0-9_-]+)?/.test(element.val())) {
     return options.message;
   }
 }
