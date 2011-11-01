@@ -22,8 +22,12 @@
     </ul>
   </div>
   <div class="content_title"><h1>Smacks of the Week</h1></div>
-  <div class="content_subtitle">
-    <%= link_to "All posts", posts_path, :class => "view_more" %>
+  <div class="content_stats">
+    <ul class="inner_menu">
+      <li>
+        <%= link_to "All posts", posts_path %>
+      </li>
+    </ul>
     <%= render :partial => 'shared/search' %>
   </div>
   <div class="content_container clearfix">
