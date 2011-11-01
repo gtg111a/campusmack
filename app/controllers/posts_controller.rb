@@ -72,6 +72,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
