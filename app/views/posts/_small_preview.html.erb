@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="preview">
-    <%= youtube_embed(post.video.url) if post.video %>
+    <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video %>
     <% if post.photo %>
         <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="173" alt=""/></a>
     <% end %>

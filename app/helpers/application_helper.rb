@@ -175,14 +175,12 @@ module ApplicationHelper
   end
 
   def send_as_smack_btn(post, place)
-    img = 'send_as_smack'
     if place == :news_preview
-      img = 'smack'
-    else
-      img += '_' if place != :show
+      btn_size = 'small'
+    elsif place == :show
+      btn_size = 'big'
     end
-    img += '.png'
-    link_to(image_tag(img, :alt => 'Send as smack'), send_as_smack_post_path(post), :class => 'share_smack_btn')
+    link_to('Send as smack', send_as_smack_post_path(post), :title => "Send as smack", :class => "share_smack_btn #{btn_size}")
   end
 
   def share_through_email_btn(post, place)
@@ -213,6 +211,14 @@ module ApplicationHelper
     else
       text
     end
+  end
+
+  def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
+    img = "<a href='#{url_for(post_url)}'>"
+    img << "<img src='#{url}' "
+    img << "class='#{cls}'" if cls
+    img << ' /></a>'
+    return raw img
   end
 
 end

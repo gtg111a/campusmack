@@ -10,12 +10,12 @@
         <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="173" alt=""/></a>
       <% end %>
     <% end %>
-    <% if post.video %>
-        <%= youtube_embed(post.video.url) %>
-    <% end %>
-    <% if post.news_post && !post.news_post.video_url.blank? %>
-        <%= youtube_embed(post.news_post.video_url) %>
-    <% end %>
+      <% if post.video %>
+        <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) %>
+      <% end %>
+      <% if post.news_post && !post.news_post.video_url.blank? %>
+          <%= youtube_embed(post.news_post.video_url) %>
+      <% end %>
   </div>
   <div class="title">
     <%= link_to censoring(post.title), [post.postable, post] %>

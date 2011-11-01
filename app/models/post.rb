@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
-  scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
+  scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
   def photo_url(params=nil)
@@ -45,6 +45,11 @@ class Post < ActiveRecord::Base
 
   def decrement_counter_cache
     self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
+  end
+
+  def youtube_thumbnail_url
+    video_id = URI.parse(self.video.url).query.split('=')[1].slice(0, 11)
+    return 'http://img.youtube.com/vi/' + video_id + '/0.jpg'
   end
 
 end

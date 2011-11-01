@@ -762,10 +762,6 @@ a.view_more {
   border: 0;
 }
 
-.content_unit2 .share_smack_btn {
-  padding: 2px 0 2px 6px;
-}
-
 .content_unit2 .unit_info {
   font-size: 80%;
   color: #777;
@@ -791,7 +787,28 @@ a.view_more {
 .share_smack_btn {
   margin-left: 6px;
   padding: 0 0 0 6px;
-  border-left: 1px solid #B4B4B4;
+  margin-left: 6px;
+  background: url(/images/send_as_smack_medium.png) no-repeat top;
+  display: inline-block;
+  text-indent: -9999px;
+  width: 66px;
+  height: 14px;
+}
+
+.share_smack_btn.small {
+  background: url(/images/send_as_smack_small.png) no-repeat top;
+  width: 37px;
+  height: 13px;;
+}
+
+.share_smack_btn.big {
+  background: url(/images/send_as_smack_big.png) no-repeat top;
+  width: 84px;
+  height: 18px;;
+}
+
+.share_smack_btn:hover {
+  background-position: bottom;
 }
 
 ul.news {
@@ -980,6 +997,7 @@ ul.news li {
 
 .section .content_text {
   font-size: 1.0em;
+  min-height: 22px;
 }
 
 .section_title {
@@ -1068,6 +1086,7 @@ ul.news li {
 .content_share .share_smack_btn {
   float: right;
   border: none;
+  margin-left: 20px;
 }
 
 .mail {
@@ -1926,3 +1945,9 @@ div.page {
 #shifting_fields .entry .field_with_errors, #shifting_fields .entry small {
   float: left;
 }
+
+.thumbnail_yt {
+  width: 173px;
+  height: 103px;
+}
+
