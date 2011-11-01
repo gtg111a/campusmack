@@ -12,6 +12,7 @@
 }
 
 /* Need to place footer on bottom of the page */
+/* ^ TODO Only JS can do this */
 html, body, #super_wrapper {
   height: 100%;
 }
@@ -648,7 +649,7 @@ a.sign_up:visited {
 }
 
 .content_container .content_category {
-  padding: 15px 18px;
+  padding: 15px;
   border-bottom: 1px solid #d4d4d4;
   overflow: hidden;
 }
@@ -1679,10 +1680,10 @@ ul.items {
 }
 
 .team-item {
-  margin-right: 18px;
+  margin-right: 10px;
   float: left;
   list-style: none;
-  width: 172px;
+  width: 180px;
 }
 
 .team-item .item-top {
@@ -1695,13 +1696,8 @@ ul.items {
   margin-bottom: 5px;
 }
 
-.team-item .item-top h3 a:visited,
-.team-item .item-top h3 a:link {
-  color: #000;
-}
-
 .team-item .item-top h3 a:hover {
-  color: #30A0F0;
+  color: #000;
 }
 
 .team-item .dislike {
@@ -1713,6 +1709,13 @@ ul.items {
   overflow: hidden;
   color: #999;
   text-transform: uppercase;
+}
+
+.team-item .which-college a {
+  color: #999;
+}
+.team-item .which-college a:hover {
+  text-decoration: underline;
 }
 
 .votes .voting_icons {
@@ -1742,7 +1745,7 @@ ul.actions li {
 
 .team-item .preview {
   clear: both;
-  height: 94px;
+  height: 100px;
   margin-bottom: 5px;
   overflow: hidden;
 }
@@ -1938,16 +1941,17 @@ div.page {
   color: #30A0F0;
 }
 
-#shifting_fields .description .field_with_errors, #shifting_fields .description label {
+#shifting_fields .description .field_with_errors,
+#shifting_fields .description label {
   float: right;
 }
 
-#shifting_fields .entry .field_with_errors, #shifting_fields .entry small {
+#shifting_fields .entry .field_with_errors,
+#shifting_fields .entry small {
   float: left;
 }
 
 .thumbnail_yt {
-  width: 173px;
-  height: 103px;
+  width: 180px;
+  height: 100px;
 }
-

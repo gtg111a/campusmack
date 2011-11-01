@@ -1,13 +1,13 @@
 <div class="content_unit2 clearfix">
   <div class="preview">
     <% if post.photo %>
-      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="173" alt=""/></a>
+      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="180" alt=""/></a>
     <% end %>
     <% if post.news_post %>
        <% if post.news_post.image_file_name.blank? %>
         <%= image_tag('no_photo_small.jpg') %>
       <% else %>
-        <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="173" alt=""/></a>
+        <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="180" alt=""/></a>
       <% end %>
     <% end %>
       <% if post.video %>
