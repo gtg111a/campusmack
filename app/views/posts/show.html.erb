@@ -1,15 +1,15 @@
 <% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
   }) -%>
-<% if @youtube_video %>
+<% if @youtube_video.respond_to? :video_id %>
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "movie",
     "og:site_name" => "#{SITE_NAME}",
     "og:description" => "#{@post.summary}",
-    "og:image" => "#{@youtube_video.thumbnail_large if @youtube_video}",
+    "og:image" => "#{@youtube_video.thumbnail_large}",
     "og:video:type" => "application/x-shockwave-flash",
     "og:video:height" => "398",
     "og:video:width" => "224",
-    "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id if @youtube_video}"
+    "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id}"
   }) -%>
 <%else%>
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",

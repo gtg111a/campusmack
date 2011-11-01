@@ -58,8 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def log_exception(exception)
-    puts "\nEXCEPTION: #{exception}\n"
-    puts "--------- BACKTRACE:\n#{exception.backtrace.to_a[0..4].join("\n")}\n--------- END OF BACKTRACE"
+    puts "\nEXCEPTION: #{exception}\n--------- BACKTRACE:\n#{exception.backtrace[0..4].join("\n")}\n--------- END OF BACKTRACE"
   end
 
 end
