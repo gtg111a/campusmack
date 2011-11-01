@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
-  scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
+  scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 3
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
   def photo_url(params=nil)

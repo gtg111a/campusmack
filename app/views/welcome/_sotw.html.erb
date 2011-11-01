@@ -10,7 +10,7 @@
       <a class="photo" href="<%= sotw.photo_url(:large) %>"><%= image_tag sotw.photo_url(:medium) %></a>
     <% end %>
     <% if sotw.video %>
-      <%= youtube_thumbnail(sotw.youtube_thumbnail_url, [sotw.postable, sotw], nil) %>
+      <%= youtube_embed(sotw.video.url, :medium) %>
     <% end %>
     <%= link_to "Article Preview", sotw.news_post.url, :class => 'snap_shots' unless sotw.news_post.blank? %>
   </div>
