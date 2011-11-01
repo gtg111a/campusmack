@@ -13,29 +13,52 @@ class ApplicationController < ActionController::Base
   before_filter :get_leftmenu_content
 
   rescue_from CanCan::AccessDenied do |exception|
-    logger.error exception.backtrace.join("\n")
-    redirect_to signed_in? ? root_url : sign_up_url, :alert => exception.message
+    target_url = signed_in? ? root_url : sign_up_url
+    flash[:alert] = exception.message
+    if request.post?
+      respond_to do |format|
+        format.js { render(:update) { |page| page.redirect_to target_url } }
+      end
+      return
+    end
+    redirect_to target_url
   end
 
   private
 
   def render_error(exception)
-    logger.error exception.to_s
-    logger.error exception.backtrace.join("\n")
+    log_exception(exception)
     render :template => 'pages/500.html.erb', :status => 500
   end
 
   def init
     @user_nav = []
     @main_menu = []
-    session[:division] ||= 'I-A'
+    session[:division] ||= Division.default
   end
 
   def add_initial_breadcrumbs
     breadcrumbs.add 'Home', root_path
   end
 
+  def add_breadcrumbs
+    controller, action = params[:controller], params[:action]
+
+    # The main breadcrumb
+    breadcrumbs.add controller.underscore.titlecase, contacts_path
+
+    unless action == "index" # No breadcrumbs needed for the index page
+      # Breadcrumb for the actual page, notice the conventions used.
+      breadcrumbs.add "#{action}_#{controller.singularize}".titlecase
+    end
+  end
+
   def get_leftmenu_content
     @conferences = Conference.where(:division => session[:division])
   end
+
+  def log_exception(exception)
+    puts "\nEXCEPTION: #{exception}\n--------- BACKTRACE:\n#{exception.backtrace[0..4].join("\n")}\n--------- END OF BACKTRACE"
+  end
+
 end

@@ -1,0 +1,12 @@
+<h1>Report Post</h1><br />
+<%= form_for "report", :url => report_post_path(@post), :method => :post, :remote => true do |f| %>
+  <%= f.label :reason %>
+  <br />
+  <%= f.collection_select(:reason_id, Reason.all, :id, :reason, :include_blank => true) %>
+  <br />
+  <%= f.label :other %>
+  <br />
+  <%= f.text_field :other, :size => 27 %>
+  <br />
+  <%= f.submit "Report", :class => "lbutton", :id => "rep_btn" %>
+<% end %>

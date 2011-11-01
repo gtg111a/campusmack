@@ -1,1 +1,7 @@
-$("#post_rep_<%= @post.id %>").replaceWith("<span class=\"action_text\">Thanks!</span>");
+<% if request.get? %>
+  jQuery.facebox("<%= escape_javascript(render 'report.html') %>");
+<% else %>
+  jQuery.facebox.close();
+  $("#post_rep_<%= @post.id %>").closest("li").removeClass("dark_button");
+  $("#post_rep_<%= @post.id %>").replaceWith("<span class=\"action_text\">Thanks!</span>");
+<% end %>

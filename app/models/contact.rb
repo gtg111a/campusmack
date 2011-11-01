@@ -27,4 +27,12 @@ class Contact < ActiveRecord::Base
     name.empty? ? email : name
   end
 
+  def self.search(search)
+    if search
+      where 'name LIKE ? or email LIKE ?', "%#{search}%", "%#{search}%"
+    else
+      scoped
+    end
+  end
+
 end

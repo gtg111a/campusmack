@@ -1,31 +1,47 @@
+<% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
+  }) -%>
+<% if @youtube_video.respond_to? :video_id %>
+<% open_graph_meta_tags({ "og:title" => "#{@post.title}",
+    "og:type" => "movie",
+    "og:site_name" => "#{SITE_NAME}",
+    "og:description" => "#{@post.summary}",
+    "og:image" => "#{@youtube_video.thumbnail_large}",
+    "og:video:type" => "application/x-shockwave-flash",
+    "og:video:height" => "398",
+    "og:video:width" => "224",
+    "og:video" => "http://www.youtube.com/v/#{@youtube_video.video_id}"
+  }) -%>
+<%else%>
+<% open_graph_meta_tags({ "og:title" => "#{@post.title}",
+    "og:site_name" => "#{SITE_NAME}",
+    "og:type" => "album",
+    "og:description" => "#{@post.summary}"
+  }) -%>
+<%end%>
+
 <div class="content new_level with_submenu clearfix">
   <div class="content_actions">
     <ul>
       <% if can? :report, @post %>
         <li class="dark_button">
-          <%= link_to('Report Post', report_post_path(@post), :class => 'button postreport', :id => "post_rep_#{@post.id}") %>
+          <%= link_to('Report Post', report_post_path(@post), :class => 'button postreport', :remote => true, :id => "post_rep_#{@post.id}") %>
         </li>
       <% end %>
     </ul>
   </div>
-  <div class="content_title"><%= @post.title %></div>
+  <div class="content_title"><%= censoring(@post.title) %></div>
   <div class="content_container">
     <div class="content_category">
       <div class="smack_container clearfix">
-        <div class="actions">
-          <%= link_to(image_tag('like.png'), vote_up_post_path(@post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
-          <b id="vote_count_up<%= @post.id %>"><%= @post.up_votes %></b>
-          <span class="divider_vert">&nbsp;</span>
-          <%= link_to(image_tag('dislike.png'), vote_down_post_path(@post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
-          <b id="vote_count_down<%= @post.id %>"><%= @post.down_votes %></b>
-          <span class="divider_vert">&nbsp;</span>
-          <%= share_icons(@post, :show) %>
-          <span class="divider_vert">&nbsp;</span>
+        <ul class="actions">
+          <li class="voting_icons"><%= share_and_voting_icons(@post, :show) %></li>
           <% if signed_in? %>
-            <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
-            <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+            <li>
+              <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
+              <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+            </li>
           <% end %>
-        </div>
+        </ul>
 
         <div class="smack_info">
     <span class="team">
@@ -63,7 +79,7 @@
         <% if @post.photo || @post.news_post || @post.video %>
           </div>
         <% end %>
-        <div class="summary"><%= @post.summary %>
+        <div class="summary"><%= censoring(@post.summary) %>
           <% if @post.summary && params[:action] != 'show' %>
             <%= link_to " [more...]", [@parent, @post] %>
           <% end %>
@@ -86,7 +102,6 @@
           <% end %>
         </div>
       </div>
-      <%= render 'shared/report_form' %>
     </div>
   </div>
 </div>

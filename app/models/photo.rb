@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
                     :bucket => 'Campusmack',
                     :path => "/:style/:id/:filename"
 
+  validates_presence_of :image, :on => :create
+
   def url(params=nil)
     self.image.url(params)
   end

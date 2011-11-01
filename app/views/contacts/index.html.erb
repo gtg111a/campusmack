@@ -44,13 +44,23 @@
             <div class="button_bg table_button">
               <input type="checkbox" value="0" name="cb" class="select_all" id="select_all_chk_box"/>
             </div>
-            <ul class="table_actions" style="list-style-type: none">
+            <ul class="table_actions" style="list-style-type: none;float:left">
               <li><%= link_to("Add To Group", add_to_group_form_contact_groups_path(@contact), :method => "GET", :remote => true, :class => "table_button", :id => "add_to_group_button") %></li>
-			  <% if !params[:group_id].blank? && ContactGroup.exists?(params[:group_id]) == true %>
-              <li id="remove_selected" class="table_button fakebtn" title="remove<%=params[:group_id]%>">Remove From Group</li>
-              <%end%>
               <li id="delete_selected" class="table_button fakebtn">Delete selected</li>
+              <% if !params[:group_id].blank? && ContactGroup.exists?(params[:group_id]) == true %>
+              <li id="remove_selected" class="table_button fakebtn" rel="remove<%=params[:group_id]%>">Remove selected</li>
+              <%end%>
+           </ul>
+
+           <%= form_tag contacts_path(:per => params[:per],:group_id => params[:group_id]), :method => 'get', :id => 'search_contacts', :remote => true do %>
+           <ul class="clearfix">
+              <li>
+                  <%= text_field_tag :search, params[:search], :class => 'search_input'%>
+                  <%= submit_tag "Filter", :name => nil, :class => 'table_button fakebtn' %>
+              </li>
+              <li><%= link_to "Show All", "", :name => nil, :class => 'table_button fakebtn clear_contacts' %></li>
             </ul>
+           <% end %>
           </div>
           <div id="contact_list">
             <table id="rowclick1">
@@ -66,3 +76,5 @@
     </div>
   </div>
 </div>
+<%=  hidden_field_tag :page, :value => params[:page]%>
+<%=  hidden_field_tag :per, :value => params[:per]%>

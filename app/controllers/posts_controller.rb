@@ -10,12 +10,19 @@ class PostsController < ApplicationController
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
-    @post = @parent.send(@post_cls).build
-    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
-    init_college_menu
-    add_breadcrumbs
-    render 'posts/new'
+    if request.xhr? && ['Smack', 'Redemption'].include?(params[:type])
+      @type = params[:type]
+      # populates @conferences
+      get_leftmenu_content
+      @college = @conferences.first.colleges.first
+    else
+      @post = @parent.send(@post_cls).build
+      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+      init_college_menu
+      add_breadcrumbs
+      render 'posts/new'
+    end
   end
 
   def create
@@ -65,6 +72,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -85,15 +93,22 @@ class PostsController < ApplicationController
   end
 
   def report
-    unless params[:report][:reason_id].blank?
-      reason = Reason.find(params[:report][:reason_id].to_i)
+    if request.get?
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
-      reason = nil
-    end
-    @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
-    respond_to do |format|
-      format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
-      format.js
+      unless params[:report][:reason_id].blank?
+        reason = Reason.find(params[:report][:reason_id].to_i)
+      else
+        reason = nil
+      end
+      @post.reports.create!(:user => current_user, :reason => reason, :custom_reason => params[:report][:other])
+      respond_to do |format|
+        format.html { flash[:success] = "Post Reported to Site Admin"; redirect_back_or(@post) }
+        format.js
+      end
     end
   end
 

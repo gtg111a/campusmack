@@ -1,59 +1,86 @@
 $(document).ready(function() {
     delete_contact_in_groups = false;
 
-    $(document).bind('reveal.facebox',function (event) {
+    $("#search_contacts").live('submit', function() {
+        indicator_contacts();
+        $.get($("#search_contacts").attr("action"), $("#search_contacts").serialize(), null, "script");
+        return false;
+    });
+
+    $("#pagination_container a").live("click", function(event) {
+        event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: this.href,
+            dataType: "script",
+            cache: true,
+            beforeSend: function() {
+                indicator_pagination();
+            }
+        });
+    });
+
+    $('.clear_contacts').click(function(event) {
+        event.preventDefault();
+        $('#search').val(null);
+        indicator_contacts();
+        $.get($("#search_contacts").attr("action"), null, null, "script");
+    });
+
+    $(document).bind('reveal.facebox', function (event) {
         hide_img_all();
         $('.content_actions .ajax').hide();
         $('.add_edit_group .ajax').hide();
     });
 
-    $('#facebox a[data-method="delete"]').live('click',function (event) {
+    $('#facebox a[data-method="delete"]').live('click', function (event) {
         delete_contact_in_groups = true;
     });
 
     $(document).bind('close.facebox', function() {
-        if($('#facebox .popup .content #div_facebox_ajax').length != 0 || $('#facebox .popup .content #form_facebox_ajax').length != 0 ){
-          if(delete_contact_in_groups == false){
-              reload_contacts_groups();
-          }
-          else{
-              reload_contacts_groups();
-              reload_contacts('.table_content');
-              reload_title();
-              delete_contact_in_groups = false;
-          }
+        if ($('#facebox .popup .content #div_facebox_ajax').length != 0 || $('#facebox .popup .content #form_facebox_ajax').length != 0) {
+            if (delete_contact_in_groups == false) {
+                reload_contacts_groups();
+            }
+            else {
+                reload_contacts_groups();
+                reload_contacts('.table_content');
+                reload_title();
+                reload_pagination();
+                delete_contact_in_groups = false;
+            }
         }
     });
 
-    $('input.select_all').live('click',function (event) {
+    $('input.select_all').live('click', function (event) {
         $("#contact_list").find(':checkbox').attr('checked', this.checked);
     });
 
-    $('.edit_contact').live('ajax:before', function(){
+    $('.edit_contact').live('ajax:before', function() {
         indicator_progress_in_facebox();
     });
 
-    $('.new_contact').live('ajax:before', function(){
+    $('.new_contact').live('ajax:before', function() {
         indicator_progress_in_facebox();
     });
 
-    $('#add_to_group_button').bind('ajax:beforeSend', function(evt, xhr, settings){
+    $('#add_to_group_button').bind('ajax:beforeSend', function(evt, xhr, settings) {
         var chk = $(".chk_box:checked").length;
-        if(chk == 0){
-          xhr.abort();
+        if (chk == 0) {
+            xhr.abort();
         }
     });
 
-    $('#add_to_group_button').live('click',function(event) {
+    $('#add_to_group_button').live('click', function(event) {
         show_img_selected();
     });
 
-    $('.edit').live('click',function() {
+    $('.edit').live('click', function() {
         var id = $(this).attr('href').replace("/contacts/", "").replace("/edit", "");
         show_img(id);
     });
 
-    $('#delete_selected').live('click',function(event) {
+    $('#delete_selected').live('click', function(event) {
         show_img_selected();
         $.ajax({
             type: "POST",
@@ -63,12 +90,12 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#remove_selected').live('click',function(event) {
+    $('#remove_selected').live('click', function(event) {
         show_img_selected();
         $.ajax({
             type: "POST",
             url: "/contacts/remove_emails_from_group",
-            data: $("#contact_list input").serialize() + ('&group_id=' + $(this).attr('title').replace('remove',''))
+            data: $("#contact_list input").serialize() + ('&group_id=' + $(this).attr('rel').replace('remove', ''))
         });
 
     });
@@ -98,7 +125,7 @@ $(document).ready(function() {
     });
 
     $("#facebox .popup .content a").live("click", function() {
-         indicator_progress_in_facebox(this.href);
+        indicator_progress_in_facebox(this.href);
     });
 
 });
@@ -140,17 +167,36 @@ function show_img(t) {
     $(id).show();
 }
 
-function reload_contacts(id,href,after_load) {
-    if(id){
+function reload() {
+    if ($("#rowclick1").children('tr').length == $(".chk_box:checked").length) {
+        var delete_all = true;
+    }
+    indicator_contacts();
+    if ($('#pagination_container em').length > 0) {
+        if ($('#pagination_container .next').length == 0 & delete_all == true) {
+            var prev = $('#pagination_container em').text() - 1;
+            $.get($("#search_contacts").attr("action"), $("#search_contacts").serialize() + ("&page=" + prev), null, "script");
+        }
+        else {
+            $.get($("#search_contacts").attr("action"), $("#search_contacts").serialize() + ("&page=" + $('#pagination_container em').text()), null, "script");
+        }
+    }
+    else {
+        $.get($("#search_contacts").attr("action"), $("#search_contacts").serialize(), null, "script");
+    }
+}
+
+function reload_contacts(id, href, after_load) {
+    if (id) {
 
     }
-    else{
+    else {
         id = '#rowclick1';
     }
-    if(href){
+    if (href) {
 
     }
-    else{
+    else {
         href = location
     }
     var height_contacts = $('.table_content').height();
@@ -158,28 +204,28 @@ function reload_contacts(id,href,after_load) {
     var height_head = $('.table_head').height();
     var height_groups = $('.contact_groups').height() - height_head - 22;
 
-    if(height_contacts > height_groups){
-      $(id).html("<table><td class='ajax_loader' style='height:" + height_rowclick + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+    if (height_contacts > height_groups) {
+        $(id).html("<table><td class='ajax_loader' style='height:" + height_rowclick + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
     }
-    else{
-      $(id).html("<table><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+    else {
+        $(id).html("<table><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
     }
-    $(id).load(href + ' ' + id, function(){
+    $(id).load(href + ' ' + id, function() {
         after_load;
-    }) ;
+    });
 
 }
 
 function reload_contacts_groups() {
-     var height_contacts = $('.contact_groups').height();
-     var height_groups = $('.table_content').height();
-     if(height_contacts < height_groups){
-       $('.contact_groups').replaceWith("<ul class='contact_groups' style='background:none;'><table style='width: 136px;'><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table></ul>");
-     }
-     else{
-       $('.contact_groups').replaceWith("<ul class='contact_groups' style='background:none;'><table><td class='ajax_loader' style='height:" + height_contacts + "px;'><img src='/images/ajax-loader.gif'/></td></table></ul>");
-     }
-     $('.contact_groups').load(this.location + ' ' + '.contact_groups > *' );
+    var height_contacts = $('.contact_groups').height();
+    var height_groups = $('.table_content').height();
+    if (height_contacts < height_groups) {
+        $('.contact_groups').replaceWith("<ul class='contact_groups' style='background:none;'><table style='width: 136px;'><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table></ul>");
+    }
+    else {
+        $('.contact_groups').replaceWith("<ul class='contact_groups' style='background:none;'><table><td class='ajax_loader' style='height:" + height_contacts + "px;'><img src='/images/ajax-loader.gif'/></td></table></ul>");
+    }
+    $('.contact_groups').load(this.location + ' ' + '.contact_groups > *');
 }
 
 function indicator_progress_in_facebox(href) {
@@ -188,27 +234,64 @@ function indicator_progress_in_facebox(href) {
     return false;
 }
 
-function reload_title(){
+function reload_title() {
     var h = $('.content_title h1').height();
     $('.content_title h1').html("<table><td class='ajax_loader' style='height:" + h + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
-    $('.content_title h1').load(this.location + ' ' + '.content_title h1' );
+    $('.content_title h1').load(this.location + ' ' + '.content_title h1');
 }
 
-function clear_checkboxes(){
+function clear_checkboxes() {
     var checkboxes = $('.table_content').find('input[type="checkbox"]');
     $.each(checkboxes, function() {
         $(this).attr('checked', false);
     });
 }
 
-function reload_pagination(href){
-    if(href){
+function reload_pagination(href) {
+    if (href) {
 
     }
-    else{
+    else {
         href = location
     }
     var height = $('#pagination_container').height();
     $('#pagination_container div.pagination').html("<table><td class='ajax_loader' style='height:" + height + "px;'><img src='/images/ajax-cb-loader.gif'/></td></table>");
-    $('#pagination_container').load(href + ' ' + '#pagination_container > *' );
+    $('#pagination_container').load(href + ' ' + '#pagination_container > *');
+}
+
+function indicator_pagination(href) {
+    if (href) {
+
+    }
+    else {
+        href = location
+    }
+    var height = $('#pagination_container .pagination').height();
+    $('#pagination_container div.pagination').html("<table><td class='ajax_loader' style='height:" + height + "px;'><img src='/images/ajax-cb-loader.gif'/></td></table>");
+}
+
+function indicator_contacts(id, href, after_load) {
+    if (id) {
+
+    }
+    else {
+        id = '#rowclick1';
+    }
+    if (href) {
+
+    }
+    else {
+        href = location
+    }
+    var height_contacts = $('.table_content').height();
+    var height_rowclick = $('#rowclick1').height();
+    var height_head = $('.table_head').height();
+    var height_groups = $('.contact_groups').height() - height_head - 22;
+
+    if (height_contacts > height_groups) {
+        $(id).html("<table><td class='ajax_loader' style='height:" + height_rowclick + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+    }
+    else {
+        $(id).html("<table><td class='ajax_loader' style='height:" + height_groups + "px;'><img src='/images/ajax-loader.gif'/></td></table>");
+    }
 }
