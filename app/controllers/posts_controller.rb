@@ -14,7 +14,7 @@ class PostsController < ApplicationController
       @type = params[:type]
       # populates @conferences
       get_leftmenu_content
-      @colleges = College.order('name ASC').all
+      @college = @conferences.first.colleges.first
     else
       @post = @parent.send(@post_cls).build
       @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize

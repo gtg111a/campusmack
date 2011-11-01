@@ -2,5 +2,5 @@
 <%= select("add_post", 'select', option_groups_from_collection_for_select(@conferences, :colleges, :name, :permalink, :name)) %>
 <br/><br/>
 <div class="blue_button">
-  <%= link_to "Add #{@type}", "/colleges/#{@colleges.first.permalink}/#{@type.downcase}s/new", :id => "add_post_select_link", "data-before" => "/colleges/", "data-after" => "/#{@type.downcase}s/new" %>
+  <%= link_to "Add #{@type}", "/colleges/#{@college.permalink}/#{@type.downcase}s/new", :id => "add_post_select_link", "data-before" => "/colleges/", "data-after" => "/#{@type.downcase}s/new" %>
 </div>
