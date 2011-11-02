@@ -125,7 +125,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(params[@post.type.downcase])
+    if @post.update_attributes(params[@post.type.to_s.downcase])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"
