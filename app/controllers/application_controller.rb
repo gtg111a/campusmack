@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     target_url = signed_in? ? root_url : sign_up_url
     flash[:alert] = exception.message
-    if request.post?
+    if request.xhr?
       respond_to do |format|
         format.js { render(:update) { |page| page.redirect_to target_url } }
       end

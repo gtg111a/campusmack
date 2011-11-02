@@ -1696,7 +1696,7 @@ ul.items {
 }
 
 .team-item .item-top h3 a:hover {
-  color: #000;
+  text-decoration: underline;
 }
 
 .team-item .dislike {
@@ -1953,4 +1953,11 @@ div.page {
 .thumbnail_yt {
   width: 180px;
   height: 100px;
+}
+
+.sotw h1 {
+  color: #30a0f0;
+  font-family: "Conv_MyriadPro-BoldCond";
+  font-size: 40px;
+  font-weight: normal;
 }
