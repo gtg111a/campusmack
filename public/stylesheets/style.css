@@ -1008,22 +1008,17 @@ ul.news li {
   width: 100%;
 }
 
-.section_title a {
-  color: #494846;
+.section_title a:hover,
+a.section_link:hover {
+  text-decoration: underline;
 }
 
 .section_undertitle {
-  color: #9D9D9D;
   float: left;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8em;
   margin: 0 0 0 20px;
   width: 100%;
-}
-
-.section_link {
-  color: #575757 !important;
-  text-decoration: underline !important;
 }
 
 .img_section {
@@ -1956,7 +1951,6 @@ div.page {
 }
 
 .sotw h1 {
-  color: #30a0f0;
   font-family: "Conv_MyriadPro-BoldCond";
   font-size: 40px;
   font-weight: normal;
