@@ -2,8 +2,8 @@
 class PostsController < ApplicationController
   respond_to :js, :html
   authorize_resource
-  skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
-  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
+  skip_authorize_resource :only => [:opengraph, :share_through_email_form, :share_through_email]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form, :share_through_email]
   include PostsHelper
 
   before_filter :find_post, :except => [ :new, :create, :index ]
@@ -14,6 +14,10 @@ class PostsController < ApplicationController
       @type = params[:type]
       # populates @conferences
       get_leftmenu_content
+      # Sort colleges by name inside the groups
+      @conference_collection = @conferences.map do |conference|
+        OpenStruct.new(:name => conference.name, :colleges => conference.colleges.order('name'))
+      end
       @college = @conferences.first.colleges.first
     else
       @post = @parent.send(@post_cls).build
