@@ -1,9 +1,12 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :contact_groups#, :dependent => :delete_all
+
+  has_many :contact_groups_contact
+  has_many :contact_groups, :through => :contact_groups_contact
+
   validates :email, :uniqueness => {:scope => :user_id}, :presence => true
   validates :user_id, :presence => true
-  
+
   def self.import (user, emails_csv)
     puts emails_csv
     puts user
@@ -36,3 +39,21 @@ class Contact < ActiveRecord::Base
   end
 
 end
+
+
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer         indexed
+#  name       :string(255)
+#  email      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+# Indexes
+#
+#  index_contacts_on_user_id  (user_id)
+#
+

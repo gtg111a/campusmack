@@ -15,3 +15,26 @@ class Comment < ActiveRecord::Base
   has_many :reports, :as => :reportable, :dependent => :destroy
 
 end
+
+
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer         not null, primary key
+#  title            :string(50)      default("")
+#  comment          :text
+#  commentable_id   :integer         indexed
+#  commentable_type :string(255)     indexed
+#  user_id          :integer         indexed
+#  created_at       :datetime
+#  updated_at       :datetime
+#  reports_count    :integer         default(0), not null
+#
+# Indexes
+#
+#  index_comments_on_user_id           (user_id)
+#  index_comments_on_commentable_id    (commentable_id)
+#  index_comments_on_commentable_type  (commentable_type)
+#
+

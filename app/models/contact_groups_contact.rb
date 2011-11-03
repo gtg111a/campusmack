@@ -13,3 +13,20 @@ class ContactGroupsContact < ActiveRecord::Base
     end
   end
 end
+
+
+# == Schema Information
+#
+# Table name: contact_groups_contacts
+#
+#  contact_id       :integer         indexed
+#  contact_group_id :integer         indexed
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+# Indexes
+#
+#  index_contact_groups_contacts_on_contact_group_id  (contact_group_id)
+#  index_contact_groups_contacts_on_contact_id        (contact_id)
+#
+
