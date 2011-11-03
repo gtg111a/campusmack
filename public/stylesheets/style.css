@@ -867,11 +867,15 @@ ul.news li {
   text-transform: uppercase;
 }
 
+.team-item .preview,
+.photo_box,
+.smack_container .smack_content {
+  background-image: url(/images/view_more_bg.png);
+  text-align: center;
+}
 .smack_container .smack_content {
   margin: 10px 0;
   padding: 10px;
-  background-image: url(/images/view_more_bg.png);
-  text-align: center;
 }
 
 .divider_vert {
@@ -1025,7 +1029,6 @@ a.section_link:hover {
   width: 216px;
   height: 162px;
   float: left;
-  border: 1px solid #000;
   background-color: #fff;
   margin: 7px 0 0 20px;
   overflow: hidden;
@@ -1739,7 +1742,7 @@ ul.actions li {
 
 .team-item .preview {
   clear: both;
-  height: 100px;
+  height: 135px;
   margin-bottom: 5px;
   overflow: hidden;
 }
@@ -1947,11 +1950,10 @@ div.page {
 
 .thumbnail_yt {
   width: 180px;
-  height: 100px;
 }
 
 .sotw h1 {
   font-family: "Conv_MyriadPro-BoldCond";
   font-size: 40px;
-  font-weight: normal;
 }
+
