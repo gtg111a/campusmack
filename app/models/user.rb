@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :redemptions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
-  has_many :microposts, :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
            :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,
@@ -49,10 +48,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
   has_attached_file :avatar, :styles => {:small => "39x39", :medium => "100x100", :large => "400x400>"}
 
-  def feed
-    Micropost.from_users_followed_by(self)
-  end
-
   def following?(followed)
     relationships.find_by_followed_id(followed)
   end
@@ -76,11 +71,6 @@ class User < ActiveRecord::Base
     [self.first_name, self.last_name].join(' ')
   end
 
-  def increment_smack_send
-    self.smack_count = ((self.smack_count || 0) + 1)
-    self.save
-  end
-
   private
 
   def send_welcome_email
@@ -94,8 +84,3 @@ class User < ActiveRecord::Base
   end
 
 end
-   
-
- 
-
-  

@@ -1,6 +1,4 @@
 Campusmack::Application.routes.draw do
-  get "smack_sends/index"
-
   resources :contact_groups_contacts
 
   resources :contact_groups do
@@ -131,7 +129,6 @@ Campusmack::Application.routes.draw do
   resources :conferences
   get '/conference_stats', :to => 'conferences#status'
 
-  resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   resources :authentications, :only => [:index, :destroy]
   resources :support, :only => [:new, :create]
