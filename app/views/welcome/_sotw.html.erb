@@ -18,7 +18,7 @@
     <%= sotw.created_at.to_date.to_s(:long) %><br/>by <%= link_to(sotw.user.try(:username), sotw.user) %>
   </div>
   <div class="content_text">
-    <%= censoring(sotw.summary) %>
+    <%= truncate(censoring(sotw.summary), :length => 70) %>
   </div>
   <div class="content_share">
     <%= share_and_voting_icons(sotw, :post) %>
