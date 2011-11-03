@@ -15,7 +15,7 @@
     <%= link_to "Article Preview", sotw.news_post.url, :class => 'snap_shots' unless sotw.news_post.blank? %>
   </div>
   <div class="img_title">
-    <%= sotw.created_at.to_date.to_s(:long) %><br/>by <%= link_to(sotw.user.try(:username), sotw.user) %>
+    <%= sotw.created_at.to_date.to_s(:long) %> by <%= link_to(truncate(sotw.user.try(:username), :length => 16), sotw.user) %>
   </div>
   <div class="content_text">
     <%= truncate(censoring(sotw.summary), :length => 70) %>
