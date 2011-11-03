@@ -2,20 +2,31 @@
 class PostsController < ApplicationController
   respond_to :js, :html
   authorize_resource
-  skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
-  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
+  skip_authorize_resource :only => [:opengraph, :share_through_email_form, :share_through_email]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form, :share_through_email]
   include PostsHelper
 
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
-    @post = @parent.send(@post_cls).build
-    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
-    init_college_menu
-    add_breadcrumbs
-    render 'posts/new'
+    if request.xhr? && ['Smack', 'Redemption'].include?(params[:type])
+      @type = params[:type]
+      # populates @conferences
+      get_leftmenu_content
+      # Sort colleges by name inside the groups
+      @conference_collection = @conferences.map do |conference|
+        OpenStruct.new(:name => conference.name, :colleges => conference.colleges.order('name'))
+      end
+      @college = @conferences.first.colleges.first
+    else
+      @post = @parent.send(@post_cls).build
+      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+      init_college_menu
+      add_breadcrumbs
+      render 'posts/new'
+    end
   end
 
   def create
@@ -65,6 +76,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -113,7 +125,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(params[@post.type.downcase])
+    if @post.update_attributes(params[@post.type.to_s.downcase])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"
@@ -175,13 +187,6 @@ class PostsController < ApplicationController
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
-  end
-
-  def view_email
-    @subject = 'You just got SMACKED'
-    @message = ''
-    @smacker = current_user
-    render 'user_mailer/share_post', :layout => false
   end
 
   protected

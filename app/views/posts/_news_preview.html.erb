@@ -3,6 +3,5 @@
     <%= link_to censoring(truncate(post.title, :length => 80)), [post.postable, post] %>
   </div>
   <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' %>
-  <%= share_icons(post, :preview) %>
-  <div class="voting_icons"><%= voting_icons(post) %></div>
+  <%= share_and_voting_icons(post, :news_preview) %>
 </li>
