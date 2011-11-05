@@ -14,7 +14,6 @@
       <br/>
       <strong>URL</strong> <%= link_to user_path(@user), @user %>
       <br/>
-      <strong>Microposts</strong> <%= @user.microposts.count %>
       <ul class="inner_menu">
         <li>
           <%= link_to "#{current_user.following.count} following", following_user_path(current_user) %>
