@@ -10,23 +10,23 @@ class PostsController < ApplicationController
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
-    if request.xhr? && ['Smack', 'Redemption'].include?(params[:type])
-      @type = params[:type]
-      # populates @conferences
-      get_leftmenu_content
+    # If there is no parent, this is for the add smack/redemption on the home page
+    if @parent.nil?
+      @conferences = Conference.where(:division => session[:division])
       # Sort colleges by name inside the groups
       @conference_collection = @conferences.map do |conference|
         OpenStruct.new(:name => conference.name, :colleges => conference.colleges.order('name'))
       end
       @college = @conferences.first.colleges.first
-    else
-      @post = @parent.send(@post_cls).build
-      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
-      init_college_menu
-      add_breadcrumbs
-      render 'posts/new'
+      render 'posts/home_new'
+      return
     end
+    @post = @parent.send(@post_cls).build
+    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+    init_college_menu
+    add_breadcrumbs
+    render 'posts/new'
   end
 
   def create

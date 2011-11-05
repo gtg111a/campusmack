@@ -96,6 +96,7 @@ Campusmack::Application.routes.draw do
     end
   end
 
+  resources :smacks, :redemptions, :only => :new
   resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
     collection do
       match :search, :action => :index
