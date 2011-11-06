@@ -1,7 +1,8 @@
 class ContactGroup < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :contacts #, :dependent => :delete_all
 
+  has_many :contact_groups_contact
+  has_many :contacts, :through => :contact_groups_contact
   validates :name, :uniqueness => {:scope => :user_id}, :presence => true
 
   def self.add_to_groupmodel(user, new_group_name)
@@ -21,3 +22,16 @@ class ContactGroup < ActiveRecord::Base
     return @contacts
   end
 end
+
+
+# == Schema Information
+#
+# Table name: contact_groups
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

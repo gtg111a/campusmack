@@ -24,7 +24,7 @@
     Posted
     <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
     <span class="by">by:</span>
-    <%= link_to(post.user.try(:username), post.user, :class => :author) %>
+    <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
   </div>
   <div class="description">
     <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>

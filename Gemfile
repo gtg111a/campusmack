@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.10'
-gem 'spork', '0.9.0.rc5'
 #gem 'aws-sdk'
 gem 'paperclip'
 gem 'aws-s3'
@@ -23,27 +22,31 @@ gem 'gravatar_image_tag'
 gem 'will_paginate', '3.0.pre2'
 gem 'profanalyzer'
 gem 'video_info'
-gem 'ffaker', '1.8.1'
 
 group :development do
-  gem 'sqlite3', '1.3.3'
-  #gem 'mysql2', '0.2.8'
+  gem 'sqlite3'
+  gem 'mysql2', '0.2.8'
+  gem 'rails_best_practices'
+  gem 'annotate'
   gem 'heroku'
-  gem 'rspec-rails', '2.6.1'
+  gem 'taps'
+  gem 'ruby-debug19'
 end
 
 group :test do
-  gem 'rspec-rails', '2.6.1'
-  gem 'spork', '0.9.0.rc5'
+  gem 'rspec-rails'
+  gem 'spork'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'watchr'
   gem 'shoulda-matchers'
 end
 
 group :development, :test do
+  gem 'ffaker'
   gem 'launchy'
   gem 'factory_girl_rails'
 end
