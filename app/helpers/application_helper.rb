@@ -160,9 +160,9 @@ module ApplicationHelper
   def share_and_voting_icons(post, place = nil)
     cls = 'share_icons'
     cls = 'items-buttons' if place.to_s.include?('preview')
-    html = "<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
+    html = "<span class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
     html << voting_icons(post, place) if [:news_preview, :post, :show].include?(place)
-    (html + send_as_smack_btn(post, place) + "</div>").html_safe
+    (html + send_as_smack_btn(post, place) + "</span>").html_safe
   end
 
   def voting_icons(post, place = nil)
@@ -184,7 +184,7 @@ module ApplicationHelper
   end
 
   def share_through_email_btn(post, place)
-    link_to('', send_in_email_post_path(post), :class => 'mail', :alt => 'Share through email')
+    link_to('', send_in_email_post_path(post), :class => 'mail', :title => 'Share through email')
   end
 
   def facebook_share(post, place)
@@ -215,7 +215,7 @@ module ApplicationHelper
 
   def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
     img = "<a href='#{url_for(post_url)}'>"
-    img << "<img src='#{url}' "
+    img << "<img src='#{url}' alt=''"
     img << "class='#{cls}'" if cls
     img << ' /></a>'
     return raw img

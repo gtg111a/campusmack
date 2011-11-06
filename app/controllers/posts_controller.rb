@@ -129,7 +129,7 @@ class PostsController < ApplicationController
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"
-      render 'edit'
+      render :edit
     end
   end
 

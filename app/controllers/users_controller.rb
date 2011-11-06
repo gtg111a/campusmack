@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def show_follow(action)
     @title = action.to_s.capitalize
     @users = @user.send(action).paginate(:page => params[:page])
-    render 'show_follow'
+    render :show_follow
   end
 
   def smacks
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       redirect_to root_path, :flash => { :success => "Welcome to Campusmack!" }
     else
       @title = "Sign up"
-      render 'new'
+      render :new
     end
   end
   
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
       @title = "Edit user"
-      render 'edit'
+      render :edit
     end
   end
 

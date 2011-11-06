@@ -479,6 +479,7 @@ a.sign_up:visited {
   border-width: 1px 1px 0 0;
   border-style: solid;
   border-color: #fff;
+  overflow: hidden;
 }
 
 .content_title {
@@ -648,10 +649,20 @@ a.sign_up:visited {
   background-color: #f3f3f3;
 }
 
+.content_container.news_bg {
+  overflow: hidden;
+  background-color: #f3f3f3;
+}
+
 .content_container .content_category {
   padding: 15px;
   border-bottom: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
   overflow: hidden;
+}
+
+.content_container .content_category.last {
+  border-bottom: none;
 }
 
 .content_container .content_category .category_title {
@@ -673,7 +684,6 @@ a.sign_up:visited {
   background-position: left bottom;
   background-repeat: repeat-x;
   border-top: 1px solid #D4D4D4;
-  clear: both;
   height: 32px;
 }
 
@@ -873,6 +883,7 @@ ul.news li {
   background-image: url(/images/view_more_bg.png);
   text-align: center;
 }
+
 .smack_container .smack_content {
   margin: 10px 0;
   padding: 10px;
@@ -1502,21 +1513,22 @@ ul.inner_menu li {
   overflow: hidden;
 }
 
-ul.inner_menu li a, ul.inner_menu li span {
+ul.inner_menu li a {
+  background-image: url(/images/view_more_bg.png);
+  color: #000;
   display: block;
   margin: 2px;
   padding: 8px 30px;
   text-decoration: none;
+}
+
+ul.inner_menu li a.active,
+ul.inner_menu li a:hover {
   color: #FFF;
   background-color: rgb(38, 139, 217);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
   background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
   cursor: pointer;
-}
-
-ul.inner_menu li a, ul.inner_menu li span.normal {
-  background-image: url(/images/view_more_bg.png);
-  color: #000;
 }
 
 .create_post ul.inner_menu {
@@ -1667,8 +1679,9 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .photovideo {
   float: left;
+  background: #fff;
+  padding-right: 2px;
   width: 588px;
-  border-right: 1px solid #CFCFCF;
 }
 
 ul.items {
@@ -1711,6 +1724,7 @@ ul.items {
 .team-item .which-college a {
   color: #999;
 }
+
 .team-item .which-college a:hover {
   text-decoration: underline;
 }
@@ -1770,9 +1784,9 @@ ul.actions li {
 
 .news {
   width: 173px;
-  height: 624px;
   background: #F3F3F3;
-  margin: 2px 2px 2px 591px;
+  margin-left: 591px;
+  border-top: 2px solid #fff;
   padding: 13px 10px 10px 10px;
 }
 
@@ -1919,6 +1933,7 @@ div.page {
 .page p,
 .page ol {
   margin: 15px 0;
+  line-height: 18px;
 }
 
 .page img.left {
@@ -1943,8 +1958,12 @@ div.page {
   float: right;
 }
 
-#shifting_fields .entry .field_with_errors,
-#shifting_fields .entry small {
+div#error_explanation {
+  padding: 1em;
+  color: red;
+}
+
+#shifting_fields .field_with_errors {
   float: left;
 }
 

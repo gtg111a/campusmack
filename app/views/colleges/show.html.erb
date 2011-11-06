@@ -48,10 +48,10 @@
         <% @news.each do |post| %>
             <%= render "posts/news_preview", :post => post %>
         <% end %>
-        <div class="view_more_link">
-          <%= link_to "See all news", @parent.is_a?(College) ? college_news_index_path(@parent) : conference_news_index_path(@parent) %>
-        </div>
       </ul>
+      <div class="view_more_link">
+        <%= link_to "See all news", @college.is_a?(College) ? college_news_index_path(@college) : conference_news_index_path(@college) %>
+      </div>
     </div>
   </div>
 

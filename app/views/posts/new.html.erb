@@ -8,6 +8,7 @@
   <div class="form_container post_form">
     <div class="form_wrapper">
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
+        <%= render 'shared/error_messages', :object => f.object %>
       <% # Rendering content to javascript variables to switch later on  %>
       <% content_for :js do %>
           var postcontent = [];
@@ -54,7 +55,6 @@
           }
       <% end %>
       <% content_for :jq do %>
-
           $(".inner_menu li a").click(function(){ $('.inner_menu li a').removeClass('active'); $(this).addClass('active'); $('form[data-validate]').validate(); });
           $("#switch_video").click(function(){switch_fields(0); return false;});
           $("#switch_photo").click(function(){switch_fields(1); return false;});
