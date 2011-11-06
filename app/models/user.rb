@@ -47,6 +47,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => true, :on => :create
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
   has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" }
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
+                                    :message => 'avatar must be of filetype .jpg, .png or .gif'
 
   def following?(followed)
     relationships.find_by_followed_id(followed)

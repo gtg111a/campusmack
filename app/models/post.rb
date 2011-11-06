@@ -48,7 +48,12 @@ class Post < ActiveRecord::Base
   end
 
   def youtube_thumbnail_url
-    video_id = URI.parse(self.video.url).query.split('=')[1].slice(0, 11) rescue nil
+    url = self.video.url
+    if url =~ /(youtu|y2u)\.be/
+      video_id = URI.parse(url).path.gsub(/\//,"") rescue nil
+    else
+      video_id = URI.parse(url).query.split('=')[1].slice(0, 11) rescue nil
+    end
     return if video_id.nil?
     'http://img.youtube.com/vi/' + video_id + '/0.jpg'
   end

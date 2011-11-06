@@ -8,6 +8,8 @@ class NewsPost < ActiveRecord::Base
                     :bucket => 'Campusmack',
                     :path => "/news/:style/:id/:filename"
 
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
+                                    :message => 'photo must be of filetype .jpg, .png or .gif'
   validates :url, :presence => true
   validates :url, :url_format => true
   validates :video_url, :youtube_url_format => true
@@ -17,7 +19,6 @@ class NewsPost < ActiveRecord::Base
   end
 
 end
-
 
 
 # == Schema Information
