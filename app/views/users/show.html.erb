@@ -1,23 +1,25 @@
 <div class="content new_level with_submenu clearfix">
   <div class="content_title"><%= @user.username %> Posts</div>
   <div class="content_stats clearfix">
-    <ul class="inner_menu">
-      <li>
-        <%= link_to "#{current_user.smacks.count} smacks", smacks_user_path(current_user) %>
-      </li>
-      <li>
-        <%= link_to "#{current_user.redemptions.count} redemptions", redemptions_user_path(current_user) %>
-      </li>
-    </ul>
-	<%= render 'shared/search' %>
+    <%# if current_user %>
+      <ul class="inner_menu">
+        <li>
+          <%= link_to "#{@user.smacks.count} smacks", smacks_user_path(@user) %>
+        </li>
+        <li>
+          <%= link_to "#{@user.redemptions.count} redemptions", redemptions_user_path(@user) %>
+        </li>
+      </ul>
+    <%# end %>
+    <%= render 'shared/search' %>
   </div>
   <div class="content_container">
     <div class="content_category">
       <% unless @posts.blank? %>
-          <%= will_paginate @posts %>
-          <ul class="posts">
-            <%= render :partial => "/posts/post", :collection => @posts %>
-          </ul>
+        <%= will_paginate @posts %>
+        <ul class="posts">
+          <%= render :partial => "/posts/post", :collection => @posts %>
+        </ul>
       <% end %>
     </div>
   </div>
