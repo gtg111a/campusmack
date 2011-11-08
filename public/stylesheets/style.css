@@ -1525,9 +1525,10 @@ ul.inner_menu li a {
 ul.inner_menu li a.active,
 ul.inner_menu li a:hover {
   color: #FFF;
-  background-color: rgb(38, 139, 217);
+  background-color: #30a0f0;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
   background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0F80D2, endColorstr=#66B9F4);
   cursor: pointer;
 }
 
@@ -1690,7 +1691,7 @@ ul.items {
 }
 
 .team-item {
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
   float: left;
   list-style: none;
   width: 180px;
@@ -1769,7 +1770,6 @@ ul.actions li {
 }
 
 .team-item .items-buttons {
-  border-top: solid 1px #CFCFCF;
   overflow: hidden;
   padding-top: 4px;
   margin-bottom: 5px;
@@ -1824,8 +1824,9 @@ ul.actions li {
   color: #30A0F0;
 }
 
-.news .snap_shots {
+.news .summary a.snap_shots {
   font-size: 10px;
+  color: #30a0f0;
 }
 
 .news .snap_shots:hover {
