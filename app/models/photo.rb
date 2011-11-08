@@ -9,6 +9,8 @@ class Photo < ActiveRecord::Base
                     :path => "/:style/:id/:filename"
 
   validates_presence_of :image, :on => :create
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
+                                    :message => 'photo must be of filetype .jpg, .png or .gif'
 
   def url(params=nil)
     self.image.url(params)

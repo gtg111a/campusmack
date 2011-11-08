@@ -1,7 +1,7 @@
 <li class="team-item">
   <div class="summary">
     <%= link_to censoring(truncate(post.title, :length => 80)), [post.postable, post] %>
+    <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' %>
   </div>
-  <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' %>
   <%= share_and_voting_icons(post, :news_preview) %>
 </li>

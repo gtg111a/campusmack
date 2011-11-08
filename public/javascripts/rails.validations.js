@@ -121,8 +121,9 @@
   // Main hook
   // If new forms are dynamically introduced into the DOM the .validate() method
   // must be invoked on that form
-  $(function() { $('form[data-validate]').validate(); })
-})(jQuery);
+  $(function() {
+    $('form[data-validate]').validate(); })
+  })(jQuery);
 
 var clientSideValidations = {
   validators: {

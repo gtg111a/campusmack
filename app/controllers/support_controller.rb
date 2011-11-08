@@ -13,7 +13,7 @@ class SupportController < ApplicationController
       redirect_to root_path, :flash => {:success => "Message Sent!"}
     else
       flash[:alert] = "You must fill in all fields."
-      render 'new'
+      render :new
     end
   end
 

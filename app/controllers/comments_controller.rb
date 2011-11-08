@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       redirect_to [ @comment.commentable.postable, @post ], :flash => {:success => "Comment updated."}
     else
-      redirect_to 'edit'
+      redirect_to :edit
       @title = 'Edit comment'
     end
   end
