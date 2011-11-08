@@ -47,11 +47,6 @@
           function switch_fields(num) {
           $("ul.inner_menu span").removeClass("normal");
           $("#shifting_fields").html(postcontent[num]);
-          switch(num) {
-          case 0: $("#switch_photo").addClass("normal"); $("#switch_news").addClass("normal"); break;
-          case 1: $("#switch_video").addClass("normal"); $("#switch_news").addClass("normal"); break;
-          case 2: $("#switch_video").addClass("normal"); $("#switch_photo").addClass("normal"); break;
-          }
           }
       <% end %>
       <% content_for :jq do %>

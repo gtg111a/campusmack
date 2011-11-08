@@ -1,7 +1,39 @@
+<% content_for :js do %>
+  var campus_select = null;
+  var post_popup_to = null;
+  var popup_html = "<div id=\"add_post_popup\"><h2></h2><div class=\"blue_button\"><a href=\"/\" data-after=\"/smacks/new\" data-before=\"/colleges/\" id=\"add_post_select_link\">Add</a></div></div>";
+  function update_popup_link() {
+    apsl = $("#add_post_select_link");
+    apsl.attr("href", apsl.data("before") + $("#add_post_select").val() + apsl.data("after"));
+  }
+  function show_post_popup(type) {
+    jQuery.facebox(popup_html);
+    $("#add_post_popup h2").html("Select Campus to add " + type.charAt(0).toUpperCase() + type.slice(1) + " to");
+    $("#add_post_popup h2").append("<br /><br />").append(campus_select).append("<br /><br />");
+    $("#add_post_popup a").data("after","/" + type + "s/new");
+    update_popup_link();
+  }
+  function try_show_post_popup(type) {
+    if (campus_select != null) {
+      show_post_popup(type)
+    } else {
+      clearTimeout(post_popup_to);
+      post_popup_to = setTimeout("try_show_post_popup(\"" + type + "\")", 500);
+    }
+  }
+<% end %>
 <% content_for :jq do %>
   $("#add_post_select").live("change",function(){
-  apsl = $("#add_post_select_link");
-  apsl.attr("href", apsl.data("before") + $(this).val() + apsl.data("after"));
+    update_popup_link();
+  });
+  $.ajax({url: "/smacks/new"});
+  $("#add_smack_btn").click(function(e){
+    e.preventDefault();
+    try_show_post_popup("smack");
+  });
+  $("#add_redemption_btn").click(function(e){
+    e.preventDefault();
+    try_show_post_popup("redemption");
   });
 <% end %>
 <% content_for :above do %>
@@ -17,8 +49,8 @@
 <div class="content standard clearfix">
   <div class="content_actions">
     <ul>
-      <li class="dark_button"><%= link_to "Add Smack", new_smack_path, :remote => true %></li>
-      <li class="dark_button"><%= link_to 'Add Redemption', new_redemption_path, :remote => true %></li>
+      <li class="dark_button"><%= link_to "Add Smack", root_path, :id => "add_smack_btn" %></li>
+      <li class="dark_button"><%= link_to 'Add Redemption', root_path, :id => "add_redemption_btn" %></li>
     </ul>
   </div>
   <div class="content_title sotw"><h1>Smacks of the Week</h1></div>

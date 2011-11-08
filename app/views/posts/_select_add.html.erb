@@ -1,6 +1,1 @@
-<h2>Select Campus to add <%= @post_cls.singularize.titleize %> to</h2><br/>
 <%= select("add_post", 'select', option_groups_from_collection_for_select(@conference_collection, :colleges, :name, :permalink, :name)) %>
-<br/><br/>
-<div class="blue_button">
-  <%= link_to "Add #{@type}", "/colleges/#{@college.permalink}/#{@post_cls}/new", :id => "add_post_select_link", "data-before" => "/colleges/", "data-after" => "/#{@post_cls}/new" %>
-</div>
