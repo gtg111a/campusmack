@@ -2,14 +2,25 @@
 class PostsController < ApplicationController
   respond_to :js, :html
   authorize_resource
-  skip_authorize_resource :only => [:opengraph, :share_through_email_form,:share_through_email]
-  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form,:share_through_email]
+  skip_authorize_resource :only => [:opengraph, :share_through_email_form, :share_through_email]
+  before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form, :share_through_email]
   include PostsHelper
 
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
+    # If there is no parent, this is for the add smack/redemption on the home page
+    if @parent.nil?
+      @conferences = Conference.where(:division => session[:division])
+      # Sort colleges by name inside the groups
+      @conference_collection = @conferences.map do |conference|
+        OpenStruct.new(:name => conference.name, :colleges => conference.colleges.order('name'))
+      end
+      @college = @conferences.first.colleges.first
+      render 'posts/home_new'
+      return
+    end
     @post = @parent.send(@post_cls).build
     @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
     @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
@@ -65,6 +76,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -113,11 +125,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(params[@post.type.downcase])
+    if @post.update_attributes(params[@post.type.to_s.downcase])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"
-      render 'edit'
+      render :edit
     end
   end
 

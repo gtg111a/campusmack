@@ -12,6 +12,7 @@
 }
 
 /* Need to place footer on bottom of the page */
+/* ^ TODO Only JS can do this */
 html, body, #super_wrapper {
   height: 100%;
 }
@@ -478,6 +479,7 @@ a.sign_up:visited {
   border-width: 1px 1px 0 0;
   border-style: solid;
   border-color: #fff;
+  overflow: hidden;
 }
 
 .content_title {
@@ -647,10 +649,20 @@ a.sign_up:visited {
   background-color: #f3f3f3;
 }
 
-.content_container .content_category {
-  padding: 15px 18px;
-  border-bottom: 1px solid #d4d4d4;
+.content_container.news_bg {
   overflow: hidden;
+  background-color: #f3f3f3;
+}
+
+.content_container .content_category {
+  padding: 15px;
+  border-bottom: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
+  overflow: hidden;
+}
+
+.content_container .content_category.last {
+  border-bottom: none;
 }
 
 .content_container .content_category .category_title {
@@ -675,20 +687,28 @@ a.sign_up:visited {
   height: 32px;
 }
 
-.view_more_link a {
+.view_more_link a, a.view_more {
+  background-image: url(/images/view_more_button.png);
+  background-repeat: no-repeat;
+  background-position: top;
   display: block;
   float: right;
   font-size: 8.88pt;
   font-style: italic;
   font-weight: bold;
-  background-image: url(/images/view_more_button.png);
-  background-repeat: no-repeat;
-  width: 92px;
+  text-align: center;
+  line-height: 27px;
+  margin-top: 3px;
+  width: 102px;
   height: 26px;
-  margin-top: 4px;
-  padding-left: 10px;
-  padding-top: 5px;
+}
 
+.view_more_link a:hover, a.view_more:hover {
+  background-position: bottom;
+}
+
+a.view_more {
+  float: left;
 }
 
 .content_unit {
@@ -715,7 +735,6 @@ a.sign_up:visited {
 .content_unit2 .preview {
   float: left;
   margin-right: 10px;
-  width: 160px;
 }
 
 .content_unit2 .preview img {
@@ -738,6 +757,19 @@ a.sign_up:visited {
 
 .content_unit2 .title, .content_unit2 .unit_info, .content_unit2 .description, .content_unit2 .actions {
   margin-bottom: 5px;
+}
+
+.content_unit2 .actions li {
+  float: left;
+  margin-right: 6px;
+  padding-right: 6px;
+  border-right: 1px solid #999;
+  height: 16px;
+  line-height: 16px;
+}
+
+.content_unit2 .actions li:last-child {
+  border: 0;
 }
 
 .content_unit2 .unit_info {
@@ -764,8 +796,29 @@ a.sign_up:visited {
 
 .share_smack_btn {
   margin-left: 6px;
-  padding: 2px 0 2px 6px;
-  border-left: 1px solid #B4B4B4;
+  padding: 0 0 0 6px;
+  margin-left: 6px;
+  background: url(/images/send_as_smack_medium.png) no-repeat top;
+  display: inline-block;
+  text-indent: -9999px;
+  width: 66px;
+  height: 14px;
+}
+
+.share_smack_btn.small {
+  background: url(/images/send_as_smack_small.png) no-repeat top;
+  width: 37px;
+  height: 13px;;
+}
+
+.share_smack_btn.big {
+  background: url(/images/send_as_smack_big.png) no-repeat top;
+  width: 84px;
+  height: 18px;;
+}
+
+.share_smack_btn:hover {
+  background-position: bottom;
 }
 
 ul.news {
@@ -785,6 +838,19 @@ ul.news li {
 .smack_container .actions {
   float: right;
   margin: -3px 0 6px;
+}
+
+.smack_container .actions li {
+  float: left;
+  padding-left: 6px;
+  margin-left: 6px;
+  border-left: 1px solid #999;
+  height: 18px;
+  line-height: 18px;
+}
+
+.smack_container .actions li:first-child {
+  border: 0;
 }
 
 .smack_container .smack_info {
@@ -811,11 +877,16 @@ ul.news li {
   text-transform: uppercase;
 }
 
+.team-item .preview,
+.photo_box,
+.smack_container .smack_content {
+  background-image: url(/images/view_more_bg.png);
+  text-align: center;
+}
+
 .smack_container .smack_content {
   margin: 10px 0;
   padding: 10px;
-  background-image: url(/images/view_more_bg.png);
-  text-align: center;
 }
 
 .divider_vert {
@@ -827,6 +898,12 @@ ul.news li {
 .divider_vert2 {
   border-right: 1px solid #b4b4b4;
   padding-top: 4px;
+  margin-right: 4px;
+}
+
+.voting_icons .divider_vert2 {
+  border-right: 1px solid #b4b4b4;
+  padding-top: 0px;
   margin-right: 4px;
 }
 
@@ -935,6 +1012,7 @@ ul.news li {
 
 .section .content_text {
   font-size: 1.0em;
+  min-height: 34px;
 }
 
 .section_title {
@@ -945,12 +1023,12 @@ ul.news li {
   width: 100%;
 }
 
-.section_title a {
-  color: #494846;
+.section_title a:hover,
+a.section_link:hover {
+  text-decoration: underline;
 }
 
 .section_undertitle {
-  color: #9D9D9D;
   float: left;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8em;
@@ -958,16 +1036,10 @@ ul.news li {
   width: 100%;
 }
 
-.section_link {
-  color: #575757 !important;
-  text-decoration: underline !important;
-}
-
 .img_section {
   width: 216px;
   height: 162px;
   float: left;
-  border: 1px solid #000;
   background-color: #fff;
   margin: 7px 0 0 20px;
   overflow: hidden;
@@ -1023,6 +1095,7 @@ ul.news li {
 .content_share .share_smack_btn {
   float: right;
   border: none;
+  margin-left: 20px;
 }
 
 .mail {
@@ -1068,7 +1141,7 @@ ul.news li {
 }
 
 .share_icons {
-  display: inline-block;
+  display: inline;
 }
 
 .read_more {
@@ -1440,21 +1513,23 @@ ul.inner_menu li {
   overflow: hidden;
 }
 
-ul.inner_menu li a, ul.inner_menu li span {
+ul.inner_menu li a {
+  background-image: url(/images/view_more_bg.png);
+  color: #000;
   display: block;
   margin: 2px;
   padding: 8px 30px;
   text-decoration: none;
-  color: #FFF;
-  background-color: rgb(38, 139, 217);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
-  background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
-  cursor: pointer;
 }
 
-ul.inner_menu li a, ul.inner_menu li span.normal {
-  background-image: url(/images/view_more_bg.png);
-  color: #000;
+ul.inner_menu li a.active,
+ul.inner_menu li a:hover {
+  color: #FFF;
+  background-color: #30a0f0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
+  background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0F80D2, endColorstr=#66B9F4);
+  cursor: pointer;
 }
 
 .create_post ul.inner_menu {
@@ -1605,8 +1680,9 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .photovideo {
   float: left;
-  width: 550px;
-  border-right: 1px solid #CFCFCF;
+  background: #fff;
+  padding-right: 2px;
+  width: 588px;
 }
 
 ul.items {
@@ -1615,12 +1691,10 @@ ul.items {
 }
 
 .team-item {
+  margin: 0 10px 10px 0;
   float: left;
-  list-style: none outside none;
-  margin-bottom: 20px;
-  margin-left: 8px;
-  margin-right: 8px;
-  width: 240px;
+  list-style: none;
+  width: 180px;
 }
 
 .team-item .item-top {
@@ -1633,13 +1707,8 @@ ul.items {
   margin-bottom: 5px;
 }
 
-.team-item .item-top h3 a:visited,
-.team-item .item-top h3 a:link {
-  color: #000;
-}
-
 .team-item .item-top h3 a:hover {
-  color: #30A0F0;
+  text-decoration: underline;
 }
 
 .team-item .dislike {
@@ -1647,20 +1716,48 @@ ul.items {
 }
 
 .team-item .which-college {
-  width: 92px;
   float: left;
   overflow: hidden;
   color: #999;
   text-transform: uppercase;
 }
 
-.team-item .votes {
+.team-item .which-college a {
+  color: #999;
+}
+
+.team-item .which-college a:hover {
+  text-decoration: underline;
+}
+
+.votes .voting_icons {
   float: right;
+  margin-left: 0;
+}
+
+.voting_icons {
+  margin-left: 22px;
+}
+
+.team-item .voting_icons {
+  margin-left: 10px;
+}
+
+.voting_icons a {
+  margin-right: 4px;
+}
+
+ul.actions li {
+  float: left;
+}
+
+.actions .voting_icons {
+  margin-left: 4px;
 }
 
 .team-item .preview {
   clear: both;
-  height: 94px;
+  height: 135px;
   margin-bottom: 5px;
   overflow: hidden;
 }
@@ -1673,7 +1770,6 @@ ul.items {
 }
 
 .team-item .items-buttons {
-  border-top: solid 1px #CFCFCF;
   overflow: hidden;
   padding-top: 4px;
   margin-bottom: 5px;
@@ -1687,10 +1783,10 @@ ul.items {
 /* News sidebar */
 
 .news {
-  width: 210px;
-  height: 624px;
+  width: 173px;
   background: #F3F3F3;
-  margin: 2px 2px 2px 553px;
+  margin-left: 591px;
+  border-top: 2px solid #fff;
   padding: 13px 10px 10px 10px;
 }
 
@@ -1728,8 +1824,9 @@ ul.items {
   color: #30A0F0;
 }
 
-.news .snap_shots {
+.news .summary a.snap_shots {
   font-size: 10px;
+  color: #30a0f0;
 }
 
 .news .snap_shots:hover {
@@ -1742,14 +1839,20 @@ ul.items {
 }
 
 .news ul.items .votes {
-  position: relative;
-  top: -22px;
-  left: -88px;
+  position: absolute;
+  bottom: 0;
+  left: 61px;
+}
+
+.news ul.items .votes .vote_up_count {
+  border-right: 1px solid #999;
+  padding-right: 5px;
 }
 
 .news ul.items .team-item {
   margin-right: 0;
   margin-bottom: 10px;
+  position: relative;
 }
 
 ul.contact-groups {
@@ -1831,6 +1934,7 @@ div.page {
 .page p,
 .page ol {
   margin: 15px 0;
+  line-height: 18px;
 }
 
 .page img.left {
@@ -1850,10 +1954,30 @@ div.page {
   color: #30A0F0;
 }
 
-#shifting_fields .description .field_with_errors, #shifting_fields .description label {
+#shifting_fields .description .field_with_errors,
+#shifting_fields .description label {
   float: right;
 }
 
-#shifting_fields .entry .field_with_errors, #shifting_fields .entry small {
+div#error_explanation {
+  padding: 1em;
+  color: red;
+}
+
+#shifting_fields .field_with_errors {
   float: left;
+}
+
+.thumbnail_yt {
+  width: 180px;
+}
+
+.sotw h1 {
+  font-family: "Conv_MyriadPro-BoldCond";
+  font-size: 40px;
+}
+
+div.fb-like-box {
+  float: right;
+  margin-top: 15px;
 }

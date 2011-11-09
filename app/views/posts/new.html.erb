@@ -8,6 +8,7 @@
   <div class="form_container post_form">
     <div class="form_wrapper">
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
+        <%= render 'shared/error_messages', :object => f.object %>
       <% # Rendering content to javascript variables to switch later on %>
       <% content_for :js do %>
           var postcontent = [];
@@ -21,7 +22,7 @@
           postcontent[1] = '<%= f.fields_for :photo, Photo.new do |pf| %>
             <tr>
               <td class="description"><%= pf.label :image, 'Photo:' %></td>
-              <td class="entry"><%= pf.file_field :image %></td>
+              <td class="entry"><%= pf.file_field :image, :validate => false %></td>
             </tr>
           <% end.gsub(/\r|\n/, '').html_safe %>
           ';
@@ -46,14 +47,10 @@
           function switch_fields(num) {
           $("ul.inner_menu span").removeClass("normal");
           $("#shifting_fields").html(postcontent[num]);
-          switch(num) {
-          case 0: $("#switch_photo").addClass("normal"); $("#switch_news").addClass("normal"); break;
-          case 1: $("#switch_video").addClass("normal"); $("#switch_news").addClass("normal"); break;
-          case 2: $("#switch_video").addClass("normal"); $("#switch_photo").addClass("normal"); break;
-          }
           }
       <% end %>
       <% content_for :jq do %>
+          $(".inner_menu li a").click(function(){ $('.inner_menu li a').removeClass('active'); $(this).addClass('active'); $('form[data-validate]').validate(); });
           $("#switch_video").click(function(){switch_fields(0); return false;});
           $("#switch_photo").click(function(){switch_fields(1); return false;});
           $("#switch_news").click(function(){switch_fields(2); return false;});
@@ -67,13 +64,13 @@
               <td class="entry">
                 <ul class="inner_menu">
                   <li>
-                    <span id="switch_video">Video</span>
+                    <a id="switch_video" href="#" class="active">Video</a>
                   </li>
                   <li>
-                    <span id="switch_photo" class="normal">Photo</span>
+                    <a id="switch_photo" href="#">Photo</a>
                   </li>
                   <li>
-                    <span id="switch_news" class="normal">News</span>
+                    <a id="switch_news" href="#">News</a>
                   </li>
                 </ul>
               </td>
@@ -82,6 +79,12 @@
               <td class="description"><%= f.label :title, 'Title:' %></td>
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
+            <% if can? :manage, Post %>
+              <tr>
+                <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+              </tr>
+            <% end %>
           </table>
           <table id="shifting_fields" cellpadding="0" cellspacing="0">
             <%= f.fields_for :video, Video.new do |vf| %>

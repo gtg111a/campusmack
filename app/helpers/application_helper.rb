@@ -157,21 +157,34 @@ module ApplicationHelper
   # :preview -> small_preview, news_preview partials
   # :show -> show on full page
   # :post -> _post partial (team, college/show)
-  def share_icons(post, place = nil)
+  def share_and_voting_icons(post, place = nil)
     cls = 'share_icons'
-    cls = 'items-buttons' if place == :preview
-    ("<div class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place) + send_as_smack_btn(post, place) + "</div>").html_safe
+    cls = 'items-buttons' if place.to_s.include?('preview')
+    html = "<span class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
+    html << voting_icons(post, place) if [:news_preview, :post, :show].include?(place)
+    (html + send_as_smack_btn(post, place) + "</span>").html_safe
+  end
+
+  def voting_icons(post, place = nil)
+    html = '<span class="voting_icons">'
+    html << link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up")
+    html << %Q{<b id="vote_count_up#{post.id}">#{post.up_votes}</b><span class="divider_vert2">&nbsp;</span>}
+    html << link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down")
+    html << %Q{<b id="vote_count_down#{post.id}">#{post.down_votes}</b></span>}
+    html.html_safe
   end
 
   def send_as_smack_btn(post, place)
-    img = 'send_as_smack'
-    img += '_' if place != :show
-    img += '.png'
-    link_to(image_tag(img, :alt => 'Send as smack'), send_as_smack_post_path(post), :class => 'share_smack_btn')
+    if place == :news_preview
+      btn_size = 'small'
+    elsif place == :show
+      btn_size = 'big'
+    end
+    link_to('Send as smack', send_as_smack_post_path(post), :title => "Send as smack", :class => "share_smack_btn #{btn_size}")
   end
 
   def share_through_email_btn(post, place)
-    link_to('', send_in_email_post_path(post), :class => 'mail', :alt => 'Share through email')
+    link_to('', send_in_email_post_path(post), :class => 'mail', :title => 'Share through email')
   end
 
   def facebook_share(post, place)
@@ -198,6 +211,14 @@ module ApplicationHelper
     else
       text
     end
+  end
+
+  def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
+    img = "<a href='#{url_for(post_url)}'>"
+    img << "<img src='#{url}' alt=''"
+    img << "class='#{cls}'" if cls
+    img << ' /></a>'
+    return raw img
   end
 
 end

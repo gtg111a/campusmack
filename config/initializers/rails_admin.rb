@@ -6,10 +6,6 @@ RailsAdmin.config do |config|
     visible false
   end
 
-  config.model Micropost do
-    visible false
-  end
-
   config.model Statistic do
     visible false
   end

@@ -14,6 +14,12 @@
               <td class="description"><%= f.label :title, 'Title:' %></td>
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
+            <% if can? :manage, Post %>
+              <tr>
+                <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+              </tr>
+            <% end %>
             <% if @post.video %>
               <%= f.fields_for :video, @post.video do |vf| %>
                 <tr>

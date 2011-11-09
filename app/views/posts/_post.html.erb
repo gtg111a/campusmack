@@ -1,17 +1,21 @@
 <div class="content_unit2 clearfix">
   <div class="preview">
     <% if post.photo %>
-      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="158" alt=""/></a>
+      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" width="180" alt=""/></a>
     <% end %>
-    <% if post.news_post && !post.news_post.image_file_name.blank? %>
-      <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="158" alt=""/></a>
+    <% if post.news_post %>
+       <% if post.news_post.image_file_name.blank? %>
+        <%= image_tag('no_photo_small.jpg') %>
+      <% else %>
+        <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="180" alt=""/></a>
+      <% end %>
     <% end %>
-    <% if post.video %>
-        <%= youtube_embed(post.video.url) %>
-    <% end %>
-    <% if post.news_post && !post.news_post.video_url.blank? %>
-        <%= youtube_embed(post.news_post.video_url) %>
-    <% end %>
+      <% if post.video %>
+        <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) %>
+      <% end %>
+      <% if post.news_post && !post.news_post.video_url.blank? %>
+          <%= youtube_embed(post.news_post.video_url) %>
+      <% end %>
   </div>
   <div class="title">
     <%= link_to post.title, [post.postable, post] %>
@@ -20,20 +24,14 @@
     Posted
     <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
     <span class="by">by:</span>
-    <%= link_to(post.user.try(:username), post.user, :class => :author) %>
+    <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
   </div>
   <div class="description">
     <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
     <%= post.summary %>
   </div>
   <div class="actions">
-    <%= link_to(image_tag('like.png'), vote_up_post_path(post), :method => :post, :remote => true, :class => "vote-up") if can? :create, Vote %>
-    <b id="vote_count_up<%= post.id %>"><%= post.up_votes %></b>
-    <span class="divider_vert2">&nbsp;</span>
-    <%= link_to(image_tag('dislike.png'), vote_down_post_path(post), :method => :post, :remote => true, :class => "vote-down") if can? :create, Vote %>
-    <b id="vote_count_down<%= post.id %>"><%= post.down_votes %></b>
-    <span class="divider_vert2">&nbsp;</span>
-    <%= share_icons(post, :post) %>
+    <%= share_and_voting_icons(post, :post) %>
     <% if signed_in? %>
         <span class="divider_vert2">&nbsp;</span>
         <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.downcase}_path").call(post.postable, post), :class => 'button') if can? :update, post %>

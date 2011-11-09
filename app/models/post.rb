@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]
   scope :redemptions, :conditions => ["posts.type LIKE ?", "Redemption"]
-  scope :smack_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 1
+  scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 3
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
   def photo_url(params=nil)
@@ -47,4 +47,44 @@ class Post < ActiveRecord::Base
     self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
   end
 
+  def youtube_thumbnail_url
+    url = self.video.url
+    if url =~ /(youtu|y2u)\.be/
+      video_id = URI.parse(url).path.gsub(/\//,"") rescue nil
+    else
+      video_id = URI.parse(url).query.split('=')[1].slice(0, 11) rescue nil
+    end
+    return if video_id.nil?
+    'http://img.youtube.com/vi/' + video_id + '/0.jpg'
+  end
+
 end
+
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id                :integer         not null, primary key
+#  title             :string(255)
+#  summary           :string(255)
+#  type              :string(255)     indexed
+#  published         :boolean
+#  postable_id       :integer         indexed
+#  postable_type     :string(255)     indexed
+#  user_id           :integer         indexed
+#  on_frontpage_week :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  reports_count     :integer         default(0), not null
+#  up_votes          :integer         default(0), not null
+#  down_votes        :integer         default(0), not null
+#
+# Indexes
+#
+#  index_posts_on_type           (type)
+#  index_posts_on_user_id        (user_id)
+#  index_posts_on_postable_type  (postable_type)
+#  index_posts_on_postable_id    (postable_id)
+#
+

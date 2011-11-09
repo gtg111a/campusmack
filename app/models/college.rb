@@ -19,3 +19,25 @@ class College < ActiveRecord::Base
   end
 
 end
+
+
+# == Schema Information
+#
+# Table name: colleges
+#
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  conference_id     :integer         indexed
+#  permalink         :string(255)     indexed
+#  created_at        :datetime
+#  updated_at        :datetime
+#  smacks_count      :integer         default(0), not null
+#  redemptions_count :integer         default(0), not null
+#  abbrev            :string(255)
+#
+# Indexes
+#
+#  index_colleges_on_conference_id  (conference_id)
+#  index_colleges_on_permalink      (permalink)
+#
+

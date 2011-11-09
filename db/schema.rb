@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027190717) do
+ActiveRecord::Schema.define(:version => 20111103172921) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
     t.integer  "redemptions_count", :default => 0, :null => false
     t.string   "abbrev"
   end
+
+  add_index "colleges", ["conference_id"], :name => "index_colleges_on_conference_id"
+  add_index "colleges", ["permalink"], :name => "index_colleges_on_permalink"
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -58,6 +61,9 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
     t.integer  "weight",            :default => 0
   end
 
+  add_index "conferences", ["division"], :name => "index_conferences_on_division"
+  add_index "conferences", ["permalink"], :name => "index_conferences_on_permalink"
+
   create_table "contact_groups", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -72,6 +78,9 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
     t.datetime "updated_at"
   end
 
+  add_index "contact_groups_contacts", ["contact_group_id"], :name => "index_contact_groups_contacts_on_contact_group_id"
+  add_index "contact_groups_contacts", ["contact_id"], :name => "index_contact_groups_contacts_on_contact_id"
+
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -80,12 +89,7 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
     t.datetime "updated_at"
   end
 
-  create_table "microposts", :force => true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
 
   create_table "news_posts", :force => true do |t|
     t.integer  "post_id"
@@ -125,6 +129,11 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
     t.integer  "up_votes",          :default => 0, :null => false
     t.integer  "down_votes",        :default => 0, :null => false
   end
+
+  add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
+  add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
+  add_index "posts", ["type"], :name => "index_posts_on_type"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.string   "message"
@@ -179,14 +188,6 @@ ActiveRecord::Schema.define(:version => 20111027190717) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "smack_sends", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "send_number"
-  end
 
   create_table "statistics", :force => true do |t|
     t.integer  "post_id"
