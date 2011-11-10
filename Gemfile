@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'ffaker'
 gem 'rails', '3.0.10'
 #gem 'aws-sdk'
 gem 'paperclip'
@@ -46,7 +47,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'ffaker'
   gem 'launchy'
   gem 'factory_girl_rails'
 end
