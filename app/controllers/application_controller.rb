@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  APP_DOMAIN = 'campusmack.com'
+  APP_DOMAIN = 'www.campusmack.com'
   rescue_from Exception, :with => :render_error
 
   protect_from_forgery
@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def authenticate_admin!
+    return if can? :access, :rails_admin
+    raise CanCan::AccessDenied
+  end
 
   def render_error(exception)
     log_exception(exception)
@@ -64,7 +69,8 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_domain
-    return if request.local? || request.env['HTTP_HOST'].ends_with?(APP_DOMAIN)
+    return if Rails.env == 'staging' || request.local?
+    return if request.env['HTTP_HOST'].ends_with?(APP_DOMAIN)
     redirect_to "http://#{APP_DOMAIN}", :status => 301
   end
 
