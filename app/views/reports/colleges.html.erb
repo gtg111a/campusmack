@@ -1,0 +1,24 @@
+<div class="content new_level">
+  <div class="content_header">
+    <div class="content_title">Colleges</div>
+    <div class="top_submenu"><%= render :partial => 'menu' %></div>
+  </div>
+
+  <div class="content_container">
+    <div class="page" style="padding-top:40px;">
+      <table>
+        <tr>
+          <th>College Name</th>
+          <th>Users</th>
+        </tr>
+
+        <% @colleges.each do |c| %>
+          <tr>
+            <td><%= c.name %></td>
+            <td><%= c.users_count %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

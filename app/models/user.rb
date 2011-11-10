@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   #Through the 'thumbs_up' gem
   acts_as_voter
 
-  belongs_to :college
+  before_destroy :decrement_counter_cache
+  belongs_to :college, :counter_cache => true
   has_many :authentications, :dependent => :destroy
 
   has_many :posts, :dependent => :destroy
@@ -29,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :reverse_relationships, :source => :follower
   has_many :contacts
   has_many :contact_groups
+  has_many :deliveries
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validate :confirmation_password_must_match, :if => :password_required?
@@ -71,6 +73,14 @@ class User < ActiveRecord::Base
 
   def to_s
     [self.first_name, self.last_name].join(' ')
+  end
+
+  def recipients_count
+    self.deliveries.sum(:recipients)
+  end
+
+  def decrement_counter_cache
+    self.college.decrement_counter 'users_count', self.id
   end
 
   private

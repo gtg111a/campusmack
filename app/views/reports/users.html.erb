@@ -1,0 +1,36 @@
+<div class="content new_level">
+  <div class="content_header">
+    <div class="content_title">Users</div>
+    <div class="top_submenu"><%= render :partial => 'menu' %></div>
+  </div>
+
+  <div class="content_container">
+    <div class="page" style="padding-top:40px;">
+      <table>
+        <tr>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>College</th>
+          <th>Posts</th>
+          <th>Posts Sent as Smack</th>
+          <th>People Smacked</th>
+        </tr>
+
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= u.username %></td>
+            <td><%= u.first_name %></td>
+            <td><%= u.last_name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.college.name %></td>
+            <td><%= u.posts.count %></td>
+            <td><%= u.deliveries_count %></td>
+            <td><%= u.recipients_count %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
