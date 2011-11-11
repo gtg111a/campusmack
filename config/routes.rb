@@ -133,9 +133,11 @@ Campusmack::Application.routes.draw do
   resources :relationships, :only => [:create, :destroy]
   resources :authentications, :only => [:index, :destroy]
   resources :support, :only => [:new, :create]
-  resources :reports, :only => [:index]
-  match '/reports/users', :to => 'reports#users', :as => 'users_reports'
-  match '/reports/colleges', :to => 'reports#colleges', :as => 'colleges_reports'
+  match '/reports', :to => 'reports#index', :as => :reports
+  match '/reports/users', :to => 'reports#users', :as => :users_reports
+  match '/reports/colleges', :to => 'reports#colleges', :as => :colleges_reports
+  match '/reports/export_users_to_csv', :to => 'reports#export_users_to_csv', :as => :export_users_to_csv
+  match '/reports/export_colleges_to_csv', :to => 'reports#export_colleges_to_csv', :as => :export_colleges_to_csv
   match '/divisions/:division', :to => 'welcome#change_division', :as => :change_div
 
   match '/search', :to => 'posts#index'

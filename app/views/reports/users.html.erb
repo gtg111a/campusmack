@@ -1,12 +1,18 @@
-<div class="content new_level">
-  <div class="content_header">
-    <div class="content_title">Users</div>
-    <div class="top_submenu"><%= render :partial => 'menu' %></div>
+<div class="content new_level with_submenu clearfix">
+
+  <div class="content_actions">
+    <ul>
+      <li class="dark_button">
+        <%= link_to "Export To CSV", export_users_to_csv_url %>
+      </li>
+    </ul>
   </div>
 
+  <div class="content_title">Number of posts per user</div>
+
   <div class="content_container">
-    <div class="page" style="padding-top:40px;">
-      <table>
+    <div class="content_category">
+      <table id="users_table">
         <tr>
           <th>Username</th>
           <th>First Name</th>
@@ -26,11 +32,11 @@
             <td><%= u.email %></td>
             <td><%= u.college.name %></td>
             <td><%= u.posts.count %></td>
-            <td><%= u.deliveries_count %></td>
+            <td><%= u.deliveries.count %></td>
             <td><%= u.recipients_count %></td>
           </tr>
         <% end %>
       </table>
     </div>
   </div>
-</div>
+  </div>
