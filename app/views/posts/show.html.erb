@@ -1,11 +1,11 @@
 <% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
   }) -%>
-<% if @youtube_video.respond_to? :video_id %>
+<% if @youtube_video %>
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "movie",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => "#{@post.summary}",
-    "og:image" => "#{@youtube_video.thumbnail_large}",
+    "og:description" => "#{@post.summary} ",
+    "og:image" => " #{@youtube_video.thumbnail_large}",
     "og:video:type" => "application/x-shockwave-flash",
     "og:video:height" => "398",
     "og:video:width" => "224",
