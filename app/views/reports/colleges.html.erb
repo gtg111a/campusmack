@@ -1,0 +1,35 @@
+<div class="content new_level with_submenu clearfix">
+
+  <div class="content_actions">
+    <ul>
+      <li class="dark_button">
+        <%= link_to "Export To CSV", export_colleges_to_csv_url %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content_title">Users per college</div>
+
+  <div class="content_container fullstats clearfix">
+    <ul class="statistics">
+      <% @conferences.each_with_index do |conference, idx| %>
+        <li<%= ' style="clear:both"'.html_safe if idx % 3 == 0%>>
+          <h3><%= conference.name %></h3>
+          <table id="colleges_table">
+            <tr>
+              <th>College Name</th>
+              <th>Users</th>
+            </tr>
+            <% conference.colleges.all.each do |college| %>
+              <tr>
+                <td style="text-align: left"><%= college.name %></td>
+                <td><%= college.users_count %></td>
+              </tr>
+            <% end %>
+          </table>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

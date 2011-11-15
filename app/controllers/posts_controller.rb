@@ -184,6 +184,11 @@ class PostsController < ApplicationController
         end.join(",")
       end
       UserMailer.share_post(@post, current_user, title, to, params[:share][:message], params[:action] == 'send_as_smack').deliver
+      begin
+        Delivery.create(:post_id => @post.id, :user_id => current_user.id, :college_id => (@post.postable_type == 'College' ? @post.postable_id : nil), :recipients => (to.count(',') + 1))
+      rescue
+        logger.error "Could not save delivery: #{$!}"
+      end
       flash[:success] = 'Successfully sent!'
       redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
     end
