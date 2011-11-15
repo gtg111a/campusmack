@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
   has_one :statistic, :dependent => :destroy
   has_one :news_post, :dependent => :destroy
 
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :reports, :as => :reportable, :dependent => :destroy
 
@@ -45,6 +45,7 @@ class Post < ActiveRecord::Base
 
   def decrement_counter_cache
     self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
+    self.user.decrement_counter 'posts_count', self.id
   end
 
   def youtube_thumbnail_url

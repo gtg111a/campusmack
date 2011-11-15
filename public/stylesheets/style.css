@@ -1513,6 +1513,7 @@ ul.inner_menu li {
   overflow: hidden;
 }
 
+ul.inner_menu li span,
 ul.inner_menu li a {
   background-image: url(/images/view_more_bg.png);
   color: #000;
@@ -1522,6 +1523,7 @@ ul.inner_menu li a {
   text-decoration: none;
 }
 
+ul.inner_menu li span,
 ul.inner_menu li a.active,
 ul.inner_menu li a:hover {
   color: #FFF;
