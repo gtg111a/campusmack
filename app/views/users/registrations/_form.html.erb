@@ -74,7 +74,7 @@
         </tr>
         <tr>
           <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
-          <td class="entry"><%= f.password_field :password_confirmation, :validate =>{ :presence => f.object.new_record?, :confirmation => true } %></td>
+          <td class="entry"><%= f.password_field :password_confirmation, :validate =>{ :presence => f.object.new_record? } %></td>
           <% if f.object.new_record? %>
             <td class="star"><%= mark_required(resource, :password) %></td>
           <% end %>
