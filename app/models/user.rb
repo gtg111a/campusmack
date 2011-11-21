@@ -48,7 +48,11 @@ class User < ActiveRecord::Base
   validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
-  has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" }
+  has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" },
+                    :storage => :s3,
+                    :s3_credentials => S3_CREDENTIALS,
+                    :bucket => 'Campusmack',
+                    :path => "/avatars/:style/:id/:filename"
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
                                     :message => 'avatar must be of filetype .jpg, .png or .gif'
 
@@ -80,7 +84,7 @@ class User < ActiveRecord::Base
   end
 
   def decrement_counter_cache
-    self.college.decrement_counter 'users_count', self.id
+    College.decrement_counter 'users_count', self.college_id
   end
 
   private
