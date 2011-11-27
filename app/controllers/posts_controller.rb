@@ -234,9 +234,13 @@ class PostsController < ApplicationController
       breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
     end
     breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
-    breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
-    breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
     action = params[:action].dup
+    if action == 'index'
+      breadcrumbs.add @post_cls.titleize
+    else
+      breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
+    end
+    breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
     return if action == 'index'
     if action
       action.gsub!(/new|create/, 'Add')

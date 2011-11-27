@@ -442,11 +442,13 @@ a.sign_up:visited {
   text-align: right;
 }
 
-.red {
+.red,
+.red a{
   color: #b20404;
 }
 
-.green {
+.green,
+.green a{
   color: #177018;
 }
 
@@ -1872,6 +1874,10 @@ ul.contact-groups {
 #stats_container {
   overflow: auto;
   position: relative;
+}
+
+#stats_container a:hover {
+  text-decoration: underline;
 }
 
 #stats_widget {
