@@ -66,8 +66,9 @@ class PostsController < ApplicationController
       end
     end
     @search = posts.search(params[:search])
-    @order = params[:order] || 'created_at desc'
-    @posts = @search.paginate(:page => params[:page], :order => @order)
+    @order = params[:order] || Post::default_order
+    @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs
 
@@ -228,6 +229,10 @@ class PostsController < ApplicationController
   end
 
   def add_breadcrumbs
+    if params[:controller] == 'posts'
+      breadcrumbs.add params[:search] ? 'Search' : 'All Posts'
+      return
+    end
     if @parent.class.name == 'Conference'
       breadcrumbs.add @parent.name, conference_path(@parent)
     else

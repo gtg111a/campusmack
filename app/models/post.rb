@@ -39,6 +39,13 @@ class Post < ActiveRecord::Base
   scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 3
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
+  DEFAULT_ORDER = 'created_at desc'
+  PER_PAGE_DEFAULT = [25,50,100,150]
+
+  def self.default_order
+    DEFAULT_ORDER
+  end
+
   def photo_url(params=nil)
     self.photo.image.url(params)
   end

@@ -1,5 +1,5 @@
 <% content_for :jq do %>
-    $("a.sort_switch").click(function(e){
+  $("a.sort_switch").click(function(e){
     e.preventDefault();
     var sort = this.id.substring(5);
     if ($(this).html().substr(-1) == "▼")
@@ -8,13 +8,37 @@
     sort = sort + " desc";
     $("#sort_field").val(sort);
     $("#search_form").submit();
-    });
+  });
+  $("a.per_page_switch").click(function(e){
+    e.preventDefault();
+    $("#per_page_field").val($(this).html());
+    $("#page_field").val("1");
+    $("#search_form").submit();
+  });
 <% end %>
-<div class="category_sort">
+<div class="category_sort clearfix">
+<div class="category_sort_div">
   Sort by:
   <%= link_to "Post Created#{ @order[0, 10] == "created_at" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=created_at%20#{@order[0, 10] == "created_at" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_created_at", :class => "sort_switch" %>
   |
   <%= link_to "Votes For#{ @order[0, 8] == "up_votes" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=up_votes%20#{@order[0, 8] == "up_votes" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_up_votes", :class => "sort_switch" %>
   |
   <%= link_to "Votes Against#{ @order[0, 10] == "down_votes" ? @order[-4, 4] == "desc" ? " ▼" : " ▲" : "" }", "?order=down_votes%20#{@order[0, 10] == "down_votes" && @order[-4, 4] == "desc" ? "asc" : "desc"}", :id => "sort_down_votes", :class => "sort_switch" %>
+</div>
+  <div id="per_page">
+    <ul class="per_page">
+      <% Post::PER_PAGE_DEFAULT.each do |pp| %>
+        <li>
+          <% if @per_page.to_i == pp %>
+            <%= pp %>
+          <% else %>
+            <%= link_to pp, "?order=#{@order}&per=#{pp}", :class => "per_page_switch" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="items_per_page">
+      Items per page:
+    </div>
+  </div>
 </div>
