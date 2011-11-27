@@ -230,13 +230,11 @@ class PostsController < ApplicationController
   def add_breadcrumbs
     if @parent.class.name == 'Conference'
       breadcrumbs.add @parent.name, conference_path(@parent)
-    elsif @parent.class.name == 'College'
+    else
       breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
     end
     breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
-    @main_menu.each do |x|
-      breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
-    end
+    breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
     breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
     action = params[:action].dup
     return if action == 'index'
