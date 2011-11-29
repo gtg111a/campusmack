@@ -47,20 +47,21 @@ describe Relationship do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: relationships
 #
-#  id          :integer         not null, primary key
+#  id          :integer         primary key
 #  follower_id :integer         indexed => [followed_id], indexed
 #  followed_id :integer         indexed => [follower_id], indexed
-#  created_at  :datetime
-#  updated_at  :datetime
+#  created_at  :timestamp
+#  updated_at  :timestamp
 #
 # Indexes
 #
-#  index_relationships_on_follower_id_and_followed_id  (follower_id,followed_id) UNIQUE
-#  index_relationships_on_followed_id                  (followed_id)
+#  index_relationships_on_follower_id_and_followed_id  (follower_id,followed_id)
 #  index_relationships_on_follower_id                  (follower_id)
+#  index_relationships_on_followed_id                  (followed_id)
 #
 

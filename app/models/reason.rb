@@ -6,9 +6,9 @@ end
 #
 # Table name: reasons
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  reason     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 

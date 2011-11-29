@@ -9,10 +9,10 @@ end
 #
 # Table name: videos
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  post_id    :integer
 #  url        :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 

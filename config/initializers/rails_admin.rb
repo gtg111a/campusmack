@@ -420,6 +420,31 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Delivery do
+    list do
+      field :post
+      field :user
+      field :college
+      field :recipients
+      field :created_at
+    end
+    show do
+      field :id
+      field :post
+      field :user
+      field :college
+      field :recipients
+      field :created_at
+      field :updated_at
+    end
+    edit do
+      field :post
+      field :user
+      field :college
+      field :recipients
+    end
+  end
+
   def relation_label
     "#{self.follower} -> #{self.followed}"
   end

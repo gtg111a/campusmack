@@ -17,10 +17,10 @@ end
 #
 # Table name: conferences
 #
-#  id                :integer         not null, primary key
+#  id                :integer         primary key
 #  name              :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
+#  created_at        :timestamp
+#  updated_at        :timestamp
 #  smacks_count      :integer         default(0), not null
 #  redemptions_count :integer         default(0), not null
 #  division          :string(255)     indexed
@@ -29,7 +29,7 @@ end
 #
 # Indexes
 #
-#  index_conferences_on_division   (division)
 #  index_conferences_on_permalink  (permalink)
+#  index_conferences_on_division   (division)
 #
 

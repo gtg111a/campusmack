@@ -3,6 +3,7 @@ class College < ActiveRecord::Base
   has_many :posts, :as => :postable, :dependent => :destroy
   has_many :smacks, :as => :postable, :dependent => :destroy
   has_many :redemptions, :as => :postable, :dependent => :destroy
+  has_many :users
   belongs_to :conference
   validates :name, :presence => true
   
@@ -26,19 +27,20 @@ end
 #
 # Table name: colleges
 #
-#  id                :integer         not null, primary key
+#  id                :integer         primary key
 #  name              :string(255)
 #  conference_id     :integer         indexed
 #  permalink         :string(255)     indexed
-#  created_at        :datetime
-#  updated_at        :datetime
+#  created_at        :timestamp
+#  updated_at        :timestamp
 #  smacks_count      :integer         default(0), not null
 #  redemptions_count :integer         default(0), not null
 #  abbrev            :string(255)
+#  users_count       :integer         default(0)
 #
 # Indexes
 #
-#  index_colleges_on_conference_id  (conference_id)
 #  index_colleges_on_permalink      (permalink)
+#  index_colleges_on_conference_id  (conference_id)
 #
 

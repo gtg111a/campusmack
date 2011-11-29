@@ -77,7 +77,7 @@ module PostsHelper
   end
 
   def vote_buttons(post, size = :large)
-    imgwidth = { }
+    imgwidth = {}
     imgwidth = { :width => 23 } if size == :small
     tag = size == :small ? 'span' : 'div';
     html = %Q{<#{tag} class="vote">}
