@@ -66,8 +66,9 @@ class PostsController < ApplicationController
       end
     end
     @search = posts.search(params[:search])
-    @order = params[:order] || 'created_at desc'
-    @posts = @search.paginate(:page => params[:page], :order => @order)
+    @order = params[:order] || Post::default_order
+    @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs
 
@@ -228,17 +229,23 @@ class PostsController < ApplicationController
   end
 
   def add_breadcrumbs
+    if params[:controller] == 'posts'
+      breadcrumbs.add params[:search] ? 'Search' : 'All Posts'
+      return
+    end
     if @parent.class.name == 'Conference'
       breadcrumbs.add @parent.name, conference_path(@parent)
-    elsif @parent.class.name == 'College'
+    else
       breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
     end
     breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
-    @main_menu.each do |x|
-      breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
+    action = params[:action].dup
+    if action == 'index'
+      breadcrumbs.add @post_cls.titleize
+    else
+      breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
     end
     breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
-    action = params[:action].dup
     return if action == 'index'
     if action
       action.gsub!(/new|create/, 'Add')

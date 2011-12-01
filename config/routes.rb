@@ -1,6 +1,5 @@
 Campusmack::Application.routes.draw do
   resources :contact_groups_contacts
-
   resources :contact_groups do
     collection do
       get 'add_to_group_form'

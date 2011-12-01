@@ -55,19 +55,19 @@ end
 #
 # Table name: votes
 #
-#  id            :integer         not null, primary key
+#  id            :integer         primary key
 #  vote          :boolean         default(FALSE)
-#  voteable_id   :integer         not null, indexed => [voter_id, voter_type, voteable_type], indexed => [voteable_type]
-#  voteable_type :string(255)     not null, indexed => [voter_id, voter_type, voteable_id], indexed => [voteable_id]
-#  voter_id      :integer         indexed => [voter_type, voteable_id, voteable_type], indexed => [voter_type]
-#  voter_type    :string(255)     indexed => [voter_id, voteable_id, voteable_type], indexed => [voter_id]
-#  created_at    :datetime
-#  updated_at    :datetime
+#  voteable_id   :integer         not null, indexed => [voteable_type], indexed => [voter_id, voter_type, voteable_type]
+#  voteable_type :string(255)     not null, indexed => [voteable_id], indexed => [voter_id, voter_type, voteable_id]
+#  voter_id      :integer         indexed => [voter_type], indexed => [voter_type, voteable_id, voteable_type]
+#  voter_type    :string(255)     indexed => [voter_id], indexed => [voter_id, voteable_id, voteable_type]
+#  created_at    :timestamp
+#  updated_at    :timestamp
 #
 # Indexes
 #
-#  fk_one_vote_per_user_per_entity               (voter_id,voter_type,voteable_id,voteable_type) UNIQUE
-#  index_votes_on_voteable_id_and_voteable_type  (voteable_id,voteable_type)
 #  index_votes_on_voter_id_and_voter_type        (voter_id,voter_type)
+#  index_votes_on_voteable_id_and_voteable_type  (voteable_id,voteable_type)
+#  fk_one_vote_per_user_per_entity               (voter_id,voter_type,voteable_id,voteable_type)
 #
 

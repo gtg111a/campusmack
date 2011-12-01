@@ -39,19 +39,26 @@ class Post < ActiveRecord::Base
   scope :smacks_of_week, :conditions => ["posts.type LIKE ? AND on_frontpage_week = ?", "Smack", Date.today.cweek], :limit => 3
   scope :by_conference, lambda { |conf| { :joins => :college, :conditions => ['conference = ?', conf] } }
 
+  DEFAULT_ORDER = 'created_at desc'
+  PER_PAGE_DEFAULT = [25, 50, 100, 150]
+
+  def self.default_order
+    DEFAULT_ORDER
+  end
+
   def photo_url(params=nil)
     self.photo.image.url(params)
   end
 
   def decrement_counter_cache
     self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id
-    self.user.decrement_counter 'posts_count', self.id
+    User.decrement_counter(:posts_count, self.id)
   end
 
   def youtube_thumbnail_url
     url = self.video.url
     if url =~ /(youtu|y2u)\.be/
-      video_id = URI.parse(url).path.gsub(/\//,"") rescue nil
+      video_id = URI.parse(url).path.gsub(/\//, "") rescue nil
     else
       video_id = URI.parse(url).query.split('=')[1].slice(0, 11) rescue nil
     end
@@ -66,7 +73,7 @@ end
 #
 # Table name: posts
 #
-#  id                :integer         not null, primary key
+#  id                :integer         primary key
 #  title             :string(255)
 #  summary           :string(255)
 #  type              :string(255)     indexed
@@ -75,16 +82,16 @@ end
 #  postable_type     :string(255)     indexed
 #  user_id           :integer         indexed
 #  on_frontpage_week :integer
-#  created_at        :datetime
-#  updated_at        :datetime
+#  created_at        :timestamp
+#  updated_at        :timestamp
 #  reports_count     :integer         default(0), not null
 #  up_votes          :integer         default(0), not null
 #  down_votes        :integer         default(0), not null
 #
 # Indexes
 #
-#  index_posts_on_type           (type)
 #  index_posts_on_user_id        (user_id)
+#  index_posts_on_type           (type)
 #  index_posts_on_postable_type  (postable_type)
 #  index_posts_on_postable_id    (postable_id)
 #

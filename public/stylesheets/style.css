@@ -442,11 +442,13 @@ a.sign_up:visited {
   text-align: right;
 }
 
-.red {
+.red,
+.red a{
   color: #b20404;
 }
 
-.green {
+.green,
+.green a{
   color: #177018;
 }
 
@@ -1874,6 +1876,10 @@ ul.contact-groups {
   position: relative;
 }
 
+#stats_container a:hover {
+  text-decoration: underline;
+}
+
 #stats_widget {
   background: url("/images/table_bg.png") repeat-x;
   width: 926px;
@@ -1982,4 +1988,25 @@ div#error_explanation {
 div.fb-like-box {
   float: right;
   margin-top: 15px;
+}
+
+#per_page{
+    float:right;
+}
+
+.category_sort_div{
+    float:left;
+}
+
+#per_page .per_page{
+    float:right;
+}
+
+#per_page .per_page li{
+    float:left;
+    margin: 0 0 0 5px;
+}
+
+#per_page .items_per_page{
+    float:right;
 }

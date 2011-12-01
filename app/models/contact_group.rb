@@ -28,10 +28,10 @@ end
 #
 # Table name: contact_groups
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  user_id    :integer
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 

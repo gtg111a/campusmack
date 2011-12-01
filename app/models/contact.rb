@@ -45,12 +45,12 @@ end
 #
 # Table name: contacts
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  user_id    :integer         indexed
 #  name       :string(255)
 #  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 # Indexes
 #
