@@ -10,6 +10,31 @@ RailsAdmin.config do |config|
     visible false
   end
 
+  config.model Article do
+    list do
+      field :post
+      field :video_url
+      field :image do
+        thumb_method :medium
+      end
+      field :updated_at
+    end
+    show do
+      field :post
+      field :video_url
+      field :image
+      field :body
+      field :created_at
+      field :updated_at
+    end
+    edit do
+      field :post
+      field :video_url
+      field :image
+      field :body
+    end
+  end
+
   config.model Photo do
     object_label_method :url_label
     list do
@@ -213,6 +238,7 @@ RailsAdmin.config do |config|
       field :postable
       field :title
       field :reports_count
+      field :published
       field :summary
       field :user
       field :on_frontpage_week
@@ -224,6 +250,7 @@ RailsAdmin.config do |config|
         field :type
         field :postable
         field :title
+        field :published
         field :summary
         field :reports_count
         field :user
@@ -241,6 +268,7 @@ RailsAdmin.config do |config|
         field :type
         field :postable
         field :title
+        field :published
         field :summary
         field :reports_count
         field :user
@@ -338,27 +366,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Relationship do
-    object_label_method :relation_label
-    list do
-      field :id
-      field :followed
-      field :follower
-      field :created_at
-      field :updated_at
-    end
-    show do
-      field :followed
-      field :follower
-      field :created_at
-      field :updated_at
-    end
-    edit do
-      field :followed
-      field :follower
-    end
-  end
-
   config.model Report do
     object_label_method :report_label
     list do
@@ -443,10 +450,6 @@ RailsAdmin.config do |config|
       field :college
       field :recipients
     end
-  end
-
-  def relation_label
-    "#{self.follower} -> #{self.followed}"
   end
 
   def report_label

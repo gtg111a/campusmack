@@ -21,13 +21,6 @@ class User < ActiveRecord::Base
   has_many :redemptions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
-  has_many :relationships, :dependent => :destroy,
-           :foreign_key => "follower_id"
-  has_many :reverse_relationships, :dependent => :destroy,
-           :foreign_key => "followed_id",
-           :class_name => "Relationship"
-  has_many :following, :through => :relationships, :source => :followed
-  has_many :followers, :through => :reverse_relationships, :source => :follower
   has_many :contacts
   has_many :contact_groups
   has_many :deliveries
@@ -55,18 +48,6 @@ class User < ActiveRecord::Base
                     :path => "/avatars/:style/:id/:filename"
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
                                     :message => 'avatar must be of filetype .jpg, .png or .gif'
-
-  def following?(followed)
-    relationships.find_by_followed_id(followed)
-  end
-
-  def follow!(followed)
-    relationships.create!(:followed_id => followed.id)
-  end
-
-  def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
-  end
 
   alias_method :old_update_with_password, :update_with_password
 

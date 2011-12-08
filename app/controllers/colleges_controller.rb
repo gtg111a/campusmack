@@ -28,11 +28,12 @@ class CollegesController < ApplicationController
     else
       @posts = find_posts(@college)
     end
-    @videos, @photos, @news = [], [], []
+    @articles, @videos, @photos, @news = [], [], [], []
     @posts.each do |post|
+      @articles << post if post.article && post.published && @articles.size < 3
       @videos << post if post.video && @videos.size < 3
       @photos << post if post.photo && @photos.size < 3
-      @news << post if post.news_post && @news.size <8
+      @news << post if post.news_post && @news.size < 8
     end
   end
 

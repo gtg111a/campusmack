@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110141227) do
+ActiveRecord::Schema.define(:version => 20111205171244) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "post_id"
+    t.text     "body"
+    t.string   "video_url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", :force => true do |t|
     t.integer   "user_id"
@@ -93,12 +105,12 @@ ActiveRecord::Schema.define(:version => 20111110141227) do
   add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
 
   create_table "deliveries", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.integer  "college_id"
-    t.integer  "recipients"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "post_id"
+    t.integer   "user_id"
+    t.integer   "college_id"
+    t.integer   "recipients"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "maintenances", :force => true do |t|
@@ -250,39 +262,38 @@ ActiveRecord::Schema.define(:version => 20111110141227) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username"
-    t.string    "email",                                                    :null => false
-    t.string    "first_name"
-    t.string    "last_name"
-    t.boolean   "admin",                                 :default => false
-    t.integer   "college_id"
-    t.string    "affiliation"
-    t.integer   "up_votes"
-    t.integer   "down_votes"
-    t.string    "encrypted_password",     :limit => 128,                    :null => false
-    t.string    "reset_password_token"
-    t.timestamp "reset_password_sent_at"
-    t.string    "confirmation_token"
-    t.timestamp "confirmed_at"
-    t.timestamp "confirmation_sent_at"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                         :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "censor_text",                           :default => true
-    t.integer   "smack_count",                           :default => 0
-    t.string    "gender",                 :limit => 1
-    t.date      "birthday"
-    t.string    "avatar_file_name"
-    t.string    "avatar_content_type"
-    t.integer   "avatar_file_size"
-    t.timestamp "avatar_updated_at"
-    t.integer   "posts_count",                           :default => 0
-    t.integer   "deliveries_count",                      :default => 0
+    t.string   "username"
+    t.string   "email",                                                     :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "college_id"
+    t.string   "affiliation"
+    t.integer  "up_votes"
+    t.integer  "down_votes"
+    t.string   "encrypted_password",     :limit => 128,                     :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "censor_text",                           :default => true
+    t.string   "gender",                 :limit => 1
+    t.date     "birthday"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "posts_count",                           :default => 0
+    t.integer  "deliveries_count",                      :default => 0
+    t.string   "role",                                  :default => "user"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

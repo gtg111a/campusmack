@@ -1,12 +1,14 @@
 require 'spec_helper'
 
-describe "Contacts", :js => true, :type => :request do
-  let(:contact_group) { Factory(:contact_group) }
+describe "Contacts", :js => true, :type => :request  do
+  let(:contact_group) { Factory(:contact_group)}
   before(:each) do
     @user = Factory(:user, :admin => true)
     @contact_groups = FactoryGirl.create_list(:contact_group, 2, :user => @user)
-    @contacts = FactoryGirl.create_list(:contact, 5, :contact_groups => [@contact_groups[0]], :user => @user) +
-      FactoryGirl.create_list(:contact, 5, :contact_groups => [@contact_groups[1]], :user => @user)
+    @contacts = FactoryGirl.create_list(:contact, 5,
+                  :contact_groups => [@contact_groups[0]], :user => @user) +
+                FactoryGirl.create_list(:contact, 5,
+                  :contact_groups => [@contact_groups[1]], :user => @user)
     @user.confirm!
     login @user
     visit contacts_path
@@ -28,18 +30,20 @@ describe "Contacts", :js => true, :type => :request do
     it "edit groups" do
       within(:css, "div#facebox") do
         page.should have_content("All contact groups")
-        page.should have_content(@contact_groups.first.name)
-        within(:css, "tr#1") do
+        contact_group = @contact_groups.first
+        page.should have_content(contact_group.name)
+        within(:css, "tr##{contact_group.id}") do
           click_on "Edit"
         end
-        find_field("Name").value.should == @contact_groups.first.name
-        fill_in "Name", :with => "#{@contact_groups.first.name}_changed"
+        find_field("Name").value.should == contact_group.name
+        fill_in "Name", :with => "#{contact_group.name}_changed"
         click_on "contact_group_submit"
-        page.should have_content(@contact_groups.first.name + "_changed")
+        page.should have_content("#{contact_group.name}_changed")
       end
     end
     it "destroy group" do
-      within(:css, "div#facebox tr#1") do
+      contact_group = @contact_groups.first
+      within(:css, "div#facebox tr##{contact_group.id}") do
         @group_name = find(:css, "td.facebox_form_name_td").text
         click_on "Destroy"
         handle_js_confirm
@@ -68,7 +72,8 @@ describe "Contacts", :js => true, :type => :request do
     end
     it "adds to new group" do
       within(:css, "div#contact_group_form") do
-        fill_in "new_group_name", :with => "newgroup"
+        fill_in "contact_group_name", :with => "newgroup"
+        choose "contact_group_name_radio"
         click_on "Add contacts"
       end
       click_on "newgroup"
@@ -84,7 +89,7 @@ describe "Contacts", :js => true, :type => :request do
       page.find("li#delete_selected").click
       page.should have_no_content(@contacts.first.name)
     end
-    it "delets many contacts" do
+    it "deletes many contacts" do
       page.should have_selector("#rowclick1 tbody")
       check("select_all_chk_box")
       page.find("li#delete_selected").click
@@ -105,7 +110,8 @@ describe "Contacts", :js => true, :type => :request do
 
   describe "edit contact" do
     it "changed contact information" do
-      within(:css, "div#contact_list tr#1") do
+      contact = @contact_groups.first.contacts.first
+      within(:css, "div#contact_list tr##{contact.id}") do
         click_on "Edit"
       end
       fill_in "Name", :with => "name_changed"

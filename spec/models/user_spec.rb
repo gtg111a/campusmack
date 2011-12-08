@@ -2,68 +2,56 @@ require 'spec_helper'
 
 describe User do
 
-  before(:each) do
-    @attr = {
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
-    }
-  end
-
   it "should create a new instance given a valid attribute" do
-    User.create!(@attr)
+    Factory(:user).should be_valid
   end
 
-  it "should require a name" do
-    no_name_user = User.new(@attr.merge(:name => ""))
-    no_name_user.should_not be_valid
+  it "should require name and username" do
+    Factory.build(:user, :first_name => nil).should_not be_valid
+    Factory.build(:user, :last_name => nil).should_not be_valid
+    Factory.build(:user, :username => nil).should_not be_valid
   end
 
   it "should require an email address" do
-    no_email_user = User.new(@attr.merge(:email => ""))
-    no_email_user.should_not be_valid
+    Factory.build(:user, :email => nil).should_not be_valid
   end
 
   it "should reject names that are too long" do
-    long_name = "a" * 51
-    long_name_user = User.new(@attr.merge(:name => long_name))
-    long_name_user.should_not be_valid
+    Factory.build(:user, :username => 'a' * 51).should_not be_valid
   end
 
   it "should accept valid email addresses" do
     addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
     addresses.each do |address|
-      valid_email_user = User.new(@attr.merge(:email => address))
-      valid_email_user.should be_valid
+      Factory.build(:user, :email => address).should be_valid
     end
   end
 
   it "should reject invalid email addresses" do
     addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
     addresses.each do |address|
-      invalid_email_user = User.new(@attr.merge(:email => address))
-      invalid_email_user.should_not be_valid
+      Factory.build(:user, :email => address).should_not be_valid
     end
   end
 
   it "should reject duplicate email addresses" do
-    User.create!(@attr)
-    user_with_duplicate_email = User.new(@attr)
-    user_with_duplicate_email.should_not be_valid
+    user = Factory(:user)
+    Factory.build(:user, :email => user.email).should_not be_valid
   end
 
   it "should reject email addresses identical up to case" do
-    upcased_email = @attr[:email].upcase
-    User.create!(@attr.merge(:email => upcased_email))
-    user_with_duplicate_email = User.new(@attr)
-    user_with_duplicate_email.should_not be_valid
+    user = Factory(:user)
+    Factory.build(:user, :email => user.email.upcase).should_not be_valid
+  end
+
+  it "should not require birthday" do
+    Factory.build(:user, :birthday => nil).should be_valid
   end
 
   describe "passwords" do
 
     before(:each) do
-      @user = User.new(@attr)
+      @user = Factory(:user)
     end
 
     it "should have a password attribute" do
@@ -78,85 +66,29 @@ describe User do
   describe "password validations" do
 
     it "should require a password" do
-      User.new(@attr.merge(:password => "", :password_confirmation => "")).
-        should_not be_valid
+      Factory.build(:user, :password => '', :password_confirmation => '').should_not be_valid
     end
 
     it "should require a matching password confirmation" do
-      User.new(@attr.merge(:password_confirmation => "invalid")).
-        should_not be_valid
+      Factory.build(:user, :password_confirmation => 'invalid').should_not be_valid
     end
 
     it "should reject short passwords" do
-      short = "a" * 5
-      hash = @attr.merge(:password => short, :password_confirmation => short)
-      User.new(hash).should_not be_valid
+      short_pw = 'a' * 5
+      Factory.build(:user, :password => short_pw, :password_confirmation => short_pw).should_not be_valid
     end
 
-    it "should reject long passwords" do
-      long = "a" * 41
-      hash = @attr.merge(:password => long, :password_confirmation => long)
-      User.new(hash).should_not be_valid
-    end
-  end
-
-  describe "password encryption" do
-
-    before(:each) do
-      @user = User.create!(@attr)
-    end
-
-    it "should have an encrypted password attribute" do
-      @user.should respond_to(:encrypted_password)
-    end
-
-    it "should set the encrypted password attribute" do
-      @user.encrypted_password.should_not be_blank
-    end
-
-    it "should have a salt" do
-      @user.should respond_to(:salt)
-    end
-
-    describe "has_password? method" do
-
-      it "should exist" do
-        @user.should respond_to(:has_password?)
-      end
-
-      it "should return true if the passwords match" do
-        @user.has_password?(@attr[:password]).should be_true
-      end
-
-      it "should return false if the passwords don't match" do
-        @user.has_password?("invalid").should be_false
-      end
-    end
-
-    describe "authenticate method" do
-
-      it "should exist" do
-        User.should respond_to(:authenticate)
-      end
-
-      it "should return nil on email/password mismatch" do
-        User.authenticate(@attr[:email], "wrongpass").should be_nil
-      end
-
-      it "should return nil for an email address with no user" do
-        User.authenticate("bar@foo.com", @attr[:password]).should be_nil
-      end
-
-      it "should return the user on email/password match" do
-        User.authenticate(@attr[:email], @attr[:password]).should == @user
-      end
-    end
+# FIXME Why?
+#    it "should reject long passwords" do
+#      long_pw = 'a' * 41
+#      Factory.build(:user, :password => long_pw, :password_confirmation => long_pw).should_not be_valid
+#    end
   end
 
   describe "admin attribute" do
 
     before(:each) do
-      @user = User.create!(@attr)
+      @user = Factory(:user)
     end
 
     it "should respond to admin" do
@@ -176,8 +108,8 @@ describe User do
   describe "relationships" do
 
     before(:each) do
-      @user = User.create!(@attr)
-      @followed = Factory(:user, :email => Factory.next(:email))
+      @user = Factory(:user)
+      @followed = Factory(:user)
     end
 
     it "should have a relationships method" do
@@ -224,9 +156,8 @@ describe User do
 
   describe "relationship associations" do
     before(:each) do
-      @user = User.create(@attr)
-      @follower = @user
-      @followed = Factory(:user, :email => Factory.next(:email))
+      @follower = Factory(:user)
+      @followed = Factory(:user)
       @relationship = @follower.relationships.build(:followed_id => @followed.id)
       @relationship.save
     end
@@ -240,21 +171,13 @@ end
 
 
 
-
-
-
-
-
-
-
-
 # == Schema Information
 #
 # Table name: users
 #
-#  id                     :integer         primary key
+#  id                     :integer         not null, primary key
 #  username               :string(255)     indexed
-#  email                  :string(255)     not null, indexed
+#  email                  :string(255)     default(""), not null, indexed
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  admin                  :boolean         default(FALSE)
@@ -262,20 +185,20 @@ end
 #  affiliation            :string(255)
 #  up_votes               :integer
 #  down_votes             :integer
-#  encrypted_password     :string(128)     not null
+#  encrypted_password     :string(128)     default(""), not null
 #  reset_password_token   :string(255)     indexed
-#  reset_password_sent_at :timestamp
+#  reset_password_sent_at :datetime
 #  confirmation_token     :string(255)
-#  confirmed_at           :timestamp
-#  confirmation_sent_at   :timestamp
-#  remember_created_at    :timestamp
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  remember_created_at    :datetime
 #  sign_in_count          :integer         default(0)
-#  current_sign_in_at     :timestamp
-#  last_sign_in_at        :timestamp
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  created_at             :timestamp
-#  updated_at             :timestamp
+#  created_at             :datetime
+#  updated_at             :datetime
 #  censor_text            :boolean         default(TRUE)
 #  smack_count            :integer         default(0)
 #  gender                 :string(1)
@@ -283,7 +206,7 @@ end
 #  avatar_file_name       :string(255)
 #  avatar_content_type    :string(255)
 #  avatar_file_size       :integer
-#  avatar_updated_at      :timestamp
+#  avatar_updated_at      :datetime
 #  posts_count            :integer         default(0)
 #  deliveries_count       :integer         default(0)
 #
