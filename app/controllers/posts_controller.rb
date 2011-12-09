@@ -229,21 +229,25 @@ class PostsController < ApplicationController
   end
 
   def add_breadcrumbs
-    if params[:controller] == 'posts'
-      breadcrumbs.add params[:search] ? 'Search' : 'All Posts'
-      return
+    [ 'articles', 'posts', 'photos', 'videos', 'news_posts' ].each do |t|
+      if params[:controller] == t
+        breadcrumbs.add params[:search] ? 'Search' : "All #{t.gsub('news_posts', 'posts').titleize}"
+        return
+      end
     end
-    if @parent.class.name == 'Conference'
-      breadcrumbs.add @parent.name, conference_path(@parent)
-    else
-      breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
-    end
-    breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
-    action = params[:action].dup
-    if action == 'index'
-      breadcrumbs.add @post_cls.titleize
-    else
-      breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
+    if @parent.present?
+      if @parent.class.name == 'Conference'
+        breadcrumbs.add @parent.name, conference_path(@parent)
+      else
+        breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
+      end
+      breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
+      action = params[:action].dup
+      if action == 'index'
+        breadcrumbs.add @post_cls.titleize
+      else
+        breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
+      end
     end
     breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
     return if action == 'index'
