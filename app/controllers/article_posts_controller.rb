@@ -84,7 +84,6 @@ class ArticlePostsController < ApplicationController
     begin
       @post = Post.published.find params[:id]
     rescue
-
     end
   end
 

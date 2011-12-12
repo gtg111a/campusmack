@@ -5,23 +5,24 @@ class Report < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: reports
 #
-#  id              :integer         primary key
-#  user_id         :integer         indexed
-#  reportable_id   :integer         indexed
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)      indexed
+#  reportable_id   :integer(4)      indexed
 #  reportable_type :string(255)     indexed
-#  reason_id       :integer
+#  reason_id       :integer(4)
 #  custom_reason   :string(255)
-#  created_at      :timestamp
-#  updated_at      :timestamp
+#  created_at      :datetime
+#  updated_at      :datetime
 #
 # Indexes
 #
-#  index_reports_on_user_id          (user_id)
-#  index_reports_on_reportable_type  (reportable_type)
 #  index_reports_on_reportable_id    (reportable_id)
+#  index_reports_on_reportable_type  (reportable_type)
+#  index_reports_on_user_id          (user_id)
 #
 

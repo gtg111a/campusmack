@@ -20,23 +20,24 @@ class Conference < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: conferences
 #
-#  id                :integer         primary key
+#  id                :integer(4)      not null, primary key
 #  name              :string(255)
-#  created_at        :timestamp
-#  updated_at        :timestamp
-#  smacks_count      :integer         default(0), not null
-#  redemptions_count :integer         default(0), not null
+#  created_at        :datetime
+#  updated_at        :datetime
+#  smacks_count      :integer(4)      default(0), not null
+#  redemptions_count :integer(4)      default(0), not null
 #  division          :string(255)     indexed
 #  permalink         :string(255)     indexed
-#  weight            :integer         default(0)
+#  weight            :integer(4)      default(0)
 #
 # Indexes
 #
-#  index_conferences_on_permalink  (permalink)
 #  index_conferences_on_division   (division)
+#  index_conferences_on_permalink  (permalink)
 #
 

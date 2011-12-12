@@ -4,16 +4,17 @@ class Delivery < ActiveRecord::Base
   belongs_to :college
 end
 
+
 # == Schema Information
 #
 # Table name: deliveries
 #
-#  id         :integer         primary key
-#  post_id    :integer
-#  user_id    :integer
-#  college_id :integer
-#  recipients :integer
-#  created_at :timestamp
-#  updated_at :timestamp
+#  id         :integer(4)      not null, primary key
+#  post_id    :integer(4)
+#  user_id    :integer(4)
+#  college_id :integer(4)
+#  recipients :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
 #
 

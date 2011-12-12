@@ -1,4 +1,5 @@
 module ContactsHelper
+
   def items_per_page_min(*args)
     array = Array.new
     args.each do |x|

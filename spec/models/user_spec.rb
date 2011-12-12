@@ -171,49 +171,51 @@ end
 
 
 
+
+
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id                     :integer         not null, primary key
+#  id                     :integer(4)      not null, primary key
 #  username               :string(255)     indexed
-#  email                  :string(255)     default(""), not null, indexed
+#  email                  :string(255)     not null, indexed
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  admin                  :boolean         default(FALSE)
-#  college_id             :integer
+#  college_id             :integer(4)
 #  affiliation            :string(255)
-#  up_votes               :integer
-#  down_votes             :integer
-#  encrypted_password     :string(128)     default(""), not null
+#  up_votes               :integer(4)
+#  down_votes             :integer(4)
+#  encrypted_password     :string(128)     not null
 #  reset_password_token   :string(255)     indexed
 #  reset_password_sent_at :datetime
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer         default(0)
+#  sign_in_count          :integer(4)      default(0)
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  censor_text            :boolean         default(TRUE)
-#  smack_count            :integer         default(0)
+#  censor_text            :boolean(1)      default(TRUE)
 #  gender                 :string(1)
 #  birthday               :date
 #  avatar_file_name       :string(255)
 #  avatar_content_type    :string(255)
-#  avatar_file_size       :integer
+#  avatar_file_size       :integer(4)
 #  avatar_updated_at      :datetime
-#  posts_count            :integer         default(0)
-#  deliveries_count       :integer         default(0)
+#  posts_count            :integer(4)      default(0)
+#  deliveries_count       :integer(4)      default(0)
+#  role                   :string(255)     default("user")
 #
 # Indexes
 #
-#  index_users_on_username              (username)
-#  index_users_on_reset_password_token  (reset_password_token)
 #  index_users_on_email                 (email)
+#  index_users_on_reset_password_token  (reset_password_token)
+#  index_users_on_username              (username)
 #
 

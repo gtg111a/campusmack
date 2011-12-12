@@ -80,30 +80,31 @@ class Post < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: posts
 #
-#  id                :integer         primary key
+#  id                :integer(4)      not null, primary key
 #  title             :string(255)
 #  summary           :string(255)
 #  type              :string(255)     indexed
-#  published         :boolean
-#  postable_id       :integer         indexed
+#  published         :boolean(1)
+#  postable_id       :integer(4)      indexed
 #  postable_type     :string(255)     indexed
-#  user_id           :integer         indexed
-#  on_frontpage_week :integer
-#  created_at        :timestamp
-#  updated_at        :timestamp
-#  reports_count     :integer         default(0), not null
-#  up_votes          :integer         default(0), not null
-#  down_votes        :integer         default(0), not null
+#  user_id           :integer(4)      indexed
+#  on_frontpage_week :integer(4)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  reports_count     :integer(4)      default(0), not null
+#  up_votes          :integer(4)      default(0), not null
+#  down_votes        :integer(4)      default(0), not null
 #
 # Indexes
 #
-#  index_posts_on_user_id        (user_id)
-#  index_posts_on_type           (type)
-#  index_posts_on_postable_type  (postable_type)
 #  index_posts_on_postable_id    (postable_id)
+#  index_posts_on_postable_type  (postable_type)
+#  index_posts_on_type           (type)
+#  index_posts_on_user_id        (user_id)
 #
 

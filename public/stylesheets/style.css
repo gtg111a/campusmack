@@ -639,6 +639,14 @@ a.sign_up:visited {
   background: #fff;
 }
 
+.content_container .content_title {
+  background: #fff;
+  color: #30A0F0;
+  font-size: 32px;
+  font-weight: bold;
+  border-bottom: 2px solid #30A0F0;
+}
+
 .content_container.width550 {
   float: left;
   width: 552px;

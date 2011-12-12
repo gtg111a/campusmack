@@ -24,14 +24,15 @@ class ContactGroup < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: contact_groups
 #
-#  id         :integer         primary key
-#  user_id    :integer
+#  id         :integer(4)      not null, primary key
+#  user_id    :integer(4)
 #  name       :string(255)
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
 #
 

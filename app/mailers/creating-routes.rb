@@ -9,4 +9,3 @@ Mailgun::init("key-0ujr7ogy6rvgdg24$4")
 # print out all routes:
 puts "Routes:"
 Route.find(:all).each {|r| puts r.pattern + "\t==> " + r.destination}
-

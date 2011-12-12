@@ -1,9 +1,9 @@
 require 'mailgun'
 
 module MailHelper
-  
+
   Mailgun::init("key-afy6amxoo2fnj$u@mc")
-  
+
   def send_welcome
     sender   = "Welcome@campusmack.mailgun.org"
     receiver = "michael.bivone@gmail.com"
@@ -28,11 +28,11 @@ module MailHelper
 
     puts "Messages sent"
   end
-  
+
   def welcome_email
   @url = "campusmack.heroku.com"
   mail(:to =>current_user.email,
         :subject => "Welcome to Campus Smack. Now Get Smacking!")
    end
-  
+
 end

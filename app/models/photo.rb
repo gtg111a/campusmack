@@ -13,24 +13,27 @@ class Photo < ActiveRecord::Base
                                     :message => 'photo must be of filetype .jpg, .png or .gif'
 
   def url(params=nil)
-    self.image.url(params)
+    return self.image unless params
+    self.image.exists? && self.image.url(params)
   end
 
 end
+
+
 
 
 # == Schema Information
 #
 # Table name: photos
 #
-#  id                 :integer         primary key
+#  id                 :integer(4)      not null, primary key
 #  caption            :string(255)
-#  post_id            :integer
+#  post_id            :integer(4)
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
-#  image_file_size    :integer
-#  image_updated_at   :timestamp
-#  created_at         :timestamp
-#  updated_at         :timestamp
+#  image_file_size    :integer(4)
+#  image_updated_at   :datetime
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 

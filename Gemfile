@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'ffaker'
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.11'
 #gem 'aws-sdk'
 gem 'paperclip'
 gem 'aws-s3'

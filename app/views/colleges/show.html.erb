@@ -8,11 +8,9 @@
 
   <div class="content_container">
     <div class="photovideo">
+      <h3 class="content_title">Articles</h3>
       <div class="category_container">
         <div class="content_category">
-          <div class="category_title">
-            Articles
-          </div>
           <ul class="items">
             <% @articles.each do |post| %>
               <%= render "posts/small_preview", :post => post %>
@@ -23,6 +21,7 @@
           </div>
         </div>
       </div>
+      <h3 class="content_title">User Posts</h3>
       <div class="category_container">
         <div class="content_category">
           <div class="category_title">
