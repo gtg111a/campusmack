@@ -19,6 +19,9 @@
   </div>
   <div class="title">
     <%= link_to censoring(post.title), [post.postable, post] %>
+    <% if can? :manage, Article and !post.published?%>
+      <span style="color:red">Unpublished</span>
+    <% end %>
   </div>
   <div class="unit_info">
     Posted

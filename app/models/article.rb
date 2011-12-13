@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS,
                     :bucket => 'Campusmack',
-                    :path => "/:style/:id/:filename"
+                    :path => "/articles/:style/:id/:filename"
 
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
                                     :message => 'photo must be of filetype .jpg, .png or .gif'

@@ -15,10 +15,12 @@
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
             <% if can? :manage, Post %>
-              <tr>
-                <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
-                <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
-              </tr>
+              <% if @post.type != 'ArticlePost' %>
+                <tr>
+                  <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                  <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+                </tr>
+              <% end %>
               <tr>
                 <td class="description"><%= f.label :published %></td>
                 <td class="entry"><%= f.check_box :published %></td>

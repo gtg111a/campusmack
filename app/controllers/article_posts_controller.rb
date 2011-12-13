@@ -1,5 +1,5 @@
 class ArticlePostsController < ApplicationController
-  authorize_resource
+  load_and_authorize_resource :post, :parent => false
   before_filter :authenticate_user!, :except => [:show, :index]
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
@@ -27,7 +27,11 @@ class ArticlePostsController < ApplicationController
 
   def index
     @title = @parent.name + " Article"
-    posts = @parent.send(@post_cls).published
+    posts = if can? :manage, :all
+      @parent.send(@post_cls)
+    else
+      @parent.send(@post_cls).published
+    end
     @search = posts.search(params[:search])
     @order = params[:order] || Post::default_order
     @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
@@ -70,7 +74,7 @@ class ArticlePostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(params[@post.type.to_s.downcase])
+    if @post.update_attributes(params[@post.type.to_s.underscore])
       redirect_to user_path(current_user), :flash => {:success => "Post updated."}
     else
       @title = "Edit post"

@@ -478,7 +478,7 @@ a.sign_up:visited {
 .content {
   background: url(/images/content_header.png) repeat-x #FFF;
   position: relative;
-  border-width: 1px 1px 0 0;
+  border-width: 1px 0 0 0;
   border-style: solid;
   border-color: #fff;
   overflow: hidden;
@@ -667,7 +667,6 @@ a.sign_up:visited {
 .content_container .content_category {
   padding: 15px;
   border-bottom: 1px solid #d4d4d4;
-  border-right: 1px solid #d4d4d4;
   overflow: hidden;
 }
 
@@ -1691,10 +1690,8 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 }
 
 .photovideo {
-  float: left;
   background: #fff;
-  padding-right: 2px;
-  width: 588px;
+  width: 100%;
 }
 
 ul.items {
