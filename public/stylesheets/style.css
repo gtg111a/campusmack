@@ -1691,7 +1691,8 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .photovideo {
   background: #fff;
-  width: 100%;
+  padding-right: 0px;
+  width: 790px;
 }
 
 ul.items {
