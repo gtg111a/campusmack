@@ -155,6 +155,18 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
+Then /^(?:|I )should have element "([^"]*)"$/ do |selector|
+  find(selector)
+end
+
+Then /^(?:|I )should not have element "([^"]*)"$/ do |selector|
+  begin
+    find(selector)
+  rescue Capybara::ElementNotFound
+    # Great
+  end
+end
+
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   if page.respond_to? :should
     page.should have_no_content(text)
@@ -195,6 +207,10 @@ Then /^the "([^"]*)" field(?: within (.*))? should not contain "([^"]*)"$/ do |f
       assert_no_match(/#{value}/, field_value)
     end
   end
+end
+
+Then /^the "([^"]*)" select should be set to "([^"]*)"/ do |id, value|
+  page.should have_xpath("//select[@id = '#{id}']/option[@selected = 'selected']", :text => value)
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, parent|

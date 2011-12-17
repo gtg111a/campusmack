@@ -36,7 +36,3 @@ MailgunMessage::send_raw(sender, receiver, raw_mime)
 puts "Messages sent"
 
 =end
-
-
-
-    

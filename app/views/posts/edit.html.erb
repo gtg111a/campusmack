@@ -15,9 +15,15 @@
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
             <% if can? :manage, Post %>
+              <% if @post.type != 'ArticlePost' %>
+                <tr>
+                  <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                  <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+                </tr>
+              <% end %>
               <tr>
-                <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
-                <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
+                <td class="description"><%= f.label :published %></td>
+                <td class="entry"><%= f.check_box :published %></td>
               </tr>
             <% end %>
             <% if @post.video %>
@@ -44,10 +50,34 @@
                 </tr>
               <% end %>
             <% end %>
-            <tr>
-              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
-              <td class="entry"><%= f.text_area :summary %></td>
-            </tr>
+            <% if @post.article %>
+              <% if @post.article.image.exists? %>
+                <%= f.fields_for :article, @post.article do |a| %>
+                  <tr>
+                    <td class="description"><%= a.label :image, 'Photo:' %></td>
+                    <td class="entry"><%= a.file_field :image %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <%= f.fields_for :article, @post.article do |a| %>
+                  <tr>
+                    <td class="description"><%= a.label :video_url, 'Video URL:' %></td>
+                    <td class="entry"><%= a.text_field :video_url %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+              <%= f.fields_for :article, @post.article do |a| %>
+                <tr>
+                  <td class="description va-top"><%= a.label :body, 'Body:' %></td>
+                  <td class="entry"><%= a.text_area :body %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
+                <td class="entry"><%= f.text_area :summary %></td>
+              </tr>
+            <% end %>
           </table>
           <div class="confirmation_container clearfix">
             <div class="accept clearfix">

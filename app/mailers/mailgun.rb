@@ -11,7 +11,7 @@ class Mailgun
   #   api_url - API base URL
   #
   def self.init(api_key, api_url = "https://mailgun.net/api/")
-    
+
     MailgunResource.password = api_key
     api_url = api_url.gsub(/\/$/, '') + "/"
     MailgunResource.site = api_url
@@ -72,8 +72,8 @@ class MailgunMessage
   #
   #  raw_mime =
   #    "Content-Type: text/plain;charset=utf-8\n" +
-  #    "From: me@host\n" + 
-  #    "To: you@host\n" + 
+  #    "From: me@host\n" +
+  #    "To: you@host\n" +
   #    "Subject: Hello!\n\n" +
   #    "Body"
   #  MailgunMessage::send_raw("me@host", "you@host", raw_mime)
@@ -137,7 +137,7 @@ end
 # All mail arriving to email addresses that have mailboxes associated
 # will be stored on the server and can be later accessed via IMAP or POP3
 # protocols.
-#    
+#
 # Mailbox has several properties:
 #
 # alex@gmail.com
@@ -147,9 +147,9 @@ end
 #
 class Mailbox < MailgunResource
   # Example of a CSV file:
-  #        
+  #
   # john@domain.com, password
-  # doe@domain.com, password2         
+  # doe@domain.com, password2
   #
   def self.upsert_from_csv(mailboxes)
     uri_str = "#{MailgunResource.site}mailboxes.txt?api_key=#{MailgunResource.password}"
@@ -170,7 +170,7 @@ end
 #   - any regular expression
 #
 # Destination can be one of:
-#   - an email address to forward to 
+#   - an email address to forward to
 #   - a URL for HTTP POST
 class Route < MailgunResource
 

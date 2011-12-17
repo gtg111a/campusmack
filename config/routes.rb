@@ -67,14 +67,11 @@ Campusmack::Application.routes.draw do
     member do
       match :search, :action => :show
     end
-    resources :videos do
-      collection do
-        match :search, :action => :index
-      end
-    end
-    resources :photos do
-      collection do
-        match :search, :action => :index
+    [ :article_posts, :videos, :photos ].each do |res|
+      resources res do
+        collection do
+          match :search, :action => :index
+        end
       end
     end
     resources :news, :controller => :news_posts do
@@ -83,6 +80,11 @@ Campusmack::Application.routes.draw do
       end
     end
     resources :stats, :controller => :statistics do
+      collection do
+        match :search, :action => :index
+      end
+    end
+    resources :articles, :controller => :article_posts do
       collection do
         match :search, :action => :index
       end
@@ -96,12 +98,14 @@ Campusmack::Application.routes.draw do
   end
 
   resources :smacks, :redemptions, :only => :new
-  resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
+  resources :smacks, :redemptions, :article_posts, :only => [:show, :index, :destroy] do
     collection do
       match :search, :action => :index
     end
     resources :comments, :only => [:create]
   end
+
+  resources :article_posts
 
   resources :conferences, :colleges, :only => [:index, :show] do
     resources :smacks, :redemptions do
