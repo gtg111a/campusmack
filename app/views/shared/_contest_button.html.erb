@@ -1,0 +1,48 @@
+<% content_for :js do %>
+  var campus_select = null;
+  var post_popup_to = null;
+  var college_preloading = false;
+  var popup_html = "<div id=\"add_post_popup\"><h2></h2><div class=\"blue_button\"><a href=\"/\" data-after=\"/smacks/new?contest=yes\" data-before=\"/colleges/\" id=\"add_post_select_link\">Add</a></div></div>";
+  function update_popup_link() {
+    apsl = $("#add_post_select_link");
+    apsl.attr("href", apsl.data("before") + $("#add_post_select").val() + apsl.data("after"));
+  }
+  function show_post_popup(type) {
+    jQuery.facebox(popup_html);
+    $("#add_post_popup h2").html("Select Campus to add Video");
+    $("#add_post_popup h2").append("<br /><br />").append(campus_select).append("<br /><br />");
+    $("#add_post_popup a").data("after","/" + type + "s/new?contest=yes");
+    update_popup_link();
+  }
+  function try_show_post_popup(type) {
+    if (campus_select != null) {
+      show_post_popup(type)
+    } else {
+      if (college_preloading != true) {
+        college_preloading = true;
+        $.ajax({url: "/smacks/new"});
+      }
+      jQuery.facebox.loading();
+      clearTimeout(post_popup_to);
+      post_popup_to = setTimeout("try_show_post_popup(\"" + type + "\")", 500);
+    }
+  }
+<% end %>
+<% content_for :jq do %>
+  $("#add_post_select").live("change",function(){
+    update_popup_link();
+  });
+  <% if current_user %>
+    college_preloading = true;
+    $.ajax({url: "/smacks/new"});
+  <% end %>
+  $("#add_smack_btn").click(function(e){
+    e.preventDefault();
+    try_show_post_popup("smack");
+  });
+<% end %>
+<div class="content_actions">
+  <ul>
+    <li class="dark_button"><%= link_to "Add Video", root_path, :id => "add_smack_btn" %></li>
+  </ul>
+</div>
