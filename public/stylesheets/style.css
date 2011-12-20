@@ -2015,3 +2015,18 @@ div.fb-like-box {
 #per_page .items_per_page{
     float:right;
 }
+
+#upload_progress {
+    background: #FFF;
+    border: solid 1px rgb(32, 115, 180);
+    height: 37px;
+}
+
+#upload_bar {
+    background: rgb(32, 115, 180);
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    height: 17px;
+    padding: 10px 0;
+}

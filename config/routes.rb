@@ -152,6 +152,7 @@ Campusmack::Application.routes.draw do
   match '/help', :to => 'pages#help'
   match '/terms', :to => 'pages#terms'
   match '/privacy', :to => 'pages#privacy'
+  match '/contest', :to => 'contest#index'
 
   root :to => 'welcome#index'
 end
