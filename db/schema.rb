@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219221424) do
+ActiveRecord::Schema.define(:version => 20111221133732) do
 
   create_table "articles", :force => true do |t|
     t.integer  "post_id"
@@ -143,20 +143,20 @@ ActiveRecord::Schema.define(:version => 20111219221424) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string    "title"
-    t.string    "summary"
-    t.string    "type"
-    t.boolean   "published"
-    t.integer   "postable_id"
-    t.string    "postable_type"
-    t.integer   "user_id"
-    t.integer   "on_frontpage_week"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "reports_count",     :default => 0,     :null => false
-    t.integer   "up_votes",          :default => 0,     :null => false
-    t.integer   "down_votes",        :default => 0,     :null => false
-    t.boolean   "contest",           :default => false
+    t.string   "title"
+    t.string   "summary"
+    t.string   "type"
+    t.boolean  "published",         :default => true
+    t.integer  "postable_id"
+    t.string   "postable_type"
+    t.integer  "user_id"
+    t.integer  "on_frontpage_week"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "reports_count",     :default => 0,     :null => false
+    t.integer  "up_votes",          :default => 0,     :null => false
+    t.integer  "down_votes",        :default => 0,     :null => false
+    t.boolean  "contest",           :default => false
   end
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
