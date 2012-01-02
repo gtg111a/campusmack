@@ -320,7 +320,7 @@ a.sign_up:visited {
 .content_actions {
   position: absolute;
   top: 35px;
-  right: 18px;
+  right: 11px;
 }
 
 .content_actions ul {
@@ -749,7 +749,7 @@ a.view_more {
 }
 
 .content_unit2 .preview img {
-  border: 1px solid black;
+  border: 1px solid #666;
 }
 
 .content_unit2 .title {
@@ -891,8 +891,27 @@ ul.news li {
 .team-item .preview,
 .photo_box,
 .smack_container .smack_content {
-  background-image: url(/images/view_more_bg.png);
+  background-color:#000;
   text-align: center;
+}
+
+ .team-item .preview {   display: table;
+ 
+ }
+
+.team-item .preview a{
+ display: table-cell;
+    max-width: 180px;
+    min-height: 12em;
+
+    vertical-align: middle;
+}
+
+
+
+.team-item .preview a img{
+
+
 }
 
 .smack_container .smack_content {
@@ -1714,7 +1733,7 @@ ul.items {
 }
 
 .team-item .item-top h3 {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
