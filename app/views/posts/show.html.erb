@@ -30,7 +30,7 @@
     </ul>
   </div>
   <div class="content_title"><%= censoring(@post.title) %></div>
-  <div class="content_container">
+  <div class="content_container<%= ' article' if @post.is_a?(ArticlePost) %>">
     <div class="content_category">
       <div class="smack_container clearfix">
         <ul class="actions">
