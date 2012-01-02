@@ -221,4 +221,8 @@ module ApplicationHelper
     return raw img
   end
 
+  def get_botr_upload_url(resp)
+    "#{resp[:link][:protocol]}://#{resp[:link][:address]}#{resp[:link][:path]}?api_format=xml&key=#{resp[:link][:query][:key]}&token=#{resp[:link][:query][:token]}".html_safe
+  end
+
 end

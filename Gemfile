@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'nokogiri', '1.4.2'
 gem 'ffaker'
 gem 'rails', '3.0.11'
 #gem 'aws-sdk'
@@ -31,16 +32,16 @@ group :development do
   gem 'annotate'
   gem 'heroku'
   gem 'taps'
-  gem 'ruby-debug19'
+# gem 'ruby-debug'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'spork'
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'capybara'
-  gem 'capybara-webkit'
+# gem 'cucumber'
+# gem 'cucumber-rails'
+# gem 'capybara'
+# gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'watchr'
   gem 'shoulda-matchers'
