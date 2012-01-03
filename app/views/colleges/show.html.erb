@@ -11,9 +11,9 @@
       <h3 class="content_title">Articles</h3>
       <div class="category_container">
         <div class="content_category">
-          <ul class="items">
+          <ul class="items articles">
             <% @articles.each do |post| %>
-              <%= render "posts/small_preview", :post => post %>
+              <%= render "posts/articles_preview", :post => post %>
             <% end %>
           </ul>
           <div class="view_more_link clear_both">
