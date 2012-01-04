@@ -87,6 +87,10 @@ class ArticlePostsController < ApplicationController
   protected
 
   def find_post
+    if current_user.role == 'admin'
+      @post = Post.find params[:id]
+      return
+    end
     begin
       @post = Post.published.find params[:id]
     rescue
