@@ -29,6 +29,23 @@ body {
   background-color: #36373B;
   color: #000;
 }
+.title_underlined, .title_underlined_first {
+	    border-bottom: 1px solid #D4D4D4;
+    color: #333333;
+    font-size: 16.72pt;
+    font-weight: bold;
+    margin:10px 20px;
+}
+.title_underlined_first{
+	
+    margin:30px 20px 10px 20px;
+}
+
+
+
+p {
+	font-size:13px;
+}
 
 .ajax_loader {
   text-align: center;
@@ -1727,6 +1744,54 @@ ul.items {
   width: 180px;
 }
 
+.featured_articles {
+ margin:20px 0px;
+}
+
+.featured_articles .team-item {
+    float: none;
+    list-style: none outside none;
+    margin: 0 5px 10px 20px;
+    width: 180px;
+	max-height:135px;
+}
+
+.featured_articles .preview {
+	
+}
+
+.featured_articles .team-item .item-top {
+   left: 194px;
+    margin-bottom: 5px;
+    position: relative;
+    top: -141px;
+}
+
+.featured_articles .team-item .item-top h3{
+font-size:18px;
+}
+
+.featured_articles .team-item .summary{
+   left: 193px;
+    overflow: visible;
+    position: relative;
+    top: -127px;
+	min-width:550px;
+}
+
+.featured_articles .team-item .items-buttons {
+ background: none repeat scroll 0 0 transparent;
+    display: block;
+    left: 190px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding-top: 4px;
+    position: relative;
+    top: -100px;
+}
+
+
+
 .team-item .item-top {
   font-size: 70%;
   margin-bottom: 5px;
@@ -2052,4 +2117,16 @@ div.fb-like-box {
     text-align: center;
     height: 17px;
     padding: 10px 0;
+}
+
+.most_smacked {
+background-color:red;
+margin:20px;
+padding:10px;
+border:1px solid black;	
+}
+
+.most_smacked_title {
+	float:left;
+	font-size:30px;
 }

@@ -1,20 +1,21 @@
 <%# TODO copy of small_preview, change to display the articles on the team page. it is also used on the home page (featured articles -> ul.featured_articles) %>
 <li class="team-item">
-  <div class="item-top clearfix">
+<div class="preview">
+    <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
+    <% if post.photo || (post.article && post.article.image.exists?) %>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
+    <% end %>
+  </div>
+  <div class="item-top">
     <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
     <div class="which-college"><span>by:</span> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %></div>
     <div class="votes">
       <%= voting_icons(post, :preview) %>
     </div>
   </div>
-  <div class="preview">
-    <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
-    <% if post.photo || (post.article && post.article.image.exists?) %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
-    <% end %>
-  </div>
+  
   <div class="summary">
-    <%= censoring(truncate(post.summary, :length => 75)) %>
+    <p><%= censoring(truncate(post.summary, :length => 300)) %></p>
   </div>
   <%= share_and_voting_icons(post, :preview) %>
 </li>
