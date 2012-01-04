@@ -13,8 +13,7 @@
       <%= voting_icons(post, :preview) %>
     </div>
   </div>
-  
-  <div class="summary">
+<div class="summary">
     <p><%= censoring(truncate(post.summary, :length => 300)) %></p>
   </div>
   <%= share_and_voting_icons(post, :preview) %>

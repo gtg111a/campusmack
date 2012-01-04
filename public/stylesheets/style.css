@@ -770,12 +770,16 @@ a.view_more {
 }
 
 .content_unit2 .title {
-  font-size: 10pt;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .content_unit2 .title a {
   color: #09689e;
+}
+
+.content_unit2 .title a:hover {
+  color: #003276;
 }
 
 .content_unit2 .description {
@@ -903,6 +907,10 @@ ul.news li {
 
 .author {
   text-transform: uppercase;
+}
+
+.author:hover {
+  text-decoration:underline;
 }
 
 .team-item .preview,
@@ -1049,7 +1057,8 @@ ul.news li {
 }
 
 .comments_container .comment_auth_message {
-  margin: 20px 0 20px 106px;
+  /*margin: 20px 0 20px 106px;*/
+  text-align:center;
 }
 
 .section {
@@ -1744,11 +1753,11 @@ ul.items {
   width: 180px;
 }
 
-.featured_articles {
+.featured_articles, .articles {
  margin:20px 0px;
 }
 
-.featured_articles .team-item {
+.featured_articles .team-item, .articles .team-item{
     float: none;
     list-style: none outside none;
     margin: 0 5px 10px 20px;
@@ -1760,18 +1769,18 @@ ul.items {
 	
 }
 
-.featured_articles .team-item .item-top {
+.featured_articles .team-item .item-top, .articles .team-item .item-top {
    left: 194px;
     margin-bottom: 5px;
     position: relative;
     top: -141px;
 }
 
-.featured_articles .team-item .item-top h3{
+.featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
 font-size:18px;
 }
 
-.featured_articles .team-item .summary{
+.featured_articles .team-item .summary, .articles .team-item .summary {
    left: 193px;
     overflow: visible;
     position: relative;
@@ -1779,7 +1788,7 @@ font-size:18px;
 	min-width:550px;
 }
 
-.featured_articles .team-item .items-buttons {
+.featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
     background: none repeat scroll 0 0 transparent;
     display: block;
     left: 190px;
@@ -1791,10 +1800,37 @@ font-size:18px;
     width: 132px;
 }
 
-.featured_articles .votes {
+.featured_articles .votes, .articles .votes {
   left: 0;
     position: relative;
     top: 95px;
+}
+
+.article .content_category {
+padding: 30px;
+overflow: hidden;
+}
+
+.article .smack_container .smack_content {
+padding: 10px 20px 10px 0;
+background:transparent;
+float:left;
+text-align:left;
+}
+
+.article .summary {
+font-size: 13px;
+line-height: 1.7em;
+margin: 22px 0px;
+text-align: justify;
+}
+
+.article .photo img {
+max-width:350px;	
+}
+
+.article .smack_content {
+margin-bottom:0px;	
 }
 
 
@@ -1849,6 +1885,12 @@ font-size:18px;
 
 .voting_icons a {
   margin-right: 4px;
+}
+
+.voting_icons b{
+font-size:12px;
+ position: relative;
+    top: 2px;
 }
 
 ul.actions li {
