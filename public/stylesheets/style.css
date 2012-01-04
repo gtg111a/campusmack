@@ -344,6 +344,7 @@ a.sign_up:visited {
 position: absolute;
 top: 61px;
 right: 19px;
+background:transparent;
 }
 
 .content_actions ul {
