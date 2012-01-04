@@ -37,8 +37,9 @@ body {
     margin:10px 20px;
 }
 .title_underlined_first{
-	
-    margin:30px 20px 10px 20px;
+margin: 30px 20px 10px 20px;
+padding-bottom: 6px;
+font-size: 24px;
 }
 
 
@@ -338,6 +339,11 @@ a.sign_up:visited {
   position: absolute;
   top: 35px;
   right: 11px;
+}
+.content_actions_home .content_actions {
+position: absolute;
+top: 61px;
+right: 19px;
 }
 
 .content_actions ul {
@@ -1754,7 +1760,7 @@ ul.items {
 }
 
 .featured_articles, .articles {
- margin:20px 0px;
+ margin:20px 0px 0px 0px;
 }
 
 .featured_articles .team-item, .articles .team-item{
