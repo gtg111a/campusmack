@@ -1575,7 +1575,7 @@ ul.inner_menu li a {
   color: #000;
   display: block;
   margin: 2px;
-  padding: 11px 30px 6px 30px;
+  padding: 10px 30px 6px 30px;
   text-decoration: none;
 }
 
@@ -1785,11 +1785,11 @@ font-size:18px;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
-  left: 193px;
-    min-width: 550px;
-    overflow: visible;
-    position: relative;
-    top: -156px;
+  left: 91px;
+overflow: visible;
+position: relative;
+top: 55px;
+text-align: left;
 }
 
 .featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
@@ -2203,4 +2203,9 @@ text-align:center;
 
 .standard select, .facebox_form select {
 padding-top:2px;	
+}
+
+.home_smacks_of_week {
+margin-bottom: 40px;
+display: table;	
 }
