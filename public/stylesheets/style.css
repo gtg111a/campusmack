@@ -1750,7 +1750,7 @@ ul.items {
  margin: 0 5px 10px;
   float: left;
   list-style: none;
-  width: 180px;
+
 }
 
 .featured_articles, .articles {
@@ -1761,12 +1761,16 @@ ul.items {
     float: none;
     list-style: none outside none;
     margin: 0 5px 10px 20px;
-    width: 180px;
 	max-height:135px;
 }
 
 .featured_articles .preview {
 	
+}
+
+.featured_articles .share_smack_btn, .articles .share_smack_btn {
+    position: relative;
+    top: -4px;
 }
 
 .featured_articles .team-item .item-top, .articles .team-item .item-top {
@@ -1781,11 +1785,11 @@ font-size:18px;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
-   left: 193px;
+  left: 193px;
+    min-width: 550px;
     overflow: visible;
     position: relative;
-    top: -127px;
-	min-width:550px;
+    top: -156px;
 }
 
 .featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
@@ -1802,8 +1806,8 @@ font-size:18px;
 
 .featured_articles .votes, .articles .votes {
   left: 0;
-    position: relative;
-    top: 95px;
+    position: absolute;
+    top: 120px;
 }
 
 .article .content_category {
@@ -1871,8 +1875,7 @@ margin-bottom:0px;
 }
 
 .votes .voting_icons {
-  float: right;
-  margin-left: 0;
+  margin-left: 10px;
 }
 
 .voting_icons {
@@ -2171,7 +2174,6 @@ div.fb-like-box {
 .most_smacked {
     background:#0476c7 url("/images/most_smacked.gif") repeat-x;
     border: 1px solid #494949;
-    display: table;
     margin: 0px 20px 20px;
     padding: 10px;
     width: 725px;
@@ -2197,4 +2199,8 @@ text-align:center;
 
     display: block;
 
+}
+
+.standard select, .facebox_form select {
+padding-top:2px;	
 }
