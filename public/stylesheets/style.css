@@ -703,7 +703,7 @@ a.sign_up:visited {
   font-size: 8.44pt;
   border-bottom: 1px solid #d4d4d4;
   margin-bottom: 20px;
-  margin-top: -10px;
+  margin-top: 0px;
 }
 
 .view_more_link {
@@ -1780,7 +1780,7 @@ font-size:18px;
 }
 
 .featured_articles .team-item .items-buttons {
- background: none repeat scroll 0 0 transparent;
+    background: none repeat scroll 0 0 transparent;
     display: block;
     left: 190px;
     margin-bottom: 5px;
@@ -1788,6 +1788,13 @@ font-size:18px;
     padding-top: 4px;
     position: relative;
     top: -100px;
+    width: 132px;
+}
+
+.featured_articles .votes {
+  left: 0;
+    position: relative;
+    top: 95px;
 }
 
 
@@ -2120,13 +2127,32 @@ div.fb-like-box {
 }
 
 .most_smacked {
-background-color:red;
-margin:20px;
-padding:10px;
-border:1px solid black;	
+    background:#0476c7 url("/images/most_smacked.gif") repeat-x;
+    border: 1px solid #494949;
+    display: table;
+    margin: 0px 20px 20px;
+    padding: 10px;
+    width: 725px;
+	-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;  
+  color: #c6c6c6;
+
 }
 
-.most_smacked_title {
-	float:left;
-	font-size:30px;
+.most_smacked_title, .most_smacked_number {
+	  display: inline-block;
+	font-size:26px;  
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	
+}
+
+
+.centered {
+text-align:center;	
+    background: none repeat scroll 0 0 transparent;
+
+    display: block;
+
 }

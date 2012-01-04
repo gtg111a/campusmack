@@ -72,13 +72,11 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-  
-   <div class="most_smacked">
-  <div class="most_smacked_title"><h2>Most Smacked College</h2></div>
-  <div class="content_container clearfix">
-    <div class="new_line"></div>
-    <div class="most_college_name"><h3><%= @colleges.first.name %></h3></div>
-	<div class="most_smack_number"><h3><%= @colleges.first.smacks_count %></h3></div>
+    <div class="title_underlined_first"><h2>Most Smacked College</h2></div>
+    <div class="most_smacked">
+	 <div class="centered">
+    <div class="most_smacked_title"><h3><strong style="color:#fff"><%= @colleges.first.name %></strong>&nbsp;with</h3></div>
+	<div class="most_smacked_number"><h3><strong  style="color:#fff"><%= @colleges.first.smacks_count %></strong>&nbsp;smacks</h3></div>
   </div>
   </div>
   <div class="title_underlined"><h2>Featured Articles</h2></div>
