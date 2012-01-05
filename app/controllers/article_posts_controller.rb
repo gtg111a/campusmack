@@ -87,7 +87,7 @@ class ArticlePostsController < ApplicationController
   protected
 
   def find_post
-    if current_user.role == 'admin'
+    if current_user.try(:role) == 'admin'
       @post = Post.find params[:id]
       return
     end
