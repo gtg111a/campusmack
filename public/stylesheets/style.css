@@ -788,28 +788,38 @@ a.view_more {
 
 .content_unit2 {
   margin-bottom: 25px;
+  position: relative;
 }
 
 .content_unit2 .preview {
   float: left;
   margin-right: 10px;
+overflow: hidden;
+background-color:black;
+height:135px;
+}
+
+.content_unit2 .preview a{
+display: table-cell;
+height:135px;
+vertical-align: middle;	
 }
 
 .content_unit2 .preview img {
-  border: 1px solid #666;
+ /* border: 1px solid #666;*/
 }
 
 .content_unit2 .title {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight:normal;
 }
 
 .content_unit2 .title a {
-  color: #09689e;
+  color: #0476C7;
 }
 
 .content_unit2 .title a:hover {
-  color: #003276;
+ text-decoration:underline;
 }
 
 .content_unit2 .description {
@@ -819,6 +829,12 @@ a.view_more {
 
 .content_unit2 .title, .content_unit2 .unit_info, .content_unit2 .description, .content_unit2 .actions {
   margin-bottom: 5px;
+}
+
+.content_unit2 .actions {
+position: absolute;
+top: 119px;
+left: 190px;	
 }
 
 .content_unit2 .actions li {
@@ -849,11 +865,11 @@ a.view_more {
 }
 
 .content_unit2 .unit_info a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .content_unit2 .unit_info a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .share_smack_btn {
@@ -962,12 +978,6 @@ ul.news li {
     vertical-align: middle;
 }
 
-
-
-.team-item .preview a img{
-
-
-}
 
 .smack_container .smack_content {
   margin: 10px 0;
@@ -1103,7 +1113,7 @@ ul.news li {
 
 .section_title {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.8em;
+  font-size: 18px;
   margin: 15px 0 0 20px;
   float: left;
   width: 100%;
@@ -1816,6 +1826,7 @@ ul.items {
 
 .featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
 font-size:18px;
+font-weight:normal;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
@@ -1868,6 +1879,10 @@ max-width:350px;
 margin-bottom:0px;	
 }
 
+.article_college a {
+color:#0476C7 !important;	
+}
+
 
 
 .team-item .item-top {
@@ -1897,7 +1912,7 @@ margin-bottom:0px;
 }
 
 .team-item .which-college a {
-  color: #999;
+  color: #0476C7;
 }
 
 .team-item .which-college a:hover {
@@ -2230,7 +2245,7 @@ border-radius: 5px;
 
 .most_smacked_title, .most_smacked_number {
 	  display: inline-block;
-	font-size:26px;  
+	font-size:24px;  
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
 	color:black;

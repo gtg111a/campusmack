@@ -8,7 +8,7 @@
   </div>
   <div class="item-top">
     <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
-    <div class="which-college"><span>by:</span> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %></div>
+    <div class="which-college"><span>by:</span> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>&nbsp;<span class="article_college">College:&nbsp;<a href="#">Erlington College</a></span></div>
    
 <div class="summary">
     <p><%= censoring(truncate(post.summary, :length => 300)) %></p>
