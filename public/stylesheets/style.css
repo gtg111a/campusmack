@@ -526,6 +526,16 @@ background:transparent;
 	color:#333333;
 }
 
+   /* background: none repeat scroll 0 0 #333333;
+    border-top: 1px solid #C4C4C4;
+    color: white;
+    display: inline-block;
+    font-size: 21px;
+    font-weight: normal;
+    margin: 10px 0 0;
+    padding: 15px 15px 5px;
+    text-transform: uppercase;*/
+
 .college_content_title_first {
 	 border-top:none;
 }
@@ -2191,10 +2201,23 @@ div.fb-like-box {
     height: 17px;
     padding: 10px 0;
 }
-
+/*
 .most_smacked {
     background:#0476c7 url("/images/most_smacked.gif") repeat-x;
     border: 1px solid #494949;
+    margin: 0px 20px 20px;
+    padding: 10px;
+    width: 725px;
+	-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;  
+  color: #c6c6c6;
+
+}*/
+
+.most_smacked {
+    background:none repeat scroll 0 0 #EAEAEA;
+    border: 1px solid #DADADA;
     margin: 0px 20px 20px;
     padding: 10px;
     width: 725px;
@@ -2210,7 +2233,17 @@ border-radius: 5px;
 	font-size:26px;  
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
-	
+	color:black;
+}
+
+.most_smacked_number {
+	 background:#0476c7 url("/images/most_smacked.gif") repeat-x;
+	 -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+padding:0px 10px;
+color:white;
+font-weight:normal;
 }
 
 
