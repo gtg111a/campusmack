@@ -972,7 +972,8 @@ ul.news li {
 
 .team-item .preview a{
  display: table-cell;
-    max-width: 180px;
+width: 180px;
+max-width:180px;
     min-height: 12em;
 
     vertical-align: middle;
@@ -1917,7 +1918,7 @@ color:#0476C7 !important;
 
 .team-item .which-college a:hover {
   text-decoration: underline;
-    color: #222;
+
 }
 
 .votes .voting_icons {
@@ -1953,6 +1954,7 @@ ul.actions li {
 .team-item .preview {
   clear: both;
   height: 135px;
+  width: 180px;
   margin-bottom: 5px;
   overflow: hidden;
 }
