@@ -59,7 +59,6 @@
   <div class="content_actions_home">  
   <div class="content_actions">
     <ul>
-      <li class="dark_button"><%= link_to "Contest!", contest_path %></li>
       <li class="dark_button"><%= link_to "Add Smack", root_path, :id => "add_smack_btn" %></li>
       <li class="dark_button"><%= link_to 'Add Redemption', root_path, :id => "add_redemption_btn" %></li>
     </ul>
@@ -73,7 +72,7 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-    <div class="title_underlined_first"><h2>Most Smacked College</h2></div>
+    <div class="title_underlined_first"><h2>Most Smacked Campus</h2></div>
     <div class="most_smacked">
 	 <div class="centered">
     <div class="most_smacked_title"><h3><strong style="color:#fff"><%= @colleges.first.name %></strong>&nbsp;with</h3></div>
