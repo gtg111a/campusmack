@@ -517,6 +517,19 @@ background:transparent;
   padding-top: 20px;
 }
 
+.college_content_title, .college_content_title_first {
+ border-top: 1px solid #C4C4C4;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 20px 15px 0;
+    text-transform: uppercase;
+	color:#333333;
+}
+
+.college_content_title_first {
+	 border-top:none;
+}
+
 .content_subtitle {
   background: #fff;
   font-size: 11pt;
