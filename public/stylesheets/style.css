@@ -1784,6 +1784,17 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .four_col_view li{
 width:180px;
+position: relative;
+}
+
+.four_col_view .votes {
+	position: absolute;
+    right: 0;
+    top: 16px;
+}
+
+.four_col_view .votes b{
+	font-size:10px;
 }
 
 ul.items {
