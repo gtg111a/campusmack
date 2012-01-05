@@ -27,7 +27,7 @@ gem 'video_info'
 
 group :development do
   gem 'sqlite3'
-  gem 'mysql2', '0.2.8'
+  #gem 'mysql2', '0.2.8'
   gem 'rails_best_practices'
   gem 'annotate'
   gem 'heroku'
