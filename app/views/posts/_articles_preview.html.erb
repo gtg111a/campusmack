@@ -9,12 +9,12 @@
   <div class="item-top">
     <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
     <div class="which-college"><span>by:</span> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %></div>
-    <div class="votes">
-     <%= share_and_voting_icons(post, :show) %>
-    </div>
-  </div>
+   
 <div class="summary">
     <p><%= censoring(truncate(post.summary, :length => 300)) %></p>
   </div>
-
+ <div class="votes">
+     <%= share_and_voting_icons(post, :show) %>
+    </div>
+  </div>
 </li>

@@ -1748,6 +1748,10 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
+.four_col_view li{
+width:180px;
+}
+
 ul.items {
   margin-right: -20px;
   overflow: hidden;
@@ -1792,11 +1796,8 @@ font-size:18px;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
-  left: 91px;
-overflow: visible;
-position: relative;
-top: 55px;
-text-align: left;
+clear:left;
+margin-top:23px;
 }
 
 .featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
@@ -1919,7 +1920,7 @@ ul.actions li {
 }
 
 .team-item .summary {
-  font-size: 8.5pt;
+  font-size:13px;
   height: 45px;
   margin-bottom: 5px;
   overflow: hidden;

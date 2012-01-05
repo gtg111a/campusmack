@@ -23,11 +23,11 @@
       </div>
       <h3 class="content_title">User Posts</h3>
       <div class="category_container">
-        <div class="content_category">
+        <div class="content_category ">
           <div class="category_title">
             Videos
           </div>
-          <ul class="items">
+          <ul class="items four_col_view">
             <% @videos.each do |post| %>
                 <%= render "posts/small_preview", :post => post %>
             <% end %>
@@ -38,11 +38,11 @@
         </div>
       </div>
       <div class="category_container">
-        <div class="content_category">
+        <div class="content_category ">
           <div class="category_title">
             Photos
           </div>
-          <ul class="items">
+          <ul class="items four_col_view">
             <% @photos.each do |post| %>
                 <%= render "posts/small_preview", :post => post %>
             <% end %>
