@@ -56,13 +56,15 @@
   </div>
 <% end %>
 <div class="content standard clearfix">
+  <div class="content_actions_home">  
   <div class="content_actions">
     <ul>
+      <li class="dark_button"><%= link_to "Contest!", contest_path %></li>
       <li class="dark_button"><%= link_to "Add Smack", root_path, :id => "add_smack_btn" %></li>
       <li class="dark_button"><%= link_to 'Add Redemption', root_path, :id => "add_redemption_btn" %></li>
     </ul>
   </div>
-  <div class="content_title"><h1>Welcome to Campusmack</h1></div>
+</div>
   <div class="content_stats">
     <ul class="inner_menu">
       <li>
@@ -71,12 +73,14 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-  <div class="content_title"><h1>Most Smacked College</h1></div>
-  <div class="content_container clearfix">
-    <div class="new_line"></div>
-    <div><h1><%= @colleges.first.name %></h1></div>
+    <div class="title_underlined_first"><h2>Most Smacked College</h2></div>
+    <div class="most_smacked">
+	 <div class="centered">
+    <div class="most_smacked_title"><h3><strong style="color:#fff"><%= @colleges.first.name %></strong>&nbsp;with</h3></div>
+	<div class="most_smacked_number"><h3><strong  style="color:#fff"><%= @colleges.first.smacks_count %></strong>&nbsp;smacks</h3></div>
   </div>
-  <div class="content_title"><h1>Featured Articles</h1></div>
+  </div>
+  <div class="title_underlined"><h2>Featured Articles</h2></div>
   <div class="content_container clearfix">
     <div class="new_line"></div>
     <ul class="items featured_articles">
@@ -85,9 +89,9 @@
       <% end %>
     </ul>
   </div>
-  <div class="content_title"><h1>Smacks of the Week</h1></div>
+  <div class="title_underlined"><h2>Smacks of the Week</h2></div>
   <div class="content_container clearfix">
-    <div class="new_line"></div>
-    <%= render :partial => 'sotw', :collection => Post.smacks_of_week %>
+    <div class="home_smacks_of_week">
+    <%= render :partial => 'sotw', :collection => Post.smacks_of_week %></div>
   </div>
 </div>

@@ -29,6 +29,24 @@ body {
   background-color: #36373B;
   color: #000;
 }
+.title_underlined, .title_underlined_first {
+	    border-bottom: 1px solid #D4D4D4;
+    color: #333333;
+    font-size: 16.72pt;
+    font-weight: bold;
+    margin:10px 20px;
+}
+.title_underlined_first{
+margin: 30px 20px 10px 20px;
+padding-bottom: 6px;
+font-size: 24px;
+}
+
+
+
+p {
+	font-size:13px;
+}
 
 .ajax_loader {
   text-align: center;
@@ -49,7 +67,7 @@ body {
 a,
 a:link,
 a:visited {
-  color: #30a0f0;
+  color: #0476c7;
 }
 
 .clear_both {
@@ -57,7 +75,7 @@ a:visited {
 }
 
 #header {
-  height: 103px;
+  height: 85px;
   background: url(/images/header_bg.png) 50% 0% repeat-x;
   overflow: hidden;
 }
@@ -178,7 +196,7 @@ a.sign_up:visited {
   display: block;
   background: url(/images/logo.png) no-repeat;
   float: left;
-  margin: 19px 0 6px 10px;
+  margin: 9px 0 0px 10px;
   width: 245px;
   height: 78px;
   text-indent: -9999px;
@@ -187,7 +205,7 @@ a.sign_up:visited {
 .menu {
   float: right;
   position: relative;
-  top: 47px;
+  top: 42px;
   z-index: 10;
 }
 
@@ -320,7 +338,13 @@ a.sign_up:visited {
 .content_actions {
   position: absolute;
   top: 35px;
-  right: 18px;
+  right: 11px;
+}
+.content_actions_home .content_actions {
+position: absolute;
+top: 61px;
+right: 19px;
+background:transparent;
 }
 
 .content_actions ul {
@@ -640,11 +664,11 @@ a.sign_up:visited {
 }
 
 .content_container .content_title {
-  background: #fff;
-  color: #30A0F0;
-  font-size: 32px;
-  font-weight: bold;
-  border-bottom: 2px solid #30A0F0;
+ background: none repeat scroll 0 0 #FFFFFF;
+    padding-top: 10px !important;
+    font-size: 28px;
+    font-weight: bold;
+    padding-left: 15px;
 }
 
 .content_container.width550 {
@@ -666,7 +690,7 @@ a.sign_up:visited {
 
 .content_container .content_category {
   padding: 15px;
-  border-bottom: 1px solid #d4d4d4;
+ /* border-bottom: 1px solid #d4d4d4; */ 
   overflow: hidden;
 }
 
@@ -675,17 +699,18 @@ a.sign_up:visited {
 }
 
 .content_container .content_category .category_title {
-  font-size: 18.72pt;
+  font-size: 16.72pt;
   font-weight: bold;
   border-bottom: 1px solid #d4d4d4;
   margin-bottom: 10px;
+  color:#333;
 }
 
 .content_container .content_category .category_sort {
   font-size: 8.44pt;
   border-bottom: 1px solid #d4d4d4;
   margin-bottom: 20px;
-  margin-top: -10px;
+  margin-top: 0px;
 }
 
 .view_more_link {
@@ -714,6 +739,7 @@ a.sign_up:visited {
 
 .view_more_link a:hover, a.view_more:hover {
   background-position: bottom;
+  color:#222222;
 }
 
 a.view_more {
@@ -747,16 +773,20 @@ a.view_more {
 }
 
 .content_unit2 .preview img {
-  border: 1px solid black;
+  border: 1px solid #666;
 }
 
 .content_unit2 .title {
-  font-size: 10pt;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .content_unit2 .title a {
   color: #09689e;
+}
+
+.content_unit2 .title a:hover {
+  color: #003276;
 }
 
 .content_unit2 .description {
@@ -886,11 +916,34 @@ ul.news li {
   text-transform: uppercase;
 }
 
+.author:hover {
+  text-decoration:underline;
+}
+
 .team-item .preview,
 .photo_box,
 .smack_container .smack_content {
-  background-image: url(/images/view_more_bg.png);
+  background-color:#000;
   text-align: center;
+}
+
+ .team-item .preview {   display: table;
+ 
+ }
+
+.team-item .preview a{
+ display: table-cell;
+    max-width: 180px;
+    min-height: 12em;
+
+    vertical-align: middle;
+}
+
+
+
+.team-item .preview a img{
+
+
 }
 
 .smack_container .smack_content {
@@ -1011,7 +1064,8 @@ ul.news li {
 }
 
 .comments_container .comment_auth_message {
-  margin: 20px 0 20px 106px;
+  /*margin: 20px 0 20px 106px;*/
+  text-align:center;
 }
 
 .section {
@@ -1528,7 +1582,7 @@ ul.inner_menu li a {
   color: #000;
   display: block;
   margin: 2px;
-  padding: 8px 30px;
+  padding: 10px 30px 6px 30px;
   text-decoration: none;
 }
 
@@ -1691,8 +1745,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 
 .photovideo {
   background: #fff;
-  padding-right: 0px;
-  width: 790px;
+  width: 100%;
 }
 
 ul.items {
@@ -1701,11 +1754,97 @@ ul.items {
 }
 
 .team-item {
-  margin: 0 10px 10px 0;
+ margin: 0 5px 10px;
   float: left;
   list-style: none;
-  width: 180px;
+
 }
+
+.featured_articles, .articles {
+ margin:20px 0px 0px 0px;
+}
+
+.featured_articles .team-item, .articles .team-item{
+    float: none;
+    list-style: none outside none;
+    margin: 0 5px 10px 20px;
+	max-height:135px;
+}
+
+.featured_articles .preview {
+	
+}
+
+.featured_articles .share_smack_btn, .articles .share_smack_btn {
+    position: relative;
+    top: -4px;
+}
+
+.featured_articles .team-item .item-top, .articles .team-item .item-top {
+   left: 194px;
+    margin-bottom: 5px;
+    position: relative;
+    top: -141px;
+}
+
+.featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
+font-size:18px;
+}
+
+.featured_articles .team-item .summary, .articles .team-item .summary {
+  left: 91px;
+overflow: visible;
+position: relative;
+top: 55px;
+text-align: left;
+}
+
+.featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
+    background: none repeat scroll 0 0 transparent;
+    display: block;
+    left: 190px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding-top: 4px;
+    position: relative;
+    top: -100px;
+    width: 132px;
+}
+
+.featured_articles .votes, .articles .votes {
+  left: 0;
+    position: absolute;
+    top: 120px;
+}
+
+.article .content_category {
+padding: 30px;
+overflow: hidden;
+}
+
+.article .smack_container .smack_content {
+padding: 10px 20px 10px 0;
+background:transparent;
+float:left;
+text-align:left;
+}
+
+.article .summary {
+font-size: 13px;
+line-height: 1.7em;
+margin: 22px 0px;
+text-align: justify;
+}
+
+.article .photo img {
+max-width:350px;	
+}
+
+.article .smack_content {
+margin-bottom:0px;	
+}
+
+
 
 .team-item .item-top {
   font-size: 70%;
@@ -1713,12 +1852,13 @@ ul.items {
 }
 
 .team-item .item-top h3 {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
 .team-item .item-top h3 a:hover {
   text-decoration: underline;
+  color:#0476c7;
 }
 
 .team-item .dislike {
@@ -1738,11 +1878,11 @@ ul.items {
 
 .team-item .which-college a:hover {
   text-decoration: underline;
+    color: #222;
 }
 
 .votes .voting_icons {
-  float: right;
-  margin-left: 0;
+  margin-left: 10px;
 }
 
 .voting_icons {
@@ -1755,6 +1895,12 @@ ul.items {
 
 .voting_icons a {
   margin-right: 4px;
+}
+
+.voting_icons b{
+font-size:12px;
+ position: relative;
+    top: 2px;
 }
 
 ul.actions li {
@@ -2015,4 +2161,58 @@ div.fb-like-box {
 
 #per_page .items_per_page{
     float:right;
+}
+
+#upload_progress {
+    background: #FFF;
+    border: solid 1px rgb(32, 115, 180);
+    height: 37px;
+}
+
+#upload_bar {
+    background: rgb(32, 115, 180);
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    height: 17px;
+    padding: 10px 0;
+}
+
+.most_smacked {
+    background:#0476c7 url("/images/most_smacked.gif") repeat-x;
+    border: 1px solid #494949;
+    margin: 0px 20px 20px;
+    padding: 10px;
+    width: 725px;
+	-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;  
+  color: #c6c6c6;
+
+}
+
+.most_smacked_title, .most_smacked_number {
+	  display: inline-block;
+	font-size:26px;  
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	
+}
+
+
+.centered {
+text-align:center;	
+    background: none repeat scroll 0 0 transparent;
+
+    display: block;
+
+}
+
+.standard select, .facebox_form select {
+padding-top:2px;	
+}
+
+.home_smacks_of_week {
+margin-bottom: 40px;
+display: table;	
 }

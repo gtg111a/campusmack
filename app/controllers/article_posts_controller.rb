@@ -1,6 +1,5 @@
 class ArticlePostsController < ApplicationController
-  load_and_authorize_resource :post, :parent => false
-  before_filter :authenticate_user!, :except => [:show, :index]
+  authorize_resource
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
@@ -15,6 +14,9 @@ class ArticlePostsController < ApplicationController
   def create
     @post = @parent.send(@post_cls).build(params[@post_cls.singularize])
     @post.user = current_user
+    # overwrites the default true value of published which is required for the other
+    # type of posts
+    @post.published = params[@post_cls.singularize][:published].to_i > 1
     init_college_menu
     if @post.save
       if store_location =~ /^\/conferences\//
@@ -85,6 +87,10 @@ class ArticlePostsController < ApplicationController
   protected
 
   def find_post
+    if current_user.role == 'admin'
+      @post = Post.find params[:id]
+      return
+    end
     begin
       @post = Post.published.find params[:id]
     rescue
