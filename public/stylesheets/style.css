@@ -518,23 +518,21 @@ background:transparent;
 }
 
 .college_content_title, .college_content_title_first {
- border-top: 1px solid #C4C4C4;
-    font-size: 26px;
-    font-weight: normal;
-    padding: 20px 15px 0;
-    text-transform: uppercase;
-	color:#333333;
-}
-
-   /* background: none repeat scroll 0 0 #333333;
-    border-top: 1px solid #C4C4C4;
+  background: none repeat scroll 0 0 #333333;
+    border-bottom: 2px solid #0476C7;
     color: white;
     display: inline-block;
     font-size: 21px;
     font-weight: normal;
-    margin: 10px 0 0;
+    margin: 20px 0 0;
     padding: 15px 15px 5px;
-    text-transform: uppercase;*/
+    text-transform: uppercase;
+}
+
+.separator_line {
+height:1px;
+	    border-top: 1px solid #C4C4C4;
+}
 
 .college_content_title_first {
 	 border-top:none;
