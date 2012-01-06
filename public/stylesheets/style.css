@@ -790,11 +790,12 @@ a.view_more {
 }
 
 .content_unit2 .preview {
-  float: left;
-  margin-right: 10px;
-overflow: hidden;
-background-color:black;
-height:135px;
+    float: left;
+    margin-right: 10px;
+    min-height: 135px;
+    overflow: hidden;
+    width: 180px;
+	background: none repeat scroll 0 0 black;
 }
 
 .content_unit2 .preview a{
@@ -2227,50 +2228,46 @@ div.fb-like-box {
     height: 17px;
     padding: 10px 0;
 }
-/*
-.most_smacked {
-    background:#0476c7 url("/images/most_smacked.gif") repeat-x;
-    border: 1px solid #494949;
-    margin: 0px 20px 20px;
-    padding: 10px;
-    width: 725px;
-	-webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;  
-  color: #c6c6c6;
 
-}*/
 
 .most_smacked {
-    background:none repeat scroll 0 0 #EAEAEA;
+background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #DADADA;
-    margin: 0px 20px 20px;
-    padding: 10px;
-    width: 725px;
-	-webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;  
-  color: #c6c6c6;
-
+    color: #C6C6C6;
+    margin: 0 20px 30px 20px;
+    padding:0px;
+    position: relative;
+    top: 24px;
+		font-size:15px;  
+display: inline-block;
 }
 
 .most_smacked_title, .most_smacked_number {
 	  display: inline-block;
-	font-size:24px;  
+	padding-left:5px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
 	color:black;
 }
 
 .most_smacked_number {
-	 background:#0476c7 url("/images/most_smacked.gif") repeat-x;
-	 -webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-padding:0px 10px;
-color:white;
+padding:0px 10px 0px 0px;
+}
+
+.most_smacked_number h3{
 font-weight:normal;
 }
+
+
+.most_smacked_header {
+	  display: inline-block;
+padding:5px 10px;
+	font-family:Arial, Helvetica, sans-serif;
+	
+	color:#2f94d8;
+	border-right: 1px solid #DADADA;
+}
+
 
 
 .centered {
