@@ -1,5 +1,3 @@
-require 'mailgun'
-
 class UsersController < ApplicationController
 
   skip_authorization_check :only => [ :create, :new, :plaxo_import ]
