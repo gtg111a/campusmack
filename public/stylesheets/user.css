@@ -437,6 +437,10 @@
     width: 156px;
 }
 
+.standard .right_column .sign_up_with_container ul li a:hover{
+text-decoration:none;
+}
+
 .standard .right_column .sign_up_with_container ul .twitter a {
     background: url('/images/bg_twitter_button.png') repeat-x;
 }
@@ -596,6 +600,10 @@
 .standard .form_sign_in .not_a_member_box .sign_up_now_button a {
     padding-left: 9px;
     padding-right: 9px;
+}
+
+.standard .form_sign_in .not_a_member_box .sign_up_now_button a:hover {
+    text-decoration:none;
 }
 
 .standard .form_sign_in .not_a_member_box .not_a_member_text {

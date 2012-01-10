@@ -70,6 +70,10 @@ a:visited {
   color: #0476c7;
 }
 
+a:hover {
+text-decoration: underline;
+}
+
 .clear_both {
   clear: both;
 }
@@ -176,7 +180,7 @@ a:visited {
   width: 68px;
   height: 22px;
   float: left;
-  background: url(/images/sign_up.png);
+  background: url(/images/sign_up.png) top;
   padding-top: 2px;
   font-size: 9px;
   line-height: 1.9em;
@@ -185,11 +189,22 @@ a:visited {
   margin: -3px 0 0 4px;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
+  text-indent:-9999px;
+  overflow:hidden;
 }
+
+.sign_up:hover {
+  background: url(/images/sign_up.png) bottom;	
+}	
 
 a.sign_up:link,
 a.sign_up:visited {
   color: #fff;
+  display:block;
+}
+
+a.sign_up:hover {
+text-decoration:none;
 }
 
 .logo {
@@ -510,7 +525,7 @@ background:transparent;
 
 .content_title {
   background: #F6F6F6 url(/images/content_header.png) repeat-x;
-  font-size: 23.78pt;
+  font-size: 26px;
   font-weight: bold;
   line-height: 40pt;
   border-bottom: 1px solid #C4C4C4;
@@ -524,7 +539,7 @@ background:transparent;
     display: inline-block;
     font-size: 21px;
     font-weight: normal;
-    margin: 20px 0 0;
+    margin: 20px 0px 10px 0px;
     padding: 15px 15px 5px;
     text-transform: uppercase;
 }
