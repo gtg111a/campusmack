@@ -566,7 +566,12 @@ text-decoration:none;
 }
 
 .standard .form_sign_in .links .l_column a {
-    color: #7A7B7D;
+    color: #333333;
+    display: block;
+}
+
+.standard .form_sign_in .links .l_column a:hover{
+    color: #000;
     display: block;
 }
 
