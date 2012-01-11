@@ -10,7 +10,7 @@ module Campusmack
   class Application < Rails::Application
     # Added by the Rails 3 jQuery Template
     # http://github.com/lleger/Rails-3-jQuery, written by Logan Leger
-    
+
     #config.action_view.javascript_expansions[:defaults] = %w(jquery.js rails.js)
     #config.action_view.javascript_expansions[:cdn] = %w(https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js rails)
 
@@ -44,8 +44,6 @@ module Campusmack
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.raise_delivery_errors = true
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
