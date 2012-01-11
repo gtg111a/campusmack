@@ -56,7 +56,7 @@
   </div>
 <% end %>
 <div class="content standard clearfix">
-  <div class="content_actions_home">  
+  <div class="content_actions_home">
   <div class="content_actions">
     <ul>
       <li class="dark_button"><%= link_to "Add Smack", root_path, :id => "add_smack_btn" %></li>
@@ -72,16 +72,16 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-    
+
     <div class="most_smacked">
-	 
+
 	 <div class="most_smacked_header"><h2>Most Smacked Campus:</h2></div>
     <div class="most_smacked_title"><h3><strong><%= @colleges.first.name %>:
 	</strong></h3></div>
 	<div class="most_smacked_number"><h3><%= @colleges.first.smacks_count %>&nbsp;smacks</h3></div>
 
   </div>
-   
+
   <div class="college_content_title"><h2>Featured Articles</h2></div>
   <div class="separator_line"></div>
   <div class="content_container clearfix">
@@ -92,7 +92,7 @@
       <% end %>
     </ul>
   </div>
-   
+
   <div class="college_content_title"><h2>Smacks of the Week</h2></div>
     <div class="separator_line"></div>
   <div class="content_container clearfix">

@@ -34,9 +34,6 @@ Campusmack::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -47,6 +44,18 @@ Campusmack::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
    #config.encryptor = :bcrypt
-   
+
   config.action_mailer.default_url_options = { :host => 'staging.campusmack.com' }
+  config.action_mailer.default :content_type => 'text/html'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_charset = 'utf-8'
+  config.action_mailer.perform_deliveries = true
 end
+
+ActionMailer::Base.smtp_settings = {
+  :address  => 'smtp.mailgun.org',
+  :port  => 587,
+  :user_name  => 'postmaster@campusmack.mailgun.org',
+  :password  => '96w595chb487',
+  :authentication  => :plain
+}
