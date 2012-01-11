@@ -533,20 +533,25 @@ background:transparent;
 }
 
 .college_content_title, .college_content_title_first {
+
+    display:block;
+  
+}
+
+.college_content_title h2, .college_content_title_first h2 {
   background: none repeat scroll 0 0 #333333;
-    border-bottom: 2px solid #0476C7;
     color: white;
-    display: inline-block;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: normal;
-    margin: 20px 0px 10px 0px;
-    padding: 15px 15px 5px;
+    margin: 20px 0px 0px 0px;
+    padding: 12px 15px 3px;
     text-transform: uppercase;
+	display:inline-block;
 }
 
 .separator_line {
 height:1px;
-	    border-top: 1px solid #C4C4C4;
+	        border-top: 1px solid #0476C7;
 }
 
 .college_content_title_first {
