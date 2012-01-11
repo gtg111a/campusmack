@@ -8,12 +8,13 @@
 
   <div class="content_container">
     <div class="photovideo">
-      <h3 class="content_title">Articles</h3>
+      <div class="college_content_title"><h2>Featured Articles</h2></div>
+	  <div class="separator_line"></div>
       <div class="category_container">
         <div class="content_category">
-          <ul class="items">
+          <ul class="items articles">
             <% @articles.each do |post| %>
-              <%= render "posts/small_preview", :post => post %>
+              <%= render "posts/articles_preview", :post => post %>
             <% end %>
           </ul>
           <div class="view_more_link clear_both">
@@ -21,13 +22,15 @@
           </div>
         </div>
       </div>
-      <h3 class="content_title">User Posts</h3>
+
+      <div class="college_content_title"><h2>User Posts</h2></div>
+	  <div class="separator_line"></div>
       <div class="category_container">
-        <div class="content_category">
+        <div class="content_category ">
           <div class="category_title">
             Videos
           </div>
-          <ul class="items">
+          <ul class="items four_col_view">
             <% @videos.each do |post| %>
                 <%= render "posts/small_preview", :post => post %>
             <% end %>
@@ -38,11 +41,11 @@
         </div>
       </div>
       <div class="category_container">
-        <div class="content_category">
+        <div class="content_category ">
           <div class="category_title">
             Photos
           </div>
-          <ul class="items">
+          <ul class="items four_col_view">
             <% @photos.each do |post| %>
                 <%= render "posts/small_preview", :post => post %>
             <% end %>
