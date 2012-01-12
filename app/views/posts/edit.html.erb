@@ -66,17 +66,18 @@
                   </tr>
                 <% end %>
               <% end %>
+            <% end %>
+            <tr>
+              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
+              <td class="entry"><%= f.text_area :summary %></td>
+            </tr>
+            <% if @post.article %>
               <%= f.fields_for :article, @post.article do |a| %>
                 <tr>
                   <td class="description va-top"><%= a.label :body, 'Body:' %></td>
                   <td class="entry"><%= a.text_area :body %></td>
                 </tr>
               <% end %>
-            <% else %>
-              <tr>
-                <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
-                <td class="entry"><%= f.text_area :summary %></td>
-              </tr>
             <% end %>
           </table>
           <div class="confirmation_container clearfix">
