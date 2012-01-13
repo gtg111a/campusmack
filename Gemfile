@@ -26,6 +26,7 @@ gem 'profanalyzer'
 gem 'video_info', '0.2.6'
 
 gem 'bitsontherun'
+gem 'ckeditor', '3.6.3'
 
 group :development do
   gem 'sqlite3'

@@ -89,7 +89,7 @@
         <% end %>
         <% if @post.article %>
           <div class="summary">
-            <%= censoring(@post.article.body) %>
+            <%= censoring(@post.article.body).html_safe %>
           </div>
         <% else %>
           <div class="summary"><%= censoring(@post.summary) %>

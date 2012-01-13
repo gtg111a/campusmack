@@ -13,7 +13,7 @@
     <% end %>
   </div>
   <div class="summary">
-    <%= censoring(truncate(post.summary, :length => 75)) %>
+    <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
   </div>
   <%= share_and_voting_icons(post, :preview) %>
 </li>

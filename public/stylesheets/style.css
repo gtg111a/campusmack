@@ -1,6 +1,4 @@
-@charset
-"utf-8"
-;
+@charset "utf-8";
 /* CSS Document */
 
 @font-face {
@@ -43,7 +41,7 @@ body {
 }
 
 p {
-	font-size:13px;
+  font-size:13px;
 }
 
 .ajax_loader {
@@ -547,7 +545,7 @@ a.sign_up:hover {
 
 .separator_line {
   height:1px;
-  border-top: 1px solid #0476C7;
+  border-top: 2px solid #0476C7;
 }
 
 .college_content_title_first {
@@ -811,7 +809,7 @@ a.view_more {
   min-height: 135px;
   overflow: hidden;
   width: 180px;
-	background: none repeat scroll 0 0 black;
+  background: none repeat scroll 0 0 black;
 }
 
 .content_unit2 .preview a{
@@ -901,13 +899,13 @@ a.view_more {
 .share_smack_btn.small {
   background: url(/images/send_as_smack_small.png) no-repeat top;
   width: 37px;
-  height: 13px;;
+  height: 13px;
 }
 
 .share_smack_btn.big {
   background: url(/images/send_as_smack_big.png) no-repeat top;
   width: 84px;
-  height: 18px;;
+  height: 18px;
 }
 
 .share_smack_btn:hover {
@@ -983,7 +981,7 @@ ul.news li {
 
 .team-item .preview {
   display: table;
- }
+}
 
 .team-item .preview a{
   display: table-cell;
@@ -1802,13 +1800,13 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 }
 
 .four_col_view .votes {
-	position: absolute;
+  position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view .votes b{
-	font-size:10px;
+.four_col_view .votes b {
+  font-size:10px;
 }
 
 ul.items {
@@ -1830,7 +1828,7 @@ ul.items {
   float: none;
   list-style: none outside none;
   margin: 0 5px 10px 20px;
-	max-height:135px;
+  max-height:135px;
 }
 
 .featured_articles .share_smack_btn, .articles .share_smack_btn {
@@ -1839,7 +1837,7 @@ ul.items {
 }
 
 .featured_articles .team-item .item-top, .articles .team-item .item-top {
- left: 194px;
+  left: 194px;
   margin-bottom: 5px;
   position: relative;
   top: -141px;
@@ -1954,7 +1952,7 @@ ul.items {
   margin-right: 4px;
 }
 
-.voting_icons b{
+.voting_icons b {
   font-size:12px;
   position: relative;
   top: 2px;
@@ -2200,24 +2198,24 @@ div.fb-like-box {
   margin-top: 15px;
 }
 
-#per_page{
+#per_page {
   float:right;
 }
 
-.category_sort_div{
+.category_sort_div {
   float:left;
 }
 
-#per_page .per_page{
+#per_page .per_page {
   float:right;
 }
 
-#per_page .per_page li{
+#per_page .per_page li {
   float:left;
   margin: 0 0 0 5px;
 }
 
-#per_page .items_per_page{
+#per_page .items_per_page {
   float:right;
 }
 
@@ -2244,16 +2242,16 @@ div.fb-like-box {
   padding: 0px;
   position: relative;
   top: 24px;
-	font-size: 15px;
+  font-size: 15px;
   display: inline-block;
 }
 
 .most_smacked_title, .most_smacked_number {
   display: inline-block;
-	padding-left: 5px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: normal;
-	color: black;
+  padding-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: black;
 }
 
 .most_smacked_number {
@@ -2267,9 +2265,9 @@ div.fb-like-box {
 .most_smacked_header {
   display: inline-block;
   padding: 5px 10px;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #2f94d8;
-	border-right: 1px solid #DADADA;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2f94d8;
+  border-right: 1px solid #DADADA;
 }
 
 .centered {

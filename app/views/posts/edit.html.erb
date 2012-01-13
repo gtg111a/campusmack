@@ -69,13 +69,13 @@
             <% end %>
             <tr>
               <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
-              <td class="entry"><%= f.text_area :summary %></td>
+              <td class="entry"><%= f.cktext_area :summary %></td>
             </tr>
             <% if @post.article %>
               <%= f.fields_for :article, @post.article do |a| %>
                 <tr>
                   <td class="description va-top"><%= a.label :body, 'Body:' %></td>
-                  <td class="entry"><%= a.text_area :body %></td>
+                  <td class="entry"><%= a.cktext_area :body, :width => 380 %></td>
                 </tr>
               <% end %>
             <% end %>
