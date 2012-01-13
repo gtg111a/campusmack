@@ -92,7 +92,7 @@
             <%= censoring(@post.article.body).html_safe %>
           </div>
         <% else %>
-          <div class="summary"><%= censoring(@post.summary) %>
+          <div class="summary"><%= truncate(censoring(@post.safe_summary), :length => 160) %>
           <% if @post.summary && params[:action] != 'show' %>
             <%= link_to " [more...]", [@parent, @post] %>
           <% end %>

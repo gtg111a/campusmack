@@ -9,6 +9,7 @@ class ArticlePost < Post
   def update_summary
     self.summary = truncate(article.body, :length => 160, :separator => ' ') if self.summary.to_s.strip == ''
   end
+
 end
 
 
