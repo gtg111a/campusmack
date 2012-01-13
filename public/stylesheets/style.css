@@ -1841,6 +1841,7 @@ ul.items {
   margin-bottom: 5px;
   position: relative;
   top: -141px;
+  width: 550px;
 }
 
 .featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
