@@ -46,5 +46,6 @@ module Campusmack
     config.filter_parameters += [:password]
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

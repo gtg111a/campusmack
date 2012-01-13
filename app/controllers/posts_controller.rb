@@ -202,7 +202,7 @@ class PostsController < ApplicationController
         logger.error "Could not save delivery: #{$!}"
       end
       flash[:success] = 'Successfully sent!'
-      redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
+      redirect_to polymorphic_path([ @post.postable, @post ])
     end
   end
 
