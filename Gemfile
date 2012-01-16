@@ -23,7 +23,11 @@ gem 'breadcrumbs'
 gem 'gravatar_image_tag'
 gem 'will_paginate', '3.0.pre2'
 gem 'profanalyzer'
-gem 'video_info'
+# newer version seems to cause "OpenURI::HTTPError Exception: 400 Bad Request" error
+gem 'video_info', '0.2.6'
+
+gem 'bitsontherun'
+gem 'ckeditor', '3.6.3'
 
 group :development do
   gem 'sqlite3'

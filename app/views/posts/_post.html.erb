@@ -31,7 +31,7 @@
   </div>
   <div class="description">
    <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
-    <%= censoring(post.summary) %></p>
+    <%= truncate(post.summary, :length => 160) %></p>
   </div>
   <div class="actions">
     <%= share_and_voting_icons(post, :post) %>
