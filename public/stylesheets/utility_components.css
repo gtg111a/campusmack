@@ -70,11 +70,10 @@ input.dark_button{
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
-     behavior: url(PIE.htc);
+    behavior: url(PIE.htc);
     border:none;
     text-align: center;
     width: auto!important;
- 
 }
 
 
@@ -87,7 +86,6 @@ input.dark_button{
     -khtml-border-radius: 5px;
     border-radius: 5px;
     text-align: center;
-   
 }
 
 .dark_button a {
@@ -98,7 +96,6 @@ input.dark_button{
     font-size: 19px;
     line-height: 28px;
     text-transform: uppercase;
-  
 }
 
 .dark_button:hover {
