@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :init
   before_filter :add_initial_breadcrumbs
   before_filter :get_leftmenu_content
-  before_filter :ensure_domain
+ # before_filter :ensure_domain
 
   rescue_from CanCan::AccessDenied do |exception|
     target_url = signed_in? ? root_url : sign_up_url
