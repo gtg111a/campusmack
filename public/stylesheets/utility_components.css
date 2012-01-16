@@ -70,6 +70,7 @@ input.dark_button{
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+    behavior: url(PIE.htc);
     border:none;
     text-align: center;
     width: auto!important;
