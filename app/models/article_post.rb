@@ -7,7 +7,7 @@ class ArticlePost < Post
   after_validation :update_summary
 
   def update_summary
-    self.summary = truncate(article.body, :length => 160, :separator => ' ') if self.summary.to_s.strip == ''
+    self.summary = truncate(article.body, :length => 350, :separator => ' ') if self.summary.to_s.strip == ''
   end
 
 end

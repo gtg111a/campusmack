@@ -11,18 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112170536) do
+ActiveRecord::Schema.define(:version => 20120117131307) do
 
   create_table "articles", :force => true do |t|
-    t.integer  "post_id"
-    t.text     "body"
-    t.string   "video_url"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "post_id"
+    t.text      "body"
+    t.string    "video_url"
+    t.string    "image_file_name"
+    t.string    "image_content_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "authentications", :force => true do |t|
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
   end
 
   create_table "ckeditor_assets", :force => true do |t|
-    t.string   "data_file_name",                  :null => false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    :limit => 30
-    t.string   "type",              :limit => 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "data_file_name",                  :null => false
+    t.string    "data_content_type"
+    t.integer   "data_file_size"
+    t.integer   "assetable_id"
+    t.string    "assetable_type",    :limit => 30
+    t.string    "type",              :limit => 30
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
@@ -63,14 +63,14 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
   add_index "colleges", ["permalink"], :name => "index_colleges_on_permalink"
 
   create_table "comments", :force => true do |t|
-    t.string    "title",            :limit => 50
+    t.string    "title",            :limit => 50, :default => ""
     t.text      "comment"
     t.integer   "commentable_id"
     t.string    "commentable_type"
     t.integer   "user_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
-    t.integer   "reports_count",                  :default => 0, :null => false
+    t.integer   "reports_count",                  :default => 0,  :null => false
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
@@ -158,19 +158,19 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
-    t.string   "summary"
+    t.text     "summary",           :limit => 255
     t.string   "type"
-    t.boolean  "published",         :default => true
+    t.boolean  "published",                        :default => true
     t.integer  "postable_id"
     t.string   "postable_type"
     t.integer  "user_id"
     t.integer  "on_frontpage_week"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "reports_count",     :default => 0,     :null => false
-    t.integer  "up_votes",          :default => 0,     :null => false
-    t.integer  "down_votes",        :default => 0,     :null => false
-    t.boolean  "contest",           :default => false
+    t.integer  "reports_count",                    :default => 0,     :null => false
+    t.integer  "up_votes",                         :default => 0,     :null => false
+    t.integer  "down_votes",                       :default => 0,     :null => false
+    t.boolean  "contest",                          :default => false
   end
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "reports", :force => true do |t|
@@ -277,42 +277,42 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "email",                                                     :null => false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "college_id"
-    t.string   "affiliation"
-    t.integer  "up_votes"
-    t.integer  "down_votes"
-    t.string   "encrypted_password",     :limit => 128,                     :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "censor_text",                           :default => true
-    t.string   "gender",                 :limit => 1
-    t.date     "birthday"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.integer  "posts_count",                           :default => 0
-    t.integer  "deliveries_count",                      :default => 0
-    t.string   "role",                                  :default => "user"
+    t.string    "username"
+    t.string    "email",                                 :default => "",     :null => false
+    t.string    "first_name"
+    t.string    "last_name"
+    t.integer   "college_id"
+    t.string    "affiliation"
+    t.integer   "up_votes"
+    t.integer   "down_votes"
+    t.string    "encrypted_password",     :limit => 128, :default => "",     :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                         :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "censor_text",                           :default => true
+    t.string    "gender",                 :limit => 1
+    t.date      "birthday"
+    t.string    "avatar_file_name"
+    t.string    "avatar_content_type"
+    t.integer   "avatar_file_size"
+    t.timestamp "avatar_updated_at"
+    t.integer   "posts_count",                           :default => 0
+    t.integer   "deliveries_count",                      :default => 0
+    t.string    "role",                                  :default => "user"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username"
 
   create_table "videos", :force => true do |t|
@@ -333,7 +333,7 @@ ActiveRecord::Schema.define(:version => 20120112170536) do
   end
 
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
-  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
   add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
   create_table "votings", :force => true do |t|
