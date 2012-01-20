@@ -62,7 +62,7 @@ class ArticlePostsController < ApplicationController
     @post.destroy
     flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
-      format.html { redirect_after_destroy_back_or(@user) }
+      format.html { redirect_to(@user) }
       format.js
     end
   end
