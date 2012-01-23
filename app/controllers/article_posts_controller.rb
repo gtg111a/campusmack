@@ -16,7 +16,7 @@ class ArticlePostsController < ApplicationController
     @post.user = current_user
     # overwrites the default true value of published which is required for the other
     # type of posts
-    @post.published = params[@post_cls.singularize][:published].to_i > 1
+    @post.published = params[@post_cls.singularize][:published].to_i > 0
     init_college_menu
     if @post.save
       if store_location =~ /^\/conferences\//
@@ -62,7 +62,7 @@ class ArticlePostsController < ApplicationController
     @post.destroy
     flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
-      format.html { redirect_after_destroy_back_or(@user) }
+      format.html { redirect_to(@user) }
       format.js
     end
   end

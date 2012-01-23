@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
 
   DEFAULT_ORDER = 'created_at desc'
   PER_PAGE_DEFAULT = [25, 50, 100, 150]
+  MAX_TEXT_LEN = 350
 
   def self.default_order
     DEFAULT_ORDER
