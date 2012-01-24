@@ -2,11 +2,11 @@
 /* CSS Document */
 
 @font-face {
-  font-family: 'Conv_MyriadPro-BoldCond';
-  src: url('/fonts/MyriadPro-BoldCond.eot');
-  src: local('☺'), url('/fonts/MyriadPro-BoldCond.eot?') format('embedded-opentype'), url('/fonts/MyriadPro-BoldCond.woff') format('woff'), url('/fonts/MyriadPro-BoldCond.ttf') format('truetype'), url('/fonts/MyriadPro-BoldCond.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+ font-family: 'Conv_MyriadPro-BoldCond';
+ src: url('/fonts/MyriadPro-BoldCond.eot');
+ src: local('☺'), url('/fonts/MyriadPro-BoldCond.eot?') format('embedded-opentype'), url('/fonts/MyriadPro-BoldCond.woff') format('woff'), url('/fonts/MyriadPro-BoldCond.ttf') format('truetype'), url('/fonts/MyriadPro-BoldCond.svg') format('svg');
+ font-weight: normal;
+ font-style: normal;
 }
 
 /* Need to place footer on bottom of the page */
@@ -27,14 +27,16 @@ body {
   background-color: #36373B;
   color: #000;
 }
+
 .title_underlined, .title_underlined_first {
-    border-bottom: 1px solid #D4D4D4;
-    color: #333333;
-    font-size: 16.72pt;
-    font-weight: bold;
-    margin:10px 20px;
+  border-bottom: 1px solid #D4D4D4;
+  color: #333333;
+  font-size: 16.72pt;
+  font-weight: bold;
+  margin:10px 20px;
 }
-.title_underlined_first{
+
+.title_underlined_first {
   margin: 30px 20px 10px 20px;
   padding-bottom: 6px;
   font-size: 24px;
@@ -60,9 +62,7 @@ p {
   text-align: center;
 }
 
-a,
-a:link,
-a:visited {
+a, a:link, a:visited {
   color: #0476c7;
 }
 
@@ -167,7 +167,7 @@ a:hover {
 }
 
 .second_body .center_page {
-/*top: -118px;*/
+  /*top: -118px;*/
   top: 0px;
 }
 
@@ -193,8 +193,7 @@ a:hover {
   background: url(/images/sign_up.png) bottom;
 }
 
-a.sign_up:link,
-a.sign_up:visited {
+a.sign_up:link, a.sign_up:visited {
   color: #fff;
   display:block;
 }
@@ -220,8 +219,7 @@ a.sign_up:hover {
   z-index: 10;
 }
 
-.menu ul,
-.menu li {
+.menu ul, .menu li {
   margin: 0;
   padding: 0;
   float: left;
@@ -243,8 +241,7 @@ a.sign_up:hover {
   color: #fff;
 }
 
-.menu a:hover,
-.menu a:active {
+.menu a:hover, .menu a:active {
   color: #fff;
   text-decoration: none;
   background: url(/images/menu_button.png) bottom;
@@ -287,8 +284,7 @@ a.sign_up:hover {
   border-right: none;
 }
 
-.top_submenu li a,
-.top_submenu li b {
+.top_submenu li a, .top_submenu li b {
   display: block;
   padding: 0 10px;
   color: #2c2c2c;
@@ -351,6 +347,7 @@ a.sign_up:hover {
   top: 35px;
   right: 11px;
 }
+
 .content_actions_home .content_actions {
   position: absolute;
   top: 61px;
@@ -371,9 +368,7 @@ a.sign_up:hover {
   margin-left: 5px;
 }
 
-.content_actions li a,
-.content_actions li a:hover,
-.content_actions li a:active {
+.content_actions li a, .content_actions li a:hover, .content_actions li a:active {
   color: #ffffff;
   text-decoration: none;
 }
@@ -478,13 +473,11 @@ a.sign_up:hover {
   text-align: right;
 }
 
-.red,
-.red a{
+.red, .red a {
   color: #b20404;
 }
 
-.green,
-.green a{
+.green, .green a {
   color: #177018;
 }
 
@@ -541,7 +534,7 @@ a.sign_up:hover {
   margin: 20px 0px 0px 0px;
   padding: 12px 15px 3px;
   text-transform: uppercase;
-	display:inline-block;
+  display:inline-block;
 }
 
 .separator_line {
@@ -591,8 +584,7 @@ a.sign_up:hover {
   float: left;
 }
 
-.buttons .button,
-.search .button {
+.buttons .button, .search .button {
   font-size: 10.94pt;
   background-image: url(/images/button2_bg.png);
   background-repeat: repeat-x;
@@ -603,8 +595,7 @@ a.sign_up:hover {
   float: left;
 }
 
-.buttons .button.blue,
-.search .button.blue {
+.buttons .button.blue, .search .button.blue {
   background-image: url(/images/button_blue_bg.png);
   background-color: #51abed;
   border-radius: 0px 4px 4px 0px;
@@ -628,9 +619,7 @@ a.sign_up:hover {
   background-image: url(/images/button_blue_bg_hover.png);
 }
 
-.buttons .button.blue a,
-.buttons .button.blue a:hover
-.buttons .button.blue a:active {
+.buttons .button.blue a, .buttons .button.blue a:hover .buttons .button.blue a:active {
   color: #fff;
   text-decoration: none;
 }
@@ -667,7 +656,6 @@ a.sign_up:hover {
   border-radius: 5px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-
 }
 
 .search .button {
@@ -727,7 +715,7 @@ a.sign_up:hover {
 
 .content_container .content_category {
   padding: 15px;
- /* border-bottom: 1px solid #d4d4d4; */
+  /* border-bottom: 1px solid #d4d4d4; */
   overflow: hidden;
 }
 
@@ -789,9 +777,8 @@ a.view_more {
   margin-bottom: 10px;
   float: left;
 }
-
-.content_unit:nth-child(3n) {
-  margin-right: 0px;
+ .content_unit:nth-child(3n) {
+ margin-right: 0px;
 }
 
 .content_unit .actions {
@@ -814,14 +801,14 @@ a.view_more {
   background: none repeat scroll 0 0 black;
 }
 
-.content_unit2 .preview a{
+.content_unit2 .preview a {
   display: table-cell;
   height:135px;
   vertical-align: middle;
 }
 
 .content_unit2 .preview img {
- /* border: 1px solid #666;*/
+/* border: 1px solid #666;*/
 }
 
 .content_unit2 .title {
@@ -960,8 +947,7 @@ ul.news li {
   padding: 3px 3px 3px 6px;
 }
 
-.date,
-.time {
+.date, .time {
   text-transform: uppercase;
   color: #777777;
 }
@@ -974,9 +960,7 @@ ul.news li {
   text-decoration:underline;
 }
 
-.team-item .preview,
-.photo_box,
-.smack_container .smack_content {
+.team-item .preview, .photo_box, .smack_container .smack_content {
   background-color:#000;
   text-align: center;
 }
@@ -985,14 +969,13 @@ ul.news li {
   display: table;
 }
 
-.team-item .preview a{
+.team-item .preview a {
   display: table-cell;
   width: 180px;
   max-width:180px;
   min-height: 12em;
   vertical-align: middle;
 }
-
 
 .smack_container .smack_content {
   margin: 10px 0;
@@ -1074,17 +1057,14 @@ ul.news li {
   left: -7px;
   background-image: url(/images/comment_corner1.png);
 }
-
-.comment:nth-child(odd) .comment_content {
-  background-color: #f5f5f5;
+ .comment:nth-child(odd) .comment_content {
+ background-color: #f5f5f5;
 }
-
-.comment:nth-child(even) .comment_content {
-  background-color: #e7e7e7;
+ .comment:nth-child(even) .comment_content {
+ background-color: #e7e7e7;
 }
-
-.comment:nth-child(even) .comment_content:before {
-  background-image: url(/images/comment_corner2.png);
+ .comment:nth-child(even) .comment_content:before {
+ background-image: url(/images/comment_corner2.png);
 }
 
 .add_comment {
@@ -1134,8 +1114,7 @@ ul.news li {
   width: 100%;
 }
 
-.section_title a:hover,
-a.section_link:hover {
+.section_title a:hover, a.section_link:hover {
   text-decoration: underline;
 }
 
@@ -1316,9 +1295,7 @@ a.section_link:hover {
   line-height: 20px;
 }
 
-.breadcrumbs a,
-.breadcrumbs a:link,
-.breadcrumbs a:visited {
+.breadcrumbs a, .breadcrumbs a:link, .breadcrumbs a:visited {
   color: #000;
 }
 
@@ -1376,7 +1353,6 @@ to keep footer on the bottom of page.
 }
 
 #conference_column .top_submenu {
-
   border-width: 1px 0px 1px 0px;
   border-style: solid;
   border-top-color: white;
@@ -1397,8 +1373,7 @@ to keep footer on the bottom of page.
   font-size: 8.75pt;
 }
 
-.left_menu ul,
-.left_menu ul li {
+.left_menu ul, .left_menu ul li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1427,8 +1402,7 @@ to keep footer on the bottom of page.
   background-repeat: no-repeat;
 }
 
-.with_submenu.active > a:hover,
-.with_submenu.active ul li.active a:hover {
+.with_submenu.active > a:hover, .with_submenu.active ul li.active a:hover {
   background: transparent !important;
 }
 
@@ -1439,40 +1413,31 @@ to keep footer on the bottom of page.
   padding-left: 17px;
 }
 
-.left_menu ul li a,
-.left_menu ul li a:link,
-.left_menu ul li a:visited {
+.left_menu ul li a, .left_menu ul li a:link, .left_menu ul li a:visited {
   text-decoration: none;
   color: #09689e;
 }
 
-.left_menu ul li a:hover,
-.left_menu ul li a:active {
+.left_menu ul li a:hover, .left_menu ul li a:active {
   text-decoration: none;
   color: #2c2c2c;
   background-color: #ececec;
 }
 
-.left_menu ul li.active,
-.left_menu ul li.active:hover {
+.left_menu ul li.active, .left_menu ul li.active:hover {
   background-image: url(/images/left_button_active.png);
   background-repeat: no-repeat;
 }
 
-.left_menu ul li.active a,
-.left_menu ul li.active a:link,
-.left_menu ul li.active a:visited {
+.left_menu ul li.active a, .left_menu ul li.active a:link, .left_menu ul li.active a:visited {
   color: #fff;
 }
 
-.left_menu ul li.college a,
-.left_menu ul li.college a:link,
-.left_menu ul li.college a:visited {
+.left_menu ul li.college a, .left_menu ul li.college a:link, .left_menu ul li.college a:visited {
   color: #09689e;
 }
 
-.left_menu ul li.active a:hover,
-.left_menu ul li.active a:active {
+.left_menu ul li.active a:hover, .left_menu ul li.active a:active {
   color: #000;
 }
 
@@ -1501,15 +1466,13 @@ to keep footer on the bottom of page.
   -moz-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
-
 }
 
 .left_menu ul li > ul li a {
   color: #09689E !important;
 }
 
-.left_menu ul li > ul li a:hover,
-.left_menu ul li > ul li a:active {
+.left_menu ul li > ul li a:hover, .left_menu ul li > ul li a:active {
   color: #000 !important;
 }
 
@@ -1626,8 +1589,7 @@ ul.inner_menu li {
   overflow: hidden;
 }
 
-ul.inner_menu li span,
-ul.inner_menu li a {
+ul.inner_menu li span, ul.inner_menu li a {
   background-image: url(/images/view_more_bg.png);
   color: #000;
   display: block;
@@ -1636,14 +1598,12 @@ ul.inner_menu li a {
   text-decoration: none;
 }
 
-ul.inner_menu li span,
-ul.inner_menu li a.active,
-ul.inner_menu li a:hover {
+ul.inner_menu li span, ul.inner_menu li a.active, ul.inner_menu li a:hover {
   color: #FFF;
   background-color: #30a0f0;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(38, 139, 217)), color-stop(100%, rgb(94, 179, 243)));
   background: -moz-linear-gradient(center top, rgb(38, 139, 217) 0%, rgb(94, 179, 243) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0F80D2, endColorstr=#66B9F4);
+ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0F80D2, endColorstr=#66B9F4);
   cursor: pointer;
 }
 
@@ -1800,7 +1760,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
-.four_col_view li{
+.four_col_view li {
   width:180px;
   position: relative;
 }
@@ -1830,7 +1790,7 @@ ul.items {
   margin:20px 0px 0px 0px;
 }
 
-.featured_articles .team-item, .articles .team-item{
+.featured_articles .team-item, .articles .team-item {
   float: none;
   list-style: none outside none;
   margin: 0 5px 10px 20px;
@@ -2149,13 +2109,11 @@ div.page {
   margin-top: 1em;
 }
 
-.page ul.links li ul li,
-.page ol {
+.page ul.links li ul li, .page ol {
   padding-left: 40px;
 }
 
-.page p,
-.page ol {
+.page p, .page ol {
   margin: 15px 0;
   line-height: 18px;
 }
@@ -2177,8 +2135,7 @@ div.page {
   color: #30A0F0;
 }
 
-#shifting_fields .description .field_with_errors,
-#shifting_fields .description label {
+#shifting_fields .description .field_with_errors, #shifting_fields .description label {
   float: right;
 }
 
@@ -2265,7 +2222,7 @@ div.fb-like-box {
   padding:0px 10px 0px 0px;
 }
 
-.most_smacked_number h3{
+.most_smacked_number h3 {
   font-weight: normal;
 }
 
@@ -2290,4 +2247,37 @@ div.fb-like-box {
 .home_smacks_of_week {
   margin-bottom: 40px;
   display: table;
+}
+
+.edit_post_page {
+}
+
+.edit_post_page tr {
+  height:auto !important;
+}
+
+.edit_post_page .description {
+  text-align:left !important;
+  padding: 0px 0px 5px 30px;
+}
+
+.edit_post_page .entry {
+  padding: 0px 0px 15px 30px !important;
+}
+
+.edit_post_page .checkbox {
+  padding: 14px 0 22px !important;
+}
+
+.edit_post_page .checkbox input {
+  padding:0px !important;
+}
+
+.edit_post_page .entry textarea {
+  width:700px !important;
+  padding:10px !important;
+}
+
+.table_padding .confirmation_container {
+  width:756px !important;
 }
