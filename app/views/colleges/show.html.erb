@@ -8,21 +8,22 @@
 
   <div class="content_container">
     <div class="photovideo">
-      <div class="college_content_title"><h2>Featured Articles</h2></div>
-	  <div class="separator_line"></div>
-      <div class="category_container">
-        <div class="content_category">
-          <ul class="items articles">
-            <% @articles.each do |post| %>
-              <%= render "posts/articles_preview", :post => post %>
-            <% end %>
-          </ul>
-          <div class="view_more_link clear_both">
-            <%= link_to "See all articles", polymorphic_path([ @parent, :articles ]) %>
+      <% if @articles.any? %>
+        <div class="college_content_title"><h2>Featured Articles</h2></div>
+        <div class="separator_line"></div>
+        <div class="category_container">
+          <div class="content_category">
+            <ul class="items articles">
+              <% @articles.each do |post| %>
+                <%= render "posts/articles_preview", :post => post %>
+              <% end %>
+            </ul>
+            <div class="view_more_link clear_both">
+              <%= link_to "See all articles", polymorphic_path([ @parent, :articles ]) %>
+            </div>
           </div>
         </div>
-      </div>
-
+      <% end %>
       <div class="college_content_title"><h2>User Posts</h2></div>
 	  <div class="separator_line"></div>
       <div class="category_container">
