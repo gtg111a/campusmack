@@ -33,7 +33,7 @@ module ApplicationHelper
     raw(html)
   end
 
-  def sign_up_service_link(provider, size = 64, link = true, image = true)
+  def sign_up_service_link(provider, sign_in_or_up, size = 64, link = true, image = true)
     resource_name ||= :user
     fixed_provider_name = provider.to_s.gsub('_apps', '')
     provider_name = fixed_provider_name.titleize
@@ -41,7 +41,7 @@ module ApplicationHelper
     html << "<li class='#{fixed_provider_name}'>"
     html << "<a href='#{omniauth_authorize_path(resource_name, provider)}' class='#{' icon' if size == :icon} clearfix'>" if link
     html << "<span class='symbol'>#{image_tag(fixed_provider_name + '_symbol_button' + '.png', :alt => provider_name)}</span>" if image
-    html << "<span class='invitation'>Sign up with #{fixed_provider_name.capitalize}</span>"
+    html << "<span class='invitation'>Sign #{sign_in_or_up.to_s} with #{fixed_provider_name.capitalize}</span>"
     html << '</a>'
     html << '</li>' if link
     raw(html)
