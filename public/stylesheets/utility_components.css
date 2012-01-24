@@ -98,8 +98,13 @@ input.dark_button{
     text-transform: uppercase;
 }
 
+.dark_button a:hover {
+text-decoration:none;
+}
+
 .dark_button:hover {
     background: #3d3d3d url('/images/button_bg_hover.png') repeat-x;
+ 
 }
 
 .white_button {
@@ -124,6 +129,11 @@ input.dark_button{
     font-size: 20px;
     line-height: 28px;
     text-transform: uppercase;
+}
+
+.white_button a:hover {
+  text-decoration:none;
+  color:black;
 }
 
 .table_button {
