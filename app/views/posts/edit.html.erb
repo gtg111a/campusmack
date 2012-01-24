@@ -9,27 +9,29 @@
     <div class="form_wrapper">
       <%= form_for([ @parent, @post], :validate => true, :html => { :multipart => true }) do |f| %>
         <div class="table_padding">
-          <table cellpadding="0" cellspacing="0">
+          <table cellpadding="0" cellspacing="0" class="edit_post_page">
             <tr>
               <td class="description"><%= f.label :title, 'Title:' %></td>
+            </tr><tr>
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
             <% if can? :manage, Post %>
               <% if @post.type != 'ArticlePost' %>
                 <tr>
                   <td class="description"><%= f.label :on_frontpage_week, 'Smack of the Week on the week:' %></td>
+                </tr><tr>
                   <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
                 </tr>
               <% end %>
               <tr>
-                <td class="description"><%= f.label :published %></td>
-                <td class="entry"><%= f.check_box :published %></td>
+                <td class="description" style="width:60px;"><%= f.label :published %><%= f.check_box :published %></td>
               </tr>
             <% end %>
             <% if @post.video %>
               <%= f.fields_for :video, @post.video do |vf| %>
                 <tr>
                   <td class="description"><%= vf.label :url, 'Video URL:' %></td>
+                </tr><tr>
                   <td class="entry"><%= vf.text_field :url %></td>
                 </tr>
               <% end %>
@@ -38,6 +40,7 @@
               <%= f.fields_for :photo, @post.photo do |pf| %>
                 <tr>
                   <td class="description"><%= pf.label :image, 'Photo:' %></td>
+                </tr><tr>
                   <td class="entry"><%= pf.file_field :image %></td>
                 </tr>
               <% end %>
@@ -46,6 +49,7 @@
               <%= f.fields_for :news_post, @post.news_post do |npf| %>
                 <tr>
                   <td class="description"><%= npf.label :url, 'News URL:' %></td>
+                </tr><tr>
                   <td class="entry"><%= npf.text_field :url %></td>
                 </tr>
               <% end %>
@@ -55,6 +59,7 @@
                 <%= f.fields_for :article, @post.article do |a| %>
                   <tr>
                     <td class="description"><%= a.label :image, 'Photo:' %></td>
+                  </tr><tr>
                     <td class="entry"><%= a.file_field :image %></td>
                   </tr>
                 <% end %>
@@ -62,6 +67,7 @@
                 <%= f.fields_for :article, @post.article do |a| %>
                   <tr>
                     <td class="description"><%= a.label :video_url, 'Video URL:' %></td>
+                  </tr><tr>
                     <td class="entry"><%= a.text_field :video_url %></td>
                   </tr>
                 <% end %>
@@ -69,13 +75,15 @@
             <% end %>
             <tr>
               <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
+            </tr><tr>
               <td class="entry"><%= f.text_area :summary %></td>
             </tr>
             <% if @post.article %>
               <%= f.fields_for :article, @post.article do |a| %>
                 <tr>
                   <td class="description va-top"><%= a.label :body, 'Body:' %></td>
-                  <td class="entry"><%= a.cktext_area :body, :width => 380 %></td>
+                </tr><tr>
+                  <td class="entry"><%= a.cktext_area :body, :width => 722 %></td>
                 </tr>
               <% end %>
             <% end %>

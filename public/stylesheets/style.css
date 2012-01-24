@@ -27,14 +27,16 @@ body {
   background-color: #36373B;
   color: #000;
 }
+
 .title_underlined, .title_underlined_first {
-    border-bottom: 1px solid #D4D4D4;
-    color: #333333;
-    font-size: 16.72pt;
-    font-weight: bold;
-    margin:10px 20px;
+  border-bottom: 1px solid #D4D4D4;
+  color: #333333;
+  font-size: 16.72pt;
+  font-weight: bold;
+  margin:10px 20px;
 }
-.title_underlined_first{
+
+.title_underlined_first {
   margin: 30px 20px 10px 20px;
   padding-bottom: 6px;
   font-size: 24px;
@@ -2177,11 +2179,6 @@ div.page {
   color: #30A0F0;
 }
 
-#shifting_fields .description .field_with_errors,
-#shifting_fields .description label {
-  float: right;
-}
-
 div#error_explanation {
   padding: 1em;
   color: red;
@@ -2290,4 +2287,38 @@ div.fb-like-box {
 .home_smacks_of_week {
   margin-bottom: 40px;
   display: table;
+}
+
+.standard .post_form table.edit_post_page .description {
+  width: auto;
+}
+
+.edit_post_page tr {
+  height:auto !important;
+}
+
+.edit_post_page .description {
+  text-align:left !important;
+  padding: 0px 0px 5px 30px;
+}
+
+.edit_post_page .entry {
+  padding: 0px 0px 15px 30px !important;
+}
+
+.edit_post_page .checkbox {
+  padding: 14px 0 22px !important;
+}
+
+.edit_post_page .checkbox input {
+  padding:0px !important;
+}
+
+.edit_post_page .entry textarea {
+  width:700px !important;
+  padding:10px !important;
+}
+
+.table_padding .confirmation_container {
+  width:756px !important;
 }

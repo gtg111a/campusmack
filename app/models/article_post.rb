@@ -3,6 +3,7 @@ class ArticlePost < Post
   include ActionView::Helpers::SanitizeHelper
   acts_as_commentable
 
+  belongs_to :postable, :polymorphic => true, :counter_cache => :smacks_count
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   after_validation :update_summary
