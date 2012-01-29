@@ -2,7 +2,7 @@
   <% if @services.any? %>
       <p class="info_text">Authentication Services Settings</p>
   <% end %>
-  
+
   <div class="auths">
   <% @services.each do |service| %>
       <div class="service_in_use round clearfix">
@@ -27,7 +27,7 @@
     <p class="info_text">You can connect more accounts to sign in</p>
     <ul id="services_list" class="clearfix">
       <%- @available_services.each do |provider| %>
-          <li><%= sign_up_service_link(provider) %></li>
+          <li><%= sign_up_service_link(provider, :in) %></li>
       <% end %>
     </ul>
   </div>

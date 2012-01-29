@@ -1937,6 +1937,10 @@ ul.items {
   text-transform: uppercase;
 }
 
+.team-item .which-college em.lowercase{
+  text-transform:lowercase;
+}
+
 .team-item .which-college a {
   color: #0476C7;
 }

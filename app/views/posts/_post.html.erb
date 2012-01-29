@@ -25,13 +25,13 @@
   </div>
   <div class="unit_info">
     Posted
-    <span class="date"><%= time_ago_in_words(post.created_at) %> ago</span>
+    <span class="date"><%= formatted_datetime(post.created_at) %></span>
     <span class="by">by:</span>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
   </div>
   <div class="description">
    <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
-    <%= truncate(post.summary, :length => Post::MAX_TEXT_LEN) %></p>
+    <%= truncate(censoring(post.summary), :length => Post::MAX_TEXT_LEN) %></p>
   </div>
   <div class="actions">
     <%= share_and_voting_icons(post, :post) %>

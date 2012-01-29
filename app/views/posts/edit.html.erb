@@ -73,11 +73,6 @@
                 <% end %>
               <% end %>
             <% end %>
-            <tr>
-              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
-            </tr><tr>
-              <td class="entry"><%= f.text_area :summary %></td>
-            </tr>
             <% if @post.article %>
               <%= f.fields_for :article, @post.article do |a| %>
                 <tr>

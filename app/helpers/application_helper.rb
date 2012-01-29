@@ -207,9 +207,9 @@ module ApplicationHelper
 
   def censoring(text)
     if current_user && current_user.censor_text? && text
-      Profanalyzer.filter text
+      raw(Profanalyzer.filter(text).html_safe)
     else
-      text
+      raw(text.html_safe)
     end
   end
 
@@ -225,4 +225,7 @@ module ApplicationHelper
     "#{resp[:link][:protocol]}://#{resp[:link][:address]}#{resp[:link][:path]}?api_format=xml&key=#{resp[:link][:query][:key]}&token=#{resp[:link][:query][:token]}".html_safe
   end
 
+  def formatted_datetime(datetime)
+    datetime.strftime("%l:%M %p %B %d, %Y")
+  end
 end
