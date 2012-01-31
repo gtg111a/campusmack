@@ -18,5 +18,3 @@ class SupportController < ApplicationController
   end
 
 end
-
-

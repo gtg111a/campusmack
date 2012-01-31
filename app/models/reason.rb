@@ -2,13 +2,15 @@ class Reason < ActiveRecord::Base
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: reasons
 #
-#  id         :integer         primary key
+#  id         :integer(4)      not null, primary key
 #  reason     :string(255)
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
 #
 

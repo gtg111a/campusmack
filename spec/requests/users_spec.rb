@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'factories'
 
 describe "Users" do
  

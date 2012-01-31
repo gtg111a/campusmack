@@ -51,23 +51,24 @@ class Vote < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: votes
 #
-#  id            :integer         primary key
-#  vote          :boolean         default(FALSE)
-#  voteable_id   :integer         not null, indexed => [voteable_type], indexed => [voter_id, voter_type, voteable_type]
-#  voteable_type :string(255)     not null, indexed => [voteable_id], indexed => [voter_id, voter_type, voteable_id]
-#  voter_id      :integer         indexed => [voter_type], indexed => [voter_type, voteable_id, voteable_type]
-#  voter_type    :string(255)     indexed => [voter_id], indexed => [voter_id, voteable_id, voteable_type]
-#  created_at    :timestamp
-#  updated_at    :timestamp
+#  id            :integer(4)      not null, primary key
+#  vote          :boolean(1)      default(FALSE)
+#  voteable_id   :integer(4)      not null, indexed => [voter_id, voter_type, voteable_type], indexed => [voteable_type]
+#  voteable_type :string(255)     not null, indexed => [voter_id, voter_type, voteable_id], indexed => [voteable_id]
+#  voter_id      :integer(4)      indexed => [voter_type, voteable_id, voteable_type], indexed => [voter_type]
+#  voter_type    :string(255)     indexed => [voter_id, voteable_id, voteable_type], indexed => [voter_id]
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 # Indexes
 #
-#  index_votes_on_voter_id_and_voter_type        (voter_id,voter_type)
-#  index_votes_on_voteable_id_and_voteable_type  (voteable_id,voteable_type)
 #  fk_one_vote_per_user_per_entity               (voter_id,voter_type,voteable_id,voteable_type)
+#  index_votes_on_voteable_id_and_voteable_type  (voteable_id,voteable_type)
+#  index_votes_on_voter_id_and_voter_type        (voter_id,voter_type)
 #
 

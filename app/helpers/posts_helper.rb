@@ -47,6 +47,9 @@ module PostsHelper
   end
 
   def youtube_embed(youtube_url, size = :small)
+    if (youtube_url =~ /bitsontherun\.com/)
+      return raw "<script type=\"text/javascript\" src=\"#{youtube_url}\"></script>"
+    end
     if youtube_url =~ /youtube|youtu.be|y2u.be/
       if youtube_url[/(y2u|youtu)\.be\/([^\?]*)/]
         youtube_id = $2

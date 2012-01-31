@@ -7,13 +7,13 @@
     </div>
   </div>
   <div class="preview">
-    <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video %>
-    <% if post.photo %>
+    <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
+    <% if post.photo || (post.article && post.article.image.exists?) %>
         <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
     <% end %>
   </div>
   <div class="summary">
-    <%= censoring(truncate(post.summary, :length => 75)) %>
+    <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
   </div>
   <%= share_and_voting_icons(post, :preview) %>
 </li>

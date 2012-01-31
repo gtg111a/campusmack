@@ -1,3 +1,45 @@
+<% if params["contest"] %>
+  <% content_for :jq do %>
+    $("#upload_form").submit(function(){
+      setTimeout(function() {
+        $("#upload_form").html('<div id="upload_progress"><div id="upload_bar">Starting upload...</div></div>');
+        uploadInterval = setInterval('refreshProgress()', 5000);
+      }, 500);
+    });
+  <% end %>
+  <% content_for :js do %>
+    var uploadInterval;
+    function refreshProgress() {
+      $.ajax({
+        url: "http://upload.bitsontherun.com/progress?token=<%= @botr[:link][:query][:token] %>&callback=updateProgress",
+        dataType: "jsonp"
+      });
+    }
+    function updateProgress(data) {
+      if (data.state == "starting") {
+        $("#upload_bar").html("Starting upload...");
+        $("#upload_bar").css("width", "100%");
+        return;
+      }
+      if (data.state == "uploading") {
+        var percent = Math.round(data.received / data.size * 100);
+        $("#upload_bar").html(percent + " %");
+        $("#upload_bar").css("width", (percent < 10 ? "10" : percent) + "%");
+      }
+      if (data.state == "error") {
+        $("#upload_bar").html("Error: " + data.status);
+        $("#upload_bar").css("width", "100%");
+      }
+      if (data.state == "done") {
+        clearInterval(uploadInterval);
+        $("#post_submit_btn").removeClass("hidden");
+        $("#post_submit_btn").addClass("blue_button");
+        $("#upload_bar").html("Uploaded! Now you can submit this video below");
+        $("#upload_bar").css("width", "100%");
+      }
+    }
+  <% end %>
+<% end %>
 <div class="standard clearfix">
   <div class="title_wrapper clearfix">
     <div class="cont_title"><h1><%= @title %></h1></div>
@@ -7,6 +49,24 @@
   </div>
   <div class="form_container post_form">
     <div class="form_wrapper">
+      <% if params["contest"] %>
+        <iframe id="upload_iframe" name="upload_iframe" class="hidden" width="1" height="1"></iframe>
+        <form id="upload_form" action="<%= get_botr_upload_url(@botr) %>" method="post" enctype="multipart/form-data" target="upload_iframe">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="description"><label for="file">Upload video:</label></td>
+              <td class="entry"><%= file_field_tag :file %></td>
+            </tr>
+          </table>
+          <div class="confirmation_container clearfix">
+            <div class="accept clearfix">
+              <div class="important_notice clearfix">
+              </div>
+              <div class="blue_button"><%= submit_tag "UPLOAD" %></div>
+            </div>
+          </div>
+        </form>
+      <% end %>
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
         <%= render 'shared/error_messages', :object => f.object %>
       <% # Rendering content to javascript variables to switch later on  %>
@@ -59,22 +119,24 @@
       <% end %>
         <div class="table_padding">
           <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td class="description"><%= f.label :type, 'Post type:' %></td>
-              <td class="entry">
-                <ul class="inner_menu">
-                  <li>
-                    <a id="switch_video" href="#" class="active">Video</a>
-                  </li>
-                  <li>
-                    <a id="switch_photo" href="#">Photo</a>
-                  </li>
-                  <li>
-                    <a id="switch_news" href="#">News</a>
-                  </li>
-                </ul>
-              </td>
-            </tr>
+            <% unless params["contest"] %>
+              <tr>
+                <td class="description"><%= f.label :type, 'Post type:' %></td>
+                <td class="entry">
+                  <ul class="inner_menu">
+                    <li>
+                      <a id="switch_video" href="#" class="active">Video</a>
+                    </li>
+                    <li>
+                      <a id="switch_photo" href="#">Photo</a>
+                    </li>
+                    <li>
+                      <a id="switch_news" href="#">News</a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
             <tr>
               <td class="description"><%= f.label :title, 'Title:' %></td>
               <td class="entry"><%= f.text_field :title %></td>
@@ -86,14 +148,21 @@
               </tr>
             <% end %>
           </table>
-          <table id="shifting_fields" cellpadding="0" cellspacing="0">
+          <% unless params["contest"] %>
+            <table id="shifting_fields" cellpadding="0" cellspacing="0">
+              <%= f.fields_for :video, Video.new do |vf| %>
+                <tr>
+                  <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
+                  <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <%= f.hidden_field :contest, :value => true %>
             <%= f.fields_for :video, Video.new do |vf| %>
-              <tr>
-                <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
-                <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
-              </tr>
+              <%= vf.hidden_field :url, :value => "http://content.bitsontherun.com/players/#{@botr[:link][:query][:key]}-9QSaXAN0.js" %>
             <% end %>
-          </table>
+          <% end %>
           <table cellpadding="0" cellspacing="0">
             <tr>
               <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
@@ -104,7 +173,7 @@
             <div class="accept clearfix">
               <div class="important_notice clearfix">
               </div>
-              <div class="blue_button"><%= f.submit "SUBMIT" %></div>
+              <div class="<%= params["contest"] ? "hidden" : "blue_button" %>" id="post_submit_btn"><%= f.submit "SUBMIT" %></div>
             </div>
           </div>
         </div>

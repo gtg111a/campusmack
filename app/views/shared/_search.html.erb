@@ -17,5 +17,5 @@
     <%= f.submit "Go", :name => nil, :class => 'button' %>
     <%= f.hidden_field :order, :name => "order", :value => @order, :id => "sort_field" %>
     <%= f.hidden_field :per, :name => "per", :value => @per_page, :id => "per_page_field" %>
-    <%= f.hidden_field :page, :name => "page", :value => params[:page], :id => "page_field" %>
+    <%= f.hidden_field :page, :name => "page", :value => params[:page] || "1", :id => "page_field" %>
 <% end %>

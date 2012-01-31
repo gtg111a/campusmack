@@ -70,6 +70,7 @@ input.dark_button{
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+    behavior: url(PIE.htc);
     border:none;
     text-align: center;
     width: auto!important;
@@ -95,6 +96,10 @@ input.dark_button{
     font-size: 19px;
     line-height: 28px;
     text-transform: uppercase;
+}
+
+.dark_button a:hover {
+text-decoration:none;
 }
 
 .dark_button:hover {
@@ -123,6 +128,11 @@ input.dark_button{
     font-size: 20px;
     line-height: 28px;
     text-transform: uppercase;
+}
+
+.white_button a:hover {
+  text-decoration:none;
+  color:black;
 }
 
 .table_button {

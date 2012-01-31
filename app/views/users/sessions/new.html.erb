@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="right_column sign_in_column">
-      <%= render :partial => "users/shared/sign_up_services_list" %>
+      <%= render :partial => "users/shared/sign_up_services_list", :locals => { :sign_in_or_up => :in } %>
     </div>
   </div>
 </div>

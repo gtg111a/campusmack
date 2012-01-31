@@ -21,13 +21,6 @@ class User < ActiveRecord::Base
   has_many :redemptions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
-  has_many :relationships, :dependent => :destroy,
-           :foreign_key => "follower_id"
-  has_many :reverse_relationships, :dependent => :destroy,
-           :foreign_key => "followed_id",
-           :class_name => "Relationship"
-  has_many :following, :through => :relationships, :source => :followed
-  has_many :followers, :through => :reverse_relationships, :source => :follower
   has_many :contacts
   has_many :contact_groups
   has_many :deliveries
@@ -45,7 +38,6 @@ class User < ActiveRecord::Base
             :uniqueness => { :case_sensitive => false }
   validates :college, :presence => true
   validates :affiliation, :presence => true
-  validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
   has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" },
@@ -55,18 +47,6 @@ class User < ActiveRecord::Base
                     :path => "/avatars/:style/:id/:filename"
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/pjpeg'],
                                     :message => 'avatar must be of filetype .jpg, .png or .gif'
-
-  def following?(followed)
-    relationships.find_by_followed_id(followed)
-  end
-
-  def follow!(followed)
-    relationships.create!(:followed_id => followed.id)
-  end
-
-  def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
-  end
 
   alias_method :old_update_with_password, :update_with_password
 
@@ -102,49 +82,49 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id                     :integer         primary key
+#  id                     :integer(4)      not null, primary key
 #  username               :string(255)     indexed
 #  email                  :string(255)     not null, indexed
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  admin                  :boolean         default(FALSE)
-#  college_id             :integer
+#  college_id             :integer(4)
 #  affiliation            :string(255)
-#  up_votes               :integer
-#  down_votes             :integer
+#  up_votes               :integer(4)
+#  down_votes             :integer(4)
 #  encrypted_password     :string(128)     not null
 #  reset_password_token   :string(255)     indexed
-#  reset_password_sent_at :timestamp
+#  reset_password_sent_at :datetime
 #  confirmation_token     :string(255)
-#  confirmed_at           :timestamp
-#  confirmation_sent_at   :timestamp
-#  remember_created_at    :timestamp
-#  sign_in_count          :integer         default(0)
-#  current_sign_in_at     :timestamp
-#  last_sign_in_at        :timestamp
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer(4)      default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  created_at             :timestamp
-#  updated_at             :timestamp
-#  censor_text            :boolean         default(TRUE)
-#  smack_count            :integer         default(0)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  censor_text            :boolean(1)      default(TRUE)
 #  gender                 :string(1)
 #  birthday               :date
 #  avatar_file_name       :string(255)
 #  avatar_content_type    :string(255)
-#  avatar_file_size       :integer
-#  avatar_updated_at      :timestamp
-#  posts_count            :integer         default(0)
-#  deliveries_count       :integer         default(0)
+#  avatar_file_size       :integer(4)
+#  avatar_updated_at      :datetime
+#  posts_count            :integer(4)      default(0)
+#  deliveries_count       :integer(4)      default(0)
+#  role                   :string(255)     default("user")
 #
 # Indexes
 #
-#  index_users_on_username              (username)
-#  index_users_on_reset_password_token  (reset_password_token)
 #  index_users_on_email                 (email)
+#  index_users_on_reset_password_token  (reset_password_token)
+#  index_users_on_username              (username)
 #
 

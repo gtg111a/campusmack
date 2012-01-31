@@ -13,17 +13,17 @@ Feature: Comments creating, editing and deleting
     And I have "<Name>" <ConfOrColl> <Type> "<Title>" with text "bla-bla-bla" created by "<Username>"
     And user signed in as "<Email>" with "<Password>"
     And I am on <Type> "<Title>" page
-    And I fill in "Comment" with "<Comment>"
-    When I press "Submit Comment"
+    And I fill in "Add comment" with "<Comment>"
+    When I press "Comment"
     Then I should see "<Comment>"
-    And I should see "Posted less than a minute ago by <Signed In>" within "div.comment"
-    And I should see "Edit" within "div.comment"
-    And I should see "Delete" within "div.comment"
+    And I should see "by: <Signed In>" within "div.comment_info"
+    And I should have element "div.comment_content div.actions img[alt='Edit']"
+    And I should have element "div.comment_content div.actions img[alt='Delete']"
     And I reload the page
     And I should see "<Comment>"
-    And I should see "Posted less than a minute ago by <Signed In>" within "div.comment"
-    And I should see "Edit" within "div.comment"
-    And I should see "Delete" within "div.comment"
+    And I should see "by: <Signed In>" within "div.comment_info"
+    And I should have element "div.comment_content div.actions img[alt='Edit']"
+    And I should have element "div.comment_content div.actions img[alt='Delete']"
     
     Examples:
     | ConfOrColl | Name | Type       | Title           | Username    | Email            | Password | Signed In | Comment            |
@@ -53,7 +53,7 @@ Feature: Comments creating, editing and deleting
     When I follow "Edit" within "div.comment"
     Then I should see "Edit comment"
     And I fill in "Comment" with "<New Text>"
-    And I press "Update Comment"
+    And I press "SUBMIT"
     And I should see "Comment updated."
     And I should see "<New Text>"
     
@@ -109,7 +109,7 @@ Feature: Comments creating, editing and deleting
     Then I should not see "Edit" within "div.comment"
     And I should not see "Delete" within "div.comment"
     And I go to "<Old Text>" comment edit page
-    And I should see "You must sign up/sign in to use this function."
+    And I should see "You must be signed-up/signed-in to use this function"
     
     Examples:
     | ConfOrColl | Name   | Type       | Title           | Username  | Email              | Password | Old Text           | New Text          |

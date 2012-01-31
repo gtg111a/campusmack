@@ -27,5 +27,4 @@ class Support
     return false
   end
 
-
 end
