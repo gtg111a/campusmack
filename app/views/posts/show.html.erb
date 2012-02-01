@@ -30,7 +30,7 @@
     </ul>
   </div>
   <div class="content_title"><%= censoring(@post.title) %></div>
-  <div class="content_container">
+  <div class="content_container<%= ' article' if @post.is_a?(ArticlePost) %>">
     <div class="content_category">
       <div class="smack_container clearfix">
         <ul class="actions">
@@ -49,7 +49,7 @@
       <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
     </span>
           Posted
-          <span class="date"><%= time_ago_in_words(@post.created_at) %> ago</span>
+          <span class="date"><%= formatted_datetime(@post.created_at.to_datetime) %>, </span>
           <em>by</em>
           <%= link_to @post.user.try(:username), user_path(@post.user), :class => "author" %>
         </div>
@@ -89,10 +89,10 @@
         <% end %>
         <% if @post.article %>
           <div class="summary">
-            <%= censoring(@post.article.body) %>
+            <%= censoring(@post.article.body).html_safe %>
           </div>
         <% else %>
-          <div class="summary"><%= censoring(@post.summary) %>
+          <div class="summary"><%= truncate(censoring(@post.summary), :length => Post::MAX_TEXT_LEN) %>
           <% if @post.summary && params[:action] != 'show' %>
             <%= link_to " [more...]", [@parent, @post] %>
           <% end %>

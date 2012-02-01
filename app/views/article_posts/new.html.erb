@@ -37,9 +37,10 @@
           $("#switch_photo").click(function(){switch_fields(1); return false;});
       <% end %>
         <div class="table_padding">
-          <table cellpadding="0" cellspacing="0">
+          <table cellpadding="0" cellspacing="0" class="edit_post_page">
             <tr>
               <td class="description"><%= f.label :type, 'Article type:' %></td>
+            </tr><tr>
               <td class="entry">
                 <ul class="inner_menu">
                   <li>
@@ -53,20 +54,21 @@
             </tr>
             <tr>
               <td class="description"><%= f.label :title, 'Title:' %></td>
+            </tr><tr>
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
             <% if can? :manage, Post %>
               <tr>
                 <td class="description"><%= f.label :on_frontpage_week, 'Article of the Week on the week:' %></td>
+              </tr><tr>
                 <td class="entry"><%= f.select(:on_frontpage_week, (Date.today.cweek..52).to_a, {:include_blank => true}) %></td>
               </tr>
               <tr>
-                <td class="description"><%= f.label :published %></td>
-                <td class="entry"><%= f.check_box :published %></td>
+                <td class="description"><%= f.label :published %><%= f.check_box :published %></td>
               </tr>
             <% end %>
           </table>
-          <table id="shifting_fields" cellpadding="0" cellspacing="0">
+          <table id="shifting_fields" cellpadding="0" cellspacing="0" class="edit_post_page">
             <%= f.fields_for :article, Article.new do |a| %>
               <tr>
                 <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= a.label :video_url, ' URL:' %></td>
@@ -74,11 +76,12 @@
               </tr>
             <% end %>
           </table>
-          <table cellpadding="0" cellspacing="0">
+          <table cellpadding="0" cellspacing="0" class="edit_post_page">
             <%= f.fields_for :article, Article.new do |a| %>
               <tr>
                 <td class="description va-top"><%= a.label :body, 'Body:' %></td>
-                <td class="entry"><%= a.text_area :body %></td>
+              </tr><tr>
+                <td class="entry"><%= a.cktext_area :body, :width => 722 %></td>
               </tr>
             <% end %>
           </table>

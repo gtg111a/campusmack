@@ -1,14 +1,17 @@
 class ArticlePost < Post
   include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::SanitizeHelper
   acts_as_commentable
 
+  belongs_to :postable, :polymorphic => true, :counter_cache => :smacks_count
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  before_create :create_summary
+  after_validation :update_summary
 
-  def create_summary
-    self.summary = truncate(article.body, :length => 64, :separator => ' ')
+  def update_summary
+    self.summary = truncate(strip_tags(article.body), :length => Post::MAX_TEXT_LEN, :separator => ' ')
   end
+
 end
 
 

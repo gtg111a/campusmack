@@ -173,7 +173,7 @@
 }
 
 .facebox_form {
-  padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 .standard input, .standard textarea, .facebox_form input, .facebox_form textarea {
@@ -292,8 +292,8 @@
 }
 
 .standard .share_post .content_bg {
-  position: relative;
-  display: block;
+    position: relative;
+    display: block;
 }
 
 .standard .share_post .content_bg img, .standard .share_post .content_bg object {
@@ -437,6 +437,10 @@
     width: 156px;
 }
 
+.standard .right_column .sign_up_with_container ul li a:hover{
+    text-decoration:none;
+}
+
 .standard .right_column .sign_up_with_container ul .twitter a {
     background: url('/images/bg_twitter_button.png') repeat-x;
 }
@@ -562,7 +566,12 @@
 }
 
 .standard .form_sign_in .links .l_column a {
-    color: #7A7B7D;
+    color: #333333;
+    display: block;
+}
+
+.standard .form_sign_in .links .l_column a:hover{
+    color: #000;
     display: block;
 }
 
@@ -596,6 +605,10 @@
 .standard .form_sign_in .not_a_member_box .sign_up_now_button a {
     padding-left: 9px;
     padding-right: 9px;
+}
+
+.standard .form_sign_in .not_a_member_box .sign_up_now_button a:hover {
+    text-decoration:none;
 }
 
 .standard .form_sign_in .not_a_member_box .not_a_member_text {
@@ -826,7 +839,7 @@
 }
 
 .email_settings_wrapper ul {
-    margin: 5px;
+    margin: 5px 15px;
 }
 
 .email_settings_wrapper ul li {

@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
             :uniqueness => { :case_sensitive => false }
   validates :college, :presence => true
   validates :affiliation, :presence => true
-  validates :gender, :presence => true
   validates :password_confirmation, :presence => true, :on => :create
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
   has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" },
