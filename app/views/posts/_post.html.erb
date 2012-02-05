@@ -16,13 +16,9 @@
     <% end %>
   </div>
   <div class="title">
-<<<<<<< HEAD
-   <%= link_to censoring(post.title), [post.postable, post] %>
-    <% if can? :manage, Article and !post.published?%>
-=======
+
     <%= link_to censoring(post.title), [post.postable, post] %>
     <% if can? :manage, Article and !post.published? %>
->>>>>>> 2e39f51626a8f1fafaa75ecab5480aace06fe1b6
       <span style="color:red">Unpublished</span>
     <% end %>
   </div>
@@ -30,16 +26,15 @@
     Posted
     <span class="date"><%= formatted_datetime(post.created_at) %></span>
     <span class="by">by:</span>
+	<% if post.article %>
+	<%= link_to(truncate(post.user.try(:first_name), :length => 16) + " " + truncate(post.user.try(:last_name), :length => 16), post.user, :class => :author) %>
+	<% else %>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
+	<% end %>
   </div>
   <div class="description">
-<<<<<<< HEAD
-    <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
-    <%= post.summary %>
-=======
    <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
     <%= truncate(censoring(post.summary), :length => Post::MAX_TEXT_LEN) %></p>
->>>>>>> 2e39f51626a8f1fafaa75ecab5480aace06fe1b6
   </div>
   <div class="actions">
     <%= share_and_voting_icons(post, :post) %>
