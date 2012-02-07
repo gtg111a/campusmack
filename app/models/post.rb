@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   #Through the 'acts_as_commentable' gem
   acts_as_commentable
 
-  attr_accessible :title, :summary, :vote, :on_frontpage_week, :published, :video_attributes, :photo_attributes, :news_post_attributes, :statistic_attributes, :article_attributes
+  attr_accessible :title, :summary, :vote, :on_frontpage_week, :published, :video_attributes, :photo_attributes, :news_post_attributes, :statistic_attributes, :article_attributes, :contest
 
   attr_searchable :title, :summary, :type
 
@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
 
   DEFAULT_ORDER = 'created_at desc'
   PER_PAGE_DEFAULT = [25, 50, 100, 150]
+  MAX_TEXT_LEN = 350
 
   def self.default_order
     DEFAULT_ORDER
@@ -63,6 +64,9 @@ class Post < ActiveRecord::Base
   end
 
   def youtube_thumbnail_url
+    if self.contest
+      return "http://content.bitsontherun.com/thumbs/#{self.video.url.match(/players\/(.{8})/)[1]}-200.jpg"
+    end
     if self.video
       url = self.video.url
     elsif self.article

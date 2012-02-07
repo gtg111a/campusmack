@@ -22,10 +22,21 @@ class PostsController < ApplicationController
       return
     end
     @post = @parent.send(@post_cls).build
-    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+    if params['contest']
+      @title = 'Submit a ' + @parent.name + ' contest video'
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A VIDEO'
+    else
+      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+    end
     init_college_menu
     add_breadcrumbs
+    if params["contest"]
+      call = BitsOnTheRun::API.new(:call)
+      call.method('videos/create')
+      resp = call.execute
+      @botr = resp.to_hash
+    end
     render 'posts/new'
   end
 
@@ -77,7 +88,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -191,7 +202,7 @@ class PostsController < ApplicationController
         logger.error "Could not save delivery: #{$!}"
       end
       flash[:success] = 'Successfully sent!'
-      redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
+      redirect_to polymorphic_path([ @post.postable, @post ])
     end
   end
 
