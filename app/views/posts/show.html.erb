@@ -29,7 +29,7 @@
       <% end %>
     </ul>
   </div>
-  <div class="content_title"><%= censoring(@post.title) %></div>
+  <div class="content_title"><%= censoring(@post.title, @post) %></div>
   <div class="content_container<%= ' article' if @post.is_a?(ArticlePost) %>">
     <div class="content_category">
       <div class="smack_container clearfix">
@@ -89,7 +89,7 @@
         <% end %>
         <% if @post.article %>
           <div class="summary">
-            <%= censoring(@post.article.body).html_safe %>
+            <%= @post.article.body.html_safe %>
           </div>
         <% else %>
           <div class="summary"><%= truncate(censoring(@post.summary), :length => Post::MAX_TEXT_LEN) %>
