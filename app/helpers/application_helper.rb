@@ -206,12 +206,9 @@ module ApplicationHelper
     request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search"
   end
 
-  def censoring(text)
-    if current_user && current_user.censor_text? && text
-      raw(Profanalyzer.filter(text).html_safe)
-    else
-      raw(text.html_safe)
-    end
+  def censoring(text, post = nil)
+    return raw(text.to_s.html_safe) if (current_user && !current_user.censor_text?) || post.is_a?(ArticlePost)
+    raw(Profanalyzer.filter(text).html_safe)
   end
 
   def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
