@@ -70,6 +70,7 @@ input.dark_button{
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+    behavior: url(PIE.htc);
     border:none;
     text-align: center;
     width: auto!important;
@@ -95,6 +96,10 @@ input.dark_button{
     font-size: 19px;
     line-height: 28px;
     text-transform: uppercase;
+}
+
+.dark_button a:hover {
+text-decoration:none;
 }
 
 .dark_button:hover {
@@ -125,6 +130,11 @@ input.dark_button{
     text-transform: uppercase;
 }
 
+.white_button a:hover {
+  text-decoration:none;
+  color:black;
+}
+
 .table_button {
     font-style: "Conv_MyriadPro-BoldCond";
     background: #fff url(/images/utility_button-bg.png) repeat-x top;
@@ -134,7 +144,7 @@ input.dark_button{
     border-color: #c2c2c2;
     text-transform: uppercase;
     font-size: 10px;
-    padding: 0 10px;
+    padding: 0 5px;
     line-height: 18px;
     color: #484848 !important;
     height: 17px;

@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.admin?
+    if user.role == "admin"
       can :manage, :all
       can :access, :rails_admin
       cannot :report, [Comment, Post] do |reportable|
@@ -29,6 +29,9 @@ class Ability
       can :manage, ContactGroup, :user_id => user.id
       can :report, [Comment, Post] do |reportable|
         !(reportable.reports.where(:user_id => user.id).any? || reportable.user_id == user.id)
+      end
+      if user.role == "writer"
+        can :create, [Article, ArticlePost]
       end
     end
 

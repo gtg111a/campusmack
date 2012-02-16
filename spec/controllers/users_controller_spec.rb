@@ -97,6 +97,14 @@ end
       assigns(:user).should == @user
     end
     
+    it "should show the user's microposts" do
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+      get :show, :id => @user
+      response.should have_selector("span.content", :content => mp1.content)
+      response.should have_selector("span.content", :content => mp2.content)
+    end
+    
     it "should have the right follower/following counts" do
       other_user = Factory(:user, :email => Factory.next(:email))
       other_user.follow!(@user)
@@ -107,7 +115,35 @@ end
                                          :content => "1 follower")
       end
     
-
+    describe "Micropost tests" do
+      before(:each) do
+       35.times { Factory(:micropost, :user => @user, :content => "foo") }
+     end
+     
+     it "should paginate microposts" do
+       get :show, :id => @user
+       response.should have_selector('div.pagination')
+       response.should have_selector('span.disabled',
+                                   :content => "Previous")
+       response.should have_selector('a', :href => "/users/2?page=2",
+                                          :content => "2")
+       response.should have_selector('a', :href => "/users/2?page=2",
+                                         :content => "Next")
+    end
+    
+    it "should display the number of posts in sidebar" do
+      get :show, :id => @user
+      response.should have_selector('strong', :content => "Microposts")
+      response.should have_selector('td', :class => "sidebar round", :content => "35" )
+  end
+  
+    it "should not allow delete for non-signed in user posts" do
+      second = Factory(:user, :name => "Bob", :email => "another@example.com")
+      35.times { Factory(:micropost, :user => second, :content => "poo") } 
+      get :show, :id => second
+      response.should have_selector('td', :class => "sidebar round", :content => "35" )
+      response.should_not have_selector('a', :content => "delete")
+    end
  end
 end
   

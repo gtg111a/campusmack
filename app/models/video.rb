@@ -5,12 +5,13 @@ class Video < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: videos
 #
-#  id         :integer         not null, primary key
-#  post_id    :integer
+#  id         :integer(4)      not null, primary key
+#  post_id    :integer(4)
 #  url        :string(255)
 #  created_at :datetime
 #  updated_at :datetime

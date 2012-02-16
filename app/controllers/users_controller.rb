@@ -1,5 +1,3 @@
-require 'mailgun'
-
 class UsersController < ApplicationController
 
   skip_authorization_check :only => [ :create, :new, :plaxo_import ]
@@ -9,7 +7,7 @@ class UsersController < ApplicationController
     @users = User.paginate(:page => params[:page])
     @title = "All users"
   end
-  
+
   def show
     @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
@@ -21,11 +19,11 @@ class UsersController < ApplicationController
   def following
     show_follow(:following)
   end
-  
+
   def followers
     show_follow(:followers)
   end
-  
+
   def show_follow(action)
     @title = action.to_s.capitalize
     @users = @user.send(action).paginate(:page => params[:page])
@@ -48,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.new
     @title = "Sign up"
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -60,12 +58,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @title = "Edit user"
     @user = current_user
   end
-  
+
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
@@ -86,6 +84,3 @@ class UsersController < ApplicationController
   end
 
 end
-
-
-

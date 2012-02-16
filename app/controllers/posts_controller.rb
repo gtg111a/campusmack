@@ -1,7 +1,7 @@
 # This is tricky. It handles smacks, redemptions and all the different post types (videos, photos, news, stats)
 class PostsController < ApplicationController
   respond_to :js, :html
-  authorize_resource
+  load_and_authorize_resource
   skip_authorize_resource :only => [:opengraph, :share_through_email_form, :share_through_email]
   before_filter :authenticate_user!, :except => [:show, :index, :opengraph, :share_through_email_form, :share_through_email]
   include PostsHelper
@@ -22,10 +22,21 @@ class PostsController < ApplicationController
       return
     end
     @post = @parent.send(@post_cls).build
-    @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
-    @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+    if params['contest']
+      @title = 'Submit a ' + @parent.name + ' contest video'
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A VIDEO'
+    else
+      @title = 'Submit a ' + @parent.name + ' ' + @post.class.to_s.titleize
+      @submit = 'FILL IN THE FOLLOWING TO SUBMIT A ' + @post.class.to_s.upcase
+    end
     init_college_menu
     add_breadcrumbs
+    if params["contest"]
+      call = BitsOnTheRun::API.new(:call)
+      call.method('videos/create')
+      resp = call.execute
+      @botr = resp.to_hash
+    end
     render 'posts/new'
   end
 
@@ -66,8 +77,9 @@ class PostsController < ApplicationController
       end
     end
     @search = posts.search(params[:search])
-    @order = params[:order] || 'created_at desc'
-    @posts = @search.paginate(:page => params[:page], :order => @order)
+    @order = params[:order] || Post::default_order
+    @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs
 
@@ -76,7 +88,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
@@ -190,7 +202,7 @@ class PostsController < ApplicationController
         logger.error "Could not save delivery: #{$!}"
       end
       flash[:success] = 'Successfully sent!'
-      redirect_to method("#{@post.postable_type.downcase}_#{@post.type.downcase}_path").call(@post.postable, @post)
+      redirect_to polymorphic_path([ @post.postable, @post ])
     end
   end
 
@@ -228,17 +240,27 @@ class PostsController < ApplicationController
   end
 
   def add_breadcrumbs
-    if @parent.class.name == 'Conference'
-      breadcrumbs.add @parent.name, conference_path(@parent)
-    elsif @parent.class.name == 'College'
-      breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
+    [ 'articles', 'posts', 'photos', 'videos', 'news_posts' ].each do |t|
+      if params[:controller] == t
+        breadcrumbs.add params[:search] ? 'Search' : "All #{t.gsub('news_posts', 'posts').titleize}"
+        return
+      end
     end
-    breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
-    @main_menu.each do |x|
-      breadcrumbs.add x[1], x[2] if x[1] == @post_cls.titleize
+    if @parent.present?
+      if @parent.class.name == 'Conference'
+        breadcrumbs.add @parent.name, conference_path(@parent)
+      else
+        breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
+      end
+      breadcrumbs.add @parent.name, college_path(@parent) if @parent.class.name == 'College'
+      action = params[:action].dup
+      if action == 'index'
+        breadcrumbs.add @post_cls.titleize
+      else
+        breadcrumbs.add @post_cls.titleize, polymorphic_url([@parent, @post_cls])
+      end
     end
     breadcrumbs.add @post_cls.gsub('_posts','').titleize if [ 'videos', 'photos', 'news_posts' ].include?(@post_cls)
-    action = params[:action].dup
     return if action == 'index'
     if action
       action.gsub!(/new|create/, 'Add')

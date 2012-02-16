@@ -1,6 +1,5 @@
 Campusmack::Application.routes.draw do
   resources :contact_groups_contacts
-
   resources :contact_groups do
     collection do
       get 'add_to_group_form'
@@ -68,14 +67,11 @@ Campusmack::Application.routes.draw do
     member do
       match :search, :action => :show
     end
-    resources :videos do
-      collection do
-        match :search, :action => :index
-      end
-    end
-    resources :photos do
-      collection do
-        match :search, :action => :index
+    [ :article_posts, :videos, :photos ].each do |res|
+      resources res do
+        collection do
+          match :search, :action => :index
+        end
       end
     end
     resources :news, :controller => :news_posts do
@@ -84,6 +80,11 @@ Campusmack::Application.routes.draw do
       end
     end
     resources :stats, :controller => :statistics do
+      collection do
+        match :search, :action => :index
+      end
+    end
+    resources :articles, :controller => :article_posts do
       collection do
         match :search, :action => :index
       end
@@ -97,12 +98,14 @@ Campusmack::Application.routes.draw do
   end
 
   resources :smacks, :redemptions, :only => :new
-  resources :smacks, :redemptions, :only => [:show, :index, :destroy] do
+  resources :smacks, :redemptions, :article_posts, :only => [:show, :index, :destroy] do
     collection do
       match :search, :action => :index
     end
     resources :comments, :only => [:create]
   end
+
+  resources :article_posts
 
   resources :conferences, :colleges, :only => [:index, :show] do
     resources :smacks, :redemptions do
@@ -146,9 +149,11 @@ Campusmack::Application.routes.draw do
   match '/about', :to => 'pages#about'
   match '/faq', :to => 'pages#faq'
   match '/howto', :to => 'pages#howto'
+  match '/ourteam', :to => 'pages#ourteam'
   match '/help', :to => 'pages#help'
   match '/terms', :to => 'pages#terms'
   match '/privacy', :to => 'pages#privacy'
+  match '/contest', :to => 'contest#index'
 
   root :to => 'welcome#index'
 end

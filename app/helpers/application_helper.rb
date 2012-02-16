@@ -33,7 +33,7 @@ module ApplicationHelper
     raw(html)
   end
 
-  def sign_up_service_link(provider, size = 64, link = true, image = true)
+  def sign_up_service_link(provider, sign_in_or_up, size = 64, link = true, image = true)
     resource_name ||= :user
     fixed_provider_name = provider.to_s.gsub('_apps', '')
     provider_name = fixed_provider_name.titleize
@@ -41,7 +41,7 @@ module ApplicationHelper
     html << "<li class='#{fixed_provider_name}'>"
     html << "<a href='#{omniauth_authorize_path(resource_name, provider)}' class='#{' icon' if size == :icon} clearfix'>" if link
     html << "<span class='symbol'>#{image_tag(fixed_provider_name + '_symbol_button' + '.png', :alt => provider_name)}</span>" if image
-    html << "<span class='invitation'>Sign up with #{fixed_provider_name.capitalize}</span>"
+    html << "<span class='invitation'>Sign #{sign_in_or_up.to_s} with #{fixed_provider_name.capitalize}</span>"
     html << '</a>'
     html << '</li>' if link
     raw(html)
@@ -119,7 +119,8 @@ module ApplicationHelper
     if user.avatar.exists?
       return image_tag user.avatar.url(:small)
     end
-    options[:default] = root_url + "images/avatar_#{user.gender}.png"
+    #options[:default] = root_url + "images/avatar_#{user.gender}.png"
+    options[:default] = root_url + "images/avatar_.png"
     gravatar_image_tag(user.email.downcase, :alt => user.username,
                        :class => 'gravatar',
                        :gravatar => options)
@@ -205,12 +206,9 @@ module ApplicationHelper
     request.env['PATH_INFO'][/\/search\/?$/] ? request.env['PATH_INFO'] : "#{request.env['PATH_INFO']}/search"
   end
 
-  def censoring(text)
-    if current_user && current_user.censor_text? && text
-      Profanalyzer.filter text
-    else
-      text
-    end
+  def censoring(text, post = nil)
+    return raw(text.to_s.html_safe) if (current_user && !current_user.censor_text?) || post.is_a?(ArticlePost)
+    raw(Profanalyzer.filter(text).html_safe)
   end
 
   def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
@@ -221,4 +219,11 @@ module ApplicationHelper
     return raw img
   end
 
+  def get_botr_upload_url(resp)
+    "#{resp[:link][:protocol]}://#{resp[:link][:address]}#{resp[:link][:path]}?api_format=xml&key=#{resp[:link][:query][:key]}&token=#{resp[:link][:query][:token]}".html_safe
+  end
+
+  def formatted_datetime(datetime)
+    datetime.strftime("%l:%M %p %B %d, %Y")
+  end
 end

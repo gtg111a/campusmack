@@ -41,5 +41,5 @@ end
 
 Then /^(?:|I )should see a link to "([^"]*)" conference status$/ do |conf|
   c = Conference.find_by_name(conf)
-  find("a[href=\"#{status_conference_path(c)}\"]")
+  find("a[href=\"/conference_stats##{c.id}\"]")
 end

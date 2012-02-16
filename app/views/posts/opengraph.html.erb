@@ -33,5 +33,5 @@
   </div>
 </div>
 <div class="timestamp">
-  posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.try(:username) %>.
+  posted <%= formatted_datetime(@post.created_at) %> by <%= @post.user.try(:username) %>.
 </div>

@@ -1,6 +1,21 @@
+<% content_for :jq do %>
+  $("#posts_index .pagination a").click(function(e) {
+    e.preventDefault();
+    $("#page_field").val($(this).attr('href').substr($(this).attr('href').indexOf('=')+1));
+    $("#search_form").submit();
+  });
+  $("#search_form").submit(function(e) {
+    if ($("#recent_search_field").val() != $("#current_search_field").val()) {
+      $("#page_field").val("1");
+    }
+  });
+<% end %>
 <%= form_for 'search', :url => get_search_path, :html => {:method => :post, :id => "search_form", :class => 'search'} do |f| %>
     <%= f.label :title_or_summary_contains, "Search:" %>
-    <%= f.text_field :title_or_summary_contains, :class => :input_search %>
+    <%= f.hidden_field :recent_search, :name => "recent_search", :value => (params['search'] && params['search']['title_or_summary_contains']), :id => "recent_search_field" %>
+    <%= f.text_field :title_or_summary_contains, :class => :input_search, :value => (params['search'] && params['search']['title_or_summary_contains']), :id => "current_search_field" %>
     <%= f.submit "Go", :name => nil, :class => 'button' %>
-    <%= f.hidden_field :order, :name => "order", :value => @order || "created_at desc", :id => "sort_field" %>
+    <%= f.hidden_field :order, :name => "order", :value => @order, :id => "sort_field" %>
+    <%= f.hidden_field :per, :name => "per", :value => @per_page, :id => "per_page_field" %>
+    <%= f.hidden_field :page, :name => "page", :value => params[:page] || "1", :id => "page_field" %>
 <% end %>

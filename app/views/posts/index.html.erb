@@ -1,8 +1,9 @@
 <div class="content new_level with_submenu clearfix">
   <%= render :partial => 'shared/masthead' %>
+  <%= render :partial => 'shared/contest_button' if controller_name == "contest" %>
   <div class="content_title"><%= @title %></div>
   <div class="content_stats clearfix">
-    <%= render 'shared/photovideomenu' %>
+    <%= render 'shared/photovideomenu' if controller_name != "contest" %>
     <%= render 'shared/search' %>
   </div>
 
@@ -10,7 +11,7 @@
       <div class="content_container">
         <div class="content_category">
           <%= render :partial => 'shared/sorter' %>
-          <div class="category_container clearfix">
+          <div class="category_container clearfix" id="posts_index">
             <%= render :partial => "/posts/post", :collection => @posts %>
             <%= will_paginate @posts %>
           </div>

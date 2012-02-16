@@ -47,7 +47,7 @@ end
 
 Given /^I have confirmed users$/ do |table|
   table.hashes.each do |hash|
-    Given %Q{I have confirmed user "#{hash["First Name"]}" "#{hash["Last Name"]}" with username "#{hash["Username"]}", email "#{hash["Email"]}", password "#{hash["Password"]}", college "#{hash["College"]}" and affiliation "#{hash["Affiliation"]}"}
+    Given %Q{I have confirmed Male user "#{hash["First Name"]}" "#{hash["Last Name"]}" with username "#{hash["Username"]}", email "#{hash["Email"]}", password "#{hash["Password"]}", college "#{hash["College"]}" and affiliation "#{hash["Affiliation"]}"}
   end
 end
 

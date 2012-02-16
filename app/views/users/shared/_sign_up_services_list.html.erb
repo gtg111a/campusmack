@@ -3,6 +3,10 @@
 </div>
 <div class="sign_up_with_container">
   <%- if devise_mapping.omniauthable? %>
-      <%= render 'shared/sign_up_services_list' %>
+      <ul>
+        <%- User.omniauth_providers.each do |provider| %>
+            <%= sign_up_service_link(provider, sign_in_or_up) %>
+        <% end -%>
+      </ul>
   <% end %>
 </div>

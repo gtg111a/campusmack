@@ -21,18 +21,19 @@ class NewsPost < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: news_posts
 #
-#  id                 :integer         not null, primary key
-#  post_id            :integer
+#  id                 :integer(4)      not null, primary key
+#  post_id            :integer(4)
 #  url                :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
-#  image_file_size    :integer
+#  image_file_size    :integer(4)
 #  image_updated_at   :datetime
 #  video_url          :string(255)
 #

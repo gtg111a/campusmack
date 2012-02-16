@@ -17,24 +17,26 @@ class Comment < ActiveRecord::Base
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: comments
 #
-#  id               :integer         not null, primary key
-#  title            :string(50)      default("")
+#  id               :integer(4)      not null, primary key
+#  title            :string(50)
 #  comment          :text
-#  commentable_id   :integer         indexed
+#  commentable_id   :integer(4)      indexed
 #  commentable_type :string(255)     indexed
-#  user_id          :integer         indexed
+#  user_id          :integer(4)      indexed
 #  created_at       :datetime
 #  updated_at       :datetime
-#  reports_count    :integer         default(0), not null
+#  reports_count    :integer(4)      default(0), not null
 #
 # Indexes
 #
-#  index_comments_on_user_id           (user_id)
 #  index_comments_on_commentable_id    (commentable_id)
 #  index_comments_on_commentable_type  (commentable_type)
+#  index_comments_on_user_id           (user_id)
 #
 

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def find_commentable
     @commentable = Redemption.find(params[:redemption_id]) if params[:redemption_id]
     @commentable = Smack.find(params[:smack_id]) if params[:smack_id]
+    @commentable = ArticlePost.find(params[:article_post_id]) if params[:article_post_id]
     @commentable = Post.find(params[:id]) if params[:id]
   end
 

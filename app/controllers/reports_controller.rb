@@ -68,5 +68,4 @@ class ReportsController < ApplicationController
               :disposition => "attachment; filename=#{outfile}"
   end
 
-
 end
