@@ -16,6 +16,7 @@
     <% end %>
   </div>
   <div class="title">
+
     <%= link_to censoring(post.title), [post.postable, post] %>
     <% if can? :manage, Article and !post.published? %>
       <span style="color:red">Unpublished</span>
@@ -25,7 +26,11 @@
     Posted
     <span class="date"><%= formatted_datetime(post.created_at) %></span>
     <span class="by">by:</span>
+	<% if post.article %>
+	<%= link_to(truncate(post.user.try(:first_name), :length => 16) + " " + truncate(post.user.try(:last_name), :length => 16), post.user, :class => :author) %>
+	<% else %>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
+	<% end %>
   </div>
   <div class="description">
    <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
@@ -37,7 +42,7 @@
         <span class="divider_vert2">&nbsp;</span>
         <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.tableize.singularize}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
         <%= link_to('<img src="/images/delete_.png" alt="Delete" />'.html_safe, post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('<img src="/images/report_.png" alt="Report" />'.html_safe, report_post_path(post), :class => 'button postreport', :remote => true, :id => "post_rep_#{post.id}") if can? :report, post %>
+        <%= link_to('<img src="/images/report_.png" alt="Report" />'.html_safe, report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
     <% end %>
   </div>
 </div>

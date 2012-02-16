@@ -67,9 +67,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.8.0)
-      capybara (>= 1.0.0, < 1.2)
-      json
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     ckeditor (3.6.3)
@@ -147,7 +144,6 @@ GEM
     multi_json (1.0.4)
     multi_xml (0.2.2)
     multipart-post (1.1.4)
-    mysql2 (0.2.8)
     net-ldap (0.2.2)
     nokogiri (1.4.7)
     oa-basic (0.2.6)
@@ -314,7 +310,6 @@ DEPENDENCIES
   breadcrumbs
   cancan
   capybara
-  capybara-webkit
   ckeditor (= 3.6.3)
   client_side_validations
   cucumber
@@ -329,7 +324,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   meta_search
-  mysql2 (= 0.2.8)
   omniauth (= 0.2.6)
   paperclip
   profanalyzer

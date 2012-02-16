@@ -2,21 +2,25 @@
   <div class="preview">
     <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
     <% if post.photo || (post.article && post.article.image.exists?) %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" width="180px"/></a>
     <% end %>
   </div>
   <div class="item-top">
-    <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
+	<% if post.article %>
+    <h3><%= link_to truncate(post.title, :length => 55), post, :title => post.title %></h3>
+	<% else %>
+	<h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
+	<% end %>
     <div class="which-college">
       <span class="date"><%= formatted_datetime(post.created_at.to_datetime) %>, </span>
-      <em class="lowercase"> by</em> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
+      <em class="lowercase"> by</em> <%= link_to(truncate(post.user.try(:first_name), :length => 16) + " " + truncate(post.user.try(:last_name), :length => 16), post.user, :class => :author) %>
       <% if params[:controller] == 'welcome' %>
         &nbsp;<span class="article_college">College:&nbsp;<%= link_to post.postable.name, post.postable %></span>
       <% end %>
     </div>
 
     <div class="summary">
-      <p><%= truncate(censoring(post.summary), :length => Post::MAX_TEXT_LEN) %></p>
+      <p><%= truncate(post.summary, :length => Post::MAX_TEXT_LEN) %></p>
     </div>
     <div class="votes">
      <%= share_and_voting_icons(post, :show) %>

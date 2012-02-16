@@ -69,7 +69,7 @@
       <% end %>
       <%= form_for [@parent, @post], :html => {:multipart => true}, :validate => true do |f| %>
         <%= render 'shared/error_messages', :object => f.object %>
-      <% # Rendering content to javascript variables to switch later on  %>
+      <% # Rendering content to javascript variables to switch later on %>
       <% content_for :js do %>
           var postcontent = [];
           postcontent[0] = '<%= f.fields_for :video, Video.new do |vf| %>
