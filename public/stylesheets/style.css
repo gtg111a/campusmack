@@ -2397,3 +2397,7 @@ border-left: 1px solid #C4C4C4;      */
   color: #0A5CA6;
   text-decoration: none;
 }
+
+.preview img {
+  min-height: 135px;
+}
