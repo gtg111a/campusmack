@@ -1898,6 +1898,10 @@ ul.items {
   text-align: justify;
 }
 
+.article .summary p {
+	font-size: 16px;
+}
+
 .article .photo img {
   max-width: 350px;
 }
