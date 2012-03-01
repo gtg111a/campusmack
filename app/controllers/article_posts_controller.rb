@@ -60,6 +60,7 @@ class ArticlePostsController < ApplicationController
   def destroy
     @user = current_user
     @post.destroy
+    College.update_counters [@post.postable.id], :smacks_count => 1
     flash[:success] = "Post Deleted Successfully!"
     respond_to do |format|
       format.html { redirect_to(@user) }
