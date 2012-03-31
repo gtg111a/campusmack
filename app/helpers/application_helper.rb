@@ -119,8 +119,8 @@ module ApplicationHelper
     if user.avatar.exists?
       return image_tag user.avatar.url(:small)
     end
-    #options[:default] = root_url + "images/avatar_#{user.gender}.png"
-    options[:default] = root_url + "images/avatar_.png"
+    #options[:default] = root_url + "assets/avatar_#{user.gender}.png"
+    options[:default] = root_url + "assets/avatar_.png"
     gravatar_image_tag(user.email.downcase, :alt => user.username,
                        :class => 'gravatar',
                        :gravatar => options)

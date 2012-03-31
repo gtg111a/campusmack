@@ -1,0 +1,342 @@
+.content_categories {
+    border-bottom: 1px solid #D4D4D4;
+    padding: 0px 18px 15px;
+}
+
+.contacts_items_per_page{
+    height:20px;
+    padding:2px 0;
+    line-height: 1.8em;
+    text-align: right;
+    width: 765px;
+    overflow: hidden;
+    font-size:12px;
+}
+
+.contacts_items_per_page .active span{
+
+}
+
+.contacts_items_per_page_text{
+    color:#09689E;
+    float:right;
+}
+
+.contacts_items_per_page_text span{
+    color:#DEDEDE;
+}
+
+.contacts_items_per_page ul li{
+    float:right;
+    margin: 0 0 0 5px;
+}
+
+.contacts_items_per_page ul li a {
+    color:#565656;
+}
+
+.contacts_items_per_page ul li a:focus, .contacts_items_per_page ul li a:hover {
+    text-decoration: underline;
+}
+
+.contacts_table {
+    background: #fff url(/assets/contact_groups-bg-repeat.png) repeat-y left bottom;
+    overflow: hidden;
+    border-color: #DEDEDE;
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+#facebox .contacts_table {
+    background: #fff url(/assets/contact_groups_box-bg.png) repeat-y left bottom;
+}
+
+.contacts .table_content {
+    float: left;
+    width: 600px;
+    padding: 0 10px 0 0;
+}
+
+#facebox .contacts {
+    width: 860px;
+}
+
+#facebox .contacts .table_content {
+    margin-left: 20px;
+}
+
+.facebox_form_name_td{
+    width: 80%;
+}
+
+#div_facebox_ajax .row_actions{
+    width: 10%;
+    text-align: center;
+}
+
+#div_facebox_ajax .row_actions a{
+    margin: 2px 0 0 0;
+}
+
+#div_facebox_ajax table td {
+    border-top: 1px solid #DEDEDE;
+    font-size: 11px;
+    line-height: 20px;
+    padding: 0px 0 0px 2px;
+}
+
+#div_facebox_ajax{
+    padding: 10px 0 0 0;
+}
+
+#div_facebox_ajax .title_box_facebox{
+    margin: 0 0 25px 0;
+}
+
+#div_facebox_ajax .title_box_facebox h3{
+    color: #30A0F0;
+    float: left;
+    font-size: 18px;
+}
+
+#div_facebox_ajax .title_box_facebox .add_contact_group{
+    float:right;
+}
+
+#form_facebox_ajax .blue_button{
+    width: auto;
+}
+
+#form_facebox_ajax .blue_button input{
+    text-transform: uppercase;
+}
+
+.contacts .contact_groups {
+    float: left;
+    width: 137px;
+    background: #f3f3f3;
+}
+
+#facebox .contacts .contact_groups {
+    width: 177px;
+}
+
+.contacts .contact_groups li a {
+    display: block;
+    background: #f3f3f3;
+}
+
+#facebox .contacts .contact_groups li a {
+    display: inline;
+}
+
+.contacts .add_edit_group{
+    border-bottom:0 !important;
+    border-right: 1px solid #DEDEDE;
+}
+
+.add_edit_group .ajax{
+    border-right: 0 none !important;
+    float: right;
+    margin: 0 0 0 2px;
+    padding: 0 !important;
+    position: relative;
+    width: 16px !important;
+}
+
+.add_edit_group a{
+    float:left;
+    width: 116px;
+}
+
+.contacts .add_edit_group,
+.contacts .contact_groups li{
+    border-bottom: 1px solid #DEDEDE;
+    border-right: 1px solid #DEDEDE;
+    width: 136px;
+    background: #f3f3f3;
+}
+
+#facebox .contacts .contact_groups li{
+    width: 176px;
+}
+
+.contacts .contact_groups li.active{
+    border-left: 1px solid #DEDEDE;
+}
+
+.contacts .contact_groups li span {
+    display: block;
+}
+
+.contacts .contact_groups li.active {
+    border-right: 0;
+    background: #fff;
+}
+
+.contacts .add_edit_group a:link,
+.contacts .add_edit_group a:visited {
+    color:#565656;
+}
+
+.contacts .add_edit_group {
+    color: #09689e;
+    font-weight: bold;
+    font-size: 12px;
+    border-right: 2px #fff solid;
+    width: 116px;
+}
+
+.contacts .contact_groups li a,
+.contacts .contact_groups li span {
+    color: #09689e;
+    padding: 5px 8px 5px 10px;
+    font-weight: bold;
+    font-size: 12px;
+    border-right: 2px #fff solid;
+}
+
+#facebox .contacts .contact_groups li a {
+    border-right: none;
+}
+
+#facebox .contacts img.add_recipients {
+    cursor: pointer;
+}
+
+#facebox .contacts li img.add_recipients {
+    top: -1px;
+    position: relative;
+}
+
+.contacts .table_head, .contacts table {
+    width: 100%;
+}
+
+.contacts .table_head {
+    padding: 8px 0;
+    overflow: hidden;
+    margin-left: 20px;
+    width: 582px;
+}
+
+#facebox .contacts .table_head {
+    margin-left: 0;
+}
+
+.contacts .table_head ul {
+    float: left;
+}
+
+.contacts .table_head li {
+    float: left;
+    margin-right: 5px;
+}
+
+.contacts .table_head .button_bg {
+    float: left;
+    padding: 0 4px;
+    margin-right: 5px;
+}
+
+.contacts .table_head .button_bg input {
+    margin: 0;
+    padding: 2px;
+}
+
+#contact_list{
+    padding: 0 0 5px 0;
+}
+
+.contacts table {
+}
+
+.contacts table td {
+    border-top: 1px solid #DEDEDE;
+    line-height: 20px;
+    font-size: 11px;
+}
+
+.contacts table td input {
+    display: inline;
+}
+
+.contacts table td.table_preloader {
+    border-top: none;
+    width: 18px;
+    margin: 0 0 0 2px;
+}
+
+.contacts table td.table_check {
+    padding-left: 1px;
+    width: 30px;
+}
+
+#facebox .contacts table td.table_check {
+    width: 40px;
+}
+
+.contacts table td.row_actions a {
+    display: inline-block;
+    float: right;
+    margin-top: 2px;
+}
+
+.image_load {
+    display: none;
+}
+
+#contact_group_form table{
+    margin: 0 0 20px 0;
+}
+
+#contact_group_form td{
+    vertical-align: middle;
+}
+
+#contact_group_form select, #contact_group_form input{
+    width: 190px;
+}
+
+#contact_group_form .rbtn{
+  margin: 0;
+  width: auto;
+}
+
+#contact_group_form .radio{
+    width: 7%;
+}
+
+#contact_group_form .text{
+    width: 26%;
+}
+
+.ajax{
+   display: none;
+}
+
+.content_actions .ajax{
+    position: relative;
+    top: -2px;
+}
+
+tr#address_book .entry {
+  padding-bottom: 20px;
+}
+
+#search_contacts ul{
+    float:right;
+}
+
+#search_contacts ul li{
+    margin-right:0;
+}
+
+#search_contacts ul li .table_button, #search_contacts ul li a{
+    float:left;
+}
+
+#search_contacts ul li a{
+    height:16px;
+    margin-left:2px;
+}

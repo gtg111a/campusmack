@@ -91,7 +91,7 @@ class PostsController < ApplicationController
     @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest rescue nil
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
-    @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
+    @comments = Comment.where(:commentable_id => @post.id).order('created_at DESC').paginate(:page => params[:page])
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
     add_breadcrumbs

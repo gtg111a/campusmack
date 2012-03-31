@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  require 'will_paginate/array'
+
   APP_DOMAIN = 'www.campusmack.com'
   rescue_from Exception, :with => :render_error
 
@@ -6,6 +8,7 @@ class ApplicationController < ActionController::Base
   include FaceboxRender
   include PostsHelper
   include SessionsHelper
+  helper FaceboxRenderHelper
 
   before_filter :store_location, :only => [:index, :show]
   before_filter :store_location_edit, :only => [:index, :show]
@@ -46,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_initial_breadcrumbs
-    breadcrumbs.add 'Home', root_path
+    breadcrumbs.add 'Home', '/'
   end
 
   def add_breadcrumbs

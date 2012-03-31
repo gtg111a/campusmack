@@ -200,7 +200,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   config.omniauth :twitter, 'Om10xZqwFnWShJmQQejFg', 'wd0fMtA0HjLjyyC8jgjoqemNHVpZFm9uMBdZT3t8o'
-  config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
+  config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com', :name => 'google_apps', :require => 'omniauth-openid'
   config.omniauth :facebook, '223312437712461', 'c1d7be7f56c673548b8af514ecc496be'
 
   # ==> Warden configuration

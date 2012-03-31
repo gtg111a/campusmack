@@ -4,12 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= title %></title>
   <%= favicon_link_tag %>
-  <%= stylesheet_link_tag 'reset', 'style', 'user', 'contacts', 'token-input-facebook', 'twipsy', 'utility_components', 'facebox', 'jquery.fancybox-1.3.4.css', 'jquery.toastmessage.css' %>
-  <link href="/javascripts/ckeditor/contents.css" media="screen" rel="stylesheet" type="text/css" />
+  <%= stylesheet_link_tag 'application' %>
   <%= yield(:head) %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag 'rails.validations','rails.validations.custom','twipsy', '/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js', 'jquery.toastmessage.js', 'jquery.tokeninput.js', :ckeditor %>
-  <%= javascript_include_tag "facebox", 'stat_slider', 'swfobject' %>
+  <%= javascript_include_tag 'application' %>
   <% if params[:controller] == 'contacts' %>
       <%= javascript_include_tag 'contacts' %>
   <% end %>

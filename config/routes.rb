@@ -1,4 +1,6 @@
 Campusmack::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :contact_groups_contacts
   resources :contact_groups do
     collection do

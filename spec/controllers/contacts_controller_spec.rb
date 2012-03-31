@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ContactsController do
-  let(:admin) { Factory(:user, :admin => true, :college => Factory(:college) ) }
+  let(:admin) { Factory(:user, :role => "admin", :college => Factory(:college) ) }
   let(:contact_group) { Factory(:contact_group)}
   before { @admin = admin; @admin.confirm!; sign_in @admin;  controller.class.skip_before_filter :ensure_domain }
   

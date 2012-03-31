@@ -37,8 +37,8 @@
           <li class="voting_icons"><%= share_and_voting_icons(@post, :show) %></li>
           <% if signed_in? %>
             <li>
-              <%= link_to('<img src="/images/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.tableize.singularize}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
-              <%= link_to('<img src="/images/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
+              <%= link_to('<img src="/assets/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.tableize.singularize}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
+              <%= link_to('<img src="/assets/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
             </li>
           <% end %>
         </ul>
@@ -111,7 +111,7 @@
         </div><br class="clear"/>
         <%= will_paginate(@comments) %>
         <div class="comments_container">
-          <%= render :partial => @post.comments.sort_by { |c| c.created_at }.reverse %>
+          <%= render :partial => @comments %>
           <% unless current_user %>
             <p class="comment_auth_message">You must be signed in to comment. <%=link_to "Sign in", sign_in_path %> or <%= link_to "Create an Account", sign_up_path %>.</p>
           <% end %>

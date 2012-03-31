@@ -34,6 +34,11 @@ Factory.define :contact_group, :class => ContactGroup do |i|
   i.name { Faker::Name.name }
 end
 
+Factory.define :contact_groups_contact, :class => ContactGroupsContact do |i|
+  i.association :contact
+  i.association :contact_group
+end
+
 Factory.define :post do |i|
   i.title { Faker::Name.name }
   i.type "Smack"
@@ -50,4 +55,36 @@ Factory.define :contact, :class => Contact do |i|
   i.association :user
   i.email { Faker::Internet.email }
   i.name { Faker::Name.name }
+end
+
+Factory.define :comment do |i|
+  i.title { Faker::Name.name }
+  i.comment { Faker::Name.name }
+  i.commentable_id 6
+  i.commentable_type "post"
+  i.association :user
+  i.reports_count 0
+end
+
+Factory.define :article do |i|
+  i.body { Faker::Name.name }
+  i.association :post
+end
+
+Factory.define :maintenance do |i|
+  i.task { Faker::Name.name }
+end
+
+Factory.define :news_post do |i|
+  i.association :post
+  i.url { Faker::Internet.domain_word }
+end
+
+Factory.define :photo do |i|
+  i.association :post
+  i.caption { Faker::Name.name }
+end
+
+Factory.define :reason do |i|
+  i.reason { Faker::Name.name }
 end
