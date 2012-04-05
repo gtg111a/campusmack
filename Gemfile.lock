@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 7a4fdd931f959aa651683799bc5184e9fbf9f5bc
+  revision: 68f5258e9af2110b02318bf76176a70eca6e55f7
   specs:
     rails_admin (0.0.1)
-      bbenezech-nested_form (~> 0.0.5)
+      bbenezech-nested_form (~> 0.0.6)
       bootstrap-sass (~> 2.0)
       builder (~> 3.0)
       coffee-rails (~> 3.1)
@@ -55,12 +55,12 @@ GEM
       builder
       mime-types
       xml-simple
-    aws-sdk (1.3.2)
+    aws-sdk (1.3.9)
       httparty (~> 0.7)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bbenezech-nested_form (0.0.5)
+    bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
     bitsontherun (0.1.2)
       curb (>= 0.7.0)
@@ -108,7 +108,7 @@ GEM
       nokogiri (>= 1.5.0)
     curb (0.8.0)
     daemons (1.1.8)
-    database_cleaner (0.7.1)
+    database_cleaner (0.7.2)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -119,24 +119,24 @@ GEM
     eventmachine (0.12.10)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.6.4)
-      activesupport (>= 2.3.9)
-    factory_girl_rails (1.7.0)
-      factory_girl (~> 2.6.0)
+    factory_girl (3.0.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.0.0)
+      factory_girl (~> 3.0.0)
       railties (>= 3.0.0)
     faraday (0.7.6)
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
     fastercsv (1.5.4)
-    ffaker (1.8.1)
+    ffaker (1.14.0)
     ffi (1.0.11)
-    gherkin (2.9.1)
+    gherkin (2.9.3)
       json (>= 1.4.6)
     gravatar_image_tag (1.0.0)
     haml (3.1.4)
     hashie (1.2.0)
-    heroku (2.21.3)
+    heroku (2.23.0)
       launchy (>= 0.3.2)
       netrc (~> 0.7.1)
       rest-client (~> 1.6.1)
@@ -154,7 +154,7 @@ GEM
     jquery-ui-rails (0.2.2)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.6.5)
+    json (1.6.6)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -174,7 +174,7 @@ GEM
       polyamorous (~> 0.5.0)
     mime-types (1.18)
     multi_json (1.2.0)
-    multi_xml (0.2.2)
+    multi_xml (0.4.2)
     multipart-post (1.1.5)
     netrc (0.7.1)
     nokogiri (1.5.2)
@@ -197,14 +197,16 @@ GEM
     omniauth-openid (1.0.1)
       omniauth (~> 1.0)
       rack-openid (~> 1.3.1)
-    omniauth-twitter (0.0.8)
+    omniauth-twitter (0.0.9)
       omniauth-oauth (~> 1.0)
-    orm_adapter (0.0.6)
-    paperclip (2.7.0)
-      activerecord (>= 2.3.0)
-      activesupport (>= 2.3.2)
+    orm_adapter (0.0.7)
+    paperclip (3.0.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.11.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -251,19 +253,19 @@ GEM
     remotipart (1.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rspec (2.7.0)
-      rspec-core (~> 2.7.0)
-      rspec-expectations (~> 2.7.0)
-      rspec-mocks (~> 2.7.0)
-    rspec-core (2.7.1)
-    rspec-expectations (2.7.0)
-      diff-lcs (~> 1.1.2)
-    rspec-mocks (2.7.0)
-    rspec-rails (2.7.0)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      railties (~> 3.0)
-      rspec (~> 2.7.0)
+    rspec (2.9.0)
+      rspec-core (~> 2.9.0)
+      rspec-expectations (~> 2.9.0)
+      rspec-mocks (~> 2.9.0)
+    rspec-core (2.9.0)
+    rspec-expectations (2.9.0)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.9.0)
+    rspec-rails (2.9.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec (~> 2.9.0)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -291,7 +293,7 @@ GEM
     shoulda-matchers (1.0.0)
     sinatra (1.0)
       rack (>= 1.0)
-    spork (0.9.0.rc9)
+    spork (0.9.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -354,7 +356,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   fastercsv
-  ffaker (= 1.8.1)
+  ffaker
   gravatar_image_tag
   heroku
   jquery-rails (= 2.0.1)
@@ -366,17 +368,18 @@ DEPENDENCIES
   omniauth-openid
   omniauth-twitter
   paperclip
+  pg
   profanalyzer
   rack
   rails (= 3.2.1)
   rails_admin!
   rails_best_practices
   rake
-  rspec-rails (~> 2.7.0)
+  rspec-rails
   ruby-debug19
   sass-rails (= 3.2.4)
   shoulda-matchers
-  spork (= 0.9.0.rc9)
+  spork
   sqlite3
   taps
   thin

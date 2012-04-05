@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   require 'will_paginate/array'
 
   APP_DOMAIN = 'www.campusmack.com'
-  rescue_from Exception, :with => :render_error
+  rescue_from Exception, :with => :render_error if Rails.env == 'production'
 
   protect_from_forgery
   include FaceboxRender
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   before_filter :init
   before_filter :add_initial_breadcrumbs
   before_filter :get_leftmenu_content
-  before_filter :ensure_domain
+  before_filter :ensure_domain if Rails.env == 'production'
 
   rescue_from CanCan::AccessDenied do |exception|
     target_url = signed_in? ? root_url : sign_up_url

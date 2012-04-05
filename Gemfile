@@ -51,20 +51,24 @@ group :development do
 end
 
 group :test do
-  gem 'spork', '0.9.0.rc9'
+  gem 'spork'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'watchr'
-  gem 'rspec-rails', '~> 2.7.0'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
 
 group :development, :test do
   gem 'sqlite3'
   gem 'launchy'
-  gem 'ffaker', '1.8.1'
+  gem 'ffaker'
   gem 'factory_girl_rails'
+end
+
+group :staging, :production do
+  gem 'pg'
 end
