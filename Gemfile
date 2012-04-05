@@ -62,11 +62,12 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+gem 'ffaker'
+gem 'factory_girl_rails'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'launchy'
-  gem 'ffaker'
-  gem 'factory_girl_rails'
 end
 
 group :staging, :production do
