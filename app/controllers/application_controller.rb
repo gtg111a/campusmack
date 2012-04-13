@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     flash[:alert] = exception.message
     if request.xhr?
       respond_to do |format|
-        format.js { render(:update) { |page| page.redirect_to target_url } }
+        format.js { render :js => %Q{window.location = "#{target_url}";} }
       end
       return
     end
