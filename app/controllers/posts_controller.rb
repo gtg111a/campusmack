@@ -77,8 +77,9 @@ class PostsController < ApplicationController
       end
     end
     @search = posts.search(params[:search])
-    @order = params[:order] || Post::default_order
-    @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
+    @order = params[:order].blank? ? Post::default_order : params[:order]
+    @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
+
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs

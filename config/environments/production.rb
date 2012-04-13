@@ -62,6 +62,9 @@ Campusmack::Application.configure do
   # Compress both stylesheets and JavaScripts
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :scss
+
+  config.assets.precompile += %w(statistics.css)
+
 end
 
 ActionMailer::Base.smtp_settings = {
