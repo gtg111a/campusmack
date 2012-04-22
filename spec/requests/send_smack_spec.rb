@@ -4,10 +4,10 @@ require 'factories_helper'
 
 describe "Send smack", :js => true, :type => :request  do
   before(:each) do
-    @conference = Factory(:conference)
-    @college = Factory(:college, :conference => @conference)
-    @user = Factory(:user, :admin => true)
-    @smack = Factory(:smack, :type => "Smack")
+    @conference = FactoryGirl.create(:conference)
+    @college = FactoryGirl.create(:college, :conference => @conference)
+    @user = FactoryGirl.create(:user, :admin => true)
+    @smack = FactoryGirl.create(:smack, :type => "Smack")
     @video_link = "http://www.youtube.com/watch?v=UaWXbqu5Bcs"
     @video_hash = "UaWXbqu5Bcs"
     @user.confirm!

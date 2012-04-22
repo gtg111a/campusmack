@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "Report page" do
 
   before do
-    @user = Factory(:user, :admin => true)
-    @user2 = Factory(:user)
-    @college = Factory(:college)
+    @user = FactoryGirl.create(:user, :admin => true)
+    @user2 = FactoryGirl.create(:user)
+    @college = FactoryGirl.create(:college)
     @college.users << @user
-    Factory(:smack, :user => @user)
+    FactoryGirl.create(:smack, :user => @user)
     @deliveries = FactoryGirl.create_list(:delivery, 3, :user => @user, :college => @college, :post => @smack, :recipients => 10)
     @deliveries << FactoryGirl.create_list(:delivery, 2, :user => @user2, :college => @college, :post => @smack, :recipients => 20)
     login @user
