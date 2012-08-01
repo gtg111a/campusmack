@@ -25,7 +25,8 @@ Campusmack::Application.routes.draw do
     :registrations => 'users/registrations',
     :confirmations => 'users/confirmations',
     :sessions => 'users/sessions'
-  }, :skip => [:sessions] do
+  }, :skip => [:sessions]
+  devise_scope :user do
     get 'sign_up' => 'users/registrations#new', :as => :sign_up
     get 'sign_in' => 'users/sessions#new', :as => :sign_in
     post 'sign_in' => 'users/sessions#create', :as => :new_user_session

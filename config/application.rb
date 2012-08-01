@@ -60,5 +60,16 @@ module Campusmack
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.assets.precompile += [
+        'rails_admin/rails_admin.css',
+        'rails_admin/rails_admin.js',
+        'contacts.js',
+        'statistics.css',
+        'reset.css',
+        'style.css',
+        'reports.css',
+        'utility_components.css'
+    ]
   end
 end
