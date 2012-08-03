@@ -1,2 +1,2 @@
 $("#rowclick1").html("<%= escape_javascript(render("contacts")) %>");
-$("#pagination_container").html("<%= escape_javascript(will_paginate @contacts) %>");
+$("#pagination_container").html("<%= escape_javascript(custom_paginate @contacts) %>");

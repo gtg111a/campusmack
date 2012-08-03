@@ -10,7 +10,7 @@
         <div class="content_category">
           <%= render :partial => 'shared/sorter' %>
           <div class="category_container clearfix">
-            <%= will_paginate @posts %>
+            <%= custom_paginate @posts %>
             <%= render :partial => "/posts/post", :collection => @posts %>
             <div class="view_more_link clear_both">
               <a href="">See all videos</a>

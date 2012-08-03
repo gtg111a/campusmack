@@ -5,8 +5,13 @@
   <title><%= title %></title>
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag 'application' %>
+  <link href="/javascripts/ckeditor/contents.css" media="screen" rel="stylesheet" type="text/css" />
   <%= yield(:head) %>
   <%= javascript_include_tag 'application' %>
+  <script>
+    window.CKEDITOR_BASEPATH = '/javascripts/ckeditor/';
+  </script>
+  <script src="/javascripts/ckeditor/ckeditor.js" type="text/javascript" />
   <% if params[:controller] == 'contacts' %>
       <%= javascript_include_tag 'contacts' %>
   <% end %>

@@ -226,4 +226,19 @@ module ApplicationHelper
   def formatted_datetime(datetime)
     datetime.strftime("%l:%M %p %B %d, %Y")
   end
+
+  def custom_cktext_area(builder, field, options = {})
+    default_options = {:toolbar => 'Easy', :namespace => 'live'}
+    builder.cktext_area(field, options.merge(default_options))
+  end
+
+  def custom_paginate(*args)
+    options = args.extract_options!
+    options[:renderer] = MyLinkRenderer
+    if args.length == 1
+      will_paginate args.first, options
+    else
+      will_paginate infer_collection_from_controller, options
+    end
+  end
 end

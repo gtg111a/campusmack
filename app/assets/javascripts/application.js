@@ -16,4 +16,3 @@
 //= require facebox
 //= require stat_slider
 //= require swfobject
-//= require ckeditor/ckeditor.js

@@ -40,6 +40,8 @@ class ApplicationController < ActionController::Base
     raise if Rails.env == 'development'
     log_exception(exception)
     render :template => 'pages/500.html.erb', :status => 500
+  rescue Exception
+    render :file => 'public/500.html', :layout => false, :status => 500
   end
 
   def init
