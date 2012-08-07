@@ -15,7 +15,7 @@ Developers are working in a separate branch or directly in the master branch,
 depending on the task.
 When the tasks are ready, master branch will be merged into the staging branch
 and deployed to the STAGING server.
-If everything looks fine there, staging will be merged into master and deployed to PROD.
+If everything looks fine there, staging will be merged into production and deployed to PROD.
 
 == Running migrations on staging
 

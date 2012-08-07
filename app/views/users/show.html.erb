@@ -19,7 +19,7 @@
   <div class="content_container">
     <div class="content_category">
       <% unless @posts.blank? %>
-        <%= will_paginate @posts %>
+        <%= custom_paginate @posts %>
         <ul class="posts">
           <%= render :partial => "/posts/post", :collection => @posts %>
         </ul>

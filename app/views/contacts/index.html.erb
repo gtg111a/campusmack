@@ -2,7 +2,7 @@
   <div class="content_title"><h1>Contacts<%= " (#{@group.name})" if @group.name != "All" %></h1></div>
   <div class="content_actions">
     <ul>
-      <li class="ajax"><img src='/images/ajax-loader.gif'/></li>
+      <li class="ajax"><img src='/assets/ajax-loader.gif'/></li>
       <li class="dark_button"><%= link_to 'New Contact', new_contact_path(:group_id => params[:group_id]), :remote => true, :class => "new" %></li>
       <li class="dark_button"><%= render :partial => 'contacts/import_form' -%></li>
     </ul>
@@ -37,7 +37,7 @@
               </li>
           <% end %>
           <% end %>
-          <li class="add_edit_group clearfix"><a href="<%=contact_groups_path%>" data-remote="true">Edit / Add groups<span class="ajax" style="display: none;"><img src='/images/ajax-cb-loader.gif'/></span></a></li>
+          <li class="add_edit_group clearfix"><a href="<%=contact_groups_path%>" data-remote="true">Edit / Add groups<span class="ajax" style="display: none;"><img src='/assets/ajax-cb-loader.gif'/></span></a></li>
         </ul>
         <div class="table_content">
           <div class="table_head">
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="pagination" id="pagination_container">
-        <%= will_paginate @contacts %>
+        <%= custom_paginate @contacts %>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@
       </td>
 
       <td class="text"><span><label for="contact_group_name">New Group</label></span></td>
-      <td><%= f.text_field :name %></td>
+      <td><%= f.text_field :name, :validate => true %></td>
     </tr>
   </table>
   <div style="float:right">
@@ -32,37 +32,55 @@
 
 
 <script type="text/javascript" >
-
   $(document).ready(function(){
     var param = $('input:checkbox:checked.chk_box').serialize();
     var s = $('.new_radio').html();
+    var origValidators = window['new_contact_group']['validators']['contact_group[name]'];
 
-    $('#contact_group_form tr').live('click',function(){
-      if( $(this).find('.rbtn').val() == 'new'){
-        $("#new_contact_group").validate();
-        $('#contact_group_name').attr('data-validate',true)
-      }
-      else{
-        $('.new_radio td').remove();
-        $('.new_radio').append(s);
-        $('#contact_group_name').attr('data-validate','');
-      }
+    $('#add_contact').click(function() {
+      var form = $('#new_contact_group');
+      var fieldValidators = window['new_contact_group']['validators'];
+      var groupNameField = $('#contact_group_name');
+
+      groupNameField.data('changed', true);
+      return form.isValid(fieldValidators);
     });
 
-    $('#contact_group_form tr').click('click',function(){
-      $(this).find('.rbtn').attr('checked',true);
-    });
+    var setupFormValidation = function(){
+      var form = $('#new_contact_group');
+      var fieldValidators = window['new_contact_group']['validators'];
+      var elem = $('#contact_group_form tr input.rbtn:checked');
+      var groupNameField = $('#contact_group_name');
 
-    $('#new_contact_group').live('ajax:before', function(event, xhr, settings){
+      groupNameField.data('valid', true);
+      groupNameField.data('changed', true);
+      clientSideValidations.formBuilders['ActionView::Helpers::FormBuilder']
+          .remove(groupNameField, fieldValidators);
+
+      if (elem.val() === 'new') {
+        fieldValidators['contact_group[name]'] = jQuery.extend(true, {}, origValidators);
+        $('#contact_group_form input#contact_group_name').focus();
+      } else {
+        fieldValidators['contact_group[name]'] = new Object();
+      }
+
+      form.isValid(fieldValidators);
+    };
+
+    setupFormValidation();
+    $('#contact_group_form tr input.rbtn').bind('click', setupFormValidation);
+
+    $('#new_contact_group').bind('ajax:beforeSend', function(e, xhr, settings) {
       indicator_progress_in_facebox();
-    });
-
-    $('#new_contact_group').live('ajax:beforeSend', function(event, xhr, settings){
       settings.data += '&' + param;
+      return true;
     });
 
-    $('#contact_group_form input[name=new_group_name]').focus(function(){
-      $('#contact_group_form input.rbtn[value=new]').prop('checked', true);
+    $('#contact_group_form input#contact_group_name').focus(function(){
+      if ($('#contact_group_form input.rbtn[value=new]:checked').length == 0) {
+      $('#contact_group_form input.rbtn[value=new]').attr('checked', true);
+      setupFormValidation();
+      }
     });
   });
 </script>

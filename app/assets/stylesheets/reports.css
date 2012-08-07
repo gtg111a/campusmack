@@ -1,0 +1,89 @@
+table {
+  width: 100%;
+}
+
+ul.statistics {
+  margin: 1em;
+}
+
+ul.statistics li td {
+  border: none;
+  text-align: center;
+}
+
+ul.statistics li {
+  border-bottom: 1px solid #CACBCB;
+  float: left;
+  margin: 0 32px 32px 0;
+  width: 29%;
+}
+
+ul.statistics li h3 {
+  background: url(/assets/bg_blue_button.png);
+  font-family: "Tahoma";
+  color: #fff;
+  line-height: 22px;
+  text-transform: uppercase;
+  padding: 0 10px;
+  margin-bottom: 1px;
+}
+
+.statistics h3 a,
+.statistics h3 a:link,
+.statistics h3 a:visited {
+  color: #fff;
+}
+
+ul.statistics li table {
+  border-style: solid;
+  border-width: 0 1px;
+  border-color: #CACBCB;
+  line-height: 21px;
+}
+
+ul.statistics li table a {
+  color: #09689e;
+}
+
+ul.statistics li table tr {
+  height: auto
+}
+
+ul.statistics li table tr.even {
+  background: #ECEAEA
+}
+
+ul.statistics li table tr.odd {
+  background: #F4F4F4
+}
+
+ul.statistics li th {
+  color: #000;
+  font-family: "Tahoma";
+  font-weight: bold;
+  text-align: center;
+  background: #CACBCB;
+  border-right: 1px solid #fff;
+}
+
+ul.statistics li td {
+  padding: 0 10px;
+  text-align: center;
+}
+
+th {
+  font-weight: bold;
+}
+
+.dark_button {
+  margin: 10px 33px 0 0;
+  float: right;
+  width: 150px;
+}
+
+.left_menu ul li span {
+  display: block;
+  height: 31px;
+  line-height: 31px;
+  padding-left: 10px;
+}

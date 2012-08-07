@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     breadcrumbs.add 'Signing Up'
     resource = build_resource({})
     [:first_name, :last_name, :email, :username].each { |x| resource.send(x.to_s+'=', session.delete(x)) }
-    respond_with_navigational(resource) { render_with_scope :new }
+    respond_with_navigational(resource) { render :new }
   end
 
   def create
@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_in(resource_name, resource)
         respond_with resource, :location => redirect_location(resource_name, resource)
       else
-        set_flash_message :success, :inactive_signed_up, :reason => resource.inactive_message.to_s if is_navigational_format?
+        set_flash_message :success, :signed_up_but_unconfirmed, :reason => resource.inactive_message.to_s if is_navigational_format?
         expire_session_data_after_sign_in!
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
@@ -36,13 +36,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.errors.each {|e, m| flash[:error] << "<li><b>#{e}:</b> #{m}</li>" }
       flash[:error] << '</ul>'
       clean_up_passwords(resource)
-      respond_with_navigational(resource) { render_with_scope :new }
+      respond_with_navigational(resource) { render :new }
     end
   end
 
   def edit
     breadcrumbs.add 'Editing Profile'
-    render_with_scope :edit
+    render :edit
   end
 
   def update
@@ -60,7 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource, :location => after_update_path_for(resource)
     else
       clean_up_passwords(resource)
-      respond_with_navigational(resource) { render_with_scope :edit }
+      respond_with_navigational(resource) { render :edit }
     end
   end
 

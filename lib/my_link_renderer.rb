@@ -1,4 +1,4 @@
-class MyLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
+class MyLinkRenderer < WillPaginate::ActionView::LinkRenderer
   def to_html
     html = pagination.map do |item|
       item.is_a?(Fixnum) ?

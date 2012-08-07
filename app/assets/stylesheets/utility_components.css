@@ -1,0 +1,243 @@
+/* 
+   This stylesheet contains buttons, inputs, checkboxes, selects 
+   and rest of utility components of app.
+*/
+
+.back_button {
+    width: 85px;
+    height: 25px;
+    background: url('/assets/back_button.png') repeat-x;
+}
+
+.blue_button {
+    display: block;
+    height: 28px;
+    background: url('/assets/bg_blue_button.png') repeat-x;
+    text-align: center;
+    margin: 0 5px;
+    border: none;
+    color: #fff;
+    font-family: "Conv_MyriadPro-BoldCond";
+    text-transform: uppercase;
+    font-size: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.blue_button a, .blue_button input {
+    display: block;
+    padding: 0 5px;
+    color: #fff;
+    font-family: "Conv_MyriadPro-BoldCond";
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.sign_up_now_button {
+    display: block;
+    height: 28px;
+    background: url('/assets/sign_up_now_button.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sign_up_now_button a {
+    display: block;
+    line-height: 28px;
+    color: #fff;
+    font-family: "Conv_MyriadPro-BoldCond";
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+input.dark_button{
+    display: block;
+    padding: 3px 9px 0;
+    color: #fff;
+    font-family: "Conv_MyriadPro-BoldCond";
+    font-size: 19px;
+    text-transform: uppercase;
+    display: block;
+    height: 28px;
+    background: url('/assets/dark_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(PIE.htc);
+    border:none;
+    text-align: center;
+    width: auto!important;
+}
+
+
+.dark_button {
+    display: block;
+    height: 28px;
+    background: url('/assets/dark_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dark_button a {
+    display: block;
+    padding: 0 10px;
+    color: #fff;
+    font-family: "Conv_MyriadPro-BoldCond";
+    font-size: 19px;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.dark_button a:hover {
+text-decoration:none;
+}
+
+.dark_button:hover {
+    background: #3d3d3d url('/assets/button_bg_hover.png') repeat-x;
+}
+
+.white_button {
+    display: block;
+    height: 28px;
+    background: url('/assets/white_button_bg.png') repeat-x;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    border-color: #bebebe;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+}
+
+.white_button a {
+    display: block;
+    padding: 0 10px;
+    color: #4190c9;
+    font-family: "Conv_MyriadPro-BoldCond";
+    font-size: 20px;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.white_button a:hover {
+  text-decoration:none;
+  color:black;
+}
+
+.table_button {
+    font-style: "Conv_MyriadPro-BoldCond";
+    background: #fff url(/assets/utility_button-bg.png) repeat-x top;
+    display: block;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: #c2c2c2;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 0 5px;
+    line-height: 18px;
+    color: #484848 !important;
+    height: 17px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.table_button:hover {
+    background-position: bottom;
+    color: #fff !important;
+}
+
+.table_button.black {
+    color: #333;
+    font-size: 8px;
+    background-image: url(/assets/table_button-black-bg.png);
+    height: 14px;
+    line-height: 15px;
+    padding: 0 2px;
+}
+
+.table_button.black:hover {
+    color: #fff;
+}
+
+form small {
+  margin-left: 9px;
+  color: #333;
+  line-height: 28px;
+}
+
+/* Used will_paginate template styling */
+.pagination {
+    background: url(/assets/view_more_bg.png);
+    font-size: 11px;
+    overflow: hidden;
+    margin-top: 3px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.pagination a, .pagination em, .pagination span {
+    padding: 0 5px;
+    border-right: 1px solid #B6B6B6;
+}
+
+.pagination a:last-child, .pagination span:last-child {
+    border-right: none;
+}
+
+.pagination em {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.pagination span {
+    color: #B6B6B6;
+}
+
+.items_per_page {
+    float: right;
+    padding-left: 5px;
+    border-left: 1px solid #CFCFCF;
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+
+.items_per_page a, .items_per_page em {
+    padding-left: 2px;
+}
+
+.items_per_page em {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.search_input{
+     -moz-border-radius: 4px 4px 4px 4px;
+    background: none repeat scroll 0 0 #FBFBFB;
+    border-color: #CDCDCD;
+    border-style: solid;
+    border-width: 1px 1px 1px;
+    color: #7A7B7D;
+    float: left;
+    font-size: 11px;
+    height: 14px;
+    width: 70px;
+    margin-right: 2px;
+}
+
+/* Fancybox close button */
+#photo-close {
+    float: right;
+    margin-right: -25px;
+}

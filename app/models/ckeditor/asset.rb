@@ -1,4 +1,11 @@
 class Ckeditor::Asset < ActiveRecord::Base
+  # DEPRECATED: This deprecated method is called in
+  # Ckeditor::Orm::ActiveRecord::AssetBase::ClassMethods. Re-define and
+  # duplicate the call using the new ActiveRecord::Base API.
+  def self.set_table_name(arg)
+    self.table_name = arg
+  end
+
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Ckeditor::Backend::Paperclip
 end

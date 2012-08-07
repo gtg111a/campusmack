@@ -40,9 +40,9 @@
     <%= share_and_voting_icons(post, :post) %>
     <% if signed_in? %>
         <span class="divider_vert2">&nbsp;</span>
-        <%= link_to('<img src="/images/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.tableize.singularize}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
-        <%= link_to('<img src="/images/delete_.png" alt="Delete" />'.html_safe, post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
-        <%= link_to('<img src="/images/report_.png" alt="Report" />'.html_safe, report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
+        <%= link_to('<img src="/assets/edit_.png" alt="Edit" />'.html_safe, method("edit_#{post.postable_type.downcase}_#{post.type.tableize.singularize}_path").call(post.postable, post), :class => 'button') if can? :update, post %>
+        <%= link_to('<img src="/assets/delete_.png" alt="Delete" />'.html_safe, post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, post %>
+        <%= link_to('<img src="/assets/report_.png" alt="Report" />'.html_safe, report_post_path(post), :class => 'button postreport', :id => "post_rep_#{post.id}") if can? :report, post %>
     <% end %>
   </div>
 </div>

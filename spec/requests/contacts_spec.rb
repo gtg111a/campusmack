@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe "Contacts", :js => true, :type => :request  do
-  let(:contact_group) { Factory(:contact_group)}
+  let(:contact_group) { FactoryGirl.create(:contact_group)}
   before(:each) do
-    @user = Factory(:user, :admin => true)
+    @user = FactoryGirl.create(:user, :admin => true)
     @contact_groups = FactoryGirl.create_list(:contact_group, 2, :user => @user)
     @contacts = FactoryGirl.create_list(:contact, 5,
                   :contact_groups => [@contact_groups[0]], :user => @user) +

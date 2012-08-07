@@ -1,25 +1,28 @@
 class ApplicationController < ActionController::Base
+  require 'will_paginate/array'
+
   APP_DOMAIN = 'www.campusmack.com'
-  rescue_from Exception, :with => :render_error
+  rescue_from Exception, :with => :render_error if Rails.env == 'production'
 
   protect_from_forgery
   include FaceboxRender
   include PostsHelper
   include SessionsHelper
+  helper FaceboxRenderHelper
 
   before_filter :store_location, :only => [:index, :show]
   before_filter :store_location_edit, :only => [:index, :show]
   before_filter :init
   before_filter :add_initial_breadcrumbs
   before_filter :get_leftmenu_content
-  before_filter :ensure_domain
+  before_filter :ensure_domain if Rails.env == 'production'
 
   rescue_from CanCan::AccessDenied do |exception|
     target_url = signed_in? ? root_url : sign_up_url
     flash[:alert] = exception.message
     if request.xhr?
       respond_to do |format|
-        format.js { render(:update) { |page| page.redirect_to target_url } }
+        format.js { render :js => %Q{window.location = "#{target_url}";} }
       end
       return
     end
@@ -37,6 +40,8 @@ class ApplicationController < ActionController::Base
     raise if Rails.env == 'development'
     log_exception(exception)
     render :template => 'pages/500.html.erb', :status => 500
+  rescue Exception
+    render :file => 'public/500.html', :layout => false, :status => 500
   end
 
   def init
@@ -46,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_initial_breadcrumbs
-    breadcrumbs.add 'Home', root_path
+    breadcrumbs.add 'Home', '/'
   end
 
   def add_breadcrumbs
