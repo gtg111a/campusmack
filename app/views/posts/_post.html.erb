@@ -5,7 +5,7 @@
     <% end %>
     <% if post.news_post %>
        <% if post.news_post.image_file_name.blank? %>
-        <%= image_tag('no_photo_small.jpg') %>
+        <%= image_tag('no_photo_small.jpg', :width => 180) %>
       <% else %>
         <a class="photo" href="<%= post.news_post.image_url(:large) %>"><img src="<%= post.news_post.image_url(:medium) %>" width="180" alt=""/></a>
       <% end %>
@@ -17,7 +17,7 @@
   </div>
   <div class="title">
 
-    <%= link_to censoring(post.title), [post.postable, post] %>
+    <%= link_to truncate(censoring(post.title), :length => 60), [post.postable, post] %>
     <% if can? :manage, Article and !post.published? %>
       <span style="color:red">Unpublished</span>
     <% end %>

@@ -52,6 +52,11 @@
                 </tr><tr>
                   <td class="entry"><%= npf.text_field :url %></td>
                 </tr>
+                <tr>
+                  <td class="description va-top"><%= f.label :summary, 'Body:' %></td>
+                </tr><tr>
+                  <td class="entry"><%= f.cktext_area :summary, :width => 722 %></td>
+                </tr>
               <% end %>
             <% end %>
             <% if @post.article %>
