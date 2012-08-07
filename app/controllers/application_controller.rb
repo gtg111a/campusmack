@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_domain
     return if Rails.env == 'staging' || request.local?
-    return if request.env['HTTP_HOST'].ends_with?(APP_DOMAIN)
+    return if request.env['HTTP_HOST'].ends_with?(APP_DOMAIN) || request.env['HTTP_HOST'].ends_with?('herokuapp.com')
     redirect_to "http://#{APP_DOMAIN}", :status => 301
   end
 
