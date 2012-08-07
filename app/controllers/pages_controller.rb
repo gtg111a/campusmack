@@ -24,12 +24,11 @@ class PagesController < ApplicationController
     @menu = [
       [:link, 'About', '/about'],
       [:link, 'FAQ', '/faq'],
-      [:text, 'How To', '', 'active']   
+      [:text, 'How To', '', 'active']
     ]
     breadcrumbs.add 'About', '/about'
     breadcrumbs.add 'How To'
   end
-  
 
   def help
     @title = "Help"

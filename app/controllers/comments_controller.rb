@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :find_commentable, :except => [:destroy, :edit, :update]
+  before_filter :find_commentable, :except => [:destroy, :edit, :update, :report]
 
   def find_commentable
     @commentable = Redemption.find(params[:redemption_id]) if params[:redemption_id]

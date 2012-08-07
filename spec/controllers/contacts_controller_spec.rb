@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe ContactsController do
-  let(:admin) { Factory(:user, :admin => true, :college => Factory(:college) ) }
-  let(:contact_group) { Factory(:contact_group)}
+  let(:admin) { FactoryGirl.create(:user, :role => "admin", :college => FactoryGirl.create(:college) ) }
+  let(:contact_group) { FactoryGirl.create(:contact_group)}
   before { @admin = admin; @admin.confirm!; sign_in @admin;  controller.class.skip_before_filter :ensure_domain }
   
   def valid_attributes

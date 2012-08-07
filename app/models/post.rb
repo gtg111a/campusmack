@@ -59,7 +59,6 @@ class Post < ActiveRecord::Base
   end
 
   def decrement_counter_cache
-    self.postable.class.decrement_counter "#{self.type.downcase.pluralize}_count", self.id unless self.type == "ArticlePost"
     User.decrement_counter(:posts_count, self.id)
   end
 

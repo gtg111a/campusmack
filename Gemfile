@@ -1,27 +1,39 @@
 source 'http://rubygems.org'
 
-gem 'ffaker'
-gem 'rails', '3.0.11'
-gem 'aws-sdk'
+gem 'rails', '3.2.1'
+
+group :assets do
+  gem 'sass-rails', '3.2.4'
+  gem 'coffee-rails', '3.2.2'
+  gem 'uglifier', '1.2.3'
+end
+
+gem 'jquery-rails', '2.0.1'
+
+gem 'will_paginate'
+
 gem 'paperclip'
-gem 'aws-s3'
 gem 'thin'
 gem 'rack'
-gem 'thumbs_up'
+gem 'thumbs_up', '0.4.6'
 gem 'rake'
 gem 'acts_as_commentable'
-gem 'devise', '1.4.2'
-gem 'omniauth', '0.2.6'
-gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-openid'
+gem 'oa-core'
+gem 'devise'
 gem 'meta_search'
 gem 'client_side_validations'
 gem 'cancan'
 gem 'fastercsv'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'breadcrumbs'
 gem 'gravatar_image_tag'
-gem 'will_paginate', '3.0.pre2'
 gem 'profanalyzer'
+gem 'aws-s3'
+gem 'aws-sdk'
 # newer version seems to cause "OpenURI::HTTPError Exception: 400 Bad Request" error
 gem 'video_info', '0.2.6'
 
@@ -39,18 +51,25 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'spork'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
-  #gem 'capybara-webkit'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'watchr'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
 
+gem 'ffaker'
+gem 'factory_girl_rails'
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'launchy'
-  gem 'factory_girl_rails'
+end
+
+group :staging, :production do
+  gem 'pg'
 end

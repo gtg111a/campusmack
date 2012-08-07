@@ -1,5 +1,5 @@
 class NewsPost < ActiveRecord::Base
-  belongs_to :post, :dependent => :destroy
+  belongs_to :post
 
   has_attached_file :image,
                     :styles => { :medium => "217x163", :large => "600x600" },

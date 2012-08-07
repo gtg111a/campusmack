@@ -52,6 +52,11 @@
                 </tr><tr>
                   <td class="entry"><%= npf.text_field :url %></td>
                 </tr>
+                <tr>
+                  <td class="description va-top"><%= f.label :summary, 'Body:' %></td>
+                </tr><tr>
+                  <td class="entry"><%= custom_cktext_area f, :summary, :width => 722 %></td>
+                </tr>
               <% end %>
             <% end %>
             <% if @post.article %>
@@ -78,7 +83,7 @@
                 <tr>
                   <td class="description va-top"><%= a.label :body, 'Body:' %></td>
                 </tr><tr>
-                  <td class="entry"><%= a.cktext_area :body, :width => 722 %></td>
+                  <td class="entry"><%= custom_cktext_area a, :body, :width => 722 %></td>
                 </tr>
               <% end %>
             <% end %>

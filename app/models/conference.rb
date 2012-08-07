@@ -7,7 +7,7 @@ class Conference < ActiveRecord::Base
   before_save :create_permalink
 
   def to_param
-    self.name.downcase
+    self.permalink
   end
 
   default_scope :order => 'weight, name'

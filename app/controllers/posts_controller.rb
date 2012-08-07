@@ -77,8 +77,9 @@ class PostsController < ApplicationController
       end
     end
     @search = posts.search(params[:search])
-    @order = params[:order] || Post::default_order
-    @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
+    @order = params[:order].blank? ? Post::default_order : params[:order]
+    @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
+
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs
@@ -88,10 +89,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest
+    @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest rescue nil
     @post.censored_text(@post.title, current_user)
     @post.censored_text(@post.summary,current_user)
-    @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
+    @comments = Comment.where(:commentable_id => @post.id).order('created_at DESC').paginate(:page => params[:page])
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     init_college_menu
     add_breadcrumbs
