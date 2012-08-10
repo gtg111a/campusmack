@@ -71,7 +71,7 @@ Campusmack::Application.routes.draw do
     end
   end
 
-  resources :conferences, :colleges do
+  resources :conferences, :colleges, :users do
     member do
       match :search, :action => :show
     end
@@ -115,7 +115,7 @@ Campusmack::Application.routes.draw do
 
   resources :article_posts
 
-  resources :conferences, :colleges, :only => [:index, :show] do
+  resources :conferences, :colleges, :users, :only => [:index, :show] do
     resources :smacks, :redemptions do
       collection do
         match :search, :action => :index

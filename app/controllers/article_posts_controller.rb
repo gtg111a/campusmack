@@ -34,7 +34,7 @@ class ArticlePostsController < ApplicationController
     @title = @parent.name + " Articles"
     end
     posts = if can? :manage, :all
-      @parent.send(@post_cls)
+    @parent.send(@post_cls)
     else
       @parent.send(@post_cls).published
     end
@@ -128,5 +128,4 @@ class ArticlePostsController < ApplicationController
       @main_menu << [ :link, 'Redemptions', eval("#{prefix}redemptions_path(@parent)"), '' ]
     end
   end
-
 end
