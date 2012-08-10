@@ -27,7 +27,7 @@
     <span class="date"><%= formatted_datetime(post.created_at) %></span>
     <span class="by">by:</span>
 	<% if post.article %>
-	<%= link_to(truncate(post.user.try(:first_name), :length => 16) + " " + truncate(post.user.try(:last_name), :length => 16), post.user, :class => :author) %>
+	<%= link_to(truncate(post.user.try(:first_name), :length => 32), post.user, :class => :author) %>
 	<% else %>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
 	<% end %>

@@ -12,5 +12,5 @@ en:
   will_paginate:
     previous_label: '&laquo; Previous'
     next_label: 'Next &raquo;'
-    first_name: '&laquo; First'
-    last_name: 'Last &raquo;'
+    first_name: '&laquo; Name'
+

@@ -51,7 +51,11 @@
           Posted
           <span class="date"><%= formatted_datetime(@post.created_at.to_datetime) %>, </span>
           <em>by</em>
-          <%= link_to @post.user.try(:first_name) + " " + @post.user.try(:last_name), user_path(@post.user), :class => "author" %>
+		 <% if @post.article %>
+		  <%= link_to @post.user.try(:first_name), user_path(@post.user), :class => "author" %>
+		<% else %>
+          <%= link_to @post.user.try(:username), user_path(@post.user), :class => "author" %>
+		<% end %>
         </div>
 
         <% if @post.photo || @post.news_post || @post.video || @post.article %>

@@ -1,7 +1,7 @@
 <div class="content new_level with_submenu clearfix">
   <div class="content_title">
 	<% if @user.role == "writer" || @user.role == "admin" %>
-		<%= @user.first_name + " " + @user.last_name %> Posts</div>
+		<%= @user.first_name %> Posts</div>
 	<% else %>
 		<%= @user.username %> Posts</div>
 	<% end %>

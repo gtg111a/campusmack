@@ -28,7 +28,11 @@ class ArticlePostsController < ApplicationController
   end
 
   def index
-    @title = @parent.name + " Article"
+    if @parent.class.name == 'User'
+    @title = @parent.first_name + " Articles"
+    else
+    @title = @parent.name + " Articles"
+    end
     posts = if can? :manage, :all
       @parent.send(@post_cls)
     else
@@ -100,6 +104,7 @@ class ArticlePostsController < ApplicationController
   def find_parent
     @parent = College.where(:permalink => params[:college_id]).first if params[:college_id]
     @parent ||= Conference.where(:permalink => params[:conference_id]).first if params[:conference_id]
+    @parent ||= User.where(:id => params[:user_id]).first if params[:user_id]
     @parent ||= @post.postable if @post
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end

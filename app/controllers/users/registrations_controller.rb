@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     breadcrumbs.add 'Signing Up'
     resource = build_resource({})
-    [:first_name, :last_name, :email, :username].each { |x| resource.send(x.to_s+'=', session.delete(x)) }
+    [:first_name, :email, :username].each { |x| resource.send(x.to_s+'=', session.delete(x)) }
     respond_with_navigational(resource) { render :new }
   end
 
@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
     else
-      flash[:error] = "Please fix the followings:<br/><ul>"
+      flash[:error] = "Please fix the following:<br/><ul>"
       resource.errors.each {|e, m| flash[:error] << "<li><b>#{e}:</b> #{m}</li>" }
       flash[:error] << '</ul>'
       clean_up_passwords(resource)
@@ -46,9 +46,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    if params[resource_name][:password].blank? && params[resource_name][:password_confirmation].blank? && params[resource_name][:password_confirmation].blank?
+    if params[resource_name][:password].blank? && params[resource_name][:current_password].blank?
       params[resource_name].delete(:password)
-      params[resource_name].delete(:password_confirmation)
       params[resource_name].delete(:current_password)
     end
 

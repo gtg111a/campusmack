@@ -48,6 +48,11 @@ Campusmack::Application.routes.draw do
       match :redemptions
       match 'redemptions/search', :action => :redemptions
     end
+    resources :articles, :controller => :article_posts do
+       collection do
+         match :search, :action => :index
+       end
+     end
   end
 
   resources :posts do
