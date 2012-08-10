@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :smacks, :dependent => :destroy
   has_many :redemptions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
-  has_many :article_posts, :as => :postable, :dependent => :destroy
+  has_many :article_posts, :dependent => :destroy
 
   has_many :contacts
   has_many :contact_groups
