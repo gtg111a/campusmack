@@ -13,7 +13,7 @@
 	<% end %>
     <div class="which-college">
       <span class="date"><%= formatted_datetime(post.created_at.to_datetime) %>, </span>
-      <em class="lowercase"> by</em> <%= link_to(truncate(post.user.try(:first_name), :length => 32), post.user, :class => :author) %>
+      <em class="lowercase"> by</em> <%= link_to(truncate(post.user.try(:first_name), :length => 32), user_articles_path(post.user), :class => :author) %>
       <% if params[:controller] == 'welcome' %>
         &nbsp;<span class="article_college">College:&nbsp;<%= link_to post.postable.name, post.postable %></span>
       <% end %>

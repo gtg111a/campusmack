@@ -28,7 +28,7 @@ class ArticlePostsController < ApplicationController
   end
 
   def index
-    if @parent.class.name == 'User'
+    if @parent.is_a?(User)
     @title = @parent.first_name + " Articles"
     else
     @title = @parent.name + " Articles"
