@@ -14,7 +14,7 @@
   </ul>
 </div>
 <% end %>
-<% if @parent %>
+<% if @parent.is_a?(College) || @parent.is_a?(Conference) %>
   <div class="content_actions">
     <ul>
       <% if can? :create, ArticlePost %>

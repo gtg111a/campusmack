@@ -81,7 +81,7 @@
           ';
           postcontent[1] = '<%= f.fields_for :photo, Photo.new do |pf| %>
             <tr>
-              <td class="description"><%= pf.label :image, 'Photo:' %></td>
+              <td class="description"><%= pf.label :image, 'Meme:' %></td>
               <td class="entry"><%= pf.file_field :image, :validate => false %></td>
             </tr>
           <% end.gsub(/\r|\n/, '').html_safe %>
@@ -96,7 +96,7 @@
               <td class="entry"><a href="#" id="news_add_photo">Add photo</a> or <a href="#" id="news_add_video">Add video</a></td>
             </tr>
             <tr class="hidden" id="news_photo_div">
-              <td class="description"><%= npf.label :image, 'Photo:' %></td>
+              <td class="description"><%= npf.label :image, 'Meme:' %></td>
               <td class="entry"><%= npf.file_field :image %></td>
             </tr>
             <tr class="hidden" id="news_video_div">
@@ -128,7 +128,7 @@
                       <a id="switch_video" href="#" class="active">Video</a>
                     </li>
                     <li>
-                      <a id="switch_photo" href="#">Photo</a>
+                      <a id="switch_photo" href="#">Meme</a>
                     </li>
                     <li>
                       <a id="switch_news" href="#">News</a>

@@ -58,6 +58,7 @@ class PostsController < ApplicationController
   def index
     if @parent
       @title = @parent.name + " #{@post_cls.titleize}"
+      @title = @parent.name + " Memes" if @post_cls == 'photos'
       posts = if ['smacks', 'redemptions'].include?(@post_cls)
         @parent.send(@post_cls)
       else
@@ -171,7 +172,7 @@ class PostsController < ApplicationController
     @url = send_in_email_post_path(@post)
     send_as_smack
     @submit = 'SHARE BY EMAIL'
-    @subject =  "#{current_user.first_name} #{current_user.last_name} wants to share this post from Campusmack.com."
+    @subject =  "#{current_user.first_name} wants to share this post from Campusmack.com."
     render :send_as_smack unless request.post?
   end
 
@@ -181,7 +182,7 @@ class PostsController < ApplicationController
     @contacts = current_user.contacts.all
     @groups = current_user.contact_groups.all
     @submit = 'SEND AS SMACK'
-    @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + current_user.first_name + " " + current_user.last_name end
+    @subject = if request.post? then params[:share][:subject] else "You just got SMACKED by " + current_user.first_name end
     if request.post?
       title = params[:share][:subject]
 

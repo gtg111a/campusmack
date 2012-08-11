@@ -8,7 +8,6 @@ describe User do
 
   it "should require name and username" do
     FactoryGirl.build(:user, :first_name => nil).should_not be_valid
-    FactoryGirl.build(:user, :last_name => nil).should_not be_valid
     FactoryGirl.build(:user, :username => nil).should_not be_valid
   end
 
@@ -58,25 +57,8 @@ describe User do
       @user.should respond_to(:password)
     end
 
-    it "should have a password confirmation attribute" do
-      @user.should respond_to(:password_confirmation)
-    end
   end
 
-  describe "password validations" do
-
-    it "should require a password" do
-      FactoryGirl.build(:user, :password => '', :password_confirmation => '').should_not be_valid
-    end
-
-    it "should require a matching password confirmation" do
-      FactoryGirl.build(:user, :password_confirmation => 'invalid').should_not be_valid
-    end
-
-    it "should reject short passwords" do
-      short_pw = 'a' * 5
-      FactoryGirl.build(:user, :password => short_pw, :password_confirmation => short_pw).should_not be_valid
-    end
 
 # FIXME Why?
 #    it "should reject long passwords" do

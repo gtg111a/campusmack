@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @search = @user.posts.search(params[:search])
     @posts = @search.paginate(:page => params[:page], :order => @order)
     breadcrumbs.add 'My Posts'
+    init_college_menu
     render :show
   end
 
@@ -81,6 +82,27 @@ class UsersController < ApplicationController
 
   def plaxo_import
     @user = current_user
+  end
+  
+protected
+
+def init_college_menu
+  @action = params[:action]
+    if @action == 'show'
+      @main_menu << [ :text, 'All', @parent, 'active' ]
+    else
+      @main_menu << [ :link, 'All', user_path(@user), '' ]
+    end
+    if @action == 'smacks'
+      @main_menu << [ :text, 'Smacks', '', 'active' ]
+    else
+      @main_menu << [ :link, 'Smacks', user_smacks_path(@user), '' ]
+    end
+    if @action == 'redemptions'
+      @main_menu << [ :text, 'Redemptions', '', 'active' ]
+    else
+      @main_menu << [ :link, 'Redemptions', user_redemptions_path(@user), '' ]
+    end
   end
 
 end

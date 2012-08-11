@@ -1930,6 +1930,7 @@ ul.items {
 }
 
 .team-item .which-college {
+  font-size: 10px;
   float: left;
   overflow: hidden;
   color: #999;
