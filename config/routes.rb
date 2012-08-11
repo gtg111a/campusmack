@@ -75,13 +75,19 @@ Campusmack::Application.routes.draw do
     member do
       match :search, :action => :show
     end
-    [ :article_posts, :videos, :photos ].each do |res|
+    [ :article_posts, :videos ].each do |res|
       resources res do
         collection do
           match :search, :action => :index
         end
       end
     end
+    resources :photos, :path => 'memes' do
+      collection do
+        match :search, :action => :index
+      end
+    end
+    
     resources :news, :controller => :news_posts do
       collection do
         match :search, :action => :index
@@ -127,11 +133,18 @@ Campusmack::Application.routes.draw do
     end
   end
 
-  resources :videos, :photos do
+  resources :photos, :path => 'memes' do
     collection do
       match :search, :action => :index
     end
   end
+  
+  resources :videos do
+    collection do
+      match :search, :action => :index
+    end
+  end
+  
   resources :news, :controller => :news_posts do
     collection do
       match :search, :action => :index

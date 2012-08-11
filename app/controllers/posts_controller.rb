@@ -58,6 +58,7 @@ class PostsController < ApplicationController
   def index
     if @parent
       @title = @parent.name + " #{@post_cls.titleize}"
+      @title = @parent.name + " Memes" if @post_cls == 'photos'
       posts = if ['smacks', 'redemptions'].include?(@post_cls)
         @parent.send(@post_cls)
       else

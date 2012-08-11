@@ -26,6 +26,21 @@
       <% end %>
       <div class="college_content_title"><h2>User Posts</h2></div>
 	  <div class="separator_line"></div>
+	  <div class="category_container">
+        <div class="content_category ">
+          <div class="category_title">
+            Memes
+          </div>
+          <ul class="items four_col_view">
+            <% @photos.each do |post| %>
+                <%= render "posts/small_preview", :post => post %>
+            <% end %>
+          </ul>
+          <div class="view_more_link clear_both">
+            <%= link_to "See all Memes", polymorphic_path([ @parent, :photos ]) %>
+          </div>
+        </div>
+      </div>
       <div class="category_container">
         <div class="content_category ">
           <div class="category_title">
@@ -37,25 +52,11 @@
             <% end %>
           </ul>
           <div class="view_more_link clear_both">
-            <%= link_to "See all videos", polymorphic_path([ @parent, :videos ]) %>
+            <%= link_to "See all Videos", polymorphic_path([ @parent, :videos ]) %>
           </div>
         </div>
       </div>
-      <div class="category_container">
-        <div class="content_category ">
-          <div class="category_title">
-            Photos
-          </div>
-          <ul class="items four_col_view">
-            <% @photos.each do |post| %>
-                <%= render "posts/small_preview", :post => post %>
-            <% end %>
-          </ul>
-          <div class="view_more_link clear_both">
-            <%= link_to "See all photos", polymorphic_path([ @parent, :photos ]) %>
-          </div>
-        </div>
-      </div>
+
       <div class="category_container">
         <div class="content_category">
           <div class="category_title">

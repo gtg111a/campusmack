@@ -1,4 +1,16 @@
 <ul class="inner_menu">
+	<li>
+    <% if controller_name == 'photos' %>
+        <span>Memes</span>
+    <% else %>
+      <% if @parent %>
+        <%= link_to "Memes", @parent.is_a?(College) ? college_photos_path(@parent) : 
+		@parent.is_a?(User) ? user_photos_path(@parent) : conference_photos_path(@parent) %>
+      <% else %>
+        <%= link_to "Memes", photos_path %>
+      <% end %>
+    <% end %>
+  </li>
   <li>
     <% if controller_name == 'videos' %>
         <span>Videos</span>
@@ -11,18 +23,7 @@
       <% end %>
     <% end %>
   </li>
-  <li>
-    <% if controller_name == 'photos' %>
-        <span>Photos</span>
-    <% else %>
-      <% if @parent %>
-        <%= link_to "Photos", @parent.is_a?(College) ? college_photos_path(@parent) : 
-		@parent.is_a?(User) ? user_photos_path(@parent) : conference_photos_path(@parent) %>
-      <% else %>
-        <%= link_to "Photos", photos_path %>
-      <% end %>
-    <% end %>
-  </li>
+
   <li>
     <% if controller_name == 'news_posts' %>
         <span>News</span>
