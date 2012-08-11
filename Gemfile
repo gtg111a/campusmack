@@ -70,6 +70,7 @@ group :development, :test do
   gem 'launchy'
 end
 
+
 group :staging, :production do
   gem 'pg'
 end
