@@ -71,5 +71,5 @@ group :development, :test do
 end
 
 group :staging, :production do
-  #gem 'pg'
+  gem 'pg'
 end
