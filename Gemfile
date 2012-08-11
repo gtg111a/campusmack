@@ -55,7 +55,7 @@ group :test do
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
-  #gem 'capybara-webkit'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'watchr'
   gem 'rspec-rails'
@@ -69,7 +69,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'launchy'
 end
-
 
 group :staging, :production do
   gem 'pg'
