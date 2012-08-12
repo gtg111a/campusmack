@@ -121,7 +121,7 @@ Campusmack::Application.routes.draw do
 
   resources :article_posts
 
-  resources :conferences, :colleges, :users, :only => [:index, :show] do
+  resources :conferences, :colleges, :only => [:index, :show] do
     resources :smacks, :redemptions do
       collection do
         match :search, :action => :index
