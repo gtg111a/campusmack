@@ -57,7 +57,11 @@ class PostsController < ApplicationController
 
   def index
     if @parent
-      @title = @parent.name + " #{@post_cls.titleize}"
+      if @parent.is_a?(User)
+       @title = @parent.username +  " #{@post_cls.titleize}"
+       else
+        @title = @parent.name + " #{@post_cls.titleize}"
+       end
       @title = @parent.name + " Memes" if @post_cls == 'photos'
       posts = if ['smacks', 'redemptions'].include?(@post_cls)
         @parent.send(@post_cls)
@@ -217,6 +221,7 @@ class PostsController < ApplicationController
   def find_parent
     @parent = College.where(:permalink => params[:college_id]).first if params[:college_id]
     @parent ||= Conference.where(:permalink => params[:conference_id]).first if params[:conference_id]
+    @parent ||= User.where(:id => params[:user_id]).first if params[:user_id]
     @parent ||= @post.postable if @post
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end
@@ -251,6 +256,8 @@ class PostsController < ApplicationController
     if @parent.present?
       if @parent.class.name == 'Conference'
         breadcrumbs.add @parent.name, conference_path(@parent)
+      elsif @parent.class.name == 'User'
+        breadcrumbs.add @parent.username, user_path(@parent)
       else
         breadcrumbs.add @parent.conference.name, conference_path(@parent.conference)
       end

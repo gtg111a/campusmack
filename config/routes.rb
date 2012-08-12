@@ -42,13 +42,18 @@ Campusmack::Application.routes.draw do
       get :following, :followers
       get 'plaxo_import'
     end
-    member do
-      match :smacks
-      match 'smacks/search', :action => :smacks
-      match :redemptions
-      match 'redemptions/search', :action => :redemptions
-    end
+    #member do
+     # match :smacks
+      #match 'smacks/search', :action => :smacks
+      #match :redemptions
+      #match 'redemptions/search', :action => :redemptions
+    #end
     resources :articles, :controller => :article_posts, :only => [:show, :index, :destroy]  do
+       collection do
+         match :search, :action => :index
+       end
+     end
+     resources :smacks, :redemptions, :only => [:show, :index] do
        collection do
          match :search, :action => :index
        end
