@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
     @posts = @search.paginate(:page => params[:page], :order => @order)
-    breadcrumbs.add 'My Posts'
+    breadcrumbs.add @user.username
     init_college_menu
     render :show
   end
