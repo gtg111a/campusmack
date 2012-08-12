@@ -1,11 +1,6 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => { :multipart => true }) do |f| %>
   <div class="table_padding">
     <table>
-      <tr>
-        <td class="description"><%= f.label :gender, "Gender:" %></td>
-        <td class="entry"><%= f.select(:gender, [['Male', 'M'], ['Female', 'F']], { :include_blank => true }, :class => 'gender') %></td>
-        <td class="star"><%= mark_required(resource, :gender) %></td>
-      </tr>
 
       <tr>
         <td class="description"><%= f.label :username, "Username:" %></td>
@@ -14,20 +9,9 @@
       </tr>
 
       <tr>
-        <td class="description"><%= f.label :first_name, "First Name:" %></td>
+        <td class="description"><%= f.label :first_name, "Name:" %></td>
         <td class="entry"><%= f.text_field :first_name %></td>
         <td class="star"><%= mark_required(resource, :first_name) %></td>
-      </tr>
-
-      <tr>
-        <td class="description"><%= f.label :last_name, "Last Name:" %></td>
-        <td class="entry"><%= f.text_field :last_name %></td>
-        <td class="star"><%= mark_required(resource, :last_name) %></td>
-      </tr>
-
-      <tr>
-        <td class="description"><%= f.label :birthday, "Date of Birth:" %></td>
-        <td class="entry"><%= f.date_select :birthday, :start_year => 100.years.ago.year, :end_year => 15.years.ago.year, :include_blank => true, :order => [ :month, :day, :year ] %></td>
       </tr>
 
       <tr>
@@ -72,13 +56,6 @@
             <td class="star"><%= mark_required(resource, :password) %></td>
           <% end %>
         </tr>
-        <tr>
-          <td class="description"><%= f.label :password_confirmation, "Confirm password:" %></td>
-          <td class="entry"><%= f.password_field :password_confirmation, :validate =>{ :presence => f.object.new_record? } %></td>
-          <% if f.object.new_record? %>
-            <td class="star"><%= mark_required(resource, :password) %></td>
-          <% end %>
-        </tr>
         <% unless f.object.new_record? %>
           <tr id="name">
             <td class="description"><%= f.label :current_password, "Old password:" %></td>
@@ -87,15 +64,18 @@
           </tr>
         <% end %>
 
-      <tr>
-        <td class="description"><%= f.label :avatar, "Avatar:" %></td>
-        <td class="entry"><%= f.file_field :avatar %></td>
-        <td>
-          <% if f.object.avatar.exists? %>
-            <%= image_tag f.object.avatar.url(:small) %>
-          <% end %>
-        </td>
-      </tr>
+		<% unless f.object.new_record? %>
+		<tr>
+		        <td class="description"><%= f.label :avatar, "Avatar:" %></td>
+		        <td class="entry"><%= f.file_field :avatar %></td>
+		        <td>
+		          <% if f.object.avatar.exists? %>
+		            <%= image_tag f.object.avatar.url(:small) %>
+		          <% end %>
+		        </td>
+		      </tr>
+		<% end %>
+
     </table>
   </div>
 

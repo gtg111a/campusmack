@@ -60,22 +60,17 @@
               <% end %>
             <% end %>
             <% if @post.article %>
-              <% if @post.article.image.exists? %>
                 <%= f.fields_for :article, @post.article do |a| %>
                   <tr>
                     <td class="description"><%= a.label :image, 'Photo:' %></td>
                   </tr><tr>
                     <td class="entry"><%= a.file_field :image %></td>
                   </tr>
-                <% end %>
-              <% else %>
-                <%= f.fields_for :article, @post.article do |a| %>
                   <tr>
                     <td class="description"><%= a.label :video_url, 'Video URL:' %></td>
                   </tr><tr>
                     <td class="entry"><%= a.text_field :video_url %></td>
                   </tr>
-                <% end %>
               <% end %>
             <% end %>
             <% if @post.article %>

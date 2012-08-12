@@ -3,7 +3,7 @@
   <%= render :partial => 'shared/contest_button' if controller_name == "contest" %>
   <div class="content_title"><%= @title %></div>
   <div class="content_stats clearfix">
-    <%= render 'shared/photovideomenu' if controller_name != "contest" %>
+    <%= render 'shared/photovideomenu' if controller_name != "contest" && @parent.class.name != 'User' %>
     <%= render 'shared/search' %>
   </div>
 

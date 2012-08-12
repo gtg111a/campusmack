@@ -20,25 +20,21 @@ class User < ActiveRecord::Base
   has_many :smacks, :dependent => :destroy
   has_many :redemptions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :article_posts, :dependent => :destroy
 
   has_many :contacts
   has_many :contact_groups
   has_many :deliveries
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validate :confirmation_password_must_match, :if => :password_required?
-
   validates :terms_of_service, :acceptance => true
   validates :first_name, :presence => true,
-            :length => { :maximum => 50 }
-  validates :last_name, :presence => true,
             :length => { :maximum => 50 }
   validates :username, :presence => true,
             :length => { :maximum => 50 },
             :uniqueness => { :case_sensitive => false }
   validates :college, :presence => true
   validates :affiliation, :presence => true
-  validates :password_confirmation, :presence => true, :on => :create
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
   has_attached_file :avatar, :styles => { :small => "39x39", :medium => "100x100", :large => "400x400>" },
                     :storage => :s3,

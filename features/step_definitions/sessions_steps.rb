@@ -7,14 +7,13 @@ Given /^I am not authenticated$/ do
   visit sign_out_path
 end
 
-Given /^I have confirmed (Male|Female) user "([^\"]*)" "([^\"]*)" with username "([^\"]*)", email "([^\"]*)", password "([^\"]*)", college "([^\"]*)" and affiliation "([^\"]*)"$/ do |gender, first_name, last_name, username, email, password, college, affiliation|
+Given /^I have confirmed (Male|Female) user "([^\"]*)" "([^\"]*)" with username "([^\"]*)", email "([^\"]*)", password "([^\"]*)", college "([^\"]*)" and affiliation "([^\"]*)"$/ do |gender, first_name, username, email, password, college, affiliation|
   Given %Q{I have \"#{college}\" college in "SEC"} unless College.where(:name => college).any?
   u.destroy if u = User.where(:email => email).first
   u = User.new(:email => email,
            :password => password,
            :password_confirmation => password,
            :first_name => first_name,
-           :last_name => last_name,
            :username => username,
            :gender => gender[0..0],
            :college_id => College.where(:name => college).first.id,

@@ -1,10 +1,7 @@
 <div class="content new_level with_submenu clearfix">
+ <%= render :partial => 'shared/masthead' %>
   <div class="content_title">
-	<% if @user.role == "writer" || @user.role == "admin" %>
-		<%= @user.first_name + " " + @user.last_name %> Posts</div>
-	<% else %>
 		<%= @user.username %> Posts</div>
-	<% end %>
   <div class="content_stats clearfix">
     <ul class="inner_menu">
       <li>
