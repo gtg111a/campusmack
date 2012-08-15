@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
       @home_list << post if post.video || post.photo
       end
     end
+    @sotw = Post.smacks_of_week
   end
 
   def change_division
