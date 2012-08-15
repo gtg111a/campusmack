@@ -15,14 +15,13 @@
   </div>
   <div class="content_container">
     <div class="content_category">
+	  <%= render :partial => 'shared/sorter' %>	
       <% unless @posts.blank? %>
-		<div class="user_paginate">
-        <%= custom_paginate @posts %>
-		</div>
         <ul class="posts">
           <%= render :partial => "/posts/post", :collection => @posts %>
         </ul>
       <% end %>
+  	<%= custom_paginate @posts %>
     </div>
   </div>
 </div>
