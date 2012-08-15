@@ -97,11 +97,11 @@ class ArticlePostsController < ApplicationController
 
   def find_post
     if current_user.try(:role) == 'admin'
-      @post = Post.find params[:id]
+      @post = Post.find(:first, :conditions => { :permalink => params[:id]} )
       return
     end
     begin
-      @post = Post.published.find params[:id]
+      @post = Post.published(:first, :conditions => { :permalink => params[:id]} )
     rescue
     end
   end
