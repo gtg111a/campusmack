@@ -43,3 +43,11 @@ Campusmack::Application.configure do
 
   config.log_tags = [:uuid, :remote_ip]
 end
+
+ActionMailer::Base.smtp_settings = {
+  :address  => 'smtp.mailgun.org',
+  :port  => 587,
+  :user_name  => 'postmaster@campusmack.mailgun.org',
+  :password  => '96w595chb487',
+  :authentication  => :plain
+}
