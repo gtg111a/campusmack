@@ -11,7 +11,7 @@
       <div class="content_container">
         <div class="content_category">
           <%= render :partial => 'shared/sorter' %>	
-		<% if controller_name != "article_posts" %>   
+		<% if controller_name != "article_posts" && controller_name != "news_posts" %>   
 			<ul class="items four_col_view">
 		      <% @posts.each do |post| %>
 		      <%= render "posts/small_preview", :post => post %>

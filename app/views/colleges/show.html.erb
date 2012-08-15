@@ -64,7 +64,7 @@
           </div>
           <ul class="items">
             <% @news.each do |post| %>
-              <%= render "posts/news_preview", :post => post %>
+              <%= render "posts/post", :post => post %>
             <% end %>
           </ul>
           <div class="view_more_link clear_both">
