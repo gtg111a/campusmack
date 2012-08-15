@@ -10,9 +10,17 @@
   <% unless @posts.empty? %>
       <div class="content_container">
         <div class="content_category">
-          <%= render :partial => 'shared/sorter' %>
-          <div class="category_container clearfix" id="posts_index">
-            <%= render :partial => "/posts/post", :collection => @posts %>
+          <%= render :partial => 'shared/sorter' %>	
+		<% if controller_name != "article_posts" && controller_name != "news_posts" %>   
+			<ul class="items four_col_view">
+		      <% @posts.each do |post| %>
+		      <%= render "posts/small_preview", :post => post %>
+			
+			<% end %>
+			</ul>
+		      <% else %>
+		     <%= render :partial => "/posts/post", :collection => @posts %>
+		     <% end %>
             <%= custom_paginate @posts %>
           </div>
         </div>

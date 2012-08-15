@@ -11,7 +11,7 @@
         </div>
         <div class="service_userdata">
           <% if service.user %>
-            <p><%= service.user %></p>
+            <p><%= service.user.first_name %></p>
             <p><%= service.user.email %></p>
           <% end %>
           <% if session[:provider] == service.id %>

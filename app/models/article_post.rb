@@ -7,6 +7,17 @@ class ArticlePost < Post
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   after_validation :update_summary
+  
+  before_save :create_permalink
+
+  def to_param
+    self.permalink
+  end
+
+  def create_permalink
+    return if title.nil?
+    self.permalink = title.parameterize
+  end
 
   def update_summary
     self.summary = truncate(strip_tags(article.body), :length => Post::MAX_TEXT_LEN, :separator => ' ')

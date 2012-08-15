@@ -69,7 +69,8 @@ class PostsController < ApplicationController
         @parent.posts.joins(@post_cls.singularize.to_sym)
       end
     else
-      @title = "All Posts"
+      @title = "All " + @post_cls.capitalize
+      @title = "All Memes" if @post_cls == 'photos'
       posts = case @post_cls
       when 'smacks'
         Smack
@@ -84,7 +85,6 @@ class PostsController < ApplicationController
     @search = posts.search(params[:search])
     @order = params[:order].blank? ? Post::default_order : params[:order]
     @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
-
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     init_college_menu
     add_breadcrumbs

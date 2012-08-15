@@ -28,6 +28,7 @@ class ArticlePostsController < ApplicationController
   end
 
   def index
+   if @parent
     if @parent.is_a?(User)
     @title = @parent.first_name + " Articles"
     else
@@ -38,6 +39,10 @@ class ArticlePostsController < ApplicationController
     else
       @parent.send(@post_cls).published
     end
+  else
+      @title = "All Articles"
+      posts = Post.published.where(:type => 'ArticlePost')
+  end  
     @search = posts.search(params[:search])
     @order = params[:order] || Post::default_order
     @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
@@ -92,11 +97,11 @@ class ArticlePostsController < ApplicationController
 
   def find_post
     if current_user.try(:role) == 'admin'
-      @post = Post.find params[:id]
+      @post = Post.find(:first, :conditions => { :permalink => params[:id]} )
       return
     end
     begin
-      @post = Post.published.find params[:id]
+      @post = Post.published.find(:first, :conditions => { :permalink => params[:id]} )
     rescue
     end
   end
