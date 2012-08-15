@@ -70,6 +70,7 @@ class PostsController < ApplicationController
       end
     else
       @title = "All " + @post_cls.capitalize
+      @title = "All Memes" if @post_cls == 'photos'
       posts = case @post_cls
       when 'smacks'
         Smack
