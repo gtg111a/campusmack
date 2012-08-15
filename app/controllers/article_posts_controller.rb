@@ -1,7 +1,7 @@
 class ArticlePostsController < ApplicationController
   authorize_resource
   before_filter :find_post, :except => [ :new, :create, :index ]
-  before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
+  before_filter :find_parent, :except => [ :send_as_smack, :send_in_email, :show ]
 
   def new
     @post = @parent.send(@post_cls).build
