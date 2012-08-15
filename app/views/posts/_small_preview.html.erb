@@ -1,10 +1,12 @@
+<div class="aborder">
 <li class="team-item">
   <div class="item-top clearfix">
-    <h3><%= link_to truncate(post.title, :length => 24), post, :title => post.title %></h3>
-    <div class="which-college"><span>by:</span> <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %></div>
-    <div class="votes">
-      <%= voting_icons(post, :preview) %>
-    </div>
+    <h3><%= link_to truncate(post.title.upcase, :length => 22), post, :title => post.title %></h3>
+    <div class="which-college">
+	<%= link_to('<img src="/assets/video_icon.png"/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %> 
+	<span> COLLEGE:</span>
+	<span class="team"> <%= link_to post.postable.try(:name), post.postable	 %></span>
+	</div>
   </div>
   <div class="preview">
     <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
@@ -12,8 +14,14 @@
         <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
     <% end %>
   </div>
+<div class="which-college">
+	<div class="post_border">
+	<span>USER: </span><%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
+	</div>
+</div>
   <div class="summary">
     <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
   </div>
   <%= share_and_voting_icons(post, :preview) %>
 </li>
+</div>
