@@ -1,7 +1,7 @@
 class ArticlePostsController < ApplicationController
   authorize_resource
   before_filter :find_post, :except => [ :new, :create, :index ]
-  before_filter :find_parent, :except => [ :send_as_smack, :send_in_email, :show ]
+  before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
 
   def new
     @post = @parent.send(@post_cls).build
@@ -101,7 +101,7 @@ class ArticlePostsController < ApplicationController
       return
     end
     begin
-      @post = Post.published(:first, :conditions => { :permalink => params[:id]} )
+      @post = Post.published.find(:first, :conditions => { :permalink => params[:id]} )
     rescue
     end
   end
