@@ -2447,6 +2447,11 @@ border-left: 1px solid #C4C4C4;      */
   margin: 0;
 }
 
+.about a {
+  color: #0A5CA6;
+  text-decoration: none;
+}
+
 .aboutProfile a {
   color: #0A5CA6;
   text-decoration: none;
