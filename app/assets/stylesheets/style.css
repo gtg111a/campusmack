@@ -1832,18 +1832,22 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
-.four_col_view li {
+.four_col_view_welcome {
+	margin-left: 12px;
+}
+
+.four_col_view, .four_col_view_welcome li {
   width: 180px;
   position: relative;
 }
 
-.four_col_view .votes {
+.four_col_view, .four_col_view_welcome .votes {
   position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view .votes b {
+.four_col_view, .four_col_view_welcome .votes b {
   font-size: 10px;
 }
 
