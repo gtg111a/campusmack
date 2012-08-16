@@ -762,7 +762,7 @@ a.sign_up:hover {
   margin-top: 0px;
 }
 
-.view_more_link {
+.view_more_link, .vml_welcome {
   background-image: url("/assets/view_more_bg.png");
   background-position: left bottom;
   background-repeat: repeat-x;
@@ -770,7 +770,7 @@ a.sign_up:hover {
   height: 32px;
 }
 
-.view_more_link a, a.view_more {
+.view_more_link, .vml_welcome a, a.view_more {
   background-image: url(/assets/view_more_button.png);
   background-repeat: no-repeat;
   background-position: top;
@@ -786,9 +786,14 @@ a.sign_up:hover {
   height: 26px;
 }
 
-.view_more_link a:hover, a.view_more:hover {
+.view_more_link, .vml_welcome a:hover, a.view_more:hover {
   background-position: bottom;
   color: #222222;
+}
+
+.vml_welcome {
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 a.view_more {
@@ -1832,18 +1837,22 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
-.four_col_view li {
+.four_col_view_welcome {
+	margin-left: 12px;
+}
+
+.four_col_view, .four_col_view_welcome li {
   width: 180px;
   position: relative;
 }
 
-.four_col_view .votes {
+.four_col_view, .four_col_view_welcome .votes {
   position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view .votes b {
+.four_col_view, .four_col_view_welcome .votes b {
   font-size: 10px;
 }
 
@@ -2445,6 +2454,11 @@ border-left: 1px solid #C4C4C4;      */
   z-index: 1;
   font-size: 12px;
   margin: 0;
+}
+
+.about a {
+  color: #0A5CA6;
+  text-decoration: none;
 }
 
 .aboutProfile a {

@@ -91,7 +91,7 @@
           <%= render "posts/articles_preview", :post => post %>
         <% end %>
       </ul>
-		<div class="view_more_link clear_both">
+		<div class="vml_welcome clear_both">
           <%= link_to "See all Articles", article_posts_path %>
         </div>
     </div>
@@ -103,22 +103,23 @@
     <div class="home_smacks_of_week">
     <%= render :partial => 'sotw', :collection => @sotw %></div>
   </div>
-		<div class="view_more_link clear_both">
+		<div class="vml_welcome clear_both">
         <%= link_to "See all Smacks", smacks_path %>
       </div>
   </div>
   <% end %>
+
   <div class="college_content_title"><h2>Recent Posts</h2></div>
-    <div class="separator_line space"></div>
-  <div class="content_container">
-	<br>
-	<ul class="items four_col_view">
+   <div class="separator_line space"></div>
+    <div class="content_container clearfix">
+	 <br>
+	 <ul class="items four_col_view_welcome">
       <% @home_list.each do |post| %>
       <%= render "posts/small_preview", :post => post %>
-	<% end %>
-	</ul>
+	  <% end %>
+	 </ul>
 	 </div>
-		<div class="view_more_link clear_both">
+		<div class="vml_welcome clear_both">
           <%= link_to "See all Posts", posts_path %>
         </div>
 		<br><br>
