@@ -30,11 +30,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       h[:email] = omniauth['extra']['user_hash']['email']
       h[:first_name] = omniauth['extra']['user_hash']['name']
     elsif (omniauth['provider'] == 'google_apps')
-      h[:email] = omniauth['user_info']['email']
-      h[:first_name] = omniauth['user_info']['first_name'] + " " + omniauth['user_info']['last_name']
+      h[:email] = omniauth['info']['email']
+      h[:first_name] = omniauth['info']['first_name'] + " " + omniauth['info']['last_name']
     elsif (omniauth['provider'] == 'twitter')
-      h[:username] = omniauth['user_info']['nickname']
-      h[:first_name] = omniauth['user_info']['name']
+      h[:username] = omniauth['info']['nickname']
+      h[:first_name] = omniauth['info']['name']
     end
     # Create username from the full name
     #h[:username] ||= [h[:first_name], h[:last_name]].join('_').removeaccents.downcase
