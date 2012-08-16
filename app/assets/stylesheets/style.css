@@ -762,7 +762,7 @@ a.sign_up:hover {
   margin-top: 0px;
 }
 
-.view_more_link {
+.view_more_link, .vml_welcome {
   background-image: url("/assets/view_more_bg.png");
   background-position: left bottom;
   background-repeat: repeat-x;
@@ -770,7 +770,7 @@ a.sign_up:hover {
   height: 32px;
 }
 
-.view_more_link a, a.view_more {
+.view_more_link, .vml_welcome a, a.view_more {
   background-image: url(/assets/view_more_button.png);
   background-repeat: no-repeat;
   background-position: top;
@@ -786,9 +786,14 @@ a.sign_up:hover {
   height: 26px;
 }
 
-.view_more_link a:hover, a.view_more:hover {
+.view_more_link, .vml_welcome a:hover, a.view_more:hover {
   background-position: bottom;
   color: #222222;
+}
+
+.vml_welcome {
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 a.view_more {
