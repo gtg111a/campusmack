@@ -1841,18 +1841,18 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 	margin-left: 12px;
 }
 
-.four_col_view, .four_col_view_welcome li {
+.four_col_view li, .four_col_view_welcome li {
   width: 180px;
   position: relative;
 }
 
-.four_col_view, .four_col_view_welcome .votes {
+.four_col_view .votes, .four_col_view_welcome .votes {
   position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view, .four_col_view_welcome .votes b {
+.four_col_view .votes b, .four_col_view_welcome .votes b {
   font-size: 10px;
 }
 
@@ -1867,7 +1867,7 @@ ul.items {
   list-style: none;
 }
 
-.aborder .team-item {
+.aborder.team-item {
   margin: 0 2px 5px;
   float: left;
   list-style: none;
@@ -1983,6 +1983,7 @@ ul.items {
   overflow: hidden;
   color: #999;
   text-transform: uppercase;
+  line-height: 16px;
 }
 
 .team-item .which-college em.lowercase {
