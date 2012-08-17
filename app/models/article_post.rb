@@ -5,6 +5,8 @@ class ArticlePost < Post
 
   belongs_to :postable, :polymorphic => true, :counter_cache => :smacks_count
   has_many :comments, :as => :commentable, :dependent => :destroy
+  
+  #validates :title, :presence => true
 
   after_validation :update_summary
   

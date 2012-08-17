@@ -45,7 +45,7 @@
               <table width="525" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td>
-                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to @post.title, polymorphic_url([@post.postable, @post]), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 24px; font-weight: bold;" %></h1>
+                    <h1 style="font-family: Arial, sans-serif; font-size: 24px; font-weight: normal; margin: 0 0 20px"><%= link_to @post.try(:title), polymorphic_url([@post.postable, @post]), :style => "font-family: Arial, sans-serif; color: #028cf0; font-size: 24px; font-weight: bold;" %></h1>
                   </td>
                 </tr>
                 <% if @post.photo %>

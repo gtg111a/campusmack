@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :article
 
   validates :type, :presence => true
-  validates :title, :presence => true
+  #validates :title, :presence => true, :if => :type == 'ArticlePost'
 
   scope :published, where(published: true)
   scope :smacks, :conditions => ["posts.type LIKE ?", "Smack"]

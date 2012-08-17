@@ -17,7 +17,7 @@
   </div>
   <div class="title">
 	<%= link_to('<img src="/assets/video_icon.png"/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %>
-	<%= link_to truncate(censoring(post.title), :length => 60), [post.postable, post] %>
+	<%= link_to truncate(censoring(post.try(:title), :length => 60)), [post.postable, post] %>
     <% if can? :manage, Article and !post.published? %>
       <span style="color:red">Unpublished</span>
     <% end %>

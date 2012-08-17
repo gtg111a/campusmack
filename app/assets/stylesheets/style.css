@@ -762,7 +762,7 @@ a.sign_up:hover {
   margin-top: 0px;
 }
 
-.view_more_link {
+.view_more_link, .vml_welcome {
   background-image: url("/assets/view_more_bg.png");
   background-position: left bottom;
   background-repeat: repeat-x;
@@ -770,7 +770,7 @@ a.sign_up:hover {
   height: 32px;
 }
 
-.view_more_link a, a.view_more {
+.view_more_link a, .vml_welcome a, a.view_more {
   background-image: url(/assets/view_more_button.png);
   background-repeat: no-repeat;
   background-position: top;
@@ -786,9 +786,14 @@ a.sign_up:hover {
   height: 26px;
 }
 
-.view_more_link a:hover, a.view_more:hover {
+.view_more_link a:hover, .vml_welcome a:hover, a.view_more:hover {
   background-position: bottom;
   color: #222222;
+}
+
+.vml_welcome {
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 a.view_more {
@@ -1154,6 +1159,7 @@ ul.news li {
   margin: 15px 0 0 20px;
   float: left;
   width: 100%;
+  height: 32px;
 }
 
 .section_title a:hover,
@@ -1832,18 +1838,22 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
-.four_col_view li {
+.four_col_view_welcome {
+	margin-left: 12px;
+}
+
+.four_col_view li, .four_col_view_welcome li {
   width: 180px;
   position: relative;
 }
 
-.four_col_view .votes {
+.four_col_view .votes, .four_col_view_welcome .votes {
   position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view .votes b {
+.four_col_view .votes b, .four_col_view_welcome .votes b {
   font-size: 10px;
 }
 
@@ -1858,7 +1868,7 @@ ul.items {
   list-style: none;
 }
 
-.aborder .team-item {
+.aborder.team-item {
   margin: 0 2px 5px;
   float: left;
   list-style: none;
@@ -1893,6 +1903,7 @@ ul.items {
 .featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
   font-size: 18px;
   font-weight: normal;
+ margin-bottom: 5px;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
@@ -1916,6 +1927,16 @@ ul.items {
   left: 0;
   position: absolute;
   top: 120px;
+}
+
+a.divwrap {
+  color: #000000;
+  text-decoration: none;
+
+}
+
+a.divwrap:hover {
+	color:#B00000; 
 }
 
 .article .content_category {
@@ -1954,9 +1975,10 @@ ul.items {
   margin-bottom: 5px;
 }
 
-.team-item .item-top h3 {
+.team-item .item-top-small h3 {
   font-size: 12px;
   margin-bottom: 5px;
+  height: 12px;
 }
 
 .team-item .item-top h3 a:hover {
@@ -1974,6 +1996,8 @@ ul.items {
   overflow: hidden;
   color: #999;
   text-transform: uppercase;
+  line-height: 16px;
+  margin-bottom: 3px;
 }
 
 .team-item .which-college em.lowercase {
@@ -2042,7 +2066,7 @@ ul.actions li {
 .team-item .summary {
   font-size: 13px;
   height: 65px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 
 }
 
@@ -2445,6 +2469,11 @@ border-left: 1px solid #C4C4C4;      */
   z-index: 1;
   font-size: 12px;
   margin: 0;
+}
+
+.about a {
+  color: #0A5CA6;
+  text-decoration: none;
 }
 
 .aboutProfile a {
