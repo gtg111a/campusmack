@@ -274,8 +274,9 @@ class PostsController < ApplicationController
     if action
       action.gsub!(/new|create/, 'Add')
       action.gsub!(/edit|update/, 'Edit')
-      action.gsub!('show', @post.title) unless @post.new_record?
-      breadcrumbs.add action
+      action.gsub!('show', @post.title) unless @post.new_record? || @post.title.empty?
+      action.gsub!('show', @post.id.to_s) if @post.title.empty?
+      breadcrumbs.add action 
     end
 
   end

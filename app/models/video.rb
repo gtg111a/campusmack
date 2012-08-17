@@ -2,6 +2,7 @@ class Video < ActiveRecord::Base
   belongs_to :post
   validates :url, :presence => true
   validates :url, :youtube_url_format => true
+  #validates :title, :presence => true
 end
 
 

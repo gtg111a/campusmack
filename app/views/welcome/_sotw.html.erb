@@ -1,6 +1,6 @@
 <div class="section">
   <div class="section_title">
-    <%= link_to censoring(truncate(sotw.title, :length => 20)), [sotw.postable, sotw] %>
+    <%= link_to censoring(truncate(sotw.try(:title), :length => 20)), [sotw.postable, sotw] %>
   </div>
   <div class="section_undertitle">
     COLLEGE SMACKED: <%= link_to sotw.postable.name.upcase, sotw.postable, :class => :section_link %>
@@ -17,9 +17,14 @@
   <div class="img_title">
     <%= sotw.created_at.to_date.to_s(:long) %> by <%= link_to(truncate(sotw.user.try(:username), :length => 16), sotw.user) %>
   </div>
+  <%=link_to sotw, :class => "divwrap" do %>
   <div class="content_text">
     <%= truncate(censoring(sotw.summary), :length => 70) %>
+  	<% if sotw.summary.empty?%>
+	  <span>[comments]</span>
+	  <% end %>
   </div>
+  <% end %>
   <div class="content_share">
     <%= share_and_voting_icons(sotw, :post) %>
   </div>
