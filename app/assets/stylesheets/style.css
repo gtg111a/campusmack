@@ -552,6 +552,12 @@ a.sign_up:hover {
   border-top: 2px solid #0476C7;
 }
 
+.separator_line .space {
+  height: 1px;
+  border-top: 2px solid #0476C7;
+  margin-bottom: 20px;
+}
+
 .college_content_title_first {
   border-top: none;
 }
@@ -733,6 +739,10 @@ a.sign_up:hover {
   overflow: hidden;
 }
 
+.content_container .content_category .user_paginate {
+	margin-bottom: 10px;
+}
+
 .content_container .content_category.last {
   border-bottom: none;
 }
@@ -740,7 +750,7 @@ a.sign_up:hover {
 .content_container .content_category .category_title {
   font-size: 16.72pt;
   font-weight: bold;
-  border-bottom: 1px solid #d4d4d4;
+  /*border-bottom: 1px solid #d4d4d4;*/
   margin-bottom: 10px;
   color: #333;
 }
@@ -752,7 +762,7 @@ a.sign_up:hover {
   margin-top: 0px;
 }
 
-.view_more_link {
+.view_more_link, .vml_welcome {
   background-image: url("/assets/view_more_bg.png");
   background-position: left bottom;
   background-repeat: repeat-x;
@@ -760,7 +770,7 @@ a.sign_up:hover {
   height: 32px;
 }
 
-.view_more_link a, a.view_more {
+.view_more_link a, .vml_welcome a, a.view_more {
   background-image: url(/assets/view_more_button.png);
   background-repeat: no-repeat;
   background-position: top;
@@ -776,9 +786,14 @@ a.sign_up:hover {
   height: 26px;
 }
 
-.view_more_link a:hover, a.view_more:hover {
+.view_more_link a:hover, .vml_welcome a:hover, a.view_more:hover {
   background-position: bottom;
   color: #222222;
+}
+
+.vml_welcome {
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 a.view_more {
@@ -873,6 +888,13 @@ a.view_more {
   color: #A5A5A5;
 }
 
+.content_unit2 .unit_info  .which-college {
+  font-size: 10px;
+  overflow: hidden;
+  color: #999;
+  text-transform: uppercase;
+}
+
 .content_unit2 .unit_info span.date {
   color: #4D4D4D;
 }
@@ -891,19 +913,22 @@ a.view_more {
 
 .share_smack_btn {
   margin-left: 6px;
-  padding: 0 0 0 6px;
+  padding: 0px 0 0 6px;
   margin-left: 6px;
   background: url(/assets/send_as_smack_medium.png) no-repeat top;
   display: inline-block;
   text-indent: -9999px;
   width: 66px;
   height: 14px;
+  margin-top: 2px;
 }
 
 .share_smack_btn.small {
   background: url(/assets/send_as_smack_small.png) no-repeat top;
   width: 37px;
   height: 13px;
+  margin-top: 2px;
+
 }
 
 .share_smack_btn.big {
@@ -960,7 +985,7 @@ ul.news li {
   background-color: #dedede;
   margin-right: 10px;
   padding: 3px 3px 3px 6px;
-}
+} 
 
 .date,
 .time {
@@ -976,10 +1001,11 @@ ul.news li {
   text-decoration: underline;
 }
 
+/*Note: This is where we set the Photo Background Color*/
 .team-item .preview,
 .photo_box,
 .smack_container .smack_content {
-  background-color: #000;
+  background-color: #d4d4d4;
   text-align: center;
 }
 
@@ -1133,6 +1159,7 @@ ul.news li {
   margin: 15px 0 0 20px;
   float: left;
   width: 100%;
+  height: 32px;
 }
 
 .section_title a:hover,
@@ -1155,6 +1182,16 @@ a.section_link:hover {
   background-color: #fff;
   margin: 7px 0 0 20px;
   overflow: hidden;
+}
+
+
+.img_section2 {
+  width: 180px;
+  height: 162px;
+  float: left;
+  background-color: #fff;
+  margin: 0px 0 0 0px;
+
 }
 
 .img_section img {
@@ -1801,18 +1838,22 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
   width: 100%;
 }
 
-.four_col_view li {
+.four_col_view_welcome {
+	margin-left: 12px;
+}
+
+.four_col_view li, .four_col_view_welcome li {
   width: 180px;
   position: relative;
 }
 
-.four_col_view .votes {
+.four_col_view .votes, .four_col_view_welcome .votes {
   position: absolute;
   right: 0;
   top: 16px;
 }
 
-.four_col_view .votes b {
+.four_col_view .votes b, .four_col_view_welcome .votes b {
   font-size: 10px;
 }
 
@@ -1825,6 +1866,14 @@ ul.items {
   margin: 0 5px 10px;
   float: left;
   list-style: none;
+}
+
+.aborder.team-item {
+  margin: 0 2px 5px;
+  float: left;
+  list-style: none;
+  border: 1px solid #d4d4d4;
+  padding: 2px 2px 2px 2px;
 }
 
 .featured_articles, .articles {
@@ -1854,6 +1903,7 @@ ul.items {
 .featured_articles .team-item .item-top h3, .articles .team-item .item-top h3 {
   font-size: 18px;
   font-weight: normal;
+ margin-bottom: 5px;
 }
 
 .featured_articles .team-item .summary, .articles .team-item .summary {
@@ -1877,6 +1927,16 @@ ul.items {
   left: 0;
   position: absolute;
   top: 120px;
+}
+
+a.divwrap {
+  color: #000000;
+  text-decoration: none;
+
+}
+
+a.divwrap:hover {
+	color:#B00000; 
 }
 
 .article .content_category {
@@ -1915,9 +1975,10 @@ ul.items {
   margin-bottom: 5px;
 }
 
-.team-item .item-top h3 {
-  font-size: 14px;
+.team-item .item-top-small h3 {
+  font-size: 12px;
   margin-bottom: 5px;
+  height: 12px;
 }
 
 .team-item .item-top h3 a:hover {
@@ -1935,6 +1996,8 @@ ul.items {
   overflow: hidden;
   color: #999;
   text-transform: uppercase;
+  line-height: 16px;
+  margin-bottom: 3px;
 }
 
 .team-item .which-college em.lowercase {
@@ -1947,6 +2010,19 @@ ul.items {
 
 .team-item .which-college a:hover {
   text-decoration: underline;
+}
+
+.team-item .which-college .team {
+	  color: #777777;
+	  background-color: #dedede;
+	  padding: 3px 3px 3px 3px;	
+		
+}
+
+.team-item .which-college .post_border{
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 2px;
+  width: 180px;
 }
 
 .votes .voting_icons {
@@ -1990,8 +2066,8 @@ ul.actions li {
 .team-item .summary {
   font-size: 13px;
   height: 65px;
-  margin-bottom: 5px;
-  overflow: hidden;
+  margin-bottom: 7px;
+
 }
 
 .team-item .items-buttons {
@@ -2395,6 +2471,11 @@ border-left: 1px solid #C4C4C4;      */
   margin: 0;
 }
 
+.about a {
+  color: #0A5CA6;
+  text-decoration: none;
+}
+
 .aboutProfile a {
   color: #0A5CA6;
   text-decoration: none;
@@ -2402,4 +2483,5 @@ border-left: 1px solid #C4C4C4;      */
 
 .preview img {
   min-height: 135px;
+  max-width: 180px;
 }

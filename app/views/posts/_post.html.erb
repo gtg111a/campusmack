@@ -16,8 +16,8 @@
     <% end %>
   </div>
   <div class="title">
-
-    <%= link_to truncate(censoring(post.title), :length => 60), [post.postable, post] %>
+	<%= link_to('<img src="/assets/video_icon.png"/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %>
+	<%= link_to truncate(censoring(post.try(:title), :length => 60)), [post.postable, post] %>
     <% if can? :manage, Article and !post.published? %>
       <span style="color:red">Unpublished</span>
     <% end %>
@@ -31,6 +31,7 @@
 	<% else %>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
 	<% end %>
+	<span class="which-college">College:&nbsp;<%= link_to post.postable.name, post.postable %></span>
   </div>
   <div class="description">
    <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>

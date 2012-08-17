@@ -72,20 +72,21 @@
       <% # Rendering content to javascript variables to switch later on %>
       <% content_for :js do %>
           var postcontent = [];
-          postcontent[0] = '<%= f.fields_for :video, Video.new do |vf| %>
+       	  postcontent[0] = '<%= f.fields_for :photo, Photo.new do |pf| %>
             <tr>
-              <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
-              <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
-            </tr>
-          <% end.gsub(/\r|\n/, '').html_safe %>
-          ';
-          postcontent[1] = '<%= f.fields_for :photo, Photo.new do |pf| %>
-            <tr>
-              <td class="description"><%= pf.label :image, 'Meme:' %></td>
+              <td class="description"><%= pf.label :image, 'Meme/Photo:' %></td>
               <td class="entry"><%= pf.file_field :image, :validate => false %></td>
             </tr>
           <% end.gsub(/\r|\n/, '').html_safe %>
           ';
+          postcontent[1] = '<%= f.fields_for :video, Video.new do |vf| %>
+                <tr>
+                  <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
+                  <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
+                </tr>
+          <% end.gsub(/\r|\n/, '').html_safe %>
+          ';
+   
           postcontent[2] = '<%= f.fields_for :news_post, NewsPost.new do |npf| %>
             <tr>
               <td class="description"><%= npf.label :url, 'Article URL:' %></td>
@@ -111,8 +112,8 @@
       <% end %>
       <% content_for :jq do %>
           $(".inner_menu li a").click(function(){ $('.inner_menu li a').removeClass('active'); $(this).addClass('active'); $('form[data-validate]').validate(); });
-          $("#switch_video").click(function(){switch_fields(0); return false;});
-          $("#switch_photo").click(function(){switch_fields(1); return false;});
+		  $("#switch_photo").click(function(){switch_fields(0); return false;});
+          $("#switch_video").click(function(){switch_fields(1); return false;});
           $("#switch_news").click(function(){switch_fields(2); return false;});
           $("#news_add_photo").live('click',function(e){e.preventDefault(); $("#news_post_addons").hide(); $("#news_photo_div").show();});
           $("#news_add_video").live('click',function(e){e.preventDefault(); $("#news_post_addons").hide(); $("#news_video_div").show();});
@@ -124,12 +125,13 @@
                 <td class="description"><%= f.label :type, 'Post type:' %></td>
                 <td class="entry">
                   <ul class="inner_menu">
+				    <li>
+	                  <a id="switch_photo" href="#" class="active">Meme</a>
+	                </li>
                     <li>
-                      <a id="switch_video" href="#" class="active">Video</a>
+                      <a id="switch_video" href="#">Video</a>
                     </li>
-                    <li>
-                      <a id="switch_photo" href="#">Meme</a>
-                    </li>
+                  
                     <li>
                       <a id="switch_news" href="#">News</a>
                     </li>
@@ -138,7 +140,7 @@
               </tr>
             <% end %>
             <tr>
-              <td class="description"><%= f.label :title, 'Title:' %></td>
+              <td class="description"><%= f.label :title, 'Title (optional):' %></td>
               <td class="entry"><%= f.text_field :title %></td>
             </tr>
             <% if can? :manage, Post %>
@@ -148,24 +150,24 @@
               </tr>
             <% end %>
           </table>
-          <% unless params["contest"] %>
+		<% unless params["contest"] %>
             <table id="shifting_fields" cellpadding="0" cellspacing="0">
-              <%= f.fields_for :video, Video.new do |vf| %>
-                <tr>
-                  <td class="description"><%=image_tag "youtube_logo.png", :style => "vertical-align: bottom" %><%= vf.label :url, ' URL:' %></td>
-                  <td class="entry"><%= vf.text_field :url %><small>Enter Youtube Links Only</small></td>
-                </tr>
-              <% end %>
-            </table>
-          <% else %>
-            <%= f.hidden_field :contest, :value => true %>
-            <%= f.fields_for :video, Video.new do |vf| %>
-              <%= vf.hidden_field :url, :value => "http://content.bitsontherun.com/players/#{@botr[:link][:query][:key]}-9QSaXAN0.js" %>
-            <% end %>
-          <% end %>
+			<%= f.fields_for :photo, Photo.new do |pf| %>
+			  <tr>
+		        <td class="description"><%= pf.label :image, 'Meme/Photo:' %></td>
+		        <td class="entry"><%= pf.file_field :image, :validate => false %></td>
+		      </tr>
+			<% end %>
+			</table>
+		  <% else %>
+			<%= f.hidden_field :contest, :value => true %>
+		    <%= f.fields_for :video, Video.new do |vf| %>
+		    <%= vf.hidden_field :url, :value => "http://content.bitsontherun.com/players/#{@botr[:link][:query][:key]}-9QSaXAN0.js" %>
+		    <% end %>
+		  <% end %>
           <table cellpadding="0" cellspacing="0">
             <tr>
-              <td class="description va-top"><%= f.label :summary, 'Summary:' %></td>
+              <td class="description va-top"><%= f.label :summary, 'Summary (Optional):' %></td>
               <td class="entry"><%= f.text_area :summary %></td>
             </tr>
           </table>

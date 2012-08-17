@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def show
     @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
-    @posts = @search.paginate(:page => params[:page], :order => @order)
+    @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
     breadcrumbs.add @user.username
     init_college_menu
     render :show
