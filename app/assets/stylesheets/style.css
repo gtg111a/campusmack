@@ -1997,6 +1997,7 @@ a.divwrap:hover {
   color: #999;
   text-transform: uppercase;
   line-height: 16px;
+  margin-bottom: 3px;
 }
 
 .team-item .which-college em.lowercase {
@@ -2065,7 +2066,7 @@ ul.actions li {
 .team-item .summary {
   font-size: 13px;
   height: 65px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 
 }
 
