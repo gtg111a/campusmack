@@ -47,6 +47,9 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 <div id="super_wrapper">
   <div id="header">
     <div class="center_page ">
@@ -73,6 +76,12 @@
       <%= user_nav %>
     </div>
   </div>
+  <div class="header_bar">
+   <div class="header_bar_content">
+		<span class="tw_follow_header"><a href="https://twitter.com/Campusmack" class="twitter-follow-button" data-width="150px" data-show-count="false" data-align="left">Follow @Campusmack</a></span>
+	<span class="fb_like_header"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCampusmack&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font=trebuchet+ms&amp;height=21&amp;appId=223312437712461" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></span>
+   </div>
+  </div>
   <div class="second_body clearfix <%= add_padd_if_no_breadcrumbs %>">
     <div id="basic_content" class="center_page clearfix">
       <%= yield(:above) %>
@@ -88,10 +97,15 @@
     </div>
   </div>
 </div>
-<div class="footer ">
+<div class="footer">
   <div class="footer_content">
     <span class="copyright">&copy; <%= Date.today.year %> Campusmack <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a></span>
     <div class="fb-like-box" data-href="http://www.facebook.com/Campusmack" data-width="180" data-colorscheme="dark" data-show-faces="false" data-stream="false" data-header="true"></div>
+	  </div>
+	</div>
+	</body>
+	</html>
+	
   </div>
 </div>
 </body>
