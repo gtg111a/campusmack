@@ -77,7 +77,7 @@ a:hover {
 }
 
 #header {
-  height: 85px;
+  height: 100px;
   background: url(/assets/header_bg.png) 50% 0% repeat-x;
   overflow: hidden;
 }
@@ -1315,10 +1315,29 @@ a.section_link:hover {
   margin-top: -124px;
 }
 
-.footer_content {
+.header_bar {
+  clear: both;
+  background-color: #36373b;
+  height: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.footer_content, .header_bar_content {
   width: 960px;
   margin: 0 auto;
   color: #959595;
+}
+
+
+span.fb_like_header {
+	float: left;
+	margin: 10px 0 0 0px;
+}
+
+span.tw_follow_header {
+	float: left;
+	margin: 10px 8px 0 0px;
 }
 
 .copyright {
