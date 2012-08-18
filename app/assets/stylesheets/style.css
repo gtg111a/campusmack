@@ -2044,6 +2044,12 @@ a.divwrap:hover {
   width: 180px;
 }
 
+.post_border {
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 2px;
+  width: 180px;
+}
+
 .votes .voting_icons {
   margin-left: 10px;
 }

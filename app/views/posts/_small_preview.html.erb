@@ -20,11 +20,13 @@
 	</div>
 </div>
   <%=link_to post, :class => "divwrap" do %>
+ <div class="post_border">
   <div class="summary">
   <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
   <% if post.summary.empty?%>
   <span>[comments]</span>
   <% end %>
+  </div>
   </div>
   <% end %>
   <%= share_and_voting_icons(post, :preview) %>
