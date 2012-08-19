@@ -1928,6 +1928,7 @@ ul.items {
 .featured_articles .team-item .summary, .articles .team-item .summary {
   clear: left;
   margin-top: 23px;
+  border-bottom: 1px solid #d4d4d4;
 }
 
 .featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {

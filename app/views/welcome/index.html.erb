@@ -74,12 +74,12 @@
   </div>
 
     <div class="most_smacked">
-	 <div class="most_smacked_header"><h2>Most Smacked Campus</h2></div>
+	 <div class="most_smacked_header"><h2>Most Smacked</h2></div>
      <%=link_to @colleges.first, :class => "divwrap" do %>
     <div class="most_smacked_title"><h3><strong><%= @colleges.first.try(:name) %>:
 	</strong></h3></div>
 	
-	<div class="most_smacked_number"><h3><%= @colleges.first.try(:smacks_count) %>&nbsp;SMACKS</h3></div>
+	<div class="most_smacked_number"><h3><%= @colleges.first.try(:smacks_count) %>&nbsp;</h3></div>
 	  <% end %>
 	
   </div>
