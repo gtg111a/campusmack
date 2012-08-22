@@ -77,7 +77,7 @@ a:hover {
 }
 
 #header {
-  height: 85px;
+  height: 100px;
   background: url(/assets/header_bg.png) 50% 0% repeat-x;
   overflow: hidden;
 }
@@ -205,20 +205,44 @@ a.sign_up:hover {
   text-decoration: none;
 }
 
-.logo {
+span.logo {
   display: block;
   background: url(/assets/logo.png) no-repeat;
   float: left;
-  margin: 9px 0 0px 10px;
+  margin: 25px 0 0px 10px;
   width: 245px;
   height: 78px;
   text-indent: -9999px;
 }
 
+.home{
+	float: left;
+	font-size: 16px; 
+	margin: 10px 0 0 10px;
+	font-family: "Comic Sans MS";
+	font-style: italic;
+	font-weight: bold;
+	color: #F8F8F8;
+}
+
+.home_1{
+	font-family: "Comic Sans MS";
+	font-style: italic;
+	font-weight: bold;
+	margin-left: 7px;
+	color: #F8F8F8;
+	
+}
+
+span.google_plus{
+	margin-top: 10px;
+	float: right;
+}
+
 .menu {
   float: right;
   position: relative;
-  top: 42px;
+  top: 55px;
   z-index: 10;
 }
 
@@ -1315,10 +1339,29 @@ a.section_link:hover {
   margin-top: -124px;
 }
 
-.footer_content {
+.header_bar {
+  clear: both;
+  background-color: #36373b;
+  height: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.footer_content, .header_bar_content {
   width: 960px;
   margin: 0 auto;
   color: #959595;
+}
+
+
+span.fb_like_header {
+	float: right;
+	margin: 10px 0 0 0px;
+}
+
+span.tw_follow_header {
+	float: right;
+	margin: 10px 8px 0 0px;
 }
 
 .copyright {
@@ -1881,22 +1924,24 @@ ul.items {
 }
 
 .featured_articles .team-item, .articles .team-item {
+  position: relative;
   float: none;
   list-style: none outside none;
-  margin: 0 5px 10px 20px;
+  margin: 0 5px 20px 20px;
   max-height: 135px;
 }
+
 
 .featured_articles .share_smack_btn, .articles .share_smack_btn {
   position: relative;
   top: -4px;
 }
 
-.featured_articles .team-item .item-top, .articles .team-item .item-top {
+.featured_articles .team-item .item-top, .articles .team-item .item-top{
   left: 194px;
   margin-bottom: 5px;
-  position: relative;
-  top: -141px;
+  position: absolute;
+  top: 0px;
   width: 550px;
 }
 
@@ -1909,6 +1954,7 @@ ul.items {
 .featured_articles .team-item .summary, .articles .team-item .summary {
   clear: left;
   margin-top: 23px;
+  border-bottom: 1px solid #d4d4d4;
 }
 
 .featured_articles .team-item .items-buttons, .articles .team-item .items-buttons {
@@ -2025,6 +2071,12 @@ a.divwrap:hover {
   width: 180px;
 }
 
+.post_border {
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 2px;
+  width: 180px;
+}
+
 .votes .voting_icons {
   margin-left: 10px;
 }
@@ -2055,7 +2107,8 @@ ul.actions li {
   margin-left: 4px;
 }
 
-.team-item .preview {
+.team-item .preview {	
+  position: relative;
   clear: both;
   height: 135px;
   width: 180px;

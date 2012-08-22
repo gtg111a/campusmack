@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_authorization_check
 
   def about
+    @about = self.class.to_s
     @menu = [
       [:text, 'About', '', 'active'],
       [:link, 'FAQ', '/faq'],

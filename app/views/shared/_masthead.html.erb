@@ -14,14 +14,18 @@
   </ul>
 </div>
 <% end %>
-<% if @parent.is_a?(College) || @parent.is_a?(Conference) %>
+<% if @parent.is_a?(College) || @parent.is_a?(Conference) || @parent.is_a?(Blog) %>
   <div class="content_actions">
     <ul>
       <% if can? :create, ArticlePost %>
-        <li class="dark_button"><%= link_to "Add Article", @parent.is_a?(College) ? new_college_article_path(@parent) : new_conference_article_path(@parent) %></li>
+        <li class="dark_button"><%= link_to "Add Article", new_college_article_path(@parent) if @parent.is_a?(College) %></li>
+        <li class="dark_button"><%= link_to "Add Article", new_conference_article_path(@parent) if @parent.is_a?(Conference) %></li>
+	    <li class="dark_button"><%= link_to "Add Article", new_blog_article_path(@parent) if @parent.is_a?(Blog) %></li>
       <% end %>
-      <li class="dark_button"><%= link_to "Add Smack", @parent.is_a?(College) ? new_college_smack_path(@parent) : new_conference_smack_path(@parent) %></li>
-      <li class="dark_button"><%= link_to 'Add Redemption', @parent.is_a?(College) ? new_college_redemption_path(@parent) : new_conference_redemption_path(@parent) %></li>
+      <li class="dark_button"><%= link_to "Add Smack", new_college_smack_path(@parent) if @parent.is_a?(College)%></li>
+      <li class="dark_button"><%= link_to "Add Smack", new_conference_smack_path(@parent) if @parent.is_a?(Conference)%></li> 
+	  <li class="dark_button"><%= link_to "Add Redemption", new_college_redemption_path(@parent) if @parent.is_a?(College)%></li>
+      <li class="dark_button"><%= link_to "Add Redemption", new_conference_redemption_path(@parent) if @parent.is_a?(Conference)%></li>
     </ul>
   </div>
 <% end %>
