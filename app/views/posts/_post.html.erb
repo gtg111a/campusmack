@@ -39,7 +39,7 @@
   <% end %>
   </div>
   <div class="description">
-   <p> <%= link_to "Article Link", post.news_post.url unless post.news_post.blank? %>
+   <p> <%= link_to "Article Link ", post.news_post.url unless post.news_post.blank? %>
     <%= truncate(censoring(post.summary), :length => Post::MAX_TEXT_LEN) %></p>
   </div>
   <div class="actions">
