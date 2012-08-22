@@ -54,6 +54,7 @@ module ApplicationHelper
   def user_nav
     #@user_nav << ['Help', help_path]
     @user_nav << ['HOME', '/']
+    @user_nav << ['BLOG', '/blogs/campusmack-blog']
     @user_nav << ['CONTACT', '/contact-us', [:class => :big]]
     @user_nav << ['ABOUT', '/about']
     if signed_in?
@@ -162,8 +163,8 @@ module ApplicationHelper
     cls = 'share_icons'
     cls = 'items-buttons' if place.to_s.include?('preview')
     html = "<span class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
-    html << voting_icons(post, place)
-    html << link_to('Send as smack', send_as_smack_post_path(post), :title => "Send as smack", :class => "share_smack_btn small")
+    html << voting_icons(post, place) if post.postable_type != "Blog"
+    html << link_to('Send as smack', send_as_smack_post_path(post), :title => "Send as smack", :class => "share_smack_btn small") if post.postable_type != "Blog"
     html << "</span>"
     html.html_safe
   end

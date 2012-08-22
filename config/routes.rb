@@ -34,6 +34,18 @@ Campusmack::Application.routes.draw do
     get 'profile' => 'users/registrations#edit', :as => :edit_user_registration
   end
 
+  resources :blogs, :only => [:show, :index] do
+     member do
+        match :search, :action => :show
+      end
+      resources :articles, :controller => :article_posts, :only => [:new]
+      resources :article_posts do
+       collection do
+          match :search, :action => :index
+        end
+      end
+    end
+
   resources :users do
     member do
       match :search, :action => :show

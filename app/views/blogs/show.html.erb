@@ -1,0 +1,18 @@
+<% meta_tags({ "description" => "The Campusmack Blog.  Home to funny College memes, videos, and news.  Find the top ten college freshman meme and face meme here."
+  }) -%>
+
+<div class="content new_level with_submenu">
+  <%= render :partial => 'shared/masthead' %>
+  <div class="content_title">Campusmack Blog</div>
+  <div class="content_container">
+        <div class="category_container">
+          <div class="content_category">
+            <ul class="items articles">
+              <% @posts.each do |post| %>
+                <%= render "posts/articles_preview", :post => post %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+  </div>
+</div>

@@ -16,9 +16,6 @@
   <% if params[:controller] == 'contacts' %>
       <%= javascript_include_tag 'contacts' %>
   <% end %>
-  <% unless Rails.env == 'development' || Rails.env == 'test' %>
-      <%= javascript_include_tag 'http://shots.snap.com/ss/d83b52a2e254661d23d1c0974a8b36c3/snap_shots.js' %>
-  <% end %>
 
   <%= yield :meta %>
   <%= yield :og_meta %>

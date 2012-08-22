@@ -2,7 +2,7 @@
   <div class="preview">
     <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
     <% if post.photo || (post.article && post.article.image.exists?) %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" width="180px"/></a>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" width="180px" height="135px"/></a>
     <% end %>
   </div>
   <div class="item-top">
@@ -14,9 +14,13 @@
     <div class="which-college">
       <span class="date"><%= formatted_datetime(post.created_at.to_datetime) %>, </span>
       <em class="lowercase"> by</em> <%= link_to(truncate(post.user.try(:first_name), :length => 32), user_articles_path(post.user), :class => :author) %>
-      <% if params[:controller] == 'welcome' %>
+      <% if params[:controller] == 'welcome'%>
+		<% if post.postable_type != 'Blog'%>
         &nbsp;<span class="article_college">College:&nbsp;<%= link_to post.postable.name, post.postable %></span>
+		<% else %>
+		&nbsp;<span class="article_college">From:&nbsp;<%= link_to post.postable.name, post.postable %></span>
       <% end %>
+	 <% end %>
     </div>
 
     <div class="summary">
@@ -25,5 +29,5 @@
     <div class="votes">
      <%= share_and_voting_icons(post, :show) %>
     </div>
-  </div>
+</div>
 </li>
