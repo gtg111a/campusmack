@@ -1,10 +1,9 @@
-<% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
-  }) -%>
+<% meta_tags({ "description" => @page_description}) -%>
 <% if @youtube_video %>
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "movie",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => "#{@post.summary} ",
+    "og:description" => "#{@post.postable.name} video.",
     "og:image" => " #{@youtube_video.thumbnail_large}",
     "og:video:type" => "application/x-shockwave-flash",
     "og:video:height" => "398",
@@ -15,7 +14,7 @@
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:site_name" => "#{SITE_NAME}",
     "og:type" => "album",
-    "og:description" => "#{@post.summary}"
+    "og:description" => "#{@post.postable.name} memes, news, and more."
   }) -%>
 <%end%>
 

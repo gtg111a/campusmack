@@ -61,6 +61,7 @@ class ArticlePostsController < ApplicationController
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
+    @page_description = "Funny " + @post.postable.name + " news. " + @post.title
     init_college_menu
     add_breadcrumbs
     render 'posts/show'
@@ -104,6 +105,7 @@ class ArticlePostsController < ApplicationController
       @post = Post.published.find(:first, :conditions => { :permalink => params[:id]} )
     rescue
     end
+    @articlepost = @post
   end
 
   def find_parent

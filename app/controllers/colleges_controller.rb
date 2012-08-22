@@ -1,5 +1,7 @@
 class CollegesController < ApplicationController
   authorize_resource
+  
+  before_filter :find_college, :only => [:show]
 
   def new
     @college = College.new
@@ -14,7 +16,6 @@ class CollegesController < ApplicationController
   end
 
   def show
-    @college = College.where(:permalink => params[:id]).first
     @conference = @college.conference
     @parent = @college
     breadcrumbs.add @college.conference.name, conference_path(@college.conference)
@@ -67,6 +68,10 @@ class CollegesController < ApplicationController
     @main_menu << [ :text, 'All', '', 'active' ]
     @main_menu << [ :link, 'Smacks', college_smacks_path(@college) ]
     @main_menu << [ :link, 'Redemptions', college_redemptions_path(@college) ]
+  end
+  
+  def find_college
+      @college = College.where(:permalink => params[:id]).first
   end
 
 end

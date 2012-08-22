@@ -79,5 +79,9 @@ class ApplicationController < ActionController::Base
     return if request.env['HTTP_HOST'].ends_with?(APP_DOMAIN) || request.env['HTTP_HOST'].ends_with?('herokuapp.com')
     redirect_to "http://#{APP_DOMAIN}", :status => 301
   end
+  
+  def set_description
+    @page_description = 'Funny campus and college memes, videos, articles. Find the college freshman meme and face meme here.'
+  end
 
 end

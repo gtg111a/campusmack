@@ -205,7 +205,7 @@ a.sign_up:hover {
   text-decoration: none;
 }
 
-.logo {
+span.logo {
   display: block;
   background: url(/assets/logo.png) no-repeat;
   float: left;
@@ -213,6 +213,29 @@ a.sign_up:hover {
   width: 245px;
   height: 78px;
   text-indent: -9999px;
+}
+
+.home{
+	float: left;
+	font-size: 16px; 
+	margin: 10px 0 0 0;
+	font-family: "Comic Sans MS";
+	font-style: italic;
+	font-weight: bold;
+	color: #F8F8F8;
+}
+
+.home_1{
+	font-family: "Comic Sans MS";
+	font-style: italic;
+	font-weight: bold;
+	margin-left: 2px;
+	color: #F8F8F8;
+}
+
+span.google_plus{
+	margin-top: 10px;
+	float: right;
 }
 
 .menu {
@@ -1331,12 +1354,12 @@ a.section_link:hover {
 
 
 span.fb_like_header {
-	float: left;
+	float: right;
 	margin: 10px 0 0 0px;
 }
 
 span.tw_follow_header {
-	float: left;
+	float: right;
 	margin: 10px 8px 0 0px;
 }
 

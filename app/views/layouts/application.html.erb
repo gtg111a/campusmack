@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= title %></title>
+  <meta name="robots" content="INDEX,FOLLOW" />
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag 'application' %>
   <link href="/javascripts/ckeditor/contents.css" media="screen" rel="stylesheet" type="text/css" />
@@ -50,6 +51,14 @@
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
 <div id="super_wrapper">
   <div id="header">
     <div class="center_page ">
@@ -71,15 +80,18 @@
         <% end %>
       </div>
 
-      <a href="/"><h1 class="logo">Campusmack</h1></a>
+      <a href="/"><span class="logo">Campusmack</span></a>
 
       <%= user_nav %>
     </div>
   </div>
   <div class="header_bar">
    <div class="header_bar_content">
+
+	<h1 class="home">Your Site For College Memes, Videos, &amp; News</h1>
+	<span class="google_plus"><div class="g-plusone" data-size="medium" data-href="http://www.campusmack.com"></div></span>
 		<span class="tw_follow_header"><a href="https://twitter.com/Campusmack" class="twitter-follow-button" data-width="150px" data-show-count="false" data-align="left">Follow @Campusmack</a></span>	
-	<span class="fb_like_header"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCampusmack&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font=trebuchet+ms&amp;height=21&amp;appId=223312437712461" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></span>
+	<span class="fb_like_header"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCampusmack&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font=trebuchet+ms&amp;height=21&amp;appId=223312437712461" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe></span>
    </div>
   </div>
   <div class="second_body clearfix <%= add_padd_if_no_breadcrumbs %>">

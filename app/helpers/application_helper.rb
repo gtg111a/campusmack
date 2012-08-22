@@ -13,12 +13,12 @@ module ApplicationHelper
   end
 
   def title
-    base_title = "Campusmack"
+    base_title = "Campusmack - Funny College Memes, Videos, News"
     base_title += ' | STAGING' if Rails.env == 'staging'
     if @title.nil?
       base_title
     else
-      "#{base_title} | #{@title}"
+      "#{@title} | #{base_title}"
     end
   end
 

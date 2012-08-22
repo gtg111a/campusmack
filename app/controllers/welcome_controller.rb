@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
+    @page_description = 'Funny campus and college memes, videos, and news. Find the college freshman meme and face meme here.'
     @colleges = College.all(:order => "smacks_count DESC", :limit => 10)
     @featured_articles = Post.published.where(:type => 'ArticlePost').order('created_at DESC').limit(4)
     @home_list = []
