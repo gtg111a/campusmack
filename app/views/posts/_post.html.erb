@@ -26,15 +26,20 @@
     Posted
     <span class="date"><%= formatted_datetime(post.created_at) %></span>
     <span class="by">by:</span>
-	<% if post.article %>
+  <% if post.article %>
 	<%= link_to(truncate(post.user.try(:first_name), :length => 32), user_articles_path(post.user), :class => :author) %>
-	<% else %>
+  <% else %>
     <%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
-	<% end %>
+  <% end %>
+	 
+  <% if post.postable_type != "Blog" %>
 	<span class="which-college">College:&nbsp;<%= link_to post.postable.name, post.postable %></span>
+  <% else %>
+	<span class="which-college">From:&nbsp;<%= link_to post.postable.name, post.postable %></span>
+  <% end %>
   </div>
   <div class="description">
-   <p> <%= link_to "Article Preview", post.news_post.url, :class => 'snap_shots' unless post.news_post.blank? %>
+   <p> <%= link_to "Article Link ", post.news_post.url unless post.news_post.blank? %>
     <%= truncate(censoring(post.summary), :length => Post::MAX_TEXT_LEN) %></p>
   </div>
   <div class="actions">

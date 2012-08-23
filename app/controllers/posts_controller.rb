@@ -8,6 +8,8 @@ class PostsController < ApplicationController
 
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
+  
+  
 
   def new
     # If there is no parent, this is for the add smack/redemption on the home page
@@ -96,9 +98,10 @@ class PostsController < ApplicationController
   def show
     @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest rescue nil
     @post.censored_text(@post.title, current_user)
-    @post.censored_text(@post.summary,current_user)
+    @post.censored_text(@post.summary,current_user) 
     @comments = Comment.where(:commentable_id => @post.id).order('created_at DESC').paginate(:page => params[:page])
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
+    @page_description = @post.title + " " + @post.postable.name + " meme."
     init_college_menu
     add_breadcrumbs
     render 'posts/show'

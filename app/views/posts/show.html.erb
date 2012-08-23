@@ -1,10 +1,9 @@
-<% meta_tags({ "description" => " #{@post.title} : #{@post.summary} "
-  }) -%>
+<% meta_tags({ "description" => @page_description}) -%>
 <% if @youtube_video %>
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:type" => "movie",
     "og:site_name" => "#{SITE_NAME}",
-    "og:description" => "#{@post.summary} ",
+    "og:description" => "#{@post.postable.name} video.",
     "og:image" => " #{@youtube_video.thumbnail_large}",
     "og:video:type" => "application/x-shockwave-flash",
     "og:video:height" => "398",
@@ -15,7 +14,7 @@
 <% open_graph_meta_tags({ "og:title" => "#{@post.title}",
     "og:site_name" => "#{SITE_NAME}",
     "og:type" => "album",
-    "og:description" => "#{@post.summary}"
+    "og:description" => "#{@post.postable.name} memes, news, and more."
   }) -%>
 <%end%>
 
@@ -44,10 +43,17 @@
         </ul>
 
         <div class="smack_info">
+	<% if !@parent.is_a?(Blog)%>
     <span class="team">
       College:
       <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
     </span>
+    <% else %>
+  <span class="team">
+      From:
+      <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
+    </span>
+	<% end %>
           Posted
           <span class="date"><%= formatted_datetime(@post.created_at.to_datetime) %>, </span>
           <em>by</em>
@@ -72,7 +78,7 @@
           </div>
         <% end %>
         <% if @post.news_post %>
-          <%= link_to "Article Preview", @post.news_post.url, :class => 'snap_shots' unless @post.news_post.blank? %>
+          <%= link_to "Article Link", @post.news_post.url unless @post.news_post.blank? %>
           <% unless @post.news_post.image_file_name.blank? %>
             <div class="photo">
               <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>

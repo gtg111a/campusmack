@@ -7,7 +7,7 @@ class ArticlePostsController < ApplicationController
     @post = @parent.send(@post_cls).build
     @title = 'Submit a ' + @parent.name + ' article'
     @submit = 'FILL IN THE FOLLOWING TO SUBMIT AN ARTICLE'
-    init_college_menu
+    init_college_menu if !@parent.is_a?(Blog)
     add_breadcrumbs
   end
 
@@ -17,7 +17,7 @@ class ArticlePostsController < ApplicationController
     # overwrites the default true value of published which is required for the other
     # type of posts
     @post.published = params[@post_cls.singularize][:published].to_i > 0
-    init_college_menu
+    init_college_menu if !@parent.is_a?(Blog)
     if @post.save
       if store_location =~ /^\/conferences\//
         redirect_to conference_path(@parent)
@@ -47,7 +47,7 @@ class ArticlePostsController < ApplicationController
     @order = params[:order] || Post::default_order
     @per_page = params[:per] || Post::PER_PAGE_DEFAULT[0]
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
-    init_college_menu
+    init_college_menu if !@parent.is_a?(Blog)
     add_breadcrumbs
 
     # We use the views from the posts folder for everything
@@ -61,7 +61,8 @@ class ArticlePostsController < ApplicationController
     @post.censored_text(@post.summary,current_user)
     @comments = Comment.find(:all, :conditions => {:commentable_id => @post.id}).paginate(:page => params[:page], :order => 'created_at DESC')
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
-    init_college_menu
+    @page_description = "Funny " + @post.postable.name + " news. " + @post.title
+    init_college_menu if !@parent.is_a?(Blog)
     add_breadcrumbs
     render 'posts/show'
   end
@@ -79,7 +80,7 @@ class ArticlePostsController < ApplicationController
   def edit
     @user = current_user
     @title = "Edit post"
-    init_college_menu
+    init_college_menu if !@parent.is_a?(Blog)
     add_breadcrumbs
     render 'posts/edit'
   end
@@ -104,12 +105,14 @@ class ArticlePostsController < ApplicationController
       @post = Post.published.find(:first, :conditions => { :permalink => params[:id]} )
     rescue
     end
+    @articlepost = @post
   end
 
   def find_parent
     @parent = College.where(:permalink => params[:college_id]).first if params[:college_id]
     @parent ||= Conference.where(:permalink => params[:conference_id]).first if params[:conference_id]
     @parent ||= User.where(:id => params[:user_id]).first if params[:user_id]
+    @parent ||= Blog.where(:permalink => params[:blog_id]).first if params[:blog_id]
     @parent ||= @post.postable if @post
     @post_cls = self.class.to_s.underscore.gsub('_controller','')
   end
