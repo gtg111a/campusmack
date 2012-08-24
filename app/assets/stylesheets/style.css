@@ -1912,11 +1912,12 @@ ul.items {
 }
 
 .aborder.team-item {
-  margin: 0 2px 5px;
+  margin: 0 0px 0px;
   float: left;
   list-style: none;
   border: 1px solid #d4d4d4;
   padding: 2px 2px 2px 2px;
+  width: 185px;
 }
 
 .featured_articles, .articles {
@@ -2107,16 +2108,18 @@ ul.actions li {
   margin-left: 4px;
 }
 
-.team-item .preview {	
+.preview {	
   position: relative;
   clear: both;
   height: 135px;
   width: 180px;
   margin-bottom: 5px;
+  margin-left: 2px;
   overflow: hidden;
 }
 
-.team-item .preview img {
+.preview img {
+  max-height: 135px;
   min-height: 135px;
   max-width: 100%;
 }
