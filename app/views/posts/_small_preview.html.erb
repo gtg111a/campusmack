@@ -2,7 +2,7 @@
   <div class="item-top-small clearfix">
     <h3><%= link_to truncate(post.try(:title).upcase, :length => 22), post, :title => post.try(:title) %></h3>
     <div class="which-college">
-	<%= link_to('<img src="/assets/video_icon.png"/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %> 
+	<%= link_to('<img src="/assets/video_icon.png" alt=""/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %> 
 	<span> COLLEGE:</span>
 	<span class="team"> <%= link_to post.postable.try(:name), post.postable	 %></span>
 	</div>
@@ -10,7 +10,7 @@
   <div class="preview">
     <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
     <% if post.photo || (post.article && post.article.image.exists?) %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><div class="img_cont"><img src="<%= post.photo_url(:medium) %>" alt=""/></div></a>
+        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt=""/></a>
     <% end %>
   </div>
 <div class="which-college">

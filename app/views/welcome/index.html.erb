@@ -74,7 +74,7 @@
     <%= render :partial => 'shared/search' %>
   </div>
 
-    <div class="most_smacked">
+  <div class="most_smacked">
 	 <div class="most_smacked_header"><h2>Most Smacked</h2></div>
      <%=link_to @colleges.first, :class => "divwrap" do %>
     <div class="most_smacked_title"><h3><strong><%= @colleges.first.try(:name) %>:
@@ -104,11 +104,12 @@
     <div class="separator_line"></div>
   <div class="content_container clearfix">
     <div class="home_smacks_of_week">
-    <%= render :partial => 'sotw', :collection => @sotw %></div>
+    <%= render :partial => 'sotw', :collection => @sotw %>
+    </div>
   </div>
 		<div class="vml_welcome clear_both">
         <%= link_to "See all Smacks", smacks_path %>
-      </div>
+        </div>
   </div>
   <% end %>
 
@@ -121,9 +122,8 @@
       <%= render "posts/small_preview", :post => post %>
 	  <% end %>
 	 </ul>
-	 </div>
+	</div>
 		<div class="vml_welcome clear_both">
           <%= link_to "See all Posts", posts_path %>
         </div>
 		<br><br>
-  </div>

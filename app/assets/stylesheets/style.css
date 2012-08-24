@@ -234,7 +234,7 @@ span.logo {
 	
 }
 
-span.google_plus{
+.google_plus{
 	margin-top: 10px;
 	float: right;
 }
@@ -1038,17 +1038,12 @@ ul.news li {
   text-align: center;
 }
 
-.team-item .preview {
+/*.team-item .preview {
   display: table;
-}
+}*/
 
-img_cont{
-	width: 180px;
-	position: absolute;
-}
 
 .team-item .preview a {
-  display: table-cell;
   width: 180px;
   max-width: 180px;
   min-height: 12em;
@@ -2120,21 +2115,30 @@ ul.actions li {
   margin-left: 4px;
 }
 
-.preview {	
+
+
+.preview {
+  display: block;	
   position: relative;
   clear: both;
-  height: 135px;
-  width: 180px;
+  height: auto;
+  width: auto;
   margin-bottom: 5px;
   margin-left: 2px;
   overflow: hidden;
+  max-height: 135px;
+  max-width: 180px;
+  min-height: 135px;
 }
+
 
 .preview img {
   max-height: 135px;
   min-height: 135px;
   max-width: 100%;
 }
+
+
 
 .team-item .summary {
   font-size: 13px;
