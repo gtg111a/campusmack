@@ -759,7 +759,8 @@ span.google_plus{
 }
 
 .content_container .content_category {
-  padding: 15px; /* border-bottom: 1px solid #d4d4d4; */
+  margin-top: 20px;
+  padding: 10px; /* border-bottom: 1px solid #d4d4d4; */
   overflow: hidden;
 }
 
@@ -777,6 +778,10 @@ span.google_plus{
   /*border-bottom: 1px solid #d4d4d4;*/
   margin-bottom: 10px;
   color: #333;
+}
+
+.category_container{
+	
 }
 
 .content_container .content_category .category_sort {
@@ -1035,6 +1040,11 @@ ul.news li {
 
 .team-item .preview {
   display: table;
+}
+
+img_cont{
+	width: 180px;
+	position: absolute;
 }
 
 .team-item .preview a {
