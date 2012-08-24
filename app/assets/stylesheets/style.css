@@ -234,7 +234,7 @@ span.logo {
 	
 }
 
-span.google_plus{
+.google_plus{
 	margin-top: 10px;
 	float: right;
 }
@@ -759,7 +759,8 @@ span.google_plus{
 }
 
 .content_container .content_category {
-  padding: 15px; /* border-bottom: 1px solid #d4d4d4; */
+  margin-top: 20px;
+  padding: 10px; /* border-bottom: 1px solid #d4d4d4; */
   overflow: hidden;
 }
 
@@ -777,6 +778,10 @@ span.google_plus{
   /*border-bottom: 1px solid #d4d4d4;*/
   margin-bottom: 10px;
   color: #333;
+}
+
+.category_container{
+	
 }
 
 .content_container .content_category .category_sort {
@@ -1033,12 +1038,12 @@ ul.news li {
   text-align: center;
 }
 
-.team-item .preview {
+/*.team-item .preview {
   display: table;
-}
+}*/
+
 
 .team-item .preview a {
-  display: table-cell;
   width: 180px;
   max-width: 180px;
   min-height: 12em;
@@ -1882,11 +1887,12 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 }
 
 .four_col_view_welcome {
-	margin-left: 12px;
+	margin-left: 9px;
+	margin-bottom: 10px;
 }
 
 .four_col_view li, .four_col_view_welcome li {
-  width: 180px;
+  width: 185px;
   position: relative;
 }
 
@@ -1903,6 +1909,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 ul.items {
   margin-right: -20px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .team-item {
@@ -1912,11 +1919,12 @@ ul.items {
 }
 
 .aborder.team-item {
-  margin: 0 2px 5px;
+  margin: 0 0px 0px;
   float: left;
   list-style: none;
   border: 1px solid #d4d4d4;
   padding: 2px 2px 2px 2px;
+  width: 185px;
 }
 
 .featured_articles, .articles {
@@ -2107,14 +2115,30 @@ ul.actions li {
   margin-left: 4px;
 }
 
-.team-item .preview {	
+
+
+.preview {
+  display: block;	
   position: relative;
   clear: both;
-  height: 135px;
-  width: 180px;
+  height: auto;
+  width: auto;
   margin-bottom: 5px;
+  margin-left: 2px;
   overflow: hidden;
+  max-height: 135px;
+  max-width: 180px;
+  min-height: 135px;
 }
+
+
+.preview img {
+  max-height: 135px;
+  min-height: 135px;
+  max-width: 100%;
+}
+
+
 
 .team-item .summary {
   font-size: 13px;
@@ -2532,9 +2556,4 @@ border-left: 1px solid #C4C4C4;      */
 .aboutProfile a {
   color: #0A5CA6;
   text-decoration: none;
-}
-
-.preview img {
-  min-height: 135px;
-  max-width: 180px;
 }

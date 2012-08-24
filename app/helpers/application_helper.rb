@@ -216,7 +216,7 @@ module ApplicationHelper
 
   def youtube_thumbnail(url, post_url, cls = 'thumbnail_yt')
     img = "<a href='#{url_for(post_url)}'>"
-    img << "<img src='#{url}' alt=''"
+    img << "<img src='#{url}' alt='' "
     img << "class='#{cls}'" if cls
     img << ' /></a>'
     return raw img
