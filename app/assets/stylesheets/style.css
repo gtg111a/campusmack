@@ -2116,6 +2116,11 @@ ul.actions li {
   overflow: hidden;
 }
 
+.team-item .preview img {
+  min-height: 135px;
+  max-width: 100%;
+}
+
 .team-item .summary {
   font-size: 13px;
   height: 65px;
@@ -2532,9 +2537,4 @@ border-left: 1px solid #C4C4C4;      */
 .aboutProfile a {
   color: #0A5CA6;
   text-decoration: none;
-}
-
-.preview img {
-  min-height: 135px;
-  max-width: 180px;
 }
