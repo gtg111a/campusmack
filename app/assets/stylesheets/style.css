@@ -956,7 +956,14 @@ a.view_more {
   background: url(/assets/send_as_smack_small.png) no-repeat top;
   width: 37px;
   height: 13px;
-  margin-top: 2px;
+
+}
+
+.votes .share_smack_btn.small {
+  background: url(/assets/send_as_smack_small.png) no-repeat top;
+  width: 37px;
+  height: 13px;
+  margin-top: 5px;
 
 }
 

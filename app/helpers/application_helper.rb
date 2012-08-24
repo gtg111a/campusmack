@@ -163,7 +163,7 @@ module ApplicationHelper
     cls = 'share_icons'
     cls = 'items-buttons' if place.to_s.include?('preview')
     html = "<span class='#{cls}'>" + share_through_email_btn(post, place) + facebook_share(post, place) + twitter_share(post, place)
-    html << voting_icons(post, place) if post.postable_type != "Blog"
+    html << voting_icons(post, place) if post.type != "ArticlePost"
     html << link_to('Send as smack', send_as_smack_post_path(post), :title => "Send as smack", :class => "share_smack_btn small") if post.postable_type != "Blog"
     html << "</span>"
     html.html_safe
