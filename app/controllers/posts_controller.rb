@@ -219,6 +219,7 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find params[:id]
+    #@post = Post.published.find(:first, :conditions => { :permalink => params[:id]} ) if params[:type] == 'ArticlePost'
   end
 
   def find_parent
