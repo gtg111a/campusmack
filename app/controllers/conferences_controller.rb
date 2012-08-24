@@ -23,7 +23,7 @@ class ConferencesController < ApplicationController
     @parent = @conference
     init_main_menu
     breadcrumbs.add @conference.name, conference_path(@conference)
-    @order = params[:order] || 'created_at desc'
+    @order = params[:order] || 'created_at%20desc'
     @search = @conference.posts.search(params[:search])
     @title = @conference.name
     if params[:search]
