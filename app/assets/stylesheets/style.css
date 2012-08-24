@@ -2117,10 +2117,8 @@ ul.actions li {
 }
 
 .team-item .preview img {
-  position: relative;
   min-height: 135px;
-  max-width: 180px;
-  overflow: hidden;
+  max-width: 100%;
 }
 
 .team-item .summary {
