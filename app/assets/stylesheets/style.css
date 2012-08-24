@@ -1882,11 +1882,12 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 }
 
 .four_col_view_welcome {
-	margin-left: 12px;
+	margin-left: 9px;
+	margin-bottom: 10px;
 }
 
 .four_col_view li, .four_col_view_welcome li {
-  width: 180px;
+  width: 185px;
   position: relative;
 }
 
@@ -1903,6 +1904,7 @@ form.semantic.left_align button, form.semantic.left_align .actions input, form.s
 ul.items {
   margin-right: -20px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .team-item {
