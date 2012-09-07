@@ -73,7 +73,7 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-
+<!--
   <div class="most_smacked">
 	 <div class="most_smacked_header"><h2>Most Smacked</h2></div>
      <%=link_to @colleges.first, :class => "divwrap" do %>
@@ -82,8 +82,9 @@
 	
 	<div class="most_smacked_number"><h3><%= @colleges.first.try(:smacks_count) %>&nbsp;</h3></div>
 	  <% end %>
-	
+
   </div>
+-->	
   <% if @featured_articles.any? %>
     <div class="college_content_title"><h2>Featured Articles</h2></div>
     <div class="separator_line"></div>

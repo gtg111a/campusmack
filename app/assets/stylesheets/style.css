@@ -483,7 +483,7 @@ span.logo {
 
 .colname {
   float: left;
-  width: 72px;
+  width: 70px;
   white-space: nowrap;
 }
 
@@ -493,7 +493,7 @@ span.logo {
 
 .smcount {
   float: left;
-  width: 22px;
+  width: 24px;
   overflow: hidden;
   text-align: right;
 }
