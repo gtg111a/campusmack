@@ -5,8 +5,6 @@ class ArticlePost < Post
 
   belongs_to :postable, :polymorphic => true, :counter_cache => :smacks_count
   has_many :comments, :as => :commentable, :dependent => :destroy
-  
-  #validates :title, :presence => true
 
   after_validation :update_summary
   
@@ -24,7 +22,6 @@ class ArticlePost < Post
   def update_summary
     self.summary = truncate(strip_tags(article.body), :length => Post::MAX_TEXT_LEN, :separator => ' ')
   end
-
 end
 
 
