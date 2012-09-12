@@ -1,32 +1,32 @@
 <li class="aborder team-item">
-  <div class="item-top-small clearfix">
+  <div class="item-top clearfix">
     <h3><%= link_to truncate(post.try(:title).upcase, :length => 22), post, :title => post.try(:title) %></h3>
     <div class="which-college">
-	<%= link_to('<img src="/assets/video_icon.png" alt=""/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %> 
-	<span> COLLEGE:</span>
-	<span class="team"> <%= link_to post.postable.try(:name), post.postable	 %></span>
-	</div>
+  <%= link_to('<img src="/assets/video_icon.png" alt=""/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %>
+  <span> COLLEGE:</span>
+  <span class="team"> <%= link_to post.postable.try(:name), post.postable  %></span>
+  </div>
   </div>
   <div class="preview">
     <%= youtube_thumbnail(post.youtube_thumbnail_url,[post.postable, post]) if post.video || (post.article && !post.article.video_url.blank?) %>
     <% if post.photo || (post.article && post.article.image.exists?) %>
-        <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt=""/></a>
+      <a class="photo" href="<%= post.photo_url(:large) %>"><img src="<%= post.photo_url(:medium) %>" alt="" height="135px"/></a>
     <% end %>
   </div>
-<div class="which-college">
-	<div class="post_border">
-	<span>USER: </span><%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
-	</div>
-</div>
+  <div class="which-college">
+    <div class="post_border">
+    <span>USER: </span><%= link_to(truncate(post.user.try(:username), :length => 16), post.user, :class => :author) %>
+    </div>
+  </div>
   <%=link_to post, :class => "divwrap" do %>
- <div class="post_border">
-  <div class="summary">
-  <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
-  <% if post.summary.empty?%>
-  <span>[comments]</span>
-  <% end %>
-  </div>
-  </div>
+    <div class="post_border">
+      <div class="summary">
+        <%= censoring(truncate(strip_tags(post.summary), :length => 75)) %>
+        <% if post.summary.empty?%>
+          <span>[comments]</span>
+        <% end %>
+      </div>
+    </div>
   <% end %>
   <%= share_and_voting_icons(post, :preview) %>
 </li>

@@ -73,18 +73,6 @@
     </ul>
     <%= render :partial => 'shared/search' %>
   </div>
-<!--
-  <div class="most_smacked">
-	 <div class="most_smacked_header"><h2>Most Smacked</h2></div>
-     <%=link_to @colleges.first, :class => "divwrap" do %>
-    <div class="most_smacked_title"><h3><strong><%= @colleges.first.try(:name) %>:
-	</strong></h3></div>
-	
-	<div class="most_smacked_number"><h3><%= @colleges.first.try(:smacks_count) %>&nbsp;</h3></div>
-	  <% end %>
-
-  </div>
--->	
   <% if @featured_articles.any? %>
     <div class="college_content_title"><h2>Featured Articles</h2></div>
     <div class="separator_line"></div>
@@ -95,36 +83,36 @@
           <%= render "posts/articles_preview", :post => post %>
         <% end %>
       </ul>
-		<div class="vml_welcome clear_both">
+    <div class="vml_welcome clear_both">
           <%= link_to "See all Articles", article_posts_path %>
         </div>
     </div>
   <% end %>
 
   <div class="college_content_title"><h2>Recent Posts</h2></div>
-   <div class="separator_line space"></div>
-    <div class="content_container clearfix">
-	 <br>
-	 <ul class="items four_col_view_welcome">
+  <div class="separator_line space"></div>
+  <div class="content_container clearfix">
+    <br>
+    <ul class="items four_col_view_welcome">
       <% @home_list.each do |post| %>
-      <%= render "posts/small_preview", :post => post %>
-	  <% end %>
-	 </ul>
-	</div>
-		<div class="vml_welcome clear_both">
-          <%= link_to "See all Posts", posts_path %>
-        </div>
-		<br><br>
-	  <% if @sotw %>
-	  <div class="college_content_title"><h2>Smacks of the Week</h2></div>
-	    <div class="separator_line"></div>
-	  <div class="content_container clearfix">
-	    <div class="home_smacks_of_week">
-	    <%= render :partial => 'sotw', :collection => @sotw %>
-	    </div>
-	  </div>
-			<div class="vml_welcome clear_both">
-	        <%= link_to "See all Smacks", smacks_path %>
-	        </div>
-	  </div>
-	  <% end %>
+        <%= render "posts/small_preview", :post => post %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="vml_welcome clear_both">
+    <%= link_to "See all Posts", posts_path %>
+  </div>
+  <br><br>
+  <% if @sotw %>
+    <div class="college_content_title"><h2>Smacks of the Week</h2></div>
+    <div class="separator_line"></div>
+    <div class="content_container clearfix">
+      <div class="home_smacks_of_week">
+      <%= render :partial => 'sotw', :collection => @sotw %>
+      </div>
+    </div>
+    <div class="vml_welcome clear_both">
+      <%= link_to "See all Smacks", smacks_path %>
+    </div>
+  <% end %>
+</div>

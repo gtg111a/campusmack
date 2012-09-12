@@ -8,7 +8,7 @@
   <% unless @posts.empty? %>
       <div class="content_container">
         <div class="content_category">
-          <%= render :partial => 'shared/sorter' %>
+          <%= render :partial => 'shared/sorter', :locals => { :infinite_scrolling => false } %>
           <div class="category_container clearfix">
             <%= custom_paginate @posts %>
             <%= render :partial => "/posts/post", :collection => @posts %>
