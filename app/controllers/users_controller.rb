@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
-    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => 4)
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => 50)
 
     respond_to do |format|
       format.json do

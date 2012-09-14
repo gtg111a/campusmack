@@ -84,7 +84,7 @@ class PostsController < ApplicationController
     end
     @search = posts.search(params[:search])
     @order = params[:order].blank? ? Post::default_order : params[:order]
-    per_page = params[:page].to_i == 0 ? 4*3 : 4*2
+    per_page = params[:page].to_i == 0 ? 4*30 : 4*30
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => per_page)
 
     respond_to do |format|
