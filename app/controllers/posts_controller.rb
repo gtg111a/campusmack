@@ -84,15 +84,19 @@ class PostsController < ApplicationController
     end
     @search = posts.search(params[:search])
     @order = params[:order].blank? ? Post::default_order : params[:order]
-    per_page = params[:page].to_i == 0 ? 4*30 : 4*30
+    per_page = params[:page].to_i == 0 ? 4*30 : 4*20
     @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => per_page)
 
     respond_to do |format|
       format.json do
-        render :json => {
-            :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
-            :next_page => @posts.next_page
-        }
+        unless @posts.blank?
+          render :json => {
+              :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
+              :next_page => @posts.next_page
+          }
+        else
+          render :json => {:error => 'No more posts to load.'}, :status => 404
+        end
       end
       format.html do
         init_college_menu

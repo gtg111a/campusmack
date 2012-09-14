@@ -15,10 +15,14 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.json do
-        render :json => {
-            :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
-            :next_page => @posts.next_page
-        }
+        unless @posts.blank?
+          render :json => {
+              :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
+              :next_page => @posts.next_page
+          }
+        else
+          render :json => {:error => 'No more posts to load.'}, :status => 404
+        end
       end
       format.html do
         breadcrumbs.add @user.username
