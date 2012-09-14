@@ -110,7 +110,7 @@
 <% end %>
 <div class="standard clearfix">
   <div class="title_wrapper clearfix">
-    <div class="cont_title"><h1><%= censoring(@post.try(:title) %></h1></div>
+    <div class="cont_title"><h1><%= censoring(@post.try(:title)) %></h1></div>
   </div>
   <div class="title_box">
     <h2><%= @submit %></h2>
