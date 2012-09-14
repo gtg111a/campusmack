@@ -13,6 +13,35 @@
 //= require fancybox/jquery.fancybox-1.3.4.pack.js
 //= require jquery.toastmessage.js
 //= require jquery.tokeninput.js
+//= require jquery.infinitescroll.min.js
 //= require facebox
 //= require stat_slider
 //= require swfobject
+
+$(document).ready(function() {
+  if ($('.posts-auto-scroll.auto-scroll').length > 0) {
+    $('#posts_auto_scroll_indicator').infinitescroll({
+      loading: {
+        img: '/assets/ajax-loader.gif',
+        msgText: 'Loading more posts...'
+      },
+      dataType: 'json',
+      navSelector: '.posts-auto-scroll .pagination',
+      nextSelector: '.posts-auto-scroll .pagination a.next_page',
+      template: function(data) {
+        return data.posts;
+      },
+      appendCallback: false,
+      bufferPx: 80,
+      pathParse: function(path, page) {
+        if (path.match(/^(.*?page=)2(\/.*|$)/)) {
+          path = path.match(/^(.*?page=)2(\/.*|$)/).slice(1);
+          return path;
+        }
+        return path;
+      }
+    }, function(data) {
+      $('#posts').append(data.posts);
+    });
+  }
+});

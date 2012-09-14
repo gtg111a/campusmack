@@ -11,11 +11,23 @@ class UsersController < ApplicationController
   def show
     @order = params[:order] || 'created_at desc'
     @search = @user.posts.search(params[:search])
-    @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
-    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
-    breadcrumbs.add @user.username
-    init_college_menu
-    render :show
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => 50)
+
+    respond_to do |format|
+      format.json do
+        render :json => {
+            :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
+            :next_page => @posts.next_page
+        }
+      end
+      format.html do
+        breadcrumbs.add @user.username
+        init_college_menu
+
+        # We use the views from the posts folder for everything
+        render :show
+      end
+    end
   end
 
   def following
@@ -84,7 +96,7 @@ class UsersController < ApplicationController
   def plaxo_import
     @user = current_user
   end
-  
+
 protected
 
 def init_college_menu

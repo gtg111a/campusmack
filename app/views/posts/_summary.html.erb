@@ -1,0 +1,5 @@
+<% if controller_name != 'article_posts' && controller_name != 'news_posts' && controller_name != 'users' %>
+  <%= render 'posts/small_preview.html.erb', :post => post %>
+<% else %>
+  <%= render 'posts/post.html.erb', :post => post %>
+<% end %>

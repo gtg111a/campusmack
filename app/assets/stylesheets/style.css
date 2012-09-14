@@ -2564,3 +2564,29 @@ border-left: 1px solid #C4C4C4;      */
   color: #0A5CA6;
   text-decoration: none;
 }
+
+.preview img {
+  min-height: 135px;
+  max-width: 180px;
+}
+
+/* Auto-Scroll */
+
+#infscr-loading {
+  width: 200px;
+  line-height: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #DEDEDE;
+  margin: 20px 0 10px;
+}
+#infscr-loading img {
+  margin-right: 8px;
+  vertical-align: top;
+  height: 24px;
+  display: inline;
+}
+#infscr-loading div {
+  display: inline;
+}

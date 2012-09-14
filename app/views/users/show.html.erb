@@ -1,7 +1,7 @@
 <div class="content new_level with_submenu clearfix">
  <%= render :partial => 'shared/masthead' %>
   <div class="content_title">
-		<%= @user.username %> Posts</div>
+    <%= @user.username %> Posts</div>
   <div class="content_stats clearfix">
     <ul class="inner_menu">
       <li>
@@ -15,13 +15,17 @@
   </div>
   <div class="content_container">
     <div class="content_category">
-	  <%= render :partial => 'shared/sorter' %>	
+    <%= render :partial => 'shared/sorter', :locals => { :infinite_scrolling => true } %>
       <% unless @posts.blank? %>
-        <ul class="posts">
+        <div id="posts" class="posts">
           <%= render :partial => "/posts/post", :collection => @posts %>
-        </ul>
+        </div>
       <% end %>
-  	<%= custom_paginate @posts %>
+
+      <div id="posts_auto_scroll_indicator"></div>
+      <div class="posts-auto-scroll auto-scroll">
+        <%= next_page_paginate @posts %>
+      </div>
     </div>
   </div>
 </div>
