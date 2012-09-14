@@ -42,7 +42,11 @@ $(document).ready(function() {
         return path;
       }
     }, function(data) {
-      $('#posts').append(data.posts);
+      $('#posts').append($(data.posts)).find('a.photo').fancybox({
+        'showCloseButton': false,
+        'titlePosition': 'outside',
+        'titleFormat': formatTitle
+      });
     });
   }
 });
