@@ -22,7 +22,7 @@ $(document).ready(function() {
   if ($('.posts-auto-scroll.auto-scroll').length > 0) {
     $('#posts_auto_scroll_indicator').infinitescroll({
       loading: {
-        img: '/assets/ajax-cb-loader.gif',
+        img: '/assets/ajax-loader.gif',
         msgText: 'Loading more posts...'
       },
       dataType: 'json',
