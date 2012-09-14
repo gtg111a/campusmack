@@ -2573,6 +2573,7 @@ border-left: 1px solid #C4C4C4;      */
 /* Auto-Scroll */
 
 #infscr-loading {
+  width: 200px;
   line-height: 24px;
   font-weight: bold;
   text-align: center;
