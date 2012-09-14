@@ -23,7 +23,8 @@ $(document).ready(function() {
     $('#posts_auto_scroll_indicator').infinitescroll({
       loading: {
         img: '/assets/ajax-loader.gif',
-        msgText: 'Loading more posts...'
+        msgText: 'Loading more posts...',
+        finishedMsg: 'There are no more posts to load.'
       },
       dataType: 'json',
       navSelector: '.posts-auto-scroll .pagination',
