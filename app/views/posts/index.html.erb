@@ -10,21 +10,27 @@
   <% unless @posts.empty? %>
       <div class="content_container">
         <div class="content_category">
-          <%= render :partial => 'shared/sorter' %>	
-		<% if controller_name != "article_posts" && controller_name != "news_posts" %>   
-			<ul class="items four_col_view">
-		      <% @posts.each do |post| %>
-			  <%if post.postable_type != "Blog"%>
-		        <%= render "posts/small_preview", :post => post %>
-		      <% end %>		
-			<% end %>
-			</ul>
-		      <% else %>
-		     <%= render :partial => "/posts/post", :collection => @posts %>
-		     <% end %>
-            <%= custom_paginate @posts %>
+          <%= render :partial => 'shared/sorter', :locals => { :infinite_scrolling => true} %>
+
+          <% if controller_name != "article_posts" && controller_name != "news_posts" %>
+            <ul id="posts" class="items four_col_view">
+              <% @posts.each do |post| %>
+                <% next if post.postable_type == "Blog" %>
+                <%= render "posts/small_preview", :post => post %>
+              <% end %>
+            </ul>
+          <% else %>
+            <div id="posts">
+              <%= render :partial => "/posts/post", :collection => @posts %>
+            </div>
+          <% end %>
+
+          <div id="posts_auto_scroll_indicator"></div>
+          <div class="posts-auto-scroll auto-scroll">
+            <%= next_page_paginate @posts %>
           </div>
         </div>
       </div>
+    </div>
   <% end %>
 </div>

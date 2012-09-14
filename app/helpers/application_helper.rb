@@ -244,4 +244,14 @@ module ApplicationHelper
       will_paginate infer_collection_from_controller, options
     end
   end
+
+  def next_page_paginate(*args)
+    options = args.extract_options!
+    options[:renderer] = NextPageLinkRenderer
+    if args.length == 1
+      will_paginate args.first, options
+    else
+      will_paginate infer_collection_from_controller, options
+    end
+  end
 end

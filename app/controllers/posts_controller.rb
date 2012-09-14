@@ -8,8 +8,6 @@ class PostsController < ApplicationController
 
   before_filter :find_post, :except => [ :new, :create, :index ]
   before_filter :find_parent, :except => [ :send_as_smack, :send_in_email ]
-  
-  
 
   def new
     # If there is no parent, this is for the add smack/redemption on the home page
@@ -86,19 +84,30 @@ class PostsController < ApplicationController
     end
     @search = posts.search(params[:search])
     @order = params[:order].blank? ? Post::default_order : params[:order]
-    @per_page = params[:per].blank? ? Post::PER_PAGE_DEFAULT[0] : params[:per]
-    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => @per_page)
-    init_college_menu
-    add_breadcrumbs
+    per_page = params[:page].to_i == 0 ? 4*30 : 4*30
+    @posts = @search.paginate(:page => params[:page], :order => @order, :per_page => per_page)
 
-    # We use the views from the posts folder for everything
-    render 'posts/index'
+    respond_to do |format|
+      format.json do
+        render :json => {
+            :posts => render_to_string(:partial => 'posts/summary.html.erb', :collection => @posts, :as => :post),
+            :next_page => @posts.next_page
+        }
+      end
+      format.html do
+        init_college_menu
+        add_breadcrumbs
+
+        # We use the views from the posts folder for everything
+        render 'posts/index'
+      end
+    end
   end
 
   def show
     @youtube_video = VideoInfo.new(@post.video.url) if @post && @post.video unless @post.contest rescue nil
     @post.censored_text(@post.title, current_user)
-    @post.censored_text(@post.summary,current_user) 
+    @post.censored_text(@post.summary,current_user)
     @comments = Comment.where(:commentable_id => @post.id).order('created_at DESC').paginate(:page => params[:page])
     @title = "#{@parent.name} #{@post.class.to_s.titleize}"
     @page_description = @post.title + " " + @post.postable.name + " meme."
@@ -219,7 +228,6 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find params[:id]
-    #@post = Post.published.find(:first, :conditions => { :permalink => params[:id]} ) if params[:type] == 'ArticlePost'
   end
 
   def find_parent
@@ -279,7 +287,7 @@ class PostsController < ApplicationController
       action.gsub!(/new|create/, 'Add')
       action.gsub!(/edit|update/, 'Edit')
       action.gsub!('show', @post.id.to_s) unless @post.new_record?
-      breadcrumbs.add action 
+      breadcrumbs.add action
     end
 
   end
