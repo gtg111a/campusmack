@@ -1,5 +1,5 @@
 <li class="aborder team-item">
-  <div class="item-top clearfix">
+  <div class="item-top-small clearfix">
     <h3><%= link_to truncate(post.try(:title).upcase, :length => 22), post, :title => post.try(:title) %></h3>
     <div class="which-college">
   <%= link_to('<img src="/assets/video_icon.png" alt=""/>'.html_safe, post) if post.video || (post.article && !post.article.video_url.blank?) %>
