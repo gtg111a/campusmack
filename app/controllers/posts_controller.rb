@@ -45,11 +45,8 @@ class PostsController < ApplicationController
     @post.user = current_user
     init_college_menu
     if @post.save
-      if store_location =~ /^\/conferences\//
-        redirect_to conference_path(@parent)
-      else
-        redirect_to store_location, :flash => {:success => "#{@parent.name} #{@post.class.to_s.titleize} Submitted Successfully!"}
-      end
+      flash[:success] = "#{@parent.name} #{@post.class.to_s.titleize} Submitted Successfully!"
+      redirect_to store_location || @parent
     else
       render 'posts/new'
     end

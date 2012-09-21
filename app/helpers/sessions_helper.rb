@@ -22,7 +22,7 @@ module SessionsHelper
 
   def store_location
     unless request.fullpath =~ /\/(posts|smacks)/
-    session[:return_to] = request.fullpath
+      session[:return_to] = request.fullpath
     end
   end
 
