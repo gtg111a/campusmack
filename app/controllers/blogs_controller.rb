@@ -12,7 +12,7 @@ class BlogsController < ApplicationController
     end
 
     def index
-      @blogs = Blog.all
+      @blogs = Blog.published.order('created_at DESC')
     end
     
     def show
@@ -35,7 +35,7 @@ class BlogsController < ApplicationController
    end
    
    def find_posts(blog)
-      blog.posts.paginate(:page => params[:page], :order => @order)
+      blog.posts.published.paginate(:page => params[:page], :order => @order)
     end
     
 end
