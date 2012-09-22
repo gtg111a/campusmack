@@ -29,84 +29,78 @@
     </ul>
   </div>
   <div class="content_title"><%= censoring(@post.title, @post) %></div>
-  <div class="content_container<%= ' article' if @post.is_a?(ArticlePost) %>">
-    <div class="content_category">
-      <div class="smack_container clearfix">
-        <ul class="actions">
-          <li class="voting_icons"><%= share_and_voting_icons(@post, :show) %></li>
-          <% if signed_in? %>
+    <div class="content_container<%= ' article' if @post.is_a?(ArticlePost) %>">
+      <div class="content_category">
+        <div class="smack_container clearfix">
+          <ul class="actions">
+            <li class="voting_icons"><%= share_and_voting_icons(@post, :show) %></li>
+              <% if signed_in? %>
             <li>
               <%= link_to('<img src="/assets/edit.png" alt="Edit" />'.html_safe, method("edit_#{@post.postable_type.downcase}_#{@post.type.tableize.singularize}_path").call(@post.postable, @post), :class => 'button') if can? :update, @post %>
               <%= link_to('<img src="/assets/delete.png" alt="Delete" />'.html_safe, @post, :method => :delete, :confirm => "Delete Post?", :class => 'button') if can? :destroy, @post %>
             </li>
           <% end %>
-        </ul>
-
-        <div class="smack_info">
-	<% if !@parent.is_a?(Blog)%>
-    <span class="team">
-      College:
-      <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
-    </span>
-    <% else %>
-  <span class="team">
-      From:
-      <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
-    </span>
-	<% end %>
-          Posted
-          <span class="date"><%= formatted_datetime(@post.created_at.to_datetime) %>, </span>
-          <em>by</em>
-		 <% if @post.article %>
-		  <%= link_to @post.user.try(:first_name), user_path(@post.user), :class => "author" %>
-		<% else %>
-          <%= link_to @post.user.try(:username), user_path(@post.user), :class => "author" %>
-		<% end %>
-        </div>
-
-        <% if @post.photo || @post.news_post || @post.video || @post.article %>
-          <div class="smack_content">
-        <% end %>
-        <% if @post.photo %>
-          <div class="photo">
-            <img src="<%= @post.photo.url(:large) %>" alt=""/>
-          </div>
-        <% end %>
-        <% if @post.article && @post.article.image.exists? %>
-          <div class="photo">
-            <img src="<%= @post.article.image.url(:large) %>" alt=""/>
-          </div>
-        <% end %>
-        <% if @post.news_post %>
-          <%= link_to "Article Link", @post.news_post.url unless @post.news_post.blank? %>
-          <% unless @post.news_post.image_file_name.blank? %>
-            <div class="photo">
-              <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>
+          </ul>
+            <div class="smack_info">
+	          <% if !@parent.is_a?(Blog)%>
+                <span class="team">
+                  College:
+                  <%= link_to @post.postable.name, method("#{@post.postable_type.downcase}_path").call(@post.postable) %>
+                </span>
+	          <% end %>
+                  Posted
+                <span class="date"><%= formatted_datetime(@post.created_at.to_datetime) %>, </span>
+                <em>by</em>
+		          <% if @post.article %>
+		            <%= link_to @post.user.try(:first_name), user_path(@post.user), :class => "author" %>
+		          <% else %>
+                    <%= link_to @post.user.try(:username), user_path(@post.user), :class => "author" %>
+		          <% end %>
             </div>
+
+            <% if @post.photo || @post.news_post || @post.video || @post.article %>
+              <div class="smack_content">
+            <% end %>
+            <% if @post.photo %>
+                <div class="photo">
+                  <img src="<%= @post.photo.url(:large) %>" alt=""/>
+                </div>
+            <% end %>
+            <% if @post.article && @post.article.image.exists? %>
+                <div class="photo">
+                  <img src="<%= @post.article.image.url(:large) %>" alt=""/>
+                </div>
+            <% end %>
+            <% if @post.news_post %>
+              <%= link_to "Article Link", @post.news_post.url unless @post.news_post.blank? %>
+            <% unless @post.news_post.image_file_name.blank? %>
+                <div class="photo">
+                  <img src="<%= @post.news_post.image_url(:large) %>" alt=""/>
+                </div>
+            <% end %>
+              <% unless @post.news_post.video_url.blank? %>
+                <div><%= youtube_embed(@post.news_post.video_url, :large) %></div>
+              <% end %>
+            <% end %>
+          <% if @post.video %>
+                <div><%= youtube_embed(@post.video.url, :large) %></div>
           <% end %>
-          <% unless @post.news_post.video_url.blank? %>
-            <div><%= youtube_embed(@post.news_post.video_url, :large) %></div>
+          <% if @post.article && !@post.article.video_url.blank? %>
+                <div><%= youtube_embed(@post.article.video_url, :large) %></div>
           <% end %>
-        <% end %>
-        <% if @post.video %>
-          <div><%= youtube_embed(@post.video.url, :large) %></div>
-        <% end %>
-        <% if @post.article && !@post.article.video_url.blank? %>
-          <div><%= youtube_embed(@post.article.video_url, :large) %></div>
-        <% end %>
-        <% if @post.photo || @post.news_post || @post.video || @post.article %>
-          </div>
+          <% if @post.photo || @post.news_post || @post.video || @post.article %>
+              </div>
         <% end %>
         <% if @post.article %>
-          <div class="summary">
-            <%= @post.article.body.html_safe %>
-          </div>
+            <div class="summary">
+              <%= @post.article.body.html_safe %>
+            </div>
         <% else %>
-          <div class="summary"><%= truncate(censoring(@post.summary), :length => Post::MAX_TEXT_LEN) %>
+            <div class="summary"><%= truncate(censoring(@post.summary), :length => Post::MAX_TEXT_LEN) %>
           <% if @post.summary && params[:action] != 'show' %>
             <%= link_to " [more...]", [@parent, @post] %>
           <% end %>
-          </div>
+            </div>
         <% end %>
 		</div>
         <br class="clear"/>
@@ -118,14 +112,14 @@
               <%= f.submit "Comment", :class => "blue_button right" %>
             <% end %>
         <% end %>
-        </div><br class="clear"/>
+          </div><br class="clear"/>
         <%= custom_paginate(@comments) %>
         <div class="comments_container">
           <%= render :partial => @comments %>
           <% unless current_user %>
             <p class="comment_auth_message">You must be signed in to comment. <%=link_to "Sign in", sign_in_path %> or <%= link_to "Create an Account", sign_up_path %>.</p>
           <% end %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

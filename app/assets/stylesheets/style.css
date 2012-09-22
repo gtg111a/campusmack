@@ -1010,10 +1010,9 @@ ul.news li {
 }
 
 .smack_container .smack_info {
-  margin-top: 7px;
   margin-bottom: 7px;
   color: #bbbbbb;
-  font-size: 8pt;
+  font-size: 10pt;
 }
 
 .smack_container .smack_info .team {
@@ -2001,7 +2000,7 @@ a.divwrap:hover {
 }
 
 .article .content_category {
-  padding: 30px;
+  padding: 5px 30px 30px 30px;
   overflow: hidden;
 }
 
@@ -2013,10 +2012,24 @@ a.divwrap:hover {
 }
 
 .article .summary {
-  font-size: 13px;
+	margin-top: 20px;
+}
+
+.article .summary p {
+  font-size: 14px;
   line-height: 1.7em;
-  margin: 22px 0px;
-  text-align: justify;
+}
+
+.article .summary h2 {
+	font-size: 30px;
+}
+
+.article .summary img {
+  max-width: 500px;
+}
+
+.article .summary hr {
+	border-bottom: 2px;
 }
 
 .article .photo img {
