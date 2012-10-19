@@ -27,8 +27,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # Collecting data from providers to fill the signup form's fields
     h = {}
     if (omniauth['provider'] == 'facebook')
-      h[:email] = omniauth['extra']['user_hash']['email']
-      h[:first_name] = omniauth['extra']['user_hash']['name']
+      h[:email] = omniauth['extra']['raw_info']['email']
+      h[:first_name] = omniauth['extra']['raw_info']['name']
     elsif (omniauth['provider'] == 'google_apps')
       h[:email] = omniauth['info']['email']
       h[:first_name] = omniauth['info']['first_name'] + " " + omniauth['info']['last_name']
