@@ -48,7 +48,7 @@ Campusmack::Application.configure do
   config.active_support.deprecation = :notify
   #config.encryptor = :bcrypt
 
-  config.action_mailer.default_url_options = { :host => 'campusmack.com' }
+  config.action_mailer.default_url_options = { :host => 'www.campusmack.com' }
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
