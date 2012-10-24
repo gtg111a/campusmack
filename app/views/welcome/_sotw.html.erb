@@ -12,7 +12,9 @@
     <% if sotw.video %>
       <%= youtube_embed(sotw.video.url, :medium) %>
     <% end %>
+    <% if sotw.news_post.present? %>
     <%= link_to "Article Link", sotw.news_post.url %>
+    <% end %>
   </div>
   <div class="img_title">
     <%= sotw.created_at.to_date.to_s(:long) %> by <%= link_to(truncate(sotw.user.try(:username), :length => 16), sotw.user) %>
