@@ -8,7 +8,7 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
-gem 'jquery-rails', '2.0.1'
+gem 'jquery-rails'
 
 gem 'will_paginate'
 
@@ -38,7 +38,7 @@ gem 'aws-sdk'
 gem 'video_info', '0.2.6'
 
 gem 'bitsontherun'
-gem 'ckeditor', '3.6.3'
+gem 'ckeditor'
 
 group :development do
   gem 'sqlite3'

@@ -1,17 +1,18 @@
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 68f5258e9af2110b02318bf76176a70eca6e55f7
+  revision: 7abe9b2574c7e15620653fd61892a109c9ea1f52
   specs:
-    rails_admin (0.0.1)
-      bbenezech-nested_form (~> 0.0.6)
-      bootstrap-sass (~> 2.0)
+    rails_admin (0.4.0)
+      bootstrap-sass (~> 2.1)
       builder (~> 3.0)
       coffee-rails (~> 3.1)
+      font-awesome-sass-rails (~> 3.0, >= 3.0.0.1)
       haml (~> 3.1)
-      jquery-rails (>= 1.0)
-      jquery-ui-rails (~> 0.2.2)
-      kaminari (~> 0.12)
-      rack-pjax (~> 0.5)
+      jquery-rails (~> 2.1)
+      jquery-ui-rails (~> 3.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.2)
+      rack-pjax (~> 0.6)
       rails (~> 3.1)
       remotipart (~> 1.0)
       sass-rails (~> 3.1)
@@ -60,12 +61,12 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
     bitsontherun (0.1.2)
       curb (>= 0.7.0)
       json (>= 1.4.0)
-    bootstrap-sass (2.0.1)
+    bootstrap-sass (2.2.2.0)
+      sass (~> 3.2)
     breadcrumbs (0.1.6)
       i18n
     builder (3.0.4)
@@ -93,7 +94,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.2.0)
+    coffee-script-source (1.4.0)
     colored (1.2)
     columnize (0.3.6)
     cucumber (1.1.9)
@@ -117,7 +118,7 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
-    execjs (1.3.0)
+    execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.0.0)
       activesupport (>= 3.0.0)
@@ -131,10 +132,13 @@ GEM
     fastercsv (1.5.4)
     ffaker (1.14.0)
     ffi (1.0.11)
+    font-awesome-sass-rails (3.0.0.1)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     gherkin (2.9.3)
       json (>= 1.4.6)
     gravatar_image_tag (1.0.0)
-    haml (3.1.4)
+    haml (3.1.7)
     hashie (1.2.0)
     heroku (2.23.0)
       launchy (>= 0.3.2)
@@ -148,17 +152,16 @@ GEM
       multi_xml
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.0.1)
-      railties (>= 3.2.0, < 5.0)
-      thor (~> 0.14)
-    jquery-ui-rails (0.2.2)
+    jquery-rails (2.1.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-ui-rails (3.0.1)
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.6)
-    kaminari (0.13.0)
+    kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     linecache19 (0.5.12)
@@ -176,6 +179,7 @@ GEM
     multi_json (1.5.0)
     multi_xml (0.4.2)
     multipart-post (1.1.5)
+    nested_form (0.3.1)
     netrc (0.7.1)
     nokogiri (1.5.2)
     oa-core (0.3.2)
@@ -218,8 +222,8 @@ GEM
     rack-openid (1.3.1)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
-    rack-pjax (0.5.9)
-      hpricot (~> 0.8.6)
+    rack-pjax (0.7.0)
+      nokogiri (~> 1.5)
       rack (~> 1.3)
     rack-ssl (1.3.2)
       rack
@@ -278,7 +282,7 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.6.1)
-    sass (3.1.15)
+    sass (3.2.5)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -348,7 +352,7 @@ DEPENDENCIES
   cancan
   capybara
   capybara-webkit
-  ckeditor (= 3.6.3)
+  ckeditor
   client_side_validations
   coffee-rails (= 3.2.2)
   cucumber
@@ -360,7 +364,7 @@ DEPENDENCIES
   ffaker
   gravatar_image_tag
   heroku
-  jquery-rails (= 2.0.1)
+  jquery-rails
   launchy
   meta_search
   oa-core
